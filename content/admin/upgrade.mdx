@@ -1,0 +1,208 @@
+---
+title: Upgrade
+---
+
+Upgrading to *Kinetica* **7.2** is facilitated through the use of
+[KAgent](/content/admin/kagent/kagent).  *KAgent* **7.2** provides the
+ability to upgrade existing *Kinetica* clusters managed by *KAgent* **7.1** or
+clusters that are not managed at all.
+
+Upgrading requires the system be *Kinetica* **7.1** or newer.  If running a
+*Kinetica* version prior to that, refer to the
+[Kinetica 7.1 Upgrade instructions](https://docs.kinetica.com/7.1/admin/upgrade/)
+for details on upgrading to **7.1** first, and then refer back to this guide to
+complete the upgrade to version **7.2**.
+
+
+## Migration Guide
+
+
+See [Migrating To Kinetica 7.2](/content/install/migration_guide) for considerations that should be made
+before deciding to upgrade.
+
+
+## Pre-Upgrade Actions
+
+
+Before upgrading to *Kinetica* **7.2** perform the following checks & tasks to
+ensure the system is ready to be upgraded.
+
+
+### Checks
+
+
+* Ensure that the system being upgraded is *Kinetica* **7.1**.
+* Ensure that 8GB of disk space is available on the directory mount used for
+  installation on each node.
+* If performing an offline upgrade, ensure that all installation packages are
+  available to the machine initiating the upgrade (the one that will log into
+  *KAgent* and kick off the installation).
+
+
+<a id="upgrade-tasks"></a>
+
+
+### Tasks
+
+
+* [Back up](/content/admin/backup_restore#backrest-backup) data & configuration files.
+* If [AAW](https://docs.kinetica.com/7.1/aaw/overview/) is being used, terminate all [ingests](https://docs.kinetica.com/7.1/aaw/data/) and [deployed models](https://docs.kinetica.com/7.1/aaw/deployments/).
+
+
+<a id="upgrade-actions"></a>
+
+
+## Upgrade Actions
+
+
+If upgrading an on-premise *Kinetica* ring or one hosted in the cloud, the ring
+can be upgraded in place.
+
+The upgrade path is dependent upon whether the *Kinetica 7.1* cluster is
+currently being managed by *KAgent*.
+
+* Managed Cluster Upgrade
+* Unmanaged Cluster Upgrade
+
+
+<a id="managed-cluster-upgrade"></a>
+
+
+### Managed Cluster Upgrade
+
+
+If the cluster to upgrade is already managed by *KAgent* **7.1**, upgrade
+*KAgent* to version **7.2**, and then upgrade the cluster.
+
+1. Upgrade KAgent.
+
+   {/* include: /install/shared/kagent_upgrade.rst */}
+
+2. Start *KAgent*.
+
+   {/* include: /install/shared/kagent_start.rst */}
+
+3. Click **Upgrade Ring**.
+
+4. For each ring to upgrade, click **Upgrade** on that ring, and follow
+   these steps to upgrade the ring:
+
+   1. Confirm that all tasks under **Tasks** have been performed, then
+      check the checkboxes and click **Start**.
+   2. If performing an offline upgrade, upload all the *Kinetica* **7.2**
+      install packages.  When done, or if performing an online upgrade, click
+      **Next**.
+   3. Click **Upgrade** and then click **Yes** to begin the
+      *Kinetica* **7.2** upgrade process.
+   4. Click **Close** when the upgrade is complete.
+
+
+<a id="unmanaged-cluster-upgrade"></a>
+
+
+### Unmanaged Cluster Upgrade
+
+
+If the cluster to upgrade is **not** managed by *KAgent* **7.1**, install
+*KAgent* **7.2**, add the cluster, and upgrade it to **7.2**.
+
+1. Install *KAgent*.
+
+   {/* include: /install/shared/kagent_install.rst */}
+
+2. Start *KAgent*.
+
+   {/* include: /install/shared/kagent_start.rst */}
+
+3. [Add the cluster to upgrade to KAgent](/content/admin/adding_cluster_kagent),
+   choosing the *on-premise* deployment method, regardless of the way in which
+   the cluster is actually provisioned.
+4. For each additional cluster to upgrade:
+
+   1. Click **+ Cluster**
+   2. [Add the cluster to upgrade to KAgent](/content/admin/adding_cluster_kagent#admin-add-cluster), choosing
+      the *on-premise* deployment method
+
+5. Click **Rings** at the top of the page.
+6. Click **Upgrade** on the ring to upgrade to *Kinetica* **7.2**
+7. If performing an offline upgrade, upload all the *Kinetica* **7.2** install
+   packages.  When done, or if performing an online upgrade, click
+   **Upgrade** and then click **Yes** to begin the
+   *Kinetica* **7.2** upgrade process.
+
+
+## Post-Upgrade Actions
+
+
+* If [AAW](https://docs.kinetica.com/7.1/aaw/overview/) was being used in the *ring* that was upgraded:
+
+  * recreate all [ingests](/content/ml/concepts#ml-data) that were previously active
+  * redeploy all [models](/content/sql/ml#sql-ml-import-model) that were
+    previously active
+
+* [Upgrade database clients](/content/admin/upgrade#upgrade-database-clients), if needed.
+
+
+<a id="upgrade-database-clients"></a>
+
+
+### Upgrading Database Clients
+
+
+Any native API clients or ODBC/JDBC drivers can be updated to take advantage of
+new features in *Kinetica* **7.2**.
+
+
+<a id="upgrade-database-clients-apis"></a>
+
+
+#### Native APIs
+
+
+The instructions for upgrading to the latest APIs can be found in their
+respective manuals:
+
+* [C++ Developer Guide](/content/guides/cpp_guide)
+* [Java Developer Guide](/content/guides/java_guide)
+* [JavaScript Developer Guide](/content/guides/js_guide)
+* [Node.js Developer Guide](/content/guides/nodejs_guide)
+* [Python Developer Guide](/content/guides/python_guide)
+
+
+<a id="upgrade-database-clients-drivers"></a>
+
+
+#### JDBC
+
+
+See [JDBC](/content/connectors/sql_guide#jdbc) for the latest JDBC clients and related
+configuration.
+
+
+#### ODBC
+
+
+Be sure to remove older versions of the driver before installing new ones.
+
+
+##### Remove Previous Windows ODBC Drivers
+
+
+To remove the old drivers:
+
+1. Launch **ODBC Data Source Administrator**
+   *(64-bit or 32-bit, as needed)*.
+2. Select any entry with a **Driver** name of `Kinetica ODBC Driver`.
+3. Optionally, click the **Configure** button to open up the driver
+   properties window and record any settings that could be reused with the new
+   driver (username, SSL Certificate path, etc.).
+4. Click the **Remove** button.
+5. Click the **Yes** button to confirm the removal.
+6. Repeat this process until all older drivers have been removed.
+
+
+##### Install New ODBC/JDBC Drivers
+
+
+See [ODBC](/content/connectors/sql_guide#odbc) for the latest ODBC clients and related
+configuration.

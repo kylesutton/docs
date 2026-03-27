@@ -1,0 +1,469 @@
+---
+title: Database Backup/Restore
+---
+
+*Kinetica* provides a SQL interface for performing hot backups via *full*,
+*incremental*, & *differential snapshots* and restoration of schema objects and
+data.  For information on *full system backups*, see
+[System Backup](/content/admin/backup_restore#system-backup) instead.
+
+The ability to manage *backups* is available using the following commands:
+
+* CREATE BACKUP
+* ALTER BACKUP
+* RESTORE BACKUP
+* DROP BACKUP
+* SHOW BACKUP
+* DESCRIBE BACKUP
+
+See [Backing Up/Restoring Kinetica](/content/admin/backup_restore#database-backup) for details on backing up and restoring data.
+
+
+<a id="sql-backup-create"></a>
+
+
+## CREATE BACKUP
+
+
+Creates a new *full*, *incremental*, or *differential snapshot* of the given
+database objects and data; storing the backup files at the location accessible
+through the given [data sink](/content/sql/ddl#sql-create-data-sink).
+
+<CodeGroup>
+
+{/* Source: /sql/syntax/backup.sql (lines 8-11) */}
+```sql Full Backup Syntax
+CREATE BACKUP <backup name>
+DATA SINK = <data sink name>
+[OBJECTS (<object type> = <object name>[,...])]
+[WITH OPTIONS (<backup option name> = '<backup option value>'[,...])]
+```
+
+{/* Source: /sql/syntax/backup.sql (lines 16-18) */}
+```sql Incremental Backup Syntax
+BACKUP <backup name>
+DATA SINK = <data sink name>
+[WITH OPTIONS (<backup option name> = '<backup option value>'[,...])]
+```
+
+{/* Source: /sql/syntax/backup.sql (lines 23-26) */}
+```sql Differential Backup Syntax
+BACKUP <backup name>
+TYPE = 'differential'
+DATA SINK = <data sink name>
+[WITH OPTIONS (<backup option name> = '<backup option value>'[,...])]
+```
+
+</CodeGroup>
+
+| Parameters | Description |
+| --- | --- |
+| `CREATE` | Keyword indicating a *backup* should be created with an initial *full snaphost*.  If omitted, an *incremental snapshot* will be created, using the most recent *full* or *incremental snapshot* as the baseline. |
+| `<backup name>` | Name of the *backup* to create. |
+| `<data sink name>` | Name of the [data sink](/content/sql/ddl#sql-create-data-sink) to use to send the database *backup* files to the remote file store. |
+| `TYPE` | Type of *snapshot* to create. <br/> *Snapshot* type designations include: <br/> <br/> `full`: Create a *full snapshot* of the specified database objects. This is the default when `CREATE` is specified. <br/> `incremental`: Create a *snapshot* of the changes to the specified database objects since the most recent *snapshot* of any kind was created. This is the default when `CREATE` is omitted. <br/> `differential`: Create a *snapshot* of the changes to the specified database objects since the most recent *full snapshot* was created. |
+| `OBJECTS` | List of key/value pairs, each being an `object type` and an `object name` of that type, to back up. <br/> <Note> The `OBJECTS` clause should only be specified for *full snapshots*. Both *incremental* & *differential snapshots* will operate on the objects specified during the original *full snapshot* associated with the `backup name` specified for them. </Note> <br/> `object type` designations include: <br/> <br/> `ALL`: [Schema](/content/sql/ddl#sql-create-schema), and all the objects & data it contains <br/> `CONTEXT`: [SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context) <br/> `CREDENTIAL`: [Credential](/content/sql/ddl#sql-create-credential) <br/> `DATA SINK`: [Data sink](/content/sql/ddl#sql-create-data-sink) <br/> `DATA SOURCE`: [Data source](/content/sql/ddl#sql-create-data-source) <br/> `FUNCTION`: [UDF](/content/sql/udf#sql-create-function) <br/> `FUNCTION ENVIRONMENT`: [UDF environment](/content/sql/udf#sql-create-function-environment) <br/> `PROCEDURE`: [SQL procedure](/content/sql/procedure#sql-procedures) <br/> `RESOURCE GROUP`: [Resource group](/content/sql/resource_group#sql-rg-create) <br/> `ROLE`: [User role](/content/sql/security#sql-security-role-mgmt) <br/> `STREAM`: [Stream](/content/sql/ddl#sql-create-stream) <br/> `TABLE`: [Table](/content/sql/ddl#sql-create-table) or [view](/content/sql/ddl#sql-create-view) <br/> `USER`: [User](/content/sql/security#sql-security-user-mgmt) |
+| `WITH OPTIONS` | Optional indicator that a comma-delimited list of *backup* option name/value assignments will follow. <br/> See [Backup Options](/content/sql/backup_restore#sql-backup-create-opt) for the complete list of options. |
+
+
+<a id="sql-backup-create-opt"></a>
+
+
+### Backup Options
+
+
+The following options can be specified to further modify a *backup*
+configuration.
+
+| Option | Description |
+| --- | --- |
+| `CHECKSUM` | Calculate and store a checksum of all backed-up objects.  The default (`false`) is to not create checksums. |
+| `COMMENT` | Comment to associate with the *snapshot*. |
+| `DDL_ONLY` | For any table, only back up its DDL; don't back up its data.  The default (`false`) is to back up data and DDL. <br/> <Info> In this mode, subsequent *incremental* & *differential snapshot* attempts will return a warning and create no additional *snapshot* if only data has changed since the last *snapshot*. </Info> |
+| `DELETE_INTERMEDIATE_BACKUPS` | For *differential snapshot* types only, delete all prior intermediate *differential* & *incremental snapshots* between the last *full snapshot* and this one for the given `backup name`.  The default (`false`) is to not delete intermediate *snapshots*. |
+| `DRY_RUN` | Execute a dry run of a back up without actually backing up any files.  The default (`false`) is to not do a dry run. |
+| `MAX_INCREMENTAL_BACKUPS_TO_KEEP` | Maximum number of *incremental snapshots* to keep for the given `backup name`; if creating this *incremental snapshot* will cause the total number to exceed this maximum, the oldest *incremental snapshot* will be removed.  The default is unlimited. |
+| `RECREATE` | For *full snapshot* types only, replace the existing *backup* with a new *backup*, if it exists. The default (`false`) is to not replace the existing *backup* and return an error, if one exists. |
+
+
+<a id="sql-backup-create-ex"></a>
+
+
+### Examples
+
+
+For example, to create a *backup* named `backup_schema` with a *full snapshot*
+of schema `example_backup`, copying backup files to a target via *data source*
+`backup_ds`:
+
+{/* Source: /examples/sql/backup/backup.kisql (lines 80-82) */}
+```sql CREATE BACKUP (Full Snapshot) Example
+CREATE BACKUP schema_backup
+DATA SINK = backup_ds
+OBJECTS (ALL = example_backup)
+```
+
+To create an *incremental snapshot* based on the previous *snapshot* of the
+*backup* with the same name:
+
+{/* Source: /examples/sql/backup/backup.kisql (lines 136-137) */}
+```sql CREATE BACKUP (Incremental Snapshot) Example
+BACKUP schema_backup
+DATA SINK = backup_ds
+```
+
+To create a *differential snapshot* based on the previous *full snapshot* of the
+*backup* with the same name:
+
+{/* Source: /examples/sql/backup/backup.kisql (lines 192-194) */}
+```sql CREATE BACKUP (Differential Snapshot) Example
+BACKUP schema_backup
+TYPE = 'differential'
+DATA SINK = backup_ds
+```
+
+
+<a id="sql-backup-alter"></a>
+
+
+## ALTER BACKUP
+
+
+Any of the following facets of a [backup](/content/sql/backup_restore#sql-backup-create) can
+be altered, via a given [data sink](/content/sql/ddl#sql-create-data-sink):
+
+* *Backup snapshots* can be merged into a single *full snapshot*.
+* *Backup snapshots* can be individually deleted
+* *Backup* options can be set
+
+```sql title="ALTER BACKUP Syntax"
+ALTER BACKUP <backup name>
+DATA SINK = <data sink name>
+< MERGE | PURGE <backup id> | SET <property name> = '<property value>'[,...] >
+[WITH OPTIONS (<alter option name> = '<alter option value>'[,...])]
+```
+
+
+| Parameters | Description |
+| --- | --- |
+| `<backup name>` | Name of the [backup](/content/sql/backup_restore#sql-backup-create) to alter. |
+| `<data sink name>` | Name of the [data sink](/content/sql/ddl#sql-create-data-sink) used to alter the database *backup* files on the remote file store. |
+| `MERGE` | Merges all *snapshots* of a given *backup* into a single, *full snapshot*.  An error will be reported if the *backup* contains only one *full snapshot*. |
+| `PURGE` | Deletes the *snapshot* identified with `backup id`.  Only applicable to *incremental* and *differential snapshots*. |
+| `SET` | Sets the given list of properties to their given corresponding values. <br/> <Info> These settings will affect future *snapshots* of the given *backup*; existing *snapshots* will remain unchanged. </Info> <br/> Alterable properties include: <br/> <br/> `CHECKSUM`: Whether or not to calculate checksums on backed-up objects. <br/> `DDL_ONLY`: Whether or not to only back up DDL for any tables. <br/> `MAX_INCREMENTAL_BACKUPS_TO_KEEP`: Maximum number of *incremental snapshots* to keep. |
+| `WITH OPTIONS` | Optional indicator that a comma-delimited list of alteration option name/value assignments will follow. <br/> Alter options include: <br/> <br/> `COMMENT`: A new comment for the *backup* that is created by a `MERGE`; only valid for `MERGE` operations. <br/> `DRY_RUN`: Whether or not to execute a dry run of a *backup* alteration and not actually alter the *backup*. |
+
+
+<a id="sql-backup-alter-ex"></a>
+
+
+### Examples
+
+
+For example, to merge all *snapshots* of a *backup* into a single
+*full snapshot* and add a comment to the merged *backup*:
+
+{/* Source: /examples/sql/backup/backup.kisql (lines 417-420) */}
+```sql MERGE Backup Example
+ALTER BACKUP schema_backup
+DATA SINK = backup_ds
+MERGE
+WITH OPTIONS (COMMENT = 'Merged last 30 days of backups')
+```
+
+To purge a given *snapshot* by ID number:
+
+{/* Source: /examples/sql/backup/backup.kisql (lines 285-287) */}
+```sql PURGE Backup Example
+ALTER BACKUP schema_backup
+DATA SINK = backup_ds
+PURGE 1654321012345
+```
+
+To set the maximum number of *incremental snapshots* of a *backup* to keep to
+`5`:
+
+{/* Source: /examples/sql/backup/backup.kisql (lines 437-439) */}
+```sql SET Backup Properties Example
+ALTER BACKUP schema_backup
+DATA SINK = backup_ds
+SET MAX_INCREMENTAL_BACKUPS_TO_KEEP = 5
+```
+
+
+<a id="sql-backup-restore"></a>
+
+
+## RESTORE BACKUP
+
+
+Restores the given database objects & data from an existing *full*,
+*incremental*, or *differential snapshot* within a
+[backup](/content/sql/backup_restore#sql-backup-create); retrieving the backed-up files at the
+location accessible through the given
+[data source](/content/sql/ddl#sql-create-data-source).
+
+Each restored object is placed in its original *schema*.
+
+```sql title="RESTORE BACKUP Syntax"
+RESTORE BACKUP <backup name>
+DATA SOURCE <data source name>
+OBJECTS (<object type> = <object name>[,...])
+[WITH OPTIONS (<restore option name> = '<restore option value>'[,...])]
+```
+
+| Parameters | Description |
+| --- | --- |
+| `<backup name>` | Name of the *backup* from which objects will be restored. |
+| `<data source name>` | Name of the [data source](/content/sql/ddl#sql-create-data-source) to use to retrieve the database *backup* files from the remote file store. |
+| `OBJECTS` | List of key/value pairs, each being an `object type` and an `object name` of that type, to restore. <br/> `object type` designations include: <br/> <br/> `ALL`: [Schema](/content/sql/ddl#sql-create-schema), and all the objects & data it contains <br/> `CONTEXT`: [SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context) <br/> `CREDENTIAL`: [Credential](/content/sql/ddl#sql-create-credential) <br/> `DATA SINK`: [Data sink](/content/sql/ddl#sql-create-data-sink) <br/> `DATA SOURCE`: [Data source](/content/sql/ddl#sql-create-data-source) <br/> `FUNCTION`: [UDF](/content/sql/udf#sql-create-function) <br/> `FUNCTION ENVIRONMENT`: [UDF environment](/content/sql/udf#sql-create-function-environment) <br/> `PROCEDURE`: [SQL procedure](/content/sql/procedure#sql-procedures) <br/> `RESOURCE GROUP`: [Resource group](/content/sql/resource_group#sql-rg-create) <br/> `ROLE`: [User role](/content/sql/security#sql-security-role-mgmt) <br/> `STREAM`: [Stream](/content/sql/ddl#sql-create-stream) <br/> `TABLE`: [Table](/content/sql/ddl#sql-create-table) or [view](/content/sql/ddl#sql-create-view) <br/> `USER`: [User](/content/sql/security#sql-security-user-mgmt) |
+| `WITH OPTIONS` | Optional indicator that a comma-delimited list of *backup* restoration option name/value assignments will follow. <br/> See [Restore Options](/content/sql/backup_restore#sql-backup-restore-opt) for the complete list of options. |
+
+
+<a id="sql-backup-restore-opt"></a>
+
+
+### Restore Options
+
+
+The following options can be specified to further modify a *backup*
+restoration.
+
+| Option | Description |
+| --- | --- |
+| `BACKUP_ID` | ID of *snapshot* from which objects will be restored.  The default is to use the most recent one. |
+| `CHECKSUM` | Verify checksums calculated during back up process before restoring.  The default (`false`) is to not verify checksums. |
+| `CREATE_SCHEMA_IF_NOT_EXIST` | Whether to create the [schema](/content/sql/ddl#sql-create-schema) containing objects being restored if it doesn't exist.  The default (`true`) is to create the *schema* if it doesn't exist. |
+| `DDL_ONLY` | For any table, only restore its DDL; don't restore its data.  The default (`false`) is to restore data and DDL. |
+| `DRY_RUN` | Execute a dry run of a restoration without actually restoring any files.  The default (`false`) is to not do a dry run. |
+| `RENAMED_OBJECTS_SCHEMA` | If `RESTORE_POLICY` is `rename`, each existing database objects will be relocated to this [schema](/content/sql/ddl#sql-create-schema) if a restored database object would otherwise collide with it.  If not specified, the *schema* name will be automatically generated, using the format: `backup_<UUID>`. |
+| `RESTORE_POLICY` | Restoration scheme to use when restoring objects that already exist.  The default policy is to abort the restoration and return an error. <br/> Other policy choices include: <br/> <br/> `rename`: If any object being restored already exists in the database in its corresponding [schema](/content/sql/ddl#sql-create-schema) , move all already-existing objects that would otherwise be overwritten by the restoration into another *schema*, and restore all objects to their original *schema*. The name of the *schema* holding the relocated objects is determined by `RENAMED_OBJECTS_SCHEMA`, and will be created if it doesn't exist. <br/> `replace`: If the object being restored already exists in the database in its corresponding *schema*, overwrite the existing object with it. |
+
+
+<a id="sql-backup-restore-ex"></a>
+
+
+### Examples
+
+
+For example, to restore the `example_backup` schema from a *backup* named
+`backup_schema`, copying data from a source via *data source* `backup_ds`:
+
+{/* Source: /examples/sql/backup/backup.kisql (lines 98-100) */}
+```sql RESTORE BACKUP (Schema) Example
+RESTORE BACKUP schema_backup
+DATA SOURCE = restore_ds
+OBJECTS (ALL = example_backup)
+```
+
+To restore individual tables from a *backup* named `backup_schema`, restoring
+tables that already exist into a new schema, `example_backup_restore`:
+
+{/* Source: /examples/sql/backup/backup.kisql (lines 213-220) */}
+```sql RESTORE BACKUP (Objects w/ Rename Schema) Example
+RESTORE BACKUP schema_backup
+DATA SOURCE = restore_ds
+OBJECTS (TABLE = example_backup.employee, example_backup.product)
+WITH OPTIONS
+(
+	RESTORE_POLICY = 'rename',
+	RENAMED_OBJECTS_SCHEMA = 'example_backup_restore'
+)
+```
+
+
+<a id="sql-backup-drop"></a>
+
+
+## DROP BACKUP
+
+
+Deletes one or more [backups](/content/sql/backup_restore#sql-backup-create) and all
+associated files from the remote store accessible through the given
+[data sink](/content/sql/ddl#sql-create-data-sink).
+
+```sql title="DROP BACKUP Syntax"
+DROP BACKUP < <backup name> | "<backup name>*" | * >
+DATA SINK <data sink name>
+[WITH OPTIONS (<delete option name> = '<delete option value>'[,...])]
+```
+
+| Parameters | Description |
+| --- | --- |
+| `<backup name>` | Name of the *backup(s)* to delete that are accessible via the *data sink* given by `data sink name`. <br/> Use `<backup name>*` to delete all *backups* that start with `backup name`. <br/> Use `*` instead of `<backup name>` to delete all *backups*. <br/> <Info> The `DELETE_ALL_BACKUPS` option must be set to `true` when using `*`. </Info> |
+| `<data sink name>` | Name of the [data sink](/content/sql/ddl#sql-create-data-sink) to use to delete the database *backup* files from the remote file store. |
+| `WITH OPTIONS` | Optional indicator that a comma-delimited list of deletion option name/value assignments will follow. <br/> Delete options include: <br/> <br/> `DELETE_ALL_BACKUPS`: Whether or not to allow multiple *backups* to be deleted if `*` is used to specify more than one *backup*; default (`false`) is to prevent deleting multiple *backups*. <br/> `DRY_RUN`: Whether or not to execute a dry run of a *backup* deletion and not actually delete the *backup* files; default (`false`) is to delete *backups*. <br/> `NO_ERROR_IF_NOT_EXISTS`: Whether or not to suppress an error if the given *backup* does not exist; default (`false`) is to return an error. |
+
+
+<a id="sql-backup-drop-ex"></a>
+
+
+### Examples
+
+
+For example, to delete a *backup*, `schema_backup`, via a
+*data sink*, `backup_ds`, through which the *backup* files can be accessed:
+
+{/* Source: /examples/sql/backup/backup.kisql (lines 522-523) */}
+```sql DROP BACKUP Example
+DROP BACKUP schema_backup
+DATA SINK = backup_ds
+```
+
+To delete all *backups* accessible via the `backup_ds` *data sink* that have a
+*backup* name starting with `conf`:
+
+{/* Source: /examples/sql/backup/backup.kisql (lines 533-535) */}
+```sql DROP BACKUP (All Matching Backups at Data Sink) Example
+DROP BACKUP "conf*"
+DATA SINK = backup_ds
+WITH OPTIONS (DELETE_ALL_BACKUPS = true)
+```
+
+To delete all *backups* accessible via the `backup_ds` *data sink*:
+
+{/* Source: /examples/sql/backup/backup.kisql (lines 547-549) */}
+```sql DROP BACKUP (All Backups at Data Sink) Example
+DROP BACKUP *
+DATA SINK = backup_ds
+WITH OPTIONS (DELETE_ALL_BACKUPS = true)
+```
+
+
+<a id="sql-backup-show"></a>
+
+
+## SHOW BACKUP
+
+
+Outputs the DDL statement used to initially create one or more
+[backups](/content/sql/backup_restore#sql-backup-create) accessible via the given
+[data source](/content/sql/ddl#sql-create-data-source).
+
+
+```sql title="SHOW BACKUP Syntax"
+SHOW BACKUP < <backup name> | "<backup name>*" | * >
+DATA SOURCE <data source name>
+```
+
+
+<Info>
+The response to `SHOW BACKUP` is a single-column result set
+with the DDL statement as the value in the `DDL` column.
+</Info>
+
+| Parameters | Description |
+| --- | --- |
+| `<backup name>` | Name of the *backup(s)* to show that are accessible via the *data source* given by `data source name`. <br/> Use `<backup name>*` to show all *backups* that start with `backup name`. <br/> Use `*` instead of `<backup name>` to show all *backups*. |
+| `<data source name>` | Name of the [data source](/content/sql/ddl#sql-create-data-source) to use to retrieve the database *backup* file information from the remote file store. |
+
+
+<a id="sql-backup-show-ex"></a>
+
+
+### Examples
+
+
+For example, to output the DDL for a *backup*, `schema_backup`, via a
+*data source*, `restore_ds`, through which the *backup* files can be accessed:
+
+{/* Source: /examples/sql/backup/backup.kisql (lines 89-90) */}
+```sql SHOW BACKUP Example
+SHOW BACKUP schema_backup
+DATA SOURCE = restore_ds
+```
+
+To output the DDL for all *backups* whose name starts with `conf` that are
+accessible via the `restore_ds` *data source*:
+
+{/* Source: /examples/sql/backup/backup.kisql (lines 462-463) */}
+```sql SHOW BACKUP (All Backups with Prefix at Data Source) Example
+SHOW BACKUP "conf*"
+DATA SOURCE = restore_ds
+```
+
+To output the DDL for all *backups* that are accessible via the `restore_ds`
+*data source*:
+
+{/* Source: /examples/sql/backup/backup.kisql (lines 466-467) */}
+```sql SHOW BACKUP (All Backups at Data Source) Example
+SHOW BACKUP *
+DATA SOURCE = restore_ds
+```
+
+
+<a id="sql-backup-desc"></a>
+
+
+## DESCRIBE BACKUP
+
+
+Outputs the detail of *snapshots* of one or more
+[backups](/content/sql/backup_restore#sql-backup-create) accessible via the given
+[data source](/content/sql/ddl#sql-create-data-source).
+
+```sql title="DESCRIBE BACKUP Syntax"
+DESC[RIBE] BACKUP < <backup name> | "<backup name>*" | * >
+DATA SOURCE <data source name>
+```
+
+Listing options:
+
+
+<Info>
+The response to `DESCRIBE BACKUP` is a 13-column result set:
+* `BACKUP_NAME` - unique name for the *backup* file set
+* `BACKUP_ID` - unique ID of the *snapshot* within the *backup*
+* `BACKUP_TYPE` - type of the *snapshot*; see
+  [CREATE BACKUP](/content/sql/backup_restore#sql-backup-create) for values
+* `TIME` - timestamp at which the *snapshot* was initiated
+* `DURATION` - duration, in milliseconds, of the *snapshot* processing
+* `CLUSTER_ID` - identifier of the cluster backed-up, within an HA ring
+* `HOST_NAME` - hostname of the server on which the *snapshot* was created
+* `HOST_ID` - IP address of the server on which the *snapshot* was created
+* `OBJECTS` - list of objects backed up and their respective types
+* `SIZE` - size, in bytes, of the backed-up data files contained within the
+  *snapshot*
+* `FILES` - number of backed-up data files contained within the *snapshot*
+* `RECORDS` - number of data records contained within the *snapshot*
+* `COMMENT` - comment associated with the *snapshot*
+</Info>
+
+| Parameters | Description |
+| --- | --- |
+| `<backup name>` | Name of the *backup(s)* to describe that are accessible via the *data source* given by `<data source name>`. <br/> Use `<backup name>*` to describe all *backups* that start with `backup name`. <br/> Use `*` instead of `<backup name>` to describe all *backups*. |
+| `<data source name>` | Name of the [data source](/content/sql/ddl#sql-create-data-source) to use to retrieve the database *backup* file information from the remote file store. |
+
+
+<a id="sql-backup-desc-ex"></a>
+
+
+### Examples
+
+
+For example, to output the detail for a *backup*, `schema_backup`, via a
+*data source*, `restore_ds`, through which the *backup* files can be accessed:
+
+{/* Source: /examples/sql/backup/backup.kisql (lines 85-86) */}
+```sql DESCRIBE BACKUP Example
+DESCRIBE BACKUP schema_backup
+DATA SOURCE = restore_ds
+```
+
+To output the detail for all *backups* whose name starts with `conf` that are
+accessible via the `restore_ds` *data source*:
+
+{/* Source: /examples/sql/backup/backup.kisql (lines 476-477) */}
+```sql DESCRIBE BACKUP (All Backups with Prefix at Data Source) Example
+DESCRIBE BACKUP "conf*"
+DATA SOURCE = restore_ds
+```
+
+To output the detail for all *backups* that are accessible via the
+`restore_ds` *data source*:
+
+{/* Source: /examples/sql/backup/backup.kisql (lines 480-481) */}
+```sql DESCRIBE BACKUP (All Backups at Data Source) Example
+DESCRIBE BACKUP *
+DATA SOURCE = restore_ds
+```

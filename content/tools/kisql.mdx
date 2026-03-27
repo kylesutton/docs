@@ -1,0 +1,358 @@
+---
+title: Kinetica SQL (KiSQL)
+---
+
+<a id="kisql"></a>
+
+<a id="kisql-tools"></a>
+
+
+*KiSQL* allows SQL queries to be performed against the data in *Kinetica* from
+the command line.
+
+[GitHub](https://github.com/kineticadb/kisql/tree/release/v7.2) has the latest
+release of *KiSQL* for download.
+
+It is also bundled with *Kinetica* and is located at `/opt/gpudb/bin/kisql` on
+default installations.
+
+*KiSQL* exposes the complete *Kinetica* SQL interface, as given in the
+[SQL](/content/sql) section, including:
+
+* Ingestion of local file data into tables ([INSERT INTO ... SELECT ... FROM FILE](/content/sql/load#sql-load-file-client))
+* Uploading of local files into the [Kinetica File System (KiFS)](/content/tools/kifs) for later
+  ingestion ([UPLOAD FILE](/content/sql/kifs#sql-kifs-upload-file))
+* Downloading of [Kinetica File System (KiFS)](/content/tools/kifs) files to local storage
+  ([DOWNLOAD FILE](/content/sql/kifs#sql-kifs-download-file))
+
+For a graphical SQL interface, see [GAdmin](/content/admin/gadmin/query#gadmin-sql).
+
+
+<a id="kisql-conn"></a>
+
+
+## Connecting
+
+
+*KiSQL* can be accessed via command line as `kisql`.  The only required
+parameter to connect is one of `--host`, `--url`, or `--connectionString`;
+alternatively, the `KI_HOST` or `KI_URL` environment variable can be used to
+set the target database server.
+
+If `--user` is specified, *KiSQL* will perform username/password
+authentication with the passed username; alternatively, the `KI_USER`
+environment variable can be used to pass the username.  *KiSQL*, when performing
+username/password authentication, will prompt for the password; alternatively,
+the `KI_PWD` environment variable can be used to set the password.
+
+If `--token` is specified, *KiSQL* will perform OIDC-based authentication with
+the passed OAuth token; alternatively, the `KI_OAUTH_TOKEN` environment
+variable can be used to pass the OAuth token.
+
+If `--trustStore` is specified, *KiSQL* will prompt for the trust store
+password; alternatively, the `KI_TRUSTSTOREPWD` environment variable can be
+used to set the password.
+
+*KiSQL* can connect to *Kinetica* either by passing a URL and these
+authentication parameters on the command line or by passing a JDBC connection
+string containing the corresponding parameters.
+
+Regardless of which style is used, the remainder of the parameters should be
+appended to the specified connection URL.  See [ODBC/JDBC Configuration](/content/connectors/sql_guide#jdbc-config) for
+the full list.
+
+
+<a id="kisql-conn-opt"></a>
+
+
+### Parameterized Options
+
+
+<CodeGroup>
+
+{/* Source: /connectors/sql_guide_src/kisql_url.txt (lines 4) */}
+```bash HTTP
+kisql --url http://<db.host>:9191[[;<parameter>=<value>]*] --user <username>
+```
+
+{/* Source: /connectors/sql_guide_src/kisql_url.txt (lines 5) */}
+```bash HTTPS w/o Cert Check
+kisql --url https://<db.host>:8082/gpudb-0[[;<parameter>=<value>]*] --user <username>
+```
+
+{/* Source: /connectors/sql_guide_src/kisql_url.txt (lines 6) */}
+```bash HTTPS w/ Default Trust Cert Check
+kisql --url https://<db.host>:8082/gpudb-0[[;<parameter>=<value>]*] --user <username> --bypassSslCertCheck false
+```
+
+{/* Source: /connectors/sql_guide_src/kisql_url.txt (lines 7) */}
+```bash HTTPS w/ Custom Trust Cert Check
+kisql --url https://<db.host>:8082/gpudb-0[[;<parameter>=<value>]*] --user <username> --bypassSslCertCheck false --trustStore <filePath>
+```
+
+{/* Source: /connectors/sql_guide_src/kisql_url.txt (lines 8) */}
+```bash HTTPS w/ OAuth Token
+kisql --url https://<db.host>:8082/gpudb-0[[;<parameter>=<value>]*] --user <username> --token <oauthToken>
+```
+
+</CodeGroup>
+
+
+<a id="kisql-conn-cs"></a>
+
+
+### JDBC Connection String
+
+
+<CodeGroup>
+
+{/* Source: /connectors/sql_guide_src/kisql_cs.txt (lines 4) */}
+```bash HTTP
+kisql --connectionString "jdbc:kinetica://<db.host>:9191[[;<parameter>=<value>]*]" --user <username>
+```
+
+{/* Source: /connectors/sql_guide_src/kisql_cs.txt (lines 5) */}
+```bash HTTPS w/o Cert Check
+kisql --connectionString "jdbc:kinetica:URL=https://<db.host>:8082/gpudb-0[[;<parameter>=<value>]*]" --user <username>
+```
+
+{/* Source: /connectors/sql_guide_src/kisql_cs.txt (lines 6) */}
+```bash HTTPS w/ Default Trust Cert Check
+kisql --connectionString "jdbc:kinetica:URL=https://<db.host>:8082/gpudb-0[[;<parameter>=<value>]*];BypassSslCertCheck=0" --user <username>
+```
+
+{/* Source: /connectors/sql_guide_src/kisql_cs.txt (lines 7) */}
+```bash HTTPS w/ Custom Trust Cert Check
+kisql --connectionString "jdbc:kinetica:URL=https://<db.host>:8082/gpudb-0[[;<parameter>=<value>]*];BypassSslCertCheck=0;SslCACertPath=<certPath>;SslCACertPassword=<certPass>" --user <username>
+```
+
+{/* Source: /connectors/sql_guide_src/kisql_cs.txt (lines 8) */}
+```bash HTTPS w/ OAuth Token
+kisql --connectionString "jdbc:kinetica:URL=https://<db.host>:8082/gpudb-0[[;<parameter>=<value>]*]" --user <username> --token <oauthToken>
+```
+
+</CodeGroup>
+
+
+<a id="kisql-params"></a>
+
+<a id="kisql-tools-params"></a>
+
+
+## Parameters
+
+
+### Connection Parameters
+
+
+| Parameter | Description |
+| --- | --- |
+| `-h <hostname>` <br/> `--host <hostname>` | Connect to the specified Kinetica host; can also be specified by the `KI_HOST` environment variable. |
+| `-p <port number>` <br/> `--port <port number>` | Connect to the specified Kinetica port; can also be specified by the `KI_JDBCPORT` environment variable. If not specified, default is `9191`. |
+| `--url <Kinetica URL>` | Connect using the specified Kinetica URL; e.g., `http://localhost:9191;RowsPerFetch=20000`.  Overrides `--host` & `--port`.  This can also be specified by the `KI_URL` environment variable. See [Secure Connections](/content/connectors/sql_guide#jdbc-connecting-secure) for specifying SSL connections and [Failover Connections](/content/connectors/sql_guide#jdbc-connecting-failover) for specifying HA connections. |
+| `--connectionString "<JDBC URL>"` | Connect using the specified JDBC URL; e.g., `jdbc:kinetica://localhost:9191;RowsPerFetch=20000`. Overrides `--host`, `--port`, `--url`, & `primaryUrl`; will not override other parameters specified on the command line. See [ODBC/JDBC Configuration](/content/connectors/sql_guide#jdbc-config) for the JDBC connection string format and the full list of options able to be specified through it. <br/> <Info> `UID` or `PWD` specified in the connection string will be ignored; use `--user` or the `KI_USER` & `KI_PWD` environment variables instead. </Info> |
+| `--primaryUrl <Kinetica URL>` | Try the specified Kinetica URL first when using `--url` to specify multiple [failover URLs](/content/connectors/sql_guide#jdbc-connecting-failover) for [HA](/content/ha). |
+| `--user <user ID>` | Authenticate with the specified user ID. This can also be specified by the `KI_USER` environment variable. <br/> <Note> If `--user` is left blank and authentication is disabled, *KiSQL* will connect using the *Anonymous* default user. Review [Security Concepts](/content/security/sec_concepts) for more information on default users. </Note> |
+| `--token <OAuth token>` | Authenticate with the specified OAuth token. This can also be specified by the `KI_OAUTH_TOKEN` environment variable. |
+| `--tokenNameClaim <claim>` | OAuth token claim key where the user name is located.  If not specified, the default is `sub`. |
+| `--trustStore <filepath>` | Use the specified *Java* TrustStore file path for SSL connections. Can also be specified using the `KI_TRUSTSTORE` environment variable. See the [HTTPD + SSL setup instructions](/content/security/sec_configuration#httpd-ssl-config) sections for more information on setting up a TrustStore and setting up ODBC for secure connections. |
+| `--bypassSslCertCheck [<value>]` | If using SSL, don't validate the server certificate.  If not specified, or if specified with no `value`, the default is not to validate the certificate. |
+| `--s <schema name>` <br/> `--schema <schema name>` | Use `schema name` as the default schema for all object references; effectively, issuing a [SET CURRENT SCHEMA](/content/sql/ddl#sql-current-schema) command at the beginning of the session. |
+| `--disableAutoDiscovery` | Disable [high availability](/content/ha) failover and [multi-head ingest](/content/tuning/multihead/multihead_ingest) / [multi-head egress](/content/tuning/multihead/multihead_egress). |
+| `--disableFailover` | [high availability](/content/ha) failover. |
+| `--disableSnappy` | Do not use Snappy compression when transmitting data to the server. |
+
+
+### Input Parameters
+
+
+| Parameter | Description |
+| --- | --- |
+| `-f <file path>` <br/> `--file <file path>` | Run any SQL statements found in the given file and exit.  Statements must be separated by a semicolon, unless `--lineMode` is specified, in which case each line of the file will be treated as a separate SQL statement. |
+| `--line` <br/> `--lineMode` | Execute each line of input as a separate SQL statement, even if not terminated with a semicolon. |
+| `--sql '<SQL statements>'` | Run the given set of semicolon-separated SQL statements (in quotes) and exit. |
+
+
+### Output Parameters
+
+
+| Parameter | Description |
+| --- | --- |
+| `--debug [<value>]` | Output debugging information.  If not specified, default is not to output debugging information; if specified, default `value` is `true`. |
+| `--delim '<delimiter>'` | Use the given delimiter (in quotes) for delimited output formatting. The `--format` parameter must be present and set to `delim` / `delimited`. Any alphanumeric character or symbol is a valid delimiter.  If not specified, default is a comma. |
+| `--echoSql [<value>]` | Echo SQL statements executed.  If not specified, default is to not output SQL statements; if specified, default `value` is `true`. |
+| `--format <format>` | Output SQL statement result sets with the specified format.  Default is `table`.  Valid `format` options include: <br/> <br/> `delim` `delimited`: Uses the delimiter specified with `--delim` (or the default delimiter) to output records in CSV-style format, including a header row with the corresponding column names. .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter \| .. note:: The output will not be escaped according to the data values and delimiter used. Be sure to select a delimiter not found within any data being output. {/* Source: /examples/bash/kisql_examples.out (lines 314-317) */} <br/> `product_id,product_name 1,Clamp-on Lamps 2,Desk Chairs 3,Air Purifiers` <br/> <br/> `table`: Outputs records in an ASCII table format. {/* Source: /examples/bash/kisql_examples.out (lines 340-345 357) */} <br/> `+--------------+-----------------------+ \|   product_id \| product_name          \| +--------------+-----------------------+ \|            1 \| Clamp-on Lamps        \| \|            2 \| Desk Chairs           \| \|            3 \| Air Purifiers         \| +--------------+-----------------------+` <br/> <br/> `vertical`: Outputs each record as a vertical list of key/value pairs. {/* Source: /examples/bash/kisql_examples.out (lines 371-379) */} <br/> `--Row 1--------- product_id: 1 product_name: Clamp-on Lamps --Row 2--------- product_id: 2 product_name: Desk Chairs --Row 3--------- product_id: 3 product_name: Air Purifiers` |
+| `-i` <br/> `--isql` | Simulate <Badge color="blue-destructive">isql</Badge> output. |
+| `--limit <record count>` | Limit the number of records returned in each result set to the given number.  Use `-1` for no limit. If not specified, default is `-1`. |
+| `--logLevel <level>` | Set the JDBC logging level.  Default logging level is `0` *(off)*.  Valid `level` options include: <br/> <br/> `0`: Off <br/> `1`: Fatal <br/> `2`: Error <br/> `3`: Warning <br/> `4`: Info <br/> `5`: Debug <br/> `6`: Trace |
+| `--showTime [<value>]` | Display SQL execution time.  If not specified, default is to show execution time; if specified, default `value` is `true`. |
+| `--stopOnFirstError` | When using a SQL script as input (`--file` option), stop on the first error encountered. |
+| `-tz <time zone ID>` <br/> `--timeZone <time zone ID>` | Output *time* and *timestamp* data in the time zone with specified ID (e.g., `PST`).  Use `system` for local system time.  If not specified, default is `UTC`. |
+| `--verbose [<value>]` | Display JDBC class, URL (including SSL and TrustStore information), host, port, user, password, and version information as well as the given SQL statement.  If not specified, default is to not use *verbose* mode; if specified, default `value` is `true`. |
+
+
+### Information Parameters
+
+
+| Parameter | Description |
+| --- | --- |
+| `--listAllTimeZones` | List all supported time zones and exit. |
+| `--version` | Display the version of <Badge color="blue-destructive">kisql</Badge> and exit. |
+| `-?` <br/> `--help` | Display help information |
+
+
+## Interactive Mode
+
+
+If neither `--sql` nor `-f` / `--file` are specified while using *KiSQL*
+from the command line interface, *KiSQL* will run in interactive mode. In
+interactive mode, a `;` terminates and executes SQL statements, unless
+`--lineMode` is used to modify that behavior. If standard input has been
+redirected, no prompt is issued and  SQL statements are read from `stdin`.
+
+*KiSQL* supports arrow key based traversal of the command execution history,
+and editing/re-execution of these commands.
+
+The following commands can be used at the beginning of a statement while in
+interactive mode:
+
+| Command | Description |
+| --- | --- |
+| `\c [<schema> [<table>]]` <br/> `\counts [<schema> [<table>]]` | Display the number of records in each table. <br/> If a `schema` is given, only show record counts of accessible tables in that schema. <br/> If `schema` & `table` are given, only show the record count of that table, if accessible. |
+| `\e [entry number]` <br/> `\edit [entry number]` | If no argument given, invoke the vi editor on the last query executed. If a number is provided (with `1` being the least recent entry), invoke `vi` editor on specific query by number from the history. Upon exiting the editor, the statement will be executed. |
+| `\f <type>` <br/> `\format <type>` | Set the output format type; options are detailed in the `--format` parameter description [above](/content/tools/kisql#kisql-tools-params). <br/> <Info> The delimiter, when using the delimited output format cannot be changed during an interactive mode session. </Info> |
+| `\h` <br/> `\history` | Display the numbered SQL statement history (with the least recent entry being first). |
+| `\i [<schema> [<table>]]` <br/> `\indices [<schema> [<table>]]` | Display the [indices](/content/concepts/indexes) to which the user has access. <br/> If a `schema` is given, only show accessible indices of tables in that schema. <br/> If `schema` & `table` are given, only show accessible indices of tables in that schema. |
+| `\k [<schema> [<table>]]` <br/> `\primaryKeys [<schema> [<table>]]` | Display the [primary key](/content/concepts/tables#primary-key) columns to which the user has access. <br/> If a `schema` is given, only show accessible primary key columns of tables in that schema. <br/> If `schema` & `table` are given, only show accessible primary key columns of that table. |
+| `\m` <br/> `\metadata` | Display connection metadata, including versions, supported features, & data types. |
+| `\p [<schema> [<procedure>]]` <br/> `\procedures [<schema> [<procedure>]]` | Display the [SQL procedures](/content/sql/procedure) to which the user has access. <br/> If a `schema` is given, only show accessible SQL procedures in that schema. <br/> If `schema` & `procedure` are given, only show that SQL procedure, if accessible. |
+| `\r <ID>` <br/> `\run <ID>` | Re-run the last command executed. <br/> If `ID` is given, run the command with that ID in the command history (as enumerated in the history output via `\history`) |
+| `\s` <br/> `\schemas` | Display the [schemas](/content/sql/ddl#sql-create-schema) to which the user has access. |
+| `\t [<schema [<table>]]` <br/> `\tables [<schema> [<table>]]` | Display the [tables](/content/sql/ddl#sql-create-table) & [views](/content/sql/ddl#sql-create-view) to which the user has access. <br/> If a `schema` is given, only show accessible tables/views in that schema. <br/> If `schema` & `table` are given, only show that table, if accessible. |
+| `\u [<schema> [<table> [<column>]]]` <br/> `\columns [<schema> [<table> [<column>]]]` | Display the columns of [tables](/content/sql/ddl#sql-create-table) & [views](/content/sql/ddl#sql-create-view) to which the user has access. <br/> If a `schema` is given, only show accessible columns from tables/views in that schema. <br/> If `schema` & `table` are given, only show accessible columns from that table/view. <br/> If `schema`, `table`, & `column` are given, only show that columns, if accessible. |
+| `\v` <br/> `\version` | Display the version number of the following components: <br/> * *Kinetica* database to which *KiSQL* is connected <br/> * *Kinetica* JDBC driver used by *KiSQL* <br/> * *Kinetica* Java API used by the JDBC driver |
+| `\q` <br/> `\quit` <br/> `\exit` | Exit interactive mode. |
+
+
+## Examples
+
+
+### List CLI Options
+
+
+```bash title="Help"
+kisql -?
+```
+
+{/* Source: /examples/bash/kisql_examples.out (lines 13-19) */}
+``` Help Output
+Usage: kisql [-options]
+
+where options include:
+
+Connect:
+     --url        <url>       Connect to this GPUdb URL.  Use either this option or -host/-port, but not both.  Can also be specificed by the
+                              KI_URL environment variable
+```
+
+
+### Connect
+
+
+```bash title="Log In"
+\$ kisql --url http://localhost:9191;RowsPerFetch=20000 --user kuser
+kuser password:
+```
+
+{/* Source: /examples/bash/kisql_examples.out (lines 131-132) */}
+``` Log In Output
+Connection successful
+Kinetica (kuser) =>
+```
+
+
+### List Schemas
+
+
+{/* Source: /examples/bash/kisql_examples.out (lines 147) */}
+``` List Schemas Command
+Kinetica (user) => \d
+```
+
+{/* Source: /examples/bash/kisql_examples.out (lines 149-152 175 261) */}
+``` List Schemas Output
+| TABLE_CAT   | TABLE_SCHEM          | TABLE_NAME                          | TABLE_TYPE   |
+| Kinetica    | SYSTEM               | ITER                                | TABLE        |
+| Kinetica    | kisql_example        | product                             | TABLE        |
+```
+
+
+### Run Queries
+
+
+{/* Source: /examples/bash/kisql_examples.out (lines 267) */}
+``` Run SELECT Statement
+Kinetica (user) => SELECT COUNT(*) AS total_products FROM kisql_example.product;
+```
+
+{/* Source: /examples/bash/kisql_examples.out (lines 270-274) */}
+``` SELECT Statement Output
+|   total_products |
+|               14 |
+```
+
+
+### Use the CLI Query and Output Format Parameters
+
+
+```bash title="Run KiSQL with Modified Format"
+kisql --url http://localhost:9191;RowsPerFetch=20000 \
+      --isql \
+      --showTime false \
+      --format delim --delim ',' \
+      --sql 'SELECT * FROM kisql_example.product'
+```
+
+{/* Source: /examples/bash/kisql_examples.out (lines 288-302) */}
+```xml KiSQL with Modified Format Output
+id,category,name,description,stock
+1,Furniture,Clamp-on Lamps,Strong, steadfast fasteners; localized lighting for laboring,10
+2,Furniture,Desk Chairs,Soft, supportive seats enabling employment of exceptionally ergonomic endeavors,20
+3,Office Supplies,Air Purifiers,Fast filter for odius odors & pesky particulates,4
+4,Office Supplies,Binder Clips,Banker's clip, a.k.a. bobby clip, a.k.a. big clamp,10000
+5,Office Supplies,Binding Machines,Top tech for trussing treatises,2
+6,Office Supplies,Business Envelopes,Convenient containers for conventional communications,1000
+7,Office Supplies,Business Cards,Identifying information with corporate iconography for industrious individuals,1000000
+8,Technology,Power Strips,Dedicated energy-efficient devices for effectively delivering distributed electricity,50
+9,Technology,Business Copiers,Diligent, durable duplicators of documents and diagrams,3
+10,Technology,CD-R,'Write once; read many',100000
+11,Technology,Conference Phones,Crystal-clear collaborative communication in a convenient, contemporary casing,11
+12,Technology,Corded Keyboards,Tactile tools for troublesome tethered typing,1
+13,Technology,Cordless Keyboards,Classy contrivances for conventionally connectionless keying,101
+14,Technology,Dot Matrix Printers,Impactful industrial implements for impressing ink iteratively,27
+```
+
+
+### Load Files
+
+
+Create a directory, in which to load your file(s):
+
+{/* Source: /examples/bash/kisql_examples.out (lines 137) */}
+``` Create Directory Command
+Kinetica (user) => CREATE DIRECTORY 'kisql_dir';
+```
+
+Upload your file(s) to KiFS:
+
+{/* Source: /examples/bash/kisql_examples.out (lines 138) */}
+``` Upload Files Command
+Kinetica (user) => UPLOAD FILES 'products.csv' INTO 'kisql_dir';
+```
+
+Finally, load your file into a table:
+
+{/* Source: /examples/bash/kisql_examples.out (lines 139) */}
+``` Load Data Command
+Kinetica (user) => LOAD INTO kisql_example.product FROM FILE PATHS 'kifs://kisql_dir/products.csv';
+```

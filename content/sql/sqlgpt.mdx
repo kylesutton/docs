@@ -1,0 +1,793 @@
+---
+title: SQL-GPT Syntax
+---
+
+*Kinetica* provides support for generative AI via
+[SQL-GPT](/content/sql-gpt/concepts).
+
+*SQL-GPT context* management features accessible via SQL include:
+
+* [CREATE CONTEXT](/content/sql/sqlgpt#sql-gpt-create-context)
+* [ALTER CONTEXT](/content/sql/sqlgpt#sql-gpt-alter-context)
+* [SHOW CONTEXT](/content/sql/sqlgpt#sql-gpt-show-context)
+* [DESCRIBE CONTEXT](/content/sql/sqlgpt#sql-gpt-desc-context)
+* [DROP CONTEXT](/content/sql/sqlgpt#sql-gpt-drop-context)
+
+For *SQL-GPT context* permission management, see:
+
+* [GRANT SQL-GPT Context Permission](/content/sql/security#sql-security-priv-mgmt-gpt-grant)
+* [REVOKE SQL-GPT Context Permission](/content/sql/security#sql-security-priv-mgmt-gpt-revoke)
+
+*SQL-GPT* query generation & execution features accessible via SQL include:
+
+* [GENERATE SQL](/content/sql/sqlgpt#sql-gpt-generate-sql)
+* [EXECUTE_AI_QUERY](/content/sql/sqlgpt#sql-gpt-execute)
+
+
+<a id="sql-gpt-create-context"></a>
+
+
+## CREATE CONTEXT
+
+
+Creates a new [SQL-GPT context](/content/sql-gpt/concepts#sql-gpt-overview-context).
+The *context* can contain one or more base tables, a set of sample
+question/answer pairs, and a set of rules for the table to aid in generating
+appropriate SQL. While the tables, samples, and rules clauses are all optional,
+a *context* must contain at least one clause of any kind to be considered valid.
+
+```sql title="CREATE CONTEXT Syntax"
+CREATE [OR REPLACE] [TEMP] CONTEXT [<schema name>.]<context name>
+[<table definition clause>[,...],]
+[<sample definition clause>,]
+[<rule definition clause>]
+[WITH OPTIONS (ttl = '<ttl value>'[,...])]
+```
+
+
+| Parameters | Description |
+| --- | --- |
+| `OR REPLACE` | Any existing *context* reference with the same name will be dropped before creating this one |
+| `TEMP` | The *context* will be a temporary one; which means it will not be persisted (if the database is restarted, the *context* will be removed) and, if not continually accessed within the specified *TTL*, will be removed. |
+| `<schema name>` | Name of the [schema](/content/sql/ddl#sql-create-schema) containing the *context* |
+| `<context name>` | Name of the *context* |
+| [&lt;table definition clause&gt;](/content/sql/sqlgpt#sql-gpt-create-context-table-def) | Optional clause containing the definitions of all tables to be used within the *context* |
+| [&lt;sample definition clause&gt;](/content/sql/sqlgpt#sql-gpt-create-context-sample-def) | Optional clause containing sample question/answer pairs that can help *SQL-GPT* understand the relationships between natural language and the tables within the *context* |
+| [&lt;rule definition clause&gt;](/content/sql/sqlgpt#sql-gpt-create-context-rule-def) | Optional clause containing global rules *SQL-GPT* should take into account when generating SQL from the tables within the *context* |
+| `WITH OPTIONS` | Optional indicator that a comma-delimited list of option/value assignments will follow. The following options are available: <br/> <br/> `ttl`: Time-to-live, in minutes, for the *context*. If the *context* is not accessed for this amount of time, it will be automatically removed from the database. If `TEMP` is not specified, this option will be ignored. |
+
+
+<a id="sql-gpt-create-context-table-def"></a>
+
+
+### Table Definition Clause
+
+
+The *table definition* clause provides information about a single table to
+*SQL-GPT*.  All parameters are optional except for the table name.  The
+*table definition* clause itself is also optional.
+
+
+<Note>
+Kinetica will pass the all columns of the table to SQL-GPT
+regardless of whether they are named in the `COMMENTS` or `RULES`
+sections.  To avoid consuming unnecessary space in the *SQL-GPT context* with
+the unused columns, create a view with descriptive column names containing
+only the columns needed for generating SQL.
+</Note>
+
+```sql title="Table Definition Clause Syntax"
+(
+    TABLE = [<schema name>.]<table name>
+    [COMMENT = '<table comment>']
+    [
+        COMMENTS =
+        (
+            <column name> = '<column comment>',
+            ...
+            <column name> = '<column comment>'
+        )
+    ]
+    [
+        RULES =
+        (
+            '<table rule>',
+            ...
+            '<table rule>'
+        )
+    ]
+)
+```
+
+| Property | Description |
+| --- | --- |
+| `TABLE` | Specifier for the mandatory table definition table name |
+| `<schema name>` | Name of the [schema](/content/sql/ddl#sql-create-schema) containing the table to include in the *context* |
+| `<table name>` | Name of the [table](/content/sql/ddl#sql-create-table) to include in the *context* |
+| `COMMENT` | Specifier for an optional table comment |
+| `<table comment>` | Note about the table that can give *SLQ-GPT* information about its use and the data it holds |
+| `COMMENTS` | Specifier for an optional comma-separated list of column name & comment pairs |
+| `<column name>` | Name of a column in the given table |
+| `<column comment>` | Note about the column that can give *SQL-GPT* information about its use and the specific data it holds |
+| `RULES` | Specifier for an optional comma-separated list of rules for *SQL-GPT* to use in employing this table to generate SQL |
+| `<table rule>` | Rule for *SQL-GPT* to use in employing this table to generate SQL; e.g., which columns should be considered (or not considered) when generating SQL using the table |
+
+
+<a id="sql-gpt-create-context-sample-def"></a>
+
+
+### Sample Definition Clause
+
+
+A *sample definition* contains a set of question & answer pairs used to train
+*SQL-GPT* for generating SQL.  Few (if any) samples should be required to
+customize *SQL-GPT* for a use case.  The *sample definition* clause is optional.
+
+
+<Note>
+A *sample definition* should reference tables that are included
+in *table definitions* within either its own *context* or a separate
+*context* that is passed along with it into a
+[GENERATE SQL](/content/sql/sqlgpt#sql-gpt-generate-sql) or [EXECUTE_AI_QUERY](/content/sql/sqlgpt#sql-gpt-execute)
+command.  This ensures that *SQL-GPT* has a proper definition (and
+understanding) of the tables and columns referenced in each sample query.
+</Note>
+
+```sql title="Sample Definition Clause Syntax"
+(
+    SAMPLES =
+    (
+        '<question>' = '<SQL answer>',
+        ...
+        '<question>' = '<SQL answer>'
+    )
+)
+```
+
+| Property | Description |
+| --- | --- |
+| `SAMPLES` | *Sample definition* specifier keyword |
+| `<question>` | Natural-language question that will be answered by the corresponding `<SQL answer>` query |
+| `<SQL answer>` | SQL query that answers `<question>` using the tables contained within the *context* <br/> <Info> Quoted constants within the query will need to be escaped as per standard SQL convention; e.g., `'lamp'` in the following: <br/> `'How many lamps?' = 'SELECT COUNT(*) FROM product WHERE type = ''lamp'';'` <br/> </Info> |
+
+
+<a id="sql-gpt-create-context-rule-def"></a>
+
+
+### Rule Definition Clause
+
+
+A *rule definition* contains a set of global rules that *SQL-GPT* should use in
+employing the various tables named in the *context* to generate SQL.  By
+convention, rules that apply to a specific table belong in the `RULES` section
+of the [table definition](/content/sql-gpt/concepts#sql-gpt-overview-context-clause-table),
+while rules that apply across tables or independently from any tables belong
+here.  The *rule definition* clause is optional.
+
+
+<Note>
+A *rule definition* should reference tables that are included
+in *table definitions* within either its own *context* or a separate
+*context* that is passed along with it into a
+[GENERATE SQL](/content/sql/sqlgpt#sql-gpt-generate-sql) or [EXECUTE_AI_QUERY](/content/sql/sqlgpt#sql-gpt-execute)
+command.  This ensures that *SQL-GPT* has a proper definition (and
+understanding) of any tables and columns referenced in each rule.
+</Note>
+
+```sql title="Rule Definition Clause Syntax"
+(
+    RULES =
+    (
+        '<global rule>',
+        ...
+        '<global rule>'
+    )
+)
+```
+
+| Property | Description |
+| --- | --- |
+| `RULES` | Global *rule definition* specifier keyword |
+| `<global rule>` | Global rule for *SQL-GPT* to use in employing multiple tables to generate SQL (joins, etc.) or when referencing database features that are independent of any table (functions, etc.) |
+
+
+<a id="sql-gpt-create-context-example"></a>
+
+
+### Example
+
+
+The following example creates a *SQL-GPT context* with the following criteria:
+
+* Contains one table, `atc_current_position`, with:
+
+  * a description
+  * 4 column comments
+  * 1 rule suggesting avoidance of one of the columns
+
+* Contains one table, `atc_points`, with no extra definitions
+* Contains one table, `airport_positions`, with:
+
+  * a description
+  * 2 column comments
+
+* Contains 2 sample questions and their corresponding queries
+* Contains 1 global rule suggesting how the `atc_current_position` &
+  `atc_points` tables should be joined together
+
+{/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 74-128) */}
+```sql CREATE CONTEXT Example
+CREATE CONTEXT example.atc_ctx
+(
+	TABLE = example.atc_current_position
+	COMMENT = 'Current position of aircraft.'
+	COMMENTS =
+	(
+		callsign = 'Aircraft callsign',
+		ts = 'timestamp of most recent data point.',
+		x = 'longitude position',
+		y = 'latitude position'
+	)
+	RULES =
+	(
+		'Do not use the id column of the atc_current_position table'
+	)
+),
+(
+	TABLE = example.atc_points
+),
+(
+	TABLE = example.airport_positions
+	COMMENT = 'International airports and the centroid of their locations'
+	COMMENTS =
+	(
+		airport_code = 'Name of airport',
+		airport_centroid = 'Center of location of airport'
+	)
+),
+(
+	SAMPLES =
+	(
+		'What are the tracks for callsign UAL246?' =
+		'
+			SELECT ts, x, y
+			FROM example.atc_points
+			WHERE callsign = ''UAL246''
+		',
+
+		'What is the centroid of DCA airport?' =
+		'
+			SELECT airport_centroid
+			FROM example.airport_positions
+			WHERE airport_code = ''DCA''
+		'
+	)
+),
+(
+	RULES =
+	(
+		'
+			Use the ST_CONTAINS() function to join the airport_centroid column of the
+			airport_positions table with the x and y columns of the atc_current_position table
+		'
+	)
+)
+```
+
+
+<a id="sql-gpt-alter-context"></a>
+
+
+## ALTER CONTEXT
+
+
+Alters the configuration of a
+[SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context).  Multiple *context*
+entries can be added & removed in one command.  The general form is:
+
+```sql title="ALTER CONTEXT Syntax"
+ALTER CONTEXT [<schema name>.]<context name>
+[ADD | DROP] <context entry>,
+...
+[ADD | DROP] <context entry>
+```
+
+
+<a id="sql-gpt-alter-context-add-table"></a>
+
+
+### Add Context Table
+
+
+A *context table* can be added to a
+[SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context).
+
+```sql title="Add Context Table Syntax"
+ALTER CONTEXT [<schema name>.]<context name>
+ADD <table definition clause>
+```
+
+See [Table Definition Clause](/content/sql/sqlgpt#sql-gpt-create-context-table-def) for syntax of the
+`<table definition clause>`.
+
+For example, to add the `example.atc_country` table to the
+`example.atc_ctx` *SQL-GPT context*:
+
+{/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 169-174) */}
+```sql Add Context Table Example
+ALTER CONTEXT example.atc_ctx
+ADD
+(
+	TABLE = example.atc_country
+	COMMENT = 'Countries containing airports'
+)
+```
+
+
+<a id="sql-gpt-alter-context-drop-table"></a>
+
+
+### Drop Context Table
+
+
+A *context table* can be removed from a
+[SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context).
+
+```sql title="Drop Context Table Syntax"
+ALTER CONTEXT [<context schema name>.]<context name>
+DROP (TABLE = [<table schema name>.]<table name>)
+```
+
+For example, to drop the `example.atc_country` table from the
+`example.atc_ctx` *SQL-GPT context*:
+
+{/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 177-178) */}
+```sql Drop Context Table Example
+ALTER CONTEXT example.atc_ctx
+DROP (TABLE = example.atc_country)
+```
+
+
+<a id="sql-gpt-alter-context-add-sample"></a>
+
+
+### Add Context Samples
+
+
+*Context samples* can be added to a
+[SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context) that has not been
+configured with any.  To add *samples* to a *context* already configured with
+one or more, first [drop](/content/sql/sqlgpt#sql-gpt-alter-context-drop-sample) all
+existing *samples*, and then add the new and any previous *samples* all at once.
+
+```sql title="Add Context Samples Syntax"
+ALTER CONTEXT [<schema name>.]<context name>
+ADD <sample definition clause>
+```
+
+See [Sample Definition Clause](/content/sql/sqlgpt#sql-gpt-create-context-sample-def) for syntax of the
+`<sample definition clause>`.
+
+For example, to add a sample query for finding **JFK** airport's location to the
+`example.atc_ctx` *SQL-GPT context*:
+
+{/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 189-201) */}
+```sql Add Context Samples Example
+ALTER CONTEXT example.atc_ctx
+ADD
+(
+	SAMPLES =
+	(
+		'What is the centroid of JFK airport?' =
+		'
+			SELECT airport_centroid
+			FROM example.airport_positions
+			WHERE airport_code = ''JFK''
+		'
+	)
+)
+```
+
+
+<a id="sql-gpt-alter-context-drop-sample"></a>
+
+
+### Drop Context Samples
+
+
+*Context samples* can be removed from a
+[SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context) that has been configured
+with one or more.
+
+```sql title="Drop Context Samples Syntax"
+ALTER CONTEXT [<context schema name>.]<context name>
+DROP (SAMPLES = ('' = ''))
+```
+
+For example, to drop all *context samples* from the
+`example.atc_ctx` *SQL-GPT context*:
+
+{/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 185-186) */}
+```sql Drop Context Samples Example
+ALTER CONTEXT example.atc_ctx
+DROP (SAMPLES = ('' = ''))
+```
+
+
+<a id="sql-gpt-alter-context-add-rule"></a>
+
+
+### Add Context Rules
+
+
+*Context rules* can be added to a
+[SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context) that has not been
+configured with any.  To add *rules* to a *context* already configured with one
+or more, first [drop](/content/sql/sqlgpt#sql-gpt-alter-context-drop-rule) all
+existing *rules*, and then add the new and any previous *rules* all at once.
+
+```sql title="Add Context Rules Syntax"
+ALTER CONTEXT [<schema name>.]<context name>
+ADD <rule definition clause>
+```
+
+See [Rule Definition Clause](/content/sql/sqlgpt#sql-gpt-create-context-rule-def) for syntax of the
+`<rule definition clause>`.
+
+For example, to add a *rule* for joining the `example.airport_positions` table
+with the `atc_current_position` table to the `example.atc_ctx`
+*SQL-GPT context*:
+
+{/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 214-224) */}
+```sql Add Context Rules Example
+ALTER CONTEXT example.atc_ctx
+ADD
+(
+	RULES =
+	(
+		'
+			Use the ST_CONTAINS() function to join the airport_centroid column of the
+			airport_positions table with the x and y columns of the atc_current_position table
+		'
+	)
+)
+```
+
+
+<a id="sql-gpt-alter-context-drop-rule"></a>
+
+
+### Drop Context Rules
+
+
+*Context rules* can be removed from a
+[SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context) that has been configured
+with one or more.
+
+```sql title="Drop Context Rules Syntax"
+ALTER CONTEXT [<context schema name>.]<context name>
+DROP (RULES = (''))
+```
+
+For example, to drop all *context rules* from the
+`example.atc_ctx` *SQL-GPT context*:
+
+{/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 210-211) */}
+```sql Drop Context Rules Example
+ALTER CONTEXT example.atc_ctx
+DROP (RULES = (''))
+```
+
+
+<a id="sql-gpt-drop-context"></a>
+
+
+## DROP CONTEXT
+
+
+Removes an existing [SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context).
+
+```sql title="DROP CONTEXT Syntax"
+DROP CONTEXT [<schema name>.]<context name>
+```
+
+For example, to remove the `example.atc_ctx` *SQL-GPT context*:
+
+{/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 22) */}
+```sql DROP CONTEXT Example
+DROP CONTEXT example.atc_ctx
+```
+
+
+<a id="sql-gpt-show-context"></a>
+
+
+## SHOW CONTEXT
+
+
+Outputs the DDL statement required to reconstruct the given
+[SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context).
+
+```sql title="SHOW CONTEXT Syntax"
+SHOW CONTEXT < [<schema name>.]<context name> | * >
+```
+
+
+<Info>
+The response to `SHOW CONTEXT` is a single-column result set
+with the DDL statement as the value in the `CONTEXT_DEFINITION` column.
+</Info>
+
+| Parameters | Description |
+| --- | --- |
+| `<schema name>` | Name of the *schema* containing the *SQL-GPT context* to show |
+| `<context name>` | Name of the existing *SQL-GPT context* for which the DDL will be output; use `*` instead of *schema*/*context* name to output the DDL of all *contexts* |
+
+For example, to output the DDL for a *SQL-GPT context*, `example.atc_ctx`:
+
+{/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 132) */}
+```sql SHOW CONTEXT Example
+SHOW CONTEXT example.atc_ctx
+```
+
+To output the DDL for all *SQL-GPT contexts*:
+
+{/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 135) */}
+```sql SHOW CONTEXT (All Contexts) Example
+SHOW CONTEXT *
+```
+
+
+<a id="sql-gpt-desc-context"></a>
+
+
+## DESCRIBE CONTEXT
+
+
+Outputs the configuration of an existing
+[SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context).
+
+```sql title="DESCRIBE CONTEXT Syntax"
+DESC[RIBE] CONTEXT < [<schema name>.]<context name> | * >
+```
+
+
+<Info>
+The response to `DESCRIBE CONTEXT` is a seven-column result set:
+* `CONTEXT_NAME` - name of the *SQL-GPT context*
+* `OBJECT_TYPE` - type of the *context entity* being described within the
+  *context*
+* `OBJECT_NAME` - for a table entity type, the name of the table
+* `OBJECT_DESCRIPTION` - for a table entity type, the table comment
+* `OBJECT_RULES` - for a table entity type, rules associated with the table
+* `OBJECT_COMMENTS` - for a table entity type, the table's column comments
+* `OBJECT_SAMPLES` - for a samples entity type, the list of question/answer
+  pairs
+</Info>
+
+| Parameters | Description |
+| --- | --- |
+| `<schema name>` | Name of the *schema* containing the *SQL-GPT context* to describe |
+| `<context name>` | Name of the existing *SQL-GPT context* for which the configuration will be output; use `*` instead of *schema*/*context* name to output the configuration of all *contexts* |
+
+For example, to show the configuration for a *SQL-GPT context*, `example.atc_ctx`:
+
+{/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 139) */}
+```sql DESCRIBE CONTEXT Example
+DESC CONTEXT example.atc_ctx
+```
+
+To show the configuration for all *SQL-GPT contexts*:
+
+{/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 142) */}
+```sql DESCRIBE CONTEXT (All Contexts) Example
+DESC CONTEXT *
+```
+
+
+<a id="sql-gpt-generate-sql"></a>
+
+
+## GENERATE SQL
+
+
+Creates a SQL query equivalent of the given natural-language question using the
+specified [SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context).
+
+```sql title="GENERATE SQL Syntax"
+GENERATE SQL FOR '<question>'
+[WITH OPTIONS (<option name> = '<option value>'[,...])]
+```
+
+
+| Parameters | Description |
+| --- | --- |
+| `<question>` | Natural-language question for which an equivalent SQL query will be generated |
+| `<schema name>` | Name of the [schema](/content/sql/ddl#sql-create-schema) containing the *context* to use in generating the query |
+| `WITH OPTIONS` | Optional indicator that a comma-delimited list of SQL generation option/value assignments will follow. <br/> See [SQL Generation Options](/content/sql/sqlgpt#sql-gpt-generate-sql-opts) for the complete list of options. |
+
+
+<a id="sql-gpt-generate-sql-opts"></a>
+
+
+### SQL Generation Options
+
+
+The following options can be specified to modify the way SQL queries are
+generated.
+
+| Option | Description |
+| --- | --- |
+| `ai_api_provider` | Name of an LLM service to use other than the default one; the default, `sqlgpt`, uses the Kinetica SQLGPT.io service. |
+| `ai_api_url` | URL of an LLM service to use other than the default one. |
+| `context_name` | Name of the *SQL-GPT context* to use as a basis for generating SQL queries; should be of the form `[<schema name>.]<context name>`. |
+| `context_names` | Comma-separated list of names of *SQL-GPT contexts* to use as a basis for generating SQL queries; each should be of the form `[<schema name>.]<context name>`, and the entire list should be single-quoted. <br/> For example: <br/> `context_names = 'example.atc_ctx,example.nyctaxi'` |
+| `use_rag` | Whether to use [retrieval-augmented generation (RAG)](/content/sql-gpt/concepts#sql-gpt-overview-rag) facilities with the given *SQL-GPT contexts* when processing this request. |
+
+
+### SQL Generation Example
+
+
+For example, to generate the SQL equivalent query to a given question using the
+`example.atc_ctx` *SQL-GPT context*:
+
+{/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 151-153) */}
+```sql GENERATE SQL Example
+GENERATE SQL FOR
+	'What is the callsign and position of the aircraft with most recent timestamp?'
+WITH OPTIONS (context_name = 'example.atc_ctx')
+```
+
+To generate the SQL equivalent query to a given question using the
+`nyctaxi_ctx` & `flights_ctx` *SQL-GPT contexts* with SQL RAG:
+
+{/* Source: /examples/sql/sql-gpt/rag.kisql (lines 246-248) */}
+```sql GENERATE SQL with RAG Example
+GENERATE SQL FOR
+	'What was the busiest airport, including taxis and flights, during January and February of 2023?'
+WITH OPTIONS (context_names = 'nyctaxi_ctx, flights_ctx', use_rag = 'true')
+```
+
+
+<a id="sql-gpt-generate-tokens"></a>
+
+
+## GENERATE TOKENS
+
+
+Counts the number of tokens that would be used in generating the SQL in an
+equivalent [GENERATE SQL](/content/sql/sqlgpt#sql-gpt-generate-sql) call.  This is, effectively, the
+number of combined tokens in the given contexts, taking into account whether
+[RAG](/content/sql-gpt/concepts#sql-gpt-overview-rag) is being used.
+
+```sql title="GENERATE TOKENS Syntax"
+GENERATE TOKENS
+[WITH OPTIONS (<option name> = '<option value>'[,...])]
+```
+
+
+| Parameters | Description |
+| --- | --- |
+| `<question>` | Natural-language question for which an equivalent SQL query will be generated |
+| `<schema name>` | Name of the [schema](/content/sql/ddl#sql-create-schema) containing the *context* to use in generating the query |
+| `WITH OPTIONS` | Optional indicator that a comma-delimited list of SQL generation option/value assignments will follow. <br/> See [SQL Token Generation Options](/content/sql/sqlgpt#sql-gpt-generate-tokens-opts) for the complete list of options. |
+
+
+<a id="sql-gpt-generate-tokens-opts"></a>
+
+
+### SQL Token Generation Options
+
+
+The following options can be specified to modify the way the counted tokens are
+generated.
+
+| Option | Description |
+| --- | --- |
+| `context_name` | Name of the *SQL-GPT context* to use as a basis for counting generated tokens; should be of the form `[<schema name>.]<context name>`. |
+| `context_names` | Comma-separated list of names of *SQL-GPT contexts* to use as the basis for counting generated tokens; each should be of the form `[<schema name>.]<context name>`, and the entire list should be single-quoted. <br/> For example: <br/> `context_names = 'example.atc_ctx,example.nyctaxi'` |
+| `use_rag` | Whether to use [retrieval-augmented generation (RAG)](/content/sql-gpt/concepts#sql-gpt-overview-rag) facilities with the given *SQL-GPT contexts* when processing this request. |
+
+
+### SQL Token Generation Example
+
+
+For example, to count the generated tokens for the `example.atc_ctx`
+*SQL-GPT context*:
+
+{/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 146-147) */}
+```sql GENERATE TOKENS Example
+GENERATE TOKENS
+WITH OPTIONS (context_name = 'example.atc_ctx')
+```
+
+To count the generated tokens for the `nyctaxi_ctx` & `flights_ctx`
+*SQL-GPT contexts* with SQL RAG:
+
+{/* Source: /examples/sql/sql-gpt/rag.kisql (lines 240-241) */}
+```sql GENERATE TOKENS with RAG Example
+GENERATE TOKENS
+WITH OPTIONS (context_names = 'nyctaxi_ctx, flights_ctx', use_rag = 'true')
+```
+
+
+<a id="sql-gpt-execute"></a>
+
+
+## EXECUTE_AI_QUERY
+
+
+Executes a SQL query equivalent of the given natural-language question using the
+specified [SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context).
+
+```sql title="EXECUTE_AI_QUERY Table Function Syntax"
+SELECT *
+FROM TABLE
+(
+    EXECUTE_AI_QUERY
+    (
+        QUESTION => '<question>',
+        OPTIONS => KV_PAIRS (<option name> = '<option value>'[,...])
+    )
+)
+```
+
+| Parameters | Description |
+| --- | --- |
+| `<question>` | Natural-language question for which an equivalent SQL query will be executed |
+| `<schema name>` | Name of the [schema](/content/sql/ddl#sql-create-schema) containing the *context* to use in generating the query |
+| `OPTIONS` | [SQL generation options](/content/sql/sqlgpt#sql-gpt-execute-opts), specified as a set of key/value pairs passed as a comma-delimited list of `<key> = '<value>'` assignments to the `KV_PAIRS` function; e.g.: <br/> `KV_PAIRS(context_name = 'atc_ctx')` |
+
+
+<a id="sql-gpt-execute-opts"></a>
+
+
+### SQL Generation Options
+
+
+The following options can be specified to modify the way the executed SQL query
+is generated.
+
+| Option | Description |
+| --- | --- |
+| `ai_api_provider` | Name of an LLM service to use other than the default one; the default, `sqlgpt`, uses the Kinetica SQLGPT.io service. |
+| `ai_api_url` | URL of an LLM service to use other than the default one. |
+| `context_name` | Name of the *SQL-GPT context* to use in generating the executed query; should be of the form `[<schema name>.]<context name>`. |
+| `context_names` | Comma-separated list of names of *SQL-GPT contexts* to use in generating the executed query; each should be of the form `[<schema name>.]<context name>`, and the entire list should be single-quoted. <br/> For example: <br/> `context_names = 'example.atc_ctx,example.nyctaxi'` |
+| `use_rag` | Whether to use [retrieval-augmented generation (RAG)](/content/sql-gpt/concepts#sql-gpt-overview-rag) facilities with the given *SQL-GPT contexts* when processing this request. |
+
+
+### SQL Execution Example
+
+
+For example, to execute the SQL equivalent query to a given question using the
+`example.atc_ctx` *SQL-GPT context*:
+
+{/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 157-165) */}
+```sql EXECUTE_AI_QUERY Example
+SELECT *
+FROM TABLE
+(
+	EXECUTE_AI_QUERY
+	(
+		QUESTION => 'What is the callsign and position of the aircraft with most recent timestamp?',
+		OPTIONS => KV_PAIRS (context_name = 'example.atc_ctx')
+	)
+)
+```
+
+To execute the SQL equivalent query to a given question using the
+`nyctaxi_ctx` & `flights_ctx` *SQL-GPT contexts* with SQL RAG:
+
+{/* Source: /examples/sql/sql-gpt/rag.kisql (lines 253-261) */}
+```sql EXECUTE_AI_QUERY with RAG Example
+SELECT *
+FROM TABLE
+(
+	EXECUTE_AI_QUERY
+	(
+		QUESTION => 'What was the busiest airport, including taxis and flights, during January and February of 2023?',
+		OPTIONS => KV_PAIRS (context_names = 'nyctaxi_ctx, flights_ctx', use_rag = 'true')
+	)
+)
+```

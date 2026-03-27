@@ -1,0 +1,178 @@
+---
+title: Track Functions
+---
+
+The following functions are available in both SQL and the native API.
+
+| Function | Description |
+| --- | --- |
+| `ST_TRACKDURATION([unit,] t)` | Returns the total time, in the given `unit`, spanned by timestamp values in column `t`.  Grouping by *track* ID will return the duration per *track*. <br/> The duration can be returned in any of the following date/time units: <br/> * `YEAR` <br/> * `MONTH` <br/> * `DAY` <br/> * `HOUR` <br/> * `MINUTE` <br/> * `SECOND` <br/> * `MILLISECOND` <br/> <br/> The default `unit` is `MILLISECOND`. |
+| `ST_TRACKLENGTH(lat, lon, t[, solution])` | Returns the total length of the track whose position values are specified by `lat` & `lon` and whose ordering is determined by an ascending sort on the timestamp `t`. Length can be returned with any of the following solution types: <br/> <br/> `0`: 2D Euclidean length in degrees <br/> `1`: (default) Length on a sphere in meters <br/> `2`: Length on a spheroid in meters |
+
+
+## ST_TRACK_DWITHIN
+
+
+The `ST_TRACK_DWITHIN` table function finds tracks that are related, within
+spatial or temporal bounds (or both) to the given track(s).  The track(s) to use
+as the filter criteria will be specified by the `SEARCH_*` parameters.  The
+`TRACK_*` parameters specify the set of tracks to search through for a match.
+
+
+<Info>
+This function is only available in SQL or in the native API via
+[/execute/sql](/content/api/rest/execute_sql_rest).
+</Info>
+
+The basic form of the `ST_TRACK_DWITHIN` function follows.
+
+{/* Source: /location_intelligence/track_function_syntax.sql (lines 2-23) */}
+```sql ST_TRACK_DWITHIN Table Function Syntax
+SELECT *
+FROM TABLE
+(
+    ST_TRACK_DWITHIN
+    (
+        TRACK_TABLE => INPUT_TABLE(<table name | select statement>),
+        TRACK_ID_COLUMN => < '<column name>' | <column position> >,
+        TRACK_X_COLUMN => < '<column name>' | <column position> >,
+        TRACK_Y_COLUMN => < '<column name>' | <column position> >,
+        TRACK_ORDER_COLUMN => < '<column name>' | <column position> >,
+        SEARCH_TABLE => INPUT_TABLE(<table name | select statement>),
+        SEARCH_ID_COLUMN => < '<column name>' | <column position> >,
+        SEARCH_X_COLUMN => < '<column name>' | <column position> >,
+        SEARCH_Y_COLUMN => < '<column name>' | <column position> >,
+        SEARCH_ORDER_COLUMN => < '<column name>' | <column position> >,
+        [
+            SEARCH_XY_DISTANCE => '<spatial distance with unit>',
+            SPATIAL_SOLUTION_TYPE => <solution type>,
+            SEARCH_TIME_DISTANCE => '<temporal distance with unit>'
+        ]
+    )
+)
+```
+
+| Parameters | Description |
+| --- | --- |
+| `TRACK_TABLE` | Name of the table to search for tracks matching the track(s) specified in the `SEARCH_*` data set. <br/> To perform a search on the *flights* table, pass the name of the table to `INPUT_TABLE`: <br/> `INPUT_TABLE(flights)` <br/> To perform a search on the result of a query, pass the query to `INPUT_TABLE`: <br/> `INPUT_TABLE ( SELECT * FROM flights_west UNION SELECT * FROM flights_east )` |
+| `TRACK_ID_COLUMN` | Table to search track column, containing the unique identifier for the track to which each track point belongs. |
+| `TRACK_X_COLUMN` | Table to search track column, containing the longitude value of each track point. |
+| `TRACK_Y_COLUMN` | Table to search track column, containing the latitude value of each track point. |
+| `TRACK_ORDER_COLUMN` | Table to search track column, by which the searched track points will be sorted in ascending order. |
+| `SEARCH_TABLE` | Name of the search criteria track table, containing the track(s) to be used as the filter criteria when searching for matching tracks in the `TRACK_*` data set. <br/> To match tracks from the *flights_of_interest* table, pass the name of the table to `INPUT_TABLE`: <br/> `INPUT_TABLE(flights_of_interest)` <br/> To match tracks from the result of a query, pass the query to `INPUT_TABLE`: <br/> `INPUT_TABLE ( SELECT * FROM flights_of_interest_west UNION SELECT * FROM flights_of_interest_east )` |
+| `SEARCH_ID_COLUMN` | Search criteria track column, containing the unique identifier for the track to which each track point belongs. |
+| `SEARCH_X_COLUMN` | Search criteria track column, containing the longitude value of each track point. |
+| `SEARCH_Y_COLUMN` | Search criteria track column, containing the latitude value of each track point. |
+| `SEARCH_ORDER_COLUMN` | Search criteria track column, by which the filter track points will be sorted in ascending order. |
+| `SEARCH_XY_DISTANCE` | The radius around the given tracks to search for matching tracks. <br/> <Note> This parameter is not applicable when using a `SPATIAL_SOLUTION_TYPE` of `0`. </Note> <br/> <br/> `f`: Feet <br/> `ki`: Kilometers <br/> `m`: (default) Meters <br/> `mi`: Miles |
+| `SPATIAL_SOLUTION_TYPE` | Spatial match solution type; any of the following: <br/> <br/> `0`: (default) 2D Euclidean length in degrees <br/> `1`: Length on a sphere, returned in units specified by `SEARCH_XY_DISTANCE` <br/> `2`: Length on a spheroid, returned in units specified by `SEARCH_XY_DISTANCE` |
+| `SEARCH_TIME_DISTANCE` | The maximum allowable time difference between a search criteria track's point and a matched track's points.  The time can use any of the following suffices for units: <br/> <br/> `ms`: Milliseconds <br/> `s`: (default) Seconds <br/> `m`: Minutes <br/> `h`: Hours <br/> `d`: Days <br/> `w`: Weeks <br/> `months`: Months <br/> `y`: Years |
+
+To see the matches between a set of flights and a given set of flights of
+interest:
+
+{/* Source: /examples/sql/geospatial_tracks.kisql (lines 76-102) */}
+```sql ST_TRACK_DWITHIN Example
+SELECT *
+FROM TABLE
+(
+	ST_TRACK_DWITHIN
+	(
+		TRACK_TABLE => INPUT_TABLE(example_geospatial.flights),
+		TRACK_ID_COLUMN => 'id',
+		TRACK_X_COLUMN => 'lon',
+		TRACK_Y_COLUMN => 'lat',
+		TRACK_ORDER_COLUMN => 'flight_time',
+		SEARCH_TABLE => INPUT_TABLE
+						(
+							SELECT id, lon, lat, flight_time
+							FROM example_geospatial.flights_northwest
+							UNION
+							SELECT id, lon, lat, flight_time
+							FROM example_geospatial.flights_northeast
+						),
+		SEARCH_ID_COLUMN => 1,
+		SEARCH_X_COLUMN => 2,
+		SEARCH_Y_COLUMN => 3,
+		SEARCH_ORDER_COLUMN => 4,
+		SEARCH_TIME_DISTANCE => '5m',
+		SEARCH_XY_DISTANCE => '1km',
+		SPATIAL_SOLUTION_TYPE => 1
+	)
+)
+```
+
+
+## ST_TRACKINTERSECTS
+
+
+The `ST_TRACKINTERSECTS` table function finds tracks pass through the given
+geofence(s).  The geofence(s) use as the filter will be specified by the
+`GEOFENCE_*` parameters.  The `TRACK_*` parameters specify the set of
+tracks to search through for any intersecting the geofence(s).
+
+The result will include a record for each intersecting track & geofence pair,
+with:
+
+* a `LINESTRING` representing the full track intersecting a geofence
+* a `LINESTRING` representing the geofence it intersected
+
+
+<Info>
+This function is only available in SQL or in the native API via
+[/execute/sql](/content/api/rest/execute_sql_rest).
+</Info>
+
+The basic form of the `ST_TRACKINTERSECTS` function follows.
+
+{/* Source: /location_intelligence/track_function_syntax.sql (lines 48-62) */}
+```sql ST_TRACKINTERSECTS Table Function Syntax
+SELECT *
+FROM TABLE
+(
+    ST_TRACKINTERSECTS
+    (
+        TRACK_TABLE => INPUT_TABLE(<table name | select statement>),
+        TRACK_ID_COLUMN => < '<column name>' | <column position> >,
+        TRACK_X_COLUMN => < '<column name>' | <column position> >,
+        TRACK_Y_COLUMN => < '<column name>' | <column position> >,
+        TRACK_ORDER_COLUMN => < '<column name>' | <column position> >,
+        GEOFENCE_TABLE => INPUT_TABLE(<table name | select statement>),
+        GEOFENCE_ID_COLUMN => < '<column name>' | <column position> >,
+        GEOFENCE_WKT_COLUMN => < '<column name>' | <column position> >
+    )
+)
+```
+
+| Parameters | Description |
+| --- | --- |
+| `TRACK_TABLE` | Name of the table to search for tracks intersecting the geofence(s) specified in the `SEARCH_*` data set. <br/> To perform a search on the *flights* table, pass the name of the table to `INPUT_TABLE`: <br/> `INPUT_TABLE(flights)` <br/> To perform a search on the result of a query, pass the query to `INPUT_TABLE`: <br/> `INPUT_TABLE ( SELECT * FROM flights_west UNION SELECT * FROM flights_east )` |
+| `TRACK_ID_COLUMN` | Table to search track column, containing the unique identifier for the track to which each track point belongs. |
+| `TRACK_X_COLUMN` | Table to search track column, containing the longitude value of each track point. |
+| `TRACK_Y_COLUMN` | Table to search track column, containing the latitude value of each track point. |
+| `TRACK_ORDER_COLUMN` | Table to search track column, by which the searched track points will be sorted in ascending order. |
+| `GEOFENCE_TABLE` | Name of the geofence table, containing the WKT(s) to be used as the filter criteria when searching for intersecting tracks in the `TRACK_*` data set. <br/> To search for tracks intersecting the geofence(s) from the *flight_area_of_interest* table, pass the name of the geofence table to `INPUT_TABLE`: <br/> `INPUT_TABLE(flight_area_of_interest)` <br/> To search for tracks intersecting the geofence(s) from the result of a query, pass the query to `INPUT_TABLE`: <br/> `INPUT_TABLE ( SELECT * FROM flight_area_of_interest_west UNION SELECT * FROM flight_area_of_interest_east )` |
+| `GEOFENCE_ID_COLUMN` | Geofence column, containing the unique identifier for the geofence. |
+| `GEOFENCE_WKT_COLUMN` | Geofence column, containing the WKT bounds of the geofence. |
+
+To see the intersections between a set of flights and an area of interest:
+
+{/* Source: /examples/sql/geospatial_tracks.kisql (lines 128-143) */}
+```sql ST_TRACKINTERSECTS Example
+SELECT *
+FROM TABLE
+(
+	ST_TRACKINTERSECTS
+	(
+		TRACK_TABLE =>         INPUT_TABLE(example_geospatial.flights),
+		TRACK_ID_COLUMN =>     'id',
+		TRACK_X_COLUMN =>      'lon',
+		TRACK_Y_COLUMN =>      'lat',
+		TRACK_ORDER_COLUMN =>  'flight_time',
+		GEOFENCE_TABLE =>      INPUT_TABLE(example_geospatial.track_geofence),
+		GEOFENCE_ID_COLUMN =>  'fence_name',
+		GEOFENCE_WKT_COLUMN => 'fence_wkt'
+	)
+)
+ORDER BY id, fence_name
+```

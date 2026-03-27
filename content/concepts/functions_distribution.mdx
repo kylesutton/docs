@@ -1,0 +1,21 @@
+---
+title: Data Distribution Functions
+---
+
+## Record Distribution Functions
+
+
+Record distribution functions provide a means to locate any database record
+within the memory processing hierarchy; and through aggregating the results,
+determine the distribution of records across the cluster.
+
+| Function | Description |
+| --- | --- |
+| `KI_CHUNK()` | Returns the index of the chunk within the rank/TOM containing this record. This value may change as data is added or deleted from a table. |
+| `KI_CHUNK_ID()` | Returns the ID of the chunk within the rank/TOM containing this record. This value should remain the same even after system restarts. |
+| `KI_CHUNK_MAX(col)` | Returns the maximum value for the specified column in its chunk. If the data has changed, this value may be higher than any actual values. |
+| `KI_CHUNK_MIN(col)` | Returns the minimum value for the specified column in its chunk. If the data has changed, this value may be lower than any actual values. |
+| `KI_CHUNK_OFFSET()` | Returns the index of the record within the chunk. |
+| `KI_PARTITION()` | Returns the index of the partition within the rank/TOM containing this record, for [partitioned](/content/concepts/tables#partitioning) tables. |
+| `KI_RANK()` | Returns the index of the rank containing this record. |
+| `KI_TOM()` | Returns the index of the TOM within the rank containing this record. |

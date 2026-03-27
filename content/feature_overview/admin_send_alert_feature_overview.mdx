@@ -1,0 +1,30 @@
+---
+title: "Administration: Send alert"
+---
+
+{/* RST directive: role h2_style */}
+
+
+<a id="admin-send-alert-feature-overview"></a>
+
+
+Sends a user generated alert to the monitoring system.
+
+
+## Input Parameter Description
+
+
+| Name | Type | Description |
+| --- | --- | --- |
+| message | string | Alert message body.  The default value is ''. |
+| label | string | Label to add to alert message.  The default value is ''. |
+| log_level | string | Alert message logging criteria  The supported values are: <br/> * fatal <br/> * error <br/> * warn <br/> * info <br/> * debug |
+| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). |
+
+
+## Output Parameter Description
+
+
+| Name | Type | Description |
+| --- | --- | --- |
+| info | map of string to strings | Additional information. |

@@ -1,122 +1,263 @@
 {
   "$schema": "https://mintlify.com/docs.json",
+  "name": "Kinetica Docs",
   "theme": "mint",
-  "name": "Mint Starter Kit",
-  "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+  "logo": {
+    "dark": "/images/logo-dark.svg",
+    "light": "/images/logo-light.svg"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/images/favicon.png",
+  "colors": {
+    "primary": "#6366f1",
+    "light": "#818cf8",
+    "dark": "#4f46e5"
+  },
+  "topbarLinks": [
+    {
+      "name": "Support",
+      "url": "https://www.kinetica.com/support/"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Try Free",
+    "url": "https://www.kinetica.com/try/"
+  },
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Home",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "index"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Kinetica Overview",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "content/overview/index",
+              "content/concepts/index",
+              "content/tuning/multihead/multihead_ingest",
+              "content/tuning/multihead/multihead_egress",
+              "content/feature_overview/index",
+              "content/udf_overview",
+              "content/cloud/index"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Install & Configure",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "content/install/index",
+              "content/guides/quickstart-guide/index",
+              "content/install/installation",
+              "content/install/migration_guide",
+              "content/rm/index",
+              "content/ha/index",
+              "content/config/index"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Administration",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "content/admin/index",
+              "content/admin/workbench/index",
+              "content/admin/gadmin/index",
+              "content/admin/kagent/kagent",
+              "content/admin/services",
+              "content/admin/monitoring_alerting",
+              "content/admin/upgrade",
+              "content/admin/backup_restore",
+              "content/admin/changing_password"
+            ]
+          },
+          {
+            "group": "Load Data",
+            "pages": [
+              "content/load_data/index",
+              "content/load_data/concepts",
+              "content/api/rest/insert_records_json_rest",
+              "content/sql/load",
+              {
+                "group": "By Source",
+                "pages": [
+                  "content/load_data/by_source/index",
+                  "content/load_data/by_source/azure_blob",
+                  "content/load_data/by_source/gcs",
+                  "content/load_data/by_source/hdfs",
+                  "content/load_data/by_source/jdbc",
+                  "content/load_data/by_source/kafka",
+                  "content/load_data/by_source/confluent",
+                  "content/load_data/by_source/kifs",
+                  "content/load_data/by_source/local",
+                  "content/load_data/by_source/s3"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "SQL",
+            "pages": [
+              "content/sql/index",
+              "content/sql/naming",
+              "content/sql/query",
+              "content/sql/dml",
+              "content/sql/ddl",
+              "content/sql/load",
+              "content/sql/export",
+              "content/sql/kifs",
+              "content/sql/reveal",
+              "content/sql/procedure",
+              "content/sql/sqlgpt",
+              "content/sql/udf",
+              "content/sql/graph",
+              "content/sql/ml",
+              "content/sql/security",
+              "content/sql/resource_group",
+              "content/sql/system_properties",
+              "content/sql/backup_restore",
+              "content/sql/limit"
+            ]
+          },
+          {
+            "group": "SQL-GPT",
+            "pages": [
+              "content/sql-gpt/index",
+              "content/sql-gpt/concepts",
+              "content/sql/sqlgpt"
+            ]
+          },
+          {
+            "group": "Vector Search",
+            "pages": [
+              "content/vector_search/index"
+            ]
+          },
+          {
+            "group": "Location Intelligence",
+            "pages": [
+              "content/location_intelligence/index",
+              "content/location_intelligence/geo_objects",
+              "content/location_intelligence/geo_functions",
+              "content/tuning/cs/geo",
+              "content/feature_overview/wms_feature_overview",
+              "content/feature_overview/vts_feature_overview"
+            ]
+          },
+          {
+            "group": "Time Series",
+            "pages": [
+              "content/time_series/index",
+              "content/time_series/types",
+              "content/time_series/date_bucket",
+              "content/time_series/time_bucket"
+            ]
+          },
+          {
+            "group": "Graph",
+            "pages": [
+              "content/graph_solver/index",
+              "content/graph_solver/network_graph_solver",
+              "content/graph_solver/distributed_graph_server"
+            ]
+          },
+          {
+            "group": "Machine Learning",
+            "pages": [
+              "content/ml/index",
+              "content/ml/concepts",
+              "content/sql/ml"
+            ]
+          },
+          {
+            "group": "Security",
+            "pages": [
+              "content/security/index",
+              "content/security/sec_concepts",
+              "content/sql/security",
+              "content/security/reveal"
+            ]
+          },
+          {
+            "group": "Visualization",
+            "pages": [
+              "content/bi/index",
+              "content/bi/reveal/index",
+              "content/bi/tableau/index",
+              "content/admin/workbench/workbooks",
+              "content/feature_overview/wms_feature_overview",
+              "content/feature_overview/vts_feature_overview"
+            ]
+          },
+          {
+            "group": "Integration",
+            "pages": [
+              "content/integrate",
+              "content/tuning/index",
+              "content/connectors/index",
+              "content/udf/index",
+              "content/tools/index",
+              "content/downloads"
+            ]
+          },
+          {
+            "group": "Virtual Catalogs",
+            "pages": [
+              "content/catalogs/index",
+              "content/catalogs/kinetica",
+              "content/catalogs/ansi",
+              "content/catalogs/postgresql",
+              "content/snippets/virtual-catalog-queries"
+            ]
+          },
+          {
+            "group": "Release Notes",
+            "pages": [
+              "content/release/index",
+              "content/release/7_2",
+              "content/release/7_1",
+              "content/release/7_0",
+              "content/release/6_2",
+              "content/release/6_1",
+              "content/release/6_0"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "API Reference",
+        "icon": "square-terminal",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "API",
             "pages": [
-              "api-reference/introduction"
+              "content/api/index",
+              "content/api/concepts",
+              "content/api/rest/index"
             ]
-          },
+          }
+        ]
+      },
+      {
+        "tab": "Guides",
+        "icon": "book-open",
+        "groups": [
           {
-            "group": "Endpoint examples",
+            "group": "Resources",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "content/guides/index",
+              "content/snippets/index"
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+  "footerSocials": {
+    "x": "https://x.com/KineticaHQ",
+    "github": "https://github.com/kineticadb"
   },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
-  },
-  "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
-  },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
-    }
+  "search": {
+    "prompt": "Search Kinetica docs..."
   }
 }

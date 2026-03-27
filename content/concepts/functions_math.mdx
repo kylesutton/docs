@@ -1,0 +1,98 @@
+---
+title: Math Functions
+---
+
+## Math Functions
+
+
+| Function | Description |
+| --- | --- |
+| `ABS(expr)` | Calculates the absolute value of `expr` |
+| `ACOS(expr)` | Returns the inverse cosine (arccosine) of `expr` as a *double* |
+| `ACOSF(expr)` | Returns the inverse cosine (arccosine) of `expr` as a *float* |
+| `ACOSH(expr)` | Returns the inverse hyperbolic cosine of `expr` as a *double* |
+| `ACOSHF(expr)` | Returns the inverse hyperbolic cosine of `expr` as a *float* |
+| `ASIN(expr)` | Returns the inverse sine (arcsine) of `expr` as a *double* |
+| `ASINF(expr)` | Returns the inverse sine (arcsine) of `expr` as a *float* |
+| `ASINH(expr)` | Returns the inverse hyperbolic sine of `expr` as a *double* |
+| `ASINHF(expr)` | Returns the inverse hyperbolic sine of `expr` as a *float* |
+| `ATAN(expr)` | Returns the inverse tangent (arctangent) of `expr` as a *double* |
+| `ATANF(expr)` | Returns the inverse tangent (arctangent) of `expr` as a *float* |
+| `ATANH(expr)` | Returns the inverse hyperbolic tangent of `expr` as a *double* |
+| `ATANHF(expr)` | Returns the inverse hyperbolic tangent of `expr` as a *float* |
+| `ATAN2(x, y)` | Returns the inverse tangent (arctangent) using two arguments as a *double* |
+| `ATAN2F(x, y)` | Returns the inverse tangent (arctangent) using two arguments as a *float* |
+| `ATN2(x, y)` | Alias for `ATAN2` |
+| `ATN2F(x, y)` | Alias for `ATAN2F` |
+| `CBRT(expr)` | Returns the cube root of `expr` as a *double* |
+| `CBRTF(expr)` | Returns the cube root of `expr` as a *float* |
+| `CEIL(expr)` | Alias for `CEILING` |
+| `CEILING(expr)` | Rounds `expr` up to the next highest integer |
+| `COS(expr)` | Returns the cosine of `expr` as a *double* |
+| `COSF(expr)` | Returns the cosine of `expr` as a *float* |
+| `COSH(expr)` | Returns the hyperbolic cosine of `expr` as a *double* |
+| `COSHF(expr)` | Returns the hyperbolic cosine of `expr` as a *float* |
+| `COT(expr)` | Returns the cotangent of `expr` as a *double* |
+| `COTF(expr)` | Returns the cotangent of `expr` as a *float* |
+| `DEGREES(expr)` | Returns the conversion of `expr` (in radians) to degrees as a *double* |
+| `DEGREESF(expr)` | Returns the conversion of `expr` (in radians) to degrees as a *float* |
+| `DIVZ(a, b, c)` | Returns the quotient `a / b` unless `b == 0`, in which case it returns `c` |
+| `EXP(expr)` | Returns *e* to the power of `expr` as a *double* |
+| `EXPF(expr)` | Returns *e* to the power of `expr` as a *float* |
+| `FLOOR(expr)` | Rounds `expr` down to the next lowest integer |
+| `GREATER(expr_a, expr_b)` | Returns whichever of `expr_a` and `expr_b` has the larger value, based on typed comparison |
+| `HYPOT(x, y)` | Returns the hypotenuse of `x` and `y` as a *double* |
+| `HYPOTF(x, y)` | Returns the hypotenuse of `x` and `y` as a *float* |
+| `IFERROR(expr, val)` | Alias for `IF_ERROR(expr, val)` |
+| `IFINF(expr, val)` | Alias for `IF_INF(expr, val)` |
+| `IFINFINITY(expr, val)` | Alias for `IF_INF(expr, val)` |
+| `IFNAN(expr, val)` | Alias for `IF_NAN(expr, val)` |
+| `IF_ERROR(expr, val)` | Evaluates the given *double* or *float* `expr`, and if it resolves to infinity or `NaN`, return `val` <br/> <Tip> Conceptually, this function is the same as `IF_INF(IF_NAN(expr, val), val)` </Tip> <br/> Example: <br/> <br/> `IF_ERROR((double(10)/0), 1)`: `1.0` <br/> `IF_ERROR(log(-1), 1)`: `1.0` |
+| `IF_INF(expr, val)` | Evaluates the given *double* or *float* `expr`, and if it resolves to infinity, return `val` <br/> Example: <br/> <br/> `IF_INF((double(10)/0), 999)`: `999.0` <br/> `IF_INF(log(-1), 999)`: `NaN` |
+| `IF_INFINITY(expr, val)` | Alias for `IF_INF(expr, val)` |
+| `IF_NAN(expr, val)` | Evaluates the given *double* or *float* `expr`, and if it resolves to `NaN`, return `val` <br/> Example: <br/> <br/> `IF_NAN((double(10)/0), -1)`: `Infinity` <br/> `IF_NAN(log(-1), -1)`: `-1.0` |
+| `ISINFINITY(expr)` | Returns `1` (true) if `expr` is infinity by IEEE standard; otherwise, returns `0` (false) |
+| `IS_INFINITY(expr)` | Alias for `ISINFINITY` |
+| `ISNAN(expr)` | Returns `1` (true) if `expr` is not a number by IEEE standard; otherwise, returns `0` (false) |
+| `IS_NAN(expr)` | Alias for `ISNAN` |
+| `ISNUMERIC(expr)` | Returns `1` (true) if `expr` is a number by IEEE standard; otherwise, returns `0` (false) |
+| `IS_NUMERIC(expr)` | Alias for `ISNUMERIC` |
+| `LDEXP(x, exp)` | Returns the value of `x` * 2\ `exp` as a *double* |
+| `LDEXPF(x, exp)` | Returns the value of `x` * 2\ `exp` as a *float* |
+| `LESSER(expr_a, expr_b)` | Returns whichever of `expr_a` and `expr_b` has the smaller value, based on typed comparison |
+| `LN(expr)` | Returns the natural logarithm of `expr` as a *double* |
+| `LNF(expr)` | Returns the natural logarithm of `expr` as a *float* |
+| `LOG(expr)` | Alias for `LN` |
+| `LOG10(expr)` | Returns the *base-10* logarithm of `expr` as a *double* |
+| `LOG10F(expr)` | Returns the *base-10* logarithm of `expr` as a *float* |
+| `LOG1P(expr)` | Returns the natural logarithm of one plus `expr` as a *double* |
+| `LOG1PF(expr)` | Returns the natural logarithm of one plus `expr` as a *float* |
+| `LOG2(expr)` | Returns the binary (*base-2*) logarithm of `expr` as a *double* |
+| `LOG2F(expr)` | Returns the binary (*base-2*) logarithm of `expr` as a *float* |
+| `LOGF(expr)` | Alias for `LNF` |
+| `MAX_CONSECUTIVE_BITS(expr)` | Calculates the length of the longest series of consecutive `1` bits in the integer `expr` |
+| `MOD(dividend, divisor)` | Calculates the remainder after integer division of `dividend` by `divisor` |
+| `PI()` | Returns the value of *pi* |
+| `POW(base, exponent)` | Alias for `POWER` |
+| `POWF(base, exponent)` | Alias for `POWERF` |
+| `POWER(base, exponent)` | Returns `base` raised to the power of `exponent` as a *double* |
+| `POWERF(base, exponent)` | Returns `base` raised to the power of `exponent` as a *float* |
+| `RADIANS(expr)` | Returns the conversion of `expr` (in degrees) to radians as a *double* |
+| `RADIANSF(expr)` | Returns the conversion of `expr` (in degrees) to radians as a *float* |
+| `RAND([seed])` | Returns a random floating-point value, with an optional `seed` |
+| `REGR_VALX(y, x)` | Returns NULL if `y` is NULL; otherwise, returns `x` |
+| `REGR_VALY(y, x)` | Returns NULL if `x` is NULL; otherwise, returns `y` |
+| `ROUND(expr[, scale])` | Rounds `expr` to the nearest decimal number with `scale` decimal places when `scale` is a positive number; rounds to the nearest number such that the result has `-(scale)` zeros to the left of the decimal point when `scale` is negative; use `scale` of `0` to round to the nearest integer. <br/> The default value of `scale` is `0`. <br/> Examples: <br/> <br/> `ROUND(12345.678)`: `12346` <br/> `ROUND(12345.678, 2)`: `12345.68` <br/> `ROUND(12345.678, 0)`: `12346` <br/> `ROUND(12345.678, -2)`: `12300` |
+| `SIGN(expr)` | Determines whether a number is positive, negative, or zero; returns one of the following three values: <br/> <br/> *positive*: `1` <br/> *zero*: `0` <br/> *negative*: `-1` |
+| `SIN(expr)` | Returns the sine of `expr` as a *double* |
+| `SINF(expr)` | Returns the sine of `expr` as a *float* |
+| `SINH(expr)` | Returns the hyperbolic sine of `expr` as a *double* |
+| `SINHF(expr)` | Returns the hyperbolic sine of `expr` as a *float* |
+| `SQRT(expr)` | Returns the square root of `expr` as a *double* |
+| `SQRTF(expr)` | Returns the square root of `expr` as a *float* |
+| `TAN(expr)` | Returns the tangent of `expr` as a *double* |
+| `TANF(expr)` | Returns the tangent of `expr` as a *float* |
+| `TANH(expr)` | Returns the hyperbolic tangent of `expr` as a *double* |
+| `TANHF(expr)` | Returns the hyperbolic tangent of `expr` as a *float* |
+| `TRUNCATE(expr[, scale])` | Rounds `expr` down to the nearest decimal number with `scale` decimal places when `scale` is a positive number; rounds down to the nearest number such that the result has `-(scale)` zeros to the left of the decimal point when `scale` is negative; use `scale` of `0` to round down to the nearest integer. <br/> The default value of `scale` is `0`. <br/> Examples: <br/> <br/> `TRUNCATE(12345.678)`: `12345` <br/> `TRUNCATE(12345.678, 2)`: `12345.67` <br/> `TRUNCATE(12345.678, 0)`: `12345` <br/> `TRUNCATE(12345.678, -2)`: `12300` |
+| `WIDTH_BUCKET(expr,` `min, max, count)` | Defines a set of `count` equal intervals (buckets) within the range of `min` & `max`, and puts the value of `expr` into one of those buckets, where the value is greater than or equal to the minimum value of the bucket and less than the maximum value of the bucket.  Returns the 1-based number of the bucket into which the value of `expr` fell.  For values smaller than `min`, `0` is returned; for values greater than or equal to `max`, `count + 1` is returned.  Examples: <br/> In the following examples, a set of *5* equal buckets are defined between *0* and *10* (*0-2*, *2-4*, *4-6*, *6-8*, & *8-10*), and various values are bucketed using that set. <br/> <br/> `WIDTH_BUCKET(-1, 0, 10, 5)`: `0` <br/> `WIDTH_BUCKET(0, 0, 10, 5)`: `1` <br/> `WIDTH_BUCKET(5, 0, 10, 5)`: `3` <br/> `WIDTH_BUCKET(10, 0, 10, 5)`: `6` <br/> `WIDTH_BUCKET(11, 0, 10, 5)`: `6` |

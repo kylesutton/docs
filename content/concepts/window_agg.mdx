@@ -1,0 +1,20 @@
+---
+title: Window Aggregate Functions
+---
+
+| Function | Description |
+| --- | --- |
+| `AVG(expr)` | Calculates the average of the given expression `expr` over the specified window frame |
+| `COUNT(expr)` | Calculates the count of the given expression `expr` over the specified window frame |
+| `MAX(expr)` | Calculates the maximum value of the given expression `expr` over the specified window frame |
+| `MEAN(expr)` | Alias for `AVG()`. Calculates the average of the given expression `expr` over the specified window frame |
+| `MIN(expr)` | Calculates the minimum value of the given expression `expr` over the specified window frame |
+| `PRODUCT(expr)` | Calculates the product of the given expression `expr` over the specified window frame |
+| `RATIO_TO_REPORT(expr)` | Calculates the ratio of the value of `expr` to the sum of `expr` over the specified window frame.  Note that `ORDER BY` is not supported for this function. |
+| `STDDEV(expr)` | Alias for `STDDEV_POP()`. Calculates the population standard deviation of the given expression `expr` over the specified window frame |
+| `STDDEV_POP(expr)` | Calculates the population standard deviation of the given expression `expr` over the specified window frame |
+| `STDDEV_SAMP(expr)` | Calculates the sample standard deviation of the given expression `expr` over the specified window frame |
+| `SUM(expr)` | Calculates the sum of the given expression `expr` over the specified window frame |
+| `VAR(expr)` | Alias for `VAR_POP()`. Calculates the population variance of the given expression `expr` over the specified window frame |
+| `VAR_POP(expr)` | Calculates the population variance of the given expression `expr` over the specified window frame |
+| `VAR_SAMP(expr)` | Calculates the sample variance of the given expression `expr` over the specified window frame |

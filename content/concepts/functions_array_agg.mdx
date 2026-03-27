@@ -1,0 +1,13 @@
+---
+title: Arrays
+---
+
+These functions can be used to convert primitive column values into arrays of
+those values (aggregation) or to convert array columns into columns of primitive
+values (unnest).
+
+| Function | Description |
+| --- | --- |
+| `ARRAY_AGG(expr)` | Combines column values within a group into a single *array* of those values. <br/> See [examples](/content/concepts/array#array-func-agg-ex-agg). |
+| `ARRAY_AGG_DISTINCT(expr)` | Combines column values within a group into a single *array* of those values, removing any duplicates. <br/> See [examples](/content/concepts/array#array-func-agg-ex-agg-dist). |
+| `UNNEST_JSON_ARRAY` | Transposes array values into columnar data. <br/> See [UNNEST_JSON_ARRAY](/content/concepts/array#array-func-unnest). |

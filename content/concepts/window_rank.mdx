@@ -1,0 +1,16 @@
+---
+title: Window Ranking Functions
+---
+
+| Function | Description |
+| --- | --- |
+| `CUME_DIST()` | The relative position of the current row within the cumulative distribution of the selected partition, expressed as a percentage from `0` (exclusive) to `1` (inclusive). The formula for this calculation is as follows: <br/> `(count of <= records within partition) / (partition row count)` <br/> This function is shorthand for using the `COUNT()` function in separate partition statements to arrive at the same result: <br/> `DOUBLE ( COUNT(*) OVER ( PARTITION BY <partition_column> ORDER BY <sort_column> ) ) / ( COUNT(*) OVER ( PARTITION BY <partition_column> ORDER BY <sort_column> ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING ) )` |
+| `DENSE_RANK()` | Number of the current row within the selected partition except rows with identical values evaluate to different ranks. Starts at 1 |
+| `FIRST_VALUE(<column>)` `[<IGNORE \| RESPECT> NULLS]` | The value found in the first row within a frame of the given expression. Optionally, add `IGNORE NULLS` or `RESPECT NULLS` to the function syntax to ignore or respect `nulls`, respectively. |
+| `LAG(<column>[, <num>])` `[<IGNORE \| RESPECT> NULLS]` | The value of the row before the given expression's value. Provide an additional comma-separated value to specify which row to select, e.g., `LAG(vendor_id, 3)` would list the value in the `vendor_id` column from three rows prior to the current row. Optionally, add `IGNORE NULLS` or `RESPECT NULLS` to the function syntax to ignore or respect `nulls` respectively. |
+| `LAST_VALUE(<column>)` `[<IGNORE \| RESPECT> NULLS]` | The value found in the last row within a frame of the given expression. Optionally, add `IGNORE NULLS` or `RESPECT NULLS` to the function syntax to ignore or respect `nulls` respectively. |
+| `LEAD(<column>[, <num>])` `[<IGNORE \| RESPECT> NULLS]` | The value of the row after the given expression's value. Provide an additional comma-separated value to specify which row to select, e.g., `LEAD(vendor_id, 3)` would list the value in the `vendor_id` column from three rows after the current row. Optionally, add `IGNORE NULLS` or `RESPECT NULLS` to the function syntax to ignore or respect `nulls` respectively. |
+| `NTILE(<num of groups>)` | The group number of the row after partitioning the rows into `num of groups` groups.  For example, `NTILE(4)` will partition data by quartiles and return the associated group number, `1` to `4`. |
+| `PERCENT_RANK()` | The rank of the current row within the selected partition, expressed as a percentage from `0` to `1`, inclusive. The formula for this calculation is as follows: <br/> `(rank within partition - 1) / (partition row count - 1)` <br/> This function is shorthand for using the `RANK()` & `COUNT()` functions in separate partition statements to arrive at the same result: <br/> `DOUBLE ( RANK() OVER ( PARTITION BY <partition_column> ORDER BY <sort_column> ) - 1 ) / ( COUNT(*) OVER ( PARTITION BY <partition_column> ORDER BY <sort_column> ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING ) - 1 )` |
+| `RANK()` | Number of the current row within the selected partition. However, rows with identical values evaluate to the same rank. Starts at 1 |
+| `ROW_NUMBER()` | Number of the current row within the selected partition. Starts at 1 |

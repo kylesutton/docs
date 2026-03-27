@@ -1,0 +1,25 @@
+---
+title: Enhanced Performance Scalar Functions
+---
+
+The functions below all compare `x` and `y` coordinates to geometry objects
+(or vice versa), thus increasing their performance in queries. Each of these
+functions have a geometry-to-geometry version listed in the next section.
+
+| Function | Description |
+| --- | --- |
+| `STXY_CONTAINS(geom, x, y)` | Returns `1` (true) if `geom` contains the `x` and `y` coordinate, e.g. lies in the interior of `geom`. The coordinate cannot be on the boundary and also be contained because `geom` does not contain its boundary |
+| `STXY_CONTAINSPROPERLY(geom, x, y)` | Returns `1` (true) if the `x` and `y` coordinate intersects the interior of `geom` but not the boundary (or exterior) because `geom` does not contain its boundary but does contain itself |
+| `STXY_COVEREDBY(x, y, geom)` | Returns `1` (true) if the `x` and `y` coordinate is covered by `geom` |
+| `STXY_COVERS(geom, x, y)` | Returns `1` (true) if `geom` covers the `x` and `y` coordinate |
+| `STXY_DISJOINT(x, y, geom)` | Returns `1` (true) if the given `x` and `y` coordinate and the geometry `geom` do not spatially intersect. |
+| `STXY_DISTANCE` <br/> `(x, y, geom[, solution])` | Calculates the minimum distance between the given `x` and `y` coordinate and `geom` using the specified solution type. Solution types available: <br/> * `0` (default) - Euclidean; returns 2-D Euclidean distance <br/> * `1` - Haversine; returns minimum sphere distance in meters <br/> * `2` - Vincenty; returns minimum spheroid distance in meters, more accurate than Haversine but slower performance <br/> <br/> <Info> If the `x` and `y` coordinate and `geom` intersect (verify using `ST_INTERSECTS`), the distance will always be `0`. </Info> |
+| `STXY_DWITHIN` <br/> `(x, y, geom, distance[, solution])` | Returns `1` (true) if the `x` and `y` coordinate is within the specified `distance` from `geom` using the specified solution type. Solution types available: <br/> * `0` (default) - Euclidean; uses degrees to calculate distance <br/> * `1` - Sphere; uses meters to calculate sphere distance <br/> * `2` - Spheroid; uses meters to calculate spheroid distance |
+| `STXY_ENVDWITHIN` <br/> `(x, y, geom, distance[, solution])` | Returns `1` (true) if the `x` and `y` coordinate is within the specified `distance` from the bounding box of `geom` using the specified solution type. Solution types available: <br/> * `0` (default) - Euclidean; uses degrees to calculate distance <br/> * `1` - Sphere; uses meters to calculate distance |
+| `STXY_ENVINTERSECTS(x, y, geom)` | Returns `1` (true) if the bounding box of the given geometry `geom` intersects the `x` and `y` coordinate. |
+| `STXY_GEOHASH(x, y[, precision])` | Returns a hash string representation of the given `x` and `y` coordinates with specified `precision` (the length of the resulting geohash string). The longer the `precision`, the more precise the hash is. By default, `precision` is set to `20`; the max for `precision` is `32`. <br/> See [Geohash](/content/snippets/geohash) for an example. |
+| `STXY_H3(x, y, resolution)` | Alias for `H3_XYTOCELL`; see [H3 Functions](/content/location_intelligence/geo_functions#geo-functions-h3). |
+| `STXY_INTERSECTION(x, y, geom)` | Returns the shared portion between the `x` and `y` coordinate and the given geometry `geom`, i.e. the point itself. |
+| `STXY_INTERSECTS(x, y, geom)` | Returns `1` (true) if the `x` and `y` coordinate and `geom` intersect in 2-D. |
+| `STXY_TOUCHES(x, y, geom)` | Returns `1` (true) if the `x` and `y` coordinate and geometry `geom` have at least one point in common but their interiors do not intersect. If `geom` is a GEOMETRYCOLLECTION, a `0` is returned regardless if the point and geometry touch |
+| `STXY_WITHIN(x, y, geom)` | Returns `1` (true) if the `x` and `y` coordinate is completely inside the `geom` geometry i.e., not on the boundary |

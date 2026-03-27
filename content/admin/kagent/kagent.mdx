@@ -1,0 +1,371 @@
+---
+title: KAgent
+---
+
+<a id="kagent-concept"></a>
+
+
+*KAgent* is a multi-faceted administration, installation, and configuration
+management tool. It provides a centralized way to perform a consistent install
+across an existing or yet-to-be-cloud-provisioned cluster of computers. *KAgent*
+can also assist in automating tasks such as provisioning cloud hardware,
+configuring cluster security, adding and removing nodes, data backup and
+restoration, monitoring cluster health, managing and configuring cluster
+[high availability](/content/ha/ha_architecture). It has both a graphical (web)
+interface as well as a command line interface.
+
+
+<a id="kagent-features"></a>
+
+
+## Features
+
+
+*KAgent* facilitates or directly performs the following operations:
+
+* [Kinetica installation](/content/install/kagent_install)
+* [Existing cluster addition](/content/admin/adding_cluster_kagent)
+* [Cluster Back-ups](/content/admin/kagent/manage#kagent-ui-backups)
+* [Cluster management](/content/admin/kagent/manage)
+* [HA (Rings)](/content/admin/kagent/manage#kagent-ui-rings)
+* Cluster [monitoring](/content/admin/monitoring_alerting) and
+  [usage](/content/admin/kagent/usage)
+
+
+## UI
+
+
+The *KAgent* UI is usually available on port 8081
+of the desired machine, so it can be accessed via `http://<kagent-host>:8081`.
+The *KAgent* UI has a navigation pane on the left-hand side and a
+**Notifications** pane on the right-hand side. Review
+[Logging In / Out](/content/admin/kagent/kagent#kagent-ui-logout) for information on accessing the *KAgent* UI.
+
+
+![../images/kagent_ui_dashboard_full.png](/content/admin/kagent/images/kagent_ui_dashboard_full.png)
+
+
+### Navigation
+
+
+The navigation pane hosts quick access to all the features *KAgent* has to
+offer. Available navigation menu options:
+
+* [Dashboard](/content/admin/kagent/dashboard) -- Displays cluster health summary information. Not
+  available until a new or existing cluster has been added to *KAgent*
+* [Manage](/content/admin/kagent/manage) -- Hosts the
+  *cluster management* and *cluster addition* / *cluster installation*
+  interfaces.
+* [Usage](/content/admin/kagent/usage) -- Displays cluster usage statistics. Not available until a
+  new or existing cluster has been added to *KAgent*
+* [Queries](/content/admin/kagent/queries) -- Displays a filterable log of all queries made against
+  the given cluster
+* [Events](/content/admin/kagent/events) -- Displays cluster events
+* [Alerts](/content/admin/kagent/alerts) -- Displays cluster alerts
+* **Logout** -- Logs out the current user. Not available until a new
+  or existing cluster has been added to *KAgent*. Review
+  [Logging In / Out](/content/admin/kagent/kagent#kagent-ui-logout) for more information
+
+
+<a id="kagent-ui-notifications"></a>
+
+
+### Notifications
+
+
+The **Notifications** pane lists notifications from metric or event
+[Alerts](/content/admin/kagent/alerts). If there are no unread notifications, click
+**See Past Notifications** to open the
+[Alert History](/content/admin/kagent/alerts#alert-history) . Click **Mark All as Read** to
+mark all unread notifications as read; click **Mark as Read** to mark
+an individual unread notification as read.
+
+
+<a id="kagent-ui-logout"></a>
+
+
+### Logging In / Out
+
+
+Once a cluster is added to *KAgent* (either via the installation or cluster
+addition process), users must login to *KAgent* any time they need to use
+any of its [features](/content/admin/kagent/kagent#kagent-features). Conversely, if no clusters are
+in *KAgent*, there's no need to login, and thus, there's no way to log out (the
+button won't be available) until a cluster is added. To log into *KAgent*:
+
+1. Navigate to *KAgent* (`http://<kagent-host>:8081`)
+2. Provide a username for the **Username** field. Only System Admin
+   users have access to *KAgent*.
+3. Provide a password for the **Password** field.
+4. Select a cluster from the **Authentication Cluster** drop-down menu.
+5. Click **Log In**.
+
+
+<Note>
+Authenticating against a particular cluster does not restrict
+users from accessing other clusters that have been added to
+this particular instance of *KAgent*.
+</Note>
+
+After a successful login, the *KAgent* UI displays the **Dashboard**
+page by default.
+
+To log out of *KAgent*:
+
+1. From the *KAgent* UI (`http://<kagent-host>:8081`), click
+   **Logout** in the navigation pane.
+
+
+## CLI
+
+
+The *KAgent* CLI is available via the `kagent` executable typically stored in
+`/opt/gpudb/kagent/bin/`.
+
+The form of the command is as follows:
+
+```bash
+kagent [-h] [--debug] [--quiet] [-f <path>] [--kagent-dir <path>]
+   [-o <format>] [--user <username>] [-v]
+   < ring | cluster | node | log | check | factory-reset | monitor | refresh-config | update >
+```
+
+
+<a id="kagent-cli-params"></a>
+
+
+### Options
+
+
+| Option | Description |
+| --- | --- |
+| `-h` <br/> `--help` | Show the help menu.  When used following one of the subcommands, the subcommand-specific help menu will be shown. |
+| `--debug` | Log debug messages. |
+| `--quiet` | Suppress all output messages. |
+| `-f <path>` <br/> `--dbfile <path>` | Path to KAgent cluster configuration database. |
+| `--kagent-dir <path>` | Path to where KAgent and its playbooks reside. |
+| `-o <format>` <br/> `--output <format>` | The output message format to use: <br/> * `human` - *(default)* output in human-readable form <br/> * `json` - output in JSON format |
+| `--user <username>` | Specify what user is performing the actions, for logging purposes. |
+| `-v` <br/> `--verbose` | Run ansible-playbook with `-vvv` to debug issues. |
+| **Subcommands** |  |
+| `ring` | [Manage rings](/content/admin/kagent/kagent#kagent-cli-ring). |
+| `cluster` | [Manage clusters](/content/admin/kagent/kagent#kagent-cli-cluster). |
+| `node` | [Manage nodes](/content/admin/kagent/kagent#kagent-cli-node). |
+| `log` | [Manage logs](/content/admin/kagent/kagent#kagent-cli-log). |
+| `check` | [Check cluster connectivity](/content/admin/kagent/kagent#kagent-cli-check). |
+| `factory-reset` | [Reset KAgent to its original state and uninstall Kinetica packages](/content/admin/kagent/kagent#kagent-cli-reset). |
+| `monitor` | [Set a monitor for checking cluster connectivity](/content/admin/kagent/kagent#kagent-cli-monitor). |
+| `refresh-config` | [Force a refresh of the clusters from current status](/content/admin/kagent/kagent#kagent-cli-refresh). |
+| `update` | [Update global KAgent settings](/content/admin/kagent/kagent#kagent-cli-update). |
+
+
+<a id="kagent-cli-ring"></a>
+
+
+### Ring
+
+
+The form of the command to manage rings is as follows:
+
+```bash
+kagent ring <command>
+```
+
+| Ring Command | Description |
+| --- | --- |
+| `add [options] <name>` | Add a new ring with the given `name`. <br/> <br/> `-a <addr>` `--addr <addr>`: Specify the load balancer address for the ring. |
+| `backup [options] <name>` | Backup an existing ring with the given `name`. <br/> <br/> `--backup-path <path>`: Specify the `path` in which the backup will be created. Once given, will become the default backup path for subsequent backups. Initial backup directory is `/opt/backups`. |
+| `control <name> <operation> <component>` | Control the services of the ring with the given `name`. <br/> Apply one of the following operations: <br/> * `start` <br/> * `stop` <br/> * `restart` <br/> <br/> To one of the following components: <br/> * `gpudb` <br/> * `host_manager` <br/> * `tomcat` <br/> * `reveal` <br/> * `kml` <br/> * `stats` <br/> * `text_search` <br/> * `httpd` <br/> * `ha` <br/> * `mq` <br/> * `all_gpudb` <br/> * `all` |
+| `force-lock <name>` | Force the ring with the given `name` to lock. |
+| `force-unlock <name>` | Force the ring with the given `name` to unlock. |
+| `gather-logs [options] <name>` | Download the logs from the ring with the given `name` to a destination on the *KAgent* host. <br/> <br/> `--backtrace`: Add a process backtrace to the database process. <br/> `--kagent-logs`: Add the *KAgent* logs to the archive, up to the point at which they are collected. <br/> `--log-lines <line_count>`: Specify the number of lines to collect from the log. The first 100 lines are always saved. Use `0` to collect the entire log or `ERROR` to collect only error log messages. Default is `100,000` log lines. <br/> `--output-dir <path>`: Specify the `path` where the log archive will be written. The directory must be writable by the **gpudb** user on the *KAgent* host. <br/> `--package-verify`: Verify the installed *Kinetica* packages. |
+| `inspect <name>` | Inspect the details of the ring with the given `name`. |
+| `install <name>` | Install the HA platform on the ring with the given `name`. |
+| `list` | List all managed rings. |
+| `rabbit-recovery [options] <name>` | Attempt a RabbitMQ recovery; the process will clear all queues. <br/> <br/> `--proceed <yes\|no>`: Pass the final recovery confirmation (`yes` or `no`). |
+| `remove <name>` | Remove the ring with the given `name`. |
+| `update [options] <name>` | Update the details of the ring with the given `name`. <br/> <br/> `--addr <addr>`: Specify the load balancer address for the ring. <br/> `--ha-enabled <yes\|no>`: Specify that HA has been enabled (`yes`) or not (`no`) for the ring. |
+| `upgrade [options] <name>` | Upgrade Kinetica to the latest version on the ring with the given `name`.  This will perform a sequential in-place upgrade of each cluster within the ring. <br/> <br/> `--offline-aaw-installer <path>`: Specify the file `path` or URL of the location for the *KML* installer package (rpm,deb). <br/> `--offline-core-installer <path>`: Specify the file `path` or URL of the location for the *gpudb* installer package (rpm,deb). <br/> `--offline-rabbit-installer <path>`: Specify the file `path` or URL of the location for the *gpudb HA* installer package (rpm,deb). <br/> `--rabbit-drain-timeout <timeout>`: Specify the timeout in minutes that the upgrade will wait for queues to drain before beginning the upgrade. The upgrade will be aborted if the queues are not empty. Default is `3`. |
+
+
+<a id="kagent-cli-cluster"></a>
+
+
+### Cluster
+
+
+The form of the command to manage clusters is as follows:
+
+```bash
+kagent cluster <command>
+```
+
+| Cluster Command | Description |
+| --- | --- |
+| `backup [options] <name>` | Backup the data on the cluster with the given `name`. <br/> <br/> `--backup-path <path>`: Specify the `path` in which the backup will be created. Once given, will become the default backup path for subsequent backups. Initial backup directory is `/opt/backups`. <br/> `--list-schedule`: List backup schedules by backup `type`. <br/> `--schedule <schedule>`: Specify the backup schedule. Use `now` to run an immediate backup. Use a quoted crontab-style expression to schedule a backup in *cron*. Use `never` to remove a backup schedule. Default is `now`. <br/> `--table-list <list>`: Specify a space-separated list of tables to backup. |
+| `backup-configuration-files [options]` `<name>` | Backup all configuration files on the cluster with the given `name`. <br/> <br/> `--backup-path <path>`: Specify the `path` in which the backup will be created. Once given, will become the default backup path for subsequent backups. Initial backup directory is `/opt/backups`. The directory must be writable by the **gpudb** user on the *KAgent* host. |
+| `backup-schedule <name>` | List scheduled backups on the cluster with the given `name`. |
+| `bootstrap-kagent [options] <name>` | Bootstrap the *KAgent* role to a different host in the cluster; further cluster management must happen through the *KAgent* on this different host. <br/> <br/> `--kagent-hostname <host>`: Specify the name of the `host` where *KAgent* will be bootstrapped. |
+| `check-for-upgrades <name>` | Check if upgrades are available on-line for the cluster with the given `name`. |
+| `clone [options]` | Clone one cluster into another. <br/> <br/> `--authentication <yes\|no>`: Specify whether to copy (`yes`) or not copy (`no`) authentication settings. <br/> `--data <yes\|no>`: Specify whether to copy (`yes`) or not copy (`no`) data. <br/> `--destination <name>`: Specify the `name` of the cluster to clone to. <br/> `--graph <yes\|no>`: Specify whether to copy (`yes`) or not copy (`no`) persisted graph information. <br/> `--source <name>`: Specify the `name` of the cluster to clone from. <br/> `--users <yes\|no>`: Specify whether to copy (`yes`) or not copy (`no`) users and permissions. |
+| `control <name> <operation> <component>` | Control the services of the cluster with the given `name`. <br/> Apply one of the following operations: <br/> * `start` <br/> * `stop` <br/> * `restart` <br/> <br/> To one of the following components: <br/> * `gpudb` <br/> * `host_manager` <br/> * `tomcat` <br/> * `reveal` <br/> * `kml` <br/> * `stats` <br/> * `text_search` <br/> * `httpd` <br/> * `ha` <br/> * `mq` <br/> * `all_gpudb` <br/> * `all` |
+| `gather-logs [options] <name>` | Download the logs from the cluster with the given `name` to a destination on the *KAgent* host. <br/> <br/> `--backtrace`: Add a process backtrace to the database process. <br/> `--kagent-logs`: Add the *KAgent* logs to the archive, up to the point at which they are collected. <br/> `--log-lines <line_count>`: Specify the number of lines to collect from the log. The first 100 lines are always saved. Use `0` to collect the entire log or `ERROR` to collect only error log messages. Default is `100,000` log lines. <br/> `--output-dir <path>`: Specify the `path` where the log archive will be written. The directory must be writable by the **gpudb** user on the *KAgent* host. <br/> `--package-verify`: Verify the installed *Kinetica* packages. |
+| `get-conf-properties <name>` | Show database configuration properties of the cluster with the given `name`. |
+| `get-logger [options] <name>` | Show logger and logging level for the cluster with the given `name`.  To list the available loggers, run: <br/> `kagent cluster get-logger --ranks 0 <name>` <br/> <br/> `--logger <name>`: Specify the `name` of the logger to show. <br/> `--ranks <ranks>`: Specify the number of the rank from which to retrieve logging config. |
+| `init [options] <name>` | Initialize a new cluster with the given `name`. <br/> <br/> `--ring <name>`: Specify the name of the ring in which to place this cluster. <br/> `-k <path>` `--ssh-key <path>`: Specify the `path` to the SSH private key to use for cluster operations. <br/> `-u <username>` `--ssh-user <username>`: Specify the SSH `username` to use for cluster operations. This overrides the `KAGENT_SSH_USER` environment variable. <br/> `-p <password>` `--ssh-password <password>`: Specify the SSH `password` to use for the SSH user. This overrides the `KAGENT_SSH_PASS` environment variable. <br/> `-su <username>` `--sudo-user <username>`: Specify the sudo `username` to use for cluster operations, in the case where root logins are not allowed. <br/> `--sudo-password <password>`: Specify the sudo `password` to use for the sudo user. This overrides the `KAGENT_SUDO_PASSWORD` environment variable. <br/> `-admpass <password>` `--admin-pass <password>`: Specify the *Kinetica* admin user `password`. <br/> `--connect-via <method>`: Specify whether to connect to each node's internal IP address (`ip_addr`) or public IP address (`public_ip_addr`). <br/> `-inf <provider_code>` `--infrastructure-provider` `<provider_code>`: Specify the cluster's infrastructure provider: +---------------+---------------------------------------------+ \| Provider Code \| Description \| +===============+=============================================+ \| `onprem` \| On-premise (bare-metal) installation, or a \| \| \| cloud-based installation not provisioned \| \| \| via *KAgent* \| +---------------+---------------------------------------------+ <br/> `-lic <key>` `--lic-key <key>`: Specify the license `key` to use for this cluster. <br/> `--aws-access-key <key>`: Specify the *AWS* access key to use for cluster provisioning and operations. This overrides the `KAGENT_AWS_ACCESS_KEY` environment variable. <br/> `--aws-secret-key <key>`: Specify the *AWS* secret key to use for cluster provisioning and operations. This overrides the `KAGENT_AWS_SECRET_KEY` environment variable. <br/> `--aws-ssh-key-name <name>`: Specify the `name` of the SSH key to use to log into cluster nodes. If none is provided, a key will be created. <br/> `--azure-client-id <id>`: Specify the client `id` from the *Azure* login profile, usually found in <Badge color="gray">/.azure/credentials</Badge> . This overrides the `KAGENT_AZURE_CLIENT_ID` environment variable. <br/> `--azure-secret <secret>`: Specify the `secret` from the *Azure* login profile, usually found in <Badge color="gray">/.azure/credentials</Badge> . This overrides the `KAGENT_AZURE_SECRET` environment variable. <br/> `--azure-subscription-id <id>`: Specify the subscription `id` from the *Azure* login profile, usually found in <Badge color="gray">/.azure/credentials</Badge> . This overrides the `KAGENT_AZURE_SUBSCRIPTION_ID` environment variable. <br/> `--azure-tenant <tenant>`: Specify the `tenant` from the *Azure* login profile, usually found in <Badge color="gray">/.azure/credentials</Badge> . This overrides the `KAGENT_AZURE_TENANT` environment variable. <br/> `--cloud-region <region>`: Specify the *AWS* region, *Azure* location, or *GCP* zone for the cluster. <br/> `--cloud-ssh-user <username>`: Specify the `username` to create a login for on *Azure* or *GCP* provisioned instances. <br/> `--cloud-ssh-public-key-file <path>`: Specify the `path` to the public key to use for authentication on *Azure* or *GCP* instances. <br/> `--gcp-project <project>`: Specify the *GCP* `project` with which this cluster should be associated. <br/> `--gcp-service-account-file <path>`: Specify the *GCP* service account file (JSON) for the user. |
+| `inspect <name>` | Inspect the details of the cluster with the given `name`. |
+| `install [options] <name>` | Install *Kinetica* on a new cluster.  **Note:**  specifying any offline installer will switch the install to offline mode. <br/> <br/> `--auto-config <yes\|no>`: Whether to update (`yes`) or not update (`no`) the configuration on the cluster during install. Default is to update the configuration. <br/> `-c <yes\|no>` `--cuda <yes\|no>`: Whether to use a CUDA (GPU) build (`yes`) or Intel (CPU) build (`no`). <br/> `--k8s-config-file <path>`: Specify the path to the kubeconfig file of the external K8s cluster which KML will use. <br/> `--k8s-public-ip <addr>`: Specify the IP address at which the K8s cluster is accessible by the *Kinetica* cluster. <br/> `-nv <yes\|no>` `--nvidia <yes\|no>`: Whether to install (`yes`) or not install (`no`) the Nvidia driver when none is detected. <br/> `--open-firewall-ports <yes\|no>`: Whether to open (`yes`) or not open (`no`) relevant firewall ports if an enabled firewall is detected. <br/> `--offline-aaw-installer <path>`: Specify the file `path` or URL of the location for the *KML* installer package (rpm,deb). <br/> `--offline-core-installer <path>`: Specify the file `path` or URL of the location for the *gpudb* installer package (rpm,deb). <br/> `--offline-kagent-installer <path>`: Specify the file `path` or URL of the location for the *KAgent* installer package (rpm,deb). <br/> `--offline-nvidia-installer <path>`: Specify the file `path` or URL of the location for the *Nvidia* installer package (rpm,deb). <br/> `--offline-rabbit-installer <path>`: Specify the file `path` or URL of the location for the *gpudb HA* installer package (rpm,deb). <br/> `--reserve-k8s-gpus <number>`: Specify the `number` of GPUs to reserve for K8s/UDF usage. |
+| `list` | List all managed clusters. |
+| `list-backup-contents [options] <name>` | List the contents of a backup on the cluster with the given `name`. <br/> <br/> `--backup-path <path>`: Specify the `path` to the backup directory. <br/> `--restore-from <path>`: Specify the backup whose contents will be listed; this will be the name of a backup directory under the path given in `--backup-path`. |
+| `list-backups [options] <name>` | List the available backups on the cluster with the given `name`. <br/> <br/> `--backup-path <path>`: Specify the `path` to the backup directory. |
+| `list-cluster-contents <name>` | List all of the tables on the cluster with the given `name`. |
+| `preflight <name>` | Detect/regenerate environment settings for running *KAgent* commands on the cluster with the given `name`. |
+| `remove <name>` | Remove the cluster with the given `name`. |
+| `restore [options] <name>` | Restore the contents of a backup to the cluster with the given `name`. <br/> <br/> `--backup-path <path>`: Specify the `path` to the backup directory. <br/> `--preserve-persist <yes\|no>`: Whether to move (`yes`) or not move (`no`) the existing database persist folder to a safe location before overwriting. Default is `no`. <br/> `--restore-from <path>`: Specify the backup to restore; this will be the name of a backup directory under the path given in `--backup-path`. <br/> `--table-list <list>`: Specify a space-delimited set of tables to restore from the backup. |
+| `secure [options] <name>` | Secure the cluster with the given `name` by enabling HTTPS and/or authentication via *LDAP*, *Active* *Directory*, *Kerberos*, or *OAuth2*.  **Note:** All parameters relevant to the desired authentication mechanism must be specified upon each invocation of this command--no existing settings will be used as defaults. <br/> <br/> `--ssl <yes\|no>`: Whether to enforce (`yes`) or not enforce (`no`) SSL connections to the cluster via https. <br/> `--generate-certs <yes\|no>`: Whether to generate (`yes`) or not generate (`no`) self-signed certificates. Certificates can also be assigned directly to each node with the [kagent node](/content/admin/kagent/kagent#kagent-cli-node) command. <br/> `--authentication <type>`: Specify the `type` of authentication to use: * `none` * `ad` * `kerberos` * `ldap` * `oauth2` <br/> `--connection-type <type>`: When using *LDAP*, the `type` to use (`ldap` \| `ldaps`). <br/> `--ldaps-cert <path>`: When using *LDAPS* and a certificate is necessary, the `path` of the *LDAP* certificate. <br/> `--ldap-host <name>`: When using *LDAP*, the `name` of the *LDAP* bind host. <br/> `--ldap-port <port>`: When using *LDAP*, the `port` to bind to. <br/> `--ldap-base-filter <filter>`: When using *LDAP*, the `filter` to use when searching the directory for logins. <br/> `--ldap-bind-user <username>`: When using *LDAP*, the `username` of the account to use when connecting to the directory. <br/> `--ldap-bind-pwd <password>`: When using *LDAP*, the `password` of the account to use when connecting to the directory. This overrides the `KAGENT_LDAP_BIND_PWD` environment variable. <br/> `--kerberos-realm <realm>`: When using *Kerberos*, the `realm` to authenticate against. For example: `MY-REALM.ACME.COM`. <br/> `--kerberos-service-name <name>`: When using *Kerberos*, specify the *Kerberos* service location. For example: `HTTP/kerb-server.acme.com`. <br/> `--kerberos-keytab <path>`: When using *Kerberos*, specify the `path` to the keytab file to use. <br/> `--external-auth-role-maps-file` `<path>`: When using *LDAP* or *AD*, the path to the JSON file containing the role maps used to limit authorization, mapping certain groups to *Kinetica* roles. The mapping file should have the following format: <br/> `{ "role1": ["cn=g1,dc=abc,dc=com"], "role2": [ "cn=g1,dc=abc,dc=com", "cn=g2,dc=abc,dc=com" ] }` <br/> <br/> `--ui-auth-type <type>`: The type of authentication to use when logging in to the UIs: * `none` * `openid-connect` - use with `--authentication oauth2` setups <br/> `--oauth-metadata-url <url>`: When using *OAuth*, the `url` that identifies the *OAuth* server settings. <br/> `--oauth-user-claim <claim>`: When using *OAuth*, the name of the `claim` on the *OAuth* token representing the user's username in *Kinetica*. <br/> `--oauth-cliend-id <id>`: When using *OAuth*, the `id` of the client used to connect to the *OAuth* server. <br/> `--oauth-client-secret <secret>`: When using *OAuth*, the `secret` of the client used to connect to the *OAuth* server. <br/> `--oauth-db-roles-claim <claim>`: When using *OAuth*, the name of the `claim` on the *OAuth* token that contains a comma-separated list of database roles that the user should be assigned. <br/> `--oauth-reveal-roles-claim` `<claim>`: When using *OAuth*, the name of the `claim` on the *OAuth* token that contains a comma-separated list of *Reveal* roles that the user should be assigned. <br/> `--oauth-gadmin-redirect-uri` `<uri>`: When using *OAuth*, the `url` that can be used as a return redirect for *GAdmin* from the *OAuth* server, necessary when the hostname or port the user is using to access *GAdmin* is different than those found on the standard public-facing URL. <br/> `--oauth-reveal-redirect-uri` `<uri>`: When using *OAuth*, the `url` that can be used as a return redirect for *Reveal* from the *OAuth* server, necessary when the hostname or port the user is using to access *Reveal* is different than those found on the standard public-facing URL. <br/> `--oauth-workbench-redirect-uri` `<uri>`: When using *OAuth*, the `url` that can be used as a return redirect for *Workbench* from the *OAuth* server, necessary when the hostname or port the user is using to access *Workbench* is different than those found on the standard public-facing URL. <br/> `--offline-httpd-oauth-installer` `<path>`: When using *OAuth*, the `path` of the file or URL for the add-on *OAuth* `httpd` module installer package (rpm, deb). |
+| `set-conf-properties [options] <name>` | Set database configuration properties for the cluster with the given `name`. <br/> <br/> `--properties-map <map>`: Specify a `map` of key-value pairs of database configuration parameters to set. For example: <br/> `{"np1.load_vectors_on_migration":"always"}` |
+| `set-logger [options] <name>` | Set logger and logging level for the cluster with the given `name`. <br/> <br/> `--level <level>`: Specify the `level` of logging for the selected logger(s). One of: * `TRACE` * `DEBUG` * `INFO` * `WARN` * `ERROR` * `FATAL` * `OFF` <br/> `--logger <name>`: Specify the `name` of the logger to modify. <br/> `--ranks <ranks>`: Specify the number of the rank to where the logging modification will be applied. A comma-separated list of rank numbers can be used to specify multiple ranks to modify; e.g., `0,3,4`. Use `-1` to apply the modification across the cluster. |
+| `uninstall <name>` | Remove the cluster with the given `name`, including all components except this instance of *KAgent*. |
+| `update [options] <name>` | Modify select parameters of the cluster with the given `name`. <br/> <br/> `--connect-via <method>`: Specify whether to connect to each node's internal IP address (`ip_addr`) or public IP address (`public_ip_addr`). <br/> `--is-installed <yes\|no>`: Whether to mark (`yes`) or not mark (`no`) this cluster as installed. <br/> `--move-to-ring <name>`: Specify the `name` of an existing ring to move this cluster into. |
+| `verify [options] <name>` | Verify connectivity and basic configuration of the cluster with the given `name`. <br/> <br/> `--include-dependency`: Include info from related cluster services like *RabbitMQ*. <br/> `--status-only`: Only gather the service status on the nodes. |
+| `write-inventory [options] <name>` | Write out an inventory file for the cluster with the given `name`. <br/> <br/> `-i <path>` `--inventory-dir <path>`: The `path` to write the inventory file to. Default is `./ansible-inventory-<cluster_name>`. <br/> `--vault-password <password>`: Specify the password to use for the ansible vault. This overrides the `KAGENT_VAULT_PASSWORD` environment variable. |
+
+
+<a id="kagent-cli-node"></a>
+
+
+### Node
+
+
+The form of the command to manage nodes is as follows:
+
+```bash
+kagent node <command>
+```
+
+| Node Command | Description |
+| --- | --- |
+| `discover-hostname [options] <name>` | Attempt to auto-discover (and update) the hostname of the node with the given `name`. |
+| `gather-logs [options] <name>` | Download the logs from the node with the given `name` to a destination on the *KAgent* host. <br/> <br/> `--backtrace`: Add a process backtrace to the database process. <br/> `--kagent-logs`: Add the *KAgent* logs to the archive, up to the point at which they are collected. <br/> `--log-lines <line_count>`: Specify the number of lines to collect from the log. The first 100 lines are always saved. Use `0` to collect the entire log or `ERROR` to collect only error log messages. Default is `100,000` log lines. <br/> `--output-dir <path>`: Specify the `path` where the log archive will be written. The directory must be writable by the **gpudb** user on the *KAgent* host. <br/> `--package-verify`: Verify the installed *Kinetica* packages. |
+| `init [options] <name> <addr> <cluster>` | Initialize a new node with the given `name` and IP `addr` on the given `cluster`.  The `name` must be unique across all nodes in the cluster. <br/> <br/> `--cloud-instance-name <name>`: Specify an optional `name` for the node. <br/> `--cloud-instance-type <type>`: Specify the `type` of the node, based on the cloud provider. <br/> `--data-size <size>`: Specify the `size` of the storage to allocate for the node in GB. <br/> `--gcp-gpu-card <card>`: Specify the GPU `card` to attach to the node (if available and using *GCP* as the provider). <br/> `--public-ip-addr <addr>`: Specify the IP `addr` of the node accessible outside the DMZ, if applicable. <br/> `--public-hostname <hostname>`: Specify the `hostname` of the node accessible outside the DMZ, if applicable. <br/> `--roles <list>`: Specify a comma-separated `list` of roles for the node. +---------------+-----------------------------------------------------+ \| `head` \| Head node for the cluster \| +---------------+-----------------------------------------------------+ \| `worker` \| One of the worker nodes in the cluster \| +---------------+-----------------------------------------------------+ \| `graph` \| [Graph](/content/graph_solver/network_graph_solver) \| \| \| node \| +---------------+-----------------------------------------------------+ \| `kml` \| [KML](/content/ml/concepts) node \| +---------------+-----------------------------------------------------+ \| `ha_queue` \| *RabbitMQ* node for [ring resiliency](/content/ha) \| +---------------+-----------------------------------------------------+ \| `kagent` \| Bootstrapped in-cluster *KAgent* for \| \| \| cluster/ring management \| +---------------+-----------------------------------------------------+ <br/> `--ssh-port <port>`: Specify the `port` to use for SSH connections to the node. <br/> `--ssl-cert <path>`: Specify the `path` to the SSL certificate for the node. <br/> `--ssl-key <path>`: Specify the `path` to the SSL key for the node. |
+| `inspect <name>` | Inspect the details of the node with the given `name`. |
+| `list` | List all managed nodes. |
+| `remove [options] <name>` | Remove the node with the given `name`. <br/> <br/> `-f` `--force`: Always remove the node, even if some aspect of the removal fails. |
+| `update [options] <name>` | Modify select parameters of the node with the given `name`. <br/> <br/> `--public-hostname <hostname>`: Specify the `hostname` of the node accessible outside the DMZ, if applicable. <br/> `--ssl-cert <path>`: Specify the `path` to the SSL certificate for the node. <br/> `--ssl-key <path>`: Specify the `path` to the SSL key for the node. |
+
+
+<a id="kagent-cli-log"></a>
+
+
+### Log
+
+
+The form of the command to manage *KAgent* logs is as follows:
+
+```bash
+kagent log <command>
+```
+
+| Log Command | Description |
+| --- | --- |
+| `list [options]` | Show a list of *KAgent* log events. <br/> <br/> `-n <number>` `--number <number>`: Specify the maximum `number` of log events to show. |
+
+
+<a id="kagent-cli-check"></a>
+
+
+### Check
+
+
+This command is used to ensure that all the nodes of a cluster are up by
+checking for connectivity and then interjecting *spare* nodes, if available, to
+fill in any gaps.
+
+The form of the command to perform this check is as follows:
+
+```bash
+kagent check [options]
+```
+
+| Option | Description |
+| --- | --- |
+| `--retry-count <number>` | Specify the `number` of connectivity check retries before failing over nodes. |
+| `--retry-delay <seconds>` | Specify the `seconds` to wait between each connectivity check retry. |
+
+
+<a id="kagent-cli-reset"></a>
+
+
+### Factory Reset
+
+
+This command uninstalls all *Kinetica* packages and resets *KAgent*
+configurations to an out-of-the-box condition.  No directories will be removed
+unless requested.
+
+The form of the command to perform a factory reset is as follows:
+
+```bash
+kagent factory-reset [options]
+```
+
+| Option | Description |
+| --- | --- |
+| `--clear-data <yes\|no>` | Whether to remove (`yes`) or not remove (`no`) directories left by the installation.  Default is to not remove directories. |
+| `--proceed <yes\|no>` | Whether to automatically proceed (`yes`) or ask for confirmation (`no`) before performing a reset. |
+
+
+<a id="kagent-cli-monitor"></a>
+
+
+### Monitor
+
+
+This command sets a monitor for checking cluster connectivity.
+
+The form of the command is as follows:
+
+```bash
+kagent monitor [options]
+```
+
+| Option | Description |
+| --- | --- |
+| `--interval <schedule>` | Specify how often the check command will be run, in crontab format.  Default is `*/5 * * * *`. |
+| `--retry-count <number>` | Specify the `number` of check retries before failing over a node. |
+| `--retry-delay <seconds>` | Specify the `seconds` to wait between each check retry. |
+
+
+<a id="kagent-cli-refresh"></a>
+
+
+### Refresh Config
+
+
+This command forces a refresh of the cluster configuration and roles, given its current status.
+
+The form of the command is as follows:
+
+```bash
+kagent refresh-config
+```
+
+
+<a id="kagent-cli-update"></a>
+
+
+### Update
+
+
+This command updates global *KAgent* settings.
+
+The form of the command is as follows:
+
+```bash
+kagent update [options]
+```
+
+| Option | Description |
+| --- | --- |
+| `--is-bootstrapped <yes\|no>` | Whether to mark this *KAgent* as bootstrapped (`yes`) or not (`no`).  A bootstrapped *KAgent* is one that is deployed into a cloud-provisioned cluster during installation.  This marking will determine which set of IPs this *KAgent* will use in connecting via SSH to the cluster nodes. |
+| `--force-bootstrap-unlock <yes\|no>` | Whether to remove (`yes`) or not remove (`no`) the lock placed on this *KAgent* if it had been used to bootstrap an in-cluster *KAgent*. |

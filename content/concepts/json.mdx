@@ -1,0 +1,748 @@
+---
+title: JSON
+---
+
+<a id="json-type"></a>
+
+
+## JSON Type
+
+
+The *JSON* [data type](/content/concepts/types#types-chart) provides the capability to
+store native JSON in a single column and apply JSON-specific functions to it.
+
+
+### Create Table
+
+
+<CodeGroup>
+
+{/* Source: /examples/sql/json.kisql (lines 20) */}
+```sql SQL
+CREATE TABLE example.js ( j JSON )
+```
+
+{/* Source: /examples/python/json_type.py (lines 19-23 30) */}
+```python Python
+table_name = 'example.js'
+columns = [
+    ['j', 'string', 'json']
+]
+
+gpudb.GPUdbTable(columns, table_name, db = kinetica)
+```
+
+</CodeGroup>
+
+
+### Insert Data
+
+
+<CodeGroup>
+
+{/* Source: /examples/sql/json.kisql (lines 23-26) */}
+```sql SQL
+INSERT INTO example.js
+VALUES
+	( '[1, 2, "C"]' ),
+	( '{"A": "B", "C": {"D": 5, "F": 7}}' )
+```
+
+{/* Source: /examples/python/json_type.py (lines 46-50 57-59) */}
+```python Python (as strings)
+data = [
+    [ '[1, 2, "C"]' ],
+    [ '{"A": "B", "C": {"D": 5, "F": 7}}' ]
+]
+
+t = gpudb.GPUdbTable(name = 'example.js', db = kinetica)
+
+t.insert_records(data)
+```
+
+{/* Source: /examples/python/json_type.py (lines 122 124-127 135-136 139) */}
+```python Python (as native types)
+data = [
+    [ '[1, 2, "C"]' ],
+    [ {"A": "B", "C": {"D": 5, "F": 7}} ]
+]
+
+t = gpudb.GPUdbTable(name = 'example.js', db = kinetica)
+
+t.insert_records(data)
+```
+
+</CodeGroup>
+
+
+### Retrieve Data
+
+
+To render a JSON value as a single-line string value:
+
+<CodeGroup>
+
+{/* Source: /examples/sql/json.kisql (lines 50-51) */}
+```sql SQL
+SELECT j
+FROM example.js
+```
+
+{/* Source: /examples/python/json_type.py (lines 68-69 74-75 78-79) */}
+```python Python
+t = gpudb.GPUdbTable(name = 'example.js', db = kinetica)
+
+records = t.get_records_by_column(["j"])
+
+for record in records['j']:
+    print(f'{record}')
+```
+
+{/* Source: /examples/python/json_type.py (lines 108-111 114-115) */}
+```python Python (w/ native type conversions)
+t = gpudb.GPUdbTable(name = 'example.js', db = kinetica, convert_special_types_on_retrieval = True)
+
+records = t.get_records_by_column(["j"], encoding = 'json')
+
+for record in records['j']:
+    print(f'{record}')
+```
+
+</CodeGroup>
+
+
+JSON array and JSON map output:
+
+{/* Source: /examples/sql/json.out (lines 65-70) */}
+```
+| j                             |
+| [1,2,"C"]                     |
+| {"A":"B","C":{"D":5,"F":7}}   |
+```
+
+To render a JSON value as a formatted structure:
+
+<CodeGroup>
+
+{/* Source: /examples/sql/json.kisql (lines 55-56) */}
+```sql SQL
+SELECT JSON_PRETTY(j) AS j
+FROM example.js
+```
+
+{/* Source: /examples/python/json_type.py (lines 68-69 96-97 100-101) */}
+```python Python (via SQL)
+t = gpudb.GPUdbTable(name = 'example.js', db = kinetica)
+
+records = t.get_records_by_column(["JSON_PRETTY(j) AS j"])
+
+for record in records['j']:
+    print(f'{record}')
+```
+
+{/* Source: /examples/python/json_type.py (lines 68-69 74-75 88-89) */}
+```python Python (via native library)
+t = gpudb.GPUdbTable(name = 'example.js', db = kinetica)
+
+records = t.get_records_by_column(["j"])
+
+for record in records['j']:
+    print(json.dumps(json.loads(record), indent=4))
+```
+
+</CodeGroup>
+
+
+JSON array and JSON map output:
+
+{/* Source: /examples/sql/json.out (lines 77-92) */}
+```
+| j                   |
+| [
+    1,
+    2,
+    "C"
+] |
+| {
+    "A": "B",
+    "C": {
+        "D": 5,
+        "F": 7
+    }
+} |
+```
+
+
+<a id="json-oper"></a>
+
+
+## JSON Operators
+
+
+JSON operators can be used to determine whether a given `value` meets (or does
+`NOT` meet) the criteria for being of a certain JSON type `category`.
+
+Note that the following syntax differs between SQL and the native APIs (like
+Python) and that the `category` is specified differently between the two.
+
+<CodeGroup>
+
+{/* Source: syntax/json_operators.txt (lines 2) */}
+```sql SQL
+<value> IS [NOT] JSON [<category name>]
+```
+
+{/* Source: syntax/json_operators.txt (lines 6-8) */}
+```python Native API
+IS_JSON(<value> [,<category code>])
+
+NOT(IS_JSON(<value> [,<category code>]))
+```
+
+</CodeGroup>
+
+
+The given `category code` (APIs) or `category name` (SQL) will check the
+given value against the following JSON types:
+
+| Category Code | Category Name | JSON Types |
+| --- | --- | --- |
+| `0` | *N/A* | JSON array or object *(API default)* |
+| `1` | `VALUE` | Any JSON type *(SQL default)* |
+| `2` | `ARRAY` | JSON array |
+| `3` | `OBJECT` | JSON object (map) |
+| `4` | `SCALAR` | * `BOOLEAN` <br/> * `LONG` <br/> * `DOUBLE` <br/> * `STRING` |
+
+
+### Example
+
+
+To pretty-print only JSON objects (maps) in a given JSON column:
+
+<CodeGroup>
+
+{/* Source: /examples/sql/json.kisql (lines 60-62) */}
+```sql SQL
+SELECT JSON_PRETTY(j)
+FROM example.js
+WHERE j IS JSON OBJECT
+```
+
+{/* Source: /examples/python/json_type.py (lines 190-195) */}
+```python Python
+t = gpudb.GPUdbTable(name = 'example.js', db = kinetica)
+
+records = t.get_records_by_column(
+    ["JSON_PRETTY(j) AS j"],
+    options = {"expression": "IS_JSON(j, 3)"}
+)
+```
+
+</CodeGroup>
+
+
+<a id="json-func"></a>
+
+
+## JSON Functions
+
+
+### Scalar Functions
+
+
+These functions can be applied to individual *json* column values, as well as
+*array* & *string* columns.  However, for some functions to work as expected,
+the *array* or *string* value may need to be cast to JSON first.
+
+| Function | Description |
+| --- | --- |
+| `JSON(expr)` | Casts the given `expr` to JSON data type <br/> Examples: <br/> <br/> `JSON('[1, 2, "C"]')`: `[1,2,"C"]` <br/> `JSON('{"A": "B", "C": {"D": 5, "F": 7}}')`: `{"A":"B","C":{"D":5,"F":7}}` <br/> `JSON(null)`: *null* |
+| `JSON_ARRAY` <br/> `(value[,...] <null_hand>)` | Creates a JSON array out of the given list of values. <br/> An optional `<null_hand>` parameter can be added to the end of the list to specify handling of *null* values, though, at present, this only exists for compatibility with other databases' syntax--the option will be ignored and all *null* values will be added to the array as *null*.  Accepted null handling options: <br/> * `NULL ON NULL` <br/> <br/> <Info> This function is only available in SQL or in the native API via [/execute/sql](/content/api/rest/execute_sql_rest) . </Info> <br/> Examples: <br/> <br/> `JSON_ARRAY(1, 2, 'C')`: `[1,2,"C"]` <br/> `JSON_ARRAY(JSON('{"A": "B"}'), JSON('{"C": 4}'))`: `[{"A":"B"},{"C":4}]` <br/> `JSON_ARRAY(1, null, 'C' NULL ON NULL)`: `[1,null,"C"]` |
+| `JSON_ARRAY_APPEND(arr, value)` | Appends the given `value` to the given array `arr` of type string, array, or JSON <br/> Examples: <br/> <br/> `JSON_ARRAY_APPEND('[1, 2]', 'C')`: `[1,2,"C"]` <br/> `JSON_ARRAY_APPEND('{"A": "B"}', JSON('{"C": 4}'))`: `[{"A":"B"},{"C":4}]` |
+| `JSON_ARRAY_CONTAINS` <br/> `(json, path, val)` | Returns whether the given JSON `json` contains the primitive value `val` at the JSON query path, `path` <br/> Examples: <br/> <br/> `JSON_ARRAY_CONTAINS('[1, 2]', '$', 2)`: `true` <br/> `JSON_ARRAY_CONTAINS('[1, 2]', '$', 'C')`: `false` <br/> `JSON_ARRAY_CONTAINS('{"A": [2, 3]}', '$.A', 2)`: `true` <br/> `JSON_ARRAY_CONTAINS('{"A": {"B": [3, 4]}}', '$["A"]["B"]', 4)`: `true` |
+| `JSON_CARDINALITY(json)` | Alias for `JSON_LENGTH` |
+| `JSON_EXISTS(json, path)` | Returns whether the given JSON `json` contains the JSON query path, `path` <br/> Examples: <br/> <br/> `JSON_EXISTS('[1, 2]', '$')`: `true` <br/> `JSON_EXISTS('[1, 2]', '$.A')`: `false` <br/> `JSON_EXISTS('{"A": [2, 3]}', '$.A')`: `true` <br/> `JSON_EXISTS('{"A": {"B": 3, "D": 5}}', '$["A"]["D"]')`: `true` |
+| `JSON_KEYS(json, path)` | Returns the set of keys of the JSON object at the given `path` in `json`; null, if the path doesn't exist or contains a non-object (non-map) value <br/> Examples: <br/> <br/> `JSON_KEYS('{}', '$')`: `[]` <br/> `JSON_KEYS('[1, 2]', '$.A')`: *null* <br/> `JSON_KEYS('{"A": [2, 3]}', '$')`: `["A"]` <br/> `JSON_KEYS('{"A": {"B": 3, "D": 5}}', '$["A"]')`: `["B","D"]` <br/> `JSON_KEYS('{"A": {"B": 3, "D": 5}}', '$["A"]["D"]')`: *null* <br/> `JSON_KEYS('{"A": {"B": 3, "D": {}}}', '$["A"]["D"]')`: `[]` |
+| `JSON_LENGTH(json[, path])` | Returns the number of items in the top-level object of the given `json`, or at the level of the optional JSON `path` <br/> Examples: <br/> <br/> `JSON_LENGTH('{}')`: `0` <br/> `JSON_LENGTH('[]')`: `0` <br/> `JSON_LENGTH('[1, 2]')`: `2` <br/> `JSON_LENGTH('{"A": [2, 3]}')`: `1` <br/> `JSON_LENGTH('{"A": {"B": 3}, "D": "E"}')`: `2` <br/> `JSON_LENGTH('{"A": [2, 3]}', '$.A')`: `2` <br/> `JSON_LENGTH('{"A": {"B": 3}, "D": "E"}', '$.A')`: `1` |
+| `JSON_MAKE_ARRAY(value)` | Creates a JSON array out of the given `value` <br/> Examples: <br/> <br/> `JSON_MAKE_ARRAY(1)`: `[1]` <br/> `JSON_MAKE_ARRAY(JSON_ARRAY(1,2,3))`: `[[1,2,3]]` <br/> `JSON_MAKE_ARRAY(JSON('{"A": "B"}'))`: `[{"A":"B"}]` |
+| `JSON_OBJECT` <br/> `(value[,...] <null_hand>)` | Creates a JSON map out of the given `value` set <br/> An optional `<null_hand>` parameter can be added to the end of the list to specify handling of *null* values, though, at present, this only exists for compatibility with other databases' syntax--the option will be ignored and all *null* values will be added to the array as *null*.  Accepted null handling options: <br/> * `NULL ON NULL` <br/> <br/> <Info> This function is only available in SQL or in the native API via [/execute/sql](/content/api/rest/execute_sql_rest) . </Info> <br/> Examples: <br/> <br/> `JSON_OBJECT()`: `{}` <br/> `JSON_OBJECT('A': 2)`: `{"A":2}` <br/> `JSON_OBJECT('A' VALUE 2)`: `{"A":2}` <br/> `JSON_OBJECT(KEY 'A' VALUE 2)`: `{"A":2}` <br/> `JSON_OBJECT('A': 'B', 'C': null NULL ON NULL)`: `{"A":"B","C":null}` |
+| `JSON_PRETTY(json)` | Returns a formatted version of the given `json` object <br/> Examples: <br/> <br/> **Function Call**: `JSON_PRETTY('[1,2,"C"]')` <br/> **Return** **Return** **Return** **Return** **Return** **Return** **Return** **Return**: ``` [ 1, 2, "C" ] <br/> `**Function Call**: `JSON_PRETTY('{"A": "B", "C": {"D": 5, "F": 7}}')` **Return** **Return** **Return** **Return** **Return** **Return** **Return** **Return** **Return** **Return**: ``` { "A": "B", "C": { "D": 5, "F": 7 } ]` |
+| `JSON_QUERY` <br/> `(json, path [<return>])` | Returns the JSON object at the given `path` in `json`; null, if the path doesn't exist or contains a primitive (non-object) value <br/> An optional `return` clause can be added to the end of the path to specify the return type of the object found, as well as the error handling for the object lookup.  The format of the clause is: <br/> `[<wrapper> WRAPPER] [<empty_hand> ON EMPTY] [<error hand> ON ERROR]` <br/> <Info> Return clause is only available in SQL or in the native API via [/execute/sql](/content/api/rest/execute_sql_rest) . </Info> <br/> <br/> `<wrapper>`: Whether the returned object(s) should be wrapped in an array before being returned Valid wrapping schemes include: * `WITHOUT [ARRAY]` - no wrapper is applied *(default)* * `WITH [UNCONDITIONAL] [ARRAY]` - return the object(s) in an array * `WITH CONDITIONAL [ARRAY]` - if returning a single object, don't wrap it; if returning multiple objects, wrap them in an array <br/> `<empty hand>`: The scheme to use for handling empty returned objects Valid schemes include: * `NULL` - return *null* *(default)* * `ERROR` - throw an error * `EMPTY ARRAY` - return an empty array * `EMPTY OBJECT` - return an empty object <br/> `<error hand>`: The scheme to use for handling errors in looking up the object Valid schemes include: * `NULL` - return *null* *(default)* * `ERROR` - throw an error * `EMPTY ARRAY` - return an empty array * `EMPTY OBJECT` - return an empty object <br/> \| <br/> Examples: <br/> <br/> `JSON_QUERY('[1, 2]', '$')`: `[1,2]` <br/> `JSON_QUERY('[1, 2]', '$.A')`: *null* <br/> `JSON_QUERY('{"A": [2, 3]}', '$.A')`: `[2,3]` <br/> `JSON_QUERY('{"A": {"B": 3, "D": 5}}', '$["A"]')`: `{"B":3,"D":5}` <br/> `JSON_QUERY('{"A": {"B": 3, "D": 5}}', '$["A"]["D"]')`: *null* <br/> `JSON_QUERY('{"A": {"B": 3, "D": [5, 6]}}', '$["A"]["D"]')`: `[5,6]` <br/> `JSON_QUERY('{"A": []}', '$.B'  EMPTY ARRAY ON EMPTY)`: `[]` <br/> `JSON_QUERY('{"A": 0}', '$.A'  EMPTY OBJECT ON ERROR)`: `{}` <br/> `JSON_QUERY('{"A": 2, "C": 4}', '$.*')`: *null* <br/> `JSON_QUERY('{"A": 2, "C": 4}', '$.*' WITH WRAPPER)`: `[2,4]` |
+| `JSON_REPLACE(json, path, repl)` | Returns the given `json` with the value at the JSON path `path` replaced with the replacement value `repl` <br/> Examples: <br/> <br/> `JSON_REPLACE('[1, 2]', '$', '[3, 4]')`: `[3,4]` <br/> `JSON_REPLACE('[1, 2]', '$.A', '"B"')`: `[1,2]` <br/> `JSON_REPLACE('{"A": [2, 3]}', '$.A', '{"D": 5}')`: `{"A":{"D":5}}` <br/> `JSON_REPLACE('{"A": {"B": 3}}', '$["A"]', '"D"')`: `{"A":"D"}` <br/> `JSON_REPLACE('{"A": {"B": [3, 4]}}', '$["A"]["B"]', 5)`: `{"A":{"B":5}}` |
+| `JSON_TYPE(expr)` | Returns the JSON type of the given `expr` <br/> <br/> `BOOLEAN`: `BOOLEAN` <br/> * `TINYINT` * `SMALLINT` * `INTEGER` * `BIGINT` * `UNSIGNED BIGINT`: `LONG` <br/> * `REAL` * `DOUBLE`: `DOUBLE` <br/> * `JSON` * `VARCHAR`: * `BOOLEAN` - if `true` or `false` * `LONG` - if an integer value * `DOUBLE` - if a floating-point value * `STRING` - if a double-quoted literal * `OBJECT` - if a JSON map * `ARRAY` - if a JSON array <br/> <br/> `ARRAY` *(any)*: `ARRAY` |
+| `JSON_VALUE` <br/> `(json, path [return])` | Returns the JSON value at the given `path` in `json`; null, if the path doesn't exist or contains an object (non-primitive) value <br/> An optional `return` clause can be added to the end of the path to specify the return type of the value found, as well as the error handling for the value lookup.  The format of the clause is: <br/> `[RETURNING <type>] [<empty_hand> ON EMPTY] [<error hand> ON ERROR]` <br/> <Info> Return clause is only available in SQL or in the native API via [/execute/sql](/content/api/rest/execute_sql_rest) . </Info> <br/> <br/> `<type>`: The JSON type of the value to return; if the value is not already of that type, it will be cast to that type, if possible Valid types include: * `BOOLEAN` * `LONG` * `DOUBLE` * `STRING` <br/> `<empty hand>`: The scheme to use for handling empty returned values Valid schemes include: * `NULL` - return *null* *(default)* * `ERROR` - throw an error * `DEFAULT <expr>` - return the given expression `expr` <br/> `<error hand>`: The scheme to use for handling errors in looking up the value Valid schemes include: * `NULL` - return *null* *(default)* * `ERROR` - throw an error * `DEFAULT <expr>` - return the given expression `expr` <br/> \| <br/> Examples: <br/> <br/> `JSON_VALUE('1', '$')`: `1` <br/> `JSON_VALUE('[1, 2]', '$.A')`: *null* <br/> `JSON_VALUE('["A", "B"]', '$.1')`: `B` <br/> `JSON_VALUE('{"A": [2, 3]}', '$["A"]["1"]')`: `3` <br/> `JSON_VALUE('{"A": {"B": 3, "D": 5}}', '$["A"]["D"]')`: `5` <br/> `JSON_VALUE('{"A": {"B": 3, "D": [5, 6]}}', '$.A.D.1')`: `6` <br/> `JSON_VALUE('1', '$' RETURNING DOUBLE)`: `1.0` <br/> `JSON_VALUE('{"A": []}', '$.B' DEFAULT '<null>' ON EMPTY)`: `<null>` <br/> `JSON_VALUE('{"A": []}', '$.A' ERROR ON ERROR)`: *error returned* |
+
+
+<a id="json-func-agg"></a>
+
+
+### Aggregation Functions
+
+
+These functions can be used across multiple primitive column values within
+grouping queries.
+
+
+<Info>
+These functions are only available in SQL or in the native API via
+[/execute/sql](/content/api/rest/execute_sql_rest).
+</Info>
+
+| Function | Description |
+| --- | --- |
+| `JSON_ARRAYAGG(expr)` | Combines column values within a group into a single JSON array of those values <br/> See [examples](/content/concepts/json#json-func-agg-ex-agg). |
+| `JSON_ARRAYAGG_DISTINCT(expr)` | Combines column values within a group into a single JSON array of those values, removing any duplicates <br/> See [examples](/content/concepts/json#json-func-agg-ex-agg-dist). |
+
+
+<a id="json-func-agg-ex"></a>
+
+
+#### Examples
+
+
+<a id="json-func-agg-ex-agg"></a>
+
+
+##### JSON_ARRAYAGG
+
+
+{/* Source: /examples/sql/functions/json_arrayagg.out (lines 41-48) */}
+``` Input
+| id | name | j |
+| --- | --- | --- |
+| 1 2 3 4 | Joe Jane Jeff Joyce | {} {"A":"B"} [1,2,3] {"A":2,"C":{"D":5,"F":[7,8]}} |
+```
+
+
+{/* Source: /examples/sql/functions/json_arrayagg.kisql (lines 36-40) */}
+```sql JSON Array Aggregation Query
+SELECT
+	JSON_ARRAYAGG(id) AS id_list,
+	JSON_ARRAYAGG(name) AS name_list,
+	JSON_ARRAYAGG(j) AS json_list
+FROM example.js_arr_agg
+```
+
+
+{/* Source: /examples/sql/functions/json_arrayagg.out (lines 58-62) */}
+``` Output
+| id_list | name_list | json_list |
+| --- | --- | --- |
+| [2,1,3,4] | ["Jane","Joe","Jeff","Joyce"] | [{"A":"B"},{},[1,2,3],{"A":2,"C":{"D":5,"F":[7,8]}}] |
+```
+
+
+<a id="json-func-agg-ex-agg-dist"></a>
+
+
+##### JSON_ARRAYAGG_DISTINCT
+
+
+{/* Source: /examples/sql/functions/json_arrayagg.out (lines 96-107) */}
+``` Input
+|   id | name    | j                               |
+|    1 | Joe     | {}                              |
+|    1 | Joyce   | [1,2,3]                         |
+|    2 | Jane    | {"A":"B"}                       |
+|    2 | Jeff    | {"A":2,"C":{"D":5,"F":[7,8]}}   |
+|    3 | Jane    | {}                              |
+|    3 | Jeff    | [1,2,3]                         |
+|    4 | Joe     | {"A":"B"}                       |
+|    4 | Joyce   | {"A":2,"C":{"D":5,"F":[7,8]}}   |
+```
+
+
+{/* Source: /examples/sql/functions/json_arrayagg.kisql (lines 71-75) */}
+```sql Distinct JSON Array Aggregation Query
+SELECT
+	JSON_ARRAYAGG_DISTINCT(id) AS id_list,
+	JSON_ARRAYAGG_DISTINCT(name) AS name_list,
+	JSON_ARRAYAGG_DISTINCT(j) AS json_list
+FROM example.js_arr_agg
+```
+
+
+{/* Source: /examples/sql/functions/json_arrayagg.out (lines 117-121) */}
+``` Output
+| id_list     | name_list                       | json_list                                              |
+| [1,2,3,4]   | ["Jane","Jeff","Joe","Joyce"]   | [[1,2,3],{},{"A":"B"},{"A":2,"C":{"D":5,"F":[7,8]}}]   |
+```
+
+
+<a id="json-func-unnest-array"></a>
+
+
+### UNNEST_JSON_ARRAY
+
+
+The `UNNEST_JSON_ARRAY` function transposes array values into columnar data.
+
+The two forms of the `UNNEST_JSON_ARRAY` function follow, one for cases where
+only one column needs to be unnested and one for cases where more than one
+column needs to be unnested.  See
+[examples](/content/concepts/json#json-func-unnest-array-ex).
+
+```sql title="UNNEST_JSON_ARRAY for 1 Column Syntax"
+SELECT <column alias> [, ordinality]
+FROM UNNEST_JSON_ARRAY(SELECT <column name> FROM <table name>) [WITH ORDINALITY] [<column alias>]
+```
+
+| Parameters | Description |
+| --- | --- |
+| `<column alias>` | Column alias to use for the resulting unnested data column; if no alias specified, use `*` to select the column |
+| `<table name>` | Name of the table containing the JSON array column |
+| `<column name>` | Name of the JSON array column to unnest |
+| `WITH ORDINALITY` | Also return the 0-based index in the source JSON arrays for each transposed array value; the index value will be returned as the column alias `ordinality` |
+
+
+```sql title="UNNEST_JSON_ARRAY for Multiple Columns Syntax"
+SELECT <column alias list> [, <ordinality alias>]
+FROM <table name> <table alias>, UNNEST_JSON_ARRAY(<column list>) [WITH ORDINALITY] <table/columns aliases>
+```
+
+| Parameters | Description |
+| --- | --- |
+| `<column alias list>` | Column aliases given to the resulting unnested data columns, specified in `<table/columns aliases>` |
+| `<ordinality alias>` | Column alias given to the resulting ordinality column in `<table/columns aliases>`, if `WITH ORDINALITY` is specified |
+| `<table name>` | Name of the table containing the JSON array column(s) |
+| `<table alias>` | Alias to use for the table containing the JSON array column(s) |
+| `<column list>` | Comma-separated list of JSON array columns to unnest |
+| `<table/columns aliases>` | Alias to use for the virtual table and columns being used to return the unnested data (including any ordinality alias, if specified), using the form: <br/> `<table alias>(<column alias list> [,<ordinality alias>])` <br/> For example, to return two columns of unnested JSON array data as `uai` & `uav`, respectively, and the corresponding ordinality index as `index`, all within the virtual table `unn` use: <br/> `unn(uai, uav, index)` |
+| `WITH ORDINALITY` | Also return the 0-based index in the source JSON arrays for each transposed array value; the index value will be returned in an alias specified in `<table/columns aliases>` |
+
+
+<a id="json-func-unnest-array-ex"></a>
+
+
+#### Examples
+
+
+The following examples use this data set as a baseline:
+
+{/* Source: /examples/sql/functions/json_unnest_json_array.out (lines 50-57) */}
+```
+| ai        | av              |
+| [1,2,3]   | ["A","B","C"]   |
+| [4,5,6]   | ["D","E","F"]   |
+| [7,8,9]   | ["D","E","F"]   |
+| [1,2,3]   | ["G","H","I"]   |
+```
+
+
+To turn the string arrays in the `av` JSON column in the
+`example.js_unn_arr` table into a column of values aliased as `uav`:
+
+{/* Source: /examples/sql/functions/json_unnest_json_array.kisql (lines 48-49) */}
+```sql
+SELECT uav
+FROM UNNEST_JSON_ARRAY(SELECT av FROM example.js_unn_arr) uav
+```
+
+{/* Source: /examples/sql/functions/json_unnest_json_array.out (lines 88-103) */}
+```
+| uav   |
+| A     |
+| B     |
+| C     |
+| D     |
+| D     |
+| E     |
+| E     |
+| F     |
+| F     |
+| G     |
+| H     |
+| I     |
+```
+
+
+To turn the integer arrays in the `ai` JSON column in the
+`example.js_unn_arr` table into a column of values aliased as `uai` and the
+corresponding index in the original json for each as a column of indices named
+`ordinality`:
+
+{/* Source: /examples/sql/functions/json_unnest_json_array.kisql (lines 53-54) */}
+```sql
+SELECT uai, ordinality
+FROM UNNEST_JSON_ARRAY(SELECT ai FROM example.js_unn_arr) WITH ORDINALITY uai
+```
+
+{/* Source: /examples/sql/functions/json_unnest_json_array.out (lines 111-126) */}
+```
+|   uai |   ordinality |
+|     1 |            0 |
+|     1 |            0 |
+|     2 |            1 |
+|     2 |            1 |
+|     3 |            2 |
+|     3 |            2 |
+|     4 |            0 |
+|     5 |            1 |
+|     6 |            2 |
+|     7 |            0 |
+|     8 |            1 |
+|     9 |            2 |
+```
+
+
+To turn the integer & string arrays in the `ai` & `av` JSON columns in the
+`example.js_unn_arr` table into two columns of values aliased as `uai` &
+`uav` in a virtual table with alias `t`, respectively:
+
+{/* Source: /examples/sql/functions/json_unnest_json_array.kisql (lines 58-59) */}
+```sql
+SELECT uai, uav
+FROM example.js_unn_arr jua, UNNEST_JSON_ARRAY(jua.ai, jua.av) t(uai, uav)
+```
+
+{/* Source: /examples/sql/functions/json_unnest_json_array.out (lines 134-149) */}
+```
+|   uai | uav   |
+|     1 | A     |
+|     1 | G     |
+|     2 | B     |
+|     2 | H     |
+|     3 | C     |
+|     3 | I     |
+|     4 | D     |
+|     5 | E     |
+|     6 | F     |
+|     7 | D     |
+|     8 | E     |
+|     9 | F     |
+```
+
+
+To turn the integer & string arrays in the `ai` & `av` JSON columns in the
+`example.js_unn_arr` table into two columns of values aliased as `uai` &
+`uav` in a virtual table with alias `t`, respectively, and adding the
+corresponding index in the original array for each as a column of indices
+aliased as `index`:
+
+{/* Source: /examples/sql/functions/json_unnest_json_array.kisql (lines 63-64) */}
+```sql
+SELECT uai, uav, index
+FROM example.js_unn_arr jua, UNNEST_JSON_ARRAY(jua.ai, jua.av) WITH ORDINALITY t(uai, uav, index)
+```
+
+{/* Source: /examples/sql/functions/json_unnest_json_array.out (lines 157-172) */}
+```
+|   uai | uav   |   index |
+|     1 | A     |       0 |
+|     1 | G     |       0 |
+|     2 | B     |       1 |
+|     2 | H     |       1 |
+|     3 | C     |       2 |
+|     3 | I     |       2 |
+|     4 | D     |       0 |
+|     5 | E     |       1 |
+|     6 | F     |       2 |
+|     7 | D     |       0 |
+|     8 | E     |       1 |
+|     9 | F     |       2 |
+```
+
+
+To turn the integer arrays in the `ai` JSON column in the
+`example.js_unn_arr` table into a column of values aliased as `uai`,
+removing any duplicates across all arrays:
+
+{/* Source: /examples/sql/functions/json_unnest_json_array.kisql (lines 68-69) */}
+```sql
+SELECT DISTINCT *
+FROM UNNEST_JSON_ARRAY(SELECT ai FROM example.js_unn_arr)
+```
+
+{/* Source: /examples/sql/functions/json_unnest_json_array.out (lines 200-212) */}
+```
+|   uai |
+|     1 |
+|     2 |
+|     3 |
+|     4 |
+|     5 |
+|     6 |
+|     7 |
+|     8 |
+|     9 |
+```
+
+
+<a id="json-func-unnest-object"></a>
+
+
+### UNNEST_JSON_OBJECT
+
+
+The `UNNEST_JSON_OBJECT` function transposes JSON objects (maps) into columnar
+data.  Each source object is split out into two columns:  a string column
+containing the top-level object keys, and a JSON column containing the value
+objects for those keys.
+
+The two forms of the `UNNEST_JSON_OBJECT` function follow, one for cases where
+only one column needs to be unnested and one for cases where more than one
+column needs to be unnested.  See
+[examples](/content/concepts/json#json-func-unnest-object-ex).
+
+```sql title="UNNEST_JSON_OBJECT for 1 Column Syntax"
+SELECT <column alias list> [, ordinality]
+FROM UNNEST_JSON_OBJECT(SELECT <column name> FROM <table name>) [WITH ORDINALITY] [<table/columns aliases>]
+```
+
+| Parameters | Description |
+| --- | --- |
+| `<column alias list>` | Column aliases given to the resulting unnested key & value data columns specified in `<table/columns aliases>`; if no aliases are specified, use `*` to select the columns |
+| `<table name>` | Name of the table containing the JSON object (map) column |
+| `<column name>` | Name of the JSON object (map) column to unnest |
+| `<table/columns aliases>` | Alias to use for the virtual table and key/value columns being used to return the unnested data (including any ordinality alias, if specified), using the form: <br/> `<table alias>(<key alias>, <value alias> [,<ordinality alias>])` <br/> For example, to return a column as unnested JSON map data, referenced as the key/value pairs `j_k` & `j_v`, respectively, with the corresponding ordinality index as `index`, all within the virtual table `unn`, use: <br/> `unn(j_k, j_v, index)` <br/> If no aliases are given, the two key/value columns will be returned as `KEY_0` & `VALUE_0`, respectively. |
+| `WITH ORDINALITY` | Also return the 0-based index in the source maps for each transposed map value; the index value will be returned as the column alias `ordinality` unless overridden in `<table/columns aliases>` |
+
+
+```sql title="UNNEST_JSON_OBJECT for Multiple Columns Syntax"
+SELECT <column alias list> [, <ordinality alias>]
+FROM <table name> <table alias>, UNNEST_JSON_OBJECT(<column list>) [WITH ORDINALITY] <table/columns aliases>
+```
+
+| Parameters | Description |
+| --- | --- |
+| `<column alias list>` | Column aliases given to the resulting unnested key & value data columns specified in `<table/columns aliases>` |
+| `<ordinality alias>` | Column alias given to the resulting ordinality column in `<table/columns aliases>`, if `WITH ORDINALITY` is specified |
+| `<table name>` | Name of the table containing the JSON object (map) column(s) |
+| `<table alias>` | Alias to use for the table containing the JSON object (map) column(s) |
+| `<column list>` | Comma-separated list of JSON object (map) columns to unnest |
+| `<table/columns aliases>` | Alias to use for the virtual table and columns being used to return the unnested data (including any ordinality alias, if specified), using the form: <br/> `<table alias>(<key alias>, <value alias>[,...] [,<ordinality alias>])` <br/> For example, to return two JSON map data columns as unnested, referenced as the key/value pairs `j1_k` & `j1_v` and  `j2_k` & `j2_v`, respectively, with the corresponding ordinality index as `index`, all within the virtual table `unn`, use: <br/> `unn(j1_k, j1_v, j2_k, j2_v, index)` |
+| `WITH ORDINALITY` | Also return the 0-based index in the source maps for each transposed map value; the index value will be returned in an alias specified in `<table/columns aliases>` |
+
+
+<a id="json-func-unnest-object-ex"></a>
+
+
+#### Examples
+
+
+The following examples use this data set as a baseline:
+
+{/* Source: /examples/sql/functions/json_unnest_json_object.out (lines 51-58) */}
+```
+| j1                          | j2                                       |
+| {"A":"B","C":4,"E":5}       | {"A":{"B":"C"},"D":5,"F":[7,8,9]}        |
+| {"A":2,"C":"D","E":"F"}     | {"A":[2,3],"D":"E","F":{"G":"H"}}        |
+| {"G":"H","I":10,"K":"12"}   | {"I":{"J":"K"},"L":[13,14,15],"P":"Q"}   |
+| {"A":"B","C":4,"E":5}       | {"A":{"B":"C"},"D":5,"F":[7,8,9]}        |
+```
+
+
+To turn the JSON maps in the `j1` JSON column in the `example.js_unn_obj`
+table into key/value pair columns of values aliased as `j1_k` & `j1_v`,
+respectively:
+
+{/* Source: /examples/sql/functions/json_unnest_json_object.kisql (lines 54-55) */}
+```sql
+SELECT j1_k, j1_v
+FROM UNNEST_JSON_OBJECT(SELECT j1 FROM example.js_unn_obj) t(j1_k, j1_v)
+```
+
+{/* Source: /examples/sql/functions/json_unnest_json_object.out (lines 112-127) */}
+```
+| j1_k   | j1_v   |
+| A      | "B"    |
+| A      | "B"    |
+| A      | 2      |
+| C      | "D"    |
+| C      | 4      |
+| C      | 4      |
+| E      | "F"    |
+| E      | 5      |
+| E      | 5      |
+| G      | "H"    |
+| I      | 10     |
+| K      | "12"   |
+```
+
+
+To turn the JSON maps in the `j2` JSON column in the `example.js_unn_obj`
+table into key/value pair columns of values aliased as `j2_k` & `j2_v`, and
+the corresponding index in the original map for each as a column of indices
+aliased as `index`:
+
+{/* Source: /examples/sql/functions/json_unnest_json_object.kisql (lines 59-60) */}
+```sql
+SELECT j2_k, j2_v, index
+FROM UNNEST_JSON_OBJECT(SELECT j2 FROM example.js_unn_obj) WITH ORDINALITY t(j2_k, j2_v, index)
+```
+
+{/* Source: /examples/sql/functions/json_unnest_json_object.out (lines 135-150) */}
+```
+| j2_k   | j2_v         |   index |
+| A      | [2,3]        |       0 |
+| A      | {"B":"C"}    |       0 |
+| A      | {"B":"C"}    |       0 |
+| D      | "E"          |       1 |
+| D      | 5            |       1 |
+| D      | 5            |       1 |
+| F      | [7,8,9]      |       2 |
+| F      | [7,8,9]      |       2 |
+| F      | {"G":"H"}    |       2 |
+| I      | {"J":"K"}    |       0 |
+| L      | [13,14,15]   |       1 |
+| P      | "Q"          |       2 |
+```
+
+
+To turn the JSON maps in the `j1` & `j2` JSON columns in the
+`example.js_unn_obj` table into two sets of key/value pair columns of values
+aliased as `j1_k` & `j1_v` and `j2_k` & `j2_v`, respectively, in a
+virtual table with alias `t`:
+
+{/* Source: /examples/sql/functions/json_unnest_json_object.kisql (lines 64-65) */}
+```sql
+SELECT j1_k, j1_v, j2_k, j2_v
+FROM example.js_unn_obj juo, UNNEST_JSON_OBJECT(juo.j1, juo.j2) t(j1_k, j1_v, j2_k, j2_v)
+```
+
+{/* Source: /examples/sql/functions/json_unnest_json_object.out (lines 158-173) */}
+```
+| j1_k   | j1_v   | j2_k   | j2_v         |
+| A      | "B"    | A      | {"B":"C"}    |
+| A      | "B"    | A      | {"B":"C"}    |
+| A      | 2      | A      | [2,3]        |
+| C      | "D"    | D      | "E"          |
+| C      | 4      | D      | 5            |
+| C      | 4      | D      | 5            |
+| E      | "F"    | F      | {"G":"H"}    |
+| E      | 5      | F      | [7,8,9]      |
+| E      | 5      | F      | [7,8,9]      |
+| G      | "H"    | I      | {"J":"K"}    |
+| I      | 10     | L      | [13,14,15]   |
+| K      | "12"   | P      | "Q"          |
+```
+
+
+To turn the JSON maps in the `j1` & `j2` JSON columns in the
+`example.js_unn_obj` table into two sets of key/value pair columns of values
+aliased as `j1_k` & `j1_v` and `j2_k` & `j2_v`, respectively, in a
+virtual table with alias `t`, and adding the corresponding index in the
+original map for each as a column of indices aliased as `index`:
+
+{/* Source: /examples/sql/functions/json_unnest_json_object.kisql (lines 69-70) */}
+```sql
+SELECT j1_k, j1_v, j2_k, j2_v, index
+FROM example.js_unn_obj juo, UNNEST_JSON_OBJECT(juo.j1, juo.j2) WITH ORDINALITY t(j1_k, j1_v, j2_k, j2_v, index)
+```
+
+{/* Source: /examples/sql/functions/json_unnest_json_object.out (lines 181-196) */}
+```
+| j1_k   | j1_v   | j2_k   | j2_v         |   index |
+| A      | "B"    | A      | {"B":"C"}    |       0 |
+| A      | "B"    | A      | {"B":"C"}    |       0 |
+| A      | 2      | A      | [2,3]        |       0 |
+| C      | "D"    | D      | "E"          |       1 |
+| C      | 4      | D      | 5            |       1 |
+| C      | 4      | D      | 5            |       1 |
+| E      | "F"    | F      | {"G":"H"}    |       2 |
+| E      | 5      | F      | [7,8,9]      |       2 |
+| E      | 5      | F      | [7,8,9]      |       2 |
+| G      | "H"    | I      | {"J":"K"}    |       0 |
+| I      | 10     | L      | [13,14,15]   |       1 |
+| K      | "12"   | P      | "Q"          |       2 |
+```
