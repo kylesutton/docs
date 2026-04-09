@@ -83,7 +83,7 @@ available to [/solve/graph](/content/api/rest/solve_graph_rest) and likewise for
 | `MARKOV_CHAIN` | Matches sample points to the graph using the Hidden Markov Model (HMM)-based method, which conducts a range-tree closest-edge search to find the best combinations of possible road segments for each sample point to create the best route. The route is secured one point at a time, so the prediction is corrected after each point. This solution type is the most accurate, but also the most computationally intensive. | X |
 | `MATCH_BATCH_SOLVES` | Matches each provided sample source and destination pair using the shortest path between the points. | X |
 | `MATCH_CHARGING_STATIONS` | Matches a given sample source and destination pair to the optimal recharging stations along the route (for EVs). | X |
-| `MATCH_CLUSTERS` | Matches the graph nodes with a cluster index using the Louvain clustering algorithm. <br/> .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked with the `parallel_clustering` option. | X* <br/> <br/> <Info> Parallel running of this solver is experimental and can be invoked \| </Info> |
+| `MATCH_CLUSTERS` | Matches the graph nodes with a cluster index using the Louvain clustering algorithm. <br/> <br/> .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked with the `parallel_clustering` option. | X* <br/> <Info> Parallel running of this solver is experimental and can be invoked \| </Info> |
 | `MATCH_LOOPS` | Matches closed loops (Eulerian paths) originating and ending at each graph node between min and max hops (levels). | X |
 | `MATCH_OD_PAIRS` | Matches sample points to find the most probable path between origin and destination (OD) pairs with given cost constraints. | X |
 | `MATCH_SIMILARITY` | Computes the Jaccard similarity between vertex pairs and N-level intersections within M hops. | X |
@@ -187,7 +187,7 @@ end points of an *edge* can implicitly be used as *nodes*.
 | `LABEL` | `string` | A string value representing a node's label |
 | `NAME` | `string` | A string value representing a node's name |
 | `PARTITION_BOUNDARY` | `long` | A number representing the ID of the partition containing this node, when using explicit partitioning to segment the graph; nodes spanning partition boundaries will need to be duplicated in the source table, once for each partition in which the node will reside |
-| `WKTPOINT` | `wkt` | A WKT string representing a node's geospatial point; e.g., `POINT(X Y [Z])` <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
+| `WKTPOINT` | `wkt` | A WKT string representing a node's geospatial point; e.g., `POINT(X Y [Z])` <br/> <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
 | `X` | `float`, `double`, `int`, `long` | A number representing a node's X or longitude value |
 | `Y` | `float`, `double`, `int`, `long` | A number representing a node's Y or latitude value |
 
@@ -212,21 +212,21 @@ segment.
 | Identifier | Supported Types | Description |
 | --- | --- | --- |
 | `ID` | `int`, `long` | A number representing an edge identifier |
-| `DIRECTION` | `int` | A number representing what direction the edge can be traveled: <br/> * `0`: forward one-way edge (**node 1 --&gt; node 2**) <br/> * `1`: two-way edge (**node 1 --&gt; node 2** and **node 2 --&gt; node 1**) <br/> * `2`: backward one-way edge (**node 2 --&gt; node 1**) |
+| `DIRECTION` | `int` | A number representing what direction the edge can be traveled: <br/> <br/> * `0`: forward one-way edge (**node 1 --&gt; node 2**) <br/> * `1`: two-way edge (**node 1 --&gt; node 2** and **node 2 --&gt; node 1**) <br/> * `2`: backward one-way edge (**node 2 --&gt; node 1**) |
 | `LABEL` | `string` | A string value representing an edge's label |
 | `NODE1_ID` | `int`, `long` | A number representing the edge's first node |
 | `NODE1_NAME` | `string` | A string value representing the edge's first node's name |
-| `NODE1_WKTPOINT` | `wkt` | A WKT string representing the edge's first node's geospatial point; e.g., `POINT(X1 Y1 [Z1])` <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
+| `NODE1_WKTPOINT` | `wkt` | A WKT string representing the edge's first node's geospatial point; e.g., `POINT(X1 Y1 [Z1])` <br/> <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
 | `NODE1_X` | `float`, `double`, `int`, `long` | A number representing the edge's first node's X or longitude value |
 | `NODE1_Y` | `float`, `double`, `int`, `long` | A number representing the edge's first node's Y or latitude value |
 | `NODE2_ID` | `int`, `long` | A number representing the edge's second node |
 | `NODE2_NAME` | `string` | A string value representing the edge's second node's name |
-| `NODE2_WKTPOINT` | `wkt` | A WKT string representing the edge's second node's geospatial point; e.g., `POINT(X2 Y2 [Z2])` <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
+| `NODE2_WKTPOINT` | `wkt` | A WKT string representing the edge's second node's geospatial point; e.g., `POINT(X2 Y2 [Z2])` <br/> <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
 | `NODE2_X` | `float`, `double`, `int`, `long` | A number representing the edge's second node's X or longitude value |
 | `NODE2_Y` | `float`, `double`, `int`, `long` | A number representing the edge's second node's Y or latitude value |
 | `PARTITION` | `long` | A number representing the ID of the partition containing this edge, when using explicit partitioning to segment the graph |
 | `WEIGHT_VALUESPECIFIED` | `float`, `double`, `int`, `long` | A number representing the edge's associated weight value; if this identifier is provided, additional weights do not need to be specified |
-| `WKTLINE` | `wkt` | A WKT string representing an edge's geospatial line; e.g., `LINESTRING(X1 Y1 [Z1], X2 Y2 [Z2])` <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
+| `WKTLINE` | `wkt` | A WKT string representing an edge's geospatial line; e.g., `LINESTRING(X1 Y1 [Z1], X2 Y2 [Z2])` <br/> <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
 
 
 <a id="weights"></a>
@@ -266,14 +266,14 @@ the weight will be the same going in each direction.
 
 | Identifier | Supported Types | Description |
 | --- | --- | --- |
-| `EDGE_DIRECTION` | `int` | A number representing what direction the edge can be traveled: <br/> * `0`: forward one-way edge (**node 1 --&gt; node 2**) <br/> * `1`: two-way edge (**node 1 --&gt; node 2** and **node 2 --&gt; node 1**) <br/> * `2`: backward one-way edge (**node 2 --&gt; node 1**) |
+| `EDGE_DIRECTION` | `int` | A number representing what direction the edge can be traveled: <br/> <br/> * `0`: forward one-way edge (**node 1 --&gt; node 2**) <br/> * `1`: two-way edge (**node 1 --&gt; node 2** and **node 2 --&gt; node 1**) <br/> * `2`: backward one-way edge (**node 2 --&gt; node 1**) |
 | `EDGE_ID` | `int`, `long` | A number representing a weight's associated edge identifier |
 | `EDGE_NODE1_ID` | `int`, `long` | A number representing a weight's associated edge's first node |
 | `EDGE_NODE1_NAME` | `string` | A string value representing a weight's associated edge's first node's name |
 | `EDGE_NODE2_ID` | `int`, `long` | A number representing a weight's associated edge's second node |
 | `EDGE_NODE2_NAME` | `string` | A string value representing a weight's associated edge's second node's name |
 | `EDGE_PARTITION` | `long` | A number representing a weight's associated edge's partition ID |
-| `EDGE_WKTLINE` | `wkt` | A WKT string representing a weight's associated edge geospatial line; e.g., `LINESTRING(X1 Y1 [Z1], X2 Y2 [Z2])` <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
+| `EDGE_WKTLINE` | `wkt` | A WKT string representing a weight's associated edge geospatial line; e.g., `LINESTRING(X1 Y1 [Z1], X2 Y2 [Z2])` <br/> <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
 | `FACTORSPECIFIED` | `float`, `double`, `int`, `long` | A number representing how much incoming cost values will be multiplied |
 | `FROM_EDGE_ID` | `int`, `long` | A number representing a weight's associated edge identifier that signifies the start of a turn; paired with `TO_EDGE_ID` to define additionally-weighted traversal from one edge to another through any single node <br/> <Info> Only applicable if the `add_turns` option was set to true during [/create/graph](/content/api/rest/create_graph_rest) . This identifier can be used to locally override any `*_turn_penalty` and/or `intersection_penalty` options previously set. See [Using Turn-based Weights & Restrictions](/content/graph_solver/network_graph_solver#turn-pen-restr) for more information. </Info> |
 | `TO_EDGE_ID` | `int`, `long` | A number representing a weight's associated edge identifier that signifies the end of a turn; paired with `FROM_EDGE_ID` to define additionally-weighted traversal from one edge to another through any single node <br/> <Info> Only applicable if the `add_turns` option was set to true during [/create/graph](/content/api/rest/create_graph_rest) . This identifier can be used to locally override any `*_turn_penalty` and/or `intersection_penalty` options previously set. See [Using Turn-based Weights & Restrictions](/content/graph_solver/network_graph_solver#turn-pen-restr) for more information. </Info> |
@@ -305,7 +305,7 @@ defined using an integer ID and a value or as a switch (`on` or `off`).
 
 | Identifier | Supported Types | Description |
 | --- | --- | --- |
-| `EDGE_DIRECTION` | `int` | A number representing what direction the edge can be traveled: <br/> * `0`: forward one-way edge (**node 1 --&gt; node 2**) <br/> * `1`: two-way edge (**node 1 --&gt; node 2** and **node 2 --&gt; node 1**) <br/> * `2`: backward one-way edge (**node 2 --&gt; node 1**) |
+| `EDGE_DIRECTION` | `int` | A number representing what direction the edge can be traveled: <br/> <br/> * `0`: forward one-way edge (**node 1 --&gt; node 2**) <br/> * `1`: two-way edge (**node 1 --&gt; node 2** and **node 2 --&gt; node 1**) <br/> * `2`: backward one-way edge (**node 2 --&gt; node 1**) |
 | `EDGE_ID` | `int`, `long` | A number representing the restriction's associated edge identifier |
 | `EDGE_LABEL` | `string` | A string value referring to an edge label for restrictive purposes |
 | `EDGE_NODE1_ID` | `int`, `long` | A number representing a restriction's associated edge's first node |
@@ -313,12 +313,12 @@ defined using an integer ID and a value or as a switch (`on` or `off`).
 | `EDGE_NODE2_ID` | `int`, `long` | A number representing a restriction's associated edge's second node |
 | `EDGE_NODE2_NAME` | `string` | A string value representing a restriction's associated edge's second node's name |
 | `EDGE_PARTITION` | `long` | A number representing a restriction's associated edge's partition ID |
-| `EDGE_WKTLINE` | `wkt` | A WKT string representing a weight's associated edge geospatial line; e.g., `LINESTRING(X1 Y1 [Z1], X2 Y2 [Z2])` <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
+| `EDGE_WKTLINE` | `wkt` | A WKT string representing a weight's associated edge geospatial line; e.g., `LINESTRING(X1 Y1 [Z1], X2 Y2 [Z2])` <br/> <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
 | `FROM_EDGE_ID` | `int`, `long` | A number representing the restriction's associated edge identifier that signifies the start of a turn; paired with `TO_EDGE_ID` to define traversal restriction from one edge to another through any single node <br/> <Info> Only applicable if the `add_turns` option was set to true during [/create/graph](/content/api/rest/create_graph_rest) . This identifier can be used to locally override any `*_turn_penalty` and/or `intersection_penalty` options previously set. See [Using Turn-based Weights & Restrictions](/content/graph_solver/network_graph_solver#turn-pen-restr) for more information. </Info> |
 | `NODE_ID` | `int`, `long` | A number representing the restriction's associated node identifier |
 | `NODE_LABEL` | `string` | A string value referring to a node label for restrictive purposes |
 | `NODE_NAME` | `string` | A string value representing the restriction's associated node |
-| `NODE_WKTPOINT` | `wkt` | A WKT string representing the restriction's associated node's geospatial point, e.g., `POINT(X Y [Z])` <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
+| `NODE_WKTPOINT` | `wkt` | A WKT string representing the restriction's associated node's geospatial point, e.g., `POINT(X Y [Z])` <br/> <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
 | `ONOFFCOMPARED` | `int` | A number representing if the associated node or edge cannot be traversed, with `1` meaning it can be traversed and `0` meaning it cannot |
 | `TO_EDGE_ID` | `int`, `long` | A number representing the restriction's associated edge identifier that signifies the end of a turn; paired with `FROM_EDGE_ID` to define traversal restriction from one edge to another through any single node <br/> <Info> Only applicable if the `add_turns` option was set to true during [/create/graph](/content/api/rest/create_graph_rest) . This identifier can be used to locally override any `*_turn_penalty` and/or `intersection_penalty` options previously set. See [Using Turn-based Weights & Restrictions](/content/graph_solver/network_graph_solver#turn-pen-restr) for more information. </Info> |
 | `VALUECOMPARED` | `float`, `double`, `int`, `long` | A number representing the value against which incoming costs will be compared |
@@ -1004,11 +1004,11 @@ query-specific identifiers below.
 | Identifier | Supported Types | Description |
 | --- | --- | --- |
 | ``EDGE_ID`` | ``int``, ``long`` | Defines the edge ``ID`` value that will be matched against in the source graph to determine the source for the query |
-| ``EDGE_LABEL`` | ``string`` | Defines the edge ``LABEL`` value that will be matched against in the source graph to determine the source(s) for the query <br/> See [Using Labels](/content/graph_solver/network_graph_solver#using-labels) for more information. |
+| ``EDGE_LABEL`` | ``string`` | Defines the edge ``LABEL`` value that will be matched against in the source graph to determine the source(s) for the query <br/> <br/> See [Using Labels](/content/graph_solver/network_graph_solver#using-labels) for more information. |
 | ``EDGE_WKTLINE`` | ``wkt`` | Defines the edge ``WKTLINE`` value that will be matched against in the source graph to determine the source for the query |
-| ``HOP_ID`` | ``int``, ``long`` | Defines the number of hops from the source node or edge at which the associated node or edge filter should be applied; use a negative number to allow directed edges to be traversed in the reverse direction for that hop number specifically <br/> See [Using Hops](/content/graph_solver/network_graph_solver#query-using-hops) for more information. |
+| ``HOP_ID`` | ``int``, ``long`` | Defines the number of hops from the source node or edge at which the associated node or edge filter should be applied; use a negative number to allow directed edges to be traversed in the reverse direction for that hop number specifically <br/> <br/> See [Using Hops](/content/graph_solver/network_graph_solver#query-using-hops) for more information. |
 | ``NODE_ID`` | ``int``, ``long`` | Defines the node ``ID`` value that will be matched against in the source graph to determine the source for the query |
-| ``NODE_LABEL`` | ``string`` | Defines the node ``LABEL`` value that will be matched against in the source graph to determine the source(s) for the query <br/> See [Using Labels](/content/graph_solver/network_graph_solver#using-labels) for more information. |
+| ``NODE_LABEL`` | ``string`` | Defines the node ``LABEL`` value that will be matched against in the source graph to determine the source(s) for the query <br/> <br/> See [Using Labels](/content/graph_solver/network_graph_solver#using-labels) for more information. |
 | ``NODE_NAME`` | ``string`` | Defines the node ``NAME`` value that will be matched against in the the source graph to determine the source for the query |
 | ``NODE_WKTPOINT`` | ``wkt`` | Defines the node ``WKTPOINT`` value that will be matched against in the source graph to determine the source for the query |
 | ``NODE1_ID`` | ``int``, ``long`` | Defines the node ``ID`` value that will be matched against in the source graph (in conjunction with ``NODE2_ID``) to determine the source for the query |
@@ -1300,7 +1300,7 @@ Solution types available:
 | ``MARKOV_CHAIN`` | Matches sample points to the graph using the Hidden Markov Model (HMM)-based method, which conducts a range-tree closest-edge search to find the best combinations of possible road segments for each sample point to create the best route. The route is secured one point at a time, so the prediction is corrected after each point. This solution type is the most accurate, but also the most computationally intensive. | X |
 | ``MATCH_BATCH_SOLVES`` | Matches each provided sample source and destination pair using the shortest path between the points. | X |
 | ``MATCH_CHARGING_STATIONS`` | Matches a given sample source and destination pair to the optimal recharging stations along the route (for EVs). | X |
-| ``MATCH_CLUSTERS`` | Matches the graph nodes with a cluster index using the Louvain clustering algorithm. <br/> .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked with the ``parallel_clustering`` option. | X* <br/> <br/> <Info> Parallel running of this solver is experimental and can be invoked \| </Info> |
+| ``MATCH_CLUSTERS`` | Matches the graph nodes with a cluster index using the Louvain clustering algorithm. <br/> <br/> .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked .. note:: Parallel running of this solver is experimental and can be invoked with the ``parallel_clustering`` option. | X* <br/> <Info> Parallel running of this solver is experimental and can be invoked \| </Info> |
 | ``MATCH_LOOPS`` | Matches closed loops (Eulerian paths) originating and ending at each graph node between min and max hops (levels). | X |
 | ``MATCH_OD_PAIRS`` | Matches sample points to find the most probable path between origin and destination (OD) pairs with given cost constraints. | X |
 | ``MATCH_SIMILARITY`` | Computes the Jaccard similarity between vertex pairs and N-level intersections within M hops. | X |
@@ -1331,15 +1331,15 @@ using the unique identifiers below.
 | ``DEMAND_SIZE`` | ``int``, ``long``, ``float`` | A number representing the size of the primary (or only) demand; used in demanding the supply denoted by ``SUPPLY_SIZE`` |
 | ``DEMAND_SIZE2`` | ``int``, ``long``, ``float`` | A number representing the size of the secondary demand; used in demanding the supply denoted by ``SUPPLY_SIZE2``, when there are two different demand type constraints (e.g., weight & volume) |
 | ``DEMAND_WKTPOINT`` | ``wkt`` | A WKT string representing a demand's geospatial source point |
-| ``DESTINATION_WKTPOINT`` | ``wkt`` | A WKT string representing a sample's geospatial destination point; e.g., ``POINT(X Y [Z])`` <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
+| ``DESTINATION_WKTPOINT`` | ``wkt`` | A WKT string representing a sample's geospatial destination point; e.g., ``POINT(X Y [Z])`` <br/> <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
 | ``ID`` | ``int``, ``long`` | A number representing a sample's unique identifier |
 | ``NAME`` | ``string`` | A string value representing a sample's name |
 | ``OD_ID`` | ``int``, ``long`` | A number representing an OD-pair-related sample's unique identifier |
 | ``OD_TIME`` | ``float``, ``double`` | A number representing an origin-destination (OD) pair-related sample's cost <br/> <Info> ``OD_TIME`` may not necessarily depict time, e.g., if the graph's weights were distance-based, ``OD_TIME`` could theoretically reflect distance as well, assuming the values are consistent with the values used to create the original weights. </Info> |
-| ``ORIGIN_WKTPOINT`` | ``wkt`` | A WKT string representing a sample's geospatial origin point; e.g., ``POINT(X Y [Z])`` <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
+| ``ORIGIN_WKTPOINT`` | ``wkt`` | A WKT string representing a sample's geospatial origin point; e.g., ``POINT(X Y [Z])`` <br/> <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
 | ``PRIORITY`` | ``int`` | A number representing a sample's priority in match processing |
 | ``SUPPLY_ID`` | ``int``, ``long`` | A number representing a supplier's unique identifier |
-| ``SUPPLY_ODDEVEN`` | ``int`` | A number representing whether the supplier is "odd", "even", or neither; used in applying odd/even-based restrictions, such as those used in Jakarta, Indonesia: <br/> * ``0``: supplier is not subject to odd/even-based restrictions <br/> * ``1``: supplier is "odd" numbered <br/> * ``2``: supplier is "even" numbered |
+| ``SUPPLY_ODDEVEN`` | ``int`` | A number representing whether the supplier is "odd", "even", or neither; used in applying odd/even-based restrictions, such as those used in Jakarta, Indonesia: <br/> <br/> * ``0``: supplier is not subject to odd/even-based restrictions <br/> * ``1``: supplier is "odd" numbered <br/> * ``2``: supplier is "even" numbered |
 | ``SUPPLY_PENALTY`` | ``int``, ``long``, ``float``, ``double`` | A number representing the cost for unloading this supplier per unit unloaded, regardless of which demand site it is visiting, and in addition to the global unloading cost per unit |
 | ``SUPPLY_REGION_ID`` | ``int``, ``long`` | A number representing a supplier source's unique identifier |
 | ``SUPPLY_SIZE`` | ``int``, ``long``, ``float`` | A number representing a supplier's primary (or only) capacity; used in meeting the demand denoted by ``DEMAND_SIZE`` |
@@ -1347,7 +1347,7 @@ using the unique identifiers below.
 | ``SUPPLY_WKTPOINT`` | ``wkt`` | A WKT string representing a supplier's geospatial source point |
 | ``TIME`` | ``long``, ``double`` | A number representing a sample's time value <br/> <Info> ``TIME`` could theoretically represent any time unit (seconds, minutes, epoch, etc.) as long as the representations are consistent for the column in the source table. </Info> |
 | ``TRIPID`` | ``int``, ``long`` | A number representing a unique trip identifier |
-| ``WKTPOINT`` | ``wkt`` | A WKT string representing a sample's geospatial point; e.g., ``POINT(X Y [Z])`` <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
+| ``WKTPOINT`` | ``wkt`` | A WKT string representing a sample's geospatial point; e.g., ``POINT(X Y [Z])`` <br/> <br/> See [Geospatial Objects](/content/location_intelligence/geo_objects) for more information on WKTs. |
 | ``X`` | ``float``, ``double`` | A number representing a sample's X or longitude value |
 | ``Y`` | ``float``, ``double`` | A number representing a sample's Y or latitude value |
 

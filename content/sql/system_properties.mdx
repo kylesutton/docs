@@ -64,7 +64,7 @@ following is a list of those that can be modified.
 | `chunk_size` | Number of records per chunk, applied to all new tables.  To disable chunking, use `0`. |
 | `chunk_column_max_memory` | Maximum data size, in bytes, for each column in a chunk, applied to all new tables.  Use `0` for no maximum. |
 | `chunk_max_memory` | Maximum data size for all columns in a chunk, applied to all new tables.  Use `0` for no maximum; use `-1` to use the default, based on RAM tier limits or host memory per rank. |
-| `execution_mode` | Scheme to use for kernel executions.  Possible values: <br/> <br/> `host`: Execute kernels only on the *host* (CPU) <br/> `device`: Execute kernels only on the *device* (GPU) <br/> `default`: Execution engine decides whether to execute kernels on the *host* or the *device* <br/> `<rows>`: Execute kernels on the host if the chunked column contains the given number of rows or fewer; otherwise, execute on the device |
+| `execution_mode` | Scheme to use for kernel executions.  Possible values: <br/> <br/> `host`: Execute kernels only on the *host* (CPU) <br/> <br/> `device`: Execute kernels only on the *device* (GPU) <br/> <br/> `default`: Execution engine decides whether to execute kernels on the *host* or the *device* <br/> <br/> `<rows>`: Execute kernels on the host if the chunked column contains the given number of rows or fewer; otherwise, execute on the device |
 | `shadow_agg_size` | Maximum number of bytes in the *shadow aggregate chunk cache*.  The maximum allowed value is `2147483647`. |
 | `shadow_filter_size` | Maximum number of bytes in the *shadow filter chunk cache*.  The maximum allowed value is `2147483647`. |
 | `telm_persist_query_metrics` | Enable or disable persisting of query metrics in a table.  If disabled, metrics will still be available for point-in-time export. |
@@ -78,7 +78,7 @@ following is a list of those that can be modified.
 | `ai_api_connection_timeout` | AI API connection timeout, in seconds |
 | `external_files_directory` | Root directory path, on the head node of the cluster, from where external table data files are accessed. |
 | `egress_single_file_max_size` | Maximum file size, in MB, to allow saving to a single file.  May be overridden by target limitations.  The maximum allowed value is `200000`. |
-| `egress_parquet_compression` | Parquet file compression type.  The supported values are: <br/> * `uncompressed` <br/> * `snappy` <br/> * `gzip` |
+| `egress_parquet_compression` | Parquet file compression type.  The supported values are: <br/> <br/> * `uncompressed` <br/> * `snappy` <br/> * `gzip` |
 | `kafka_batch_size` | Maximum number of Kafka records to be ingested in a single batch.  The maximum allowed value is `10000000`. |
 | `kafka_wait_time` | Maximum time, in seconds, to buffer records received from Kafka before ingestion.  The maximum allowed value is `120`. |
 | `kafka_poll_timeout` | Maximum time, in milliseconds, for each poll to get records from Kafka.  The maximum allowed value is `1000`. |

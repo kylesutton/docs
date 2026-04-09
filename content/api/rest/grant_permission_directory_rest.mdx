@@ -20,7 +20,7 @@ Grants a [KiFS](../../../tools/kifs/) directory-level permission to a user or ro
 | Name | Type | Description |
 | --- | --- | --- |
 | name | string | Name of the user or role to which the permission will be granted. Must be an existing user or role. |
-| permission | string | Permission to grant to the user or role. <br/> <br/> directory_read: For files in the directory, access to list files, download files, or use files in server side functions <br/> directory_write: Access to upload files to, or delete files from, the directory. A user or role with write access automatically has read access |
+| permission | string | Permission to grant to the user or role. <br/> <br/> directory_read: For files in the directory, access to list files, download files, or use files in server side functions <br/> <br/> directory_write: Access to upload files to, or delete files from, the directory. A user or role with write access automatically has read access |
 | directory_name | string | Name of the KiFS directory to which the permission grants access. An empty directory name grants access to all KiFS directories |
 | options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). |
 
@@ -36,4 +36,4 @@ The GPUdb server embeds the endpoint response inside a standard response structu
 | message | String | Empty if success or an error message |
 | data_type | String | 'grant_permission_directory_response' or 'none' in case of an error |
 | data | String | Empty string |
-| data_str | JSON or | This embedded JSON represents the result of the /grant/permission/directory endpoint: <br/> <br/> name: [string] Value of input parameter *name*. <br/> permission: [string] Value of input parameter *permission*. <br/> directory_name: [string] Value of input parameter *directory_name*. <br/> info: [map of string to strings] Additional information. <br/> Empty string in case of an error. |
+| data_str | JSON or | This embedded JSON represents the result of the /grant/permission/directory endpoint: <br/> <br/> name: [string] Value of input parameter *name*. <br/> <br/> permission: [string] Value of input parameter *permission*. <br/> <br/> directory_name: [string] Value of input parameter *directory_name*. <br/> <br/> info: [map of string to strings] Additional information. <br/> <br/> Empty string in case of an error. |

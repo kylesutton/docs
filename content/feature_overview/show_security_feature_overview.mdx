@@ -25,7 +25,7 @@ Shows security information relating to users and/or roles. If the caller is not 
 
 | Name | Type | Description |
 | --- | --- | --- |
-| types | map of string to strings | Map of user/role name to the type of that user/role. <br/> <br/> internal_user: A user whose credentials are managed by the database system. <br/> external_user: A user whose credentials are managed by an external LDAP. <br/> role: A role. |
+| types | map of string to strings | Map of user/role name to the type of that user/role. <br/> <br/> internal_user: A user whose credentials are managed by the database system. <br/> <br/> external_user: A user whose credentials are managed by an external LDAP. <br/> <br/> role: A role. |
 | roles | map of string to arrays of strings | Map of user/role name to a list of names of roles of which that user/role is a member. |
 | permissions | map of string to arrays of maps of string to strings | Map of user/role name to a list of permissions directly granted to that user/role. |
 | resource_groups | map of string to strings | Map of user name to resource group name. |

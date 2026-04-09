@@ -20,7 +20,7 @@ Deletes a directory from [KiFS](../../../tools/kifs/).
 | Name | Type | Description |
 | --- | --- | --- |
 | directory_name | string | Name of the directory in KiFS to be deleted. The directory must contain no files, unless *recursive* is *true* |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> recursive: If *true*, will delete directory and all files residing in it. If false, directory must be empty for deletion. The default value is `false`. The supported values are: * true * false <br/> no_error_if_not_exists: If *true*, no error is returned if specified directory does not exist The default value is `false`. The supported values are: * true * false |
+| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> recursive: If *true*, will delete directory and all files residing in it. If false, directory must be empty for deletion. The default value is `false`. The supported values are: * true * false <br/> <br/> no_error_if_not_exists: If *true*, no error is returned if specified directory does not exist The default value is `false`. The supported values are: * true * false |
 
 
 ## Output Parameter Description
@@ -34,4 +34,4 @@ The GPUdb server embeds the endpoint response inside a standard response structu
 | message | String | Empty if success or an error message |
 | data_type | String | 'delete_directory_response' or 'none' in case of an error |
 | data | String | Empty string |
-| data_str | JSON or | This embedded JSON represents the result of the /delete/directory endpoint: <br/> <br/> directory_name: [string] Value of input parameter *directory_name*. <br/> info: [map of string to strings] Additional information. <br/> Empty string in case of an error. |
+| data_str | JSON or | This embedded JSON represents the result of the /delete/directory endpoint: <br/> <br/> directory_name: [string] Value of input parameter *directory_name*. <br/> <br/> info: [map of string to strings] Additional information. <br/> <br/> Empty string in case of an error. |

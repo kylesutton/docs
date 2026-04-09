@@ -15,13 +15,13 @@ These functions can be applied to individual *array* column values.
 | `ARRAY_EMPTY(array)` | Returns true if `array` is empty; otherwise returns false. |
 | `ARRAY_EXCEPT(arr1, arr2)` | Returns an array consisting of all of the elements of array `arr1` with the ones that also appear in array `arr2` removed. |
 | `ARRAY_INTERSECT(arr1, arr2)` | Returns an array consisting of all of the elements of array `arr1` that also appear in array `arr2`. |
-| `ARRAY_ITEM(array, pos)` | Returns the item in `array` at the given 1-based `pos` position. <br/> See [examples](/content/concepts/array#array-func-ex-item). |
-| `ARRAY_LENGTH(array)` | Returns the number of items in the given `array` at the 1st dimension. <br/> See [examples](/content/concepts/array#array-func-ex-len). |
+| `ARRAY_ITEM(array, pos)` | Returns the item in `array` at the given 1-based `pos` position. <br/> <br/> See [examples](/content/concepts/array#array-func-ex-item). |
+| `ARRAY_LENGTH(array)` | Returns the number of items in the given `array` at the 1st dimension. <br/> <br/> See [examples](/content/concepts/array#array-func-ex-len). |
 | `ARRAY_LOWER(array, dim)` | Returns the lowest index of `array` in the given `dim` dimension; since all arrays are 1-dimensional, only specifying a dimension of `1` will return a value, and since array indices are 1-based, that value will always be `1`. |
 | `ARRAY_NDIMS(array)` | Returns the number of dimensions in the given `array`; since all arrays are 1-dimensional, that number will always be `1`. |
 | `ARRAY_NOT_EMPTY(array)` | Returns true if `array` is not empty; otherwise returns false. |
 | `ARRAY_SLICE(array, from, to)` | Returns an array consisting of the values from `array` between the `from` index (inclusive) up to the `to` index (exclusive) using 0-based indexing. Negative indexes are treated as offsets from the end of the array. |
-| `ARRAY_TO_STRING(array, delim)` | Converts the items of `array` into a string delimited by `delim`. <br/> See [examples](/content/concepts/array#array-func-ex-atos). |
+| `ARRAY_TO_STRING(array, delim)` | Converts the items of `array` into a string delimited by `delim`. <br/> <br/> See [examples](/content/concepts/array#array-func-ex-atos). |
 | `ARRAY_UPPER(array, dim)` | Returns the highest index of `array` in the given `dim` dimension; since all arrays are 1-dimensional, only specifying a dimension of `1` will return a value, and since array indices are 1-based, that value will always be equivalent to `ARRAY_LENGTH`. |
 | `MAKE_ARRAY(value)` | Returns an array consisting of the single `value` element. |
-| `STRING_TO_ARRAY(str, delim)` | Converts the values in `str`, delimited by `delim`, into an array. <br/> See [examples](/content/concepts/array#array-func-ex-stoa). |
+| `STRING_TO_ARRAY(str, delim)` | Converts the values in `str`, delimited by `delim`, into an array. <br/> <br/> See [examples](/content/concepts/array#array-func-ex-stoa). |

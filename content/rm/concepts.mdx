@@ -335,14 +335,12 @@ will continuously evict *until* the target capacity is reached.
 Consider a *tier* with a capacity of 100GB containing four objects having the
 following priorities & sizes and a remaining capacity of 10GB:
 
-==== ======== ====
-Name Priority Size
-==== ======== ====
-A           1 30GB
-B           4 10GB
-C           4 20GB
-D          10 30GB
-==== ======== ====
+| Name | Priority | Size |
+| --- | --- | --- |
+| A | 1 | 30GB |
+| B | 4 | 10GB |
+| C | 4 | 20GB |
+| D | 10 | 30GB |
 
 
 #### Request-Based Eviction Processing
@@ -381,15 +379,13 @@ If a request for 7GB of capacity is received with an *eviction priority* of
 `9`, it would be processed successfully and leave the total usage at 97% of
 capacity:
 
-==== ======== ====
-Name Priority Size
-==== ======== ====
-A           1 30GB
-B           4 10GB
-C           4 20GB
-D          10 30GB
-E           9  7GB
-==== ======== ====
+| Name | Priority | Size |
+| --- | --- | --- |
+| A | 1 | 30GB |
+| B | 4 | 10GB |
+| C | 4 | 20GB |
+| D | 10 | 30GB |
+| E | 9 | 7GB |
 
 Since the 97% usage would exceed the 95% high watermark,
 [watermark-based eviction](/content/rm/concepts#rm-concepts-wb-eviction) would be triggered,
@@ -514,20 +510,13 @@ installation with a *Disk Cache Tier* instance `DISK2` and a
 
 This results in the following strategy for *tiering*:
 
-======= ======== ===============================================================
-Tier    Priority Implication
-======= ======== ===============================================================
-VRAM    1        Lowest priority within VRAM; automatically evicted after use
-RAM     5        Average priority within RAM; evicted when RAM size limit is
-                 exceeded and no objects with priority `1` - `4` exist to be
-                 evicted first
-DISK2   3        Below-average priority within *Disk Cache Tier* `DISK2`; no
-                 effect in relation to other *Disk Cache Tier* instances
-PERSIST 9        Highest evictable priority within persistent storage; among the
-                 last to be evicted to *Cold Storage Tier* `COLD5`
-COLD5            Uses `COLD5` as final backing *tier*; no priority needs to be
-                 set, as no eviction from this *tier* can take place
-======= ======== ===============================================================
+| Tier | Priority | Implication |
+| --- | --- | --- |
+| VRAM | 1 | Lowest priority within VRAM; automatically evicted after use |
+| RAM | 5 | Average priority within RAM; evicted when RAM size limit is exceeded and no objects with priority `1` - `4` exist to be evicted first |
+| DISK2 | 3 | Below-average priority within *Disk Cache Tier* `DISK2`; no effect in relation to other *Disk Cache Tier* instances |
+| PERSIST | 9 | Highest evictable priority within persistent storage; among the last to be evicted to *Cold Storage Tier* `COLD5` |
+| COLD5 |  | Uses `COLD5` as final backing *tier*; no priority needs to be set, as no eviction from this *tier* can take place |
 
 Each table created by the user can have a *tier strategy* applied to it, which,
 in turn, will apply that *tier strategy* to all of its columns.  A user can
@@ -587,20 +576,20 @@ Specifically, the following *tier strategies* would be applied:
 
 | Last Seen | Column | Tier Strategy |
 | --- | --- | --- |
-|                +-------------------+------------------------+
-|                | name              | VRAM 2, RAM 10         |
-|                +-------------------+------------------------+
-|                | *&lt;other columns&gt;* | VRAM 1, RAM 9          |
-| &gt; 1 minute ago | id                | VRAM 1, RAM 9          |
-| but            +-------------------+------------------------+
-| &lt; 3 days ago   | name              | VRAM 1, RAM 9          |
-|                +-------------------+------------------------+
-|                | *&lt;other columns&gt;* | VRAM 1, RAM 9          |
-| &gt; 3 days ago   | id                | VRAM 1, RAM 8, DISK2 7 |
-|                +-------------------+------------------------+
-|                | name              | VRAM 1, RAM 8, DISK2 7 |
-|                +-------------------+------------------------+
-|                | *&lt;other columns&gt;* | VRAM 1, RAM 8, DISK2 7 |
+|                +-----------------+------------------------+
+|                | name            | VRAM 2, RAM 10         |
+|                +-----------------+------------------------+
+|                | &lt;other columns&gt; | VRAM 1, RAM 9          |
+| &gt; 1 minute ago | id              | VRAM 1, RAM 9          |
+| but            +-----------------+------------------------+
+| &lt; 3 days ago   | name            | VRAM 1, RAM 9          |
+|                +-----------------+------------------------+
+|                | &lt;other columns&gt; | VRAM 1, RAM 9          |
+| &gt; 3 days ago   | id              | VRAM 1, RAM 8, DISK2 7 |
+|                +-----------------+------------------------+
+|                | name            | VRAM 1, RAM 8, DISK2 7 |
+|                +-----------------+------------------------+
+|                | &lt;other columns&gt; | VRAM 1, RAM 8, DISK2 7 |
 
 
 <a id="rm-concepts-resource-groups"></a>

@@ -21,7 +21,7 @@ Sends a user generated alert to the monitoring system.
 | --- | --- | --- |
 | message | string | Alert message body.  The default value is ''. |
 | label | string | Label to add to alert message.  The default value is ''. |
-| log_level | string | Alert message logging criteria  The supported values are: <br/> * fatal <br/> * error <br/> * warn <br/> * info <br/> * debug |
+| log_level | string | Alert message logging criteria  The supported values are: <br/> <br/> * fatal <br/> * error <br/> * warn <br/> * info <br/> * debug |
 | options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). |
 
 
@@ -36,4 +36,4 @@ The GPUdb server embeds the endpoint response inside a standard response structu
 | message | String | Empty if success or an error message |
 | data_type | String | 'admin_send_alert_response' or 'none' in case of an error |
 | data | String | Empty string |
-| data_str | JSON or String | This embedded JSON represents the result of the /admin/send/alert endpoint: <br/> <br/> info: [map of string to strings] Additional information. <br/> Empty string in case of an error. |
+| data_str | JSON or String | This embedded JSON represents the result of the /admin/send/alert endpoint: <br/> <br/> info: [map of string to strings] Additional information. <br/> <br/> Empty string in case of an error. |

@@ -763,7 +763,7 @@ FROM TABLE [/* KI_HINT_SAVE_UDF_STATS */]
 | Parameter | Description |
 | --- | --- |
 | `KI_HINT_SAVE_UDF_STATS` | SQL hint to log the embedding generation results of the UDF responsible for the processing (`rag_udf_embed`), so the logs can be viewed from the *Jobs* tab in [Workbench](/content/admin/workbench/ui/jobs). |
-| `MODEL_NAME` | Name of the *model* to use in generating embeddings, adhering to the supported [naming criteria](/content/sql/naming#sql-naming-criteria); if not specified, the default model, `sqlgpt`, will be used. <br/> To set the default to another model and avoid having to specify this parameter: <br/> {/* Source: /examples/sql/vector/embeddings.kisql (lines 168) */} <br/> `ALTER SYSTEM SET PROPERTIES ('ai_api_embeddings_model' = 'nvidia_remote_model')` |
+| `MODEL_NAME` | Name of the *model* to use in generating embeddings, adhering to the supported [naming criteria](/content/sql/naming#sql-naming-criteria); if not specified, the default model, `sqlgpt`, will be used. <br/> <br/> To set the default to another model and avoid having to specify this parameter: <br/> <br/> {/* Source: /examples/sql/vector/embeddings.kisql (lines 168) */} <br/> `ALTER SYSTEM SET PROPERTIES ('ai_api_embeddings_model' = 'nvidia_remote_model')` |
 | `EMBEDDING_TABLE` | The query or name of the table to use for input data to the embedding generation process. |
 | `EMBEDDING_INPUT_COLUMNS` | Names of the columns in the given `EMBEDDING_TABLE` for which embeddings will be generated. |
 | `EMBEDDING_OUTPUT_COLUMNS | Names of the columns to return the generated embeddings as; if none specified, each input column will have embedding` appended to it to construct the name of the corresponding output column. |

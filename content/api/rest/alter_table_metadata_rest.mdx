@@ -38,4 +38,4 @@ The GPUdb server embeds the endpoint response inside a standard response structu
 | message | String | Empty if success or an error message |
 | data_type | String | 'alter_table_metadata_response' or 'none' in case of an error |
 | data | String | Empty string |
-| data_str | JSON or | This embedded JSON represents the result of the /alter/table/metadata endpoint: <br/> <br/> table_names: [array of strings] Value of input parameter *table_names*. <br/> metadata_map: [map of string to strings] Value of input parameter *metadata_map*. <br/> info: [map of string to strings] Additional information. <br/> Empty string in case of an error. |
+| data_str | JSON or | This embedded JSON represents the result of the /alter/table/metadata endpoint: <br/> <br/> table_names: [array of strings] Value of input parameter *table_names*. <br/> <br/> metadata_map: [map of string to strings] Value of input parameter *metadata_map*. <br/> <br/> info: [map of string to strings] Additional information. <br/> <br/> Empty string in case of an error. |

@@ -20,7 +20,7 @@ Alters a Role.
 | Name | Type | Description |
 | --- | --- | --- |
 | name | string | Name of the role to be altered. Must be an existing role. |
-| action | string | Modification operation to be applied to the role. <br/> <br/> set_comment: Sets the comment for an internal role. <br/> set_resource_group: Sets the resource group for an internal role. The resource group must exist, otherwise, an empty string assigns the role to the default resource group. |
+| action | string | Modification operation to be applied to the role. <br/> <br/> set_comment: Sets the comment for an internal role. <br/> <br/> set_resource_group: Sets the resource group for an internal role. The resource group must exist, otherwise, an empty string assigns the role to the default resource group. |
 | value | string | The value of the modification, depending on input parameter *action*. |
 | options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). |
 
@@ -36,4 +36,4 @@ The GPUdb server embeds the endpoint response inside a standard response structu
 | message | String | Empty if success or an error message |
 | data_type | String | 'alter_role_response' or 'none' in case of an error |
 | data | String | Empty string |
-| data_str | JSON or | This embedded JSON represents the result of the /alter/role endpoint: <br/> <br/> name: [string] Value of input parameter *name*. <br/> info: [map of string to strings] Additional information. <br/> Empty string in case of an error. |
+| data_str | JSON or | This embedded JSON represents the result of the /alter/role endpoint: <br/> <br/> name: [string] Value of input parameter *name*. <br/> <br/> info: [map of string to strings] Additional information. <br/> <br/> Empty string in case of an error. |

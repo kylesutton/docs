@@ -706,7 +706,7 @@ The following security functions can be used when employing
 | Function | Description |
 | --- | --- |
 | `HASH(column)` | Returns a non-negative integer representing an obfuscated version of `column` |
-| `MASK(column, start, length[, char])` | Masks `length` characters of `column`, beginning at the position identified by `start`, with `*` characters (or the character specified in `char`): <br/> <br/> `MASK('Characters', 5, 5)`: `Char*****s` <br/> `MASK('Characters', 5, 2, '#')`: `Char##ters` |
+| `MASK(column, start, length[, char])` | Masks `length` characters of `column`, beginning at the position identified by `start`, with `*` characters (or the character specified in `char`): <br/> <br/> `MASK('Characters', 5, 5)`: `Char*****s` <br/> <br/> `MASK('Characters', 5, 2, '#')`: `Char##ters` |
 | `OBFUSCATE(column)` | Alias for `HASH` |
 
 

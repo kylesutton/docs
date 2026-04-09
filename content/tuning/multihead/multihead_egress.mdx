@@ -463,14 +463,12 @@ for record in response["data"]:
 The *distributed key lookup* should consistently return faster than the same
 query not using it.  The results of a sample test run bear this out:
 
-============================== ================== =============== ============
-Lookup Type                    Time (Without DKL) Time (With DKL) Record Count
-============================== ================== =============== ============
-Single-Column Key Only                     0.0043          0.0020          222
-Single-Column Key + Expression             0.0031          0.0009           53
-Multi-Column Key                           0.0046          0.0024          222
-Multi-Column Key + Expression              0.0031          0.0010           53
-============================== ================== =============== ============
+| Lookup Type | Time (Without DKL) | Time (With DKL) | Record Count |
+| --- | --- | --- | --- |
+| Single-Column Key Only | 0.0043 | 0.0020 | 222 |
+| Single-Column Key + Expression | 0.0031 | 0.0009 | 53 |
+| Multi-Column Key | 0.0046 | 0.0024 | 222 |
+| Multi-Column Key + Expression | 0.0031 | 0.0010 | 53 |
 
 
 ## Cautions

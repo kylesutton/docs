@@ -147,8 +147,8 @@ kisql --connectionString "jdbc:kinetica:URL=https://<db.host>:8082/gpudb-0[[;<pa
 
 | Parameter | Description |
 | --- | --- |
-| `-h <hostname>` <br/> `--host <hostname>` | Connect to the specified Kinetica host; can also be specified by the `KI_HOST` environment variable. |
-| `-p <port number>` <br/> `--port <port number>` | Connect to the specified Kinetica port; can also be specified by the `KI_JDBCPORT` environment variable. If not specified, default is `9191`. |
+| `-h <hostname>` <br/> <br/> `--host <hostname>` | Connect to the specified Kinetica host; can also be specified by the `KI_HOST` environment variable. |
+| `-p <port number>` <br/> <br/> `--port <port number>` | Connect to the specified Kinetica port; can also be specified by the `KI_JDBCPORT` environment variable. If not specified, default is `9191`. |
 | `--url <Kinetica URL>` | Connect using the specified Kinetica URL; e.g., `http://localhost:9191;RowsPerFetch=20000`.  Overrides `--host` & `--port`.  This can also be specified by the `KI_URL` environment variable. See [Secure Connections](/content/connectors/sql_guide#jdbc-connecting-secure) for specifying SSL connections and [Failover Connections](/content/connectors/sql_guide#jdbc-connecting-failover) for specifying HA connections. |
 | `--connectionString "<JDBC URL>"` | Connect using the specified JDBC URL; e.g., `jdbc:kinetica://localhost:9191;RowsPerFetch=20000`. Overrides `--host`, `--port`, `--url`, & `primaryUrl`; will not override other parameters specified on the command line. See [ODBC/JDBC Configuration](/content/connectors/sql_guide#jdbc-config) for the JDBC connection string format and the full list of options able to be specified through it. <br/> <Info> `UID` or `PWD` specified in the connection string will be ignored; use `--user` or the `KI_USER` & `KI_PWD` environment variables instead. </Info> |
 | `--primaryUrl <Kinetica URL>` | Try the specified Kinetica URL first when using `--url` to specify multiple [failover URLs](/content/connectors/sql_guide#jdbc-connecting-failover) for [HA](/content/ha). |
@@ -157,7 +157,7 @@ kisql --connectionString "jdbc:kinetica:URL=https://<db.host>:8082/gpudb-0[[;<pa
 | `--tokenNameClaim <claim>` | OAuth token claim key where the user name is located.  If not specified, the default is `sub`. |
 | `--trustStore <filepath>` | Use the specified *Java* TrustStore file path for SSL connections. Can also be specified using the `KI_TRUSTSTORE` environment variable. See the [HTTPD + SSL setup instructions](/content/security/sec_configuration#httpd-ssl-config) sections for more information on setting up a TrustStore and setting up ODBC for secure connections. |
 | `--bypassSslCertCheck [<value>]` | If using SSL, don't validate the server certificate.  If not specified, or if specified with no `value`, the default is not to validate the certificate. |
-| `--s <schema name>` <br/> `--schema <schema name>` | Use `schema name` as the default schema for all object references; effectively, issuing a [SET CURRENT SCHEMA](/content/sql/ddl#sql-current-schema) command at the beginning of the session. |
+| `--s <schema name>` <br/> <br/> `--schema <schema name>` | Use `schema name` as the default schema for all object references; effectively, issuing a [SET CURRENT SCHEMA](/content/sql/ddl#sql-current-schema) command at the beginning of the session. |
 | `--disableAutoDiscovery` | Disable [high availability](/content/ha) failover and [multi-head ingest](/content/tuning/multihead/multihead_ingest) / [multi-head egress](/content/tuning/multihead/multihead_egress). |
 | `--disableFailover` | [high availability](/content/ha) failover. |
 | `--disableSnappy` | Do not use Snappy compression when transmitting data to the server. |
@@ -168,8 +168,8 @@ kisql --connectionString "jdbc:kinetica:URL=https://<db.host>:8082/gpudb-0[[;<pa
 
 | Parameter | Description |
 | --- | --- |
-| `-f <file path>` <br/> `--file <file path>` | Run any SQL statements found in the given file and exit.  Statements must be separated by a semicolon, unless `--lineMode` is specified, in which case each line of the file will be treated as a separate SQL statement. |
-| `--line` <br/> `--lineMode` | Execute each line of input as a separate SQL statement, even if not terminated with a semicolon. |
+| `-f <file path>` <br/> <br/> `--file <file path>` | Run any SQL statements found in the given file and exit.  Statements must be separated by a semicolon, unless `--lineMode` is specified, in which case each line of the file will be treated as a separate SQL statement. |
+| `--line` <br/> <br/> `--lineMode` | Execute each line of input as a separate SQL statement, even if not terminated with a semicolon. |
 | `--sql '<SQL statements>'` | Run the given set of semicolon-separated SQL statements (in quotes) and exit. |
 
 
@@ -182,12 +182,12 @@ kisql --connectionString "jdbc:kinetica:URL=https://<db.host>:8082/gpudb-0[[;<pa
 | `--delim '<delimiter>'` | Use the given delimiter (in quotes) for delimited output formatting. The `--format` parameter must be present and set to `delim` / `delimited`. Any alphanumeric character or symbol is a valid delimiter.  If not specified, default is a comma. |
 | `--echoSql [<value>]` | Echo SQL statements executed.  If not specified, default is to not output SQL statements; if specified, default `value` is `true`. |
 | `--format <format>` | Output SQL statement result sets with the specified format.  Default is `table`.  Valid `format` options include: <br/> <br/> `delim` `delimited`: Uses the delimiter specified with `--delim` (or the default delimiter) to output records in CSV-style format, including a header row with the corresponding column names. .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter \| .. note:: The output will not be escaped according to the data values and delimiter used. Be sure to select a delimiter not found within any data being output. {/* Source: /examples/bash/kisql_examples.out (lines 314-317) */} <br/> `product_id,product_name 1,Clamp-on Lamps 2,Desk Chairs 3,Air Purifiers` <br/> <br/> `table`: Outputs records in an ASCII table format. {/* Source: /examples/bash/kisql_examples.out (lines 340-345 357) */} <br/> `+--------------+-----------------------+ \|   product_id \| product_name          \| +--------------+-----------------------+ \|            1 \| Clamp-on Lamps        \| \|            2 \| Desk Chairs           \| \|            3 \| Air Purifiers         \| +--------------+-----------------------+` <br/> <br/> `vertical`: Outputs each record as a vertical list of key/value pairs. {/* Source: /examples/bash/kisql_examples.out (lines 371-379) */} <br/> `--Row 1--------- product_id: 1 product_name: Clamp-on Lamps --Row 2--------- product_id: 2 product_name: Desk Chairs --Row 3--------- product_id: 3 product_name: Air Purifiers` |
-| `-i` <br/> `--isql` | Simulate <Badge color="blue-destructive">isql</Badge> output. |
+| `-i` <br/> <br/> `--isql` | Simulate <Badge color="blue-destructive">isql</Badge> output. |
 | `--limit <record count>` | Limit the number of records returned in each result set to the given number.  Use `-1` for no limit. If not specified, default is `-1`. |
-| `--logLevel <level>` | Set the JDBC logging level.  Default logging level is `0` *(off)*.  Valid `level` options include: <br/> <br/> `0`: Off <br/> `1`: Fatal <br/> `2`: Error <br/> `3`: Warning <br/> `4`: Info <br/> `5`: Debug <br/> `6`: Trace |
+| `--logLevel <level>` | Set the JDBC logging level.  Default logging level is `0` *(off)*.  Valid `level` options include: <br/> <br/> `0`: Off <br/> <br/> `1`: Fatal <br/> <br/> `2`: Error <br/> <br/> `3`: Warning <br/> <br/> `4`: Info <br/> <br/> `5`: Debug <br/> <br/> `6`: Trace |
 | `--showTime [<value>]` | Display SQL execution time.  If not specified, default is to show execution time; if specified, default `value` is `true`. |
 | `--stopOnFirstError` | When using a SQL script as input (`--file` option), stop on the first error encountered. |
-| `-tz <time zone ID>` <br/> `--timeZone <time zone ID>` | Output *time* and *timestamp* data in the time zone with specified ID (e.g., `PST`).  Use `system` for local system time.  If not specified, default is `UTC`. |
+| `-tz <time zone ID>` <br/> <br/> `--timeZone <time zone ID>` | Output *time* and *timestamp* data in the time zone with specified ID (e.g., `PST`).  Use `system` for local system time.  If not specified, default is `UTC`. |
 | `--verbose [<value>]` | Display JDBC class, URL (including SSL and TrustStore information), host, port, user, password, and version information as well as the given SQL statement.  If not specified, default is to not use *verbose* mode; if specified, default `value` is `true`. |
 
 
@@ -198,7 +198,7 @@ kisql --connectionString "jdbc:kinetica:URL=https://<db.host>:8082/gpudb-0[[;<pa
 | --- | --- |
 | `--listAllTimeZones` | List all supported time zones and exit. |
 | `--version` | Display the version of <Badge color="blue-destructive">kisql</Badge> and exit. |
-| `-?` <br/> `--help` | Display help information |
+| `-?` <br/> <br/> `--help` | Display help information |
 
 
 ## Interactive Mode
@@ -218,20 +218,20 @@ interactive mode:
 
 | Command | Description |
 | --- | --- |
-| `\c [<schema> [<table>]]` <br/> `\counts [<schema> [<table>]]` | Display the number of records in each table. <br/> If a `schema` is given, only show record counts of accessible tables in that schema. <br/> If `schema` & `table` are given, only show the record count of that table, if accessible. |
-| `\e [entry number]` <br/> `\edit [entry number]` | If no argument given, invoke the vi editor on the last query executed. If a number is provided (with `1` being the least recent entry), invoke `vi` editor on specific query by number from the history. Upon exiting the editor, the statement will be executed. |
-| `\f <type>` <br/> `\format <type>` | Set the output format type; options are detailed in the `--format` parameter description [above](/content/tools/kisql#kisql-tools-params). <br/> <Info> The delimiter, when using the delimited output format cannot be changed during an interactive mode session. </Info> |
-| `\h` <br/> `\history` | Display the numbered SQL statement history (with the least recent entry being first). |
-| `\i [<schema> [<table>]]` <br/> `\indices [<schema> [<table>]]` | Display the [indices](/content/concepts/indexes) to which the user has access. <br/> If a `schema` is given, only show accessible indices of tables in that schema. <br/> If `schema` & `table` are given, only show accessible indices of tables in that schema. |
-| `\k [<schema> [<table>]]` <br/> `\primaryKeys [<schema> [<table>]]` | Display the [primary key](/content/concepts/tables#primary-key) columns to which the user has access. <br/> If a `schema` is given, only show accessible primary key columns of tables in that schema. <br/> If `schema` & `table` are given, only show accessible primary key columns of that table. |
-| `\m` <br/> `\metadata` | Display connection metadata, including versions, supported features, & data types. |
-| `\p [<schema> [<procedure>]]` <br/> `\procedures [<schema> [<procedure>]]` | Display the [SQL procedures](/content/sql/procedure) to which the user has access. <br/> If a `schema` is given, only show accessible SQL procedures in that schema. <br/> If `schema` & `procedure` are given, only show that SQL procedure, if accessible. |
-| `\r <ID>` <br/> `\run <ID>` | Re-run the last command executed. <br/> If `ID` is given, run the command with that ID in the command history (as enumerated in the history output via `\history`) |
-| `\s` <br/> `\schemas` | Display the [schemas](/content/sql/ddl#sql-create-schema) to which the user has access. |
-| `\t [<schema [<table>]]` <br/> `\tables [<schema> [<table>]]` | Display the [tables](/content/sql/ddl#sql-create-table) & [views](/content/sql/ddl#sql-create-view) to which the user has access. <br/> If a `schema` is given, only show accessible tables/views in that schema. <br/> If `schema` & `table` are given, only show that table, if accessible. |
-| `\u [<schema> [<table> [<column>]]]` <br/> `\columns [<schema> [<table> [<column>]]]` | Display the columns of [tables](/content/sql/ddl#sql-create-table) & [views](/content/sql/ddl#sql-create-view) to which the user has access. <br/> If a `schema` is given, only show accessible columns from tables/views in that schema. <br/> If `schema` & `table` are given, only show accessible columns from that table/view. <br/> If `schema`, `table`, & `column` are given, only show that columns, if accessible. |
-| `\v` <br/> `\version` | Display the version number of the following components: <br/> * *Kinetica* database to which *KiSQL* is connected <br/> * *Kinetica* JDBC driver used by *KiSQL* <br/> * *Kinetica* Java API used by the JDBC driver |
-| `\q` <br/> `\quit` <br/> `\exit` | Exit interactive mode. |
+| `\c [<schema> [<table>]]` <br/> <br/> `\counts [<schema> [<table>]]` | Display the number of records in each table. <br/> <br/> If a `schema` is given, only show record counts of accessible tables in that schema. <br/> <br/> If `schema` & `table` are given, only show the record count of that table, if accessible. |
+| `\e [entry number]` <br/> <br/> `\edit [entry number]` | If no argument given, invoke the vi editor on the last query executed. If a number is provided (with `1` being the least recent entry), invoke `vi` editor on specific query by number from the history. Upon exiting the editor, the statement will be executed. |
+| `\f <type>` <br/> <br/> `\format <type>` | Set the output format type; options are detailed in the `--format` parameter description [above](/content/tools/kisql#kisql-tools-params). <br/> <Info> The delimiter, when using the delimited output format cannot be changed during an interactive mode session. </Info> |
+| `\h` <br/> <br/> `\history` | Display the numbered SQL statement history (with the least recent entry being first). |
+| `\i [<schema> [<table>]]` <br/> <br/> `\indices [<schema> [<table>]]` | Display the [indices](/content/concepts/indexes) to which the user has access. <br/> <br/> If a `schema` is given, only show accessible indices of tables in that schema. <br/> <br/> If `schema` & `table` are given, only show accessible indices of tables in that schema. |
+| `\k [<schema> [<table>]]` <br/> <br/> `\primaryKeys [<schema> [<table>]]` | Display the [primary key](/content/concepts/tables#primary-key) columns to which the user has access. <br/> <br/> If a `schema` is given, only show accessible primary key columns of tables in that schema. <br/> <br/> If `schema` & `table` are given, only show accessible primary key columns of that table. |
+| `\m` <br/> <br/> `\metadata` | Display connection metadata, including versions, supported features, & data types. |
+| `\p [<schema> [<procedure>]]` <br/> <br/> `\procedures [<schema> [<procedure>]]` | Display the [SQL procedures](/content/sql/procedure) to which the user has access. <br/> <br/> If a `schema` is given, only show accessible SQL procedures in that schema. <br/> <br/> If `schema` & `procedure` are given, only show that SQL procedure, if accessible. |
+| `\r <ID>` <br/> <br/> `\run <ID>` | Re-run the last command executed. <br/> <br/> If `ID` is given, run the command with that ID in the command history (as enumerated in the history output via `\history`) |
+| `\s` <br/> <br/> `\schemas` | Display the [schemas](/content/sql/ddl#sql-create-schema) to which the user has access. |
+| `\t [<schema [<table>]]` <br/> <br/> `\tables [<schema> [<table>]]` | Display the [tables](/content/sql/ddl#sql-create-table) & [views](/content/sql/ddl#sql-create-view) to which the user has access. <br/> <br/> If a `schema` is given, only show accessible tables/views in that schema. <br/> <br/> If `schema` & `table` are given, only show that table, if accessible. |
+| `\u [<schema> [<table> [<column>]]]` <br/> <br/> `\columns [<schema> [<table> [<column>]]]` | Display the columns of [tables](/content/sql/ddl#sql-create-table) & [views](/content/sql/ddl#sql-create-view) to which the user has access. <br/> <br/> If a `schema` is given, only show accessible columns from tables/views in that schema. <br/> <br/> If `schema` & `table` are given, only show accessible columns from that table/view. <br/> <br/> If `schema`, `table`, & `column` are given, only show that columns, if accessible. |
+| `\v` <br/> <br/> `\version` | Display the version number of the following components: <br/> <br/> * *Kinetica* database to which *KiSQL* is connected <br/> * *Kinetica* JDBC driver used by *KiSQL* <br/> * *Kinetica* Java API used by the JDBC driver |
+| `\q` <br/> <br/> `\quit` <br/> <br/> `\exit` | Exit interactive mode. |
 
 
 ## Examples

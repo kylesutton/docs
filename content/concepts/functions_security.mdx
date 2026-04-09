@@ -7,9 +7,9 @@ title: Security Functions
 | `CURRENT_SCHEMA()` | Returns the default schema of the current user |
 | `CURRENT_USER()` | Alias for `USER` |
 | `HASH(column[, seed])` | Returns a non-negative integer representing an obfuscated version of `column`, using the given `seed`; default `seed` is `0` |
-| `IS_MEMBER(role[, user/role])` | Returns whether the current user (or the given `user/role`, if specified) has been assigned the given `role`, either directly or indirectly: <br/> <br/> Current user (or given `user/role`) has been granted `role`: `true` <br/> Current user (or given `user/role`) has not been granted `role`: `false` <br/> Role `role` does not exist: *null* |
+| `IS_MEMBER(role[, user/role])` | Returns whether the current user (or the given `user/role`, if specified) has been assigned the given `role`, either directly or indirectly: <br/> <br/> Current user (or given `user/role`) has been granted `role`: `true` <br/> <br/> Current user (or given `user/role`) has not been granted `role`: `false` <br/> <br/> Role `role` does not exist: *null* |
 | `IS_ROLEMEMBER(role[, user/role])` | Alias for `IS_MEMBER` |
-| `MASK(expr, start, length[, char])` | Masks `length` bytes of `expr`, beginning at the byte position identified by `start`, with `*` characters (or the single-byte character specified in `char`): <br/> <Warning> The use of multi-byte characters in this function may have unexpected results. </Warning> <br/> <br/> `MASK('Characters', 4, 5)`: `Cha*****rs` <br/> `MASK('Characters', 5, 2, '#')`: `Char##ters` |
+| `MASK(expr, start, length[, char])` | Masks `length` bytes of `expr`, beginning at the byte position identified by `start`, with `*` characters (or the single-byte character specified in `char`): <br/> <Warning> The use of multi-byte characters in this function may have unexpected results. </Warning> <br/> `MASK('Characters', 4, 5)`: `Cha*****rs` <br/> <br/> `MASK('Characters', 5, 2, '#')`: `Char##ters` |
 | `NEW_UUID()` | Returns a randomly-generated UUID |
 | `OBFUSCATE(column[, seed])` | Alias for `HASH` |
 | `SHA256(expr)` | Returns the hex digits of the SHA-256 hash of the given value `expr` as a `char64` string. |

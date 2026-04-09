@@ -17,7 +17,7 @@ Create a job which will run asynchronously. The response returns a job ID, which
 | Name | Type | Description |
 | --- | --- | --- |
 | endpoint | string | Indicates which endpoint to execute, e.g. '/alter/table'. |
-| request_encoding | string | The encoding of the request payload for the job. The default value is `binary`.  The supported values are: <br/> * binary <br/> * json <br/> * snappy |
+| request_encoding | string | The encoding of the request payload for the job. The default value is `binary`.  The supported values are: <br/> <br/> * binary <br/> * json <br/> * snappy |
 | data | bytes | Binary-encoded payload for the job to be run asynchronously.  The payload must contain the relevant input parameters for the endpoint indicated in input parameter *endpoint*.  Please see the documentation for the appropriate endpoint to see what values must (or can) be specified.  If this parameter is used, then input parameter *request_encoding* must be *binary* or *snappy*. |
 | data_str | string | JSON-encoded payload for the job to be run asynchronously.  The payload must contain the relevant input parameters for the endpoint indicated in input parameter *endpoint*.  Please see the documentation for the appropriate endpoint to see what values must (or can) be specified.  If this parameter is used, then input parameter *request_encoding* must be *json*. |
 | options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> job_tag: Tag to use for submitted job. The same tag could be used on backup cluster to retrieve response for the job. Tags can use letter, numbers, '_' and '-' |
@@ -29,4 +29,4 @@ Create a job which will run asynchronously. The response returns a job ID, which
 | Name | Type | Description |
 | --- | --- | --- |
 | job_id | long | An identifier for the job created by this call. |
-| info | map of string to strings | Additional information.  The default value is an empty map ( \{\} ). <br/> <br/> job_tag: The job tag specified by the user or if unspecified by user, a unique identifier generated internally. <br/> query_id: A unique identifier for this job generated for use in tracing telemetry data |
+| info | map of string to strings | Additional information.  The default value is an empty map ( \{\} ). <br/> <br/> job_tag: The job tag specified by the user or if unspecified by user, a unique identifier generated internally. <br/> <br/> query_id: A unique identifier for this job generated for use in tracing telemetry data |

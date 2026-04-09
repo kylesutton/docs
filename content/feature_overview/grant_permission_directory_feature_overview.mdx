@@ -17,7 +17,7 @@ Grants a [KiFS](../../tools/kifs/) directory-level permission to a user or role.
 | Name | Type | Description |
 | --- | --- | --- |
 | name | string | Name of the user or role to which the permission will be granted. Must be an existing user or role. |
-| permission | string | Permission to grant to the user or role. <br/> <br/> directory_read: For files in the directory, access to list files, download files, or use files in server side functions <br/> directory_write: Access to upload files to, or delete files from, the directory. A user or role with write access automatically has read access |
+| permission | string | Permission to grant to the user or role. <br/> <br/> directory_read: For files in the directory, access to list files, download files, or use files in server side functions <br/> <br/> directory_write: Access to upload files to, or delete files from, the directory. A user or role with write access automatically has read access |
 | directory_name | string | Name of the KiFS directory to which the permission grants access. An empty directory name grants access to all KiFS directories |
 | options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). |
 

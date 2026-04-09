@@ -20,7 +20,7 @@ Revokes a [data source](../../../concepts/data_sources/) permission from a user 
 | Name | Type | Description |
 | --- | --- | --- |
 | name | string | Name of the user or role from which the permission will be revoked. Must be an existing user or role. |
-| permission | string | Permission to revoke from the user or role <br/> <br/> admin: Admin access on the given data source <br/> connect: Connect access on the given data source |
+| permission | string | Permission to revoke from the user or role <br/> <br/> admin: Admin access on the given data source <br/> <br/> connect: Connect access on the given data source |
 | datasource_name | string | Name of the data source on which the permission will be revoked. Must be an existing data source, or an empty string to revoke permission from all data sources. |
 | options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). |
 
@@ -36,4 +36,4 @@ The GPUdb server embeds the endpoint response inside a standard response structu
 | message | String | Empty if success or an error message |
 | data_type | String | 'revoke_permission_datasource_response' or 'none' in case of an error |
 | data | String | Empty string |
-| data_str | JSON or | This embedded JSON represents the result of the /revoke/permission/datasource endpoint: <br/> <br/> name: [string] Value of input parameter *name*. <br/> permission: [string] Value of input parameter *permission*. <br/> datasource_name: [string] Value of input parameter *datasource_name*. <br/> info: [map of string to strings] Additional information. <br/> Empty string in case of an error. |
+| data_str | JSON or | This embedded JSON represents the result of the /revoke/permission/datasource endpoint: <br/> <br/> name: [string] Value of input parameter *name*. <br/> <br/> permission: [string] Value of input parameter *permission*. <br/> <br/> datasource_name: [string] Value of input parameter *datasource_name*. <br/> <br/> info: [map of string to strings] Additional information. <br/> <br/> Empty string in case of an error. |

@@ -78,8 +78,8 @@ The `WITH OPTIONS` clause is only valid when used within JDBC.
 
 | Option | Description |
 | --- | --- |
-| `BATCH SIZE` | Use an ingest batch size of the given number of records. <br/> The default batch size is *50,000*. |
-| `ON ERROR` | When an error is encountered inserting a record, handle it using one of the following modes.  The default mode is `ABORT`. <br/> <br/> `PERMISSIVE`: If an error is encountered parsing a source record, attempt to insert as many of the valid fields from the record as possible; insert a null for each errant value found. <br/> `SKIP`: If an error is encountered parsing a source record, skip the record. <br/> `ABORT`: If an error is encountered parsing a source record, stop the insert process. Primary key collisions are considered abortable errors in this mode. |
+| `BATCH SIZE` | Use an ingest batch size of the given number of records. <br/> <br/> The default batch size is *50,000*. |
+| `ON ERROR` | When an error is encountered inserting a record, handle it using one of the following modes.  The default mode is `ABORT`. <br/> <br/> `PERMISSIVE`: If an error is encountered parsing a source record, attempt to insert as many of the valid fields from the record as possible; insert a null for each errant value found. <br/> <br/> `SKIP`: If an error is encountered parsing a source record, skip the record. <br/> <br/> `ABORT`: If an error is encountered parsing a source record, stop the insert process. Primary key collisions are considered abortable errors in this mode. |
 
 
 <a id="sql-dml-insert-select"></a>

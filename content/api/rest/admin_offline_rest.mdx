@@ -19,7 +19,7 @@ Take the system offline. When the system is offline, no user operations can be p
 
 | Name | Type | Description |
 | --- | --- | --- |
-| offline | boolean | Set to true if desired state is offline.  The supported values are: <br/> * true <br/> * false |
+| offline | boolean | Set to true if desired state is offline.  The supported values are: <br/> <br/> * true <br/> * false |
 | options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> flush_to_disk: Flush to disk when going offline The supported values are: * true * false |
 
 
@@ -34,4 +34,4 @@ The GPUdb server embeds the endpoint response inside a standard response structu
 | message | String | Empty if success or an error message |
 | data_type | String | 'admin_offline_response' or 'none' in case of an error |
 | data | String | Empty string |
-| data_str | JSON or | This embedded JSON represents the result of the /admin/offline endpoint: <br/> <br/> is_offline: [boolean] Returns true if the system is offline, or false otherwise. <br/> info: [map of string to strings] Additional information. <br/> Empty string in case of an error. |
+| data_str | JSON or | This embedded JSON represents the result of the /admin/offline endpoint: <br/> <br/> is_offline: [boolean] Returns true if the system is offline, or false otherwise. <br/> <br/> info: [map of string to strings] Additional information. <br/> <br/> Empty string in case of an error. |

@@ -33,4 +33,4 @@ The GPUdb server embeds the endpoint response inside a standard response structu
 | message | String | Empty if success or an error message |
 | data_type | String | 'admin_show_shards_response' or 'none' in case of an error |
 | data | String | Empty string |
-| data_str | JSON or | This embedded JSON represents the result of the /admin/show/shards endpoint: <br/> <br/> version: [long] Current shard array version number. <br/> rank: [array of ints] Array of ranks indexed by the shard number. <br/> tom: [array of ints] Array of toms to which the corresponding shard belongs. <br/> info: [map of string to strings] Additional information. <br/> Empty string in case of an error. |
+| data_str | JSON or | This embedded JSON represents the result of the /admin/show/shards endpoint: <br/> <br/> version: [long] Current shard array version number. <br/> <br/> rank: [array of ints] Array of ranks indexed by the shard number. <br/> <br/> tom: [array of ints] Array of toms to which the corresponding shard belongs. <br/> <br/> info: [map of string to strings] Additional information. <br/> <br/> Empty string in case of an error. |

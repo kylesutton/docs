@@ -35,4 +35,4 @@ The GPUdb server embeds the endpoint response inside a standard response structu
 | message | String | Empty if success or an error message |
 | data_type | String | 'show_tables_by_type_response' or 'none' in case of an error |
 | data | String | Empty string |
-| data_str | JSON or | This embedded JSON represents the result of the /show/tables/bytype endpoint: <br/> <br/> table_names: [array of strings] List of tables matching the input criteria. <br/> info: [map of string to strings] Additional information. <br/> Empty string in case of an error. |
+| data_str | JSON or | This embedded JSON represents the result of the /show/tables/bytype endpoint: <br/> <br/> table_names: [array of strings] List of tables matching the input criteria. <br/> <br/> info: [map of string to strings] Additional information. <br/> <br/> Empty string in case of an error. |

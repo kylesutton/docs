@@ -266,17 +266,13 @@ While all ingest schemes using the `BulkInserter` provide automatic batching
 of records and reduction in network traffic to, and processing load on, the head
 node, many also provide the benefit of parallelizing the batch inserts.
 
-================== =================================================================================
-Ingest Scheme      Parallelism of Inserts
-================== =================================================================================
-By Record          None; each given record is queued and any full queue is inserted serially
-By List            All records in the given record list are queued and then inserted in parallel
-Manual Flush       All queued records are inserted in parallel, at the user's direction
-Timed Flush        All queued records are inserted in parallel, at a user-specified interval
-External Threading Multiple threads use a single `BulkInserter` to insert records in parallel;
-                   note that the `BulkInserter` itself can be configured to use any of the other
-                   ingest schemes for additional parallelism
-================== =================================================================================
+| Ingest Scheme | Parallelism of Inserts |
+| --- | --- |
+| By Record | None; each given record is queued and any full queue is inserted serially |
+| By List | All records in the given record list are queued and then inserted in parallel |
+| Manual Flush | All queued records are inserted in parallel, at the user's direction |
+| Timed Flush | All queued records are inserted in parallel, at a user-specified interval |
+| External Threading | Multiple threads use a single `BulkInserter` to insert records in parallel; note that the `BulkInserter` itself can be configured to use any of the other ingest schemes for additional parallelism |
 
 
 <CodeGroup>
@@ -482,22 +478,11 @@ private static class BatchInsert implements Runnable
 The `BulkInserter` supports three types of record objects, each offering a
 different balance of type safety, flexibility, and schema migration support.
 
-================== =================================================================================
-Object Type        Description
-================== =================================================================================
-Annotated Class    Uses a `RecordObject`-annotated Java class whose instances serve as both the
-                   schema definition and data container; offers compile-time type safety but cannot
-                   adapt to schema migrations that add or remove columns, as the class definition is
-                   fixed at compile time.
-`GenericRecord`  Uses a dynamic record constructed from a `Type` retrieved from an existing
-                   table via `Type.fromTable()`; field values are set by column index or name, and
-                   a new `Type` can be acquired after schema changes to accommodate structural
-                   changes like column additions.
-JSON `String`    Records are represented as JSON strings; the `BulkInserter` is constructed
-                   without a `Type`, making this the most flexible option--it naturally
-                   accommodates schema changes without updating the record format or
-                   re-acquiring the table type.
-================== =================================================================================
+| Object Type | Description |
+| --- | --- |
+| Annotated Class | Uses a `RecordObject`-annotated Java class whose instances serve as both the schema definition and data container; offers compile-time type safety but cannot adapt to schema migrations that add or remove columns, as the class definition is fixed at compile time. |
+| `GenericRecord` | Uses a dynamic record constructed from a `Type` retrieved from an existing table via `Type.fromTable()`; field values are set by column index or name, and a new `Type` can be acquired after schema changes to accommodate structural changes like column additions. |
+| JSON `String` | Records are represented as JSON strings; the `BulkInserter` is constructed without a `Type`, making this the most flexible option--it naturally accommodates schema changes without updating the record format or re-acquiring the table type. |
 
 
 <CodeGroup>
@@ -603,14 +588,10 @@ Both objects provide automatic batching of records and reduction in network
 traffic to, and processing load on, the head node; though, neither offers the
 benefit of any inherent parallelism.
 
-================== =================================================================================
-Ingest Object      Description
-================== =================================================================================
-`GPUdbTable`     When constructed with the `use_multihead_io` options set to `True`, a
-                   `GPUdbTable` object automatically uses a `GPUdbIngestor` object for inserts
-`GPUdbIngestor`  Handles *distributed ingest*, and may be faster than using a `GPUdbTable`
-                   object as there will be less overhead in the direct use of a `GPUdbIngestor`
-================== =================================================================================
+| Ingest Object | Description |
+| --- | --- |
+| `GPUdbTable` | When constructed with the `use_multihead_io` options set to `True`, a `GPUdbTable` object automatically uses a `GPUdbIngestor` object for inserts |
+| `GPUdbIngestor` | Handles *distributed ingest*, and may be faster than using a `GPUdbTable` object as there will be less overhead in the direct use of a `GPUdbIngestor` |
 
 Note that the list insert functions are effectively wrappers for the single
 insert functions in the examples below; they serve as a convenience and do not

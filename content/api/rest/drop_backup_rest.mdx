@@ -22,7 +22,7 @@ accessible via the [data sink](../../../concepts/data_sinks/) specified by input
 | --- | --- | --- |
 | backup_name | string | Name of the backup to be deleted. An empty string or '*' will delete all existing backups. Any text followed by a '*' will delete backups whose name starts with that text.  When deleting multiple backups, *delete_all_backups* must be set to *true*. |
 | datasink_name | string | Data sink through which the backup is accessible. |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> dry_run: Whether or not to perform a dry run of a backup deletion. The default value is `false`. The supported values are: * true * false <br/> delete_all_backups: Allow multiple backups to be deleted if *true* and multiple backup names are found matching input parameter *backup_name*. The default value is `false`. The supported values are: * true <br/> * false <br/> <br/> no_error_if_not_exists: Whether or not to suppress the error if the specified backup does not exist. The default value is `false`. The supported values are: * true * false |
+| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> dry_run: Whether or not to perform a dry run of a backup deletion. The default value is `false`. The supported values are: * true * false <br/> <br/> delete_all_backups: Allow multiple backups to be deleted if *true* and multiple backup names are found matching input parameter *backup_name*. The default value is `false`. The supported values are: * true <br/> * false <br/> <br/> no_error_if_not_exists: Whether or not to suppress the error if the specified backup does not exist. The default value is `false`. The supported values are: * true * false |
 
 
 ## Output Parameter Description
@@ -36,4 +36,4 @@ The GPUdb server embeds the endpoint response inside a standard response structu
 | message | String | Empty if success or an error message |
 | data_type | String | 'drop_backup_response' or 'none' in case of an error |
 | data | String | Empty string |
-| data_str | JSON or | This embedded JSON represents the result of the /drop/backup endpoint: <br/> <br/> backup_name: [string] Value of input parameter *backup_name*. <br/> backup_names: [array of strings] Names of backups that were deleted. <br/> info: [map of string to strings] Additional information. <br/> Empty string in case of an error. |
+| data_str | JSON or | This embedded JSON represents the result of the /drop/backup endpoint: <br/> <br/> backup_name: [string] Value of input parameter *backup_name*. <br/> <br/> backup_names: [array of strings] Names of backups that were deleted. <br/> <br/> info: [map of string to strings] Additional information. <br/> <br/> Empty string in case of an error. |

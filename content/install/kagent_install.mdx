@@ -30,11 +30,11 @@ Operating system, hardware, and network requirements to run Kinetica.
 
 | CPU Platform | Linux Distribution | Versions |
 | --- | --- | --- |
-| ARM64 <br/> Axion <br/> Gravitron | RHEL / AlmaLinux / RockyLinux | 8.2+ <br/> 9 |
-| ARM64 <br/> Axion <br/> Gravitron | Ubuntu | 22.04 LTS <br/> 24.04 LTS |
-| PPC <br/> *(CPU only)* | Ubuntu | 20.04 LTS |
-| x86 | RHEL / AlmaLinux / RockyLinux | 8.2+ <br/> 9 |
-| x86 | Ubuntu | 20.04 LTS <br/> 22.04 LTS <br/> 24.04 LTS |
+| ARM64 <br/> <br/> Axion <br/> <br/> Gravitron | RHEL / AlmaLinux / RockyLinux | 8.2+ <br/> <br/> 9 |
+| ARM64 <br/> <br/> Axion <br/> <br/> Gravitron | Ubuntu | 22.04 LTS <br/> <br/> 24.04 LTS |
+| PPC <br/> <br/> *(CPU only)* | Ubuntu | 20.04 LTS |
+| x86 | RHEL / AlmaLinux / RockyLinux | 8.2+ <br/> <br/> 9 |
+| x86 | Ubuntu | 20.04 LTS <br/> <br/> 22.04 LTS <br/> <br/> 24.04 LTS |
 
 
 ### Minimum Hardware Requirements
@@ -42,7 +42,7 @@ Operating system, hardware, and network requirements to run Kinetica.
 
 | Component | Specification |
 | --- | --- |
-| CPU | Two socket based server with at least 8 cores of one of these CPU types: <br/> * *ARM64* / *Axion* / *Gravitron* <br/> * *Intel (or compatible)* x86-64 with AVX2 <br/> * *Power PC* 8le |
+| CPU | Two socket based server with at least 8 cores of one of these CPU types: <br/> <br/> * *ARM64* / *Axion* / *Gravitron* <br/> * *Intel (or compatible)* x86-64 with AVX2 <br/> * *Power PC* 8le |
 | GPU | See [GPU Driver](/content/install/shared/gpu_driver) below for the list of supported GPUs |
 | Memory | Minimum 8GB |
 | Hard Drive | SSD or SATA 7200RPM hard drive with 4X memory capacity |
@@ -574,9 +574,9 @@ Additional helper scripts and utilities are available in
 | `gpudb_hosts_addresses.sh` | Yes | Prints all the unique hostnames (or IPs) specified in `gpudb.conf` |
 | `gpudb_hosts_diff_file.sh` | Yes | Run as `gpudb` user or root. Utility to diff a given file from the current machine to the specified destination file on one or more hosts |
 | `gpudb_hosts_logfile_cleanup.sh` | Yes | Run as `gpudb` user or root. Script to delete old log files and optionally keep the last *n* logs |
-| `gpudb_hosts_persist_clear.sh` | Yes | Run as `gpudb` user or root. Script to clear the database persist files (location specified in `gpudb.conf`) <br/> **Important**: Only run this while the database is stopped. |
+| `gpudb_hosts_persist_clear.sh` | Yes | Run as `gpudb` user or root. Script to clear the database persist files (location specified in `gpudb.conf`) <br/> <br/> **Important**: Only run this while the database is stopped. |
 | `gpudb_hosts_rsync_to.sh` | Yes | Run as `gpudb` user. Script to copy files from this server to the remove servers using `rsync` |
-| `gpudb_hosts_ssh_copy_id.sh` | Yes | Run as `gpudb` user or root. Script to distribute the `gpudb` user's public SSH keys to the other hosts defined in `gpudb.conf` to allow password-less SSH. This script should only be run from the head node. <br/> **Important**: This script should be re-run after changing the host configuration to redistribute the keys |
+| `gpudb_hosts_ssh_copy_id.sh` | Yes | Run as `gpudb` user or root. Script to distribute the `gpudb` user's public SSH keys to the other hosts defined in `gpudb.conf` to allow password-less SSH. This script should only be run from the head node. <br/> <br/> **Important**: This script should be re-run after changing the host configuration to redistribute the keys |
 | `gpudb_hosts_ssh_execute.sh` | Yes | Run as `gpudb` user or root. Script to execute a program with arguments on all hosts specified in `gpudb.conf`, e.g., `./gpudb_hosts_ssh_execute.sh "ps aux"` or `./gpudb_hosts_ssh_execute.sh "hostname"` |
 | `gpudb_hosts_ssh_setup_passwordless.sh` | Yes | Script to add an authorized SSH key for a given user across a set of hosts. |
 | `gpudb_keygen` | No | Executable to generate and print a machine key. You can use the key to obtain a license from support@kinetica.com |

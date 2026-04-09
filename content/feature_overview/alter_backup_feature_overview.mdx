@@ -18,10 +18,10 @@ accessible via the [data sink](../../concepts/data_sinks/) specified by input pa
 | Name | Type | Description |
 | --- | --- | --- |
 | backup_name | string | Name of the backup to be altered. |
-| action | string | Operation to be applied. <br/> <br/> checksum: Calculate checksum for backed-up files. <br/> ddl_only: Whether or not to only save DDL and not back up table data, when taking future snapshots; set input parameter *value* to 'true' or 'false' for DDL only or DDL and table data, respectively. <br/> max_incremental_backups_to_keep: Maximum number of incremental snapshots to keep, when taking future snapshots; set input parameter *value* to the number of snapshots to keep. <br/> merge: Merges all snapshots within a backup and creates a single full snapshot. <br/> purge: Deletes a snapshot from a backup; set input parameter *value* to the snapshot ID to purge. |
+| action | string | Operation to be applied. <br/> <br/> checksum: Calculate checksum for backed-up files. <br/> <br/> ddl_only: Whether or not to only save DDL and not back up table data, when taking future snapshots; set input parameter *value* to 'true' or 'false' for DDL only or DDL and table data, respectively. <br/> <br/> max_incremental_backups_to_keep: Maximum number of incremental snapshots to keep, when taking future snapshots; set input parameter *value* to the number of snapshots to keep. <br/> <br/> merge: Merges all snapshots within a backup and creates a single full snapshot. <br/> <br/> purge: Deletes a snapshot from a backup; set input parameter *value* to the snapshot ID to purge. |
 | value | string | Value of the modification, depending on input parameter *action*. |
 | datasink_name | string | Data sink through which the backup is accessible. |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> comment: Comments to store with the backup. <br/> dry_run: Whether or not to perform a dry run of a backup alteration. The default value is `false`. The supported values are: * true * false |
+| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> comment: Comments to store with the backup. <br/> <br/> dry_run: Whether or not to perform a dry run of a backup alteration. The default value is `false`. The supported values are: * true * false |
 
 
 ## Output Parameter Description

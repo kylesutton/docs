@@ -54,4 +54,4 @@ The GPUdb server embeds the endpoint response inside a standard response structu
 | message | String | Empty if success or an error message |
 | data_type | String | 'admin_add_ranks_response' or 'none' in case of an error |
 | data | String | Empty string |
-| data_str | JSON or | This embedded JSON represents the result of the /admin/add/ranks endpoint: <br/> <br/> added_ranks: [array of strings] The number assigned to each added rank, formatted as 'rankN', in the same order as the ranks in input parameter *hosts* and input parameter *config_params*. <br/> info: [map of string to strings] Additional information. <br/> Empty string in case of an error. |
+| data_str | JSON or | This embedded JSON represents the result of the /admin/add/ranks endpoint: <br/> <br/> added_ranks: [array of strings] The number assigned to each added rank, formatted as 'rankN', in the same order as the ranks in input parameter *hosts* and input parameter *config_params*. <br/> <br/> info: [map of string to strings] Additional information. <br/> <br/> Empty string in case of an error. |

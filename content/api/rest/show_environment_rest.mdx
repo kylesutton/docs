@@ -21,7 +21,7 @@ Returns detailed information about existing environments.
 | Name | Type | Description |
 | --- | --- | --- |
 | environment_name | string | Name of the environment on which to retrieve information. The name must refer to a currently existing environment. If '*' or an empty value is specified, information about all environments will be returned.  The default value is ''. |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> no_error_if_not_exists: If *true* and if the environment specified in input parameter *environment_name* does not exist, no error is returned. If *false* and if the environment specified in input parameter *environment_name* does not exist, then an error is returned. The default value is `false`. The supported values are: * true * false <br/> show_names_only: If *true* only return the names of the installed environments and omit package listing. The default value is `false`.  The supported values are: * true * false |
+| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> no_error_if_not_exists: If *true* and if the environment specified in input parameter *environment_name* does not exist, no error is returned. If *false* and if the environment specified in input parameter *environment_name* does not exist, then an error is returned. The default value is `false`. The supported values are: * true * false <br/> <br/> show_names_only: If *true* only return the names of the installed environments and omit package listing. The default value is `false`.  The supported values are: * true * false |
 
 
 ## Output Parameter Description
@@ -35,4 +35,4 @@ The GPUdb server embeds the endpoint response inside a standard response structu
 | message | String | Empty if success or an error message |
 | data_type | String | 'show_environment_response' or 'none' in case of an error |
 | data | String | Empty string |
-| data_str | JSON or | This embedded JSON represents the result of the /show/environment endpoint: <br/> <br/> environment_names: [array of strings] A list of all environment names. <br/> packages: [array of arrays of strings] Information about the installed packages in the respective environments in output parameter *environment_names*. <br/> info: [map of string to strings] Additional information. <br/> Empty string in case of an error. |
+| data_str | JSON or | This embedded JSON represents the result of the /show/environment endpoint: <br/> <br/> environment_names: [array of strings] A list of all environment names. <br/> <br/> packages: [array of arrays of strings] Information about the installed packages in the respective environments in output parameter *environment_names*. <br/> <br/> info: [map of string to strings] Additional information. <br/> <br/> Empty string in case of an error. |

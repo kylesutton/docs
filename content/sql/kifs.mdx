@@ -256,8 +256,8 @@ INTO '<kifs path>'
 
 | Parameters | Description |
 | --- | --- |
-| `<file path(s)>` | Local path(s) of the file(s) to upload to *KiFS*, as a comma-separated list of single-quoted file paths; wildcards (`*`) can be used to specify a group of files. <br/> <br/> `'archive/*.csv'`: Upload all files under the <Badge color="gray">archive</Badge> directory with a <Badge color="gray">csv</Badge> extension <br/> `'data/q1.csv','data/q2.csv'`: Upload <Badge color="gray">q1.csv</Badge> & <Badge color="gray">q2.csv</Badge> that reside under the <Badge color="gray">data</Badge> directory |
-| `<kifs path>` | Path in *KiFS*; this can be either the name of a *directory* or a *directory* followed by virtual subdirectories separated by `/` characters. <br/> For example, uploading a file named `2021.q1.csv` to: <br/> * `'data'` - will upload it to the `data` *directory* and make it available as `data/2021.q1.csv` <br/> * `'data/sales/Q1'` - will upload it to the `data` *directory* and make it available as `data/sales/Q1/2021.q1.csv` <br/> <br/> <Info> Only the *directory* specified within this path must exist for the upload to succeed. Any virtual subdirectories added to this path do not need to exist before uploading. </Info> |
+| `<file path(s)>` | Local path(s) of the file(s) to upload to *KiFS*, as a comma-separated list of single-quoted file paths; wildcards (`*`) can be used to specify a group of files. <br/> <br/> `'archive/*.csv'`: Upload all files under the <Badge color="gray">archive</Badge> directory with a <Badge color="gray">csv</Badge> extension <br/> <br/> `'data/q1.csv','data/q2.csv'`: Upload <Badge color="gray">q1.csv</Badge> & <Badge color="gray">q2.csv</Badge> that reside under the <Badge color="gray">data</Badge> directory |
+| `<kifs path>` | Path in *KiFS*; this can be either the name of a *directory* or a *directory* followed by virtual subdirectories separated by `/` characters. <br/> <br/> For example, uploading a file named `2021.q1.csv` to: <br/> <br/> * `'data'` - will upload it to the `data` *directory* and make it available as `data/2021.q1.csv` <br/> * `'data/sales/Q1'` - will upload it to the `data` *directory* and make it available as `data/sales/Q1/2021.q1.csv` <br/> <Info> Only the *directory* specified within this path must exist for the upload to succeed. Any virtual subdirectories added to this path do not need to exist before uploading. </Info> |
 
 For example, to upload a file to a *directory*, `kdata`:
 
@@ -338,7 +338,7 @@ Outputs detail about one or all
 
 | Parameters | Description |
 | --- | --- |
-| `<kifs path(s)>` | Name(s) of existing *directories* and/or *files* for which detail will be output, as a comma-separated list of single-quoted paths. <br/> <br/> `'archive'`: Output detail of all *files* under the *KiFS directory* <Badge color="gray">archive</Badge>. <br/> `'data/q1.csv','data/q2.csv'`: Output detail of <Badge color="gray">q1.csv</Badge> & <Badge color="gray">q2.csv</Badge> that reside under the <Badge color="gray">data</Badge> directory. |
+| `<kifs path(s)>` | Name(s) of existing *directories* and/or *files* for which detail will be output, as a comma-separated list of single-quoted paths. <br/> <br/> `'archive'`: Output detail of all *files* under the *KiFS directory* <Badge color="gray">archive</Badge>. <br/> <br/> `'data/q1.csv','data/q2.csv'`: Output detail of <Badge color="gray">q1.csv</Badge> & <Badge color="gray">q2.csv</Badge> that reside under the <Badge color="gray">data</Badge> directory. |
 
 
 <Info>
@@ -388,7 +388,7 @@ INTO '<local directory>'
 | Parameters | Description |
 | --- | --- |
 | `FILE[S]` | Optional keyword for clarity. |
-| `<kifs file path(s)>` | *KiFS file(s)* to download to the local file system, as a comma-separated list of single-quoted file paths. <br/> <br/> `'archive/products.csv'`: Download <Badge color="gray">archive/products.csv</Badge> <br/> `'data/q1.csv','data/q2.csv'`: Download <Badge color="gray">q1.csv</Badge> & <Badge color="gray">q2.csv</Badge> that reside under the <Badge color="gray">data</Badge> directory |
+| `<kifs file path(s)>` | *KiFS file(s)* to download to the local file system, as a comma-separated list of single-quoted file paths. <br/> <br/> `'archive/products.csv'`: Download <Badge color="gray">archive/products.csv</Badge> <br/> <br/> `'data/q1.csv','data/q2.csv'`: Download <Badge color="gray">q1.csv</Badge> & <Badge color="gray">q2.csv</Badge> that reside under the <Badge color="gray">data</Badge> directory |
 | `<local directory>` | Local directory path into which files will be downloaded. |
 
 For example, to download a *KiFS file* to a local directory, `/tmp`:

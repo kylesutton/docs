@@ -47,18 +47,18 @@ title: Math Functions
 | `IFINF(expr, val)` | Alias for `IF_INF(expr, val)` |
 | `IFINFINITY(expr, val)` | Alias for `IF_INF(expr, val)` |
 | `IFNAN(expr, val)` | Alias for `IF_NAN(expr, val)` |
-| `IF_ERROR(expr, val)` | Evaluates the given *double* or *float* `expr`, and if it resolves to infinity or `NaN`, return `val` <br/> <Tip> Conceptually, this function is the same as `IF_INF(IF_NAN(expr, val), val)` </Tip> <br/> Example: <br/> <br/> `IF_ERROR((double(10)/0), 1)`: `1.0` <br/> `IF_ERROR(log(-1), 1)`: `1.0` |
-| `IF_INF(expr, val)` | Evaluates the given *double* or *float* `expr`, and if it resolves to infinity, return `val` <br/> Example: <br/> <br/> `IF_INF((double(10)/0), 999)`: `999.0` <br/> `IF_INF(log(-1), 999)`: `NaN` |
+| `IF_ERROR(expr, val)` | Evaluates the given *double* or *float* `expr`, and if it resolves to infinity or `NaN`, return `val` <br/> <Tip> Conceptually, this function is the same as `IF_INF(IF_NAN(expr, val), val)` </Tip> <br/> Example: <br/> <br/> `IF_ERROR((double(10)/0), 1)`: `1.0` <br/> <br/> `IF_ERROR(log(-1), 1)`: `1.0` |
+| `IF_INF(expr, val)` | Evaluates the given *double* or *float* `expr`, and if it resolves to infinity, return `val` <br/> <br/> Example: <br/> <br/> `IF_INF((double(10)/0), 999)`: `999.0` <br/> <br/> `IF_INF(log(-1), 999)`: `NaN` |
 | `IF_INFINITY(expr, val)` | Alias for `IF_INF(expr, val)` |
-| `IF_NAN(expr, val)` | Evaluates the given *double* or *float* `expr`, and if it resolves to `NaN`, return `val` <br/> Example: <br/> <br/> `IF_NAN((double(10)/0), -1)`: `Infinity` <br/> `IF_NAN(log(-1), -1)`: `-1.0` |
+| `IF_NAN(expr, val)` | Evaluates the given *double* or *float* `expr`, and if it resolves to `NaN`, return `val` <br/> <br/> Example: <br/> <br/> `IF_NAN((double(10)/0), -1)`: `Infinity` <br/> <br/> `IF_NAN(log(-1), -1)`: `-1.0` |
 | `ISINFINITY(expr)` | Returns `1` (true) if `expr` is infinity by IEEE standard; otherwise, returns `0` (false) |
 | `IS_INFINITY(expr)` | Alias for `ISINFINITY` |
 | `ISNAN(expr)` | Returns `1` (true) if `expr` is not a number by IEEE standard; otherwise, returns `0` (false) |
 | `IS_NAN(expr)` | Alias for `ISNAN` |
 | `ISNUMERIC(expr)` | Returns `1` (true) if `expr` is a number by IEEE standard; otherwise, returns `0` (false) |
 | `IS_NUMERIC(expr)` | Alias for `ISNUMERIC` |
-| `LDEXP(x, exp)` | Returns the value of `x` * 2\ `exp` as a *double* |
-| `LDEXPF(x, exp)` | Returns the value of `x` * 2\ `exp` as a *float* |
+| `LDEXP(x, exp)` | Returns the value of `x` * 2<sup>exp</sup> as a *double* |
+| `LDEXPF(x, exp)` | Returns the value of `x` * 2<sup>exp</sup> as a *float* |
 | `LESSER(expr_a, expr_b)` | Returns whichever of `expr_a` and `expr_b` has the smaller value, based on typed comparison |
 | `LN(expr)` | Returns the natural logarithm of `expr` as a *double* |
 | `LNF(expr)` | Returns the natural logarithm of `expr` as a *float* |
@@ -82,8 +82,8 @@ title: Math Functions
 | `RAND([seed])` | Returns a random floating-point value, with an optional `seed` |
 | `REGR_VALX(y, x)` | Returns NULL if `y` is NULL; otherwise, returns `x` |
 | `REGR_VALY(y, x)` | Returns NULL if `x` is NULL; otherwise, returns `y` |
-| `ROUND(expr[, scale])` | Rounds `expr` to the nearest decimal number with `scale` decimal places when `scale` is a positive number; rounds to the nearest number such that the result has `-(scale)` zeros to the left of the decimal point when `scale` is negative; use `scale` of `0` to round to the nearest integer. <br/> The default value of `scale` is `0`. <br/> Examples: <br/> <br/> `ROUND(12345.678)`: `12346` <br/> `ROUND(12345.678, 2)`: `12345.68` <br/> `ROUND(12345.678, 0)`: `12346` <br/> `ROUND(12345.678, -2)`: `12300` |
-| `SIGN(expr)` | Determines whether a number is positive, negative, or zero; returns one of the following three values: <br/> <br/> *positive*: `1` <br/> *zero*: `0` <br/> *negative*: `-1` |
+| `ROUND(expr[, scale])` | Rounds `expr` to the nearest decimal number with `scale` decimal places when `scale` is a positive number; rounds to the nearest number such that the result has `-(scale)` zeros to the left of the decimal point when `scale` is negative; use `scale` of `0` to round to the nearest integer. <br/> <br/> The default value of `scale` is `0`. <br/> <br/> Examples: <br/> <br/> `ROUND(12345.678)`: `12346` <br/> <br/> `ROUND(12345.678, 2)`: `12345.68` <br/> <br/> `ROUND(12345.678, 0)`: `12346` <br/> <br/> `ROUND(12345.678, -2)`: `12300` |
+| `SIGN(expr)` | Determines whether a number is positive, negative, or zero; returns one of the following three values: <br/> <br/> *positive*: `1` <br/> <br/> *zero*: `0` <br/> <br/> *negative*: `-1` |
 | `SIN(expr)` | Returns the sine of `expr` as a *double* |
 | `SINF(expr)` | Returns the sine of `expr` as a *float* |
 | `SINH(expr)` | Returns the hyperbolic sine of `expr` as a *double* |
@@ -94,5 +94,5 @@ title: Math Functions
 | `TANF(expr)` | Returns the tangent of `expr` as a *float* |
 | `TANH(expr)` | Returns the hyperbolic tangent of `expr` as a *double* |
 | `TANHF(expr)` | Returns the hyperbolic tangent of `expr` as a *float* |
-| `TRUNCATE(expr[, scale])` | Rounds `expr` down to the nearest decimal number with `scale` decimal places when `scale` is a positive number; rounds down to the nearest number such that the result has `-(scale)` zeros to the left of the decimal point when `scale` is negative; use `scale` of `0` to round down to the nearest integer. <br/> The default value of `scale` is `0`. <br/> Examples: <br/> <br/> `TRUNCATE(12345.678)`: `12345` <br/> `TRUNCATE(12345.678, 2)`: `12345.67` <br/> `TRUNCATE(12345.678, 0)`: `12345` <br/> `TRUNCATE(12345.678, -2)`: `12300` |
-| `WIDTH_BUCKET(expr,` `min, max, count)` | Defines a set of `count` equal intervals (buckets) within the range of `min` & `max`, and puts the value of `expr` into one of those buckets, where the value is greater than or equal to the minimum value of the bucket and less than the maximum value of the bucket.  Returns the 1-based number of the bucket into which the value of `expr` fell.  For values smaller than `min`, `0` is returned; for values greater than or equal to `max`, `count + 1` is returned.  Examples: <br/> In the following examples, a set of *5* equal buckets are defined between *0* and *10* (*0-2*, *2-4*, *4-6*, *6-8*, & *8-10*), and various values are bucketed using that set. <br/> <br/> `WIDTH_BUCKET(-1, 0, 10, 5)`: `0` <br/> `WIDTH_BUCKET(0, 0, 10, 5)`: `1` <br/> `WIDTH_BUCKET(5, 0, 10, 5)`: `3` <br/> `WIDTH_BUCKET(10, 0, 10, 5)`: `6` <br/> `WIDTH_BUCKET(11, 0, 10, 5)`: `6` |
+| `TRUNCATE(expr[, scale])` | Rounds `expr` down to the nearest decimal number with `scale` decimal places when `scale` is a positive number; rounds down to the nearest number such that the result has `-(scale)` zeros to the left of the decimal point when `scale` is negative; use `scale` of `0` to round down to the nearest integer. <br/> <br/> The default value of `scale` is `0`. <br/> <br/> Examples: <br/> <br/> `TRUNCATE(12345.678)`: `12345` <br/> <br/> `TRUNCATE(12345.678, 2)`: `12345.67` <br/> <br/> `TRUNCATE(12345.678, 0)`: `12345` <br/> <br/> `TRUNCATE(12345.678, -2)`: `12300` |
+| `WIDTH_BUCKET(expr,` `min, max, count)` | Defines a set of `count` equal intervals (buckets) within the range of `min` & `max`, and puts the value of `expr` into one of those buckets, where the value is greater than or equal to the minimum value of the bucket and less than the maximum value of the bucket.  Returns the 1-based number of the bucket into which the value of `expr` fell.  For values smaller than `min`, `0` is returned; for values greater than or equal to `max`, `count + 1` is returned.  Examples: <br/> <br/> In the following examples, a set of *5* equal buckets are defined between *0* and *10* (*0-2*, *2-4*, *4-6*, *6-8*, & *8-10*), and various values are bucketed using that set. <br/> <br/> `WIDTH_BUCKET(-1, 0, 10, 5)`: `0` <br/> <br/> `WIDTH_BUCKET(0, 0, 10, 5)`: `1` <br/> <br/> `WIDTH_BUCKET(5, 0, 10, 5)`: `3` <br/> <br/> `WIDTH_BUCKET(10, 0, 10, 5)`: `6` <br/> <br/> `WIDTH_BUCKET(11, 0, 10, 5)`: `6` |

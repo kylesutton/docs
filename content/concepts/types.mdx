@@ -69,56 +69,71 @@ and a *data type column property* of *int16* will have a *specific type* of
 *int16*, which is a 16-bit signed integer.
 
 
+### `int`
+
 | Specific Type | Bytes in Memory | Minimum Value | Maximum Value |
 | --- | --- | --- | --- |
-| **Base Type:**         `int` |  |  |  |
 | `int` *(default)* | 4 | -2147483648 | 2147483647 |
 | `int16` | 2 | -32768 | 32767 |
 | `int8` | 1 | -128 | 127 |
 | `boolean` | 1 | 0 | 1 |
-| **Base Type:**         `long` |  |  |  |
-| `long` *(default)* | 8 | -9223372036854775808 | 9223372036854775807 |
-| `timestamp` | 8 | -30610224000000 <br/> (1/1/1000 00:00:00.000) | 29379542399999 <br/> (12/31/2900 23:59:59.999) |
-| **Base Type:**         `float` |  |  |  |
-| `float` | 4 | -3.40282 * 10\ `38` | 3.40282 * 10\ `38` |
-| **Base Type:**         `double` |  |  |  |
-| `double` | 8 | -1.79769313486231 * 10\ `308` | 1.79769313486231 * 10\ `308` |
-| **Base Type:**         `string` |  |  |  |
-| `string` *(default)* | 32 + *length* | (empty string) | (100,000,000,000 bytes) |
-| [array(boolean[,n])](/content/concepts/array) | *varies* | (empty array) | (100,000,000,000 bytes) |
-| [array(int[,n])](/content/concepts/array) | *varies* | (empty array) | (100,000,000,000 bytes) |
-| [array(long[,n])](/content/concepts/array) | *varies* | (empty array) | (100,000,000,000 bytes) |
-| [array(ulong[,n])](/content/concepts/array) | *varies* | (empty array) | (100,000,000,000 bytes) |
-| [array(float[,n])](/content/concepts/array) | *varies* | (empty array) | (100,000,000,000 bytes) |
-| [array(double[,n])](/content/concepts/array) | *varies* | (empty array) | (100,000,000,000 bytes) |
-| [array(string[,n])](/content/concepts/array) | *varies* | (empty array) | (100,000,000,000 bytes) |
-| `char1` | 1 | (empty string) | (1 byte) |
-| `char2` | 2 | (empty string) | (2 bytes) |
-| `char4` | 4 | (empty string) | (4 bytes) |
-| `char8` | 8 | (empty string) | (8 bytes) |
-| `char16` | 16 | (empty string) | (16 bytes) |
-| `char32` | 32 | (empty string) | (32 bytes) |
-| `char64` | 64 | (empty string) | (64 bytes) |
-| `char128` | 128 | (empty string) | (128 bytes) |
-| `char256` | 256 | (empty string) | (256 bytes) |
-|                        +------------------+--------------------------------+-------------------------------+
-|                        | 12               | -39614081257132168796771975168 | 39614081257132168796771975167 |
-| `date`               | 4                | 1000-01-01                     | 2900-12-31                    |
-|                        |                  +--------------------------------+-------------------------------+
-|                        |                  | 9999-01-01                     | 9999-12-31                    |
-| `datetime`           | 8                | 1000-01-01 00:00:00.000        | 2900-12-31 23:59:59.999       |
-|                        |                  +--------------------------------+-------------------------------+
-|                        |                  | 9999-01-01 00:00:00.000        | 9999-12-31 23:59:59.999       |
-| `ipv4` | 4 | 0.0.0.0 | 255.255.255.255 |
+
+### `long`
+
+| Specific Type | Bytes in Memory | Minimum Value | Maximum Value |
 | --- | --- | --- | --- |
-| [json](/content/concepts/json) | *varies* | (empty string) | (100,000,000,000 bytes) |
-| `time` | 4 | 00:00:00.000 | 23:59:59.999 |
-| `ulong` | 8 | 0 | 18446744073709551615 |
-| `uuid` | 16 | (empty string) | (36 bytes) |
-| `wkt` | *varies* | (empty geometry) | (100,000,000,000 bytes) |
-| **Base Type:**         `bytes` |  |  |  |
+| `long` *(default)* | 8 | -9223372036854775808 | 9223372036854775807 |
+| `timestamp` | 8 | -30610224000000 <br/> <br/> (1/1/1000 00:00:00.000) | 29379542399999 <br/> <br/> (12/31/2900 23:59:59.999) |
+
+### `float`
+
+| Specific Type | Bytes in Memory | Minimum Value | Maximum Value |
+| --- | --- | --- | --- |
+| `float` | 4 | -3.40282 * 10<sup>38</sup> | 3.40282 * 10<sup>38</sup> |
+
+### `double`
+
+| Specific Type | Bytes in Memory | Minimum Value | Maximum Value |
+| --- | --- | --- | --- |
+| `double` | 8 | <span style={{whiteSpace: "nowrap"}}>-1.79769313486231 * 10<sup>308</sup></span> | <span style={{whiteSpace: "nowrap"}}>1.79769313486231 * 10<sup>308</sup></span> |
+
+### `string`
+
+| Specific Type | Bytes in Memory | Minimum Value | Maximum Value |
+| --- | --- | --- | --- |
+| <span style={{whiteSpace: "nowrap"}}>`string` *(default)*</span> | 32 + *length* | (empty string) | (100,000,000,000 bytes) |
+| <span style={{whiteSpace: "nowrap"}}>[`array(boolean[,n])`](/content/concepts/array)</span> | *varies* | (empty array) | (100,000,000,000 bytes) |
+| <span style={{whiteSpace: "nowrap"}}>[`array(int[,n])`](/content/concepts/array)</span> | *varies* | (empty array) | (100,000,000,000 bytes) |
+| <span style={{whiteSpace: "nowrap"}}>[`array(long[,n])`](/content/concepts/array)</span> | *varies* | (empty array) | (100,000,000,000 bytes) |
+| <span style={{whiteSpace: "nowrap"}}>[`array(ulong[,n])`](/content/concepts/array)</span> | *varies* | (empty array) | (100,000,000,000 bytes) |
+| <span style={{whiteSpace: "nowrap"}}>[`array(float[,n])`](/content/concepts/array)</span> | *varies* | (empty array) | (100,000,000,000 bytes) |
+| <span style={{whiteSpace: "nowrap"}}>[`array(double[,n])`](/content/concepts/array)</span> | *varies* | (empty array) | (100,000,000,000 bytes) |
+| <span style={{whiteSpace: "nowrap"}}>[`array(string[,n])`](/content/concepts/array)</span> | *varies* | (empty array) | (100,000,000,000 bytes) |
+| <span style={{whiteSpace: "nowrap"}}>`char1`</span> | 1 | (empty string) | (1 byte) |
+| <span style={{whiteSpace: "nowrap"}}>`char2`</span> | 2 | (empty string) | (2 bytes) |
+| <span style={{whiteSpace: "nowrap"}}>`char4`</span> | 4 | (empty string) | (4 bytes) |
+| <span style={{whiteSpace: "nowrap"}}>`char8`</span> | 8 | (empty string) | (8 bytes) |
+| <span style={{whiteSpace: "nowrap"}}>`char16`</span> | 16 | (empty string) | (16 bytes) |
+| <span style={{whiteSpace: "nowrap"}}>`char32`</span> | 32 | (empty string) | (32 bytes) |
+| <span style={{whiteSpace: "nowrap"}}>`char64`</span> | 64 | (empty string) | (64 bytes) |
+| <span style={{whiteSpace: "nowrap"}}>`char128`</span> | 128 | (empty string) | (128 bytes) |
+| <span style={{whiteSpace: "nowrap"}}>`char256`</span> | 256 | (empty string) | (256 bytes) |
+| <span style={{whiteSpace: "nowrap"}}>`decimal(p,s)`</span> | 8 12 | <small>-999999999999999999 -39614081257132168796771975168</small> | <small>999999999999999999 39614081257132168796771975167</small> |
+| <span style={{whiteSpace: "nowrap"}}>`date`</span> | 4 | 1000-01-01 9999-01-01 | 2900-12-31 9999-12-31 |
+| <span style={{whiteSpace: "nowrap"}}>`datetime`</span> | 8 | 1000-01-01 00:00:00.000 9999-01-01 00:00:00.000 | 2900-12-31 23:59:59.999 9999-12-31 23:59:59.999 |
+| <span style={{whiteSpace: "nowrap"}}>`ipv4`</span> | 4 | 0.0.0.0 | 255.255.255.255 |
+| <span style={{whiteSpace: "nowrap"}}>[`json`](/content/concepts/json)</span> | *varies* | (empty string) | (100,000,000,000 bytes) |
+| <span style={{whiteSpace: "nowrap"}}>`time`</span> | 4 | 00:00:00.000 | 23:59:59.999 |
+| <span style={{whiteSpace: "nowrap"}}>`ulong`</span> | 8 | 0 | 18446744073709551615 |
+| <span style={{whiteSpace: "nowrap"}}>`uuid`</span> | 16 | (empty string) | (36 bytes) |
+| <span style={{whiteSpace: "nowrap"}}>`wkt`</span> | *varies* | (empty geometry) | (100,000,000,000 bytes) |
+
+### `bytes`
+
+| Specific Type | Bytes in Memory | Minimum Value | Maximum Value |
+| --- | --- | --- | --- |
 | `bytes` *(default)* | *N/A* | (empty array) | (100,000,000,000 bytes) |
-| [vector(n)](/content/vector_search#vector-type) | 4 * n | (empty vector) | (100,000,000,000 bytes) |
+| [`vector(n)`](/content/vector_search#vector-type) | 4 * n | (empty vector) | (100,000,000,000 bytes) |
 | `wkt` | *varies* | (empty geometry) | (100,000,000,000 bytes) |
 
 
@@ -181,54 +196,39 @@ Denoting a column's *nullability* is API-dependent, and, with the exception of
 the *Java* API, does not involve the direct use of the *nullable* column
 property.
 
-======================== ========= =================================================================================
-Property                 Base Type Description
-======================== ========= =================================================================================
-`array(boolean[,n])`   string    Boolean [array](/content/concepts/array) of any length
-`array(int[,n])`       string    Integer [array](/content/concepts/array) of any length
-`array(long[,n])`      string    Long [array](/content/concepts/array) of any length
-`array(ulong[,n])`     string    Unsigned long [array](/content/concepts/array) of any length
-`array(float[,n])`     string    Float [array](/content/concepts/array) of any length
-`array(double[,n])`    string    Double [array](/content/concepts/array) of any length
-`array(string[,n])`    string    String [array](/content/concepts/array) of any length
-`boolean`              int       Numbers limited to `0` & `1`; optimizes memory and query performance
-`char1`                string    Text of up to 1 character; optimizes memory, disk, and query performance
-`char2`                string    Text of up to 2 characters; optimizes memory, disk, and query performance
-`char4`                string    Text of up to 4 characters; optimizes memory, disk, and query performance
-`char8`                string    Text of up to 8 characters; optimizes memory, disk, and query performance
-`char16`               string    Text of up to 16 characters; optimizes memory, disk, and query performance
-`char32`               string    Text of up to 32 characters; optimizes memory, disk, and query performance
-`char64`               string    Text of up to 64 characters; optimizes memory, disk, and query performance
-`char128`              string    Text of up to 128 characters; optimizes memory, disk, and query performance
-`char256`              string    Text of up to 256 characters; optimizes memory, disk, and query performance
-`date`                 string    Interprets a string field as a date of the form `YYYY-[M]M-[D]D`
-`datetime`             string    Interprets a string field as a combination of date and time in the form of
-                                   `YYYY-[M]M-[D]D [H]H24:MI:SS[.mmm]`
-`decimal`              string    Interprets a string field as a decimal number, with up to *27* digits of
-                                   precision and *18* digits of scale
-`int8`                 int       Numbers limited to 8-bit signed integers; optimizes memory and query performance
-`int16`                int       Numbers limited to 16-bit signed integers; optimizes memory and query performance
-`ipv4`                 string    Dotted decimal IPv4 addresses of the form: `A.B.C.D` where `A`, `B`, `C`
-                                   and `D` are between `0` and `255`, inclusive (e.g. `127.0.0.1`);
-                                   optimizes memory, disk, and query performance
-`json`                 string    Interprets a string field as a [JSON](/content/concepts/json) object
-`nullable`             *&lt;any&gt;*   Values can be set to *null*
-
-
-<Info>
-See [Nulls](/content/concepts/nulls) for working with *null* types & values in the API
-</Info>
-
-`time`                 string    Interprets a string field as a time of the form `[H]H24:MI:SS[.mmm]`
-`timestamp`            long      Timestamps in milliseconds since the Unix epoch: *Jan 1 1970 00:00:00*
-`ulong`                string    Interprets a string field as a 64-bit unsigned long
-`uuid`                 string    Interprets a string field as a 32 character (without hyphens) or 36 character
-                                   (with hyphens) universally unique identifier (UUID)
-`vector(n)`            bytes     Vector of *n* float values, generally used in
-                                   [vector search](/content/vector_search)
-`wkt`                  string    Indicates that the column has WKT (or WKB) strings that should be handled as
-                         or bytes  geometry objects.
-======================== ========= =================================================================================
+| Property | Base Type | Description |
+| --- | --- | --- |
+| <span style={{whiteSpace: "nowrap"}}>`array(boolean[,n])`</span> | string | Boolean [array](/content/concepts/array) of any length |
+| <span style={{whiteSpace: "nowrap"}}>`array(int[,n])`</span> | string | Integer [array](/content/concepts/array) of any length |
+| <span style={{whiteSpace: "nowrap"}}>`array(long[,n])`</span> | string | Long [array](/content/concepts/array) of any length |
+| <span style={{whiteSpace: "nowrap"}}>`array(ulong[,n])`</span> | string | Unsigned long [array](/content/concepts/array) of any length |
+| <span style={{whiteSpace: "nowrap"}}>`array(float[,n])`</span> | string | Float [array](/content/concepts/array) of any length |
+| <span style={{whiteSpace: "nowrap"}}>`array(double[,n])`</span> | string | Double [array](/content/concepts/array) of any length |
+| <span style={{whiteSpace: "nowrap"}}>`array(string[,n])`</span> | string | String [array](/content/concepts/array) of any length |
+| <span style={{whiteSpace: "nowrap"}}>`boolean`</span> | int | Numbers limited to `0` & `1`; optimizes memory and query performance |
+| <span style={{whiteSpace: "nowrap"}}>`char1`</span> | string | Text of up to 1 character; optimizes memory, disk, and query performance |
+| <span style={{whiteSpace: "nowrap"}}>`char2`</span> | string | Text of up to 2 characters; optimizes memory, disk, and query performance |
+| <span style={{whiteSpace: "nowrap"}}>`char4`</span> | string | Text of up to 4 characters; optimizes memory, disk, and query performance |
+| <span style={{whiteSpace: "nowrap"}}>`char8`</span> | string | Text of up to 8 characters; optimizes memory, disk, and query performance |
+| <span style={{whiteSpace: "nowrap"}}>`char16`</span> | string | Text of up to 16 characters; optimizes memory, disk, and query performance |
+| <span style={{whiteSpace: "nowrap"}}>`char32`</span> | string | Text of up to 32 characters; optimizes memory, disk, and query performance |
+| <span style={{whiteSpace: "nowrap"}}>`char64`</span> | string | Text of up to 64 characters; optimizes memory, disk, and query performance |
+| <span style={{whiteSpace: "nowrap"}}>`char128`</span> | string | Text of up to 128 characters; optimizes memory, disk, and query performance |
+| <span style={{whiteSpace: "nowrap"}}>`char256`</span> | string | Text of up to 256 characters; optimizes memory, disk, and query performance |
+| <span style={{whiteSpace: "nowrap"}}>`date`</span> | string | Interprets a string field as a date of the form `YYYY-[M]M-[D]D` |
+| <span style={{whiteSpace: "nowrap"}}>`datetime`</span> | string | Interprets a string field as a combination of date and time in the form of `YYYY-[M]M-[D]D [H]H24:MI:SS[.mmm]` |
+| <span style={{whiteSpace: "nowrap"}}>`decimal`</span> | string | Interprets a string field as a decimal number, with up to *27* digits of precision and *18* digits of scale |
+| <span style={{whiteSpace: "nowrap"}}>`int8`</span> | int | Numbers limited to 8-bit signed integers; optimizes memory and query performance |
+| <span style={{whiteSpace: "nowrap"}}>`int16`</span> | int | Numbers limited to 16-bit signed integers; optimizes memory and query performance |
+| <span style={{whiteSpace: "nowrap"}}>`ipv4`</span> | string | Dotted decimal IPv4 addresses of the form: `A.B.C.D` where `A`, `B`, `C` and `D` are between `0` and `255`, inclusive (e.g. `127.0.0.1`); optimizes memory, disk, and query performance |
+| <span style={{whiteSpace: "nowrap"}}>`json`</span> | string | Interprets a string field as a [JSON](/content/concepts/json) object |
+| <span style={{whiteSpace: "nowrap"}}>`nullable`</span> | *&lt;any&gt;* | Values can be set to *null* <br/> <br/> See [Nulls](/content/concepts/nulls) for working with *null* types & values in the API |
+| <span style={{whiteSpace: "nowrap"}}>`time`</span> | string | Interprets a string field as a time of the form `[H]H24:MI:SS[.mmm]` |
+| <span style={{whiteSpace: "nowrap"}}>`timestamp`</span> | long | Timestamps in milliseconds since the Unix epoch: *Jan 1 1970 00:00:00* |
+| <span style={{whiteSpace: "nowrap"}}>`ulong`</span> | string | Interprets a string field as a 64-bit unsigned long |
+| <span style={{whiteSpace: "nowrap"}}>`uuid`</span> | string | Interprets a string field as a 32 character (without hyphens) or 36 character (with hyphens) universally unique identifier (UUID) |
+| <span style={{whiteSpace: "nowrap"}}>`vector(n)`</span> | bytes | Vector of *n* float values, generally used in [vector search](/content/vector_search) |
+| <span style={{whiteSpace: "nowrap"}}>`wkt`</span> | string or bytes | Indicates that the column has WKT (or WKB) strings that should be handled as geometry objects. |
 
 
 <a id="types-data-handling"></a>
@@ -241,25 +241,13 @@ One or more of the following properties can be assigned to a column to alter the
 way the data is stored & handled.  Valid combinations are detailed in the
 descriptions.
 
-================== ==================================================================
-Property           Description
-================== ==================================================================
-`compress(type)` This property will compress the values of the associated column
-                   using the specified compression `type`, reducing disk usage and
-                   I/O load time.  Queries against the column may also be faster. For
-                   column compression details, see [Column Compression](/content/concepts/column_compression).
-`data`           Directs that the column's data should be stored in memory, making
-                   it available for use in query expressions.  Default property for
-                   all columns.
-`dict`           This property will dictionary encode the associated column,
-                   reducing memory and disk usage.  Queries against the column will
-                   also be faster. For Dictionary Encoding details, see
-                   [Dictionary Encoding](/content/concepts/dictionary_encoding).
-`normalize`      For `vector` column type, automatically normalizes each vector
-                   to have a magnitude (L2 norm) of *1*; see [Vector Type](/content/vector_search#vector-type)
-`text_search`    Enables full text search for *string* columns.  For full text
-                   search details & limitations, see [Full Text Search](/content/concepts/full_text_search#fulltextsearch).
-================== ==================================================================
+| Property | Description |
+| --- | --- |
+| `compress(type)` | This property will compress the values of the associated column using the specified compression `type`, reducing disk usage and I/O load time.  Queries against the column may also be faster. For column compression details, see [Column Compression](/content/concepts/column_compression). |
+| `data` | Directs that the column's data should be stored in memory, making it available for use in query expressions.  Default property for all columns. |
+| `dict` | This property will dictionary encode the associated column, reducing memory and disk usage.  Queries against the column will also be faster. For Dictionary Encoding details, see [Dictionary Encoding](/content/concepts/dictionary_encoding). |
+| `normalize` | For `vector` column type, automatically normalizes each vector to have a magnitude (L2 norm) of *1*; see [Vector Type](/content/vector_search#vector-type) |
+| `text_search` | Enables full text search for *string* columns.  For full text search details & limitations, see [Full Text Search](/content/concepts/full_text_search#fulltextsearch). |
 
 
 <a id="types-data-keys"></a>
@@ -275,12 +263,10 @@ For more information, see the sections on
 [Foreign keys](/content/concepts/tables#foreign-key) cannot be assigned as column
 properties.
 
-=============== ================================================================
-Property        Description
-=============== ================================================================
-`primary_key` Makes this column part of (or the entire) primary key
-`shard_key`   Makes this column part of (or the entire) shard key
-=============== ================================================================
+| Property | Description |
+| --- | --- |
+| `primary_key` | Makes this column part of (or the entire) primary key |
+| `shard_key` | Makes this column part of (or the entire) shard key |
 
 
 <a id="types-data-replace"></a>
@@ -292,15 +278,8 @@ Property        Description
 The following property can be assigned to a column to replace certain kinds of
 data.
 
-==================== ==================================================================
-Property             Description
-==================== ==================================================================
-`init_with_now`    For *date*, *time*, *datetime*, and *timestamp* columns,
-                     this property will replace empty strings and invalid timestamp
-                     values with `NOW()` when inserting data.
-`init_with_uuid`   For *uuid* columns, this property will replace empty strings
-                     with a universally unique identifier (UUID).
-`update_with_now`  For *date*, *datetime*, *time*, and *timestamp* columns,
-                     this property will replace empty strings and invalid timestamp
-                     values with `NOW()` when updating data.
-==================== ==================================================================
+| Property | Description |
+| --- | --- |
+| `init_with_now` | For *date*, *time*, *datetime*, and *timestamp* columns, this property will replace empty strings and invalid timestamp values with `NOW()` when inserting data. |
+| `init_with_uuid` | For *uuid* columns, this property will replace empty strings with a universally unique identifier (UUID). |
+| `update_with_now` | For *date*, *datetime*, *time*, and *timestamp* columns, this property will replace empty strings and invalid timestamp values with `NOW()` when updating data. |

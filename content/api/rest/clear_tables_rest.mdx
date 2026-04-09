@@ -37,4 +37,4 @@ The GPUdb server embeds the endpoint response inside a standard response structu
 | message | String | Empty if success or an error message |
 | data_type | String | 'clear_tables_response' or 'none' in case of an error |
 | data | String | Empty string |
-| data_str | JSON or | This embedded JSON represents the result of the /clear/tables endpoint: <br/> <br/> tables: [map of string to strings] For each table in input parameter *table_names*, any error from the clear operation, or an empty string if successful. <br/> info: [map of string to strings] Additional information. <br/> Empty string in case of an error. |
+| data_str | JSON or | This embedded JSON represents the result of the /clear/tables endpoint: <br/> <br/> tables: [map of string to strings] For each table in input parameter *table_names*, any error from the clear operation, or an empty string if successful. <br/> <br/> info: [map of string to strings] Additional information. <br/> <br/> Empty string in case of an error. |

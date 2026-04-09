@@ -36,7 +36,7 @@ build to service a request that specifies a *value_column*.
 | start | double | Lower end value of the histogram interval, inclusive. |
 | end | double | Upper end value of the histogram interval, inclusive. |
 | interval | double | The size of each bin within the start and end parameters. |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> value_column: The name of the column to use when calculating the bin values (values are summed).  The column must be a numerical type (int, double, long, float). <br/> start: The start parameter for char types. <br/> end: The end parameter for char types. <br/> interval: The interval parameter for char types. |
+| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> value_column: The name of the column to use when calculating the bin values (values are summed).  The column must be a numerical type (int, double, long, float). <br/> <br/> start: The start parameter for char types. <br/> <br/> end: The end parameter for char types. <br/> <br/> interval: The interval parameter for char types. |
 
 
 ## Output Parameter Description
@@ -50,4 +50,4 @@ The GPUdb server embeds the endpoint response inside a standard response structu
 | message | String | Empty if success or an error message |
 | data_type | String | 'aggregate_histogram_response' or 'none' in case of an error |
 | data | String | Empty string |
-| data_str | JSON or | This embedded JSON represents the result of the /aggregate/histogram endpoint: <br/> <br/> counts: [array of doubles] The array of calculated values that represents the histogram data points. <br/> start: [double] Value of input parameter *start*. <br/> end: [double] Value of input parameter *end*. <br/> info: [map of string to strings] Additional information. <br/> Empty string in case of an error. |
+| data_str | JSON or | This embedded JSON represents the result of the /aggregate/histogram endpoint: <br/> <br/> counts: [array of doubles] The array of calculated values that represents the histogram data points. <br/> <br/> start: [double] Value of input parameter *start*. <br/> <br/> end: [double] Value of input parameter *end*. <br/> <br/> info: [map of string to strings] Additional information. <br/> <br/> Empty string in case of an error. |

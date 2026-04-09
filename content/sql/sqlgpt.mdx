@@ -604,7 +604,7 @@ GENERATE SQL FOR '<question>'
 | --- | --- |
 | `<question>` | Natural-language question for which an equivalent SQL query will be generated |
 | `<schema name>` | Name of the [schema](/content/sql/ddl#sql-create-schema) containing the *context* to use in generating the query |
-| `WITH OPTIONS` | Optional indicator that a comma-delimited list of SQL generation option/value assignments will follow. <br/> See [SQL Generation Options](/content/sql/sqlgpt#sql-gpt-generate-sql-opts) for the complete list of options. |
+| `WITH OPTIONS` | Optional indicator that a comma-delimited list of SQL generation option/value assignments will follow. <br/> <br/> See [SQL Generation Options](/content/sql/sqlgpt#sql-gpt-generate-sql-opts) for the complete list of options. |
 
 
 <a id="sql-gpt-generate-sql-opts"></a>
@@ -621,7 +621,7 @@ generated.
 | `ai_api_provider` | Name of an LLM service to use other than the default one; the default, `sqlgpt`, uses the Kinetica SQLGPT.io service. |
 | `ai_api_url` | URL of an LLM service to use other than the default one. |
 | `context_name` | Name of the *SQL-GPT context* to use as a basis for generating SQL queries; should be of the form `[<schema name>.]<context name>`. |
-| `context_names` | Comma-separated list of names of *SQL-GPT contexts* to use as a basis for generating SQL queries; each should be of the form `[<schema name>.]<context name>`, and the entire list should be single-quoted. <br/> For example: <br/> `context_names = 'example.atc_ctx,example.nyctaxi'` |
+| `context_names` | Comma-separated list of names of *SQL-GPT contexts* to use as a basis for generating SQL queries; each should be of the form `[<schema name>.]<context name>`, and the entire list should be single-quoted. <br/> <br/> For example: <br/> `context_names = 'example.atc_ctx,example.nyctaxi'` |
 | `use_rag` | Whether to use [retrieval-augmented generation (RAG)](/content/sql-gpt/concepts#sql-gpt-overview-rag) facilities with the given *SQL-GPT contexts* when processing this request. |
 
 
@@ -670,7 +670,7 @@ GENERATE TOKENS
 | --- | --- |
 | `<question>` | Natural-language question for which an equivalent SQL query will be generated |
 | `<schema name>` | Name of the [schema](/content/sql/ddl#sql-create-schema) containing the *context* to use in generating the query |
-| `WITH OPTIONS` | Optional indicator that a comma-delimited list of SQL generation option/value assignments will follow. <br/> See [SQL Token Generation Options](/content/sql/sqlgpt#sql-gpt-generate-tokens-opts) for the complete list of options. |
+| `WITH OPTIONS` | Optional indicator that a comma-delimited list of SQL generation option/value assignments will follow. <br/> <br/> See [SQL Token Generation Options](/content/sql/sqlgpt#sql-gpt-generate-tokens-opts) for the complete list of options. |
 
 
 <a id="sql-gpt-generate-tokens-opts"></a>
@@ -685,7 +685,7 @@ generated.
 | Option | Description |
 | --- | --- |
 | `context_name` | Name of the *SQL-GPT context* to use as a basis for counting generated tokens; should be of the form `[<schema name>.]<context name>`. |
-| `context_names` | Comma-separated list of names of *SQL-GPT contexts* to use as the basis for counting generated tokens; each should be of the form `[<schema name>.]<context name>`, and the entire list should be single-quoted. <br/> For example: <br/> `context_names = 'example.atc_ctx,example.nyctaxi'` |
+| `context_names` | Comma-separated list of names of *SQL-GPT contexts* to use as the basis for counting generated tokens; each should be of the form `[<schema name>.]<context name>`, and the entire list should be single-quoted. <br/> <br/> For example: <br/> `context_names = 'example.atc_ctx,example.nyctaxi'` |
 | `use_rag` | Whether to use [retrieval-augmented generation (RAG)](/content/sql-gpt/concepts#sql-gpt-overview-rag) facilities with the given *SQL-GPT contexts* when processing this request. |
 
 
@@ -753,7 +753,7 @@ is generated.
 | `ai_api_provider` | Name of an LLM service to use other than the default one; the default, `sqlgpt`, uses the Kinetica SQLGPT.io service. |
 | `ai_api_url` | URL of an LLM service to use other than the default one. |
 | `context_name` | Name of the *SQL-GPT context* to use in generating the executed query; should be of the form `[<schema name>.]<context name>`. |
-| `context_names` | Comma-separated list of names of *SQL-GPT contexts* to use in generating the executed query; each should be of the form `[<schema name>.]<context name>`, and the entire list should be single-quoted. <br/> For example: <br/> `context_names = 'example.atc_ctx,example.nyctaxi'` |
+| `context_names` | Comma-separated list of names of *SQL-GPT contexts* to use in generating the executed query; each should be of the form `[<schema name>.]<context name>`, and the entire list should be single-quoted. <br/> <br/> For example: <br/> `context_names = 'example.atc_ctx,example.nyctaxi'` |
 | `use_rag` | Whether to use [retrieval-augmented generation (RAG)](/content/sql-gpt/concepts#sql-gpt-overview-rag) facilities with the given *SQL-GPT contexts* when processing this request. |
 
 

@@ -48,7 +48,7 @@ build to service this request.
 | start | double | The lower bound of the binning-column. |
 | end | double | The upper bound of the binning-column. |
 | interval | double | The interval of a bin. Set members fall into bin i if the binning-column falls in the range [start+interval*i, start+interval*(i+1)). |
-| options | map of string to strings | Map of optional parameters:.  The default value is an empty map ( \{\} ). <br/> <br/> additional_column_names: A list of comma separated value-column names over which statistics can be accumulated along with the primary value_column. <br/> bin_values: A list of comma separated binning-column values. Values that match the nth bin_values value are placed in the nth bin. <br/> weight_column_name: Name of the column used as weighting column for the weighted_average statistic. <br/> order_column_name: Name of the column used for candlestick charting techniques. |
+| options | map of string to strings | Map of optional parameters:.  The default value is an empty map ( \{\} ). <br/> <br/> additional_column_names: A list of comma separated value-column names over which statistics can be accumulated along with the primary value_column. <br/> <br/> bin_values: A list of comma separated binning-column values. Values that match the nth bin_values value are placed in the nth bin. <br/> <br/> weight_column_name: Name of the column used as weighting column for the weighted_average statistic. <br/> <br/> order_column_name: Name of the column used for candlestick charting techniques. |
 
 
 ## Output Parameter Description

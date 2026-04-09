@@ -33,4 +33,4 @@ The GPUdb server embeds the endpoint response inside a standard response structu
 | message | String | Empty if success or an error message |
 | data_type | String | 'show_system_status_response' or 'none' in case of an error |
 | data | String | Empty string |
-| data_str | JSON or | This embedded JSON represents the result of the /show/system/status endpoint: <br/> <br/> status_map: [map of string to strings] A map of server configuration and health related status. <br/> info: [map of string to strings] Additional information. <br/> Empty string in case of an error. |
+| data_str | JSON or | This embedded JSON represents the result of the /show/system/status endpoint: <br/> <br/> status_map: [map of string to strings] A map of server configuration and health related status. <br/> <br/> info: [map of string to strings] Additional information. <br/> <br/> Empty string in case of an error. |
