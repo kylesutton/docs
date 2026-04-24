@@ -576,20 +576,22 @@ Specifically, the following *tier strategies* would be applied:
 
 | Last Seen | Column | Tier Strategy |
 | --- | --- | --- |
-|                +-----------------+------------------------+
-|                | name            | VRAM 2, RAM 10         |
-|                +-----------------+------------------------+
-|                | &lt;other columns&gt; | VRAM 1, RAM 9          |
-| &gt; 1 minute ago | id              | VRAM 1, RAM 9          |
-| but            +-----------------+------------------------+
-| &lt; 3 days ago   | name            | VRAM 1, RAM 9          |
-|                +-----------------+------------------------+
-|                | &lt;other columns&gt; | VRAM 1, RAM 9          |
-| &gt; 3 days ago   | id              | VRAM 1, RAM 8, DISK2 7 |
-|                +-----------------+------------------------+
-|                | name            | VRAM 1, RAM 8, DISK2 7 |
-|                +-----------------+------------------------+
-|                | &lt;other columns&gt; | VRAM 1, RAM 8, DISK2 7 |
+|                +-------------------+------------------------+
+|                | name              | VRAM 2, RAM 10         |
+|                +-------------------+------------------------+
+|                | *&lt;other columns&gt;* | VRAM 1, RAM 9          |
+
+| &gt; 1 minute ago | id                | VRAM 1, RAM 9          |
+| but            +-------------------+------------------------+
+| &lt; 3 days ago   | name              | VRAM 1, RAM 9          |
+|                +-------------------+------------------------+
+|                | *&lt;other columns&gt;* | VRAM 1, RAM 9          |
+
+| &gt; 3 days ago   | id                | VRAM 1, RAM 8, DISK2 7 |
+|                +-------------------+------------------------+
+|                | name              | VRAM 1, RAM 8, DISK2 7 |
+|                +-------------------+------------------------+
+|                | *&lt;other columns&gt;* | VRAM 1, RAM 8, DISK2 7 |
 
 
 <a id="rm-concepts-resource-groups"></a>

@@ -41,4 +41,4 @@ The GPUdb server embeds the endpoint response inside a standard response structu
 | message | String | Empty if success or an error message |
 | data_type | String | 'create_video_response' or 'none' in case of an error |
 | data | String | Empty string |
-| data_str | JSON or | This embedded JSON represents the result of the /create/video endpoint: <br/> <br/> job_id: [long] An identifier for the created job. <br/> <br/> path: [string] Fully qualified KIFS path to the video file. <br/> <br/> info: [map of string to strings] Additional information. <br/> <br/> Empty string in case of an error. |
+| data_str | JSON or String | This embedded JSON represents the result of the /create/video endpoint: <br/> <br/> job_id: [long] An identifier for the created job. <br/> <br/> path: [string] Fully qualified KIFS path to the video file. <br/> <br/> info: [map of string to strings] Additional information. <br/> <br/> Empty string in case of an error. |

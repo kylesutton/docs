@@ -196,9 +196,11 @@ records = t.get_records_by_column(["ARRAY_ITEM(ai, 2) AS ai_item_2", "as3"])
 
 {/* Source: /examples/sql/array.out (lines 181-185) */}
 ```
-| ai_item_2 | av3_item_2 |
-| --- | --- |
-| -987654321 | HIJKLMNOPQRSTUVWXYZ |
++--------------+-----------------------+
+|    ai_item_2 | av3_item_2            |
++--------------+-----------------------+
+|   -987654321 | HIJKLMNOPQRSTUVWXYZ   |
++--------------+-----------------------+
 ```
 
 
@@ -228,8 +230,11 @@ records = t.get_records_by_column(["ARRAY_LENGTH(ai) AS ai_len", "ARRAY_LENGTH(a
 
 {/* Source: /examples/sql/array.out (lines 228-232) */}
 ```
++----------+-----------+
 |   ai_len |   av3_len |
++----------+-----------+
 |        4 |         3 |
++----------+-----------+
 ```
 
 
@@ -259,9 +264,11 @@ records = t.get_records_by_column(["ARRAY_TO_STRING(ai, ',') AS ai_str", "ARRAY_
 
 {/* Source: /examples/sql/array.out (lines 471-475) */}
 ```
-| ai_str | av3_str |
-| --- | --- |
-| 123456789,-987654321,0,0 | ABCDEFG~HIJKLMNOPQRSTUVWXYZ~ |
++----------------------------+--------------------------------+
+| ai_str                     | av3_str                        |
++----------------------------+--------------------------------+
+| 123456789,-987654321,0,0   | ABCDEFG~HIJKLMNOPQRSTUVWXYZ~   |
++----------------------------+--------------------------------+
 ```
 
 
@@ -295,8 +302,11 @@ records = t.get_records_by_column([
 
 {/* Source: /examples/sql/array.out (lines 563-567) */}
 ```
++--------------------------------------+------------------------------------------+
 | ai_str                               | av3_str                                  |
++--------------------------------------+------------------------------------------+
 | ["123456789","-987654321","0","0"]   | ["ABCDEFG","HIJKLMNOPQRSTUVWXYZ",null]   |
++--------------------------------------+------------------------------------------+
 ```
 
 
@@ -331,9 +341,14 @@ values (unnest).
 
 {/* Source: /examples/sql/array.out (lines 732-739) */}
 ``` Input
-| id | name |
-| --- | --- |
-| 1 2 3 4 | Joe Jane Jeff Joyce |
++------+---------+
+|   id | name    |
++------+---------+
+|    1 | Joe     |
+|    2 | Jane    |
+|    3 | Jeff    |
+|    4 | Joyce   |
++------+---------+
 ```
 
 <CodeGroup>
@@ -359,9 +374,11 @@ records = t.aggregate_group_by([
 
 {/* Source: /examples/sql/array.out (lines 746-750) */}
 ```
-| id_list | name_list |
-| --- | --- |
-| [1,2,3,4] | ["Joe","Jane","Jeff","Joyce"] |
++-------------+---------------------------------+
+| id_list     | name_list                       |
++-------------+---------------------------------+
+| [1,2,3,4]   | ["Joe","Jane","Jeff","Joyce"]   |
++-------------+---------------------------------+
 ```
 
 
@@ -373,7 +390,9 @@ records = t.aggregate_group_by([
 
 {/* Source: /examples/sql/array.out (lines 783-794) */}
 ``` Input
++------+---------+
 |   id | name    |
++------+---------+
 |    1 | Joe     |
 |    1 | Joyce   |
 |    2 | Jane    |
@@ -382,6 +401,7 @@ records = t.aggregate_group_by([
 |    3 | Jeff    |
 |    4 | Joe     |
 |    4 | Joyce   |
++------+---------+
 ```
 
 <CodeGroup>
@@ -407,8 +427,11 @@ records = t.aggregate_group_by([
 
 {/* Source: /examples/sql/array.out (lines 801-805) */}
 ```
++-------------+---------------------------------+
 | id_list     | name_list                       |
++-------------+---------------------------------+
 | [1,2,3,4]   | ["Jane","Jeff","Joe","Joyce"]   |
++-------------+---------------------------------+
 ```
 
 
@@ -450,7 +473,7 @@ FROM <table name> <table alias>, UNNEST_JSON_ARRAY(<column list>) [WITH ORDINALI
 | `<table name>` | Name of the table containing the array column(s). |
 | `<table alias>` | Alias to use for the table containing the array column(s). |
 | `<column list>` | Comma-separated list of array columns to unnest. |
-| `<table/columns aliases>` | Alias to use for the virtual table and columns being used to return the unnested data (including any ordinality alias, if specified), using the form: <br/> `<table alias>(<column alias list> [,<ordinality alias>])` <br/> For example, to return two columns of unnested array data as `uai` & `uav`, respectively, and the corresponding ordinality index as `index`, all within the virtual table `unn` use: <br/> `unn(uai, uav, index)` |
+| `<table/columns aliases>` | Alias to use for the virtual table and columns being used to return the unnested data (including any ordinality alias, if specified), using the form: <br/> <br/> `<table alias>(<column alias list> [,<ordinality alias>])` <br/> <br/> For example, to return two columns of unnested array data as `uai` & `uav`, respectively, and the corresponding ordinality index as `index`, all within the virtual table `unn` use: <br/> <br/> `unn(uai, uav, index)` <br/> |
 | `WITH ORDINALITY` | Also return the 0-based index in the source arrays for each transposed array value; the index value will be returned in an alias specified in `<table/columns aliases>`. |
 
 
@@ -464,11 +487,14 @@ The following examples use this data set as a baseline:
 
 {/* Source: /examples/sql/array.out (lines 844-851) */}
 ```
++-----------+-----------------+
 | ai        | av              |
++-----------+-----------------+
 | [1,2,3]   | ["A","B","C"]   |
 | [4,5,6]   | ["D","E","F"]   |
 | [7,8,9]   | ["D","E","F"]   |
 | [1,2,3]   | ["G","H","I"]   |
++-----------+-----------------+
 ```
 
 
@@ -483,7 +509,9 @@ FROM UNNEST_JSON_ARRAY(SELECT av FROM example.arr_unn) uav
 
 {/* Source: /examples/sql/array.out (lines 882-897) */}
 ```
++-------+
 | uav   |
++-------+
 | A     |
 | B     |
 | C     |
@@ -496,6 +524,7 @@ FROM UNNEST_JSON_ARRAY(SELECT av FROM example.arr_unn) uav
 | G     |
 | H     |
 | I     |
++-------+
 ```
 
 
@@ -511,7 +540,9 @@ FROM UNNEST_JSON_ARRAY(SELECT ai FROM example.arr_unn) WITH ORDINALITY uai
 
 {/* Source: /examples/sql/array.out (lines 905-920) */}
 ```
++-------+--------------+
 |   uai |   ordinality |
++-------+--------------+
 |     1 |            0 |
 |     1 |            0 |
 |     2 |            1 |
@@ -524,6 +555,7 @@ FROM UNNEST_JSON_ARRAY(SELECT ai FROM example.arr_unn) WITH ORDINALITY uai
 |     7 |            0 |
 |     8 |            1 |
 |     9 |            2 |
++-------+--------------+
 ```
 
 
@@ -539,7 +571,9 @@ FROM example.arr_unn eau, UNNEST_JSON_ARRAY(eau.ai, eau.av) t(uai, uav)
 
 {/* Source: /examples/sql/array.out (lines 928-943) */}
 ```
++-------+-------+
 |   uai | uav   |
++-------+-------+
 |     1 | A     |
 |     1 | G     |
 |     2 | B     |
@@ -552,6 +586,7 @@ FROM example.arr_unn eau, UNNEST_JSON_ARRAY(eau.ai, eau.av) t(uai, uav)
 |     7 | D     |
 |     8 | E     |
 |     9 | F     |
++-------+-------+
 ```
 
 
@@ -569,7 +604,9 @@ FROM example.arr_unn eau, UNNEST_JSON_ARRAY(eau.ai, eau.av) WITH ORDINALITY t(ua
 
 {/* Source: /examples/sql/array.out (lines 951-966) */}
 ```
++-------+-------+---------+
 |   uai | uav   |   index |
++-------+-------+---------+
 |     1 | A     |       0 |
 |     1 | G     |       0 |
 |     2 | B     |       1 |
@@ -582,6 +619,7 @@ FROM example.arr_unn eau, UNNEST_JSON_ARRAY(eau.ai, eau.av) WITH ORDINALITY t(ua
 |     7 | D     |       0 |
 |     8 | E     |       1 |
 |     9 | F     |       2 |
++-------+-------+---------+
 ```
 
 
@@ -596,7 +634,9 @@ FROM UNNEST_JSON_ARRAY(SELECT ai FROM example.arr_unn) uai
 
 {/* Source: /examples/sql/array.out (lines 994-1006) */}
 ```
++-------+
 |   uai |
++-------+
 |     1 |
 |     2 |
 |     3 |
@@ -606,4 +646,5 @@ FROM UNNEST_JSON_ARRAY(SELECT ai FROM example.arr_unn) uai
 |     7 |
 |     8 |
 |     9 |
++-------+
 ```

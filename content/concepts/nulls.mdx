@@ -412,10 +412,13 @@ Given the following table `survey_response`:
 
 {/* Source: /examples/sql/null.out (lines 113-119) */}
 ```sql
++-------------------+--------------+-------------+
 | email             | first_name   | last_name   |
++-------------------+--------------+-------------+
 | jdoe@yahoo.com    | John         | <null>      |
 | mrsmith@aol.com   | <null>       | <null>      |
 | <null>            | <null>       | <null>      |
++-------------------+--------------+-------------+
 ```
 
 If queried like so:
@@ -434,6 +437,9 @@ The following response is returned:
 
 {/* Source: /examples/sql/null.out (lines 130-134) */}
 ```sql
++--------------------------+---------------+------------+------------+
 |   count_survey_responses |   count_email |   count_fn |   count_ln |
++--------------------------+---------------+------------+------------+
 |                        3 |             2 |          1 |          0 |
++--------------------------+---------------+------------+------------+
 ```

@@ -87,6 +87,7 @@ to be specified, that parameter must be specified for all hosts.
 |                                               |               |   processes that need to be migrated off degraded                                             |
 |                                               |               |   hosts.  Default is to not accept failed processes.                                          |
 
+
 <br/>
 
 <a id="config-main-ranks"></a>
@@ -101,6 +102,7 @@ to be specified, that parameter must be specified for all hosts.
 | **rank1.host** | `host0`     | host entry, it is effectively disabled (i.e., removed from the cluster) and   |
 +----------------------------+---------------+ no persisted data for this rank will be loaded even if present on any host.   |
 | **rank2.host** | `host0`     | (e.g. 'rank2.host = host1' to run rank2 on host1)                             |
+
 
 <br/>
 
@@ -123,8 +125,9 @@ to be specified, that parameter must be specified for all hosts.
 |                                               |                           | openssl req -newkey rsa:2048 -new -nodes -x509 \                                                               |
 |                                               |                           |   -days 3650 -keyout key.pem -out cert.pem                                                                     |
 |                                               |                           | ```                                                                                                            |
-| **http_allow_origin** | `*` | Value to return via Access-Control-Allow-Origin HTTP header (for Cross-Origin Resource Sharing). Set to empty to not return the header and disallow CORS. |
+|  |  |  |
 | --- | --- | --- |
+| **http_allow_origin** | `*` | Value to return via Access-Control-Allow-Origin HTTP header (for Cross-Origin Resource Sharing). Set to empty to not return the header and disallow CORS. |
 | **enable_httpd_proxy** | `false` | Start an HTTP server as a proxy to handle LDAP and/or Kerberos authentication. Each host will run an HTTP server and access to each rank is available through http://host:8082/gpudb-1, where port `8082` is defined by **httpd_proxy_port**. <br/> <Info> HTTP external endpoints are not affected by the **use_https** parameter above. If you wish to enable HTTPS, you must edit the `/opt/gpudb/httpd/conf/httpd.conf` and setup HTTPS as per the Apache httpd documentation at https://httpd.apache.org/docs/2.2/ </Info> |
 | **httpd_proxy_port** | `8082` | TCP port that the httpd auth proxy server will listen on if **enable_httpd_proxy** is `true`. |
 | **httpd_proxy_use_https** | `false` | Set to `true` if the httpd auth proxy server is configured to use HTTPS. |
@@ -140,6 +143,7 @@ to be specified, that parameter must be specified for all hosts.
 | **enable_worker_http_servers** | `true` | Enable worker HTTP servers; each process runs its own server for multi-head ingest. |
 +-----------------------------------------------+---------------------------+ The default is to use (**head_port** + *rank #*) for each worker process where                     |
 | **rank2.worker_http_server_port** | `9193`                  | rank number is from `1` to number of ranks in **rank&lt;#&gt;.host** below.                            |
+
 | **rank0.public_url**              |                           | Optionally, specify a public URL for each worker HTTP server that clients                                      |
 +-----------------------------------------------+---------------------------+ should use to connect for multi-head operations.                                                               |
 | **rank1.public_url**              |                           |                                                                                                                |
@@ -147,13 +151,15 @@ to be specified, that parameter must be specified for all hosts.
 |                                               |                           | .If specified for any ranks, a public URL must be specified for all ranks. Cannot be used in conjunction with
 |                                               |                           | .nplus1.
 |                                               |                           | .</Info>
+
 | **rank0.communicator_port**       | `6555`                  | Specify the TCP ports each rank will use to communicate with the others.                                       |
 +-----------------------------------------------+---------------------------+ If the port for any **rank&lt;#&gt;** is not specified the port will be assigned to                      |
 | **rank1.communicator_port**       | `6556`                  | **rank0.communicator_port** + *rank #*.                                                            |
 +-----------------------------------------------+---------------------------+                                                                                                                |
 | **rank2.communicator_port**       | `6557`                  |                                                                                                                |
-| **compress_network_data** | `false` | Enables compression of inter-node network data transfers. |
+|  |  |  |
 | --- | --- | --- |
+| **compress_network_data** | `false` | Enables compression of inter-node network data transfers. |
 
 <br/>
 
@@ -188,7 +194,7 @@ to be specified, that parameter must be specified for all hosts.
 | **security.external.ranger.url** |  | URL of Ranger REST API.  E.g., https://localhost:6080/ Leave blank for no Ranger Server |
 | **security.external.ranger.service_name** | `kinetica` | Name of the service created on the Ranger Server to manage this Kinetica instance |
 | **security.external.ranger.cache_minutes** | `60` | Maximum minutes to hold on to data from Ranger |
-| **security.external.ranger_authorizer.address** | `ipc://${gaia.temp_directory}/gpudb-ranger-0` | The network URI for the ranger_authorizer to start. The URI can be either TCP or IPC. TCP address is used to indicate the remote ranger_authorizer which may run at other hosts. The IPC address is for a local ranger_authorizer. <br/> <br/> Example addresses for remote or TCP servers: <br/> <br/> <br/> `tcp://127.0.0.1:9293 tcp://HOST_IP:9293` <br/> Example address for local IPC servers: <br/> <br/> <br/> `ipc:///tmp/gpudb-ranger-0` |
+| **security.external.ranger_authorizer.address** | `ipc://${gaia.temp_directory}/gpudb-ranger-0` | The network URI for the ranger_authorizer to start. The URI can be either TCP or IPC. TCP address is used to indicate the remote ranger_authorizer which may run at other hosts. The IPC address is for a local ranger_authorizer. <br/> <br/> Example addresses for remote or TCP servers: <br/> <br/> `tcp://127.0.0.1:9293 tcp://HOST_IP:9293` <br/> <br/> Example address for local IPC servers: <br/> <br/> `ipc:///tmp/gpudb-ranger-0` <br/> |
 | **security.external.ranger_authorizer.timeout** | `120` | Ranger Authorizer timeout in seconds |
 | **security.external.ranger_authorizer.remote_debug_port** | `0` | Remote debugger port used for the ranger_authorizer. Setting the port to `0` disables remote debugging. <br/> <Info> Recommended port to use is `5005` </Info> |
 
@@ -308,8 +314,9 @@ the Auditing section of `gpudb_logger.conf`.
 |                                      |               | rank1.taskcalc_gpu = 0                                                                                   |
 |                                      |               | rank2.taskcalc_gpu = 1                                                                                   |
 |                                      |               | ```                                                                                                      |
-| **rank0.numa_node** |  | Set the head HTTP **rank0** numa node(s). If left empty, there will be no thread affinity or preferred memory node. The node list may be either a single node number or a range; e.g., `1-5,7,10`. <br/> <br/> If there will be many simultaneous users, specify as many nodes as possible that won't overlap the **rank1** to **rankN** worker numa nodes that the GPUs are on. <br/> <br/> If there will be few simultaneous users and WMS speed is important, choose the numa node the **rank0.gpu** is on. |
+|  |  |  |
 | --- | --- | --- |
+| **rank0.numa_node** |  | Set the head HTTP **rank0** numa node(s). If left empty, there will be no thread affinity or preferred memory node. The node list may be either a single node number or a range; e.g., `1-5,7,10`. <br/> <br/> If there will be many simultaneous users, specify as many nodes as possible that won't overlap the **rank1** to **rankN** worker numa nodes that the GPUs are on. <br/> <br/> If there will be few simultaneous users and WMS speed is important, choose the numa node the **rank0.gpu** is on. |
 +--------------------------------------+---------------+ allocation. The **rank&lt;#&gt;.base_numa_node** is the node or nodes that non-data                |
 | **rank2.base_numa_node** |               | intensive threads will run in. These nodes do not have to be the same numa                               |
 |                                      |               | nodes that the GPU specified by the corresponding **rank&lt;#&gt;.taskcalc_gpu** is on             |
@@ -320,6 +327,7 @@ the Auditing section of `gpudb_logger.conf`.
 |                                      |               | if not specified or left empty.                                                                          |
 |                                      |               |                                                                                                          |
 |                                      |               | The node list may be a single node number or a range; e.g., `1-5,7,10`.                                |
+
 | **rank1.data_numa_node** |               | Set each worker rank's preferred data numa node for CPU affinity and memory                              |
 +--------------------------------------+---------------+ allocation. The **rank&lt;#&gt;.data_numa_node** is the node or nodes that data                    |
 | **rank2.data_numa_node** |               | intensive threads will run in and should be set to the same numa node that the                           |
@@ -332,6 +340,7 @@ the Auditing section of `gpudb_logger.conf`.
 |                                      |               | if not specified or left empty.                                                                          |
 |                                      |               |                                                                                                          |
 |                                      |               | The node list may be a single node number or a range; e.g., `1-5,7,10`.                                |
+
 
 <br/>
 
@@ -351,7 +360,7 @@ the Auditing section of `gpudb_logger.conf`.
 | **force_host_filter_execution** | `false` | If `true` then all filter execution will be host-only (i.e. CPU). This can be useful for high-concurrency situations and when PCIe bandwidth is a limiting factor. |
 | **max_get_records_size** | `20000` | Maximum number of records that data retrieval requests such as [/get/records](/content/api/rest/get_records_rest#get-records-rest) and [/aggregate/groupby](/content/api/rest/aggregate_groupby_rest#aggregate-groupby-rest) will return per request. |
 | **request_timeout** | `20` | Timeout (in minutes) for filter-type requests |
-| **on_startup_script** |  | Set an optional executable command that will be run once when Kinetica is ready for client requests. This can be used to perform any initialization logic that needs to be run before clients connect. It will be run as the `gpudb` user, so you must ensure that any required permissions are set on the file to allow it to be executed.  If the command cannot be executed or returns a non-zero error code, then Kinetica will be stopped.  Output from the startup script will be logged to `/opt/gpudb/core/logs/gpudb-on-start.log` (and its dated relatives).  The `gpudb_env.sh` script is run directly before the command, so the path will be set to include the supplied Python runtime. <br/> <br/> Example: <br/> <br/> <br/> `on_startup_script = /bin/ks arg1 arg2 ...` |
+| **on_startup_script** |  | Set an optional executable command that will be run once when Kinetica is ready for client requests. This can be used to perform any initialization logic that needs to be run before clients connect. It will be run as the `gpudb` user, so you must ensure that any required permissions are set on the file to allow it to be executed.  If the command cannot be executed or returns a non-zero error code, then Kinetica will be stopped.  Output from the startup script will be logged to `/opt/gpudb/core/logs/gpudb-on-start.log` (and its dated relatives).  The `gpudb_env.sh` script is run directly before the command, so the path will be set to include the supplied Python runtime. <br/> <br/> Example: <br/> <br/> `on_startup_script = /bin/ks arg1 arg2 ...` <br/> |
 | **enable_pk_equi_join** | `false` | Enable pk-equi-join filters |
 | **enable_predicate_equi_join** | `true` | Enable predicate-equi-join filter plan type |
 | **enable_overlapped_equi_join** | `true` | Enable overlapped-equi-join filters |
@@ -397,7 +406,7 @@ is `0`, 56.6 MB of VRAM are required.  When **opengl_antialasing_level** is `4`,
 | **min_vectortile_zoomlevel** | `1` | Input geometries are pre-processed upon ingestion for faster vector tile generation. This parameter determines the zoom level from which the vector tile pre-processing starts. A vector tile request for a lower zoom level than this parameter takes additional time because the vector tile needs to be generated on the fly. |
 | **max_vectortile_zoomlevel** | `4` | Input geometries are pre-processed upon ingestion for faster vector tile generation. This parameter determines the zoom level at which the vector tile pre-processing stops. A vector tile request for a higher zoom level than this parameter takes additional time because the vector tile needs to be generated on the fly. |
 | **vectortile_map_tiler** | `google` | The name of map tiler used for Vector Tile Service. `google` and `tms` map tilers are supported currently. This parameter should be matched with the map tiler of clients' vector tile renderer. |
-| **lod_data_extent** | `-180 -90 180 90` | Longitude and latitude ranges of geospatial data for which level-of-details representations are being generated. The parameter order is: <br/> <br/> <br/> `<min_longitude> <min_latitude> <max_longitude> <max_latitude>` <br/> The default values span over the world, but the level-of-details rendering becomes more efficient when the precise extent of geospatial data is specified. |
+| **lod_data_extent** | `-180 -90 180 90` | Longitude and latitude ranges of geospatial data for which level-of-details representations are being generated. The parameter order is: <br/> <br/> `<min_longitude> <min_latitude> <max_longitude> <max_latitude>` <br/> <br/> The default values span over the world, but the level-of-details rendering becomes more efficient when the precise extent of geospatial data is specified. |
 | **lod_subregion_num** | `12 6` | The number of subregions in horizontal and vertical geospatial data extent. The default values of `12 6` divide the world into subregions of 30 degree (lon.) x 30 degree (lat.) |
 | **lod_subregion_resolution** | `512 512` | A base image resolution (width and height in pixels) at which a subregion would be rendered in a global view spanning over the whole dataset. Based on this resolution level-of-details representations are generated for the polygons located in the subregion. |
 | **max_lod_level** | `8` | The maximum number of levels in the level-of-details rendering. As the number increases, level-of-details rendering becomes effective at higher zoom levels, but it may increase memory usage for storing level-of-details representations. |
@@ -494,6 +503,7 @@ workbooks in Kinetica.
 |                                                |                                                     | ```                                                                                            |
 |                                                |                                                     | Where `/tmp/gpudb-text-index-1` is the name of the socket file to create.                    |
 
+
 <br/>
 
 <a id="config-main-persistence"></a>
@@ -526,8 +536,9 @@ workbooks in Kinetica.
 | **build_materialized_views_on_start**    | `always`                        | * `lazy`      : load the necessary data to start, and load as much of the                                 |
 |                                                      |                                   |   remainder of the stored data as possible into memory lazily                                               |
 |                                                      |                                   | * `on_demand` : only load data as requests use it                                                         |
-| **max_auto_view_updators** | `3` | Maximum number of active automatic view updators |
+|  |  |  |
 | --- | --- | --- |
+| **max_auto_view_updators** | `3` | Maximum number of active automatic view updators |
 | **sms_max_open_files** | `128` | Maximum number of open files (per-TOM) for the SMS (string) store |
 | **chunk_size** | `8000000` | Number of records per chunk (`0` disables chunking) |
 | **chunk_column_max_memory** | `512000000` | Maximum data size for any one column in a chunk to be stored in memory in bytes. (512 MB) (0 = disable) |
@@ -551,15 +562,18 @@ workbooks in Kinetica.
 | **event_server_internal** | `true` | Use the internal event and metric server on the head host server if true, otherwise use the Kagent services. Note that Kagent installs will automatically set this value to false. |
 +--------------------------------------------+----------------------------------+                                                                                |
 | **event_server_port**          | `9080`                         |                                                                                |
-| **enable_promtail** | `false` | Enable running promtail to parse and send logs to the event_server_address. |
+|  |  |  |
 | --- | --- | --- |
+| **enable_promtail** | `false` | Enable running promtail to parse and send logs to the event_server_address. |
 +--------------------------------------------+----------------------------------+                                                                                |
 | **alertmanager_port**          | `9089`                         |                                                                                |
+
 | **fluentbit_address**          |                                  | Fluentbit TCP server address and port with a json format parser.               |
 +--------------------------------------------+----------------------------------+                                                                                |
 | **fluentbit_port**             | `5170`                         |                                                                                |
-| **telm.persist_query_metrics** | `true` | Store query metrics in a persistent table. If disabled metrics will still be available for point-in-time export. |
+|  |  |  |
 | --- | --- | --- |
+| **telm.persist_query_metrics** | `true` | Store query metrics in a persistent table. If disabled metrics will still be available for point-in-time export. |
 
 <br/>
 
@@ -640,6 +654,7 @@ graph.server<#>.<parameter>
 |                                         |               | graph.server1.ram_limit = 500000000                                           |
 |                                         |               | ```                                                                           |
 
+
 <br/>
 
 <a id="config-main-etcd"></a>
@@ -705,11 +720,13 @@ address specified in the relevant section above.
 | **alert_error_messages** | `true` | Trigger generic error message alerts, in cases of various significant runtime errors. |
 +-----------------------------------------------+--------------------------------------------------+ certain threshold, either absolute (number of bytes) or percentage of total      |
 | **alert_memory_absolute**         |                                                  | memory. For multiple thresholds, use a comma-delimited list of values.           |
+
 | **alert_disk_percentage**         | `20, 10, 5, 1`                                 | Trigger an alert if available disk space on any given node falls to or below a   |
 +-----------------------------------------------+--------------------------------------------------+ certain threshold, either absolute (number of bytes) or percentage of total      |
 | **alert_disk_absolute**           |                                                  | disk space. For multiple thresholds, use a comma-delimited list of values.       |
-| **alert_max_stored_alerts** | `100` | The maximum number of triggered alerts guaranteed to be stored at any given time. When this number of alerts is exceeded, older alerts may be discarded to stay within the limit. |
+|  |  |  |
 | --- | --- | --- |
+| **alert_max_stored_alerts** | `100` | The maximum number of triggered alerts guaranteed to be stored at any given time. When this number of alerts is exceeded, older alerts may be discarded to stay within the limit. |
 | **trace_directory** | `${gaia.temp_directory}` | Directory where the trace event and summary files are stored.  Must be a fully qualified path with sufficient free space for required volume of data. |
 | **trace_event_buffer_size** | `1000000` | The maximum number of trace events to be collected |
 
@@ -741,6 +758,7 @@ address specified in the relevant section above.
 |                                                        |               |    openssl req -newkey rsa:2048 -new -nodes -x509 \                                 |
 |                                                        |               |      -days 3650 -keyout key.pem -out cert.pem                                       |
 
+
 <br/>
 
 <a id="config-main-sql-engine"></a>
@@ -752,7 +770,7 @@ address specified in the relevant section above.
 | Configuration Parameter | Default Value | Description |
 | --- | --- | --- |
 | **sql.enable_planner** | `true` | Enable Query Planner |
-| **sql.planner.address** | `ipc://${gaia.temp_directory}/gpudb-query-engine-0` | The network URI for the query planner to start. The URI can be either TCP or IPC. TCP address is used to indicate the remote query planner which may run at other hosts. The IPC address is for a local query planner. <br/> <br/> Example for remote or TCP servers: <br/> <br/> <br/> `sql.planner.address  = tcp://127.0.0.1:9293 sql.planner.address  = tcp://HOST_IP:9293` <br/> Example for local IPC servers: <br/> <br/> <br/> `sql.planner.address  = ipc:///tmp/gpudb-query-engine-0` |
+| **sql.planner.address** | `ipc://${gaia.temp_directory}/gpudb-query-engine-0` | The network URI for the query planner to start. The URI can be either TCP or IPC. TCP address is used to indicate the remote query planner which may run at other hosts. The IPC address is for a local query planner. <br/> <br/> Example for remote or TCP servers: <br/> <br/> `sql.planner.address  = tcp://127.0.0.1:9293 sql.planner.address  = tcp://HOST_IP:9293` <br/> <br/> Example for local IPC servers: <br/> <br/> `sql.planner.address  = ipc:///tmp/gpudb-query-engine-0` <br/> |
 | **sql.planner.remote_debug_port** | `0` | Remote debugger port used for the query planner. Setting the port to `0` disables remote debugging. <br/> <Info> Recommended port to use is `5005` </Info> |
 | **sql.planner.max_memory** | `4096` | The maximum memory for the query planner to use in Megabytes. |
 | **sql.planner.max_stack** | `6` | The maximum stack size for the query planner threads to use in Megabytes. |
@@ -817,8 +835,9 @@ address specified in the relevant section above.
 | **system_metadata.stats_aggr_rowcount**  | `10000`                     |                                                                                                  |
 +------------------------------------------------------+-------------------------------+                                                                                                  |
 | **system_metadata.stats_aggr_time**      | `1`                         |                                                                                                  |
-| **system_metadata.retention_period** | `604800` | For persistent metadata tables, time in seconds to retain rows prior to deletion. NB records are deleted periodically so the retention_period is the minimum lifetime of a given record. |
+|  |  |  |
 | --- | --- | --- |
+| **system_metadata.retention_period** | `604800` | For persistent metadata tables, time in seconds to retain rows prior to deletion. NB records are deleted periodically so the retention_period is the minimum lifetime of a given record. |
 
 <br/>
 
@@ -922,6 +941,7 @@ tier.vram.[default|rank<#>].all_gpus.<parameter>
 |                                                           |               |   threshold. Default is `80`, signifying an 80% memory usage                           |
 |                                                           |               |   threshold.                                                                             |
 
+
 <br/>
 
 <a id="config-main-ram-tier"></a>
@@ -974,8 +994,9 @@ tier.ram.[default|rank<#>].<parameter>
 |                                                 |               |   continue until memory usage falls below this recovery                                   |
 |                                                 |               |   threshold. Default is `80`, signifying an 80% memory usage                            |
 |                                                 |               |   threshold.                                                                              |
-| **tier.ram.rank0.limit** | `-1` | The maximum RAM (bytes) for processing data at rank 0. Overrides the overall default RAM tier limit. |
+|  |  |  |
 | --- | --- | --- |
+| **tier.ram.rank0.limit** | `-1` | The maximum RAM (bytes) for processing data at rank 0. Overrides the overall default RAM tier limit. |
 
 <br/>
 
@@ -1039,6 +1060,7 @@ strategies to use more than one Disk Tier, one per strategy.  See
 |                                                             |                                         | tier.disk0.default.low_watermark = 80                                                        |
 |                                                             |                                         | tier.disk0.default.store_persistent_objects = false                                          |
 |                                                             |                                         | ```                                                                                          |
+
 
 <br/>
 
@@ -1110,6 +1132,7 @@ the Persist Tier will fail when the limit is reached.
 |                                                     |                               | tier.persist.rank0.high_watermark = 90                                                                                                            |
 |                                                     |                               | tier.persist.rank0.low_watermark = 80                                                                                                             |
 |                                                     |                               | ```                                                                                                                                               |
+
 
 <br/>
 
@@ -1232,6 +1255,7 @@ per strategy.  See **tier_strategy** parameter for usage.
 |                                                       |                             | GOOGLE_APPLICATION_CREDENTIALS environment variable.                                                                                                     |
 |                                                       |                             | </Info>                                                                                                                                                  |
 
+
 <br/>
 
 <a id="config-main-tier-strategy"></a>
@@ -1242,7 +1266,7 @@ per strategy.  See **tier_strategy** parameter for usage.
 
 | Configuration Parameter | Default Value | Description |
 | --- | --- | --- |
-| **tier_strategy.default** | `VRAM 1, RAM 5, DISK0 5, PERSIST 5` | Default strategy to apply to tables or columns when one was not provided during table creation. This strategy is also applied to a resource group that does not specify one at time of creation. <br/> <br/> The strategy is formed by chaining together the tier types and their respective eviction priorities. Any given tier may appear no more than once in the chain and the priority must be in range `1` - `10`, where `1` is the lowest priority (first to be evicted) and `9` is the highest priority (last to be evicted).  A priority of `10` indicates that an object is unevictable. <br/> <br/> Each tier's priority is in relation to the priority of other objects in the same tier; e.g., `RAM 9, DISK2 1` indicates that an object will be the highest evictable priority among objects in the RAM Tier (last evicted), but that it will be the lowest priority among objects in the Disk Tier named **disk2** (first evicted).  Note that since an object can only have one Disk Tier instance in its strategy, the corresponding priority will only apply in relation to other objects in Disk Tier instance **disk2**. <br/> <br/> See the Tiered Storage section for more information about tier type names. <br/> <br/> Format: <br/> <br/> <br/> `<tier1> <priority>, <tier2> <priority>, <tier3> <priority>, ...` <br/> Examples using a Disk Tier named **disk2** and a Cold Storage Tier **cold0**: <br/> <br/> <br/> `vram 3, ram 5, disk2 3, persist 10 vram 3, ram 5, disk2 3, persist 6, cold0 10` |
+| **tier_strategy.default** | `VRAM 1, RAM 5, DISK0 5, PERSIST 5` | Default strategy to apply to tables or columns when one was not provided during table creation. This strategy is also applied to a resource group that does not specify one at time of creation. <br/> <br/> The strategy is formed by chaining together the tier types and their respective eviction priorities. Any given tier may appear no more than once in the chain and the priority must be in range `1` - `10`, where `1` is the lowest priority (first to be evicted) and `9` is the highest priority (last to be evicted).  A priority of `10` indicates that an object is unevictable. <br/> <br/> Each tier's priority is in relation to the priority of other objects in the same tier; e.g., `RAM 9, DISK2 1` indicates that an object will be the highest evictable priority among objects in the RAM Tier (last evicted), but that it will be the lowest priority among objects in the Disk Tier named **disk2** (first evicted).  Note that since an object can only have one Disk Tier instance in its strategy, the corresponding priority will only apply in relation to other objects in Disk Tier instance **disk2**. <br/> <br/> See the Tiered Storage section for more information about tier type names. <br/> <br/> Format: <br/> <br/> `<tier1> <priority>, <tier2> <priority>, <tier3> <priority>, ...` <br/> <br/> Examples using a Disk Tier named **disk2** and a Cold Storage Tier **cold0**: <br/> <br/> `vram 3, ram 5, disk2 3, persist 10 vram 3, ram 5, disk2 3, persist 6, cold0 10` <br/> |
 | **tier_strategy.predicate_evaluation_interval** | `60` | Predicate evaluation interval (in minutes) -  indicates the interval at which the tier strategy predicates are evaluated |
 
 <br/>

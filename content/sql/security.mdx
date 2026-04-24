@@ -617,7 +617,7 @@ TO <user name | role name>
 | `PRIVILEGES` | Optional keyword for SQL-92 compatibility. |
 | `ON` | Optional object specifier for granting permission to a specific object or set of objects. If not specified, then the grant will be for all tables and views in all schemas now and in the future |
 | `TABLE` | Optional keyword for SQL-92 compatibility, and to avoid ambiguity between a grant to a table/view in the user's default schema (when `<schema name>` is omitted) and a grant to a schema. |
-| `<object reference>` | The name of the table/view and/or schema to which access is being granted. the following forms are valid: <br/> <br/> &lt;schema&gt;.&lt;object&gt;: Fully-qualified table or view name in the specified schema <br/> <br/> `*.*`: All existing tables & views that the granting user can see across all schemas <br/> <br/> `*`: All existing schemas that the granting user can see, which will grant access to all tables and views in those schemas now and in the future <br/> <br/> &lt;schema&gt;: All tables and views in the specified schema now and in the future <br/> <br/> &lt;object&gt;: Table or view in the default schema. If a schema exists with the same name, it will be used. To avoid this, specify the fully-qualified object name. |
+| `<object reference>` | The name of the table/view and/or schema to which access is being granted. the following forms are valid: <br/> <br/> *&lt;schema&gt;.&lt;object&gt;*: Fully-qualified table or view name in the specified schema <br/> <br/> `*.*`: All existing tables & views that the granting user can see across all schemas <br/> <br/> `*`: All existing schemas that the granting user can see, which will grant access to all tables and views in those schemas now and in the future <br/> <br/> *&lt;schema&gt;*: All tables and views in the specified schema now and in the future <br/> <br/> *&lt;object&gt;*: Table or view in the default schema. If a schema exists with the same name, it will be used. To avoid this, specify the fully-qualified object name. |
 | `<column list>` | Optional comma-separated list of specific table columns and/or [column security functions](/content/security/sec_concepts#sec-concepts-perm-table-col-func) applied to columns on which to grant access; see [Column-Level Security](/content/security/sec_concepts#sec-concepts-perm-table-col) for details. |
 | `WHERE <expression>` | Optional filter expression on the table to which access is being granted, determining to which rows of the target table the grantee will be given access; see [Row-Level Security](/content/security/sec_concepts#sec-concepts-perm-table-row) for details. |
 | `WITH GRANT OPTION` | Grant this permission with a [grant option](/content/security/sec_concepts#security-concepts-permissions-grant-option) to grant it to others. <br/> <Info> `WITH GRANT OPTION` is not allowed when also granting with row or column restrictions. </Info> |
@@ -1856,8 +1856,11 @@ SELECT CURRENT_USER() AS whoami
 
 {/* Source: /examples/sql/security/setuser.out (lines 109-113) */}
 ``` Show Current User Output
++----------+
 | whoami   |
++----------+
 | admin    |
++----------+
 ```
 
 Then, switch to a user **auser** and verify the session is now executing
@@ -1875,8 +1878,11 @@ SELECT CURRENT_USER() AS whoami
 
 {/* Source: /examples/sql/security/setuser.out (lines 124-128) */}
 ``` Show Switched User Output
++----------+
 | whoami   |
++----------+
 | auser    |
++----------+
 ```
 
 Accessing a database object that **auser** has permission for results in a
@@ -1890,8 +1896,11 @@ FROM example.auser_can_access
 
 {/* Source: /examples/sql/security/setuser.out (lines 135-139) */}
 ``` Query Output
++------+
 |   id |
++------+
 |    1 |
++------+
 ```
 
 Accessing an object that **auser** doesn't have permission for results in an
@@ -1923,8 +1932,11 @@ SELECT CURRENT_USER() AS whoami
 
 {/* Source: /examples/sql/security/setuser.out (lines 156-160) */}
 ``` Show Switched Back User Output
++----------+
 | whoami   |
++----------+
 | admin    |
++----------+
 ```
 
 Now, switch to **auser** using the `WITH NO REVERT` option:
@@ -1941,8 +1953,11 @@ SELECT CURRENT_USER() AS whoami
 
 {/* Source: /examples/sql/security/setuser.out (lines 171-175) */}
 ``` Show Switched User Output
++----------+
 | whoami   |
++----------+
 | auser    |
++----------+
 ```
 
 Attempts to switch back to the administrator user will fail:
@@ -1966,8 +1981,11 @@ SELECT CURRENT_USER() AS whoami
 
 {/* Source: /examples/sql/security/setuser.out (lines 186-190) */}
 ``` Show Current User Output
++----------+
 | whoami   |
++----------+
 | auser    |
++----------+
 ```
 
 

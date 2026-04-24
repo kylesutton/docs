@@ -69,9 +69,16 @@ and a *data type column property* of *int16* will have a *specific type* of
 *int16*, which is a 16-bit signed integer.
 
 
+<Info>
+The following lists the *specific type* within each *base type*, the
+number of bytes in memory an instance of the *specific type*
+occupies, and the minimum and maximum values the *specific type* can
+be assigned.
+</Info>
+
 ### `int`
 
-| Specific Type | Bytes in Memory | Minimum Value | Maximum Value |
+| Specific Type | Bytes | Minimum Value | Maximum Value |
 | --- | --- | --- | --- |
 | `int` *(default)* | 4 | -2147483648 | 2147483647 |
 | `int16` | 2 | -32768 | 32767 |
@@ -80,26 +87,26 @@ and a *data type column property* of *int16* will have a *specific type* of
 
 ### `long`
 
-| Specific Type | Bytes in Memory | Minimum Value | Maximum Value |
+| Specific Type | Bytes | Minimum Value | Maximum Value |
 | --- | --- | --- | --- |
 | `long` *(default)* | 8 | -9223372036854775808 | 9223372036854775807 |
 | `timestamp` | 8 | -30610224000000 <br/> <br/> (1/1/1000 00:00:00.000) | 29379542399999 <br/> <br/> (12/31/2900 23:59:59.999) |
 
 ### `float`
 
-| Specific Type | Bytes in Memory | Minimum Value | Maximum Value |
+| Specific Type | Bytes | Minimum Value | Maximum Value |
 | --- | --- | --- | --- |
 | `float` | 4 | -3.40282 * 10<sup>38</sup> | 3.40282 * 10<sup>38</sup> |
 
 ### `double`
 
-| Specific Type | Bytes in Memory | Minimum Value | Maximum Value |
+| Specific Type | Bytes | Minimum Value | Maximum Value |
 | --- | --- | --- | --- |
 | `double` | 8 | <span style={{whiteSpace: "nowrap"}}>-1.79769313486231 * 10<sup>308</sup></span> | <span style={{whiteSpace: "nowrap"}}>1.79769313486231 * 10<sup>308</sup></span> |
 
 ### `string`
 
-| Specific Type | Bytes in Memory | Minimum Value | Maximum Value |
+| Specific Type | Bytes | Minimum Value | Maximum Value |
 | --- | --- | --- | --- |
 | <span style={{whiteSpace: "nowrap"}}>`string` *(default)*</span> | 32 + *length* | (empty string) | (100,000,000,000 bytes) |
 | <span style={{whiteSpace: "nowrap"}}>[`array(boolean[,n])`](/content/concepts/array)</span> | *varies* | (empty array) | (100,000,000,000 bytes) |
@@ -118,9 +125,10 @@ and a *data type column property* of *int16* will have a *specific type* of
 | <span style={{whiteSpace: "nowrap"}}>`char64`</span> | 64 | (empty string) | (64 bytes) |
 | <span style={{whiteSpace: "nowrap"}}>`char128`</span> | 128 | (empty string) | (128 bytes) |
 | <span style={{whiteSpace: "nowrap"}}>`char256`</span> | 256 | (empty string) | (256 bytes) |
-| <span style={{whiteSpace: "nowrap"}}>`decimal(p,s)`</span> | 8 12 | <small>-999999999999999999 -39614081257132168796771975168</small> | <small>999999999999999999 39614081257132168796771975167</small> |
-| <span style={{whiteSpace: "nowrap"}}>`date`</span> | 4 | 1000-01-01 9999-01-01 | 2900-12-31 9999-12-31 |
-| <span style={{whiteSpace: "nowrap"}}>`datetime`</span> | 8 | 1000-01-01 00:00:00.000 9999-01-01 00:00:00.000 | 2900-12-31 23:59:59.999 9999-12-31 23:59:59.999 |
+| <span style={{whiteSpace: "nowrap"}}>`decimal(p<=18,s)`</span> | 8 | <small>-999999999999999999</small> | <small>999999999999999999</small> |
+| <span style={{whiteSpace: "nowrap"}}>`decimal(p>=19,s)`</span> | 12 | <small>-39614081257132168796771975168</small> | <small>39614081257132168796771975167</small> |
+| <span style={{whiteSpace: "nowrap"}}>`date`</span> | 4 | 1000-01-01 | 2900-12-31 |
+| <span style={{whiteSpace: "nowrap"}}>`datetime`</span> | 8 | 1000-01-01 00:00:00.000 | 2900-12-31 23:59:59.999 |
 | <span style={{whiteSpace: "nowrap"}}>`ipv4`</span> | 4 | 0.0.0.0 | 255.255.255.255 |
 | <span style={{whiteSpace: "nowrap"}}>[`json`](/content/concepts/json)</span> | *varies* | (empty string) | (100,000,000,000 bytes) |
 | <span style={{whiteSpace: "nowrap"}}>`time`</span> | 4 | 00:00:00.000 | 23:59:59.999 |
@@ -130,7 +138,7 @@ and a *data type column property* of *int16* will have a *specific type* of
 
 ### `bytes`
 
-| Specific Type | Bytes in Memory | Minimum Value | Maximum Value |
+| Specific Type | Bytes | Minimum Value | Maximum Value |
 | --- | --- | --- | --- |
 | `bytes` *(default)* | *N/A* | (empty array) | (100,000,000,000 bytes) |
 | [`vector(n)`](/content/vector_search#vector-type) | 4 * n | (empty vector) | (100,000,000,000 bytes) |

@@ -121,95 +121,108 @@ root
 7. Verify output:
 
 ```
-| vendor_id | min_geo_miles | avg_geo_miles | max_geo_miles |
-| --- | --- | --- | --- |
-| CMT DDS NYC VTS YCAB | 0.0100 0.0148 0.0101 0.0100 0.0100 | 2.0952 2.7350 2.1548 2.0584 2.1049 | 80.8669 64.2944 36.9236 94.5213 36.0565 |
++---------+-------------+-------------+-------------+
+|vendor_id|min_geo_miles|avg_geo_miles|max_geo_miles|
++---------+-------------+-------------+-------------+
+|      CMT|       0.0100|       2.0952|      80.8669|
+|      DDS|       0.0148|       2.7350|      64.2944|
+|      NYC|       0.0101|       2.1548|      36.9236|
+|      VTS|       0.0100|       2.0584|      94.5213|
+|     YCAB|       0.0100|       2.1049|      36.0565|
++---------+-------------+-------------+-------------+
+```
 
 
-Spark Ingest
+### Spark Ingest
+
 
 The following example shows how to ingest data into *Kinetica*.  It will use
 JDBC as the write format, require the *Kinetica* JDBC driver to be accessible
-and load it, and ingest the given ``DataFrame`` into a new table.
+and load it, and ingest the given `DataFrame` into a new table.
 
-This example makes use of the ``DataFrame`` populated in the `Spark Egress`_
-section, referencing it as ``df``.
+This example makes use of the `DataFrame` populated in the Spark Egress
+section, referencing it as `df`.
 
-1. Run the `Spark Egress`_ example.
+1. Run the Spark Egress example.
 
 2. Update the options map, specifying the table to ingest into for map key
-   ``dbtable``.
+   `dbtable`.
 
    ```scala
    val options = Map(
-      "url" -&gt; url,
-      "driver" -&gt; "com.kinetica.jdbc.Driver",
-      "UID" -&gt; username,
-      "PWD" -&gt; password,
-      "dbtable" -&gt; "demo.nyctaxi_copy"
+      "url" -> url,
+      "driver" -> "com.kinetica.jdbc.Driver",
+      "UID" -> username,
+      "PWD" -> password,
+      "dbtable" -> "demo.nyctaxi_copy"
    )
    ```
 
-3. Write data from ``DataFrame`` into *Kinetica*:
+3. Write data from `DataFrame` into *Kinetica*:
 
    ```scala
    df.write.format("jdbc").options(options).mode("append").save()
    ```
 
-4. Verify the ingestion into the ``demo.nyctaxi_copy`` table using *GAdmin* or
+4. Verify the ingestion into the `demo.nyctaxi_copy` table using *GAdmin* or
    *Workbench*.
 
 
-Spark Logging
+### Spark Logging
+
 
 Logging of *Kinetica* JDBC operations can be configured via the JDBC URL, by
-adding a ``LogLevel`` parameter to the end of the URL.  Valid log levels can be
+adding a `LogLevel` parameter to the end of the URL.  Valid log levels can be
 found under [JDBC Client Parameters](/content/connectors/sql_guide#jdbc-config-client).
 
-For instance, to enable ``DEBUG`` logging::
+For instance, to enable `DEBUG` logging:
 
-    jdbc:kinetica:URL=http://kineticahost:9191;CombinePrepareAndExecute=1;RowsPerFetch=20000;LogLevel=5
+```
+jdbc:kinetica:URL=http://kineticahost:9191;CombinePrepareAndExecute=1;RowsPerFetch=20000;LogLevel=5
+```
+To enable both Scala and JDBC driver `DEBUG` logging, without having to modify
+the JDBC URL:
 
-To enable both Scala and JDBC driver ``DEBUG`` logging, without having to modify
-the JDBC URL::
+```
+sc.setLogLevel("DEBUG")
+```
 
-    sc.setLogLevel("DEBUG")
 
+## Mapping Spark to Kinetica
 
-Mapping Spark to Kinetica
 
 Some *Spark* data types and functions may need custom mappings to *Kinetica*.
 
 The following dialect snippet is a custom mapping, which maps:
 
-* *Spark's* CLOB/VARCHAR types to the *Kinetica* ``VARCHAR`` type
-* *Spark's* BLOB type to the *Kinetica* ``BLOB`` type
-* *Spark's* boolean type to the *Kinetica* ``TINYINT`` type
-* The truncate command (which does ``DROP``/``CREATE``, by default) to
-  *Kinetica's* ``TRUNCATE TABLE`` command
+* *Spark's* CLOB/VARCHAR types to the *Kinetica* `VARCHAR` type
+* *Spark's* BLOB type to the *Kinetica* `BLOB` type
+* *Spark's* boolean type to the *Kinetica* `TINYINT` type
+* The truncate command (which does `DROP`/`CREATE`, by default) to
+  *Kinetica's* `TRUNCATE TABLE` command
 
 ```scala
-import org.apache.spark.sql.jdbc.\{JdbcDialects, JdbcDialect, JdbcType\}
+import org.apache.spark.sql.jdbc.{JdbcDialects, JdbcDialect, JdbcType}
 import java.sql.Types
 import java.util.Locale
 
 import org.apache.spark.sql.types._
 
-val KineticaDialect = new JdbcDialect \{
+val KineticaDialect = new JdbcDialect {
     override def canHandle(url: String): Boolean =
         url.toLowerCase(Locale.ROOT).startsWith("jdbc:kinetica")
-    override def getJDBCType(dt: DataType): Option[JdbcType] = dt match \{
-        case StringType =&gt; Some(JdbcType("TEXT", java.sql.Types.VARCHAR))
-        case BinaryType =&gt; Some(JdbcType("VARBINARY", java.sql.Types.VARBINARY))
-        case BooleanType =&gt; Option(JdbcType("TINYINT", java.sql.Types.TINYINT))
-        case _ =&gt; None
-    \}
+    override def getJDBCType(dt: DataType): Option[JdbcType] = dt match {
+        case StringType => Some(JdbcType("TEXT", java.sql.Types.VARCHAR))
+        case BinaryType => Some(JdbcType("VARBINARY", java.sql.Types.VARBINARY))
+        case BooleanType => Option(JdbcType("TINYINT", java.sql.Types.TINYINT))
+        case _ => None
+    }
     override def isCascadingTruncateTable(): Option[Boolean] = Some(false)
     override def getTruncateQuery(
         table: String,
         cascade: Option[Boolean] = isCascadingTruncateTable
-    ): String = \{ s"TRUNCATE TABLE $table" \}
-\}
+    ): String = { s"TRUNCATE TABLE \$table" }
+}
 JdbcDialects.registerDialect(KineticaDialect)
 ```
 
@@ -217,5 +230,4 @@ After running the application code, the dialect can be unregistered as follows:
 
 ```scala
 JdbcDialects.unregisterDialect(KineticaDialect)
-```
 ```

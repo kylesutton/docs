@@ -198,14 +198,17 @@ Also, cells marked `LEFT` can be used to infer the distribution for
 `RIGHT` joins, by simply reversing the left & right tables in the query.
 </Info>
 
+
 | **Join**                      |                                 **Right Table**                                       |
 | **Criteria**                  +------------------------------+-------------------------------+------------------------+
 | **Composition**               | **Shard Key**                | **Non-Shard Key**             | **Replicated**         |
+
 |           | **Shard Key**     | *&lt;Node-local join&gt;*          | Reshard Right *(All)*         | Reshard Right *(FULL)* |
 | **Left**  +-------------------+------------------------------+-------------------------------+------------------------+
 | **Table** | **Non-Shard Key** | Reshard Left *(All)*         | Reshard Both *(All)*          | Replicate Left *(All)* |
 |           +-------------------+------------------------------+-------------------------------+------------------------+
 |           | **Replicated**    | Reshard Left *(LEFT,FULL)*   | Replicate Right *(LEFT,FULL)* | *&lt;Node-local join&gt;*    |
+
 
 Some example scenarios:
 
@@ -238,9 +241,11 @@ Cells marked `LEFT` can be used to infer the distribution for
 `RIGHT` joins, by simply reversing the left & right tables in the query.
 </Info>
 
+
 | **Join**                      |                                 **Right Table**                                           |
 | **Criteria**                  +--------------------------------+--------------------------------+-------------------------+
 | **Composition**               | **Shard Key**                  | **Non-Shard Key**              | **Replicated**          |
+
 |           | **Shard Key**     | Replicate Right *(INNER,LEFT)* | Replicate Right *(INNER,LEFT)* | Replicate Left *(FULL)* |
 |           |                   |                                |                                |                         |
 |           |                   | Replicate Both *(FULL)*        | Replicate Both *(FULL)*        |                         |
@@ -250,6 +255,7 @@ Cells marked `LEFT` can be used to infer the distribution for
 |           |                   | Replicate Both *(FULL)*        | Replicate Both *(FULL)*        |                         |
 |           +-------------------+--------------------------------+--------------------------------+-------------------------+
 |           | **Replicated**    | Replicate Right *(LEFT,FULL)*  | Replicate Right *(LEFT,FULL)*  | *&lt;Node-local join&gt;*     |
+
 
 Some example scenarios:
 

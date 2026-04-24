@@ -60,6 +60,7 @@ git clone -b release/v7.2 --single-branch https://github.com/kineticadb/kinetica
 export PYTHONPATH=\$PYTHONPATH:\$(cd kinetica-udf-api-python;pwd)
 ```
 
+
 <a id="udf-python-func-env"></a>
 
 
@@ -251,41 +252,44 @@ records or schemas, operating in terms of columns of data instead.  The raw
 column values returned closely map to the data types used in the tables being
 accessed:
 
-| Column Category | Kinetica Type | Python UDF Type |
-| --- | --- | --- |
-|                 +-----------------+-----------------------+
-|                 | `int8`        | `int`               |
-|                 +-----------------+-----------------------+
-|                 | `int16`       | `int`               |
-|                 +-----------------+-----------------------+
-|                 | `int`         | `int`               |
-|                 +-----------------+-----------------------+
-|                 | `long`        | `int`               |
-|                 +-----------------+-----------------------+
-|                 | `float`       | `float`             |
-|                 +-----------------+-----------------------+
-|                 | `double`      | `float`             |
-|                 +-----------------+-----------------------+
-|                 | `decimal`     | `decimal.Decimal`   |
-| String          | `string`      | `str`               |
-|                 +-----------------+-----------------------+
-|                 | `char[N]`     | `str`               |
-|                 +-----------------+-----------------------+
-|                 | `ipv4`        | `int`               |
-|                 +-----------------+-----------------------+
-|                 | `uuid`        | `uuid.UUID`         |
-|                 +-----------------+-----------------------+
-|                 | `wkt`         | `str`               |
-| Date/Time       | `date`        | `datetime.date`     |
-|                 +-----------------+-----------------------+
-|                 | `datetime`    | `datetime.datetime` |
-|                 +-----------------+-----------------------+
-|                 | `time`        | `datetime.time`     |
-|                 +-----------------+-----------------------+
-|                 | `timestamp`   | `int`               |
-| Binary          | `bytes`       | `bytes`             |
-|                 +-----------------+-----------------------+
-|                 | `wkb`         | `str`               |
+### Numeric
+
+| Kinetica Type | Python UDF Type |
+| --- | --- |
+| `boolean` | `bool` |
+| `int8` | `int` |
+| `int16` | `int` |
+| `int` | `int` |
+| `long` | `int` |
+| `float` | `float` |
+| `double` | `float` |
+| `decimal` | `decimal.Decimal` |
+
+### String
+
+| Kinetica Type | Python UDF Type |
+| --- | --- |
+| `string` | `str` |
+| `char[N]` | `str` |
+| `ipv4` | `int` |
+| `uuid` | `uuid.UUID` |
+| `wkt` | `str` |
+
+### Date/Time
+
+| Kinetica Type | Python UDF Type |
+| --- | --- |
+| `date` | `datetime.date` |
+| `datetime` | `datetime.datetime` |
+| `time` | `datetime.time` |
+| `timestamp` | `int` |
+
+### Binary
+
+| Kinetica Type | Python UDF Type |
+| --- | --- |
+| `bytes` | `bytes` |
+| `wkb` | `str` |
 
 
 Column data values can be accessed through array indices:
@@ -308,7 +312,7 @@ UDF, or the input data can be completed using the following calls:
 | Call | Type | Description |
 | --- | --- | --- |
 | `proc_data.input_data` | Object | Returns an `InputDataSet` object for accessing input table data that was passed into the UDF |
-| `proc_data.request_info` | Map of strings to strings to strings to strings to strings | Returns a map of basic information about the [execute_proc()](../../../api/python/?source/gpudb.html#gpudb.GPUdb.execute_proc) request, map values being accessed using: <br/> `proc_data.request_info[<map_key>]` |
+| `proc_data.request_info` | Map of strings to strings to strings to strings to strings | Returns a map of basic information about the [execute_proc()](../../../api/python/?source/gpudb.html#gpudb.GPUdb.execute_proc) request, map values being accessed using: <br/> <br/> `proc_data.request_info[<map_key>]` <br/> |
 | `proc_data.params` | Map of strings to strings | Returns a map of string-valued parameters that were passed into the UDF |
 | `proc_data.bin_params` | Map of strings to bytes | Returns a map of binary-valued parameters that were passed into the UDF |
 

@@ -63,9 +63,12 @@ WKT column:
 
 {/* Source: /examples/sql/iteration.out (lines 38-43) */}
 ```
++------+-------------------------------------------+
 |   id | wkt                                       |
++------+-------------------------------------------+
 |    1 | LINESTRING (1 1, 2 2, 3 3)                |
 |    2 | LINESTRING (10 11, 12 13, 14 15, 16 17)   |
++------+-------------------------------------------+
 ```
 
 
@@ -88,7 +91,9 @@ ORDER BY id, i
 
 {/* Source: /examples/sql/iteration.out (lines 54-64) */}
 ```
++------+-------------------------------------------+-----+-----------------+
 |   id | wkt                                       |   i | line_point      |
++------+-------------------------------------------+-----+-----------------+
 |    1 | LINESTRING (1 1, 2 2, 3 3)                |   0 | POINT (1 1)     |
 |    1 | LINESTRING (1 1, 2 2, 3 3)                |   1 | POINT (2 2)     |
 |    1 | LINESTRING (1 1, 2 2, 3 3)                |   2 | POINT (3 3)     |
@@ -96,6 +101,7 @@ ORDER BY id, i
 |    2 | LINESTRING (10 11, 12 13, 14 15, 16 17)   |   1 | POINT (12 13)   |
 |    2 | LINESTRING (10 11, 12 13, 14 15, 16 17)   |   2 | POINT (14 15)   |
 |    2 | LINESTRING (10 11, 12 13, 14 15, 16 17)   |   3 | POINT (16 17)   |
++------+-------------------------------------------+-----+-----------------+
 ```
 
 As the result set shows, the two `LINESTRING` values of three & four points
@@ -124,12 +130,15 @@ ORDER BY id, i
 
 {/* Source: /examples/sql/iteration.out (lines 75-83) */}
 ```
++------+-------------------------------------------+-----+-----------------------------+
 |   id | wkt                                       |   i | line_segment                |
++------+-------------------------------------------+-----+-----------------------------+
 |    1 | LINESTRING (1 1, 2 2, 3 3)                |   0 | LINESTRING (1 1, 2 2)       |
 |    1 | LINESTRING (1 1, 2 2, 3 3)                |   1 | LINESTRING (2 2, 3 3)       |
 |    2 | LINESTRING (10 11, 12 13, 14 15, 16 17)   |   0 | LINESTRING (10 11, 12 13)   |
 |    2 | LINESTRING (10 11, 12 13, 14 15, 16 17)   |   1 | LINESTRING (12 13, 14 15)   |
 |    2 | LINESTRING (10 11, 12 13, 14 15, 16 17)   |   2 | LINESTRING (14 15, 16 17)   |
++------+-------------------------------------------+-----+-----------------------------+
 ```
 
 As the result set shows, the two `LINESTRING` values of three & four points
@@ -159,11 +168,14 @@ ORDER BY id, i
 
 {/* Source: /examples/sql/iteration.out (lines 94-101) */}
 ```
++------+-------------------------------------------+-----+------------------+
 |   id | wkt                                       |   i | line_end_point   |
++------+-------------------------------------------+-----+------------------+
 |    1 | LINESTRING (1 1, 2 2, 3 3)                |   0 | POINT (1 1)      |
 |    1 | LINESTRING (1 1, 2 2, 3 3)                |   1 | POINT (3 3)      |
 |    2 | LINESTRING (10 11, 12 13, 14 15, 16 17)   |   0 | POINT (10 11)    |
 |    2 | LINESTRING (10 11, 12 13, 14 15, 16 17)   |   1 | POINT (16 17)    |
++------+-------------------------------------------+-----+------------------+
 ```
 
 As the result set shows, the two `LINESTRING` values were turned into four
@@ -181,10 +193,13 @@ and a *charN* word column:
 
 {/* Source: /examples/sql/iteration.out (lines 108-114) */}
 ```
++------+----------+
 |   id | word     |
++------+----------+
 |    1 | apple    |
 |    2 | banana   |
 |    3 | cherry   |
++------+----------+
 ```
 
 
@@ -209,7 +224,9 @@ ORDER BY id, i
 
 {/* Source: /examples/sql/iteration.out (lines 125-145) */}
 ```
++------+----------+-----+----------+
 |   id | word     |   i | letter   |
++------+----------+-----+----------+
 |    1 | apple    |   0 | a        |
 |    1 | apple    |   1 | p        |
 |    1 | apple    |   2 | p        |
@@ -227,6 +244,7 @@ ORDER BY id, i
 |    3 | cherry   |   3 | r        |
 |    3 | cherry   |   4 | r        |
 |    3 | cherry   |   5 | y        |
++------+----------+-----+----------+
 ```
 
 As the result set shows, the three words were turned into a set of records, one
@@ -247,7 +265,9 @@ ORDER BY letter
 
 {/* Source: /examples/sql/iteration.out (lines 157-170) */}
 ```
++----------+---------------------+
 | letter   |   total_occurrences |
++----------+---------------------+
 | a        |                   4 |
 | b        |                   1 |
 | c        |                   1 |
@@ -258,6 +278,7 @@ ORDER BY letter
 | p        |                   2 |
 | r        |                   2 |
 | y        |                   1 |
++----------+---------------------+
 ```
 
 
@@ -285,7 +306,9 @@ ORDER BY id, i
 
 {/* Source: /examples/sql/iteration.out (lines 181-199) */}
 ```
++-----+------+----------+
 |   i |   id | word     |
++-----+------+----------+
 |   0 |    1 | apple    |
 |   1 |    1 | apple    |
 |   2 |    1 | apple    |
@@ -301,6 +324,7 @@ ORDER BY id, i
 |   2 |    3 | cherry   |
 |   3 |    3 | cherry   |
 |   4 |    3 | cherry   |
++-----+------+----------+
 ```
 
 As the result set shows, each word is duplicated five times.

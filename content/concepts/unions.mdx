@@ -31,86 +31,6 @@ and their descriptions and limitations can be found on
 [Intersect](/content/concepts/intersect) and [Except](/content/concepts/except), respectively.
 </Info>
 
-You can *union* any number or combination of data sets as long as the
-columns across the data sets being used have similar data [types](/content/concepts/types#types).
-Kinetica will cast compatible data *types* as follows:
-
-<a id="union-compatible-data-types"></a>
-
-
-| Type | Compatible With | Result Type |
-| --- | --- | --- |
-| int8 | int8 | int8 |
-| int16 | int16 | int16 |
-|           +-----------------+---------------------------------+
-|           | long            | long                            |
-|           +-----------------+---------------------------------+
-|           | float           | float                           |
-|           +-----------------+---------------------------------+
-|           | double          | double                          |
-|           +-----------------+---------------------------------+
-|           | decimal         | decimal                         |
-| long      | int             | long                            |
-|           long                                                |
-|                                                               |
-|           float                                               |
-|                                                               |
-|           double                                              |
-|                                                               |
-|           decimal                                             |
-|                                                               |
-|           int                                                 |
-|                                                               |
-|           long                                                |
-|                                                               |
-|           float                                               |
-|                                                               |
-|           double                                              |
-|                                                               |
-|           decimal                                             |
-|                                                               |
-|           int                                                 |
-|                                                               |
-|           long                                                |
-|                                                               |
-|           float                                               |
-|                                                               |
-|           double                                              |
-|                                                               |
-|           decimal                                             |
-|                                                               |
-|           int                                                 |
-|                                                               |
-|           long                                                |
-|                                                               |
-|           float                                               |
-|                                                               |
-|           double                                              |
-|                                                               |
-|           decimal                                             |
-|                                                               |
-|           date                                                |
-|                                                               |
-|           datetime                                            |
-|                                                               |
-|           timestamp                                           |
-|                                                               |
-|           time                                                |
-|                                                               |
-|           date                                                |
-|                                                               |
-|           datetime                                            |
-|                                                               |
-|           date                                                |
-|                                                               |
-|           timestamp                                           |
-|                                                               |
-|           charN                                               |
-|                                                               |
-|           wkt                                                 |
-|                                                               |
-|           ipv4                                                |
-
 Performing a *union* creates a separate
 [memory-only table](/content/concepts/tables_memory_only) containing the results.
 *Union* results can be persisted (like [tables](/content/concepts/tables)) using
@@ -130,6 +50,125 @@ non-sharded.
 
 Limitations on using *union* are discussed in further detail in the
 [Limitations and Cautions](/content/concepts/unions#union-limitations) section.
+
+
+<a id="union-compatible-data-types"></a>
+
+
+## Union-Compatible Data Types
+
+
+You can *union* any number or combination of data sets as long as the
+columns across the data sets being used have similar data [types](/content/concepts/types#types).
+Kinetica will cast compatible data *types* as follows:
+
+### int8
+
+| Compatible With | Result Type |
+| --- | --- |
+| int8 | int8 |
+
+### int16
+
+| Compatible With | Result Type |
+| --- | --- |
+| int16 | int16 |
+
+### int
+
+| Compatible With | Result Type |
+| --- | --- |
+| int | int |
+| long | long |
+| float | float |
+| double | double |
+| decimal | decimal |
+
+### long
+
+| Compatible With | Result Type |
+| --- | --- |
+| int | long |
+| long | long |
+| float | float |
+| double | double |
+| decimal | decimal |
+
+### float
+
+| Compatible With | Result Type |
+| --- | --- |
+| int | float |
+| long | float |
+| float | float |
+| double | double |
+| decimal | float |
+
+### double
+
+| Compatible With | Result Type |
+| --- | --- |
+| int | double |
+| long | double |
+| float | double |
+| double | double |
+| decimal | double |
+
+### decimal
+
+| Compatible With | Result Type |
+| --- | --- |
+| int | decimal |
+| long | decimal |
+| float | float |
+| double | double |
+| decimal | decimal |
+
+### date
+
+| Compatible With | Result Type |
+| --- | --- |
+| date | date |
+| datetime | datetime |
+| timestamp | timestamp |
+
+### time
+
+| Compatible With | Result Type |
+| --- | --- |
+| time | time |
+
+### datetime
+
+| Compatible With | Result Type |
+| --- | --- |
+| date | datetime |
+| datetime | datetime |
+
+### timestamp
+
+| Compatible With | Result Type |
+| --- | --- |
+| date | timestamp |
+| timestamp | timestamp |
+
+### charN
+
+| Compatible With | Result Type |
+| --- | --- |
+| charN | charN *(whichever N is larger)* |
+
+### wkt
+
+| Compatible With | Result Type |
+| --- | --- |
+| wkt | wkt |
+
+### ipv4
+
+| Compatible With | Result Type |
+| --- | --- |
+| ipv4 | ipv4 |
 
 
 <a id="union-perform"></a>

@@ -37,4 +37,4 @@ The GPUdb server embeds the endpoint response inside a standard response structu
 | message | String | Empty if success or an error message |
 | data_type | String | 'show_resource_objects_response' or 'none' in case of an error |
 | data | String | Empty string |
-| data_str | JSON or | This embedded JSON represents the result of the /show/resource/objects endpoint: <br/> <br/> rank_objects: [map of string to strings] Tier usage across ranks. Layout is: response.rank_usage[rank_number][resource_group_name] = group_usage (as stringified json) <br/> <br/> info: [map of string to strings] Additional information. <br/> <br/> Empty string in case of an error. |
+| data_str | JSON or String | This embedded JSON represents the result of the /show/resource/objects endpoint: <br/> <br/> rank_objects: [map of string to strings] Tier usage across ranks. Layout is: response.rank_usage[rank_number][resource_group_name] = group_usage (as stringified json) <br/> <br/> info: [map of string to strings] Additional information. <br/> <br/> Empty string in case of an error. |

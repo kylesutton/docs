@@ -219,9 +219,10 @@ into a supported format using a third-party tool.
   values within them inaccessible as column data
 * `STRUCT` - flattened; e.g.:
 
-| Source structure | `Aa {Bb, Cc {Dd, Ee}}` |
-| --- | --- |
-| Resulting (3) columns | `Aa_Bb Aa_Cc_Dd Aa_Cc_Ee` |
+  |  |  |
+  | --- | --- |
+  | Source structure | `Aa {Bb, Cc {Dd, Ee}}` |
+  | Resulting (3) columns | `Aa_Bb Aa_Cc_Dd Aa_Cc_Ee` |
 
 
 #### Skipped Types
@@ -286,9 +287,10 @@ The following handling will be applied to individual value types:
   values within them inaccessible as column data
 * Objects - flattened; e.g.:
 
-| Source structure | `Aa {Bb, Cc {Dd, Ee}}` |
-| --- | --- |
-| Resulting (3) columns | `Aa_Bb Aa_Cc_Dd Aa_Cc_Ee` |
+  |  |  |
+  | --- | --- |
+  | Source structure | `Aa {Bb, Cc {Dd, Ee}}` |
+  | Resulting (3) columns | `Aa_Bb Aa_Cc_Dd Aa_Cc_Ee` |
 
 If you require arrays to be flattened, so that they can be directly accessed as
 column data, you will need to pre-flatten your data before ingesting it into

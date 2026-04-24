@@ -333,6 +333,7 @@ nvidia-smi
 Which should return something similar to:
 
 ```
++------------------------------------------------------+
 | NVIDIA-SMI 361.42     Driver Version: 361.42         |
 |-------------------------------+----------------------+----------------------+
 | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
@@ -340,10 +341,15 @@ Which should return something similar to:
 |===============================+======================+======================|
 |   0  Quadro K1100M       Off  | 0000:01:00.0     Off |                  N/A |
 | N/A   44C    P0    N/A /  N/A |      8MiB /  2047MiB |      0%      Default |
-```
-| Processes:                                                       GPU Memory GPU       PID  Type  Process name                               Usage ============================================================================= No running processes found |
-| --- |
++-------------------------------+----------------------+----------------------+
 
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID  Type  Process name                               Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+```
 
 ### Multiple Driver Failure
 

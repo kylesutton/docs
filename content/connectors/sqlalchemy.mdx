@@ -106,55 +106,62 @@ finally:
 All Kinetica data types are available to be used in SQLAlchemy through either
 native SQLAlchemy types or Kinetica custom dialect types.
 
-| Category | Kinetica Data Type | SQLAlchemy Type Class |
-| --- | --- | --- |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `TINYINT`         | `sqlalchemy_kinetica.kinetica_types.TINYINT`                                  |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `SMALLINT`        | `sqlalchemy_kinetica.kinetica_types.SMALLINT`                                 |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `INTEGER`         | `sqlalchemy.Integer`                                                          |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `BIGINT`          | `sqlalchemy.BIGINT`                                                           |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `UNSIGNED BIGINT` | `sqlalchemy_kinetica.kinetica_types.UnsignedBigInteger`                       |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `REAL`            | `sqlalchemy.REAL`                                                             |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `DOUBLE`          | `sqlalchemy.DOUBLE`                                                           |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `DECIMAL(P,S)`    | `sqlalchemy_kinetica.kinetica_types.DECIMAL`                                  |
-| String        | `VARCHAR`         | `sqlalchemy.VARCHAR`                                                          |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `IPV4`            | `sqlalchemy_kinetica.kinetica_types.IPV4`                                     |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `UUID`            | `sqlalchemy.UUID`                                                             |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `JSON`            | `sqlalchemy_kinetica.kinetica_types.JSON`                                     |
-| Date/Time     | `DATE`            | `sqlalchemy.DATE`                                                             |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `DATETIME`        | `sqlalchemy.DATETIME`                                                         |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `TIME`            | `sqlalchemy.TIME`                                                             |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `TIMESTAMP`       | `sqlalchemy.TIMESTAMP`                                                        |
-| Binary | `BLOB` | `sqlalchemy_kinetica.kinetica_types.BLOB` |
-| --- | --- | --- |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `BLOB(WKT)`       | `sqlalchemy_kinetica.kinetica_types.BlobWKT`                                  |
-| Composite     | `BOOLEAN[N]`      | `sqlalchemy.ARRAY`, `sqlalchemy.Boolean`                                    |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `INTEGER[N]`      | `sqlalchemy.ARRAY`, `sqlalchemy.Integer`                                    |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `BIGINT[N]`       | `sqlalchemy.ARRAY`, `sqlalchemy.BIGINT`                                     |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `VECTOR(N)`       | `sqlalchemy_kinetica.kinetica_types.VECTOR`                                   |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `REAL[N]`         | `sqlalchemy.ARRAY`, `sqlalchemy.REAL`                                       |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `DOUBLE[N]`       | `sqlalchemy.ARRAY`, `sqlalchemy.DOUBLE`                                     |
-|               +---------------------+---------------------------------------------------------------------------------+
-|               | `VARCHAR[N]`      | `sqlalchemy.ARRAY`, `sqlalchemy.VARCHAR`                                    |
+### Number
+
+| Kinetica Data Type | SQLAlchemy Type Class |
+| --- | --- |
+| `BOOLEAN` | `sqlalchemy.Boolean` |
+| `TINYINT` | `sqlalchemy_kinetica.kinetica_types.TINYINT` |
+| `SMALLINT` | `sqlalchemy_kinetica.kinetica_types.SMALLINT` |
+| `INTEGER` | `sqlalchemy.Integer` |
+| `BIGINT` | `sqlalchemy.BIGINT` |
+| `UNSIGNED BIGINT` | `sqlalchemy_kinetica.kinetica_types.UnsignedBigInteger` |
+| `REAL` | `sqlalchemy.REAL` |
+| `DOUBLE` | `sqlalchemy.DOUBLE` |
+| `DECIMAL(P,S)` | `sqlalchemy_kinetica.kinetica_types.DECIMAL` |
+
+### String
+
+| Kinetica Data Type | SQLAlchemy Type Class |
+| --- | --- |
+| `VARCHAR` | `sqlalchemy.VARCHAR` |
+| `IPV4` | `sqlalchemy_kinetica.kinetica_types.IPV4` |
+| `UUID` | `sqlalchemy.UUID` |
+| `JSON` | `sqlalchemy_kinetica.kinetica_types.JSON` |
+
+### Date/Time
+
+| Kinetica Data Type | SQLAlchemy Type Class |
+| --- | --- |
+| `DATE` | `sqlalchemy.DATE` |
+| `DATETIME` | `sqlalchemy.DATETIME` |
+| `TIME` | `sqlalchemy.TIME` |
+| `TIMESTAMP` | `sqlalchemy.TIMESTAMP` |
+
+### Binary
+
+| Kinetica Data Type | SQLAlchemy Type Class |
+| --- | --- |
+| `BLOB` | `sqlalchemy_kinetica.kinetica_types.BLOB` |
+
+### Geospatial
+
+| Kinetica Data Type | SQLAlchemy Type Class |
+| --- | --- |
+| `GEOMETRY` | `sqlalchemy_kinetica.kinetica_types.GEOMETRY` |
+| `BLOB(WKT)` | `sqlalchemy_kinetica.kinetica_types.BlobWKT` |
+
+### Composite
+
+| Kinetica Data Type | SQLAlchemy Type Class |
+| --- | --- |
+| `BOOLEAN[N]` | `sqlalchemy.ARRAY`, `sqlalchemy.Boolean` |
+| `INTEGER[N]` | `sqlalchemy.ARRAY`, `sqlalchemy.Integer` |
+| `BIGINT[N]` | `sqlalchemy.ARRAY`, `sqlalchemy.BIGINT` |
+| `VECTOR(N)` | `sqlalchemy_kinetica.kinetica_types.VECTOR` |
+| `REAL[N]` | `sqlalchemy.ARRAY`, `sqlalchemy.REAL` |
+| `DOUBLE[N]` | `sqlalchemy.ARRAY`, `sqlalchemy.DOUBLE` |
+| `VARCHAR[N]` | `sqlalchemy.ARRAY`, `sqlalchemy.VARCHAR` |
 
 
 <a id="sqlalchemy-table"></a>

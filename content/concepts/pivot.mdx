@@ -19,22 +19,26 @@ A *pivot* operation could be used to convert a table like this:
 
 {/* Source: /examples/python/pivot.out (lines 7-14) */}
 ```
++--------+--------------+----------------+
 | name   | phone_type   | phone_number   |
 |--------+--------------+----------------|
 | Jane   | Home         | 123-456-7890   |
 | Jane   | Work         | 111-222-3333   |
 | John   | Home         | 123-456-7890   |
 | John   | Cell         | 333-222-1111   |
++--------+--------------+----------------+
 ```
 
 into a table like this:
 
 {/* Source: /examples/python/pivot.out (lines 38-43) */}
 ```
++--------+--------------+--------------+--------------+
 | name   | Home_Phone   | Work_Phone   | Cell_Phone   |
 |--------+--------------+--------------+--------------|
 | Jane   | 123-456-7890 | 111-222-3333 |              |
 | John   | 123-456-7890 |              | 333-222-1111 |
++--------+--------------+--------------+--------------+
 ```
 
 Each phone type in the pivoted key column becomes a prefix of one of the
@@ -63,12 +67,14 @@ customer as a separate record in the table:
 
 {/* Source: /examples/python/pivot.out (lines 7-14) */}
 ```
++--------+--------------+----------------+
 | name   | phone_type   | phone_number   |
 |--------+--------------+----------------|
 | Jane   | Home         | 123-456-7890   |
 | Jane   | Work         | 111-222-3333   |
 | John   | Home         | 123-456-7890   |
 | John   | Cell         | 333-222-1111   |
++--------+--------------+----------------+
 ```
 
 A *pivot* operation can be performed like so, creating a single
@@ -115,10 +121,12 @@ The resulting table looks like this:
 
 {/* Source: /examples/python/pivot.out (lines 38-43) */}
 ```
++--------+--------------+--------------+--------------+
 | name   | Home_Phone   | Work_Phone   | Cell_Phone   |
 |--------+--------------+--------------+--------------|
 | Jane   | 123-456-7890 | 111-222-3333 |              |
 | John   | 123-456-7890 |              | 333-222-1111 |
++--------+--------------+--------------+--------------+
 ```
 
 
@@ -130,6 +138,7 @@ as a separate record in the table:
 
 {/* Source: /examples/python/pivot.out (lines 18-31) */}
 ```
++--------------+-----------+---------+
 |   student_id | quarter   |   grade |
 |--------------+-----------+---------|
 |            1 | q1        |      80 |
@@ -142,6 +151,7 @@ as a separate record in the table:
 |            3 | q1        |      73 |
 |            3 | q2        |      77 |
 |            3 | q3        |      97 |
++--------------+-----------+---------+
 ```
 
 Performing a *pivot* operation on the table converts it into a table
@@ -194,11 +204,13 @@ The resulting table looks like this:
 
 {/* Source: /examples/python/pivot.out (lines 47-53) */}
 ```
++--------------+------------+------------+------------+------------+
 |   student_id |   q1_grade |   q2_grade |   q3_grade |   q4_grade |
 |--------------+------------+------------+------------+------------|
 |            1 |         80 |         90 |         85 |         95 |
 |            2 |         82 |            |         87 |         92 |
 |            3 |         73 |         77 |         97 |            |
++--------------+------------+------------+------------+------------+
 ```
 
 

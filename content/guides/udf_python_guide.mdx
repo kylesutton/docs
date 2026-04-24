@@ -273,19 +273,26 @@ with the first row containing `1`, the second row containing `2`, etc. Both
 *float* columns will contain 10,000 pairs of randomly-generated numbers:
 
 ```
-| id | x | y |
-| --- | --- | --- |
-| 1 | 2.57434 | -3.357401 |
-| 2 | 0.0996761 | 5.375546 |
-| ... | ... | ... |
++------+-----------+-----------+
+| id   | x         | y         |
++======+===========+===========+
+| 1    | 2.57434   | -3.357401 |
++------+-----------+-----------+
+| 2    | 0.0996761 | 5.375546  |
++------+-----------+-----------+
+| ...  | ...       | ...       |
++------+-----------+-----------+
+```
+The output table will also contain one *int16* column (`id`) and two *float*
+columns (`a` and `b`). No data is inserted:
 
-The output table will also contain one *int16* column (``id``) and two *float*
-columns (``a`` and ``b``). No data is inserted::
-
-| id | a | b |
-| --- | --- | --- |
-|  |  |  |
-
+```
++------+-----------+-----------+
+| id   | a         | b         |
++======+===========+===========+
+|      |           |           |
++------+-----------+-----------+
+```
 The UDF will first read from a given CSV file to determine from which
 processing node container (*rank*) and processing node (*TOM*) to copy data:
 
@@ -296,12 +303,12 @@ rank_num,tom_num
 2,0
 ```
 
-The ``tom_num`` column values refer to processing nodes that contain the many
-shards of data inside the database. The ``rank_num`` column values refer to
+The `tom_num` column values refer to processing nodes that contain the many
+shards of data inside the database. The `rank_num` column values refer to
 processing node containers that hold the processing nodes for the database. For
-example, the given CSV file determines that the data from ``udf_tc_py_in_table``
-on processing node container ``1``, processing node ``0`` and processing node
-container ``2``, processing node ``0`` will be copied to ``udf_tc_py_out_table``
+example, the given CSV file determines that the data from `udf_tc_py_in_table`
+on processing node container `1`, processing node `0` and processing node
+container `2`, processing node `0` will be copied to `udf_tc_py_out_table`
 on those same nodes.
 
 Once the UDF is executed, a UDF instance (OS process) is spun up for each
@@ -314,17 +321,18 @@ to the output tables. If there isn't a match, no data will be copied by that
 process.
 
 
-Initialization (udf_tc_py_manager.py init)
+### Initialization (udf_tc_py_manager.py init)
 
-The *init* option invokes the ``init()`` function in the
-``udf_tc_py_manager.py`` script.  This function will create the input table for
+
+The *init* option invokes the `init()` function in the
+`udf_tc_py_manager.py` script.  This function will create the input table for
 the UDF to copy data from and the output table to copy data to. Sample data will
 also be generated and inserted into the input table.
 
 To interact with Kinetica, you must first instantiate an object of the
-``GPUdb`` class while providing the connection URL and username & password to
-use for logging in. This database object is later passed to the ``init()`` and
-``exec()`` methods:
+`GPUdb` class while providing the connection URL and username & password to
+use for logging in. This database object is later passed to the `init()` and
+`exec()` methods:
 
 {/* Source: /udf/python/examples/table_copy/udf_tc_py_manager.py (lines 144) */}
 ```python
@@ -383,13 +391,14 @@ output_table_obj = gpudb.GPUdbTable(
 ```
 
 
-UDF (udf_tc_py_proc.py)
+### UDF (udf_tc_py_proc.py)
 
-The ``udf_tc_py_proc.py`` script is the UDF itself.  It does the work of copying
+
+The `udf_tc_py_proc.py` script is the UDF itself.  It does the work of copying
 the input table data to the output table, based on the ranks & TOMs specified in
 the given CSV file.
 
-First, instantiate a handle to the ``ProcData()`` class:
+First, instantiate a handle to the `ProcData()` class:
 
 {/* Source: /udf/python/examples/table_copy/udf_tc_py_proc.py (lines 17) */}
 ```python
@@ -405,7 +414,7 @@ proc_rank_num = proc_data.request_info["rank_number"]
 proc_tom_num = proc_data.request_info["tom_number"]
 ```
 
-Then, the CSV file mentioned in `Program Files`_ is read
+Then, the CSV file mentioned in Program Files is read
 (skipping the header):
 
 {/* Source: /udf/python/examples/table_copy/udf_tc_py_proc.py (lines 26-27) */}
@@ -427,7 +436,7 @@ for row in rank_tom_info:
     if (proc_rank_num == rank_num and proc_tom_num == tom_num):
 ```
 
-For each input and output table found in the ``input_data`` and ``output_data``
+For each input and output table found in the `input_data` and `output_data`
 objects (respectively), set the output tables' size to the input tables' size.
 This will allocate enough memory to copy all input records to the output
 table:
@@ -448,7 +457,7 @@ for in_column, out_column in zip(in_table, out_table):
     out_column.extend(in_column)
 ```
 
-Call ``complete()`` to tell Kinetica the UDF is finished.
+Call `complete()` to tell Kinetica the UDF is finished.
 
 {/* Source: /udf/python/examples/table_copy/udf_tc_py_proc.py (lines 59) */}
 ```python
@@ -456,26 +465,27 @@ proc_data.complete()
 ```
 
 
-Execution (udf_tc_py_manager.py exec)
+### Execution (udf_tc_py_manager.py exec)
 
-The *exec* option invokes the ``exec()`` function in the
-``udf_tc_py_manager.py`` script.  This function will read files in as bytes,
+
+The *exec* option invokes the `exec()` function in the
+`udf_tc_py_manager.py` script.  This function will read files in as bytes,
 create a UDF, and upload the files to the database. The function will then
 execute the UDF.
 
-To upload the ``udf_tc_py_proc.py`` and ``rank_tom.csv`` files to Kinetica,
+To upload the `udf_tc_py_proc.py` and `rank_tom.csv` files to Kinetica,
 they will first need to be read in as bytes and added to a file data map:
 
 {/* Source: /udf/python/examples/table_copy/udf_tc_py_manager.py (lines 83-87) */}
 ```python
 file_names = (CSV_FILE_NAME, PROC_FILE_NAME)
-files = \{\}
+files = {}
 for file_name in file_names:
     with open(file_name, 'rb') as file:
         files[file_name] = file.read()
 ```
 
-After the files are placed in a data map, the distributed ``udf_tc_py_proc``
+After the files are placed in a data map, the distributed `udf_tc_py_proc`
 UDF can be created in Kinetica and the files can be associated with it:
 
 {/* Source: /udf/python/examples/table_copy/udf_tc_py_manager.py (lines 94-101) */}
@@ -486,24 +496,23 @@ response = kinetica.create_proc(
     files = files,
     command = "python",
     args = [PROC_FILE_NAME],
-    options = \{\}
+    options = {}
 )
 ```
 
 Finally, after the UDF is created, it can be executed. The input & output tables
-created in the `Initialization (udf_tc_py_manager.py init)`_ section are passed
+created in the Initialization (udf_tc_py_manager.py init) section are passed
 in here:
 
 {/* Source: /udf/python/examples/table_copy/udf_tc_py_manager.py (lines 107-115) */}
 ```python
 response = kinetica.execute_proc(
     proc_name = PROC_NAME,
-    params = \{\},
-    bin_params = \{\},
+    params = {},
+    bin_params = {},
     input_table_names = [input_table],
-    input_column_names = \{\},
+    input_column_names = {},
     output_table_names = [output_table],
-    options = \{\}
+    options = {}
 )
-```
 ```

@@ -680,15 +680,22 @@ passing in the appropriate `<username>` & `<password>`, you should see:
 
 ```
 \$ /opt/gpudb/bin/gpudb_python /opt/gpudb/kitools/gadmin_sim.py -u <username> -p <password> --table --summary
++-----------------+--------------------------------+----------------------+----------------------+-------+
+|     Schema      |           Table/View           |       Records        |       Type ID        |  TTL  |
++=================+================================+======================+======================+=======+
+| SYSTEM          | <ALL TABLES/VIEWS>             |                    1 |                      |       |
+| SYSTEM          | ITER                           |                    1 |        UNSET_TYPE_ID |    -1 |
++-----------------+--------------------------------+----------------------+----------------------+-------+
+
++---------------------------+----------------------+
+|        Object Type        |        Count         |
++===========================+======================+
+| Schemas                   |                    1 |
+| Tables & Views            |                    1 |
+| Records                   |                    1 |
+| Records + Track Elements  |                    1 |
++---------------------------+----------------------+
 ```
-| Schema | Table/View | Records | Type ID | TTL |
-| --- | --- | --- | --- | --- |
-| SYSTEM SYSTEM | &lt;ALL TABLES/VIEWS&gt; ITER | 1 1 | UNSET_TYPE_ID | -1 |
-
-| Object Type | Count |
-| --- | --- |
-| Schemas Tables & Views Records Records + Track Elements | 1 1 1 1 |
-
 
 ### GAdmin Status Test
 

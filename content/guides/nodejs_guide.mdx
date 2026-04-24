@@ -86,8 +86,6 @@ db.insert_records( table_name, records, insert_options, build_callback(function(
 ```
 
 
-
-
 ## Retrieving Data
 
 
@@ -105,7 +103,6 @@ db.get_records( table_name, 0, -9999, {}, build_callback(function(response) {
 For large tables, the data can be easily be retrieved in smaller blocks by using
 the `offset` and `limit` parameters.  The returned response also contains
 the schema (or data type) of the results.
-
 
 
 ## Running Queries

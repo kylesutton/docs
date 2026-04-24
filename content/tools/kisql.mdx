@@ -181,7 +181,7 @@ kisql --connectionString "jdbc:kinetica:URL=https://<db.host>:8082/gpudb-0[[;<pa
 | `--debug [<value>]` | Output debugging information.  If not specified, default is not to output debugging information; if specified, default `value` is `true`. |
 | `--delim '<delimiter>'` | Use the given delimiter (in quotes) for delimited output formatting. The `--format` parameter must be present and set to `delim` / `delimited`. Any alphanumeric character or symbol is a valid delimiter.  If not specified, default is a comma. |
 | `--echoSql [<value>]` | Echo SQL statements executed.  If not specified, default is to not output SQL statements; if specified, default `value` is `true`. |
-| `--format <format>` | Output SQL statement result sets with the specified format.  Default is `table`.  Valid `format` options include: <br/> <br/> `delim` `delimited`: Uses the delimiter specified with `--delim` (or the default delimiter) to output records in CSV-style format, including a header row with the corresponding column names. .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter .. note:: The output will not be escaped according to the data values and delimiter \| .. note:: The output will not be escaped according to the data values and delimiter used. Be sure to select a delimiter not found within any data being output. {/* Source: /examples/bash/kisql_examples.out (lines 314-317) */} <br/> `product_id,product_name 1,Clamp-on Lamps 2,Desk Chairs 3,Air Purifiers` <br/> <br/> `table`: Outputs records in an ASCII table format. {/* Source: /examples/bash/kisql_examples.out (lines 340-345 357) */} <br/> `+--------------+-----------------------+ \|   product_id \| product_name          \| +--------------+-----------------------+ \|            1 \| Clamp-on Lamps        \| \|            2 \| Desk Chairs           \| \|            3 \| Air Purifiers         \| +--------------+-----------------------+` <br/> <br/> `vertical`: Outputs each record as a vertical list of key/value pairs. {/* Source: /examples/bash/kisql_examples.out (lines 371-379) */} <br/> `--Row 1--------- product_id: 1 product_name: Clamp-on Lamps --Row 2--------- product_id: 2 product_name: Desk Chairs --Row 3--------- product_id: 3 product_name: Air Purifiers` |
+| `--format <format>` | Output SQL statement result sets with the specified format.  Default is `table`.  Valid `format` options include: <br/> <br/> `delim` `delimited`: Uses the delimiter specified with `--delim` (or the default delimiter) to output records in CSV-style format, including a header row with the corresponding column names. **Note:** The output will not be escaped according to the data values and delimiter used. Be sure to select a delimiter not found within any data being output. {/* Source: /examples/bash/kisql_examples.out (lines 314-317) */} <br/> <br/> `product_id,product_name 1,Clamp-on Lamps 2,Desk Chairs 3,Air Purifiers` <br/> <br/> `table`: Outputs records in an ASCII table format. {/* Source: /examples/bash/kisql_examples.out (lines 340-345 357) */} <br/> <br/> `+--------------+-----------------------+ \|   product_id \| product_name          \| +--------------+-----------------------+ \|            1 \| Clamp-on Lamps        \| \|            2 \| Desk Chairs           \| \|            3 \| Air Purifiers         \| +--------------+-----------------------+` <br/> <br/> `vertical`: Outputs each record as a vertical list of key/value pairs. {/* Source: /examples/bash/kisql_examples.out (lines 371-379) */} <br/> <br/> `--Row 1--------- product_id: 1 product_name: Clamp-on Lamps --Row 2--------- product_id: 2 product_name: Desk Chairs --Row 3--------- product_id: 3 product_name: Air Purifiers` <br/> |
 | `-i` <br/> <br/> `--isql` | Simulate <Badge color="blue-destructive">isql</Badge> output. |
 | `--limit <record count>` | Limit the number of records returned in each result set to the given number.  Use `-1` for no limit. If not specified, default is `-1`. |
 | `--logLevel <level>` | Set the JDBC logging level.  Default logging level is `0` *(off)*.  Valid `level` options include: <br/> <br/> `0`: Off <br/> <br/> `1`: Fatal <br/> <br/> `2`: Error <br/> <br/> `3`: Warning <br/> <br/> `4`: Info <br/> <br/> `5`: Debug <br/> <br/> `6`: Trace |
@@ -281,9 +281,12 @@ Kinetica (user) => \d
 
 {/* Source: /examples/bash/kisql_examples.out (lines 149-152 175 261) */}
 ``` List Schemas Output
++-------------+----------------------+-------------------------------------+--------------+
 | TABLE_CAT   | TABLE_SCHEM          | TABLE_NAME                          | TABLE_TYPE   |
++-------------+----------------------+-------------------------------------+--------------+
 | Kinetica    | SYSTEM               | ITER                                | TABLE        |
 | Kinetica    | kisql_example        | product                             | TABLE        |
++-------------+----------------------+-------------------------------------+--------------+
 ```
 
 
@@ -297,8 +300,11 @@ Kinetica (user) => SELECT COUNT(*) AS total_products FROM kisql_example.product;
 
 {/* Source: /examples/bash/kisql_examples.out (lines 270-274) */}
 ``` SELECT Statement Output
++------------------+
 |   total_products |
++------------------+
 |               14 |
++------------------+
 ```
 
 

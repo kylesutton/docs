@@ -57,20 +57,24 @@ server, an error will be returned.
 |                                        +-------------------------------+---------------------------------------------+-------------------------------------------+
 |                                        | `<id>[, <id2>, <id3>...]`   | Enough RAM on the specified graph           | Creates the graph on the specified graph  |
 |                                        |                               | server(s).                                  | server(s).                                |
-| [/delete/graph](/content/api/rest/delete_graph_rest) | N/A | N/A | Deletes the graph on all graph servers. |
+|  |  |  |  |
 | --- | --- | --- | --- |
+| [/delete/graph](/content/api/rest/delete_graph_rest) | N/A | N/A | Deletes the graph on all graph servers. |
 |                                        +-------------------------------+---------------------------------------------+-------------------------------------------+
 |                                        | `<id>[, <id2>, <id3>...]`   | Graph exists on the specified graph         | Matches the graph using the specified     |
 |                                        |                               | server(s).                                  | graph server(s).                          |
-| [/modify/graph](/content/api/rest/modify_graph_rest) | N/A | N/A | Modifies the graph on all graph servers. |
+|  |  |  |  |
 | --- | --- | --- | --- |
+| [/modify/graph](/content/api/rest/modify_graph_rest) | N/A | N/A | Modifies the graph on all graph servers. |
 |                                        +-------------------------------+---------------------------------------------+-------------------------------------------+
 |                                        | `<id>[, <id2>, <id3>...]`   | Graph exists on the specified graph         | Queries the graph using the specified     |
 |                                        |                               | server(s).                                  | graph server(s).                          |
+
 | [/show/graph](/content/api/rest/show_graph_rest)   | *&lt;none&gt;* (default)            | N/A                                         | Shows all graphs on all servers.          |
 |                                        +-------------------------------+---------------------------------------------+-------------------------------------------+
 |                                        | `<id>[, <id2>, <id3>...]`   | Graph exists on the specified graph         | Shows all graphs on the specified         |
 |                                        |                               | server(s).                                  | server(s).                                |
+
 | [/solve/graph](/content/api/rest/solve_graph_rest)  | *&lt;none&gt;* (default)            | Graph exists on at least one server.        | If the [solver](/content/graph_solver/network_graph_solver#solvers) is      |
 |                                        |                               |                                             | `SHORTEST_PATH`:                        |
 |                                        |                               |                                             |                                           |

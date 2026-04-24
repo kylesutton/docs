@@ -18,16 +18,19 @@ An *unpivot* operation could be used to convert a table like this:
 
 {/* Source: /examples/python/unpivot.out (lines 7-12) */}
 ```
++--------+--------------+--------------+--------------+
 | name   | home_phone   | work_phone   | cell_phone   |
 |--------+--------------+--------------+--------------|
 | Jane   | 123-456-7890 | 111-222-3333 |              |
 | John   | 123-456-7890 |              | 333-222-1111 |
++--------+--------------+--------------+--------------+
 ```
 
 into a table like this:
 
 {/* Source: /examples/python/unpivot.out (lines 29-38) */}
 ```
++--------+--------------+----------------+
 | name   | phone_type   | phone_number   |
 |--------+--------------+----------------|
 | Jane   | Cell         |                |
@@ -36,6 +39,7 @@ into a table like this:
 | John   | Cell         | 333-222-1111   |
 | John   | Home         | 123-456-7890   |
 | John   | Work         |                |
++--------+--------------+----------------+
 ```
 
 Each original record will become three records in the unpivoted version, one for
@@ -66,10 +70,12 @@ work, & cell phone numbers for each customer in the table:
 
 {/* Source: /examples/python/unpivot.out (lines 7-12) */}
 ```
++--------+--------------+--------------+--------------+
 | name   | home_phone   | work_phone   | cell_phone   |
 |--------+--------------+--------------+--------------|
 | Jane   | 123-456-7890 | 111-222-3333 |              |
 | John   | 123-456-7890 |              | 333-222-1111 |
++--------+--------------+--------------+--------------+
 ```
 
 An *unpivot* operation can be performed like so, creating separate
@@ -119,6 +125,7 @@ The resulting table looks like this
 
 {/* Source: /examples/python/unpivot.out (lines 29-38) */}
 ```
++--------+--------------+----------------+
 | name   | phone_type   | phone_number   |
 |--------+--------------+----------------|
 | Jane   | Cell         |                |
@@ -127,6 +134,7 @@ The resulting table looks like this
 | John   | Cell         | 333-222-1111   |
 | John   | Home         | 123-456-7890   |
 | John   | Work         |                |
++--------+--------------+----------------+
 ```
 
 
@@ -138,11 +146,13 @@ grades as separate columns in a single record:
 
 {/* Source: /examples/python/unpivot.out (lines 16-22) */}
 ```
++--------------+------------+------------+------------+------------+
 |   student_id |   q1_grade |   q2_grade |   q3_grade |   q4_grade |
 |--------------+------------+------------+------------+------------|
 |            1 |         80 |         90 |         85 |         95 |
 |            2 |         82 |            |         87 |         92 |
 |            3 |         73 |         77 |         97 |            |
++--------------+------------+------------+------------+------------+
 ```
 
 Performing an *unpivot* operation on the table converts
@@ -184,6 +194,7 @@ The resulting table looks like this:
 
 {/* Source: /examples/python/unpivot.out (lines 42-57) */}
 ```
++--------------+-----------+---------+
 |   student_id | quarter   |   grade |
 |--------------+-----------+---------|
 |            1 | q1        |      80 |
@@ -198,6 +209,7 @@ The resulting table looks like this:
 |            3 | q2        |      77 |
 |            3 | q3        |      97 |
 |            3 | q4        |         |
++--------------+-----------+---------+
 ```
 
 

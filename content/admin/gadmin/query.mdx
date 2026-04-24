@@ -118,11 +118,14 @@ Yields a text-only explain output:
 
 {/* Source: ../../examples/sql/explain.out (lines 27-34) */}
 ```
++------+-------------------------+----------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+----------------+
 | ID   | ENDPOINT                | INPUT_TABLES                                                                                                                     | OUTPUT_TABLE                                                           | DEPENDENCIES   |
++------+-------------------------+----------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+----------------+
 | 0    | /create/jointable       | demo.nyctaxi AS TableAlias_0_,example_geospatial.nyc_neighborhood AS TableAlias_1_                                               | sys_sql_temp.Join_3_01234567_89ab_cdef_0123_456789abcdef               | -1             |
 | 1    | /create/jointable       | sys_sql_temp.Join_3_01234567_89ab_cdef_0123_456789abcdef AS TableAlias_0_,example_geospatial.nyc_neighborhood AS TableAlias_1_   | sys_sql_temp.Join_5_01234567_89ab_cdef_0123_456789abcdef               | 0              |
 | 2    | /aggregate/groupby      | sys_sql_temp.Join_5_01234567_89ab_cdef_0123_456789abcdef                                                                         | sys_sql_temp.ShardedAggregate_7_01234567_89ab_cdef_0123_456789abcdef   | 1              |
 | 3    | /get/records/bycolumn   | sys_sql_temp.ShardedAggregate_7_01234567_89ab_cdef_0123_456789abcdef                                                             |                                                                        | 2              |
++------+-------------------------+----------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------+----------------+
 ```
 
 Running the same query (without the `EXPLAIN` keyword included) but this time

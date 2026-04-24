@@ -58,34 +58,41 @@ records or schemas, operating in terms of columns of data instead.  The raw
 column values returned closely map to the data types used in the *tables* being
 accessed:
 
-| Column Category | Column Type | UDF C++ Type |
-| --- | --- | --- |
-|                 +-----------------+---------------------+
-|                 | int8            | int8_t              |
-|                 +-----------------+---------------------+
-|                 | int16           | int16_t             |
-|                 +-----------------+---------------------+
-|                 | long            | int64_t             |
-|                 +-----------------+---------------------+
-|                 | float           | float               |
-|                 +-----------------+---------------------+
-|                 | double          | double              |
-|                 +-----------------+---------------------+
-|                 | decimal         | int64_t             |
-| String          | string          | char*               |
-|                 +-----------------+---------------------+
-|                 | char[N]         | char*               |
-|                 +-----------------+---------------------+
-|                 | ipv4            | uint32_t            |
-| Date/Time       | date            | kinetica::Date      |
-|                 +-----------------+---------------------+
-|                 | datetime        | kinetica::DateTime  |
-|                 +-----------------+---------------------+
-|                 | time            | kinetica::Time      |
-|                 +-----------------+---------------------+
-|                 | timestamp       | int64_t             |
-| Binary | bytes | uint8_t* |
-| --- | --- | --- |
+### Numeric
+
+| Column Type | UDF C++ Type |
+| --- | --- |
+| int | int32_t |
+| int8 | int8_t |
+| int16 | int16_t |
+| long | int64_t |
+| float | float |
+| double | double |
+| decimal | int64_t |
+
+### String
+
+| Column Type | UDF C++ Type |
+| --- | --- |
+| string | char* |
+| char[N] | char* |
+| ipv4 | uint32_t |
+
+### Date/Time
+
+| Column Type | UDF C++ Type |
+| --- | --- |
+| date | kinetica::Date |
+| datetime | kinetica::DateTime |
+| time | kinetica::Time |
+| timestamp | int64_t |
+
+### Binary
+
+| Column Type | UDF C++ Type |
+| --- | --- |
+| bytes | uint8_t* |
+
 
 While `CharN` column values are arrays of N *chars*, there is a template
 class, `kinetica::CharN<N>`, that makes accessing these easier (it does
@@ -133,7 +140,7 @@ converts a specified column value to a string, regardless of type.
 | Call | Type | Description |
 | --- | --- | --- |
 | `procData->getInputData()` | Object | Returns an `InputDataSet` object for accessing input *table* data that was passed into the *UDF* |
-| `procData->getRequestInfo()` | Map of strings to strings | Returns a map of basic information about the [/execute/proc](/content/api/rest/execute_proc_rest#execute-proc-rest) request, map values being accessed using: <br/> `procData->getRequestInfo().at(<map_key>)` <br/> The full set of map keys is listed below, under                     . |
+| `procData->getRequestInfo()` | Map of strings to strings | Returns a map of basic information about the [/execute/proc](/content/api/rest/execute_proc_rest#execute-proc-rest) request, map values being accessed using: <br/> <br/> `procData->getRequestInfo().at(<map_key>)` <br/> <br/> The full set of map keys is listed below, under                     . |
 | `procData->getParams()` | Map of strings to strings | Returns a map of string-valued parameters that were passed into the *UDF* |
 | `procData->getBinParams()` | Map of strings to bytes | Returns a map of binary-valued parameters that were passed into the *UDF* |
 

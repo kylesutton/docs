@@ -287,12 +287,12 @@ FROM TABLE
 
 | Parameters | Description |
 | --- | --- |
-| `TRACK_TABLE` | Name of the table to search for tracks matching the track(s) specified in the `SEARCH_*` data set. <br/> <br/> To perform a search on the *flights* table, pass the name of the table to `INPUT_TABLE`: <br/> `INPUT_TABLE(flights)` <br/> To perform a search on the result of a query, pass the query to `INPUT_TABLE`: <br/> `INPUT_TABLE ( SELECT * FROM flights_west UNION SELECT * FROM flights_east )` |
+| `TRACK_TABLE` | Name of the table to search for tracks matching the track(s) specified in the `SEARCH_*` data set. <br/> <br/> To perform a search on the *flights* table, pass the name of the table to `INPUT_TABLE`: <br/> <br/> `INPUT_TABLE(flights)` <br/> <br/> To perform a search on the result of a query, pass the query to `INPUT_TABLE`: <br/> <br/> `INPUT_TABLE ( SELECT * FROM flights_west UNION SELECT * FROM flights_east )` <br/> |
 | `TRACK_ID_COLUMN` | Table to search track column, containing the unique identifier for the track to which each track point belongs. |
 | `TRACK_X_COLUMN` | Table to search track column, containing the longitude value of each track point. |
 | `TRACK_Y_COLUMN` | Table to search track column, containing the latitude value of each track point. |
 | `TRACK_ORDER_COLUMN` | Table to search track column, by which the searched track points will be sorted in ascending order. |
-| `SEARCH_TABLE` | Name of the search criteria track table, containing the track(s) to be used as the filter criteria when searching for matching tracks in the `TRACK_*` data set. <br/> <br/> To match tracks from the *flights_of_interest* table, pass the name of the table to `INPUT_TABLE`: <br/> `INPUT_TABLE(flights_of_interest)` <br/> To match tracks from the result of a query, pass the query to `INPUT_TABLE`: <br/> `INPUT_TABLE ( SELECT * FROM flights_of_interest_west UNION SELECT * FROM flights_of_interest_east )` |
+| `SEARCH_TABLE` | Name of the search criteria track table, containing the track(s) to be used as the filter criteria when searching for matching tracks in the `TRACK_*` data set. <br/> <br/> To match tracks from the *flights_of_interest* table, pass the name of the table to `INPUT_TABLE`: <br/> <br/> `INPUT_TABLE(flights_of_interest)` <br/> <br/> To match tracks from the result of a query, pass the query to `INPUT_TABLE`: <br/> <br/> `INPUT_TABLE ( SELECT * FROM flights_of_interest_west UNION SELECT * FROM flights_of_interest_east )` <br/> |
 | `SEARCH_ID_COLUMN` | Search criteria track column, containing the unique identifier for the track to which each track point belongs. |
 | `SEARCH_X_COLUMN` | Search criteria track column, containing the longitude value of each track point. |
 | `SEARCH_Y_COLUMN` | Search criteria track column, containing the latitude value of each track point. |
@@ -379,12 +379,12 @@ FROM TABLE
 
 | Parameters | Description |
 | --- | --- |
-| `TRACK_TABLE` | Name of the table to search for tracks intersecting the geofence(s) specified in the `SEARCH_*` data set. <br/> <br/> To perform a search on the *flights* table, pass the name of the table to `INPUT_TABLE`: <br/> `INPUT_TABLE(flights)` <br/> To perform a search on the result of a query, pass the query to `INPUT_TABLE`: <br/> `INPUT_TABLE ( SELECT * FROM flights_west UNION SELECT * FROM flights_east )` |
+| `TRACK_TABLE` | Name of the table to search for tracks intersecting the geofence(s) specified in the `SEARCH_*` data set. <br/> <br/> To perform a search on the *flights* table, pass the name of the table to `INPUT_TABLE`: <br/> <br/> `INPUT_TABLE(flights)` <br/> <br/> To perform a search on the result of a query, pass the query to `INPUT_TABLE`: <br/> <br/> `INPUT_TABLE ( SELECT * FROM flights_west UNION SELECT * FROM flights_east )` <br/> |
 | `TRACK_ID_COLUMN` | Table to search track column, containing the unique identifier for the track to which each track point belongs. |
 | `TRACK_X_COLUMN` | Table to search track column, containing the longitude value of each track point. |
 | `TRACK_Y_COLUMN` | Table to search track column, containing the latitude value of each track point. |
 | `TRACK_ORDER_COLUMN` | Table to search track column, by which the searched track points will be sorted in ascending order. |
-| `GEOFENCE_TABLE` | Name of the geofence table, containing the WKT(s) to be used as the filter criteria when searching for intersecting tracks in the `TRACK_*` data set. <br/> <br/> To search for tracks intersecting the geofence(s) from the *flight_area_of_interest* table, pass the name of the geofence table to `INPUT_TABLE`: <br/> `INPUT_TABLE(flight_area_of_interest)` <br/> To search for tracks intersecting the geofence(s) from the result of a query, pass the query to `INPUT_TABLE`: <br/> `INPUT_TABLE ( SELECT * FROM flight_area_of_interest_west UNION SELECT * FROM flight_area_of_interest_east )` |
+| `GEOFENCE_TABLE` | Name of the geofence table, containing the WKT(s) to be used as the filter criteria when searching for intersecting tracks in the `TRACK_*` data set. <br/> <br/> To search for tracks intersecting the geofence(s) from the *flight_area_of_interest* table, pass the name of the geofence table to `INPUT_TABLE`: <br/> <br/> `INPUT_TABLE(flight_area_of_interest)` <br/> <br/> To search for tracks intersecting the geofence(s) from the result of a query, pass the query to `INPUT_TABLE`: <br/> <br/> `INPUT_TABLE ( SELECT * FROM flight_area_of_interest_west UNION SELECT * FROM flight_area_of_interest_east )` <br/> |
 | `GEOFENCE_ID_COLUMN` | Geofence column, containing the unique identifier for the geofence. |
 | `GEOFENCE_WKT_COLUMN` | Geofence column, containing the WKT bounds of the geofence. |
 

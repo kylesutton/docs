@@ -148,7 +148,7 @@ understanding) of the tables and columns referenced in each sample query.
 | --- | --- |
 | `SAMPLES` | *Sample definition* specifier keyword |
 | `<question>` | Natural-language question that will be answered by the corresponding `<SQL answer>` query |
-| `<SQL answer>` | SQL query that answers `<question>` using the tables contained within the *context* <br/> <Info> Quoted constants within the query will need to be escaped as per standard SQL convention; e.g., `'lamp'` in the following: <br/> `'How many lamps?' = 'SELECT COUNT(*) FROM product WHERE type = ''lamp'';'` <br/> </Info> |
+| `<SQL answer>` | SQL query that answers `<question>` using the tables contained within the *context* <br/> <Info> Quoted constants within the query will need to be escaped as per standard SQL convention; e.g., `'lamp'` in the following: <br/> <br/> `'How many lamps?' = 'SELECT COUNT(*) FROM product WHERE type = ''lamp'';'` <br/> <br/> </Info> |
 
 
 <a id="sql-gpt-create-context-rule-def"></a>
@@ -621,7 +621,7 @@ generated.
 | `ai_api_provider` | Name of an LLM service to use other than the default one; the default, `sqlgpt`, uses the Kinetica SQLGPT.io service. |
 | `ai_api_url` | URL of an LLM service to use other than the default one. |
 | `context_name` | Name of the *SQL-GPT context* to use as a basis for generating SQL queries; should be of the form `[<schema name>.]<context name>`. |
-| `context_names` | Comma-separated list of names of *SQL-GPT contexts* to use as a basis for generating SQL queries; each should be of the form `[<schema name>.]<context name>`, and the entire list should be single-quoted. <br/> <br/> For example: <br/> `context_names = 'example.atc_ctx,example.nyctaxi'` |
+| `context_names` | Comma-separated list of names of *SQL-GPT contexts* to use as a basis for generating SQL queries; each should be of the form `[<schema name>.]<context name>`, and the entire list should be single-quoted. <br/> <br/> For example: <br/> <br/> `context_names = 'example.atc_ctx,example.nyctaxi'` <br/> |
 | `use_rag` | Whether to use [retrieval-augmented generation (RAG)](/content/sql-gpt/concepts#sql-gpt-overview-rag) facilities with the given *SQL-GPT contexts* when processing this request. |
 
 
@@ -685,7 +685,7 @@ generated.
 | Option | Description |
 | --- | --- |
 | `context_name` | Name of the *SQL-GPT context* to use as a basis for counting generated tokens; should be of the form `[<schema name>.]<context name>`. |
-| `context_names` | Comma-separated list of names of *SQL-GPT contexts* to use as the basis for counting generated tokens; each should be of the form `[<schema name>.]<context name>`, and the entire list should be single-quoted. <br/> <br/> For example: <br/> `context_names = 'example.atc_ctx,example.nyctaxi'` |
+| `context_names` | Comma-separated list of names of *SQL-GPT contexts* to use as the basis for counting generated tokens; each should be of the form `[<schema name>.]<context name>`, and the entire list should be single-quoted. <br/> <br/> For example: <br/> <br/> `context_names = 'example.atc_ctx,example.nyctaxi'` <br/> |
 | `use_rag` | Whether to use [retrieval-augmented generation (RAG)](/content/sql-gpt/concepts#sql-gpt-overview-rag) facilities with the given *SQL-GPT contexts* when processing this request. |
 
 
@@ -736,7 +736,7 @@ FROM TABLE
 | --- | --- |
 | `<question>` | Natural-language question for which an equivalent SQL query will be executed |
 | `<schema name>` | Name of the [schema](/content/sql/ddl#sql-create-schema) containing the *context* to use in generating the query |
-| `OPTIONS` | [SQL generation options](/content/sql/sqlgpt#sql-gpt-execute-opts), specified as a set of key/value pairs passed as a comma-delimited list of `<key> = '<value>'` assignments to the `KV_PAIRS` function; e.g.: <br/> `KV_PAIRS(context_name = 'atc_ctx')` |
+| `OPTIONS` | [SQL generation options](/content/sql/sqlgpt#sql-gpt-execute-opts), specified as a set of key/value pairs passed as a comma-delimited list of `<key> = '<value>'` assignments to the `KV_PAIRS` function; e.g.: <br/> <br/> `KV_PAIRS(context_name = 'atc_ctx')` <br/> |
 
 
 <a id="sql-gpt-execute-opts"></a>
@@ -753,7 +753,7 @@ is generated.
 | `ai_api_provider` | Name of an LLM service to use other than the default one; the default, `sqlgpt`, uses the Kinetica SQLGPT.io service. |
 | `ai_api_url` | URL of an LLM service to use other than the default one. |
 | `context_name` | Name of the *SQL-GPT context* to use in generating the executed query; should be of the form `[<schema name>.]<context name>`. |
-| `context_names` | Comma-separated list of names of *SQL-GPT contexts* to use in generating the executed query; each should be of the form `[<schema name>.]<context name>`, and the entire list should be single-quoted. <br/> <br/> For example: <br/> `context_names = 'example.atc_ctx,example.nyctaxi'` |
+| `context_names` | Comma-separated list of names of *SQL-GPT contexts* to use in generating the executed query; each should be of the form `[<schema name>.]<context name>`, and the entire list should be single-quoted. <br/> <br/> For example: <br/> <br/> `context_names = 'example.atc_ctx,example.nyctaxi'` <br/> |
 | `use_rag` | Whether to use [retrieval-augmented generation (RAG)](/content/sql-gpt/concepts#sql-gpt-overview-rag) facilities with the given *SQL-GPT contexts* when processing this request. |
 
 
