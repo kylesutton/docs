@@ -167,16 +167,16 @@ given *slice type* reside in their own folder.  Each *slice type* folder is
 located under the <Badge color="gray">slices</Badge> folder in the *Reveal SDK* home directory.  A
 *slice type* folder must contain at least four files:
 
-* Node Project File - <Badge color="gray">package.json</Badge>: defines some attributes of the
+* [Node Project File](#node-project-file) - <Badge color="gray">package.json</Badge>: defines some attributes of the
   *slice type* and any required dependencies
 
-* Python Slice Class - <Badge color="gray">__init__.py</Badge>: defines the server-side data
+* [Python Slice Class](#python-slice-class) - <Badge color="gray">__init__.py</Badge>: defines the server-side data
   request and response handlers that will read data from the database
 
-* JavaScript Slice Renderer - <Badge color="gray">&lt;slice_name&gt;.jsx</Badge>: contains a plain
+* [JavaScript Slice Renderer](#javascript-slice-renderer) - <Badge color="gray">&lt;slice_name&gt;.jsx</Badge>: contains a plain
   function that must return an object with a render function
 
-* Thumbnail Icon - <Badge color="gray">&lt;slice_name&gt;.png</Badge>: image that represents the icon
+* [Thumbnail Icon](#thumbnail-icon) - <Badge color="gray">&lt;slice_name&gt;.png</Badge>: image that represents the icon
   for the *slice type*
 
 Additionally, the folder can also contain any external <Badge color="gray">\*.css</Badge> or

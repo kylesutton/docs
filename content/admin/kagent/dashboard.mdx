@@ -24,7 +24,7 @@ some management controls.
 
 * Click **Refresh** to refresh the list of rings
 * For a given ring in the list, click **Details** to display the
-  Ring Summary view for that ring
+  [Ring Summary](#ring-summary) view for that ring
 * If a ring does not have any clusters currently, click
   **Add New Cluster** to begin the
   [cluster installation](/content/install/kagent_install) process.
@@ -41,10 +41,10 @@ some management controls.
 ## Ring Summary
 
 
-The **Ring Summary** is accessed via the Rings view. The
+The **Ring Summary** is accessed via the [Rings](#rings) view. The
 **Ring Summary** displays the health of infrastructure services (e.g.,
 *etcd*, *RabbitMQ* if [ring resiliency](/content/ha) is enabled, etc.),
-the Events Timeline, and a list of clusters in the ring. For each cluster
+the [Events Timeline](#events-timeline), and a list of clusters in the ring. For each cluster
 listed, the following information is available: the name of the cluster, a
 visual indicator of the health of each node and rank in the cluster, a list of
 nodes (a detailed status is available upon cursor hover) in the cluster and
@@ -55,11 +55,11 @@ to set them apart from worker nodes (`W`).
   adjust the event timeline and the metric graphs to the selected duration
 * Click **Refresh** to refresh the **Ring Summary** and
   **Events Timeline**
-* Click **Back** to return to the Rings view
+* Click **Back** to return to the [Rings](#rings) view
 * Click **Collapse All** or **Expand All** to collapse or
   expand the cluster information cards in the list
 * For a given cluster in the list, click **Details** to display the
-  Cluster Summary view for that cluster
+  [Cluster Summary](#cluster-summary) view for that cluster
 * Point the cursor to a graph to see the value at that time
 
 
@@ -97,8 +97,8 @@ First, click the **Events Timeline**, then:
 ## Cluster Summary
 
 
-The **Cluster Summary** is accessed via the Ring Summary view. The
-**Cluster Summary** displays similar information as the Ring Summary
+The **Cluster Summary** is accessed via the [Ring Summary](#ring-summary) view. The
+**Cluster Summary** displays similar information as the [Ring Summary](#ring-summary)
 but with additional performance metrics and a list of nodes within the
 cluster. For each node listed, the following information is available: the name
 and IP address for the node, the services being hosted by the node, a visual
@@ -110,7 +110,7 @@ statistics & metrics.
   adjust the event timeline and the metric graphs to the selected duration
 * Click **Refresh** to refresh the **Cluster Summary** and
   **Events Timeline**
-* Click **Back** to return to the Ring Summary view
+* Click **Back** to return to the [Ring Summary](#ring-summary) view
 * Click **Collapse All** or **Expand All** to collapse or
   expand the cluster and node information cards in the list
 * Point the cursor to a graph to see the value at that time

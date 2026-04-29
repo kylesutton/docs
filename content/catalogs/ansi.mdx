@@ -34,46 +34,46 @@ The *ANSI Virtual Catalog* tables reside in the `information_schema` schema.
 
 | Virtual Catalog Table | Description |
 | --- | --- |
-| APPLICABLE_ROLES | Roles.  One record per role assigned to the current user, directly or indirectly. |
-| CHARACTER_SETS | Contains a single record with the supported character set, UTF-8. |
-| COLUMNS | Columns of tables & views and their respective types & statistics. |
-| CONSTRAINT_COLUMN_USAGE | Columns with constraints and their containing schemas. |
-| CONTEXT_RULES | Rules sections of SQL-GPT contexts. |
-| CONTEXT_SAMPLES | Samples sections of SQL-GPT contexts. |
-| CONTEXT_TABLE_COLUMNS | Columns of tables associated with SQL-GPT contexts. |
-| CONTEXT_TABLES | Tables associated with SQL-GPT contexts. |
-| CONTEXTS | SQL-GPT contexts and their configuration. |
-| DATABASES | Contains a single record with the database name and owner. |
-| ENABLED_ROLES | Roles assigned to the current user, directly or indirectly. |
-| FIELDS | Columns of tables & views and their respective types & statistics, also containing the object type of the containing table/view. |
-| FUNCTIONS | Scalar, aggregate, window, and user-defined functions. |
-| INDEXES | Table indexes and their configuration. |
-| INFORMATION_SCHEMA_CATALOG_NAME | Contains a single record with the catalog name, `kinetica`. |
-| KEY_COLUMN_USAGE | Primary & foreign keys and their associated columns. |
-| KI_BACKUP_HISTORY | Data backup events initiated on the database. |
-| KI_CATALOG_VERSION | Contains a single record with the virtual catalog schema version. |
-| KI_DATASOURCE_SUBSCRIPTIONS | Remote data subscriptions, associating data sources with their target load tables. |
-| KI_HA_CONSUMERS | Consumer processes of Kafka HA queues. |
-| KI_KAFKA_LAG_INFO | Remote Kafka subscriptions, and the index of both the most recently read & available messages per topic partition. |
-| KI_LOAD_HISTORY | Record & statistics of each data load or export, subscription event, and data refresh. |
-| KI_PERIODIC_OBJECTS | List of materialized views and SQL procedures that have periodic refresh/execution intervals, with their respective statistics. |
-| KI_QUERY_ACTIVE | Actively running SQL statements, including DML & DDL. |
-| KI_QUERY_HISTORY | History of SQL statements run within the database, including DML & DDL; will not include multi-head ingest/egress. |
-| KI_QUERY_SPAN_METRICS | Processing metrics of SQL statements run within the database, including DML & DDL; will not include multi-head ingest/egress. |
-| KI_QUERY_SPAN_METRICS_BY_SQL_STEP | Processing metrics of SQL statements run within the database, aggregated on each execution phase of a given query/command. |
-| KI_QUERY_WORKERS | Worker ranks' status and their actively running tasks. |
-| KI_RESTORE_HISTORY | Data restoration events initiated on the database. |
-| KI_STREAMS | Streams (table monitors), their containing schemas, and configuration. |
-| MV_DEPENDENCIES | Object dependencies for materialized views. |
-| OBJECT_PRIVILEGES | Privileges granted, including the grantee, privilege type, and object to which access was granted. |
-| PARTITIONS | Table partitions and their respective types & statistics. |
-| REFERENTIAL_CONSTRAINTS | Foreign keys and their referenced unique constraints. |
-| ROLE_TABLE_GRANTS | Effectively, an alias for the TABLE_PRIVILEGES table. |
-| SCHEMATA | Schemas, containing all database objects. |
-| TABLE_CONSTRAINTS | Primary & foreign keys and their respective types & statistics. |
-| TABLE_PRIVILEGES | Privileges granted on tables & views. |
-| TABLES | Tables & views and their respective types & statistics. |
-| VIEWS | Views and their respective definitions & statistics. |
+| [APPLICABLE_ROLES](#applicable-roles) | Roles.  One record per role assigned to the current user, directly or indirectly. |
+| [CHARACTER_SETS](#character-sets) | Contains a single record with the supported character set, UTF-8. |
+| [COLUMNS](#columns) | Columns of tables & views and their respective types & statistics. |
+| [CONSTRAINT_COLUMN_USAGE](#constraint-column-usage) | Columns with constraints and their containing schemas. |
+| [CONTEXT_RULES](#context-rules) | Rules sections of SQL-GPT contexts. |
+| [CONTEXT_SAMPLES](#context-samples) | Samples sections of SQL-GPT contexts. |
+| [CONTEXT_TABLE_COLUMNS](#context-table-columns) | Columns of tables associated with SQL-GPT contexts. |
+| [CONTEXT_TABLES](#context-tables) | Tables associated with SQL-GPT contexts. |
+| [CONTEXTS](#contexts) | SQL-GPT contexts and their configuration. |
+| [DATABASES](#databases) | Contains a single record with the database name and owner. |
+| [ENABLED_ROLES](#enabled-roles) | Roles assigned to the current user, directly or indirectly. |
+| [FIELDS](#fields) | Columns of tables & views and their respective types & statistics, also containing the object type of the containing table/view. |
+| [FUNCTIONS](#functions) | Scalar, aggregate, window, and user-defined functions. |
+| [INDEXES](#indexes) | Table indexes and their configuration. |
+| [INFORMATION_SCHEMA_CATALOG_NAME](#information-schema-catalog-name) | Contains a single record with the catalog name, `kinetica`. |
+| [KEY_COLUMN_USAGE](#key-column-usage) | Primary & foreign keys and their associated columns. |
+| [KI_BACKUP_HISTORY](#ki-backup-history) | Data backup events initiated on the database. |
+| [KI_CATALOG_VERSION](#ki-catalog-version) | Contains a single record with the virtual catalog schema version. |
+| [KI_DATASOURCE_SUBSCRIPTIONS](#ki-datasource-subscriptions) | Remote data subscriptions, associating data sources with their target load tables. |
+| [KI_HA_CONSUMERS](#ki-ha-consumers) | Consumer processes of Kafka HA queues. |
+| [KI_KAFKA_LAG_INFO](#ki-kafka-lag-info) | Remote Kafka subscriptions, and the index of both the most recently read & available messages per topic partition. |
+| [KI_LOAD_HISTORY](#ki-load-history) | Record & statistics of each data load or export, subscription event, and data refresh. |
+| [KI_PERIODIC_OBJECTS](#ki-periodic-objects) | List of materialized views and SQL procedures that have periodic refresh/execution intervals, with their respective statistics. |
+| [KI_QUERY_ACTIVE](#ki-query-active) | Actively running SQL statements, including DML & DDL. |
+| [KI_QUERY_HISTORY](#ki-query-history) | History of SQL statements run within the database, including DML & DDL; will not include multi-head ingest/egress. |
+| [KI_QUERY_SPAN_METRICS](#ki-query-span-metrics) | Processing metrics of SQL statements run within the database, including DML & DDL; will not include multi-head ingest/egress. |
+| [KI_QUERY_SPAN_METRICS_BY_SQL_STEP](#ki-query-span-metrics-by-sql-step) | Processing metrics of SQL statements run within the database, aggregated on each execution phase of a given query/command. |
+| [KI_QUERY_WORKERS](#ki-query-workers) | Worker ranks' status and their actively running tasks. |
+| [KI_RESTORE_HISTORY](#ki-restore-history) | Data restoration events initiated on the database. |
+| [KI_STREAMS](#ki-streams) | Streams (table monitors), their containing schemas, and configuration. |
+| [MV_DEPENDENCIES](#mv-dependencies) | Object dependencies for materialized views. |
+| [OBJECT_PRIVILEGES](#object-privileges) | Privileges granted, including the grantee, privilege type, and object to which access was granted. |
+| [PARTITIONS](#partitions) | Table partitions and their respective types & statistics. |
+| [REFERENTIAL_CONSTRAINTS](#referential-constraints) | Foreign keys and their referenced unique constraints. |
+| [ROLE_TABLE_GRANTS](#role-table-grants) | Effectively, an alias for the TABLE_PRIVILEGES table. |
+| [SCHEMATA](#schemata) | Schemas, containing all database objects. |
+| [TABLE_CONSTRAINTS](#table-constraints) | Primary & foreign keys and their respective types & statistics. |
+| [TABLE_PRIVILEGES](#table-privileges) | Privileges granted on tables & views. |
+| [TABLES](#tables) | Tables & views and their respective types & statistics. |
+| [VIEWS](#views) | Views and their respective definitions & statistics. |
 
 
 ## Catalog Column List
@@ -293,7 +293,7 @@ of the following:
 | --- | --- | --- |
 | `OID` | `BIGINT` | Unique identifier associated with this [SQL-GPT context](/content/sql-gpt/concepts#sql-gpt-overview-context) object. |
 | `CONTEXT_NAME` | `VARCHAR(256)` | Name of the *SQL-GPT context* containing this context object. |
-| `SCHEMA_OID` | `BIGINT` | Unique identifier associated with the schema containing the parent *SQL-GPT context*.  See SCHEMATA. |
+| `SCHEMA_OID` | `BIGINT` | Unique identifier associated with the schema containing the parent *SQL-GPT context*.  See [SCHEMATA](#schemata). |
 | `SCHEMA_NAME` | `VARCHAR(256)` | Name of the schema containing the parent *SQL-GPT context*. |
 | `OBJECT_NAME` | `VARCHAR(256)` | Name of this *SQL-GPT context* object, denoting the type of context object it is. <br/> <br/> ========================== ========================================= Name                       Description ========================== ========================================= `rules`                  Rules Definition `samples`                Samples Definition *&lt;schema_name.table_name&gt;* Table Definition for the given table name ========================== ========================================= |
 | `OBJECT_DESCRIPTION` | `VARCHAR` | The `COMMENT` associated with the table, if context object is a *table definition*. |
@@ -612,7 +612,7 @@ in the database with a periodic refresh/execution interval.
 Each record in `KI_QUERY_ACTIVE` represents the portion of a given query
 or REST endpoint call being run on a given worker rank at the time this catalog
 table was queried.  It returns general information about the query portion
-running on the given worker rank.  See KI_QUERY_WORKERS for worker-specific
+running on the given worker rank.  See [KI_QUERY_WORKERS](#ki-query-workers) for worker-specific
 details.
 
 
@@ -704,7 +704,7 @@ or all queries if the user has system administrator privilege.
 
 | Column Name | Column Type | Description |
 | --- | --- | --- |
-| `QUERY_ID` | `UUID` | Unique identifier of the query request.  See KI_QUERY_ACTIVE & KI_QUERY_HISTORY. |
+| `QUERY_ID` | `UUID` | Unique identifier of the query request.  See [KI_QUERY_ACTIVE](#ki-query-active) & [KI_QUERY_HISTORY](#ki-query-history). |
 | `SPAN_ID` | `UNSIGNED` | Unique identifier of the metric span for this query. |
 | `PARENT_SPAN_ID` | `UNSIGNED` | Not used. |
 | `OPERATOR` | `VARCHAR(32)` | Internal name for operation performed.  Many operators will roughly match the name of the REST endpoints they serve. |
@@ -733,7 +733,7 @@ or all queries if the user has system administrator privilege.
 
 | Column Name | Column Type | Description |
 | --- | --- | --- |
-| `QUERY_ID` | `UUID` | Unique identifier of the query request.  See KI_QUERY_ACTIVE & KI_QUERY_HISTORY. |
+| `QUERY_ID` | `UUID` | Unique identifier of the query request.  See [KI_QUERY_ACTIVE](#ki-query-active) & [KI_QUERY_HISTORY](#ki-query-history). |
 | `SQL_STEP` | `INTEGER` | Step number in processing this SQL command (for SQL-based requests). |
 | `INS_LOCK_WAIT` | `VARCHAR` | Total time waiting for locks to process inserts. |
 | `INSERT_WAIT` | `VARCHAR` | Total time for processing inserts. |
@@ -756,7 +756,7 @@ or all queries if the user has system administrator privilege.
 Each record in `KI_QUERY_WORKERS` represents the portion of a given query
 or REST endpoint call being run on a given worker rank at the time this catalog
 table was queried.  It returns worker-specific information about the query
-portion running on the given worker rank.  See KI_QUERY_ACTIVE for
+portion running on the given worker rank.  See [KI_QUERY_ACTIVE](#ki-query-active) for
 general query processing details.
 
 
@@ -928,7 +928,7 @@ of the relation (the foreign table referenced by the key).
 ### ROLE_TABLE_GRANTS
 
 
-This is effectively an alias for the TABLE_PRIVILEGES table, as that table
+This is effectively an alias for the [TABLE_PRIVILEGES](#table-privileges) table, as that table
 has only an additional `CREATED` column, which is presently unused.
 
 

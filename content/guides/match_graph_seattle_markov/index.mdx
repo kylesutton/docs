@@ -31,12 +31,12 @@ The prerequisites for running the match graph example are listed below:
 Depending on the target operating system, a Python virtual environment may need
 to be installed first:
 
-* Python Virtual Environment
+* [Python Virtual Environment](#python-virtual-environment)
 
 The native *Kinetica Python API* is accessible through the following means:
 
-* PyPI_
-* Git_
+* [PyPI](#pypi)
+* [Git](#git)
 
 
 #### Python Virtual Environment
@@ -119,7 +119,7 @@ python3 examples/example.py
 
 
 The example script references two data files, as mentioned in the
-Prerequisites, in the current local directory, by default.  This directory
+[Prerequisites](#prerequisites), in the current local directory, by default.  This directory
 can specified as a parameter when running the script.
 
 
@@ -172,7 +172,7 @@ GRAPH_S = SCHEMA + ".seattle_road_network_graph"
 
 One graph is used for the match graph example utilized in the script:
 `seattle_road_network_graph`, a graph based on the `road_weights` dataset
-(one of the CSV files mentioned in Prerequisites).
+(one of the CSV files mentioned in [Prerequisites](#prerequisites)).
 
 The `seattle_road_network_graph` graph is created with the following
 characteristics:
@@ -228,7 +228,7 @@ The graph output to WMS:
 
 Matching to a graph typically requires another table's worth of data. In this
 case, the data that will be matched to the graph will come from the
-`mm_raw_gps` dataset (the other CSV file mentioned in Prerequisites). The
+`mm_raw_gps` dataset (the other CSV file mentioned in [Prerequisites](#prerequisites)). The
 sample points are defined using the `lon` and `lat` columns as the X and Y
 coordinates for each sample point; the `datetime` column is used for each
 sample point's timestamp. The time component is required for determining the

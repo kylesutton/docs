@@ -42,7 +42,7 @@ The general prerequisites for using UDFs in Kinetica can be found on the
 
 There are three files associated with the Python UDF tutorial. All the files can
 be found in the [Python Tutorial Git Repo](https://github.com/kineticadb/kinetica-tutorial-python-udf-api), which is cloned in the
-API Download and Installation section.
+[API Download and Installation](#api-download-and-installation) section.
 
 * A UDF management program,
   [udf_tc_py_manager.py](/udf/python/examples/table_copy/udf_tc_py_manager.py),
@@ -61,7 +61,7 @@ API Download and Installation section.
 
 The Python UDF tutorial requires local access to the Python UDF API & tutorial
 repositories and the Python API. The native Python API is also used to run the
-UDF simulator (details found in Development).
+UDF simulator (details found in [Development](#development)).
 
 1. In the desired directory, run the following to download the Kinetica Python
    UDF tutorial repository:
@@ -414,7 +414,7 @@ proc_rank_num = proc_data.request_info["rank_number"]
 proc_tom_num = proc_data.request_info["tom_number"]
 ```
 
-Then, the CSV file mentioned in Program Files is read
+Then, the CSV file mentioned in [Program Files](#program-files) is read
 (skipping the header):
 
 {/* Source: /udf/python/examples/table_copy/udf_tc_py_proc.py (lines 26-27) */}
@@ -501,7 +501,7 @@ response = kinetica.create_proc(
 ```
 
 Finally, after the UDF is created, it can be executed. The input & output tables
-created in the Initialization (udf_tc_py_manager.py init) section are passed
+created in the [Initialization (udf_tc_py_manager.py init)](#initialization-(udf-tc-py-manager.py-init)) section are passed
 in here:
 
 {/* Source: /udf/python/examples/table_copy/udf_tc_py_manager.py (lines 107-115) */}

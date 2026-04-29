@@ -15,17 +15,17 @@ goals:
 
 Three components are involved in managing resources:
 
-* Storage Tiers: Data containment layers within the database
-* Tier Strategies: Data object eviction priorities within each
+* [Storage Tiers](#storage-tiers): Data containment layers within the database
+* [Tier Strategies](#tier-strategies): Data object eviction priorities within each
   *storage tier*
-* Resource Groups: Resource fencing--process scheduling priorities and other
+* [Resource Groups](#resource-groups): Resource fencing--process scheduling priorities and other
   limits imposed on a specific group of users
 
 Within these components, there are two mechanisms for managing resources:
 
-* Eviction: Moving data from one *tier* to a lower *tier* in order to make
+* [Eviction](#eviction): Moving data from one *tier* to a lower *tier* in order to make
   room for other data to be processed
-* Scheduling: Ordering work to be processed
+* [Scheduling](#scheduling): Ordering work to be processed
 
 For *resource management* configuration that can be performed while the database
 is online, see [Resource Management Usage](/content/rm/usage).  For configuration that must be performed while

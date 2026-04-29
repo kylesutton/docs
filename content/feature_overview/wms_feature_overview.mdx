@@ -34,7 +34,7 @@ The requested image is then returned in the *HTTP* response message body.
 As the *isochrones* mode utilizes some of the *contour* and *labels* modes'
 parameters as well as some of the
 [/solve/graph](/content/feature_overview/solve_graph_feature_overview) endpoint's parameters, the
-same usage guidelines apply. Review Contour, Labels, and
+same usage guidelines apply. Review [Contour](#contour), [Labels](#labels), and
 [Solving a Graph](/content/graph_solver/network_graph_solver)
 for more information.
 
@@ -112,12 +112,12 @@ The following parameters are optional for *WMS* calls:
 
 The following modes are supported, as specified by the `STYLES` parameter:
 
-* raster_
-* cb_raster_
-* heatmap_
-* contour_
-* labels_
-* isochrones_
+* [raster](#raster)
+* [cb_raster](#cb-raster)
+* [heatmap](#heatmap)
+* [contour](#contour)
+* [labels](#labels)
+* [isochrones](#isochrones)
 
 Descriptions of each mode along with the mode-specific parameters can be found
 below.
@@ -193,7 +193,7 @@ SYMBOL_ATTR=case(vendor_id,{'YCAB','NYC'},{'taxi_blue','taxi_green'},'taxi_black
 ```
 
 <Info>
-Labels (using the labels style) and WKT shapes cannot be rendered
+Labels (using the [labels](#labels) style) and WKT shapes cannot be rendered
 in the same *WMS* call.  Both can be shown on the same map by creating
 separate map layers, each with its own *WMS* call.
 </Info>

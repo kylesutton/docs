@@ -254,12 +254,12 @@ There are several categories of permissions within Kinetica:
 ### Grant Option
 
 
-All permissions (except system_admin & system_user_admin) may be granted
+All permissions (except [system_admin](#system-admin) & [system_user_admin](#system-user-admin)) may be granted
 with the option for the grantee to grant that permission to others--that is,
 with a *grant option*.  The *grant option* allows a user to both grant and
 revoke the permission it applies to.  The grantee with the *grant option* may
-also grant a subset of that permission to others.  Both system_admin &
-system_user_admin permissions have the ability to grant permissions
+also grant a subset of that permission to others.  Both [system_admin](#system-admin) &
+[system_user_admin](#system-user-admin) permissions have the ability to grant permissions
 implicitly, making the *grant option* redundant for these two in particular.
 
 When users create objects, they will automatically be granted administrative
@@ -286,14 +286,14 @@ services.
 
 The available permissions are:
 
-* system_admin
-* system_user_admin
-* system_create
-* system_write
-* system_read
-* system_monitor
-* directory_create
-* proc_create
+* [system_admin](#system-admin)
+* [system_user_admin](#system-user-admin)
+* [system_create](#system-create)
+* [system_write](#system-write)
+* [system_read](#system-read)
+* [system_monitor](#system-monitor)
+* [directory_create](#directory-create)
+* [proc_create](#proc-create)
 
 
 <a id="system-admin"></a>
@@ -304,8 +304,8 @@ The available permissions are:
 
 A user with `system_admin` permission:
 
-* has system_write
-* has system_user_admin
+* has [system_write](#system-write)
+* has [system_user_admin](#system-user-admin)
 * can manage all object-types in any schema
 * can grant/revoke all permissions & roles
 * can manage *UDFs*
@@ -322,7 +322,7 @@ A user with `system_admin` permission:
 A user with `system_user_admin` permission can:
 
 * manage users & roles
-* grant/revoke permissions & roles *(except the* system_admin
+* grant/revoke permissions & roles *(except the* [system_admin](#system-admin)
   *permission or a role containing it)*
 
 
@@ -334,8 +334,8 @@ A user with `system_user_admin` permission can:
 
 A user with `system_create` permission:
 
-* has directory_create
-* has proc_create
+* has [directory_create](#directory-create)
+* has [proc_create](#proc-create)
 * can create all object-types in any *schema* visible to the user
 
 
@@ -347,8 +347,8 @@ A user with `system_create` permission:
 
 A user with `system_write` permission:
 
-* has system_create
-* has system_read
+* has [system_create](#system-create)
+* has [system_read](#system-read)
 * has `table_admin` permission on all *tables*, *views*, and *schemas*
 * has `graph_admin` permission on all *schemas*
 * has `monitor_admin` permission on all *schemas*
@@ -433,8 +433,8 @@ then the access to the appropriate *tables* within the *schema* granted.
 
 The two sets of permissions available at the *schema* level are:
 
-* Table Management Permissions
-* Object Creation Permissions
+* [Table Management Permissions](#table-management-permissions)
+* [Object Creation Permissions](#object-creation-permissions)
 
 
 <a id="security-concepts-permissions-schema-table"></a>
@@ -850,7 +850,7 @@ Permissions on *UDFs* & *function environments* can also be managed via
 
 
 <Note>
-For granting the ability to create *UDFs*, see proc_create.
+For granting the ability to create *UDFs*, see [proc_create](#proc-create).
 </Note>
 
 The available permissions are:
@@ -927,7 +927,7 @@ permission on it, allowing the user to grant other users access to it.
 
 <Note>
 For granting the ability to create *directories*, see
-directory_create.
+[directory_create](#directory-create).
 </Note>
 
 The available permissions are:
@@ -947,7 +947,7 @@ The available permissions are:
 Unlike most objects, the creator of a *directory* will not be given an
 administrative permission on it, allowing the user to delete the *directory*
 or grant other users access to it; those permissions are reserved for users
-with the system_admin permission.
+with the [system_admin](#system-admin) permission.
 </Info>
 
 
@@ -1048,8 +1048,8 @@ permission on it, allowing the user to grant other users access to it.
 ### Permission Endpoints
 
 
-Calling permission endpoints generally requires system_admin or
-system_user_admin permission.
+Calling permission endpoints generally requires [system_admin](#system-admin) or
+[system_user_admin](#system-user-admin) permission.
 
 * [/grant/permission](/content/api/rest/grant_permission_rest)
 * [/grant/permission/credential](/content/api/rest/grant_permission_credential_rest)
@@ -1067,5 +1067,5 @@ system_user_admin permission.
 * [/revoke/permission/system](/content/api/rest/revoke_permission_system_rest)
 * [/revoke/permission/table](/content/api/rest/revoke_permission_table_rest)
 * [/show/security](/content/api/rest/show_security_rest) *(can be called by users without*
-  system_admin or system_user_admin *permission to view the*
+  [system_admin](#system-admin) or [system_user_admin](#system-user-admin) *permission to view the*
   [permissions](/content/security/sec_concepts#security-concepts-permissions) *granted to them)*

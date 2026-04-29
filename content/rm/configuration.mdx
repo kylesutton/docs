@@ -8,9 +8,9 @@ title: Resource Management Configuration
 Within *Resource Management*, there are three main areas of configuration that
 take place while the database is offline:
 
-1. Tiered Storage
-2. Default Resource Group
-3. Tier Strategy
+1. [Tiered Storage](#tiered-storage)
+2. [Default Resource Group](#default-resource-group)
+3. [Tier Strategy](#tier-strategy)
 
 For configuration that can be performed while the database is online, see
 [Resource Management Usage](/content/rm/usage).
@@ -71,11 +71,11 @@ tier.<tier_type>.<config_level>.[<config_sublevel>.]<parameter>
 
 The **tier_type** is one of the five basic types of *tiers*:
 
-* `vram` - VRAM Tier *(GPU memory)*
-* `ram` - RAM Tier *(Main memory)*
-* `disk` - Disk Cache Tier *(Disk cache)*
-* `persist` - Persist Tier *(Permanent storage)*
-* `cold` - Cold Storage Tier *(Extended long-term storage)*
+* `vram` - [VRAM Tier](#vram-tier) *(GPU memory)*
+* `ram` - [RAM Tier](#ram-tier) *(Main memory)*
+* `disk` - [Disk Cache Tier](#disk-cache-tier) *(Disk cache)*
+* `persist` - [Persist Tier](#persist-tier) *(Permanent storage)*
+* `cold` - [Cold Storage Tier](#cold-storage-tier) *(Extended long-term storage)*
 
 A **config_level** of `default` applies the parameter's value to all
 *ranks*, system wide, for the respective *tier*.  To override that default value
@@ -357,8 +357,8 @@ There are two configuration parameters in <Badge color="gray">/opt/gpudb/core/et
 described in the [Configuration Reference](/content/config) under [Tier Strategy](/content/config#config-main-tier-strategy)
 that relate to [tier strategy](/content/rm/concepts#rm-concepts-tier-strategy):
 
-1. Default Tier Strategy
-2. Tier Strategy Predicate Evaluation Interval
+1. [Default Tier Strategy](#default-tier-strategy)
+2. [Tier Strategy Predicate Evaluation Interval](#tier-strategy-predicate-evaluation-interval)
 
 
 <a id="rm-config-tier-strategy-default"></a>

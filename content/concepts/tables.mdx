@@ -116,7 +116,7 @@ gpudb.GPUdbTable(
 
 
 [Table](/content/concepts/tables) data can be distributed across the *Kinetica* cluster
-using one of two schemes:  sharding_ & replication_.  Within the *sharding*
+using one of two schemes:  [sharding](#sharding) & [replication](#replication).  Within the *sharding*
 scheme, data can be distributed either by [key](/content/concepts/tables#sharding) or
 [randomly](/content/concepts/tables#random-sharding) in the absence of a
 [shard key](/content/concepts/tables#shard-key).
@@ -223,7 +223,7 @@ the records from each batch will go to the selected *shard*, it is important to
 configure the batch size appropriately to ensure an even distribution of records
 across the cluster over the entire ingestion process.
 
-*Random sharding* has the same benefit as sharding_ with respect to distributed
+*Random sharding* has the same benefit as [sharding](#sharding) with respect to distributed
 query parallelism and storage minimization.  It lacks, however, the benefit of
 greater-performant aggregations over the *shard key*, as the *randomly-sharded*
 data set lacks one.
