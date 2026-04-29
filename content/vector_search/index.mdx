@@ -768,8 +768,7 @@ FROM TABLE [/* KI_HINT_SAVE_UDF_STATS */]
 | `EMBEDDING_INPUT_COLUMNS` | Names of the columns in the given `EMBEDDING_TABLE` for which embeddings will be generated. |
 | `EMBEDDING_OUTPUT_COLUMNS | Names of the columns to return the generated embeddings as; if none specified, each input column will have embedding` appended to it to construct the name of the corresponding output column. |
 | `DIMENSIONS` | Size of the vector returned by the embedding generation process; required for the default `sqlgpt` model. |
-| `PARAMS` | Size of the vector returned by the embedding generation process. |
-| `PARAMS` | Optional indicator that a list of embedding option/value assignments will follow, passed as a comma-delimited list of key/value pairs to the `KV_PAIRS` function <br/> <br/> `input_type`: For Nvidia models, the type of input on which embeddings will be generated: +-------------+--------------------------------------------------------+ \| Type \| Description \| +=============+========================================================+ \| `passage` \| Input is the data set that will be searched. \| +-------------+--------------------------------------------------------+ \| `query` \| Input is the query that will be used for the search. \| +-------------+--------------------------------------------------------+ |
+| `PARAMS` | Optional indicator that a list of embedding option/value assignments will follow, passed as a comma-delimited list of key/value pairs to the `KV_PAIRS` function <br/> <br/> `input_type`: For Nvidia models, the type of input on which embeddings will be generated: * `passage` - Input is the data set that will be searched. * `query` - Input is the query that will be used for the search. |
 
 
 For example, to generate embeddings with various models:
