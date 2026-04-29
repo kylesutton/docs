@@ -199,16 +199,17 @@ Also, cells marked `LEFT` can be used to infer the distribution for
 </Info>
 
 
-| **Join**                      |                                 **Right Table**                                       |
-| **Criteria**                  +------------------------------+-------------------------------+------------------------+
-| **Composition**               | **Shard Key**                | **Non-Shard Key**             | **Replicated**         |
-
-|           | **Shard Key**     | *&lt;Node-local join&gt;*          | Reshard Right *(All)*         | Reshard Right *(FULL)* |
-| **Left**  +-------------------+------------------------------+-------------------------------+------------------------+
-| **Table** | **Non-Shard Key** | Reshard Left *(All)*         | Reshard Both *(All)*          | Replicate Left *(All)* |
-|           +-------------------+------------------------------+-------------------------------+------------------------+
-|           | **Replicated**    | Reshard Left *(LEFT,FULL)*   | Replicate Right *(LEFT,FULL)* | *&lt;Node-local join&gt;*    |
-
+| Left Table | Right Table | Join Distribution Operation |
+| --- | --- | --- |
+| Shard Key | Shard Key | *&lt;Node-local join&gt;* |
+| Shard Key | Non-Shard Key | Reshard Right *(All)* |
+| Shard Key | Replicated | Reshard Right *(FULL)* |
+| Non-Shard Key | Shard Key | Reshard Left *(All)* |
+| Non-Shard Key | Non-Shard Key | Reshard Both *(All)* |
+| Non-Shard Key | Replicated | Replicate Left *(All)* |
+| Replicated | Shard Key | Reshard Left *(LEFT,FULL)* |
+| Replicated | Non-Shard Key | Replicate Right *(LEFT,FULL)* |
+| Replicated | Replicated | *&lt;Node-local join&gt;* |
 
 Some example scenarios:
 
@@ -242,20 +243,17 @@ Cells marked `LEFT` can be used to infer the distribution for
 </Info>
 
 
-| **Join**                      |                                 **Right Table**                                           |
-| **Criteria**                  +--------------------------------+--------------------------------+-------------------------+
-| **Composition**               | **Shard Key**                  | **Non-Shard Key**              | **Replicated**          |
-
-|           | **Shard Key**     | Replicate Right *(INNER,LEFT)* | Replicate Right *(INNER,LEFT)* | Replicate Left *(FULL)* |
-|           |                   |                                |                                |                         |
-|           |                   | Replicate Both *(FULL)*        | Replicate Both *(FULL)*        |                         |
-|           +-------------------+--------------------------------+--------------------------------+-------------------------+
-| **Left**  | **Non-Shard Key** | Replicate Right *(INNER,LEFT)* | Replicate Right *(INNER,LEFT)* | Replicate Left *(FULL)* |
-| **Table** |                   |                                |                                |                         |
-|           |                   | Replicate Both *(FULL)*        | Replicate Both *(FULL)*        |                         |
-|           +-------------------+--------------------------------+--------------------------------+-------------------------+
-|           | **Replicated**    | Replicate Right *(LEFT,FULL)*  | Replicate Right *(LEFT,FULL)*  | *&lt;Node-local join&gt;*     |
-
+| Left Table | Right Table | Join Distribution Operation |
+| --- | --- | --- |
+| Shard Key | Shard Key | Replicate Right *(INNER,LEFT)* <br/> <br/> Replicate Both *(FULL)* |
+| Shard Key | Non-Shard Key | Replicate Right *(INNER,LEFT)* <br/> <br/> Replicate Both *(FULL)* |
+| Shard Key | Replicated | Replicate Left *(FULL)* |
+| Non-Shard Key | Shard Key | Replicate Right *(INNER,LEFT)* <br/> <br/> Replicate Both *(FULL)* |
+| Non-Shard Key | Non-Shard Key | Replicate Right *(INNER,LEFT)* <br/> <br/> Replicate Both *(FULL)* |
+| Non-Shard Key | Replicated | Replicate Left *(FULL)* |
+| Replicated | Shard Key | Replicate Right *(LEFT,FULL)* |
+| Replicated | Non-Shard Key | Replicate Right *(LEFT,FULL)* |
+| Replicated | Replicated | *&lt;Node-local join&gt;* |
 
 Some example scenarios:
 
