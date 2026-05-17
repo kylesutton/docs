@@ -49,12 +49,44 @@ URI = '<registry URI>'
 CREDENTIAL = <credential name>
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `OR REPLACE` | Any existing *container registry* reference with the same name will be dropped before creating this one |
-| `<registry name>` | Name of the reference to the *container registry*, which can be referenced in subsequent commands |
-| `URI` | The URI to the *container registry* itself |
-| `CREDENTIAL` | Name of the [credential](/content/sql/ddl#sql-create-credential) to use to authenticate to the *container registry* |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="OR REPLACE">
+
+Any existing *container registry* reference with the same name will be dropped before creating
+this one
+
+</Accordion>
+
+<Accordion title="&lt;registry name&gt;">
+
+Name of the reference to the *container registry*, which can be referenced in subsequent
+commands
+
+</Accordion>
+
+<Accordion title="URI">
+
+The URI to the *container registry* itself
+
+</Accordion>
+
+<Accordion title="CREDENTIAL">
+
+Name of the [credential](/content/sql/ddl#sql-create-credential) to use to authenticate to the
+*container registry*
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 ```sql title="CREATE CONTAINER REGISTRY Example"
 CREATE CONTAINER REGISTRY model_registry_docker
@@ -76,9 +108,24 @@ reference.
 DROP CONTAINER REGISTRY <registry name>
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<registry name>` | Name of the reference to the *container registry* to remove; has no effect on the *container registry* itself |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;registry name&gt;">
+
+Name of the reference to the *container registry* to remove; has no effect on the
+*container registry* itself
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 ```sql title="DROP CONTAINER REGISTRY Example"
 DROP CONTAINER REGISTRY model_registry_docker
@@ -104,9 +151,24 @@ The response to `SHOW CONTAINER REGISTRY` is a single-column result
 set with the DDL statement as the value in the `DDL` column.
 </Info>
 
-| Parameters | Description |
-| --- | --- |
-| `<registry name>` | Name of the existing reference to the *container registry* for which the DDL will be output. Use `*` instead to output the DDL of all references to *container registries*. |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;registry name&gt;">
+
+Name of the existing reference to the *container registry* for which the DDL will be output.
+Use `*` instead to output the DDL of all references to *container registries*.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 ```sql title="SHOW CONTAINER REGISTRY Example"
 SHOW CONTAINER REGISTRY model_registry_docker
@@ -133,12 +195,41 @@ CONTAINER = '<path to container>'
 RUN_FUNCTION = '<model run function>'
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<model name>` | Name of the *ML model* to import via the given *container registry* reference |
-| `REGISTRY` | Name of the reference to the *container registry* from which to import the *ML model* |
-| `CONTAINER` | The full path to the *ML model* container within the *container registry* |
-| `RUN_FUNCTION` | Name of the function within the *ML model* to execute when running inferences against it |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;model name&gt;">
+
+Name of the *ML model* to import via the given *container registry* reference
+
+</Accordion>
+
+<Accordion title="REGISTRY">
+
+Name of the reference to the *container registry* from which to import the *ML model*
+
+</Accordion>
+
+<Accordion title="CONTAINER">
+
+The full path to the *ML model* container within the *container registry*
+
+</Accordion>
+
+<Accordion title="RUN_FUNCTION">
+
+Name of the function within the *ML model* to execute when running inferences against it
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 ```sql title="IMPORT MODEL Example"
 IMPORT MODEL temp_2c
@@ -184,13 +275,71 @@ EXECUTE FUNCTION EVALUATE_MODEL(
 )
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `MODEL` | Name of the *ML model* on which to run an inference |
-| `DEPLOYMENT_MODE` | Scheme used in making inferences on the *ML model*: <br/> <br/> * `BATCH` - inference tests are run against a batch of data in an existing table all at once <br/> * `CONTINUOUS` - inference tests are run automatically against records being streamed into an input table; inference results are inserted into an output table, which will be updated upon each subsequent inference <br/> <Info> Continuous deployment mode is only available when using the `EXECUTE FUNCTION` syntax, as it creates a destination table with the continuously updated results. </Info> |
-| `REPLICATIONS` | The number of replicas to launch on *Kubernetes* |
-| `SOURCE_TABLE` | Table or query to use as input to the *ML model*, specified with either of these two forms: <br/> <br/> * `INPUT_TABLE(<table name>)` - Use the given table or view as input; e.g.: <br/> <br/> `INPUT_TABLE(price_history)` <br/> <br/> * `INPUT_TABLE(<query>)` - Use the given query as input; e.g.: <br/> <br/> `INPUT_TABLE(SELECT ts, item, price FROM price_history)` <br/> |
-| `DESTINATION_TABLE` | Only applicable when using `EXECUTE FUNCTION` syntax. Name of the table in which to store the results of the inference, in `[schema_name.]table_name` format, using standard [name resolution rules](/content/sql/naming#sql-name-resolution) and meeting [table naming criteria](/content/sql/naming#sql-naming-criteria) |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="MODEL">
+
+Name of the *ML model* on which to run an inference
+
+</Accordion>
+
+<Accordion title="DEPLOYMENT_MODE">
+
+Scheme used in making inferences on the *ML model*:
+
+* `BATCH` - inference tests are run against a batch of data in an existing table all at once
+* `CONTINUOUS` - inference tests are run automatically against records being streamed into an
+  input table; inference results are inserted into an output table, which will be updated upon
+  each subsequent inference
+
+
+<Info>
+Continuous deployment mode is only available when using the `EXECUTE FUNCTION`
+syntax, as it creates a destination table with the continuously updated results.
+</Info>
+
+</Accordion>
+
+<Accordion title="REPLICATIONS">
+
+The number of replicas to launch on *Kubernetes*
+
+</Accordion>
+
+<Accordion title="SOURCE_TABLE">
+
+Table or query to use as input to the *ML model*, specified with either of these two forms:
+
+* `INPUT_TABLE(<table name>)` - Use the given table or view as input; e.g.:
+
+```
+INPUT_TABLE(price_history)
+```
+* `INPUT_TABLE(<query>)` - Use the given query as input; e.g.:
+
+```
+INPUT_TABLE(SELECT ts, item, price FROM price_history)
+```
+</Accordion>
+
+<Accordion title="DESTINATION_TABLE">
+
+Only applicable when using `EXECUTE FUNCTION` syntax. Name of the table in which to store the
+results of the inference, in `[schema_name.]table_name` format, using standard
+[name resolution rules](/content/sql/naming#sql-name-resolution) and meeting
+[table naming criteria](/content/sql/naming#sql-naming-criteria)
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 ```sql title="EVALUATE_MODEL Table Function Example"
 SELECT * FROM TABLE(
@@ -241,11 +390,34 @@ SET CONTAINER = '<path to container>'
 </CodeGroup>
 
 
-| Parameters | Description |
-| --- | --- |
-| `<model name>` | Name of the *ML model* to modify |
-| `REGISTRY` | Name of the reference to the *container registry* from which to import the *ML model* |
-| `CONTAINER` | The full path to the *ML model* container within the *container registry* |
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;model name&gt;">
+
+Name of the *ML model* to modify
+
+</Accordion>
+
+<Accordion title="REGISTRY">
+
+Name of the reference to the *container registry* from which to import the *ML model*
+
+</Accordion>
+
+<Accordion title="CONTAINER">
+
+The full path to the *ML model* container within the *container registry*
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 ```sql title="ALTER MODEL Registry Example"
 ALTER MODEL temp_2c
@@ -270,6 +442,10 @@ Refreshes an [ML model](/content/ml/concepts#ml-model) from its source.
 REFRESH MODEL <model name>
 ```
 
+
+### Examples
+
+
 ```sql title="REFRESH MODEL Example"
 REFRESH MODEL temp_2c
 ```
@@ -286,6 +462,10 @@ Removes an [ML model](/content/ml/concepts#ml-model).
 ```sql title="DROP MODEL Syntax"
 DROP MODEL <model name>
 ```
+
+
+### Examples
+
 
 ```sql title="DROP MODEL Example"
 DROP MODEL temp_2c
@@ -304,9 +484,24 @@ Displays the statement used to create an [ML model](/content/ml/concepts#ml-mode
 SHOW MODEL < <model name> | * >
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<model name>` | Name of the existing reference to the *model* for which the DDL will be output. Use `*` instead to output the DDL of all references to *models*. |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;model name&gt;">
+
+Name of the existing reference to the *model* for which the DDL will be output.
+Use `*` instead to output the DDL of all references to *models*.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 ```sql title="SHOW MODEL Example"
 SHOW MODEL temp_2c
@@ -330,20 +525,36 @@ DESCRIBE MODEL < <model name> | * >
 ```
 
 
-<Info>
-The response to `DESCRIBE MODEL` is a four-column result set:
-* `MODEL` - name of the *ML model*
-* `ENTITY_ID` - internal unique ID for the *ML model*
-* `INPUT_SCHEMA` - list of columns types that valid input data is expected
-  to match
-* `OUTPUT_SCHEMA` - list of column types that will either be returned by
-  the model as a result set or used in creating a result table, depending on
-  how the model's evaluation is invoked
-</Info>
+### Parameters
 
-| Parameters | Description |
+
+<AccordionGroup>
+
+<Accordion title="&lt;model name&gt;">
+
+Name of the existing *model* for which the configuration will be output.  Use `*` instead
+to output the configuration of all *models*.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Response
+
+
+The response to `DESCRIBE MODEL` is a four-column result set:
+
+| Output Column | Description |
 | --- | --- |
-| `<model name>` | Name of the existing *model* for which the configuration will be output.  Use `*` instead to output the configuration of all *models*. |
+| `MODEL` | Name of the *ML model* |
+| `ENTITY_ID` | Internal unique ID for the *ML model* |
+| `INPUT_SCHEMA` | List of columns types that valid input data is expected to match |
+| `OUTPUT_SCHEMA` | List of column types that will either be returned by the model as a result set or used in creating a result table, depending on how the model's evaluation is invoked |
+
+
+### Examples
+
 
 ```sql title="DESCRIBE MODEL Example"
 DESCRIBE MODEL temp_2c

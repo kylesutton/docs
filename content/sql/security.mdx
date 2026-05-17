@@ -69,7 +69,11 @@ CREATE USER <user name>
 The password needs to be single-quoted and must not contain single quotes.
 </Info>
 
-For example, two of the ways to create a new internal user with the user ID of
+
+#### Examples
+
+
+Two of the ways to create a new internal user with the user ID of
 **jsmith** and a password of **secret** are:
 
 {/* Source: /examples/sql/security/user_role.kisql (lines 49 55) */}
@@ -125,7 +129,11 @@ SET
 The password needs to be single-quoted and must not contain single quotes.
 </Info>
 
-For example, to alter a user with the user ID of **jsmith**, assigning a
+
+#### Examples
+
+
+To alter a user with the user ID of **jsmith**, assigning a
 password of **new_secret**, and the **memory_over_execution** *resource group*:
 
 {/* Source: /examples/sql/security/user_role.kisql (lines 84-87) */}
@@ -162,7 +170,11 @@ user is removed.
 DROP USER <user name>
 ```
 
-For example, to drop an internal user **jsmith**:
+
+#### Examples
+
+
+To drop an internal user **jsmith**:
 
 {/* Source: /examples/sql/security/user_role.kisql (lines 52) */}
 ```sql DROP USER (Internal) Example
@@ -200,7 +212,11 @@ inherited, to be viewed with one command.
 SHOW SECURITY FOR <user name>,...
 ```
 
-For example, to show the permissions, roles, *resource group*, and
+
+#### Examples
+
+
+To show the permissions, roles, *resource group*, and
 *default schema* for user **jsmith**:
 
 {/* Source: /examples/sql/security/user_role.kisql (lines 93) */}
@@ -244,7 +260,11 @@ CREATE ROLE <role name>
 [ [WITH] RESOURCE GROUP [=] <group name> ]
 ```
 
-For example, to create an **analyst** role:
+
+#### Examples
+
+
+To create an **analyst** role:
 
 {/* Source: /examples/sql/security/user_role.kisql (lines 26) */}
 ```sql CREATE ROLE Example
@@ -272,8 +292,12 @@ ALTER ROLE <role name>
 SET RESOURCE GROUP [=] <group name | DEFAULT>
 ```
 
-For example, to assign the **memory_over_execution** *resource group* to the
-**analyst** role:
+
+#### Examples
+
+
+To assign the **memory_over_execution** *resource group* to the **analyst**
+role:
 
 {/* Source: /examples/sql/security/user_role.kisql (lines 68-69) */}
 ```sql ALTER ROLE Example
@@ -306,7 +330,11 @@ can be removed from the system.
 DROP ROLE <role name>
 ```
 
-For example, to drop the **analyst** role:
+
+#### Examples
+
+
+To drop the **analyst** role:
 
 {/* Source: /examples/sql/security/user_role.kisql (lines 29) */}
 ```sql DROP ROLE Example
@@ -332,6 +360,10 @@ one command.
 ```sql title="SHOW SECURITY FOR Role Syntax"
 SHOW SECURITY FOR <role name>,...
 ```
+
+
+#### Examples
+
 
 To show the permissions, roles, and *resource group* for the **analyst** role:
 
@@ -383,7 +415,11 @@ See [Users](/content/security/sec_concepts#security-concepts-users) for details 
 GRANT <role name> TO <user name | role name>
 ```
 
-For example, to grant a role allowing access to analyst tables to the
+
+#### Examples
+
+
+To grant a role allowing access to analyst tables to the
 **analyst** role, and then grant that **analyst** role to user **jsmith**:
 
 {/* Source: /examples/sql/security/grant_revoke.kisql (lines 49 52) */}
@@ -533,13 +569,117 @@ TO <user name | role name>
 [WITH GRANT OPTION]
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `PRIVILEGES` | Optional keyword for SQL-92 compatibility. |
-| `SCHEMA` | Optional keyword to avoid ambiguity between a grant to a schema and a grant to a table/view in the user's default schema. |
-| `<schema reference>` | Either the name of the schema to which access is being granted or a wildcard expression signifying the schema(s) and table(s)/views(s) to which access is being granted. <br/> <br/> `*`: All schemas currently in the database <br/> <br/> `*.*`: All schemas, tables, & views currently in the database |
-| `<object type>` | For granting `CREATE` privilege, the object type to give permission to create in the given schema. <br/> <br/> Supported object types include: <br/> <br/> `CONTEXT`: [SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context) object <br/> <br/> `CREDENTIAL`: [Credential](/content/sql/ddl#sql-create-credential) object <br/> <br/> `DATA SINK`: External [data sink](/content/sql/ddl#sql-create-data-sink) <br/> <br/> `DATA SOURCE`: External [data source](/content/sql/ddl#sql-create-data-source) <br/> <br/> `GRAPH`: [Graph](/content/sql/graph#sql-graph-create) <br/> <br/> `PROCEDURE`: SQL [stored procedure](/content/sql/procedure#sql-procedures) <br/> <br/> `STREAM`: [Stream](/content/sql/ddl#sql-create-stream) <br/> <br/> `TABLE`: [Table](/content/sql/ddl#sql-create-table) (or view) |
-| `WITH GRANT OPTION` | Grant this permission with a [grant option](/content/security/sec_concepts#security-concepts-permissions-grant-option) to grant it to others. |
+
+#### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="PRIVILEGES">
+
+Optional keyword for SQL-92 compatibility.
+
+</Accordion>
+
+<Accordion title="SCHEMA">
+
+Optional keyword to avoid ambiguity between a grant to a schema and a grant to a
+table/view in the user's default schema.
+
+</Accordion>
+
+<Accordion title="&lt;schema reference&gt;">
+
+Either the name of the schema to which access is being granted or a wildcard expression
+signifying the schema(s) and table(s)/views(s) to which access is being granted.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Wildcard Form</th>
+    <th>Selected Objects</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>*</code></td>
+    <td>All schemas currently in the database</td>
+  </tr>
+  <tr>
+    <td><code>*.*</code></td>
+    <td>All schemas, tables, &amp; views currently in the database</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="&lt;object type&gt;">
+
+For granting `CREATE` privilege, the object type to give permission to create in the
+given schema.
+
+Supported object types include:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Target Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>CONTEXT</code></td>
+    <td>[SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context) object</td>
+  </tr>
+  <tr>
+    <td><code>CREDENTIAL</code></td>
+    <td>[Credential](/content/sql/ddl#sql-create-credential) object</td>
+  </tr>
+  <tr>
+    <td><code>DATA SINK</code></td>
+    <td>External [data sink](/content/sql/ddl#sql-create-data-sink)</td>
+  </tr>
+  <tr>
+    <td><code>DATA SOURCE</code></td>
+    <td>External [data source](/content/sql/ddl#sql-create-data-source)</td>
+  </tr>
+  <tr>
+    <td><code>GRAPH</code></td>
+    <td>[Graph](/content/sql/graph#sql-graph-create)</td>
+  </tr>
+  <tr>
+    <td><code>PROCEDURE</code></td>
+    <td>SQL [stored procedure](/content/sql/procedure#sql-procedures)</td>
+  </tr>
+  <tr>
+    <td><code>STREAM</code></td>
+    <td>[Stream](/content/sql/ddl#sql-create-stream)</td>
+  </tr>
+  <tr>
+    <td><code>TABLE</code></td>
+    <td>[Table](/content/sql/ddl#sql-create-table) (or view)</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="WITH GRANT OPTION">
+
+Grant this permission with a
+[grant option](/content/security/sec_concepts#security-concepts-permissions-grant-option) to grant it to others.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <Info>
@@ -612,15 +752,105 @@ TO <user name | role name>
 [WITH GRANT OPTION]
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `PRIVILEGES` | Optional keyword for SQL-92 compatibility. |
-| `ON` | Optional object specifier for granting permission to a specific object or set of objects. If not specified, then the grant will be for all tables and views in all schemas now and in the future |
-| `TABLE` | Optional keyword for SQL-92 compatibility, and to avoid ambiguity between a grant to a table/view in the user's default schema (when `<schema name>` is omitted) and a grant to a schema. |
-| `<object reference>` | The name of the table/view and/or schema to which access is being granted. the following forms are valid: <br/> <br/> *&lt;schema&gt;.&lt;object&gt;*: Fully-qualified table or view name in the specified schema <br/> <br/> `*.*`: All existing tables & views that the granting user can see across all schemas <br/> <br/> `*`: All existing schemas that the granting user can see, which will grant access to all tables and views in those schemas now and in the future <br/> <br/> *&lt;schema&gt;*: All tables and views in the specified schema now and in the future <br/> <br/> *&lt;object&gt;*: Table or view in the default schema. If a schema exists with the same name, it will be used. To avoid this, specify the fully-qualified object name. |
-| `<column list>` | Optional comma-separated list of specific table columns and/or [column security functions](/content/security/sec_concepts#sec-concepts-perm-table-col-func) applied to columns on which to grant access; see [Column-Level Security](/content/security/sec_concepts#sec-concepts-perm-table-col) for details. |
-| `WHERE <expression>` | Optional filter expression on the table to which access is being granted, determining to which rows of the target table the grantee will be given access; see [Row-Level Security](/content/security/sec_concepts#sec-concepts-perm-table-row) for details. |
-| `WITH GRANT OPTION` | Grant this permission with a [grant option](/content/security/sec_concepts#security-concepts-permissions-grant-option) to grant it to others. <br/> <Info> `WITH GRANT OPTION` is not allowed when also granting with row or column restrictions. </Info> |
+
+#### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="PRIVILEGES">
+
+Optional keyword for SQL-92 compatibility.
+
+</Accordion>
+
+<Accordion title="ON">
+
+Optional object specifier for granting permission to a specific object or set of objects.
+If not specified, then the grant will be for all tables and views
+in all schemas now and in the future
+
+</Accordion>
+
+<Accordion title="TABLE">
+
+Optional keyword for SQL-92 compatibility, and to avoid ambiguity between a grant to a
+table/view in the user's default schema (when `<schema name>` is omitted) and a grant
+to a schema.
+
+</Accordion>
+
+<Accordion title="&lt;object reference&gt;">
+
+The name of the table/view and/or schema to which access is being granted.
+the following forms are valid:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Form</th>
+    <th>Selected Objects</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>*&lt;schema&gt;.&lt;object&gt;*</td>
+    <td>Fully-qualified table or view name in the specified schema</td>
+  </tr>
+  <tr>
+    <td><code>*.*</code></td>
+    <td>All existing tables &amp; views that the granting user can see across all schemas</td>
+  </tr>
+  <tr>
+    <td><code>*</code></td>
+    <td>All existing schemas that the granting user can see, which will grant access to all tables and views in those schemas now and in the future</td>
+  </tr>
+  <tr>
+    <td>*&lt;schema&gt;*</td>
+    <td>All tables and views in the specified schema now and in the future</td>
+  </tr>
+  <tr>
+    <td>*&lt;object&gt;*</td>
+    <td>Table or view in the default schema.  If a schema exists with the same name, it will be used.  To avoid this, specify the fully-qualified object name.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="&lt;column list&gt;">
+
+Optional comma-separated list of specific table columns and/or
+[column security functions](/content/security/sec_concepts#sec-concepts-perm-table-col-func) applied to columns
+on which to grant access; see [Column-Level Security](/content/security/sec_concepts#sec-concepts-perm-table-col) for details.
+
+</Accordion>
+
+<Accordion title="WHERE &lt;expression&gt;">
+
+Optional filter expression on the table to which access is being granted, determining to
+which rows of the target table the grantee will be given access; see
+[Row-Level Security](/content/security/sec_concepts#sec-concepts-perm-table-row) for details.
+
+</Accordion>
+
+<Accordion title="WITH GRANT OPTION">
+
+Grant this permission with a
+[grant option](/content/security/sec_concepts#security-concepts-permissions-grant-option) to grant it to others.
+
+
+<Info>
+`WITH GRANT OPTION` is not allowed when also granting with row or column
+restrictions.
+</Info>
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <Info>
@@ -743,7 +973,11 @@ GRANT <READ | ADMIN> ON CREDENTIAL <credential name> TO <user name | role name> 
 | `READ` | Use or view the configuration of the given *credential*. |
 | `WITH GRANT OPTION` | Grant this permission with a [grant option](/content/security/sec_concepts#security-concepts-permissions-grant-option) to grant it to others. |
 
-For example, to grant read access on the *credential* named
+
+#### Examples
+
+
+To grant read access on the *credential* named
 **auser_azure_active_dir_creds** to the **auser** *user*:
 
 {/* Source: /examples/sql/credential/credential.kisql (lines 50) */}
@@ -787,7 +1021,11 @@ GRANT <CONNECT | ADMIN> ON DATA SOURCE <data source name> TO <user name | role n
 | `CONNECT` | Connect to, load data into, or view the configuration of the given *data source*. |
 | `WITH GRANT OPTION` | Grant this permission with a [grant option](/content/security/sec_concepts#security-concepts-permissions-grant-option) to grant it to others. |
 
-For example, to grant connect access on the *data source* named
+
+#### Examples
+
+
+To grant connect access on the *data source* named
 **kin_ds** to the **auser** *user*:
 
 {/* Source: /examples/sql/data_source/data_source.kisql (lines 69) */}
@@ -832,7 +1070,11 @@ GRANT <CONNECT | ADMIN> ON DATA SINK <data sink name> TO <user name | role name>
 | `CONNECT` | Connect to, load data into, or view the configuration of the given *data sink*. |
 | `WITH GRANT OPTION` | Grant this permission with a [grant option](/content/security/sec_concepts#security-concepts-permissions-grant-option) to grant it to others. |
 
-For example, to grant connect & load access on the *data sink* named
+
+#### Examples
+
+
+To grant connect & load access on the *data sink* named
 **kin_dsink** to the **auser** *user*:
 
 {/* Source: /examples/sql/data_sink/data_sink.kisql (lines 78) */}
@@ -877,7 +1119,11 @@ GRANT <READ | WRITE> ON DIRECTORY <directory name> TO <user name | role name> [W
 | `WRITE` | Upload *files* to or delete *files* from the given *directory* (includes `READ` access). |
 | `WITH GRANT OPTION` | Grant this permission with a [grant option](/content/security/sec_concepts#security-concepts-permissions-grant-option) to grant it to others. |
 
-For example, to grant read access on a *directory* named **kdata** to the
+
+#### Examples
+
+
+To grant read access on a *directory* named **kdata** to the
 **kuser** *user*:
 
 {/* Source: /examples/sql/kifs.kisql (lines 152) */}
@@ -926,7 +1172,11 @@ Use `*` instead of *function name* to grant the specified permission
 to all existing & future UDFs.
 </Info>
 
-For example, to grant execute on the **udf_sos_py_proc** *UDF* to **udf_user**:
+
+#### Examples
+
+
+To grant execute on the **udf_sos_py_proc** *UDF* to **udf_user**:
 
 {/* Source: /examples/sql/udf/udf.kisql (lines 99) */}
 ```sql GRANT Function Execute Permission Example
@@ -970,7 +1220,11 @@ GRANT <READ | WRITE | ADMIN> ON GRAPH <graph name> TO <user name | role name> [W
 | `WRITE` | Modify the given *graph* (includes `READ` access). |
 | `WITH GRANT OPTION` | Grant this permission with a [grant option](/content/security/sec_concepts#security-concepts-permissions-grant-option) to grant it to others. |
 
-For example, to grant query, match, solve, & show access on the *graph* named
+
+#### Examples
+
+
+To grant query, match, solve, & show access on the *graph* named
 **big_cities_graph** to **geo_user**:
 
 {/* Source: /examples/sql/graph/graph.kisql (lines 351) */}
@@ -1005,8 +1259,11 @@ GRANT EXECUTE PROCEDURE ON <procedure name> TO <user name | role name> [WITH GRA
 | `EXECUTE` | Run the given *SQL procedure*. |
 | `WITH GRANT OPTION` | Grant this permission with a [grant option](/content/security/sec_concepts#security-concepts-permissions-grant-option) to grant it to others. |
 
-For example, to grant execute on the **sqlp_weekly** procedure to
-**spuser**:
+
+#### Examples
+
+
+To grant execute on the **sqlp_weekly** procedure to **spuser**:
 
 {/* Source: /examples/sql/procedure/create_procedure.kisql (lines 106) */}
 ```sql GRANT EXECUTE PROCEDURE Permission Example
@@ -1043,7 +1300,11 @@ GRANT <READ | ADMIN> ON CONTEXT <context name> TO <user name | role name> [WITH 
 | `READ` | Use the given *context* to generate SQL using a SQL-GPT query. |
 | `WITH GRANT OPTION` | Grant this permission with a [grant option](/content/security/sec_concepts#security-concepts-permissions-grant-option) to grant it to others. |
 
-For example, to grant *read* access on the *SQL-GPT context* named
+
+#### Examples
+
+
+To grant *read* access on the *SQL-GPT context* named
 **example.atc_ctx** to the **ctxuser** *user*:
 
 {/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 232) */}
@@ -1079,7 +1340,11 @@ GRANT ADMIN ON STREAM <stream name> TO <user name | role name> [WITH GRANT OPTIO
 | `ADMIN` | Drop the given *stream*. |
 | `WITH GRANT OPTION` | Grant this permission with a [grant option](/content/security/sec_concepts#security-concepts-permissions-grant-option) to grant it to others. |
 
-For example, to grant administrative access on the *stream* named
+
+#### Examples
+
+
+To grant administrative access on the *stream* named
 **kin_stream** to the **auser** *user*:
 
 {/* Source: /examples/sql/stream/stream.kisql (lines 67) */}
@@ -1101,8 +1366,11 @@ GRANT ADMIN ON STREAM example.kin_stream TO auser
 REVOKE <role name> FROM <user name | role name>
 ```
 
-For example, to revoke a role allowing access to analyst tables from the
-**analyst** role:
+
+#### Examples
+
+
+To revoke a role allowing access to analyst tables from the **analyst** role:
 
 {/* Source: /examples/sql/security/grant_revoke.kisql (lines 104) */}
 ```sql REVOKE Role from Role Example
@@ -1143,7 +1411,11 @@ REVOKE CREATE DIRECTORY FROM <user name | role name>
 REVOKE CREATE FUNCTION FROM <user name | role name>
 ```
 
-For example, to revoke system administrator permission from **jsmith**:
+
+#### Examples
+
+
+To revoke system administrator permission from **jsmith**:
 
 {/* Source: /examples/sql/security/grant_revoke.kisql (lines 113) */}
 ```sql REVOKE SYSTEM ADMIN Example
@@ -1183,12 +1455,110 @@ ON [SCHEMA] <schema reference>
 FROM <user name | role name>
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `PRIVILEGES` | Optional keyword for SQL-92 compatibility |
-| `SCHEMA` | Optional keyword to avoid ambiguity between revoking a grant to a schema and a grant to a table/view in the user's default schema |
-| `<schema reference>` | Either the name of the schema to which access is being revoked or a wildcard expression signifying the schema(s) and table(s)/views(s) to which access is being revoked <br/> <br/> `*`: All schemas currently in the database <br/> <br/> `*.*`: All schemas, tables, & views currently in the database |
-| `<object type>` | For revoking `CREATE` privilege, the object type to remove permission to create in the given schema. <br/> <br/> Supported object types include: <br/> <br/> `CONTEXT`: [SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context) object <br/> <br/> `CREDENTIAL`: [Credential](/content/sql/ddl#sql-create-credential) object <br/> <br/> `DATA SINK`: External [data sink](/content/sql/ddl#sql-create-data-sink) <br/> <br/> `DATA SOURCE`: External [data source](/content/sql/ddl#sql-create-data-source) <br/> <br/> `GRAPH`: [Graph](/content/sql/graph#sql-graph-create) <br/> <br/> `PROCEDURE`: SQL [stored procedure](/content/sql/procedure#sql-procedures) <br/> <br/> `STREAM`: [Stream](/content/sql/ddl#sql-create-stream) <br/> <br/> `TABLE`: [Table](/content/sql/ddl#sql-create-table) (or view) |
+
+#### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="PRIVILEGES">
+
+Optional keyword for SQL-92 compatibility
+
+</Accordion>
+
+<Accordion title="SCHEMA">
+
+Optional keyword to avoid ambiguity between revoking a grant to a schema and a grant to a
+table/view in the user's default schema
+
+</Accordion>
+
+<Accordion title="&lt;schema reference&gt;">
+
+Either the name of the schema to which access is being revoked or a wildcard expression
+signifying the schema(s) and table(s)/views(s) to which access is being revoked
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Wildcard Form</th>
+    <th>Selected Objects</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>*</code></td>
+    <td>All schemas currently in the database</td>
+  </tr>
+  <tr>
+    <td><code>*.*</code></td>
+    <td>All schemas, tables, &amp; views currently in the database</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="&lt;object type&gt;">
+
+For revoking `CREATE` privilege, the object type to remove permission to create in the
+given schema.
+
+Supported object types include:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Target Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>CONTEXT</code></td>
+    <td>[SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context) object</td>
+  </tr>
+  <tr>
+    <td><code>CREDENTIAL</code></td>
+    <td>[Credential](/content/sql/ddl#sql-create-credential) object</td>
+  </tr>
+  <tr>
+    <td><code>DATA SINK</code></td>
+    <td>External [data sink](/content/sql/ddl#sql-create-data-sink)</td>
+  </tr>
+  <tr>
+    <td><code>DATA SOURCE</code></td>
+    <td>External [data source](/content/sql/ddl#sql-create-data-source)</td>
+  </tr>
+  <tr>
+    <td><code>GRAPH</code></td>
+    <td>[Graph](/content/sql/graph#sql-graph-create)</td>
+  </tr>
+  <tr>
+    <td><code>PROCEDURE</code></td>
+    <td>SQL [stored procedure](/content/sql/procedure#sql-procedures)</td>
+  </tr>
+  <tr>
+    <td><code>STREAM</code></td>
+    <td>[Stream](/content/sql/ddl#sql-create-stream)</td>
+  </tr>
+  <tr>
+    <td><code>TABLE</code></td>
+    <td>[Table](/content/sql/ddl#sql-create-table) (or view)</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <Info>
@@ -1266,13 +1636,48 @@ ON [TABLE] [<schema name>.]<table/view name> [<column list>]
 FROM <user name | role name>
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `PRIVILEGES` | Optional keyword for SQL-92 compatibility |
-| `TABLE` | Optional keyword for SQL-92 compatibility, and to avoid ambiguity between revoking a grant to a table/view in the user's default schema (when `<schema name>` is omitted) and a grant to a schema |
-| `<schema name>` | The name of the schema containing the table/view to which access is being revoked; if omitted, the table/view will be looked for in the default schema |
-| `<table/view name>` | The name of the table to which access is being revoked; the wildcard `*` can be used to revoke access to all tables/views within the given `<schema name>` schema |
-| `<column list>` | Optional comma-separated list of specific table columns to which access is being revoked; see [Column-Level Security](/content/security/sec_concepts#sec-concepts-perm-table-col) for details |
+
+#### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="PRIVILEGES">
+
+Optional keyword for SQL-92 compatibility
+
+</Accordion>
+
+<Accordion title="TABLE">
+
+Optional keyword for SQL-92 compatibility, and to avoid ambiguity between revoking a
+grant to a table/view in the user's default schema (when `<schema name>` is omitted)
+and a grant to a schema
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+The name of the schema containing the table/view to which access is being revoked; if
+omitted, the table/view will be looked for in the default schema
+
+</Accordion>
+
+<Accordion title="&lt;table/view name&gt;">
+
+The name of the table to which access is being revoked; the wildcard `*` can be used to
+revoke access to all tables/views within the given `<schema name>` schema
+
+</Accordion>
+
+<Accordion title="&lt;column list&gt;">
+
+Optional comma-separated list of specific table columns to which access is being revoked;
+see [Column-Level Security](/content/security/sec_concepts#sec-concepts-perm-table-col) for details
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <Info>
@@ -1378,7 +1783,11 @@ For revoking the ability to create *credentials*, see
 REVOKE <READ | ADMIN> ON CREDENTIAL <credential name> FROM <user name | role name>
 ```
 
-For example, to revoke read access on the *credential* named
+
+#### Examples
+
+
+To revoke read access on the *credential* named
 **auser_azure_active_dir_creds** from the **auser** *user*:
 
 {/* Source: /examples/sql/credential/credential.kisql (lines 76) */}
@@ -1417,7 +1826,11 @@ For revoking the ability to create *data sources*, see
 REVOKE <CONNECT | ADMIN> ON DATA SOURCE <data source name> FROM <user name | role name>
 ```
 
-For example, to revoke connect access on the *data source* named **kin_ds** from
+
+#### Examples
+
+
+To revoke connect access on the *data source* named **kin_ds** from
 the **auser** *user*:
 
 {/* Source: /examples/sql/data_source/data_source.kisql (lines 83) */}
@@ -1457,7 +1870,11 @@ For revoking the ability to create *data sinks*, see
 REVOKE <CONNECT | ADMIN> ON DATA SINK <data sink name> FROM <user name | role name>
 ```
 
-For example, to revoke connect access on the *data sink* named **kin_dsink**
+
+#### Examples
+
+
+To revoke connect access on the *data sink* named **kin_dsink**
 from the **auser** *user*:
 
 {/* Source: /examples/sql/data_sink/data_sink.kisql (lines 92) */}
@@ -1497,7 +1914,11 @@ For revoking the ability to create *directories*, see
 REVOKE <READ | WRITE> ON DIRECTORY <directory name> FROM <user name | role name>
 ```
 
-For example, to revoke read access on a *directory* named **kdata** from the
+
+#### Examples
+
+
+To revoke read access on a *directory* named **kdata** from the
 **kuser** *user*:
 
 {/* Source: /examples/sql/kifs.kisql (lines 184) */}
@@ -1537,7 +1958,11 @@ For revoking the ability to create *UDFs/UDTFs*, see
 REVOKE <EXECUTE | ADMIN> ON FUNCTION < <function name> | * > FROM <user name | role name>
 ```
 
-For example, to revoke execute on the **udf_sos_py_proc** *UDF* from **udf_user**:
+
+#### Examples
+
+
+To revoke execute on the **udf_sos_py_proc** *UDF* from **udf_user**:
 
 {/* Source: /examples/sql/udf/udf.kisql (lines 211) */}
 ```sql REVOKE Function Execute Permission Example
@@ -1576,7 +2001,11 @@ For revoking the ability to create *graphs*, see
 REVOKE <READ | WRITE | ADMIN> ON GRAPH <graph name> FROM <user name | role name>
 ```
 
-For example, to revoke query, match, solve, & show access on the *graph* named
+
+#### Examples
+
+
+To revoke query, match, solve, & show access on the *graph* named
 **big_cities_graph** from **geo_user**:
 
 {/* Source: /examples/sql/graph/graph.kisql (lines 372) */}
@@ -1605,8 +2034,11 @@ For revoking the ability to create *SQL procedures*, see
 REVOKE EXECUTE PROCEDURE ON <procedure name> FROM <user name | role name>
 ```
 
-For example, to revoke execute on the **sqlp_weekly** procedure from
-**spuser**:
+
+#### Examples
+
+
+To revoke execute on the **sqlp_weekly** procedure from **spuser**:
 
 {/* Source: /examples/sql/procedure/create_procedure.kisql (lines 109) */}
 ```sql REVOKE EXECUTE PROCEDURE Permission Example
@@ -1636,7 +2068,11 @@ For revoking the ability to create *SQL-GPT contexts*, see
 REVOKE <READ | ADMIN> ON CONTEXT <context name> FROM <user name | role name>
 ```
 
-For example, to revoke *read* access on the *SQL-GPT context* named
+
+#### Examples
+
+
+To revoke *read* access on the *SQL-GPT context* named
 **example.atc_ctx** from the **ctxuser** *user*:
 
 {/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 235) */}
@@ -1668,7 +2104,11 @@ For revoking the ability to create *streams*, see
 REVOKE ADMIN ON STREAM <stream name> FROM <user name | role name>
 ```
 
-For example, to revoke administrative access on the *stream* named
+
+#### Examples
+
+
+To revoke administrative access on the *stream* named
 **kin_stream** from the **auser** *user*:
 
 {/* Source: /examples/sql/stream/stream.kisql (lines 75) */}
@@ -1701,7 +2141,11 @@ direct & inherited, to be viewed with one command.
 SHOW SECURITY [FOR <user name | role name>,...]
 ```
 
-For example, to show the permissions, roles, *resource groups*, and
+
+#### Examples
+
+
+To show the permissions, roles, *resource groups*, and
 *default schema* for user **jsmith**:
 
 {/* Source: /examples/sql/security/user_role.kisql (lines 93) */}
@@ -1763,16 +2207,197 @@ CHECK ROLE OF <role>
 [IF EXISTS]
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<permission>` | Permission to verify for the given user <br/> <br/> Supported permissions include: <br/> <br/> `ADMIN` \| `ALL`: Applicable to [credential](/content/sql/ddl#sql-create-credential) objects and [tables](/content/sql/ddl#sql-create-table) (or views) <br/> <br/> `CONNECT`: Applicable to external [data sources](/content/sql/ddl#sql-create-data-source) <br/> <br/> `DELETE`: Applicable to [tables](/content/sql/ddl#sql-create-table) <br/> <br/> `EXECUTE`: Applicable to [User-Defined Functions](/content/sql/udf#sql-udf) (UDFs) and SQL [stored procedures](/content/sql/procedure#sql-procedures) <br/> <br/> `INSERT`: Applicable to [tables](/content/sql/ddl#sql-create-table) <br/> <br/> `READ`: Applicable to [credential](/content/sql/ddl#sql-create-credential) objects <br/> <br/> `SELECT`: Applicable to [tables](/content/sql/ddl#sql-create-table) (or views) <br/> <br/> `SYSTEM ADMIN`: [System admin](/content/sql/security#sql-perm-system-admin) permission <br/> <br/> `SYSTEM CREATE`: [System create](/content/sql/security#sql-perm-system-mgmt) permission <br/> <br/> `SYSTEM MONITOR`: [System monitor](/content/sql/security#sql-perm-system-mgmt) permission <br/> <br/> `SYSTEM READ`: [System read](/content/sql/security#sql-perm-system-mgmt) permission <br/> <br/> `SYSTEM WRITE`: [System write](/content/sql/security#sql-perm-system-mgmt) permission <br/> <br/> `UPDATE`: Applicable to [tables](/content/sql/ddl#sql-create-table) <br/> <br/> `USER ADMIN`: [User admin](/content/sql/security#sql-perm-user-admin) permission |
-| `PERMISSION` | Optional keyword for clarity |
-| `ON` | Keyword for specifying the optional *ON* clause, which checks for the specified `permission` on the following `target` (and optional `target type`) given in this clause |
-| `<target type>` | Optional keyword for specifying the object type of the target; may be necessary to disambiguate same-named objects of differing types <br/> <br/> Supported target types include: <br/> <br/> `CONTEXT`: [SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context) object <br/> <br/> `CREDENTIAL`: [Credential](/content/sql/ddl#sql-create-credential) object <br/> <br/> `DATA SINK`: External [data source](/content/sql/ddl#sql-create-data-source) <br/> <br/> `DATA SOURCE`: External [data source](/content/sql/ddl#sql-create-data-source) <br/> <br/> `DIRECTORY`: [KiFS](/content/tools/kifs) directory <br/> <br/> `FUNCTION`: [User-Defined Function](/content/sql/udf#sql-udf) (UDF) <br/> <br/> `GRAPH`: [Graph](/content/sql/graph#sql-graph-create) <br/> <br/> `PROCEDURE`: SQL [stored procedure](/content/sql/procedure#sql-procedures) <br/> <br/> `SCHEMA`: [Schema](/content/sql/ddl#sql-create-schema) <br/> <br/> `STREAM`: [Stream](/content/sql/ddl#sql-create-stream) <br/> <br/> `TABLE`: [Table](/content/sql/ddl#sql-create-table) (or view) |
-| `<target>` | Name of the object to which the given user's specified permission will be checked |
-| `<role>` | Name of the role of which the given user's membership will be checked |
-| `FOR <user>` | Optional *FOR* clause, which checks whether the specified permission/role exists for the `user` given in this clause; if omitted, the current user will be checked |
-| `IF EXISTS` | Optional error suppression clause, which causes the check to return `No` if any of the entities specified do not exist; without this clause, non-existent entities will return an error |
+
+#### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;permission&gt;">
+
+Permission to verify for the given user
+
+Supported permissions include:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Permission</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>ADMIN</code> <code>ALL</code></td>
+    <td>[tables](/content/sql/ddl#sql-create-table) (or views)</td>
+  </tr>
+  <tr>
+    <td><code>CONNECT</code></td>
+    <td>Applicable to external [data sources](/content/sql/ddl#sql-create-data-source)</td>
+  </tr>
+  <tr>
+    <td><code>DELETE</code></td>
+    <td>Applicable to [tables](/content/sql/ddl#sql-create-table)</td>
+  </tr>
+  <tr>
+    <td><code>EXECUTE</code></td>
+    <td>Applicable to [User-Defined Functions](/content/sql/udf#sql-udf) (UDFs) and SQL [stored procedures](/content/sql/procedure#sql-procedures)</td>
+  </tr>
+  <tr>
+    <td><code>INSERT</code></td>
+    <td>Applicable to [tables](/content/sql/ddl#sql-create-table)</td>
+  </tr>
+  <tr>
+    <td><code>READ</code></td>
+    <td>Applicable to [credential](/content/sql/ddl#sql-create-credential) objects</td>
+  </tr>
+  <tr>
+    <td><code>SELECT</code></td>
+    <td>Applicable to [tables](/content/sql/ddl#sql-create-table) (or views)</td>
+  </tr>
+  <tr>
+    <td><code>SYSTEM ADMIN</code></td>
+    <td>[System admin](/content/sql/security#sql-perm-system-admin) permission</td>
+  </tr>
+  <tr>
+    <td><code>SYSTEM CREATE</code></td>
+    <td>[System create](/content/sql/security#sql-perm-system-mgmt) permission</td>
+  </tr>
+  <tr>
+    <td><code>SYSTEM MONITOR</code></td>
+    <td>[System monitor](/content/sql/security#sql-perm-system-mgmt) permission</td>
+  </tr>
+  <tr>
+    <td><code>SYSTEM READ</code></td>
+    <td>[System read](/content/sql/security#sql-perm-system-mgmt) permission</td>
+  </tr>
+  <tr>
+    <td><code>SYSTEM WRITE</code></td>
+    <td>[System write](/content/sql/security#sql-perm-system-mgmt) permission</td>
+  </tr>
+  <tr>
+    <td><code>UPDATE</code></td>
+    <td>Applicable to [tables](/content/sql/ddl#sql-create-table)</td>
+  </tr>
+  <tr>
+    <td><code>USER ADMIN</code></td>
+    <td>[User admin](/content/sql/security#sql-perm-user-admin) permission</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="PERMISSION">
+
+Optional keyword for clarity
+
+</Accordion>
+
+<Accordion title="ON">
+
+Keyword for specifying the optional *ON* clause, which checks for the specified `permission`
+on the following `target` (and optional `target type`) given in this clause
+
+</Accordion>
+
+<Accordion title="&lt;target type&gt;">
+
+Optional keyword for specifying the object type of the target; may be necessary to disambiguate
+same-named objects of differing types
+
+Supported target types include:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Target Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>CONTEXT</code></td>
+    <td>[SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context) object</td>
+  </tr>
+  <tr>
+    <td><code>CREDENTIAL</code></td>
+    <td>[Credential](/content/sql/ddl#sql-create-credential) object</td>
+  </tr>
+  <tr>
+    <td><code>DATA SINK</code></td>
+    <td>External [data source](/content/sql/ddl#sql-create-data-source)</td>
+  </tr>
+  <tr>
+    <td><code>DATA SOURCE</code></td>
+    <td>External [data source](/content/sql/ddl#sql-create-data-source)</td>
+  </tr>
+  <tr>
+    <td><code>DIRECTORY</code></td>
+    <td>[KiFS](/content/tools/kifs) directory</td>
+  </tr>
+  <tr>
+    <td><code>FUNCTION</code></td>
+    <td>[User-Defined Function](/content/sql/udf#sql-udf) (UDF)</td>
+  </tr>
+  <tr>
+    <td><code>GRAPH</code></td>
+    <td>[Graph](/content/sql/graph#sql-graph-create)</td>
+  </tr>
+  <tr>
+    <td><code>PROCEDURE</code></td>
+    <td>SQL [stored procedure](/content/sql/procedure#sql-procedures)</td>
+  </tr>
+  <tr>
+    <td><code>SCHEMA</code></td>
+    <td>[Schema](/content/sql/ddl#sql-create-schema)</td>
+  </tr>
+  <tr>
+    <td><code>STREAM</code></td>
+    <td>[Stream](/content/sql/ddl#sql-create-stream)</td>
+  </tr>
+  <tr>
+    <td><code>TABLE</code></td>
+    <td>[Table](/content/sql/ddl#sql-create-table) (or view)</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="&lt;target&gt;">
+
+Name of the object to which the given user's specified permission will be checked
+
+</Accordion>
+
+<Accordion title="&lt;role&gt;">
+
+Name of the role of which the given user's membership will be checked
+
+</Accordion>
+
+<Accordion title="FOR &lt;user&gt;">
+
+Optional *FOR* clause, which checks whether the specified permission/role exists for the `user`
+given in this clause; if omitted, the current user will be checked
+
+</Accordion>
+
+<Accordion title="IF EXISTS">
+
+Optional error suppression clause, which causes the check to return `No` if any of the entities
+specified do not exist; without this clause, non-existent entities will return an error
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="sql-security-impersonation"></a>

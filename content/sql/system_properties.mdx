@@ -46,51 +46,294 @@ the database is restarted.  By default, the change will be persisted.
 Not all system properties can be modified while the system is running.  The
 following is a list of those that can be modified.
 
-| `Property` | Description |
-| --- | --- |
-| `enable_audit` | Enable or disable auditing. |
-| `audit_headers` | Enable or disable auditing of request headers. |
-| `audit_body` | Enable or disable auditing of request bodies. |
-| `audit_data` | Enable or disable auditing of request data. |
-| `audit_response` | Enable or disable auditing of response information. |
-| `tps_per_tom` | Size of the worker rank data processing thread pool.  This includes operations such as inserts, updates, & deletes on table data.  Multi-head inserts are not affected by this limit. The minimum allowed value is `2`. The maximum allowed value is `8192`. |
-| `tcs_per_tom` | Size of the worker rank data calculation thread pool.  This is primarily used for computation-based operations such as aggregates and record retrieval. The minimum allowed value is `2`. The maximum allowed value is `8192`. |
-| `subtask_concurrency_limit` | Maximum number of simultaneous threads allocated to a given request, per rank.  Note that thread allocation may also be limited by resource group limits and/or system load. |
-| `concurrent_kernel_execution` | Enable or disable concurrent kernel execution. |
-| `max_concurrent_kernels` | Maximum number of kernels that can be running at the same time on a given GPU.  Set to `0` for no limit.  Only takes effect if `concurrent_kernel_execution` is `true`. The maximum allowed value is `256`. |
-| `max_get_records_size` | The maximum number of records the database will serve for a given data retrieval call.  The maximum allowed value is `1000000`. |
-| `request_timeout` | Number of minutes after which filtering (e.g., [/filter](/content/api/rest/filter_rest)) and aggregating  (e.g., [/aggregate/groupby](/content/api/rest/aggregate_groupby_rest)) queries will time out. The maximum allowed value is `1440`. |
-| `enable_overlapped_equi_join` | Enable or disable the overlapped-equi-join filter. |
-| `chunk_size` | Number of records per chunk, applied to all new tables.  To disable chunking, use `0`. |
-| `chunk_column_max_memory` | Maximum data size, in bytes, for each column in a chunk, applied to all new tables.  Use `0` for no maximum. |
-| `chunk_max_memory` | Maximum data size for all columns in a chunk, applied to all new tables.  Use `0` for no maximum; use `-1` to use the default, based on RAM tier limits or host memory per rank. |
-| `execution_mode` | Scheme to use for kernel executions.  Possible values: <br/> <br/> `host`: Execute kernels only on the *host* (CPU) <br/> <br/> `device`: Execute kernels only on the *device* (GPU) <br/> <br/> `default`: Execution engine decides whether to execute kernels on the *host* or the *device* <br/> <br/> `<rows>`: Execute kernels on the host if the chunked column contains the given number of rows or fewer; otherwise, execute on the device |
-| `shadow_agg_size` | Maximum number of bytes in the *shadow aggregate chunk cache*.  The maximum allowed value is `2147483647`. |
-| `shadow_filter_size` | Maximum number of bytes in the *shadow filter chunk cache*.  The maximum allowed value is `2147483647`. |
-| `telm_persist_query_metrics` | Enable or disable persisting of query metrics in a table.  If disabled, metrics will still be available for point-in-time export. |
-| `postgres_proxy_idle_connection_timeout` | PostgreSQL Wire Protocol service idle connection timeout, in seconds |
-| `postgres_proxy_keep_alive` | Enable or disable PostgreSQL Wire Protocol service's keep alive. |
-| `ai_enable_rag` | Enable or disable [SQL-GPT RAG](/content/sql-gpt/concepts#sql-gpt-overview-rag). |
-| `ai_api_provider` | AI API provider type |
-| `ai_api_url` | AI API URL |
-| `ai_api_key` | AI API key |
-| `ai_api_embeddings_model` | AI API embeddings model name |
-| `ai_api_connection_timeout` | AI API connection timeout, in seconds |
-| `external_files_directory` | Root directory path, on the head node of the cluster, from where external table data files are accessed. |
-| `egress_single_file_max_size` | Maximum file size, in MB, to allow saving to a single file.  May be overridden by target limitations.  The maximum allowed value is `200000`. |
-| `egress_parquet_compression` | Parquet file compression type.  The supported values are: <br/> <br/> * `uncompressed` <br/> * `snappy` <br/> * `gzip` |
-| `kafka_batch_size` | Maximum number of Kafka records to be ingested in a single batch.  The maximum allowed value is `10000000`. |
-| `kafka_wait_time` | Maximum time, in seconds, to buffer records received from Kafka before ingestion.  The maximum allowed value is `120`. |
-| `kafka_poll_timeout` | Maximum time, in milliseconds, for each poll to get records from Kafka.  The maximum allowed value is `1000`. |
-| `system_metadata_retention_period` | For persistent metadata tables, the time, in seconds, to retain rows prior to deletion. Note that records are deleted periodically, so this retention period is the minimum lifetime of a given metadata record. |
-| `kifs_directory_data_limit` | Default maximum capacity to apply to a newly-created KiFS directory, in bytes.  Use `-1` for no limit. |
-| `enable_one_step_compound_equi_join` | Enable or disable the *one-step compound equi-join* algorithm. |
+<AccordionGroup>
+
+<Accordion title="enable_audit">
+
+Enable or disable auditing.
+
+</Accordion>
+
+<Accordion title="audit_headers">
+
+Enable or disable auditing of request headers.
+
+</Accordion>
+
+<Accordion title="audit_body">
+
+Enable or disable auditing of request bodies.
+
+</Accordion>
+
+<Accordion title="audit_data">
+
+Enable or disable auditing of request data.
+
+</Accordion>
+
+<Accordion title="audit_response">
+
+Enable or disable auditing of response information.
+
+</Accordion>
+
+<Accordion title="tps_per_tom">
+
+Size of the worker rank data processing thread pool.  This includes operations such as
+inserts, updates, & deletes on table data.  Multi-head inserts are not affected by this
+limit. The minimum allowed value is `2`. The maximum allowed value is `8192`.
+
+</Accordion>
+
+<Accordion title="tcs_per_tom">
+
+Size of the worker rank data calculation thread pool.  This is primarily used for
+computation-based operations such as aggregates and record retrieval. The minimum allowed
+value is `2`. The maximum allowed value is `8192`.
+
+</Accordion>
+
+<Accordion title="subtask_concurrency_limit">
+
+Maximum number of simultaneous threads allocated to a given request, per rank.  Note that
+thread allocation may also be limited by resource group limits and/or system load.
+
+</Accordion>
+
+<Accordion title="concurrent_kernel_execution">
+
+Enable or disable concurrent kernel execution.
+
+</Accordion>
+
+<Accordion title="max_concurrent_kernels">
+
+Maximum number of kernels that can be running at the same time on a given GPU.  Set to
+`0` for no limit.  Only takes effect if `concurrent_kernel_execution` is `true`.
+The maximum allowed value is `256`.
+
+</Accordion>
+
+<Accordion title="max_get_records_size">
+
+The maximum number of records the database will serve for a given data retrieval call.  The
+maximum allowed value is `1000000`.
+
+</Accordion>
+
+<Accordion title="request_timeout">
+
+Number of minutes after which filtering (e.g., [/filter](/content/api/rest/filter_rest)) and
+aggregating  (e.g., [/aggregate/groupby](/content/api/rest/aggregate_groupby_rest)) queries will time out.
+The maximum allowed value is `1440`.
+
+</Accordion>
+
+<Accordion title="enable_overlapped_equi_join">
+
+Enable or disable the overlapped-equi-join filter.
+
+</Accordion>
+
+<Accordion title="chunk_size">
+
+Number of records per chunk, applied to all new tables.  To disable chunking, use `0`.
+
+</Accordion>
+
+<Accordion title="chunk_column_max_memory">
+
+Maximum data size, in bytes, for each column in a chunk, applied to all new tables.  Use
+`0` for no maximum.
+
+</Accordion>
+
+<Accordion title="chunk_max_memory">
+
+Maximum data size for all columns in a chunk, applied to all new tables.  Use `0` for no
+maximum; use `-1` to use the default, based on RAM tier limits or host memory per rank.
+
+</Accordion>
+
+<Accordion title="execution_mode">
+
+Scheme to use for kernel executions.  Possible values:
 
 
-### ALTER SYSTEM Examples
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Mode</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>host</code></td>
+    <td>Execute kernels only on the *host* (CPU)</td>
+  </tr>
+  <tr>
+    <td><code>device</code></td>
+    <td>Execute kernels only on the *device* (GPU)</td>
+  </tr>
+  <tr>
+    <td><code>default</code></td>
+    <td>Execution engine decides whether to execute kernels on the *host* or the *device*</td>
+  </tr>
+  <tr>
+    <td><code>&lt;rows&gt;</code></td>
+    <td>Execute kernels on the host if the chunked column contains the given number of rows or fewer; otherwise, execute on the device</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="shadow_agg_size">
+
+Maximum number of bytes in the *shadow aggregate chunk cache*.  The maximum allowed value
+is `2147483647`.
+
+</Accordion>
+
+<Accordion title="shadow_filter_size">
+
+Maximum number of bytes in the *shadow filter chunk cache*.  The maximum allowed value is
+`2147483647`.
+
+</Accordion>
+
+<Accordion title="telm_persist_query_metrics">
+
+Enable or disable persisting of query metrics in a table.  If disabled, metrics will still
+be available for point-in-time export.
+
+</Accordion>
+
+<Accordion title="postgres_proxy_idle_connection_timeout">
+
+PostgreSQL Wire Protocol service idle connection timeout, in seconds
+
+</Accordion>
+
+<Accordion title="postgres_proxy_keep_alive">
+
+Enable or disable PostgreSQL Wire Protocol service's keep alive.
+
+</Accordion>
+
+<Accordion title="ai_enable_rag">
+
+Enable or disable [SQL-GPT RAG](/content/sql-gpt/concepts#sql-gpt-overview-rag).
+
+</Accordion>
+
+<Accordion title="ai_api_provider">
+
+AI API provider type
+
+</Accordion>
+
+<Accordion title="ai_api_url">
+
+AI API URL
+
+</Accordion>
+
+<Accordion title="ai_api_key">
+
+AI API key
+
+</Accordion>
+
+<Accordion title="ai_api_embeddings_model">
+
+AI API embeddings model name
+
+</Accordion>
+
+<Accordion title="ai_api_connection_timeout">
+
+AI API connection timeout, in seconds
+
+</Accordion>
+
+<Accordion title="external_files_directory">
+
+Root directory path, on the head node of the cluster, from where external table data files
+are accessed.
+
+</Accordion>
+
+<Accordion title="egress_single_file_max_size">
+
+Maximum file size, in MB, to allow saving to a single file.  May be overridden by target
+limitations.  The maximum allowed value is `200000`.
+
+</Accordion>
+
+<Accordion title="egress_parquet_compression">
+
+Parquet file compression type.  The supported values are:
+
+* `uncompressed`
+* `snappy`
+* `gzip`
+
+</Accordion>
+
+<Accordion title="kafka_batch_size">
+
+Maximum number of Kafka records to be ingested in a single batch.  The maximum allowed
+value is `10000000`.
+
+</Accordion>
+
+<Accordion title="kafka_wait_time">
+
+Maximum time, in seconds, to buffer records received from Kafka before ingestion.  The
+maximum allowed value is `120`.
+
+</Accordion>
+
+<Accordion title="kafka_poll_timeout">
+
+Maximum time, in milliseconds, for each poll to get records from Kafka.  The maximum
+allowed value is `1000`.
+
+</Accordion>
+
+<Accordion title="system_metadata_retention_period">
+
+For persistent metadata tables, the time, in seconds, to retain rows prior to deletion.
+Note that records are deleted periodically, so this retention period is the minimum
+lifetime of a given metadata record.
+
+</Accordion>
+
+<Accordion title="kifs_directory_data_limit">
+
+Default maximum capacity to apply to a newly-created KiFS directory, in bytes.  Use `-1`
+for no limit.
+
+</Accordion>
+
+<Accordion title="enable_one_step_compound_equi_join">
+
+Enable or disable the *one-step compound equi-join* algorithm.
+
+</Accordion>
+
+</AccordionGroup>
 
 
-For example, to increase the request timeout and the maximum `/get/records`
+### Examples
+
+
+To increase the request timeout and the maximum `/get/records`
 size permanently (in the startup configuration):
 
 {/* Source: /examples/sql/system_properties.kisql (lines 15-18) */}
@@ -126,7 +369,11 @@ SHOW SYSTEM PROPERTIES
 [WITH OPTIONS ('properties' = '<config parameter name>[,...]')]
 ```
 
-For example, to show all system properties:
+
+### Examples
+
+
+To show all system properties:
 
 {/* Source: /examples/sql/system_properties.kisql (lines 10) */}
 ```sql SHOW SYSTEM PROPERTIES Example

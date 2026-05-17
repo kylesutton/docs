@@ -45,16 +45,84 @@ CREATE [OR REPLACE] [TEMP] CONTEXT [<schema name>.]<context name>
 ```
 
 
-| Parameters | Description |
-| --- | --- |
-| `OR REPLACE` | Any existing *context* reference with the same name will be dropped before creating this one |
-| `TEMP` | The *context* will be a temporary one; which means it will not be persisted (if the database is restarted, the *context* will be removed) and, if not continually accessed within the specified *TTL*, will be removed. |
-| `<schema name>` | Name of the [schema](/content/sql/ddl#sql-create-schema) containing the *context* |
-| `<context name>` | Name of the *context* |
-| [&lt;table definition clause&gt;](/content/sql/sqlgpt#sql-gpt-create-context-table-def) | Optional clause containing the definitions of all tables to be used within the *context* |
-| [&lt;sample definition clause&gt;](/content/sql/sqlgpt#sql-gpt-create-context-sample-def) | Optional clause containing sample question/answer pairs that can help *SQL-GPT* understand the relationships between natural language and the tables within the *context* |
-| [&lt;rule definition clause&gt;](/content/sql/sqlgpt#sql-gpt-create-context-rule-def) | Optional clause containing global rules *SQL-GPT* should take into account when generating SQL from the tables within the *context* |
-| `WITH OPTIONS` | Optional indicator that a comma-delimited list of option/value assignments will follow. The following options are available: <br/> <br/> `ttl`: Time-to-live, in minutes, for the *context*. If the *context* is not accessed for this amount of time, it will be automatically removed from the database. If `TEMP` is not specified, this option will be ignored. |
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="OR REPLACE">
+
+Any existing *context* reference with the same name will be dropped before creating this
+one
+
+</Accordion>
+
+<Accordion title="TEMP">
+
+The *context* will be a temporary one; which means it will not be persisted (if the
+database is restarted, the *context* will be removed) and, if not continually accessed
+within the specified *TTL*, will be removed.
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the [schema](/content/sql/ddl#sql-create-schema) containing the *context*
+
+</Accordion>
+
+<Accordion title="&lt;context name&gt;">
+
+Name of the *context*
+
+</Accordion>
+
+<Accordion title="&lt;table definition clause&gt;">
+
+Optional clause containing the definitions of all tables to be used within the *context*
+
+</Accordion>
+
+<Accordion title="&lt;sample definition clause&gt;">
+
+Optional clause containing sample question/answer pairs that can help *SQL-GPT*
+understand the relationships between natural language and the tables within the *context*
+
+</Accordion>
+
+<Accordion title="&lt;rule definition clause&gt;">
+
+Optional clause containing global rules *SQL-GPT* should take into account when generating
+SQL from the tables within the *context*
+
+</Accordion>
+
+<Accordion title="WITH OPTIONS">
+
+Optional indicator that a comma-delimited list of option/value assignments will follow.
+The following options are available:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>ttl</code></td>
+    <td>Time-to-live, in minutes, for the *context*.  If the *context* is not accessed for this amount of time, it will be automatically removed from the database.  If <code>TEMP</code> is not specified, this option will be ignored.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="sql-gpt-create-context-table-def"></a>
@@ -99,18 +167,77 @@ only the columns needed for generating SQL.
 )
 ```
 
-| Property | Description |
-| --- | --- |
-| `TABLE` | Specifier for the mandatory table definition table name |
-| `<schema name>` | Name of the [schema](/content/sql/ddl#sql-create-schema) containing the table to include in the *context* |
-| `<table name>` | Name of the [table](/content/sql/ddl#sql-create-table) to include in the *context* |
-| `COMMENT` | Specifier for an optional table comment |
-| `<table comment>` | Note about the table that can give *SLQ-GPT* information about its use and the data it holds |
-| `COMMENTS` | Specifier for an optional comma-separated list of column name & comment pairs |
-| `<column name>` | Name of a column in the given table |
-| `<column comment>` | Note about the column that can give *SQL-GPT* information about its use and the specific data it holds |
-| `RULES` | Specifier for an optional comma-separated list of rules for *SQL-GPT* to use in employing this table to generate SQL |
-| `<table rule>` | Rule for *SQL-GPT* to use in employing this table to generate SQL; e.g., which columns should be considered (or not considered) when generating SQL using the table |
+
+#### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="TABLE">
+
+Specifier for the mandatory table definition table name
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the [schema](/content/sql/ddl#sql-create-schema) containing the table to include in the
+*context*
+
+</Accordion>
+
+<Accordion title="&lt;table name&gt;">
+
+Name of the [table](/content/sql/ddl#sql-create-table) to include in the *context*
+
+</Accordion>
+
+<Accordion title="COMMENT">
+
+Specifier for an optional table comment
+
+</Accordion>
+
+<Accordion title="&lt;table comment&gt;">
+
+Note about the table that can give *SLQ-GPT* information about its use and the data it holds
+
+</Accordion>
+
+<Accordion title="COMMENTS">
+
+Specifier for an optional comma-separated list of column name & comment pairs
+
+</Accordion>
+
+<Accordion title="&lt;column name&gt;">
+
+Name of a column in the given table
+
+</Accordion>
+
+<Accordion title="&lt;column comment&gt;">
+
+Note about the column that can give *SQL-GPT* information about its use and the specific data
+it holds
+
+</Accordion>
+
+<Accordion title="RULES">
+
+Specifier for an optional comma-separated list of rules for *SQL-GPT* to use in employing this
+table to generate SQL
+
+</Accordion>
+
+<Accordion title="&lt;table rule&gt;">
+
+Rule for *SQL-GPT* to use in employing this table to generate SQL; e.g., which columns should
+be considered (or not considered) when generating SQL using the table
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="sql-gpt-create-context-sample-def"></a>
@@ -144,11 +271,41 @@ understanding) of the tables and columns referenced in each sample query.
 )
 ```
 
-| Property | Description |
-| --- | --- |
-| `SAMPLES` | *Sample definition* specifier keyword |
-| `<question>` | Natural-language question that will be answered by the corresponding `<SQL answer>` query |
-| `<SQL answer>` | SQL query that answers `<question>` using the tables contained within the *context* <br/> <Info> Quoted constants within the query will need to be escaped as per standard SQL convention; e.g., `'lamp'` in the following: <br/> <br/> `'How many lamps?' = 'SELECT COUNT(*) FROM product WHERE type = ''lamp'';'` <br/> <br/> </Info> |
+
+#### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="SAMPLES">
+
+*Sample definition* specifier keyword
+
+</Accordion>
+
+<Accordion title="&lt;question&gt;">
+
+Natural-language question that will be answered by the corresponding `<SQL answer>` query
+
+</Accordion>
+
+<Accordion title="&lt;SQL answer&gt;">
+
+SQL query that answers `<question>` using the tables contained within the *context*
+
+
+<Info>
+Quoted constants within the query will need to be escaped as per standard SQL
+convention; e.g., `'lamp'` in the following:
+
+```
+'How many lamps?' = 'SELECT COUNT(*) FROM product WHERE type = ''lamp'';'
+```
+</Info>
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="sql-gpt-create-context-rule-def"></a>
@@ -185,16 +342,32 @@ understanding) of any tables and columns referenced in each rule.
 )
 ```
 
-| Property | Description |
-| --- | --- |
-| `RULES` | Global *rule definition* specifier keyword |
-| `<global rule>` | Global rule for *SQL-GPT* to use in employing multiple tables to generate SQL (joins, etc.) or when referencing database features that are independent of any table (functions, etc.) |
+
+#### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="RULES">
+
+Global *rule definition* specifier keyword
+
+</Accordion>
+
+<Accordion title="&lt;global rule&gt;">
+
+Global rule for *SQL-GPT* to use in employing multiple tables to generate SQL (joins, etc.) or
+when referencing database features that are independent of any table (functions, etc.)
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="sql-gpt-create-context-example"></a>
 
 
-### Example
+#### Example
 
 
 The following example creates a *SQL-GPT context* with the following criteria:
@@ -310,7 +483,11 @@ ADD <table definition clause>
 See [Table Definition Clause](/content/sql/sqlgpt#sql-gpt-create-context-table-def) for syntax of the
 `<table definition clause>`.
 
-For example, to add the `example.atc_country` table to the
+
+#### Examples
+
+
+To add the `example.atc_country` table to the
 `example.atc_ctx` *SQL-GPT context*:
 
 {/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 169-174) */}
@@ -338,7 +515,11 @@ ALTER CONTEXT [<context schema name>.]<context name>
 DROP (TABLE = [<table schema name>.]<table name>)
 ```
 
-For example, to drop the `example.atc_country` table from the
+
+#### Examples
+
+
+To drop the `example.atc_country` table from the
 `example.atc_ctx` *SQL-GPT context*:
 
 {/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 177-178) */}
@@ -368,7 +549,11 @@ ADD <sample definition clause>
 See [Sample Definition Clause](/content/sql/sqlgpt#sql-gpt-create-context-sample-def) for syntax of the
 `<sample definition clause>`.
 
-For example, to add a sample query for finding **JFK** airport's location to the
+
+#### Examples
+
+
+To add a sample query for finding **JFK** airport's location to the
 `example.atc_ctx` *SQL-GPT context*:
 
 {/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 189-201) */}
@@ -404,8 +589,11 @@ ALTER CONTEXT [<context schema name>.]<context name>
 DROP (SAMPLES = ('' = ''))
 ```
 
-For example, to drop all *context samples* from the
-`example.atc_ctx` *SQL-GPT context*:
+
+#### Examples
+
+
+To drop all *context samples* from the `example.atc_ctx` *SQL-GPT context*:
 
 {/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 185-186) */}
 ```sql Drop Context Samples Example
@@ -434,9 +622,12 @@ ADD <rule definition clause>
 See [Rule Definition Clause](/content/sql/sqlgpt#sql-gpt-create-context-rule-def) for syntax of the
 `<rule definition clause>`.
 
-For example, to add a *rule* for joining the `example.airport_positions` table
-with the `atc_current_position` table to the `example.atc_ctx`
-*SQL-GPT context*:
+
+#### Examples
+
+
+To add a *rule* for joining the `example.airport_positions` table with the
+`atc_current_position` table to the `example.atc_ctx` *SQL-GPT context*:
 
 {/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 214-224) */}
 ```sql Add Context Rules Example
@@ -469,8 +660,11 @@ ALTER CONTEXT [<context schema name>.]<context name>
 DROP (RULES = (''))
 ```
 
-For example, to drop all *context rules* from the
-`example.atc_ctx` *SQL-GPT context*:
+
+#### Examples
+
+
+To drop all *context rules* from the `example.atc_ctx` *SQL-GPT context*:
 
 {/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 210-211) */}
 ```sql Drop Context Rules Example
@@ -491,7 +685,11 @@ Removes an existing [SQL-GPT context](/content/sql/sqlgpt#sql-gpt-create-context
 DROP CONTEXT [<schema name>.]<context name>
 ```
 
-For example, to remove the `example.atc_ctx` *SQL-GPT context*:
+
+### Examples
+
+
+To remove the `example.atc_ctx` *SQL-GPT context*:
 
 {/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 22) */}
 ```sql DROP CONTEXT Example
@@ -518,12 +716,32 @@ The response to `SHOW CONTEXT` is a single-column result set
 with the DDL statement as the value in the `CONTEXT_DEFINITION` column.
 </Info>
 
-| Parameters | Description |
-| --- | --- |
-| `<schema name>` | Name of the *schema* containing the *SQL-GPT context* to show |
-| `<context name>` | Name of the existing *SQL-GPT context* for which the DDL will be output; use `*` instead of *schema*/*context* name to output the DDL of all *contexts* |
 
-For example, to output the DDL for a *SQL-GPT context*, `example.atc_ctx`:
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *SQL-GPT context* to show
+
+</Accordion>
+
+<Accordion title="&lt;context name&gt;">
+
+Name of the existing *SQL-GPT context* for which the DDL will be output; use `*` instead of
+*schema*/*context* name to output the DDL of all *contexts*
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To output the DDL for a *SQL-GPT context*, `example.atc_ctx`:
 
 {/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 132) */}
 ```sql SHOW CONTEXT Example
@@ -552,25 +770,47 @@ DESC[RIBE] CONTEXT < [<schema name>.]<context name> | * >
 ```
 
 
-<Info>
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *SQL-GPT context* to describe
+
+</Accordion>
+
+<Accordion title="&lt;context name&gt;">
+
+Name of the existing *SQL-GPT context* for which the configuration will be output; use `*`
+instead of *schema*/*context* name to output the configuration of all *contexts*
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Response
+
+
 The response to `DESCRIBE CONTEXT` is a seven-column result set:
-* `CONTEXT_NAME` - name of the *SQL-GPT context*
-* `OBJECT_TYPE` - type of the *context entity* being described within the
-  *context*
-* `OBJECT_NAME` - for a table entity type, the name of the table
-* `OBJECT_DESCRIPTION` - for a table entity type, the table comment
-* `OBJECT_RULES` - for a table entity type, rules associated with the table
-* `OBJECT_COMMENTS` - for a table entity type, the table's column comments
-* `OBJECT_SAMPLES` - for a samples entity type, the list of question/answer
-  pairs
-</Info>
 
-| Parameters | Description |
+| Output Column | Description |
 | --- | --- |
-| `<schema name>` | Name of the *schema* containing the *SQL-GPT context* to describe |
-| `<context name>` | Name of the existing *SQL-GPT context* for which the configuration will be output; use `*` instead of *schema*/*context* name to output the configuration of all *contexts* |
+| `CONTEXT_NAME` | Name of the *SQL-GPT context* |
+| `OBJECT_TYPE` | Type of the *context entity* being described within the *context* |
+| `OBJECT_NAME` | For a table entity type, the name of the table |
+| `OBJECT_DESCRIPTION` | For a table entity type, the table comment |
+| `OBJECT_RULES` | For a table entity type, rules associated with the table |
+| `OBJECT_COMMENTS` | For a table entity type, the table's column comments |
+| `OBJECT_SAMPLES` | For a samples entity type, the list of question/answer pairs |
 
-For example, to show the configuration for a *SQL-GPT context*, `example.atc_ctx`:
+
+### Examples
+
+
+To show the configuration for a *SQL-GPT context*, `example.atc_ctx`:
 
 {/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 139) */}
 ```sql DESCRIBE CONTEXT Example
@@ -600,11 +840,34 @@ GENERATE SQL FOR '<question>'
 ```
 
 
-| Parameters | Description |
-| --- | --- |
-| `<question>` | Natural-language question for which an equivalent SQL query will be generated |
-| `<schema name>` | Name of the [schema](/content/sql/ddl#sql-create-schema) containing the *context* to use in generating the query |
-| `WITH OPTIONS` | Optional indicator that a comma-delimited list of SQL generation option/value assignments will follow. <br/> <br/> See [SQL Generation Options](/content/sql/sqlgpt#sql-gpt-generate-sql-opts) for the complete list of options. |
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;question&gt;">
+
+Natural-language question for which an equivalent SQL query will be generated
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the [schema](/content/sql/ddl#sql-create-schema) containing the *context* to use in generating
+the query
+
+</Accordion>
+
+<Accordion title="WITH OPTIONS">
+
+Optional indicator that a comma-delimited list of SQL generation option/value assignments will
+follow.
+
+See [SQL Generation Options](/content/sql/sqlgpt#sql-gpt-generate-sql-opts) for the complete list of options.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="sql-gpt-generate-sql-opts"></a>
@@ -616,19 +879,55 @@ GENERATE SQL FOR '<question>'
 The following options can be specified to modify the way SQL queries are
 generated.
 
-| Option | Description |
-| --- | --- |
-| `ai_api_provider` | Name of an LLM service to use other than the default one; the default, `sqlgpt`, uses the Kinetica SQLGPT.io service. |
-| `ai_api_url` | URL of an LLM service to use other than the default one. |
-| `context_name` | Name of the *SQL-GPT context* to use as a basis for generating SQL queries; should be of the form `[<schema name>.]<context name>`. |
-| `context_names` | Comma-separated list of names of *SQL-GPT contexts* to use as a basis for generating SQL queries; each should be of the form `[<schema name>.]<context name>`, and the entire list should be single-quoted. <br/> <br/> For example: <br/> <br/> `context_names = 'example.atc_ctx,example.nyctaxi'` <br/> |
-| `use_rag` | Whether to use [retrieval-augmented generation (RAG)](/content/sql-gpt/concepts#sql-gpt-overview-rag) facilities with the given *SQL-GPT contexts* when processing this request. |
+<AccordionGroup>
+
+<Accordion title="ai_api_provider">
+
+Name of an LLM service to use other than the default one; the default, `sqlgpt`, uses the
+Kinetica SQLGPT.io service.
+
+</Accordion>
+
+<Accordion title="ai_api_url">
+
+URL of an LLM service to use other than the default one.
+
+</Accordion>
+
+<Accordion title="context_name">
+
+Name of the *SQL-GPT context* to use as a basis for generating SQL queries; should be of the
+form `[<schema name>.]<context name>`.
+
+</Accordion>
+
+<Accordion title="context_names">
+
+Comma-separated list of names of *SQL-GPT contexts* to use as a basis for generating SQL
+queries; each should be of the form `[<schema name>.]<context name>`, and the entire list
+should be single-quoted.
+
+For example:
+
+```
+context_names = 'example.atc_ctx,example.nyctaxi'
+```
+</Accordion>
+
+<Accordion title="use_rag">
+
+Whether to use [retrieval-augmented generation (RAG)](/content/sql-gpt/concepts#sql-gpt-overview-rag) facilities
+with the given *SQL-GPT contexts* when processing this request.
+
+</Accordion>
+
+</AccordionGroup>
 
 
-### SQL Generation Example
+### SQL Generation Examples
 
 
-For example, to generate the SQL equivalent query to a given question using the
+To generate the SQL equivalent query to a given question using the
 `example.atc_ctx` *SQL-GPT context*:
 
 {/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 151-153) */}
@@ -666,11 +965,34 @@ GENERATE TOKENS
 ```
 
 
-| Parameters | Description |
-| --- | --- |
-| `<question>` | Natural-language question for which an equivalent SQL query will be generated |
-| `<schema name>` | Name of the [schema](/content/sql/ddl#sql-create-schema) containing the *context* to use in generating the query |
-| `WITH OPTIONS` | Optional indicator that a comma-delimited list of SQL generation option/value assignments will follow. <br/> <br/> See [SQL Token Generation Options](/content/sql/sqlgpt#sql-gpt-generate-tokens-opts) for the complete list of options. |
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;question&gt;">
+
+Natural-language question for which an equivalent SQL query will be generated
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the [schema](/content/sql/ddl#sql-create-schema) containing the *context* to use in generating
+the query
+
+</Accordion>
+
+<Accordion title="WITH OPTIONS">
+
+Optional indicator that a comma-delimited list of SQL generation option/value assignments will
+follow.
+
+See [SQL Token Generation Options](/content/sql/sqlgpt#sql-gpt-generate-tokens-opts) for the complete list of options.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="sql-gpt-generate-tokens-opts"></a>
@@ -682,17 +1004,42 @@ GENERATE TOKENS
 The following options can be specified to modify the way the counted tokens are
 generated.
 
-| Option | Description |
-| --- | --- |
-| `context_name` | Name of the *SQL-GPT context* to use as a basis for counting generated tokens; should be of the form `[<schema name>.]<context name>`. |
-| `context_names` | Comma-separated list of names of *SQL-GPT contexts* to use as the basis for counting generated tokens; each should be of the form `[<schema name>.]<context name>`, and the entire list should be single-quoted. <br/> <br/> For example: <br/> <br/> `context_names = 'example.atc_ctx,example.nyctaxi'` <br/> |
-| `use_rag` | Whether to use [retrieval-augmented generation (RAG)](/content/sql-gpt/concepts#sql-gpt-overview-rag) facilities with the given *SQL-GPT contexts* when processing this request. |
+<AccordionGroup>
+
+<Accordion title="context_name">
+
+Name of the *SQL-GPT context* to use as a basis for counting generated tokens; should be of the
+form `[<schema name>.]<context name>`.
+
+</Accordion>
+
+<Accordion title="context_names">
+
+Comma-separated list of names of *SQL-GPT contexts* to use as the basis for counting generated
+tokens; each should be of the form `[<schema name>.]<context name>`, and the entire list
+should be single-quoted.
+
+For example:
+
+```
+context_names = 'example.atc_ctx,example.nyctaxi'
+```
+</Accordion>
+
+<Accordion title="use_rag">
+
+Whether to use [retrieval-augmented generation (RAG)](/content/sql-gpt/concepts#sql-gpt-overview-rag) facilities
+with the given *SQL-GPT contexts* when processing this request.
+
+</Accordion>
+
+</AccordionGroup>
 
 
-### SQL Token Generation Example
+### SQL Token Generation Examples
 
 
-For example, to count the generated tokens for the `example.atc_ctx`
+To count the generated tokens for the `example.atc_ctx`
 *SQL-GPT context*:
 
 {/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 146-147) */}
@@ -732,11 +1079,37 @@ FROM TABLE
 )
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<question>` | Natural-language question for which an equivalent SQL query will be executed |
-| `<schema name>` | Name of the [schema](/content/sql/ddl#sql-create-schema) containing the *context* to use in generating the query |
-| `OPTIONS` | [SQL generation options](/content/sql/sqlgpt#sql-gpt-execute-opts), specified as a set of key/value pairs passed as a comma-delimited list of `<key> = '<value>'` assignments to the `KV_PAIRS` function; e.g.: <br/> <br/> `KV_PAIRS(context_name = 'atc_ctx')` <br/> |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;question&gt;">
+
+Natural-language question for which an equivalent SQL query will be executed
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the [schema](/content/sql/ddl#sql-create-schema) containing the *context* to use in generating
+the query
+
+</Accordion>
+
+<Accordion title="OPTIONS">
+
+[SQL generation options](/content/sql/sqlgpt#sql-gpt-execute-opts), specified as a set of key/value pairs
+passed as a comma-delimited list of `<key> = '<value>'` assignments to the `KV_PAIRS`
+function; e.g.:
+
+```
+KV_PAIRS(context_name = 'atc_ctx')
+```
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="sql-gpt-execute-opts"></a>
@@ -748,19 +1121,55 @@ FROM TABLE
 The following options can be specified to modify the way the executed SQL query
 is generated.
 
-| Option | Description |
-| --- | --- |
-| `ai_api_provider` | Name of an LLM service to use other than the default one; the default, `sqlgpt`, uses the Kinetica SQLGPT.io service. |
-| `ai_api_url` | URL of an LLM service to use other than the default one. |
-| `context_name` | Name of the *SQL-GPT context* to use in generating the executed query; should be of the form `[<schema name>.]<context name>`. |
-| `context_names` | Comma-separated list of names of *SQL-GPT contexts* to use in generating the executed query; each should be of the form `[<schema name>.]<context name>`, and the entire list should be single-quoted. <br/> <br/> For example: <br/> <br/> `context_names = 'example.atc_ctx,example.nyctaxi'` <br/> |
-| `use_rag` | Whether to use [retrieval-augmented generation (RAG)](/content/sql-gpt/concepts#sql-gpt-overview-rag) facilities with the given *SQL-GPT contexts* when processing this request. |
+<AccordionGroup>
+
+<Accordion title="ai_api_provider">
+
+Name of an LLM service to use other than the default one; the default, `sqlgpt`, uses the
+Kinetica SQLGPT.io service.
+
+</Accordion>
+
+<Accordion title="ai_api_url">
+
+URL of an LLM service to use other than the default one.
+
+</Accordion>
+
+<Accordion title="context_name">
+
+Name of the *SQL-GPT context* to use in generating the executed query; should be of the form
+`[<schema name>.]<context name>`.
+
+</Accordion>
+
+<Accordion title="context_names">
+
+Comma-separated list of names of *SQL-GPT contexts* to use in generating the executed query;
+each should be of the form `[<schema name>.]<context name>`, and the entire list should be
+single-quoted.
+
+For example:
+
+```
+context_names = 'example.atc_ctx,example.nyctaxi'
+```
+</Accordion>
+
+<Accordion title="use_rag">
+
+Whether to use [retrieval-augmented generation (RAG)](/content/sql-gpt/concepts#sql-gpt-overview-rag) facilities
+with the given *SQL-GPT contexts* when processing this request.
+
+</Accordion>
+
+</AccordionGroup>
 
 
-### SQL Execution Example
+### SQL Execution Examples
 
 
-For example, to execute the SQL equivalent query to a given question using the
+To execute the SQL equivalent query to a given question using the
 `example.atc_ctx` *SQL-GPT context*:
 
 {/* Source: /examples/sql/sql-gpt/syntax.kisql (lines 157-165) */}

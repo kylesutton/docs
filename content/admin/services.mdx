@@ -285,7 +285,7 @@ systemctl stop kinetica_stats
 ## Managing Individual Components
 
 
-The `/opt/gpudb/core/bin/gpudb` script has several options available to
+The `/opt/gpudb/core/bin/gpudb` script has several directives available to
 assist in managing the individual *Kinetica* components.
 
 
@@ -294,9 +294,11 @@ The `/opt/gpudb/core/bin/gpudb` script should always be run
 as the `gpudb` user
 </Note>
 
-Options:
 
-| Option | Description |
+### Directives
+
+
+| Directive | Description |
 | --- | --- |
 | `<component>-start` | Starts the given component if it's not currently running |
 | `<component>-stop` | Stop the given component if it's not stopped |
@@ -306,7 +308,9 @@ Options:
 | `<component>-enabled` | Returns `1` is the component is enabled and `0` otherwise. Used internally by the `gpudb` script |
 | `<component>-installed` | Returns `1` is the component is enabled and `0` otherwise. Used internally by the `gpudb` script |
 
-Available components:
+
+### Components
+
 
 | Component | Description |
 | --- | --- |
@@ -320,7 +324,11 @@ Available components:
 | `text-search` | [Full Text Search](/content/concepts/full_text_search) Services |
 | `tomcat` | [GAdmin](/content/admin/gadmin) Web Application |
 
-For example, restarting the stats server:
+
+### Examples
+
+
+To restart the stats server:
 
 ```
 /opt/gpudb/core/bin/gpudb stats-restart
@@ -328,9 +336,9 @@ For example, restarting the stats server:
 
 <Info>
 * If `external_text_search = true` in the `/opt/gpudb/core/etc/gpudb.conf`
-  file, then the text search server can be managed using the options above. If
-  `external_text_search = false`, then the text search server will not
-  be able to be managed individually.
+  file, then the text search server can be managed using the directives
+  above. If `external_text_search = false`, then the text search server
+  will not be able to be managed individually.
 
 * The *Host Manager* service manages the *HTTPD* and *ODBC* components. It's
   possible to stop these components, but *Host Manager* will restart them

@@ -76,10 +76,50 @@ not inserted) into the target table.
 The `WITH OPTIONS` clause is only valid when used within JDBC.
 </Info>
 
-| Option | Description |
-| --- | --- |
-| `BATCH SIZE` | Use an ingest batch size of the given number of records. <br/> <br/> The default batch size is *50,000*. |
-| `ON ERROR` | When an error is encountered inserting a record, handle it using one of the following modes.  The default mode is `ABORT`. <br/> <br/> `PERMISSIVE`: If an error is encountered parsing a source record, attempt to insert as many of the valid fields from the record as possible; insert a null for each errant value found. <br/> <br/> `SKIP`: If an error is encountered parsing a source record, skip the record. <br/> <br/> `ABORT`: If an error is encountered parsing a source record, stop the insert process. Primary key collisions are considered abortable errors in this mode. |
+<AccordionGroup>
+
+<Accordion title="BATCH SIZE">
+
+Use an ingest batch size of the given number of records.
+
+The default batch size is *50,000*.
+
+</Accordion>
+
+<Accordion title="ON ERROR">
+
+When an error is encountered inserting a record, handle it using one of the
+following modes.  The default mode is `ABORT`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Mode</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>PERMISSIVE</code></td>
+    <td>If an error is encountered parsing a source record, attempt to insert as many of the valid fields from the record as possible; insert a null for each errant value found.</td>
+  </tr>
+  <tr>
+    <td><code>SKIP</code></td>
+    <td>If an error is encountered parsing a source record, skip the record.</td>
+  </tr>
+  <tr>
+    <td><code>ABORT</code></td>
+    <td>If an error is encountered parsing a source record, stop the insert process.  Primary key collisions are considered abortable errors in this mode.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="sql-dml-insert-select"></a>

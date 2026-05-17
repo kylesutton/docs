@@ -20,12 +20,38 @@ The basic form of the `TIME_BUCKET` function is:
 TIME_BUCKET(width, timestamp[, offset[, base]])
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `width` | The number of milliseconds each bucket should span.  An `INTERVAL` can also be used to specify the `width`. |
-| `timestamp` | A date/time column or expression, the time portion of which will be used in placing the corresponding record within the correct time bucket. |
-| `offset` | The number of milliseconds after (for a positive `offset`) or number of milliseconds before (for a negative `offset`) the `base` date/time to which the buckets should be aligned.  An `INTERVAL` can also be used to specify the `offset`.  The default is no offset. |
-| `base` | The starting date/time to which buckets will be aligned.  The default is `2000-01-03 00:00:00`. |
+<AccordionGroup>
+
+<Accordion title="width">
+
+The number of milliseconds each bucket should span.  An `INTERVAL` can also be used to specify
+the `width`.
+
+</Accordion>
+
+<Accordion title="timestamp">
+
+A date/time column or expression, the time portion of which will be used in placing the
+corresponding record within the correct time bucket.
+
+</Accordion>
+
+<Accordion title="offset">
+
+The number of milliseconds after (for a positive `offset`) or number of milliseconds before
+(for a negative `offset`) the `base` date/time to which the buckets should be aligned.  An
+`INTERVAL` can also be used to specify the `offset`.  The default is no offset.
+
+</Accordion>
+
+<Accordion title="base">
+
+The starting date/time to which buckets will be aligned.  The default is
+`2000-01-03 00:00:00`.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 ## Example

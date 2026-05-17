@@ -110,17 +110,95 @@ END
 When any of the source *tables* referenced by a *SQL procedure* is altered or
 dropped, the *SQL procedure* will also be dropped.
 
-| Parameters | Description |
-| --- | --- |
-| `<schema name>` | Name of the schema in which this *SQL procedure* will be created. |
-| `<procedure name>` | Name to give to the created *SQL procedure*; must adhere to the supported [naming criteria](/content/sql/naming#sql-naming-criteria) for tables, and cannot be named the same as any existing table or view. |
-| `<sql statements>` | Semicolon-separated list of [supported SQL statements](/content/sql/procedure#sql-procedures-statements).  If the final statement in the *SQL procedure* is an output-generating statement *(SQL query, SHOW command, etc.)*, the output of that statement alone will be returned to the user; all other statements that generate output will be ignored. |
-| `OR REPLACE` | Drop any existing *SQL procedure* with the same name before creating this one. |
-| `LANGUAGE` | Optional language specification.  Only `SQL` is supported at this time. |
-| `EXECUTE FOR EVERY` | Allows specification of an interval in seconds, minutes, hours, or days, at which the *SQL procedure* should be executed.  Fractional values for `<number>` are accepted. <br/> <br/> By default, the procedure will be run immediately and every specified interval after that; this can be modified with the following options: <br/> <br/> * `STARTING AT`:  specify a date or timestamp at which the first execution should occur <br/> * `STOP AFTER`:  specify a date, timestamp, or time interval after which executions should end |
-| `WITH OPTIONS` | Optional indicator that a comma-delimited list of option/value assignments will follow. The following options are available: <br/> <br/> `EXECUTE AS`: Executes the *SQL procedure* as the given user with that user's privileges. **Note:** If this user doesn't exist at the time of execution, the *SQL procedure* will be executed as the creating user, and and, failing that, the system administration user. |
 
-For example, to create a `sqlp` *SQL procedure*:
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the schema in which this *SQL procedure* will be created.
+
+</Accordion>
+
+<Accordion title="&lt;procedure name&gt;">
+
+Name to give to the created *SQL procedure*; must adhere to the supported
+[naming criteria](/content/sql/naming#sql-naming-criteria) for tables, and cannot be named the
+same as any existing table or view.
+
+</Accordion>
+
+<Accordion title="&lt;sql statements&gt;">
+
+Semicolon-separated list of
+[supported SQL statements](/content/sql/procedure#sql-procedures-statements).  If the final statement
+in the *SQL procedure* is an output-generating statement
+*(SQL query, SHOW command, etc.)*, the output of that statement alone will be returned
+to the user; all other statements that generate output will be ignored.
+
+</Accordion>
+
+<Accordion title="OR REPLACE">
+
+Drop any existing *SQL procedure* with the same name before creating this one.
+
+</Accordion>
+
+<Accordion title="LANGUAGE">
+
+Optional language specification.  Only `SQL` is supported at this time.
+
+</Accordion>
+
+<Accordion title="EXECUTE FOR EVERY">
+
+Allows specification of an interval in seconds, minutes, hours, or days, at which the
+*SQL procedure* should be executed.  Fractional values for `<number>` are accepted.
+
+By default, the procedure will be run immediately and every specified interval after
+that; this can be modified with the following options:
+
+* `STARTING AT`:  specify a date or timestamp at which the first execution should
+  occur
+* `STOP AFTER`:  specify a date, timestamp, or time interval after which executions
+  should end
+
+</Accordion>
+
+<Accordion title="WITH OPTIONS">
+
+Optional indicator that a comma-delimited list of option/value assignments will follow.
+The following options are available:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>EXECUTE AS</code></td>
+    <td>Executes the *SQL procedure* as the given user with that user's privileges. .. note::  If this user doesn't exist at the time of execution, the *SQL procedure* will be executed as the creating user, and and, failing that, the system administration user.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To create a `sqlp` *SQL procedure*:
 
 {/* Source: /examples/sql/procedure/create_procedure.kisql (lines 68-76) */}
 ```sql CREATE PROCEDURE Example
@@ -181,8 +259,11 @@ ALTER PROCEDURE [<schema name>.]<procedure name>
 SET EXECUTE AS '<user name>'
 ```
 
-For example, to set the execution user of the `sqlp_ea` *SQL procedure* to
-`spuser`:
+
+#### Examples
+
+
+To set the execution user of the `sqlp_ea` *SQL procedure* to `spuser`:
 
 {/* Source: /examples/sql/procedure/alter_procedure.kisql (lines 43-44) */}
 ```sql ALTER PROCEDURE SET EXECUTE AS Example
@@ -206,19 +287,41 @@ SET EXECUTE [FOR] EVERY <number> <SECOND[S] | MINUTE[S] | HOUR[S] | DAY[S]>
     [STOP AFTER < '<YYYY-MM-DD [HH:MM[:SS]]>' | <number> <SECOND[S] | MINUTE[S] | HOUR[S] | DAY[S]> >]
 ```
 
-This allows the specification of an interval in seconds, minutes, hours, or
-days, at which the *SQL procedure* should be executed.  By default, the first
-execution interval will be one interval's worth of time from the point at which
-the *SQL procedure* alteration was requested.  This can be modified with the
-following options:
 
-* `STARTING AT`:  specify a date or timestamp at which refresh cycles should
-  begin
-* `STOP AFTER`:  specify a date, timestamp, or time interval after which
-  refresh cycles should end
+#### Parameters
 
 
-For example, to alter the `sqlp_em` *SQL procedure* to execute every 6 hours:
+<AccordionGroup>
+
+<Accordion title="EXECUTE FOR EVERY">
+
+Specify an interval in seconds, minutes, hours, or days at which the *SQL procedure* should be
+executed.
+
+By default, the first execution interval will be one interval's worth of time from the point at
+which the *SQL procedure* alteration was requested.
+
+</Accordion>
+
+<Accordion title="STARTING AT">
+
+Specify a date or timestamp at which refresh cycles should begin.
+
+</Accordion>
+
+<Accordion title="STOP AFTER">
+
+Specify a date, timestamp, or time interval after which refresh cycles should end.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+#### Examples
+
+
+To alter the `sqlp_em` *SQL procedure* to execute every 6 hours:
 
 {/* Source: /examples/sql/procedure/alter_procedure.kisql (lines 70-71) */}
 ```sql ALTER PROCEDURE Set Execution Mode Example
@@ -226,6 +329,7 @@ ALTER PROCEDURE example.sqlp_em
 SET EXECUTE FOR EVERY 6 HOURS;
 ```
 
+To alter a *SQL procedure* to execute every minute in *January, 2026*:
 
 {/* Source: /examples/sql/procedure/alter_procedure.kisql (lines 123-126) */}
 ```sql ALTER PROCEDURE Set Execution Start/Stop Example
@@ -256,7 +360,11 @@ If there is an error executing any statement, the *SQL procedure* will stop
 immediately and report the error.  Any database modifications prior to the error
 will not be rolled back.
 
-For example, to execute the `sqlp` *SQL procedure*:
+
+### Examples
+
+
+To execute the `sqlp` *SQL procedure*:
 
 {/* Source: /examples/sql/procedure/create_procedure.kisql (lines 94) */}
 ```sql EXECUTE PROCEDURE Example
@@ -276,13 +384,38 @@ Removes an existing [SQL procedure](/content/sql/procedure#sql-procedures-create
 DROP PROCEDURE [IF EXISTS] [<schema name>.]<procedure name>
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `IF EXISTS` | Optional error-suppression clause; if specified, no error will be returned if the given *procedure* does not exist. |
-| `<schema name>` | Name of the *schema* containing the *procedure* to remove. |
-| `<procedure name>` | Name of the *procedure* to remove. |
 
-For example, to drop the `sqlp` *SQL procedure*:
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="IF EXISTS">
+
+Optional error-suppression clause; if specified, no error will be returned if the given
+*procedure* does not exist.
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *procedure* to remove.
+
+</Accordion>
+
+<Accordion title="&lt;procedure name&gt;">
+
+Name of the *procedure* to remove.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To drop the `sqlp` *SQL procedure*:
 
 {/* Source: /examples/sql/procedure/create_procedure.kisql (lines 112) */}
 ```sql DROP PROCEDURE Example
@@ -303,12 +436,32 @@ Shows the content of one or all existing
 SHOW PROCEDURE < [<schema name>.]<procedure name> | * >
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<schema name>` | Name of the *schema* containing the *procedure* to show. |
-| `<procedure name>` | Name of the *procedure* whose content will be output; use `*` instead of *schema*/*procedure* name to output the DDL of all *procedures*. |
 
-For example, to show the contents of the `sqlp_weekly` *SQL procedure*:
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *procedure* to show.
+
+</Accordion>
+
+<Accordion title="&lt;procedure name&gt;">
+
+Name of the *procedure* whose content will be output; use `*` instead of
+*schema*/*procedure* name to output the DDL of all *procedures*.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To show the contents of the `sqlp_weekly` *SQL procedure*:
 
 {/* Source: /examples/sql/procedure/create_procedure.kisql (lines 100) */}
 ```sql SHOW PROCEDURE Example

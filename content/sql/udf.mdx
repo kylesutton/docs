@@ -61,16 +61,121 @@ FILE PATHS '<file paths>'
 ```
 
 
-| Parameters | Description |
-| --- | --- |
-| `OR REPLACE` | Any existing UDF with the same name will be dropped before creating this one |
-| `<function name>` | Name of the UDF, which can be referenced in subsequent commands |
-| `RETURNS TABLE` | Specifies that the UDF returns a table after execution and defines the column names and types to which the function's output data is expected to conform <br/> <Note> This defines the UDF as a *User-Defined Table Function (UDTF)*, which allows the function to be called within a SQL query; see [Executing Functions](/content/sql/udf#sql-execute-function) for details. </Note> |
-| `MODE` | Name of the execution mode for the UDF; the following modes are available: <br/> <br/> `DISTRIBUTED`: The function's processing will be distributed among the nodes in the cluster <br/> <br/> `NONDISTRIBUTED`: The function's processing will be completed on a single node in the cluster |
-| `RUN_COMMAND` | The command used to execute the files associated with the UDF; e.g., `python` |
-| `RUN_COMMAND_ARGS` `RUN_COMMAND_ARGS` `RUN_COMMAND_ARGS` `RUN_COMMAND_ARGS` | The arguments supplied alongside the given `RUN_COMMAND`; e.g.: <br/> <br/> `'udf.py','--username','jdoe','--password','jdoe123'` <br/> |
-| `FILE PATHS` | A comma-separated list of single-quoted file paths from which the function and any additional files will be loaded; the file paths should be [KiFS](/content/tools/kifs) locations and exist prior to the UDF/UDTF creation. |
-| `WITH OPTIONS` | Optional indicator that a comma-delimited list of option/value assignments will follow <br/> <br/> `max_concurrency_per_node`: The maximum number of concurrent instances of the function that will be executed per node. Setting to `0` allows unlimited concurrency. The default value is `0`. <br/> <br/> `set_environment`: The [Python UDF environment](/content/sql/udf#sql-create-function-environment) to use for this Python UDF. |
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="OR REPLACE">
+
+Any existing UDF with the same name will be dropped before creating this one
+
+</Accordion>
+
+<Accordion title="&lt;function name&gt;">
+
+Name of the UDF, which can be referenced in subsequent commands
+
+</Accordion>
+
+<Accordion title="RETURNS TABLE">
+
+Specifies that the UDF returns a table after execution and defines the column names and types
+to which the function's output data is expected to conform
+
+
+<Note>
+This defines the UDF as a *User-Defined Table Function (UDTF)*, which allows
+the function to be called within a SQL query; see
+[Executing Functions](/content/sql/udf#sql-execute-function) for details.
+</Note>
+
+</Accordion>
+
+<Accordion title="MODE">
+
+Name of the execution mode for the UDF; the following modes are available:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Constant</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>DISTRIBUTED</code></td>
+    <td>The function's processing will be distributed among the nodes in the cluster</td>
+  </tr>
+  <tr>
+    <td><code>NONDISTRIBUTED</code></td>
+    <td>The function's processing will be completed on a single node in the cluster</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="RUN_COMMAND">
+
+The command used to execute the files associated with the UDF; e.g., `python`
+
+</Accordion>
+
+<Accordion title="RUN_COMMAND_ARGS">
+
+The arguments supplied alongside the given `RUN_COMMAND`; e.g.:
+
+```
+'udf.py','--username','jdoe','--password','jdoe123'
+```
+</Accordion>
+
+<Accordion title="FILE PATHS">
+
+A comma-separated list of single-quoted file paths from which the function and any additional
+files will be loaded; the file paths should be [KiFS](/content/tools/kifs) locations and exist
+prior to the UDF/UDTF creation.
+
+</Accordion>
+
+<Accordion title="WITH OPTIONS">
+
+Optional indicator that a comma-delimited list of option/value assignments will follow
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>max_concurrency_per_node</code></td>
+    <td>The maximum number of concurrent instances of the function that will be executed per node. Setting to <code>0</code> allows unlimited concurrency. The default value is <code>0</code>.</td>
+  </tr>
+  <tr>
+    <td><code>set_environment</code></td>
+    <td>The [Python UDF environment](/content/sql/udf#sql-create-function-environment) to use for this Python UDF.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 Before creating a UDF/UDTF, upload the function file,
 <Badge color="gray">udf_st.py</Badge> to a new directory, <Badge color="gray">udf</Badge>, in
@@ -166,12 +271,73 @@ The following are the available function parameters that may be passed to a
 UDF in an `EXECUTE FUNCTION` or table function call, along with their
 corresponding function values.
 
-| Parameters | Description |
-| --- | --- |
-| `INPUT_TABLE_NAMES` | Optional set of "tables" that will be used as input to the UDF/UDTF, specified as a set of queries defining the source data for each "table".  The value of this parameter is either the `INPUT_TABLE` or `INPUT_TABLES` function, depending on the number of input "tables". <br/> <br/> `INPUT_TABLE(<query>)`: If only one input table is needed, it can be passed by query or by name to the `INPUT_TABLE` function; e.g.: <br/> <br/> `INPUT_TABLE(customer) INPUT_TABLE(SELECT id, name FROM customer)` <br/> <br/> `INPUT_TABLES(<queries>)`: If more than one input table is needed, each can be passed via query as a list to the `INPUT_TABLES` function; e.g.: <br/> <br/> `INPUT_TABLES ( (SELECT id, name FROM customer), (SELECT id, customer_id FROM order) )` <br/> |
-| `OUTPUT_TABLE_NAMES` | Optional set of tables that will be used as output, specified as a set of names passed as a comma-delimited list of strings to the `OUTPUT_TABLES` function; e.g.: <br/> <br/> `OUTPUT_TABLES('sales_summary', 'customer_profile')` <br/> |
-| `PARAMS` | Optional list of parameters to pass to the function, specified as a set of key/value pairs passed  as a comma-delimited list of `<key> = '<value>'` assignments to the `KV_PAIRS` function; e.g.: <br/> <br/> `KV_PAIRS(customer_id = '1', report_type = 'yearly')` <br/> |
-| `OPTIONS` | Optional list of function execution options, specified as a set of key/value pairs passed as a comma-delimited list of `<key> = '<value>'` assignments to the `KV_PAIRS` function; e.g.: <br/> <br/> `KV_PAIRS(run_tag = 'my-udf')` <br/> <br/> All valid options from [Execute Proc](/content/feature_overview/execute_proc_feature_overview#execute-proc-feature-overview) can be used here. |
+<AccordionGroup>
+
+<Accordion title="INPUT_TABLE_NAMES">
+
+Optional set of "tables" that will be used as input to the UDF/UDTF, specified as a set of
+queries defining the source data for each "table".  The value of this parameter is either the
+`INPUT_TABLE` or `INPUT_TABLES` function, depending on the number of input "tables".
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Value</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>INPUT_TABLE(&lt;query&gt;)</code></td>
+    <td>If only one input table is needed, it can be passed by query or by name to the <code>INPUT_TABLE</code> function; e.g.:: INPUT_TABLE(customer) INPUT_TABLE(SELECT id, name FROM customer)</td>
+  </tr>
+  <tr>
+    <td><code>INPUT_TABLES(&lt;queries&gt;)</code></td>
+    <td>If more than one input table is needed, each can be passed via query as a list to the <code>INPUT_TABLES</code> function; e.g.:: INPUT_TABLES ( (SELECT id, name FROM customer), (SELECT id, customer_id FROM order) )</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="OUTPUT_TABLE_NAMES">
+
+Optional set of tables that will be used as output, specified as a set of names passed as a
+comma-delimited list of strings to the `OUTPUT_TABLES` function; e.g.:
+
+```
+OUTPUT_TABLES('sales_summary', 'customer_profile')
+```
+</Accordion>
+
+<Accordion title="PARAMS">
+
+Optional list of parameters to pass to the function, specified as a set of key/value pairs
+passed  as a comma-delimited list of `<key> = '<value>'` assignments to the `KV_PAIRS`
+function; e.g.:
+
+```
+KV_PAIRS(customer_id = '1', report_type = 'yearly')
+```
+</Accordion>
+
+<Accordion title="OPTIONS">
+
+Optional list of function execution options, specified as a set of key/value pairs passed as a
+comma-delimited list of `<key> = '<value>'` assignments to the `KV_PAIRS` function; e.g.:
+
+```
+KV_PAIRS(run_tag = 'my-udf')
+```
+All valid options from [Execute Proc](/content/feature_overview/execute_proc_feature_overview#execute-proc-feature-overview)
+can be used here.
+
+</Accordion>
+
+</AccordionGroup>
 
 <a id="sql-execute-function-examples"></a>
 
@@ -225,9 +391,23 @@ Removes an existing [UDF/UDTF](/content/sql/udf#sql-udf).
 DROP FUNCTION <function name>
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<function name>` | Name of the UDF to remove |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;function name&gt;">
+
+Name of the UDF to remove
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 To drop the `UDF_SOS_PY_PROC` UDF:
 
@@ -253,15 +433,30 @@ execution mode.
 SHOW FUNCTION < <function name> | * >
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<function name>` | Name of the UDF whose configuration will be output.  Use `*` instead to output the DDL of all UDFs. |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;function name&gt;">
+
+Name of the UDF whose configuration will be output.  Use `*` instead to output the DDL of
+all UDFs.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <Info>
 The response to `SHOW FUNCTION` is a single-column result set
 with the DDL statement as the value in the `DDL` column.
 </Info>
+
+
+### Examples
+
 
 To show the `UDF_SOS_PY_PROC` UDF:
 
@@ -289,10 +484,25 @@ Historical run data is preserved when a UDF/UDTF is executed with the
 SHOW FUNCTION STATUS [VERBOSE] [FOR '<run ID>']
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `VERBOSE` | Specifies verbose output mode.  This modifies the response as noted below. |
-| `FOR '<run ID>'` | Specifies that only the status of UDF/UDTF execution with run ID `<run ID>` should be output. |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="VERBOSE">
+
+Specifies verbose output mode.  This modifies the response as noted below.
+
+</Accordion>
+
+<Accordion title="FOR '&lt;run ID&gt;'">
+
+Specifies that only the status of UDF/UDTF execution with run ID `<run ID>` should be output.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <Info>
@@ -309,6 +519,10 @@ The response to `SHOW FUNCTION STATUS` depends on whether the
   of all UDF/UDTF statuses, each as a formatted block of information in the
   `FUNCTION_STATUSES` column
 </Info>
+
+
+### Examples
+
 
 To show the status of all UDF/UDTF runs:
 
@@ -341,21 +555,39 @@ of the UDF & its execution mode.
 DESC[RIBE] FUNCTION < <function name> | * >
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<function name>` | Name of the UDF whose attributes will be output.  Use `*` instead to output the attributes of all UDFs. |
+
+### Parameters
 
 
-<Info>
+<AccordionGroup>
+
+<Accordion title="&lt;function name&gt;">
+
+Name of the UDF whose attributes will be output.  Use `*` instead to output the attributes
+of all UDFs.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Response
+
+
 The response to `DESCRIBE FUNCTION` is a six-column result set:
-* `FUNCTION_NAME` - name of the UDF/UDTF
-* `MODE` - execution mode of the function; distributed or nondistributed
-* `RUN_COMMAND` - command used to run the function
-* `RUN_COMMAND_ARGS` - command arguments used to run the function
-* `FILE_PATHS` - list of files involved in the execution of the function
-* `WITH_OPTIONS` - list of key/value pairs of options used to create the
-  function
-</Info>
+
+| Output Column | Description |
+| --- | --- |
+| `FUNCTION_NAME` | Name of the UDF/UDTF |
+| `MODE` | Execution mode of the function; distributed or nondistributed |
+| `RUN_COMMAND` | Command used to run the function |
+| `RUN_COMMAND_ARGS` | Command arguments used to run the function |
+| `FILE_PATHS` | List of files involved in the execution of the function |
+| `WITH_OPTIONS` | List of key/value pairs of options used to create the function |
+
+
+### Examples
+
 
 To describe the `UDF_SOS_PY_PROC` UDF:
 
@@ -387,10 +619,29 @@ default function environment, `kinetica-default-environment`.  See
 [Pre-installed Libraries on the Cluster](/content/udf/python/writing#udf-python-libs) for the list of pre-installed Python packages.
 </Info>
 
-| Parameters | Description |
-| --- | --- |
-| `OR REPLACE` | Any existing UDF environment with the same name will be dropped before creating this one |
-| `<environment name>` | Name of the UDF environment, which can be referenced in subsequent commands |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="OR REPLACE">
+
+Any existing UDF environment with the same name will be dropped before creating this one
+
+</Accordion>
+
+<Accordion title="&lt;environment name&gt;">
+
+Name of the UDF environment, which can be referenced in subsequent commands
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 To create the Python UDF environment `udfe_st`:
 
@@ -421,11 +672,35 @@ ALTER FUNCTION ENVIRONMENT <environment name>
 UNINSTALL PYTHON PACKAGE '<package name> [...]>'
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<environment name>` | Name of the UDF environment to manage |
-| `<package name>` | Name of the Python package to install into or uninstall from the UDF environment |
-| `<package version>` | Version number of the Python package to install |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;environment name&gt;">
+
+Name of the UDF environment to manage
+
+</Accordion>
+
+<Accordion title="&lt;package name&gt;">
+
+Name of the Python package to install into or uninstall from the UDF environment
+
+</Accordion>
+
+<Accordion title="&lt;package version&gt;">
+
+Version number of the Python package to install
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 To install the `sentence-transformers` package into the Python UDF environment
 `udfe_st`:
@@ -459,9 +734,23 @@ Removes an existing
 DROP FUNCTION ENVIRONMENT <environment name>
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<environment name>` | Name of the UDF environment to remove |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;environment name&gt;">
+
+Name of the UDF environment to remove
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 To remove the Python UDF environment `udfe_st`:
 
@@ -491,9 +780,24 @@ The response to `SHOW FUNCTION ENVIRONMENT` is a single-column
 result set with the DDL statement as the value in the `DDL` column.
 </Info>
 
-| Parameters | Description |
-| --- | --- |
-| `<environment name>` | Name of the UDF environment whose `CREATE` statement will be output. Use `*` instead to output the `CREATE` statements of all UDF environments. |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;environment name&gt;">
+
+Name of the UDF environment whose `CREATE` statement will be output. Use `*` instead to
+output the `CREATE` statements of all UDF environments.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 To show the Python UDF environment `udfe_st`:
 
@@ -524,19 +828,34 @@ DESC[RIBE] FUNCTION ENVIRONMENT < <environment name> | * >
 ```
 
 
-<Info>
-The response to `DESCRIBE FUNCTION ENVIRONMENT` is a two-column
-result set:
+### Parameters
 
-* `ENVIRONMENT_NAME` - name of the function environment name
-* `PACKAGES` - names & versions of the Python packages installed in the
-  function environment; this includes both user-installed packages and those
-  installed by default
-</Info>
 
-| Parameters | Description |
+<AccordionGroup>
+
+<Accordion title="&lt;environment name&gt;">
+
+Name of the UDF environment whose Python packages will be output. Use `*` instead to output
+the Python packages of all UDF environments.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Response
+
+
+The response to `DESCRIBE FUNCTION ENVIRONMENT` is a two-column result set:
+
+| Output Column | Description |
 | --- | --- |
-| `<environment name>` | Name of the UDF environment whose Python packages will be output. Use `*` instead to output the Python packages of all UDF environments. |
+| `ENVIRONMENT_NAME` | Name of the function environment |
+| `PACKAGES` | Names & versions of the Python packages installed in the function environment; this includes both user-installed packages and those installed by default |
+
+
+### Examples
+
 
 To list the packages in the Python UDF environment `udfe_st`:
 

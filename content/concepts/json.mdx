@@ -406,12 +406,35 @@ SELECT <column alias> [, ordinality]
 FROM UNNEST_JSON_ARRAY(SELECT <column name> FROM <table name>) [WITH ORDINALITY] [<column alias>]
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<column alias>` | Column alias to use for the resulting unnested data column; if no alias specified, use `*` to select the column |
-| `<table name>` | Name of the table containing the JSON array column |
-| `<column name>` | Name of the JSON array column to unnest |
-| `WITH ORDINALITY` | Also return the 0-based index in the source JSON arrays for each transposed array value; the index value will be returned as the column alias `ordinality` |
+<AccordionGroup>
+
+<Accordion title="&lt;column alias&gt;">
+
+Column alias to use for the resulting unnested data column; if no alias specified, use
+`*` to select the column
+
+</Accordion>
+
+<Accordion title="&lt;table name&gt;">
+
+Name of the table containing the JSON array column
+
+</Accordion>
+
+<Accordion title="&lt;column name&gt;">
+
+Name of the JSON array column to unnest
+
+</Accordion>
+
+<Accordion title="WITH ORDINALITY">
+
+Also return the 0-based index in the source JSON arrays for each transposed array
+value; the index value will be returned as the column alias `ordinality`
+
+</Accordion>
+
+</AccordionGroup>
 
 
 ```sql title="UNNEST_JSON_ARRAY for Multiple Columns Syntax"
@@ -419,15 +442,66 @@ SELECT <column alias list> [, <ordinality alias>]
 FROM <table name> <table alias>, UNNEST_JSON_ARRAY(<column list>) [WITH ORDINALITY] <table/columns aliases>
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<column alias list>` | Column aliases given to the resulting unnested data columns, specified in `<table/columns aliases>` |
-| `<ordinality alias>` | Column alias given to the resulting ordinality column in `<table/columns aliases>`, if `WITH ORDINALITY` is specified |
-| `<table name>` | Name of the table containing the JSON array column(s) |
-| `<table alias>` | Alias to use for the table containing the JSON array column(s) |
-| `<column list>` | Comma-separated list of JSON array columns to unnest |
-| `<table/columns aliases>` | Alias to use for the virtual table and columns being used to return the unnested data (including any ordinality alias, if specified), using the form: <br/> <br/> `<table alias>(<column alias list> [,<ordinality alias>])` <br/> <br/> For example, to return two columns of unnested JSON array data as `uai` & `uav`, respectively, and the corresponding ordinality index as `index`, all within the virtual table `unn` use: <br/> <br/> `unn(uai, uav, index)` <br/> |
-| `WITH ORDINALITY` | Also return the 0-based index in the source JSON arrays for each transposed array value; the index value will be returned in an alias specified in `<table/columns aliases>` |
+<AccordionGroup>
+
+<Accordion title="&lt;column alias list&gt;">
+
+Column aliases given to the resulting unnested data columns, specified in
+`<table/columns aliases>`
+
+</Accordion>
+
+<Accordion title="&lt;ordinality alias&gt;">
+
+Column alias given to the resulting ordinality column in `<table/columns aliases>`,
+if `WITH ORDINALITY` is specified
+
+</Accordion>
+
+<Accordion title="&lt;table name&gt;">
+
+Name of the table containing the JSON array column(s)
+
+</Accordion>
+
+<Accordion title="&lt;table alias&gt;">
+
+Alias to use for the table containing the JSON array column(s)
+
+</Accordion>
+
+<Accordion title="&lt;column list&gt;">
+
+Comma-separated list of JSON array columns to unnest
+
+</Accordion>
+
+<Accordion title="&lt;table/columns aliases&gt;">
+
+Alias to use for the virtual table and columns being used to return the unnested data
+(including any ordinality alias, if specified), using the form:
+
+```
+<table alias>(<column alias list> [,<ordinality alias>])
+```
+For example, to return two columns of unnested JSON array data as `uai` & `uav`,
+respectively, and the corresponding ordinality index as `index`, all within the
+virtual table `unn` use:
+
+```
+unn(uai, uav, index)
+```
+</Accordion>
+
+<Accordion title="WITH ORDINALITY">
+
+Also return the 0-based index in the source JSON arrays for each transposed array
+value; the index value will be returned in an alias specified in
+`<table/columns aliases>`
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="json-func-unnest-array-ex"></a>
@@ -626,13 +700,57 @@ SELECT <column alias list> [, ordinality]
 FROM UNNEST_JSON_OBJECT(SELECT <column name> FROM <table name>) [WITH ORDINALITY] [<table/columns aliases>]
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<column alias list>` | Column aliases given to the resulting unnested key & value data columns specified in `<table/columns aliases>`; if no aliases are specified, use `*` to select the columns |
-| `<table name>` | Name of the table containing the JSON object (map) column |
-| `<column name>` | Name of the JSON object (map) column to unnest |
-| `<table/columns aliases>` | Alias to use for the virtual table and key/value columns being used to return the unnested data (including any ordinality alias, if specified), using the form: <br/> <br/> `<table alias>(<key alias>, <value alias> [,<ordinality alias>])` <br/> <br/> For example, to return a column as unnested JSON map data, referenced as the key/value pairs `j_k` & `j_v`, respectively, with the corresponding ordinality index as `index`, all within the virtual table `unn`, use: <br/> <br/> `unn(j_k, j_v, index)` <br/> <br/> If no aliases are given, the two key/value columns will be returned as `KEY_0` & `VALUE_0`, respectively. |
-| `WITH ORDINALITY` | Also return the 0-based index in the source maps for each transposed map value; the index value will be returned as the column alias `ordinality` unless overridden in `<table/columns aliases>` |
+<AccordionGroup>
+
+<Accordion title="&lt;column alias list&gt;">
+
+Column aliases given to the resulting unnested key & value data columns specified in
+`<table/columns aliases>`; if no aliases are specified, use `*` to select the
+columns
+
+</Accordion>
+
+<Accordion title="&lt;table name&gt;">
+
+Name of the table containing the JSON object (map) column
+
+</Accordion>
+
+<Accordion title="&lt;column name&gt;">
+
+Name of the JSON object (map) column to unnest
+
+</Accordion>
+
+<Accordion title="&lt;table/columns aliases&gt;">
+
+Alias to use for the virtual table and key/value columns being used to return the
+unnested data (including any ordinality alias, if specified), using the form:
+
+```
+<table alias>(<key alias>, <value alias> [,<ordinality alias>])
+```
+For example, to return a column as unnested JSON map data, referenced as the key/value
+pairs `j_k` & `j_v`, respectively, with the corresponding ordinality index as
+`index`, all within the virtual table `unn`, use:
+
+```
+unn(j_k, j_v, index)
+```
+If no aliases are given, the two key/value columns will be returned as `KEY_0` &
+`VALUE_0`, respectively.
+
+</Accordion>
+
+<Accordion title="WITH ORDINALITY">
+
+Also return the 0-based index in the source maps for each transposed map value; the
+index value will be returned as the column alias `ordinality` unless overridden in
+`<table/columns aliases>`
+
+</Accordion>
+
+</AccordionGroup>
 
 
 ```sql title="UNNEST_JSON_OBJECT for Multiple Columns Syntax"
@@ -640,15 +758,66 @@ SELECT <column alias list> [, <ordinality alias>]
 FROM <table name> <table alias>, UNNEST_JSON_OBJECT(<column list>) [WITH ORDINALITY] <table/columns aliases>
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<column alias list>` | Column aliases given to the resulting unnested key & value data columns specified in `<table/columns aliases>` |
-| `<ordinality alias>` | Column alias given to the resulting ordinality column in `<table/columns aliases>`, if `WITH ORDINALITY` is specified |
-| `<table name>` | Name of the table containing the JSON object (map) column(s) |
-| `<table alias>` | Alias to use for the table containing the JSON object (map) column(s) |
-| `<column list>` | Comma-separated list of JSON object (map) columns to unnest |
-| `<table/columns aliases>` | Alias to use for the virtual table and columns being used to return the unnested data (including any ordinality alias, if specified), using the form: <br/> <br/> `<table alias>(<key alias>, <value alias>[,...] [,<ordinality alias>])` <br/> <br/> For example, to return two JSON map data columns as unnested, referenced as the key/value pairs `j1_k` & `j1_v` and  `j2_k` & `j2_v`, respectively, with the corresponding ordinality index as `index`, all within the virtual table `unn`, use: <br/> <br/> `unn(j1_k, j1_v, j2_k, j2_v, index)` <br/> |
-| `WITH ORDINALITY` | Also return the 0-based index in the source maps for each transposed map value; the index value will be returned in an alias specified in `<table/columns aliases>` |
+<AccordionGroup>
+
+<Accordion title="&lt;column alias list&gt;">
+
+Column aliases given to the resulting unnested key & value data columns specified in
+`<table/columns aliases>`
+
+</Accordion>
+
+<Accordion title="&lt;ordinality alias&gt;">
+
+Column alias given to the resulting ordinality column in `<table/columns aliases>`,
+if `WITH ORDINALITY` is specified
+
+</Accordion>
+
+<Accordion title="&lt;table name&gt;">
+
+Name of the table containing the JSON object (map) column(s)
+
+</Accordion>
+
+<Accordion title="&lt;table alias&gt;">
+
+Alias to use for the table containing the JSON object (map) column(s)
+
+</Accordion>
+
+<Accordion title="&lt;column list&gt;">
+
+Comma-separated list of JSON object (map) columns to unnest
+
+</Accordion>
+
+<Accordion title="&lt;table/columns aliases&gt;">
+
+Alias to use for the virtual table and columns being used to return the unnested data
+(including any ordinality alias, if specified), using the form:
+
+```
+<table alias>(<key alias>, <value alias>[,...] [,<ordinality alias>])
+```
+For example, to return two JSON map data columns as unnested, referenced as the
+key/value pairs `j1_k` & `j1_v` and  `j2_k` & `j2_v`, respectively, with the
+corresponding ordinality index as `index`, all within the virtual table `unn`,
+use:
+
+```
+unn(j1_k, j1_v, j2_k, j2_v, index)
+```
+</Accordion>
+
+<Accordion title="WITH ORDINALITY">
+
+Also return the 0-based index in the source maps for each transposed map value; the
+index value will be returned in an alias specified in `<table/columns aliases>`
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="json-func-unnest-object-ex"></a>

@@ -20,12 +20,38 @@ The basic form of the `DATE_BUCKET` function is:
 DATE_BUCKET(width, timestamp[, offset[, base]])
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `width` | The number of days each bucket should span.  An `INTERVAL` can also be used to specify the `width`. |
-| `timestamp` | A date/time column or expression, the date portion of which will be used in placing the corresponding record within the correct date bucket. |
-| `offset` | The number of days after (for a positive `offset`) or number of days before (for a negative `offset`) the `base` date/time to which the buckets should be aligned.  An `INTERVAL` can also be used to specify the `offset`.  The default is no offset. |
-| `base` | The starting date/time to which buckets will be aligned.  The default is `2000-01-03`. |
+<AccordionGroup>
+
+<Accordion title="width">
+
+The number of days each bucket should span.  An `INTERVAL` can also be used to specify
+the `width`.
+
+</Accordion>
+
+<Accordion title="timestamp">
+
+A date/time column or expression, the date portion of which will be used in placing the
+corresponding record within the correct date bucket.
+
+</Accordion>
+
+<Accordion title="offset">
+
+The number of days after (for a positive `offset`) or number of days before
+(for a negative `offset`) the `base` date/time to which the buckets should be aligned.  An
+`INTERVAL` can also be used to specify the `offset`.  The default is no offset.
+
+</Accordion>
+
+<Accordion title="base">
+
+The starting date/time to which buckets will be aligned.  The default is
+`2000-01-03`.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 ## Example

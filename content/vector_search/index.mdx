@@ -604,15 +604,52 @@ WITH OPTIONS
 )
 ```
 
-| Parameter | Description |
-| --- | --- |
-| `OR REPLACE` | Any existing *model* with the same name will be dropped before creating this one |
-| `REMOTE` | Optional keyword for compatibility |
-| `<model name>` | Name of the *model* to create; must adhere to the supported [naming criteria](/content/sql/naming#sql-naming-criteria) |
-| `WITH OPTIONS` | Indicator that a comma-delimited list of *model* option/value assignments will follow. |
-| `CREDENTIAL` | [Credential](/content/sql/ddl#sql-create-credential) object to use to authenticate to *model* service. |
-| `REMOTE_MODEL_NAME` | Name of the *model* hosted by the embedding service; e.g., `NV-Embed-QA`. |
-| `REMOTE_MODEL_LOCATION` | URL of the *model* host service. |
+<AccordionGroup>
+
+<Accordion title="OR REPLACE">
+
+Any existing *model* with the same name will be dropped before creating this one
+
+</Accordion>
+
+<Accordion title="REMOTE">
+
+Optional keyword for compatibility
+
+</Accordion>
+
+<Accordion title="&lt;model name&gt;">
+
+Name of the *model* to create; must adhere to the supported
+[naming criteria](/content/sql/naming#sql-naming-criteria)
+
+</Accordion>
+
+<Accordion title="WITH OPTIONS">
+
+Indicator that a comma-delimited list of *model* option/value assignments will follow.
+
+</Accordion>
+
+<Accordion title="CREDENTIAL">
+
+[Credential](/content/sql/ddl#sql-create-credential) object to use to authenticate to *model* service.
+
+</Accordion>
+
+<Accordion title="REMOTE_MODEL_NAME">
+
+Name of the *model* hosted by the embedding service; e.g., `NV-Embed-QA`.
+
+</Accordion>
+
+<Accordion title="REMOTE_MODEL_LOCATION">
+
+URL of the *model* host service.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 For example, to create a remote model, first create an API key *credential*:
@@ -717,12 +754,34 @@ SET
 >
 ```
 
-| Parameter | Description |
-| --- | --- |
-| `<model name>` | Name of the *model* to modify; must adhere to the supported [naming criteria](/content/sql/naming#sql-naming-criteria) |
-| `CREDENTIAL` | [Credential](/content/sql/ddl#sql-create-credential) object to use to authenticate to *model* service. |
-| `REMOTE_MODEL_NAME` | Name of the *model* hosted by the embedding service; e.g., `NV-Embed-QA`. |
-| `REMOTE_MODEL_LOCATION` | URL of the *model* host service. |
+<AccordionGroup>
+
+<Accordion title="&lt;model name&gt;">
+
+Name of the *model* to modify; must adhere to the supported
+[naming criteria](/content/sql/naming#sql-naming-criteria)
+
+</Accordion>
+
+<Accordion title="CREDENTIAL">
+
+[Credential](/content/sql/ddl#sql-create-credential) object to use to authenticate to *model* service.
+
+</Accordion>
+
+<Accordion title="REMOTE_MODEL_NAME">
+
+Name of the *model* hosted by the embedding service; e.g., `NV-Embed-QA`.
+
+</Accordion>
+
+<Accordion title="REMOTE_MODEL_LOCATION">
+
+URL of the *model* host service.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 For example, to change the name of the remote model referenced:
@@ -760,15 +819,83 @@ FROM TABLE [/* KI_HINT_SAVE_UDF_STATS */]
 ```
 
 
-| Parameter | Description |
-| --- | --- |
-| `KI_HINT_SAVE_UDF_STATS` | SQL hint to log the embedding generation results of the UDF responsible for the processing (`rag_udf_embed`), so the logs can be viewed from the *Jobs* tab in [Workbench](/content/admin/workbench/ui/jobs). |
-| `MODEL_NAME` | Name of the *model* to use in generating embeddings, adhering to the supported [naming criteria](/content/sql/naming#sql-naming-criteria); if not specified, the default model, `sqlgpt`, will be used. <br/> <br/> To set the default to another model and avoid having to specify this parameter: <br/> <br/> {/* Source: /examples/sql/vector/embeddings.kisql (lines 168) */} `ALTER SYSTEM SET PROPERTIES ('ai_api_embeddings_model' = 'nvidia_remote_model')` <br/> |
-| `EMBEDDING_TABLE` | The query or name of the table to use for input data to the embedding generation process. |
-| `EMBEDDING_INPUT_COLUMNS` | Names of the columns in the given `EMBEDDING_TABLE` for which embeddings will be generated. |
-| `EMBEDDING_OUTPUT_COLUMNS | Names of the columns to return the generated embeddings as; if none specified, each input column will have embedding` appended to it to construct the name of the corresponding output column. |
-| `DIMENSIONS` | Size of the vector returned by the embedding generation process; required for the default `sqlgpt` model. |
-| `PARAMS` | Optional indicator that a list of embedding option/value assignments will follow, passed as a comma-delimited list of key/value pairs to the `KV_PAIRS` function <br/> <br/> `input_type`: For Nvidia models, the type of input on which embeddings will be generated: * `passage` - Input is the data set that will be searched. * `query` - Input is the query that will be used for the search. |
+<AccordionGroup>
+
+<Accordion title="KI_HINT_SAVE_UDF_STATS">
+
+SQL hint to log the embedding generation results of the UDF responsible for the processing
+(`rag_udf_embed`), so the logs can be viewed from the *Jobs* tab in
+[Workbench](/content/admin/workbench/ui/jobs).
+
+</Accordion>
+
+<Accordion title="MODEL_NAME">
+
+Name of the *model* to use in generating embeddings, adhering to the supported
+[naming criteria](/content/sql/naming#sql-naming-criteria); if not specified, the default model, `sqlgpt`,
+will be used.
+
+To set the default to another model and avoid having to specify this parameter:
+
+{/* Source: /examples/sql/vector/embeddings.kisql (lines 168) */}
+```sql Set Default Embeddings Model Example
+ALTER SYSTEM SET PROPERTIES ('ai_api_embeddings_model' = 'nvidia_remote_model')
+```
+
+</Accordion>
+
+<Accordion title="EMBEDDING_TABLE">
+
+The query or name of the table to use for input data to the embedding generation process.
+
+</Accordion>
+
+<Accordion title="EMBEDDING_INPUT_COLUMNS">
+
+Names of the columns in the given `EMBEDDING_TABLE` for which embeddings will be generated.
+
+</Accordion>
+
+<Accordion title="EMBEDDING_OUTPUT_COLUMNS">
+
+Names of the columns to return the generated embeddings as; if none specified, each input column
+will have `_embedding` appended to it to construct the name of the corresponding output column.
+
+</Accordion>
+
+<Accordion title="DIMENSIONS">
+
+Size of the vector returned by the embedding generation process; required for the default
+`sqlgpt` model.
+
+</Accordion>
+
+<Accordion title="PARAMS">
+
+Optional indicator that a list of embedding option/value assignments will follow, passed as a
+comma-delimited list of key/value pairs to the `KV_PAIRS` function
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>input_type</code></td>
+    <td>For Nvidia models, the type of input on which embeddings will be generated: * <code>passage</code> - Input is the data set that will be searched. * <code>query</code>   - Input is the query that will be used for the search.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+</AccordionGroup>
 
 
 For example, to generate embeddings with various models:

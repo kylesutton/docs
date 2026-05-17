@@ -137,17 +137,68 @@ kagent [-h] [--debug] [--quiet] [-f <path>] [--kagent-dir <path>]
 ### Options
 
 
-| Option | Description |
+<AccordionGroup>
+
+<Accordion title="&lt; -h | --help &gt;">
+
+Show the help menu.  When used following one of the subcommands, the subcommand-specific help menu will
+be shown.
+
+</Accordion>
+
+<Accordion title="--debug">
+
+Log debug messages.
+
+</Accordion>
+
+<Accordion title="--quiet">
+
+Suppress all output messages.
+
+</Accordion>
+
+<Accordion title="&lt; -f | --dbfile &gt; &lt;path&gt;">
+
+Path to KAgent cluster configuration database.
+
+</Accordion>
+
+<Accordion title="--kagent-dir &lt;path&gt;">
+
+Path to where KAgent and its playbooks reside.
+
+</Accordion>
+
+<Accordion title="&lt; -o | --output &gt; &lt;format&gt;">
+
+The output message format to use:
+
+* `human` - *(default)* output in human-readable form
+* `json` - output in JSON format
+
+</Accordion>
+
+<Accordion title="--user &lt;username&gt;">
+
+Specify what user is performing the actions, for logging purposes.
+
+</Accordion>
+
+<Accordion title="&lt; -v | --verbose &gt;">
+
+Run ansible-playbook with `-vvv` to debug issues.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Subcommands
+
+
+| Subcommand | Description |
 | --- | --- |
-| `-h` <br/> <br/> `--help` | Show the help menu.  When used following one of the subcommands, the subcommand-specific help menu will be shown. |
-| `--debug` | Log debug messages. |
-| `--quiet` | Suppress all output messages. |
-| `-f <path>` <br/> <br/> `--dbfile <path>` | Path to KAgent cluster configuration database. |
-| `--kagent-dir <path>` | Path to where KAgent and its playbooks reside. |
-| `-o <format>` <br/> <br/> `--output <format>` | The output message format to use: <br/> <br/> * `human` - *(default)* output in human-readable form <br/> * `json` - output in JSON format |
-| `--user <username>` | Specify what user is performing the actions, for logging purposes. |
-| `-v` <br/> <br/> `--verbose` | Run ansible-playbook with `-vvv` to debug issues. |
-| **Subcommands** |  |
 | `ring` | [Manage rings](/content/admin/kagent/kagent#kagent-cli-ring). |
 | `cluster` | [Manage clusters](/content/admin/kagent/kagent#kagent-cli-cluster). |
 | `node` | [Manage nodes](/content/admin/kagent/kagent#kagent-cli-node). |
@@ -171,21 +222,249 @@ The form of the command to manage rings is as follows:
 kagent ring <command>
 ```
 
-| Ring Command | Description |
-| --- | --- |
-| `add [options] <name>` | Add a new ring with the given `name`. <br/> <br/> `-a <addr>` `--addr <addr>`: Specify the load balancer address for the ring. |
-| `backup [options] <name>` | Backup an existing ring with the given `name`. <br/> <br/> `--backup-path <path>`: Specify the `path` in which the backup will be created. Once given, will become the default backup path for subsequent backups. Initial backup directory is `/opt/backups`. |
-| `control <name> <operation> <component>` | Control the services of the ring with the given `name`. <br/> <br/> Apply one of the following operations: <br/> <br/> * `start` <br/> * `stop` <br/> * `restart` <br/> <br/> To one of the following components: <br/> <br/> * `gpudb` <br/> * `host_manager` <br/> * `tomcat` <br/> * `reveal` <br/> * `kml` <br/> * `stats` <br/> * `text_search` <br/> * `httpd` <br/> * `ha` <br/> * `mq` <br/> * `all_gpudb` <br/> * `all` |
-| `force-lock <name>` | Force the ring with the given `name` to lock. |
-| `force-unlock <name>` | Force the ring with the given `name` to unlock. |
-| `gather-logs [options] <name>` | Download the logs from the ring with the given `name` to a destination on the *KAgent* host. <br/> <br/> `--backtrace`: Add a process backtrace to the database process. <br/> <br/> `--kagent-logs`: Add the *KAgent* logs to the archive, up to the point at which they are collected. <br/> <br/> `--log-lines <line_count>`: Specify the number of lines to collect from the log. The first 100 lines are always saved. Use `0` to collect the entire log or `ERROR` to collect only error log messages. Default is `100,000` log lines. <br/> <br/> `--output-dir <path>`: Specify the `path` where the log archive will be written. The directory must be writable by the **gpudb** user on the *KAgent* host. <br/> <br/> `--package-verify`: Verify the installed *Kinetica* packages. |
-| `inspect <name>` | Inspect the details of the ring with the given `name`. |
-| `install <name>` | Install the HA platform on the ring with the given `name`. |
-| `list` | List all managed rings. |
-| `rabbit-recovery [options] <name>` | Attempt a RabbitMQ recovery; the process will clear all queues. <br/> <br/> `--proceed <yes\|no>`: Pass the final recovery confirmation (`yes` or `no`). |
-| `remove <name>` | Remove the ring with the given `name`. |
-| `update [options] <name>` | Update the details of the ring with the given `name`. <br/> <br/> `--addr <addr>`: Specify the load balancer address for the ring. <br/> <br/> `--ha-enabled <yes\|no>`: Specify that HA has been enabled (`yes`) or not (`no`) for the ring. |
-| `upgrade [options] <name>` | Upgrade Kinetica to the latest version on the ring with the given `name`.  This will perform a sequential in-place upgrade of each cluster within the ring. <br/> <br/> `--offline-aaw-installer <path>`: Specify the file `path` or URL of the location for the *KML* installer package (rpm,deb). <br/> <br/> `--offline-core-installer <path>`: Specify the file `path` or URL of the location for the *gpudb* installer package (rpm,deb). <br/> <br/> `--offline-rabbit-installer <path>`: Specify the file `path` or URL of the location for the *gpudb HA* installer package (rpm,deb). <br/> <br/> `--rabbit-drain-timeout <timeout>`: Specify the timeout in minutes that the upgrade will wait for queues to drain before beginning the upgrade. The upgrade will be aborted if the queues are not empty. Default is `3`. |
+<AccordionGroup>
+
+<Accordion title="add [options] &lt;name&gt;">
+
+Add a new ring with the given `name`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>&lt; -a | --addr &gt; &lt;addr&gt;</code></td>
+    <td>Specify the load balancer address for the ring.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="backup [options] &lt;name&gt;">
+
+Backup an existing ring with the given `name`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--backup-path &lt;path&gt;</code></td>
+    <td>Specify the <code>path</code> in which the backup will be created.  Once given, will become the default backup path for subsequent backups.  Initial backup directory is <code>/opt/backups</code>.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="control &lt;name&gt; &lt;operation&gt; &lt;component&gt;">
+
+Control the services of the ring with the given `name`.
+
+Apply one of the following operations:
+
+* `start`
+* `stop`
+* `restart`
+
+To one of the following components:
+
+* `gpudb`
+* `host_manager`
+* `tomcat`
+* `reveal`
+* `kml`
+* `stats`
+* `text_search`
+* `httpd`
+* `ha`
+* `mq`
+* `all_gpudb`
+* `all`
+
+</Accordion>
+
+<Accordion title="force-lock &lt;name&gt;">
+
+Force the ring with the given `name` to lock.
+
+</Accordion>
+
+<Accordion title="force-unlock &lt;name&gt;">
+
+Force the ring with the given `name` to unlock.
+
+</Accordion>
+
+<Accordion title="gather-logs [options] &lt;name&gt;">
+
+Download the logs from the ring with the given `name` to a destination on the *KAgent* host.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--backtrace</code></td>
+    <td>Add a process backtrace to the database process.</td>
+  </tr>
+  <tr>
+    <td><code>--kagent-logs</code></td>
+    <td>Add the *KAgent* logs to the archive, up to the point at which they are collected.</td>
+  </tr>
+  <tr>
+    <td><code>--log-lines &lt;line_count&gt;</code></td>
+    <td>Specify the number of lines to collect from the log.  The first 100 lines are always saved.  Use <code>0</code> to collect the entire log or <code>ERROR</code> to collect only error log messages.  Default is <code>100,000</code> log lines.</td>
+  </tr>
+  <tr>
+    <td><code>--output-dir &lt;path&gt;</code></td>
+    <td>Specify the <code>path</code> where the log archive will be written. The directory must be writable by the **gpudb** user on the *KAgent* host.</td>
+  </tr>
+  <tr>
+    <td><code>--package-verify</code></td>
+    <td>Verify the installed *Kinetica* packages.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="inspect &lt;name&gt;">
+
+Inspect the details of the ring with the given `name`.
+
+</Accordion>
+
+<Accordion title="install &lt;name&gt;">
+
+Install the HA platform on the ring with the given `name`.
+
+</Accordion>
+
+<Accordion title="list">
+
+List all managed rings.
+
+</Accordion>
+
+<Accordion title="rabbit-recovery [options] &lt;name&gt;">
+
+Attempt a RabbitMQ recovery; the process will clear all queues.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--proceed &lt;yes|no&gt;</code></td>
+    <td>Pass the final recovery confirmation (<code>yes</code> or <code>no</code>).</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="remove &lt;name&gt;">
+
+Remove the ring with the given `name`.
+
+</Accordion>
+
+<Accordion title="update [options] &lt;name&gt;">
+
+Update the details of the ring with the given `name`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--addr &lt;addr&gt;</code></td>
+    <td>Specify the load balancer address for the ring.</td>
+  </tr>
+  <tr>
+    <td><code>--ha-enabled &lt;yes|no&gt;</code></td>
+    <td>Specify that HA has been enabled (<code>yes</code>) or not (<code>no</code>) for the ring.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="upgrade [options] &lt;name&gt;">
+
+Upgrade Kinetica to the latest version on the ring with the given `name`.  This will perform a sequential
+in-place upgrade of each cluster within the ring.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--offline-aaw-installer &lt;path&gt;</code></td>
+    <td>Specify the file <code>path</code> or URL of the location for the *KML* installer package (rpm,deb).</td>
+  </tr>
+  <tr>
+    <td><code>--offline-core-installer &lt;path&gt;</code></td>
+    <td>Specify the file <code>path</code> or URL of the location for the *gpudb* installer package (rpm,deb).</td>
+  </tr>
+  <tr>
+    <td><code>--offline-rabbit-installer &lt;path&gt;</code></td>
+    <td>Specify the file <code>path</code> or URL of the location for the *gpudb HA* installer package (rpm,deb).</td>
+  </tr>
+  <tr>
+    <td><code>--rabbit-drain-timeout &lt;timeout&gt;</code></td>
+    <td>Specify the timeout in minutes that the upgrade will wait for queues to drain before beginning the upgrade. The upgrade will be aborted if the queues are not empty.  Default is <code>3</code>.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="kagent-cli-cluster"></a>
@@ -200,35 +479,821 @@ The form of the command to manage clusters is as follows:
 kagent cluster <command>
 ```
 
-| Cluster Command | Description |
-| --- | --- |
-| `backup [options] <name>` | Backup the data on the cluster with the given `name`. <br/> <br/> `--backup-path <path>`: Specify the `path` in which the backup will be created. Once given, will become the default backup path for subsequent backups. Initial backup directory is `/opt/backups`. <br/> <br/> `--list-schedule`: List backup schedules by backup `type`. <br/> <br/> `--schedule <schedule>`: Specify the backup schedule. Use `now` to run an immediate backup. Use a quoted crontab-style expression to schedule a backup in *cron*. Use `never` to remove a backup schedule. Default is `now`. <br/> <br/> `--table-list <list>`: Specify a space-separated list of tables to backup. |
-| `backup-configuration-files [options]` `<name>` | Backup all configuration files on the cluster with the given `name`. <br/> <br/> `--backup-path <path>`: Specify the `path` in which the backup will be created. Once given, will become the default backup path for subsequent backups. Initial backup directory is `/opt/backups`. The directory must be writable by the **gpudb** user on the *KAgent* host. |
-| `backup-schedule <name>` | List scheduled backups on the cluster with the given `name`. |
-| `bootstrap-kagent [options] <name>` | Bootstrap the *KAgent* role to a different host in the cluster; further cluster management must happen through the *KAgent* on this different host. <br/> <br/> `--kagent-hostname <host>`: Specify the name of the `host` where *KAgent* will be bootstrapped. |
-| `check-for-upgrades <name>` | Check if upgrades are available on-line for the cluster with the given `name`. |
-| `clone [options]` | Clone one cluster into another. <br/> <br/> `--authentication <yes\|no>`: Specify whether to copy (`yes`) or not copy (`no`) authentication settings. <br/> <br/> `--data <yes\|no>`: Specify whether to copy (`yes`) or not copy (`no`) data. <br/> <br/> `--destination <name>`: Specify the `name` of the cluster to clone to. <br/> <br/> `--graph <yes\|no>`: Specify whether to copy (`yes`) or not copy (`no`) persisted graph information. <br/> <br/> `--source <name>`: Specify the `name` of the cluster to clone from. <br/> <br/> `--users <yes\|no>`: Specify whether to copy (`yes`) or not copy (`no`) users and permissions. |
-| `control <name> <operation> <component>` | Control the services of the cluster with the given `name`. <br/> <br/> Apply one of the following operations: <br/> <br/> * `start` <br/> * `stop` <br/> * `restart` <br/> <br/> To one of the following components: <br/> <br/> * `gpudb` <br/> * `host_manager` <br/> * `tomcat` <br/> * `reveal` <br/> * `kml` <br/> * `stats` <br/> * `text_search` <br/> * `httpd` <br/> * `ha` <br/> * `mq` <br/> * `all_gpudb` <br/> * `all` |
-| `gather-logs [options] <name>` | Download the logs from the cluster with the given `name` to a destination on the *KAgent* host. <br/> <br/> `--backtrace`: Add a process backtrace to the database process. <br/> <br/> `--kagent-logs`: Add the *KAgent* logs to the archive, up to the point at which they are collected. <br/> <br/> `--log-lines <line_count>`: Specify the number of lines to collect from the log. The first 100 lines are always saved. Use `0` to collect the entire log or `ERROR` to collect only error log messages. Default is `100,000` log lines. <br/> <br/> `--output-dir <path>`: Specify the `path` where the log archive will be written. The directory must be writable by the **gpudb** user on the *KAgent* host. <br/> <br/> `--package-verify`: Verify the installed *Kinetica* packages. |
-| `get-conf-properties <name>` | Show database configuration properties of the cluster with the given `name`. |
-| `get-logger [options] <name>` | Show logger and logging level for the cluster with the given `name`.  To list the available loggers, run: <br/> <br/> `kagent cluster get-logger --ranks 0 <name>` <br/> <br/> `--logger <name>`: Specify the `name` of the logger to show. <br/> <br/> `--ranks <ranks>`: Specify the number of the rank from which to retrieve logging config. |
-| `init [options] <name>` | Initialize a new cluster with the given `name`. <br/> <br/> `--ring <name>`: Specify the name of the ring in which to place this cluster. <br/> <br/> `-k <path>` `--ssh-key <path>`: Specify the `path` to the SSH private key to use for cluster operations. <br/> <br/> `-u <username>` `--ssh-user <username>`: Specify the SSH `username` to use for cluster operations. This overrides the `KAGENT_SSH_USER` environment variable. <br/> <br/> `-p <password>` `--ssh-password <password>`: Specify the SSH `password` to use for the SSH user. This overrides the `KAGENT_SSH_PASS` environment variable. <br/> <br/> `-su <username>` `--sudo-user <username>`: Specify the sudo `username` to use for cluster operations, in the case where root logins are not allowed. <br/> <br/> `--sudo-password <password>`: Specify the sudo `password` to use for the sudo user. This overrides the `KAGENT_SUDO_PASSWORD` environment variable. <br/> <br/> `-admpass <password>` `--admin-pass <password>`: Specify the *Kinetica* admin user `password`. <br/> <br/> `--connect-via <method>`: Specify whether to connect to each node's internal IP address (`ip_addr`) or public IP address (`public_ip_addr`). <br/> <br/> `-inf <provider_code>` `--infrastructure-provider` `<provider_code>`: Specify the cluster's infrastructure provider: +---------------+---------------------------------------------+ \| Provider Code \| Description \| +===============+=============================================+ \| `onprem` \| On-premise (bare-metal) installation, or a \| \| \| cloud-based installation not provisioned \| \| \| via *KAgent* \| +---------------+---------------------------------------------+ <br/> <br/> `-lic <key>` `--lic-key <key>`: Specify the license `key` to use for this cluster. <br/> <br/> `--aws-access-key <key>`: Specify the *AWS* access key to use for cluster provisioning and operations. This overrides the `KAGENT_AWS_ACCESS_KEY` environment variable. <br/> <br/> `--aws-secret-key <key>`: Specify the *AWS* secret key to use for cluster provisioning and operations. This overrides the `KAGENT_AWS_SECRET_KEY` environment variable. <br/> <br/> `--aws-ssh-key-name <name>`: Specify the `name` of the SSH key to use to log into cluster nodes. If none is provided, a key will be created. <br/> <br/> `--azure-client-id <id>`: Specify the client `id` from the *Azure* login profile, usually found in <Badge color="gray">/.azure/credentials</Badge> . This overrides the `KAGENT_AZURE_CLIENT_ID` environment variable. <br/> <br/> `--azure-secret <secret>`: Specify the `secret` from the *Azure* login profile, usually found in <Badge color="gray">/.azure/credentials</Badge> . This overrides the `KAGENT_AZURE_SECRET` environment variable. <br/> <br/> `--azure-subscription-id <id>`: Specify the subscription `id` from the *Azure* login profile, usually found in <Badge color="gray">/.azure/credentials</Badge> . This overrides the `KAGENT_AZURE_SUBSCRIPTION_ID` environment variable. <br/> <br/> `--azure-tenant <tenant>`: Specify the `tenant` from the *Azure* login profile, usually found in <Badge color="gray">/.azure/credentials</Badge> . This overrides the `KAGENT_AZURE_TENANT` environment variable. <br/> <br/> `--cloud-region <region>`: Specify the *AWS* region, *Azure* location, or *GCP* zone for the cluster. <br/> <br/> `--cloud-ssh-user <username>`: Specify the `username` to create a login for on *Azure* or *GCP* provisioned instances. <br/> <br/> `--cloud-ssh-public-key-file <path>`: Specify the `path` to the public key to use for authentication on *Azure* or *GCP* instances. <br/> <br/> `--gcp-project <project>`: Specify the *GCP* `project` with which this cluster should be associated. <br/> <br/> `--gcp-service-account-file <path>`: Specify the *GCP* service account file (JSON) for the user. |
-| `inspect <name>` | Inspect the details of the cluster with the given `name`. |
-| `install [options] <name>` | Install *Kinetica* on a new cluster.  **Note:**  specifying any offline installer will switch the install to offline mode. <br/> <br/> `--auto-config <yes\|no>`: Whether to update (`yes`) or not update (`no`) the configuration on the cluster during install. Default is to update the configuration. <br/> <br/> `-c <yes\|no>` `--cuda <yes\|no>`: Whether to use a CUDA (GPU) build (`yes`) or Intel (CPU) build (`no`). <br/> <br/> `--k8s-config-file <path>`: Specify the path to the kubeconfig file of the external K8s cluster which KML will use. <br/> <br/> `--k8s-public-ip <addr>`: Specify the IP address at which the K8s cluster is accessible by the *Kinetica* cluster. <br/> <br/> `-nv <yes\|no>` `--nvidia <yes\|no>`: Whether to install (`yes`) or not install (`no`) the Nvidia driver when none is detected. <br/> <br/> `--open-firewall-ports <yes\|no>`: Whether to open (`yes`) or not open (`no`) relevant firewall ports if an enabled firewall is detected. <br/> <br/> `--offline-aaw-installer <path>`: Specify the file `path` or URL of the location for the *KML* installer package (rpm,deb). <br/> <br/> `--offline-core-installer <path>`: Specify the file `path` or URL of the location for the *gpudb* installer package (rpm,deb). <br/> <br/> `--offline-kagent-installer <path>`: Specify the file `path` or URL of the location for the *KAgent* installer package (rpm,deb). <br/> <br/> `--offline-nvidia-installer <path>`: Specify the file `path` or URL of the location for the *Nvidia* installer package (rpm,deb). <br/> <br/> `--offline-rabbit-installer <path>`: Specify the file `path` or URL of the location for the *gpudb HA* installer package (rpm,deb). <br/> <br/> `--reserve-k8s-gpus <number>`: Specify the `number` of GPUs to reserve for K8s/UDF usage. |
-| `list` | List all managed clusters. |
-| `list-backup-contents [options] <name>` | List the contents of a backup on the cluster with the given `name`. <br/> <br/> `--backup-path <path>`: Specify the `path` to the backup directory. <br/> <br/> `--restore-from <path>`: Specify the backup whose contents will be listed; this will be the name of a backup directory under the path given in `--backup-path`. |
-| `list-backups [options] <name>` | List the available backups on the cluster with the given `name`. <br/> <br/> `--backup-path <path>`: Specify the `path` to the backup directory. |
-| `list-cluster-contents <name>` | List all of the tables on the cluster with the given `name`. |
-| `preflight <name>` | Detect/regenerate environment settings for running *KAgent* commands on the cluster with the given `name`. |
-| `remove <name>` | Remove the cluster with the given `name`. |
-| `restore [options] <name>` | Restore the contents of a backup to the cluster with the given `name`. <br/> <br/> `--backup-path <path>`: Specify the `path` to the backup directory. <br/> <br/> `--preserve-persist <yes\|no>`: Whether to move (`yes`) or not move (`no`) the existing database persist folder to a safe location before overwriting. Default is `no`. <br/> <br/> `--restore-from <path>`: Specify the backup to restore; this will be the name of a backup directory under the path given in `--backup-path`. <br/> <br/> `--table-list <list>`: Specify a space-delimited set of tables to restore from the backup. |
-| `secure [options] <name>` | Secure the cluster with the given `name` by enabling HTTPS and/or authentication via *LDAP*, *Active* *Directory*, *Kerberos*, or *OAuth2*.  **Note:** All parameters relevant to the desired authentication mechanism must be specified upon each invocation of this command--no existing settings will be used as defaults. <br/> <br/> `--ssl <yes\|no>`: Whether to enforce (`yes`) or not enforce (`no`) SSL connections to the cluster via https. <br/> <br/> `--generate-certs <yes\|no>`: Whether to generate (`yes`) or not generate (`no`) self-signed certificates. Certificates can also be assigned directly to each node with the [kagent node](/content/admin/kagent/kagent#kagent-cli-node) command. <br/> <br/> `--authentication <type>`: Specify the `type` of authentication to use: * `none` * `ad` * `kerberos` * `ldap` * `oauth2` <br/> <br/> `--connection-type <type>`: When using *LDAP*, the `type` to use (`ldap` \| `ldaps`). <br/> <br/> `--ldaps-cert <path>`: When using *LDAPS* and a certificate is necessary, the `path` of the *LDAP* certificate. <br/> <br/> `--ldap-host <name>`: When using *LDAP*, the `name` of the *LDAP* bind host. <br/> <br/> `--ldap-port <port>`: When using *LDAP*, the `port` to bind to. <br/> <br/> `--ldap-base-filter <filter>`: When using *LDAP*, the `filter` to use when searching the directory for logins. <br/> <br/> `--ldap-bind-user <username>`: When using *LDAP*, the `username` of the account to use when connecting to the directory. <br/> <br/> `--ldap-bind-pwd <password>`: When using *LDAP*, the `password` of the account to use when connecting to the directory. This overrides the `KAGENT_LDAP_BIND_PWD` environment variable. <br/> <br/> `--kerberos-realm <realm>`: When using *Kerberos*, the `realm` to authenticate against. For example: `MY-REALM.ACME.COM`. <br/> <br/> `--kerberos-service-name <name>`: When using *Kerberos*, specify the *Kerberos* service location. For example: `HTTP/kerb-server.acme.com`. <br/> <br/> `--kerberos-keytab <path>`: When using *Kerberos*, specify the `path` to the keytab file to use. <br/> <br/> `--external-auth-role-maps-file` `<path>`: When using *LDAP* or *AD*, the path to the JSON file containing the role maps used to limit authorization, mapping certain groups to *Kinetica* roles. The mapping file should have the following format: <br/> <br/> `{ "role1": ["cn=g1,dc=abc,dc=com"], "role2": [ "cn=g1,dc=abc,dc=com", "cn=g2,dc=abc,dc=com" ] }` <br/> <br/> `--ui-auth-type <type>`: The type of authentication to use when logging in to the UIs: * `none` * `openid-connect` - use with `--authentication oauth2` setups <br/> <br/> `--oauth-metadata-url <url>`: When using *OAuth*, the `url` that identifies the *OAuth* server settings. <br/> <br/> `--oauth-user-claim <claim>`: When using *OAuth*, the name of the `claim` on the *OAuth* token representing the user's username in *Kinetica*. <br/> <br/> `--oauth-cliend-id <id>`: When using *OAuth*, the `id` of the client used to connect to the *OAuth* server. <br/> <br/> `--oauth-client-secret <secret>`: When using *OAuth*, the `secret` of the client used to connect to the *OAuth* server. <br/> <br/> `--oauth-db-roles-claim <claim>`: When using *OAuth*, the name of the `claim` on the *OAuth* token that contains a comma-separated list of database roles that the user should be assigned. <br/> <br/> `--oauth-reveal-roles-claim` `<claim>`: When using *OAuth*, the name of the `claim` on the *OAuth* token that contains a comma-separated list of *Reveal* roles that the user should be assigned. <br/> <br/> `--oauth-gadmin-redirect-uri` `<uri>`: When using *OAuth*, the `url` that can be used as a return redirect for *GAdmin* from the *OAuth* server, necessary when the hostname or port the user is using to access *GAdmin* is different than those found on the standard public-facing URL. <br/> <br/> `--oauth-reveal-redirect-uri` `<uri>`: When using *OAuth*, the `url` that can be used as a return redirect for *Reveal* from the *OAuth* server, necessary when the hostname or port the user is using to access *Reveal* is different than those found on the standard public-facing URL. <br/> <br/> `--oauth-workbench-redirect-uri` `<uri>`: When using *OAuth*, the `url` that can be used as a return redirect for *Workbench* from the *OAuth* server, necessary when the hostname or port the user is using to access *Workbench* is different than those found on the standard public-facing URL. <br/> <br/> `--offline-httpd-oauth-installer` `<path>`: When using *OAuth*, the `path` of the file or URL for the add-on *OAuth* `httpd` module installer package (rpm, deb). |
-| `set-conf-properties [options] <name>` | Set database configuration properties for the cluster with the given `name`. <br/> <br/> `--properties-map <map>`: Specify a `map` of key-value pairs of database configuration parameters to set. For example: <br/> <br/> `{"np1.load_vectors_on_migration":"always"}` <br/> |
-| `set-logger [options] <name>` | Set logger and logging level for the cluster with the given `name`. <br/> <br/> `--level <level>`: Specify the `level` of logging for the selected logger(s). One of: * `TRACE` * `DEBUG` * `INFO` * `WARN` * `ERROR` * `FATAL` * `OFF` <br/> <br/> `--logger <name>`: Specify the `name` of the logger to modify. <br/> <br/> `--ranks <ranks>`: Specify the number of the rank to where the logging modification will be applied. A comma-separated list of rank numbers can be used to specify multiple ranks to modify; e.g., `0,3,4`. Use `-1` to apply the modification across the cluster. |
-| `uninstall <name>` | Remove the cluster with the given `name`, including all components except this instance of *KAgent*. |
-| `update [options] <name>` | Modify select parameters of the cluster with the given `name`. <br/> <br/> `--connect-via <method>`: Specify whether to connect to each node's internal IP address (`ip_addr`) or public IP address (`public_ip_addr`). <br/> <br/> `--is-installed <yes\|no>`: Whether to mark (`yes`) or not mark (`no`) this cluster as installed. <br/> <br/> `--move-to-ring <name>`: Specify the `name` of an existing ring to move this cluster into. |
-| `verify [options] <name>` | Verify connectivity and basic configuration of the cluster with the given `name`. <br/> <br/> `--include-dependency`: Include info from related cluster services like *RabbitMQ*. <br/> <br/> `--status-only`: Only gather the service status on the nodes. |
-| `write-inventory [options] <name>` | Write out an inventory file for the cluster with the given `name`. <br/> <br/> `-i <path>` `--inventory-dir <path>`: The `path` to write the inventory file to. Default is `./ansible-inventory-<cluster_name>`. <br/> <br/> `--vault-password <password>`: Specify the password to use for the ansible vault. This overrides the `KAGENT_VAULT_PASSWORD` environment variable. |
+<AccordionGroup>
+
+<Accordion title="backup [options] &lt;name&gt;">
+
+Backup the data on the cluster with the given `name`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--backup-path &lt;path&gt;</code></td>
+    <td>Specify the <code>path</code> in which the backup will be created.  Once given, will become the default backup path for subsequent backups.  Initial backup directory is <code>/opt/backups</code>.</td>
+  </tr>
+  <tr>
+    <td><code>--list-schedule</code></td>
+    <td>List backup schedules by backup <code>type</code>.</td>
+  </tr>
+  <tr>
+    <td><code>--schedule &lt;schedule&gt;</code></td>
+    <td>Specify the backup schedule.  Use <code>now</code> to run an immediate backup. Use a quoted crontab-style expression to schedule a backup in *cron*. Use <code>never</code> to remove a backup schedule.  Default is <code>now</code>.</td>
+  </tr>
+  <tr>
+    <td><code>--table-list &lt;list&gt;</code></td>
+    <td>Specify a space-separated list of tables to backup.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="backup-configuration-files [options] &lt;name&gt;">
+
+Backup all configuration files on the cluster with the given `name`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--backup-path &lt;path&gt;</code></td>
+    <td>Specify the <code>path</code> in which the backup will be created.  Once given, will become the default backup path for subsequent backups.  Initial backup directory is <code>/opt/backups</code>.  The directory must be writable by the **gpudb** user on the *KAgent* host.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="backup-schedule &lt;name&gt;">
+
+List scheduled backups on the cluster with the given `name`.
+
+</Accordion>
+
+<Accordion title="bootstrap-kagent [options] &lt;name&gt;">
+
+Bootstrap the *KAgent* role to a different host in the cluster; further cluster management must happen
+through the *KAgent* on this different host.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--kagent-hostname &lt;host&gt;</code></td>
+    <td>Specify the name of the <code>host</code> where *KAgent* will be bootstrapped.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="check-for-upgrades &lt;name&gt;">
+
+Check if upgrades are available on-line for the cluster with the given `name`.
+
+</Accordion>
+
+<Accordion title="clone [options]">
+
+Clone one cluster into another.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--authentication &lt;yes|no&gt;</code></td>
+    <td>Specify whether to copy (<code>yes</code>) or not copy (<code>no</code>) authentication settings.</td>
+  </tr>
+  <tr>
+    <td><code>--data &lt;yes|no&gt;</code></td>
+    <td>Specify whether to copy (<code>yes</code>) or not copy (<code>no</code>) data.</td>
+  </tr>
+  <tr>
+    <td><code>--destination &lt;name&gt;</code></td>
+    <td>Specify the <code>name</code> of the cluster to clone to.</td>
+  </tr>
+  <tr>
+    <td><code>--graph &lt;yes|no&gt;</code></td>
+    <td>Specify whether to copy (<code>yes</code>) or not copy (<code>no</code>) persisted graph information.</td>
+  </tr>
+  <tr>
+    <td><code>--source &lt;name&gt;</code></td>
+    <td>Specify the <code>name</code> of the cluster to clone from.</td>
+  </tr>
+  <tr>
+    <td><code>--users &lt;yes|no&gt;</code></td>
+    <td>Specify whether to copy (<code>yes</code>) or not copy (<code>no</code>) users and permissions.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="control &lt;name&gt; &lt;operation&gt; &lt;component&gt;">
+
+Control the services of the cluster with the given `name`.
+
+Apply one of the following operations:
+
+* `start`
+* `stop`
+* `restart`
+
+To one of the following components:
+
+* `gpudb`
+* `host_manager`
+* `tomcat`
+* `reveal`
+* `kml`
+* `stats`
+* `text_search`
+* `httpd`
+* `ha`
+* `mq`
+* `all_gpudb`
+* `all`
+
+</Accordion>
+
+<Accordion title="gather-logs [options] &lt;name&gt;">
+
+Download the logs from the cluster with the given `name` to a destination on the *KAgent* host.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--backtrace</code></td>
+    <td>Add a process backtrace to the database process.</td>
+  </tr>
+  <tr>
+    <td><code>--kagent-logs</code></td>
+    <td>Add the *KAgent* logs to the archive, up to the point at which they are collected.</td>
+  </tr>
+  <tr>
+    <td><code>--log-lines &lt;line_count&gt;</code></td>
+    <td>Specify the number of lines to collect from the log.  The first 100 lines are always saved.  Use <code>0</code> to collect the entire log or <code>ERROR</code> to collect only error log messages.  Default is <code>100,000</code> log lines.</td>
+  </tr>
+  <tr>
+    <td><code>--output-dir &lt;path&gt;</code></td>
+    <td>Specify the <code>path</code> where the log archive will be written.  The directory must be writable by the **gpudb** user on the *KAgent* host.</td>
+  </tr>
+  <tr>
+    <td><code>--package-verify</code></td>
+    <td>Verify the installed *Kinetica* packages.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="get-conf-properties &lt;name&gt;">
+
+Show database configuration properties of the cluster with the given `name`.
+
+</Accordion>
+
+<Accordion title="get-logger [options] &lt;name&gt;">
+
+Show logger and logging level for the cluster with the given `name`.  To list the available loggers, run:
+
+
+```bash
+kagent cluster get-logger --ranks 0 <name>
+```
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--logger &lt;name&gt;</code></td>
+    <td>Specify the <code>name</code> of the logger to show.</td>
+  </tr>
+  <tr>
+    <td><code>--ranks &lt;ranks&gt;</code></td>
+    <td>Specify the number of the rank from which to retrieve logging config.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="init [options] &lt;name&gt;">
+
+Initialize a new cluster with the given `name`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <tbody>
+  <tr>
+    <td>Option</td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td><code>--ring &lt;name&gt;</code></td>
+    <td>Specify the name of the ring in which to place this cluster.</td>
+  </tr>
+  <tr>
+    <td><code>&lt; -k | --ssh-key &gt; &lt;path&gt;</code></td>
+    <td>Specify the <code>path</code> to the SSH private key to use for cluster operations.</td>
+  </tr>
+  <tr>
+    <td><code>&lt; -u | --ssh-user &gt; &lt;username&gt;</code></td>
+    <td>Specify the SSH <code>username</code> to use for cluster operations. This overrides the <code>KAGENT_SSH_USER</code> environment variable.</td>
+  </tr>
+  <tr>
+    <td><code>&lt; -p | --ssh-password &gt;</code> <code>&lt;password&gt;</code></td>
+    <td>Specify the SSH <code>password</code> to use for the SSH user. This overrides the <code>KAGENT_SSH_PASS</code> environment variable.</td>
+  </tr>
+  <tr>
+    <td><code>&lt; -su | --sudo-user &gt;</code> <code>&lt;username&gt;</code></td>
+    <td>Specify the sudo <code>username</code> to use for cluster operations, in the case where root logins are not allowed.</td>
+  </tr>
+  <tr>
+    <td><code>--sudo-password &lt;password&gt;</code></td>
+    <td>Specify the sudo <code>password</code> to use for the sudo user. This overrides the <code>KAGENT_SUDO_PASSWORD</code> environment variable.</td>
+  </tr>
+  <tr>
+    <td><code>&lt; -admpass | --admin-pass &gt;</code> <code>&lt;password&gt;</code></td>
+    <td>Specify the *Kinetica* admin user <code>password</code>.</td>
+  </tr>
+  <tr>
+    <td><code>--connect-via &lt;method&gt;</code></td>
+    <td>Specify whether to connect to each node's internal IP address (<code>ip_addr</code>) or public IP address (<code>public_ip_addr</code>).</td>
+  </tr>
+  <tr>
+    <td><code>&lt; -inf |</code> <code>--infrastructure-provider &gt;</code> <code>&lt;provider_code&gt;</code></td>
+    <td>Specify the cluster's infrastructure provider: * <code>onprem</code> - On-premise (bare-metal) installation, or a cloud-based installation not provisioned via *KAgent*</td>
+  </tr>
+  <tr>
+    <td><code>&lt; -lic | --lic-key &gt; &lt;key&gt;</code></td>
+    <td>Specify the license <code>key</code> to use for this cluster.</td>
+  </tr>
+  <tr>
+    <td><code>--aws-access-key &lt;key&gt;</code></td>
+    <td>Specify the *AWS* access key to use for cluster provisioning and operations. This overrides the <code>KAGENT_AWS_ACCESS_KEY</code> environment variable.</td>
+  </tr>
+  <tr>
+    <td><code>--aws-secret-key &lt;key&gt;</code></td>
+    <td>Specify the *AWS* secret key to use for cluster provisioning and operations. This overrides the <code>KAGENT_AWS_SECRET_KEY</code> environment variable.</td>
+  </tr>
+  <tr>
+    <td><code>--aws-ssh-key-name &lt;name&gt;</code></td>
+    <td>Specify the <code>name</code> of the SSH key to use to log into cluster nodes.  If none is provided, a key will be created.</td>
+  </tr>
+  <tr>
+    <td><code>--azure-client-id &lt;id&gt;</code></td>
+    <td>Specify the client <code>id</code> from the *Azure* login profile, usually found in <Badge color="gray">/.azure/credentials</Badge>. This overrides the <code>KAGENT_AZURE_CLIENT_ID</code> environment variable.</td>
+  </tr>
+  <tr>
+    <td><code>--azure-secret &lt;secret&gt;</code></td>
+    <td>Specify the <code>secret</code> from the *Azure* login profile, usually found in <Badge color="gray">/.azure/credentials</Badge>. This overrides the <code>KAGENT_AZURE_SECRET</code> environment variable.</td>
+  </tr>
+  <tr>
+    <td><code>--azure-subscription-id &lt;id&gt;</code></td>
+    <td>Specify the subscription <code>id</code> from the *Azure* login profile, usually found in <Badge color="gray">/.azure/credentials</Badge>. This overrides the <code>KAGENT_AZURE_SUBSCRIPTION_ID</code> environment variable.</td>
+  </tr>
+  <tr>
+    <td><code>--azure-tenant &lt;tenant&gt;</code></td>
+    <td>Specify the <code>tenant</code> from the *Azure* login profile, usually found in <Badge color="gray">/.azure/credentials</Badge>. This overrides the <code>KAGENT_AZURE_TENANT</code> environment variable.</td>
+  </tr>
+  <tr>
+    <td><code>--cloud-region &lt;region&gt;</code></td>
+    <td>Specify the *AWS* region, *Azure* location, or *GCP* zone for the cluster.</td>
+  </tr>
+  <tr>
+    <td><code>--cloud-ssh-user &lt;username&gt;</code></td>
+    <td>Specify the <code>username</code> to create a login for on *Azure* or *GCP* provisioned instances.</td>
+  </tr>
+  <tr>
+    <td><code>--cloud-ssh-public-key-file &lt;path&gt;</code></td>
+    <td>Specify the <code>path</code> to the public key to use for authentication on *Azure* or *GCP* instances.</td>
+  </tr>
+  <tr>
+    <td><code>--gcp-project &lt;project&gt;</code></td>
+    <td>Specify the *GCP* <code>project</code> with which this cluster should be associated.</td>
+  </tr>
+  <tr>
+    <td><code>--gcp-service-account-file &lt;path&gt;</code></td>
+    <td>Specify the *GCP* service account file (JSON) for the user.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="inspect &lt;name&gt;">
+
+Inspect the details of the cluster with the given `name`.
+
+</Accordion>
+
+<Accordion title="install [options] &lt;name&gt;">
+
+Install *Kinetica* on a new cluster.  **Note:**  specifying any offline installer will switch the install to
+offline mode.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--auto-config &lt;yes|no&gt;</code></td>
+    <td>Whether to update (<code>yes</code>) or not update (<code>no</code>) the configuration on the cluster during install.  Default is to update the configuration.</td>
+  </tr>
+  <tr>
+    <td><code>&lt; -c | --cuda &gt; &lt;yes|no&gt;</code></td>
+    <td>Whether to use a CUDA (GPU) build (<code>yes</code>) or Intel (CPU) build (<code>no</code>).</td>
+  </tr>
+  <tr>
+    <td><code>--k8s-config-file &lt;path&gt;</code></td>
+    <td>Specify the path to the kubeconfig file of the external K8s cluster which KML will use.</td>
+  </tr>
+  <tr>
+    <td><code>--k8s-public-ip &lt;addr&gt;</code></td>
+    <td>Specify the IP address at which the K8s cluster is accessible by the *Kinetica* cluster.</td>
+  </tr>
+  <tr>
+    <td><code>&lt; -nv | --nvidia &gt; &lt;yes|no&gt;</code></td>
+    <td>Whether to install (<code>yes</code>) or not install (<code>no</code>) the Nvidia driver when none is detected.</td>
+  </tr>
+  <tr>
+    <td><code>--open-firewall-ports &lt;yes|no&gt;</code></td>
+    <td>Whether to open (<code>yes</code>) or not open (<code>no</code>) relevant firewall ports if an enabled firewall is detected.</td>
+  </tr>
+  <tr>
+    <td><code>--offline-aaw-installer &lt;path&gt;</code></td>
+    <td>Specify the file <code>path</code> or URL of the location for the *KML* installer package (rpm,deb).</td>
+  </tr>
+  <tr>
+    <td><code>--offline-core-installer &lt;path&gt;</code></td>
+    <td>Specify the file <code>path</code> or URL of the location for the *gpudb* installer package (rpm,deb).</td>
+  </tr>
+  <tr>
+    <td><code>--offline-kagent-installer &lt;path&gt;</code></td>
+    <td>Specify the file <code>path</code> or URL of the location for the *KAgent* installer package (rpm,deb).</td>
+  </tr>
+  <tr>
+    <td><code>--offline-nvidia-installer &lt;path&gt;</code></td>
+    <td>Specify the file <code>path</code> or URL of the location for the *Nvidia* installer package (rpm,deb).</td>
+  </tr>
+  <tr>
+    <td><code>--offline-rabbit-installer &lt;path&gt;</code></td>
+    <td>Specify the file <code>path</code> or URL of the location for the *gpudb HA* installer package (rpm,deb).</td>
+  </tr>
+  <tr>
+    <td><code>--reserve-k8s-gpus &lt;number&gt;</code></td>
+    <td>Specify the <code>number</code> of GPUs to reserve for K8s/UDF usage.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="list">
+
+List all managed clusters.
+
+</Accordion>
+
+<Accordion title="list-backup-contents [options] &lt;name&gt;">
+
+List the contents of a backup on the cluster with the given `name`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--backup-path &lt;path&gt;</code></td>
+    <td>Specify the <code>path</code> to the backup directory.</td>
+  </tr>
+  <tr>
+    <td><code>--restore-from &lt;path&gt;</code></td>
+    <td>Specify the backup whose contents will be listed; this will be the name of a backup directory under the path given in <code>--backup-path</code>.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="list-backups [options] &lt;name&gt;">
+
+List the available backups on the cluster with the given `name`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--backup-path &lt;path&gt;</code></td>
+    <td>Specify the <code>path</code> to the backup directory.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="list-cluster-contents &lt;name&gt;">
+
+List all of the tables on the cluster with the given `name`.
+
+</Accordion>
+
+<Accordion title="preflight &lt;name&gt;">
+
+Detect/regenerate environment settings for running *KAgent* commands on the cluster with the given `name`.
+
+</Accordion>
+
+<Accordion title="remove &lt;name&gt;">
+
+Remove the cluster with the given `name`.
+
+</Accordion>
+
+<Accordion title="restore [options] &lt;name&gt;">
+
+Restore the contents of a backup to the cluster with the given `name`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--backup-path &lt;path&gt;</code></td>
+    <td>Specify the <code>path</code> to the backup directory.</td>
+  </tr>
+  <tr>
+    <td><code>--preserve-persist &lt;yes|no&gt;</code></td>
+    <td>Whether to move (<code>yes</code>) or not move (<code>no</code>) the existing database persist folder to a safe location before overwriting. Default is <code>no</code>.</td>
+  </tr>
+  <tr>
+    <td><code>--restore-from &lt;path&gt;</code></td>
+    <td>Specify the backup to restore; this will be the name of a backup directory under the path given in <code>--backup-path</code>.</td>
+  </tr>
+  <tr>
+    <td><code>--table-list &lt;list&gt;</code></td>
+    <td>Specify a space-delimited set of tables to restore from the backup.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="secure [options] &lt;name&gt;">
+
+Secure the cluster with the given `name` by enabling HTTPS and/or authentication via *LDAP*, *Active*
+*Directory*, *Kerberos*, or *OAuth2*.  **Note:** All parameters relevant to the desired authentication
+mechanism must be specified upon each invocation of this command--no existing settings will be used as
+defaults.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--ssl &lt;yes|no&gt;</code></td>
+    <td>Whether to enforce (<code>yes</code>) or not enforce (<code>no</code>) SSL connections to the cluster via https.</td>
+  </tr>
+  <tr>
+    <td><code>--generate-certs &lt;yes|no&gt;</code></td>
+    <td>Whether to generate (<code>yes</code>) or not generate (<code>no</code>) self-signed certificates.  Certificates can also be assigned directly to each node with the [kagent node](/content/admin/kagent/kagent#kagent-cli-node) command.</td>
+  </tr>
+  <tr>
+    <td><code>--authentication &lt;type&gt;</code></td>
+    <td>Specify the <code>type</code> of authentication to use: * <code>none</code> * <code>ad</code> * <code>kerberos</code> * <code>ldap</code> * <code>oauth2</code></td>
+  </tr>
+  <tr>
+    <td><code>--connection-type &lt;type&gt;</code></td>
+    <td>When using *LDAP*, the <code>type</code> to use (<code>ldap</code> <code>ldaps</code>).</td>
+  </tr>
+  <tr>
+    <td><code>--ldaps-cert &lt;path&gt;</code></td>
+    <td>When using *LDAPS* and a certificate is necessary, the <code>path</code> of the *LDAP* certificate.</td>
+  </tr>
+  <tr>
+    <td><code>--ldap-host &lt;name&gt;</code></td>
+    <td>When using *LDAP*, the <code>name</code> of the *LDAP* bind host.</td>
+  </tr>
+  <tr>
+    <td><code>--ldap-port &lt;port&gt;</code></td>
+    <td>When using *LDAP*, the <code>port</code> to bind to.</td>
+  </tr>
+  <tr>
+    <td><code>--ldap-base-filter &lt;filter&gt;</code></td>
+    <td>When using *LDAP*, the <code>filter</code> to use when searching the directory for logins.</td>
+  </tr>
+  <tr>
+    <td><code>--ldap-bind-user &lt;username&gt;</code></td>
+    <td>When using *LDAP*, the <code>username</code> of the account to use when connecting to the directory.</td>
+  </tr>
+  <tr>
+    <td><code>--ldap-bind-pwd &lt;password&gt;</code></td>
+    <td>When using *LDAP*, the <code>password</code> of the account to use when connecting to the directory. This overrides the <code>KAGENT_LDAP_BIND_PWD</code> environment variable.</td>
+  </tr>
+  <tr>
+    <td><code>--kerberos-realm &lt;realm&gt;</code></td>
+    <td>When using *Kerberos*, the <code>realm</code> to authenticate against.  For example: <code>MY-REALM.ACME.COM</code>.</td>
+  </tr>
+  <tr>
+    <td><code>--kerberos-service-name &lt;name&gt;</code></td>
+    <td>When using *Kerberos*, specify the *Kerberos* service location.  For example: <code>HTTP/kerb-server.acme.com</code>.</td>
+  </tr>
+  <tr>
+    <td><code>--kerberos-keytab &lt;path&gt;</code></td>
+    <td>When using *Kerberos*, specify the <code>path</code> to the keytab file to use.</td>
+  </tr>
+  <tr>
+    <td><code>--external-auth-role-maps-file</code> <code>&lt;path&gt;</code></td>
+    <td>When using *LDAP* or *AD*, the path to the JSON file containing the role maps used to limit authorization, mapping certain groups to *Kinetica* roles.  The mapping file should have the following format: .. code-block:: json \{ "role1": ["cn=g1,dc=abc,dc=com"], "role2": [ "cn=g1,dc=abc,dc=com", "cn=g2,dc=abc,dc=com" ] \}</td>
+  </tr>
+  <tr>
+    <td><code>--ui-auth-type &lt;type&gt;</code></td>
+    <td>The type of authentication to use when logging in to the UIs: * <code>none</code> * <code>openid-connect</code> - use with <code>--authentication oauth2</code> setups</td>
+  </tr>
+  <tr>
+    <td><code>--oauth-metadata-url &lt;url&gt;</code></td>
+    <td>When using *OAuth*, the <code>url</code> that identifies the *OAuth* server settings.</td>
+  </tr>
+  <tr>
+    <td><code>--oauth-user-claim &lt;claim&gt;</code></td>
+    <td>When using *OAuth*, the name of the <code>claim</code> on the *OAuth* token representing the user's username in *Kinetica*.</td>
+  </tr>
+  <tr>
+    <td><code>--oauth-cliend-id &lt;id&gt;</code></td>
+    <td>When using *OAuth*, the <code>id</code> of the client used to connect to the *OAuth* server.</td>
+  </tr>
+  <tr>
+    <td><code>--oauth-client-secret &lt;secret&gt;</code></td>
+    <td>When using *OAuth*, the <code>secret</code> of the client used to connect to the *OAuth* server.</td>
+  </tr>
+  <tr>
+    <td><code>--oauth-db-roles-claim &lt;claim&gt;</code></td>
+    <td>When using *OAuth*, the name of the <code>claim</code> on the *OAuth* token that contains a comma-separated list of database roles that the user should be assigned.</td>
+  </tr>
+  <tr>
+    <td><code>--oauth-reveal-roles-claim</code> <code>&lt;claim&gt;</code></td>
+    <td>When using *OAuth*, the name of the <code>claim</code> on the *OAuth* token that contains a comma-separated list of *Reveal* roles that the user should be assigned.</td>
+  </tr>
+  <tr>
+    <td><code>--oauth-gadmin-redirect-uri</code> <code>&lt;uri&gt;</code></td>
+    <td>When using *OAuth*, the <code>url</code> that can be used as a return redirect for *GAdmin* from the *OAuth* server, necessary when the hostname or port the user is using to access *GAdmin* is different than those found on the standard public-facing URL.</td>
+  </tr>
+  <tr>
+    <td><code>--oauth-reveal-redirect-uri</code> <code>&lt;uri&gt;</code></td>
+    <td>When using *OAuth*, the <code>url</code> that can be used as a return redirect for *Reveal* from the *OAuth* server, necessary when the hostname or port the user is using to access *Reveal* is different than those found on the standard public-facing URL.</td>
+  </tr>
+  <tr>
+    <td><code>--oauth-workbench-redirect-uri</code> <code>&lt;uri&gt;</code></td>
+    <td>When using *OAuth*, the <code>url</code> that can be used as a return redirect for *Workbench* from the *OAuth* server, necessary when the hostname or port the user is using to access *Workbench* is different than those found on the standard public-facing URL.</td>
+  </tr>
+  <tr>
+    <td><code>--offline-httpd-oauth-installer</code> <code>&lt;path&gt;</code></td>
+    <td>When using *OAuth*, the <code>path</code> of the file or URL for the add-on *OAuth* <code>httpd</code> module installer package (rpm, deb).</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="set-conf-properties [options] &lt;name&gt;">
+
+Set database configuration properties for the cluster with the given `name`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--properties-map &lt;map&gt;</code></td>
+    <td>Specify a <code>map</code> of key-value pairs of database configuration parameters to set.  For example: .. code-block:: json \{"np1.load_vectors_on_migration":"always"\}</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="set-logger [options] &lt;name&gt;">
+
+Set logger and logging level for the cluster with the given `name`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--level &lt;level&gt;</code></td>
+    <td>Specify the <code>level</code> of logging for the selected logger(s).  One of: * <code>TRACE</code> * <code>DEBUG</code> * <code>INFO</code> * <code>WARN</code> * <code>ERROR</code> * <code>FATAL</code> * <code>OFF</code></td>
+  </tr>
+  <tr>
+    <td><code>--logger &lt;name&gt;</code></td>
+    <td>Specify the <code>name</code> of the logger to modify.</td>
+  </tr>
+  <tr>
+    <td><code>--ranks &lt;ranks&gt;</code></td>
+    <td>Specify the number of the rank to where the logging modification will be applied.  A comma-separated list of rank numbers can be used to specify multiple ranks to modify; e.g., <code>0,3,4</code>.  Use <code>-1</code> to apply the modification across the cluster.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="uninstall &lt;name&gt;">
+
+Remove the cluster with the given `name`, including all components except this instance of *KAgent*.
+
+</Accordion>
+
+<Accordion title="update [options] &lt;name&gt;">
+
+Modify select parameters of the cluster with the given `name`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--connect-via &lt;method&gt;</code></td>
+    <td>Specify whether to connect to each node's internal IP address (<code>ip_addr</code>) or public IP address (<code>public_ip_addr</code>).</td>
+  </tr>
+  <tr>
+    <td><code>--is-installed &lt;yes|no&gt;</code></td>
+    <td>Whether to mark (<code>yes</code>) or not mark (<code>no</code>) this cluster as installed.</td>
+  </tr>
+  <tr>
+    <td><code>--move-to-ring &lt;name&gt;</code></td>
+    <td>Specify the <code>name</code> of an existing ring to move this cluster into.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="verify [options] &lt;name&gt;">
+
+Verify connectivity and basic configuration of the cluster with the given `name`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--include-dependency</code></td>
+    <td>Include info from related cluster services like *RabbitMQ*.</td>
+  </tr>
+  <tr>
+    <td><code>--status-only</code></td>
+    <td>Only gather the service status on the nodes.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="write-inventory [options] &lt;name&gt;">
+
+Write out an inventory file for the cluster with the given `name`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>&lt; -i | --inventory-dir &gt; &lt;path&gt;</code></td>
+    <td>The <code>path</code> to write the inventory file to.  Default is <code>./ansible-inventory-&lt;cluster_name&gt;</code>.</td>
+  </tr>
+  <tr>
+    <td><code>--vault-password &lt;password&gt;</code></td>
+    <td>Specify the password to use for the Ansible vault. This overrides the <code>KAGENT_VAULT_PASSWORD</code> environment variable.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="kagent-cli-node"></a>
@@ -243,15 +1308,184 @@ The form of the command to manage nodes is as follows:
 kagent node <command>
 ```
 
-| Node Command | Description |
-| --- | --- |
-| `discover-hostname [options] <name>` | Attempt to auto-discover (and update) the hostname of the node with the given `name`. |
-| `gather-logs [options] <name>` | Download the logs from the node with the given `name` to a destination on the *KAgent* host. <br/> <br/> `--backtrace`: Add a process backtrace to the database process. <br/> <br/> `--kagent-logs`: Add the *KAgent* logs to the archive, up to the point at which they are collected. <br/> <br/> `--log-lines <line_count>`: Specify the number of lines to collect from the log. The first 100 lines are always saved. Use `0` to collect the entire log or `ERROR` to collect only error log messages. Default is `100,000` log lines. <br/> <br/> `--output-dir <path>`: Specify the `path` where the log archive will be written. The directory must be writable by the **gpudb** user on the *KAgent* host. <br/> <br/> `--package-verify`: Verify the installed *Kinetica* packages. |
-| `init [options] <name> <addr> <cluster>` | Initialize a new node with the given `name` and IP `addr` on the given `cluster`.  The `name` must be unique across all nodes in the cluster. <br/> <br/> `--cloud-instance-name <name>`: Specify an optional `name` for the node. <br/> <br/> `--cloud-instance-type <type>`: Specify the `type` of the node, based on the cloud provider. <br/> <br/> `--data-size <size>`: Specify the `size` of the storage to allocate for the node in GB. <br/> <br/> `--gcp-gpu-card <card>`: Specify the GPU `card` to attach to the node (if available and using *GCP* as the provider). <br/> <br/> `--public-ip-addr <addr>`: Specify the IP `addr` of the node accessible outside the DMZ, if applicable. <br/> <br/> `--public-hostname <hostname>`: Specify the `hostname` of the node accessible outside the DMZ, if applicable. <br/> <br/> `--roles <list>`: Specify a comma-separated `list` of roles for the node. +---------------+-----------------------------------------------------+ \| `head` \| Head node for the cluster \| +---------------+-----------------------------------------------------+ \| `worker` \| One of the worker nodes in the cluster \| +---------------+-----------------------------------------------------+ \| `graph` \| [Graph](/content/graph_solver/network_graph_solver) \| \| \| node \| +---------------+-----------------------------------------------------+ \| `kml` \| [KML](/content/ml/concepts) node \| +---------------+-----------------------------------------------------+ \| `ha_queue` \| *RabbitMQ* node for [ring resiliency](/content/ha) \| +---------------+-----------------------------------------------------+ \| `kagent` \| Bootstrapped in-cluster *KAgent* for \| \| \| cluster/ring management \| +---------------+-----------------------------------------------------+ <br/> <br/> `--ssh-port <port>`: Specify the `port` to use for SSH connections to the node. <br/> <br/> `--ssl-cert <path>`: Specify the `path` to the SSL certificate for the node. <br/> <br/> `--ssl-key <path>`: Specify the `path` to the SSL key for the node. |
-| `inspect <name>` | Inspect the details of the node with the given `name`. |
-| `list` | List all managed nodes. |
-| `remove [options] <name>` | Remove the node with the given `name`. <br/> <br/> `-f` `--force`: Always remove the node, even if some aspect of the removal fails. |
-| `update [options] <name>` | Modify select parameters of the node with the given `name`. <br/> <br/> `--public-hostname <hostname>`: Specify the `hostname` of the node accessible outside the DMZ, if applicable. <br/> <br/> `--ssl-cert <path>`: Specify the `path` to the SSL certificate for the node. <br/> <br/> `--ssl-key <path>`: Specify the `path` to the SSL key for the node. |
+<AccordionGroup>
+
+<Accordion title="discover-hostname [options] &lt;name&gt;">
+
+Attempt to auto-discover (and update) the hostname of the node with the given `name`.
+
+</Accordion>
+
+<Accordion title="gather-logs [options] &lt;name&gt;">
+
+Download the logs from the node with the given `name` to a destination on the *KAgent* host.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--backtrace</code></td>
+    <td>Add a process backtrace to the database process.</td>
+  </tr>
+  <tr>
+    <td><code>--kagent-logs</code></td>
+    <td>Add the *KAgent* logs to the archive, up to the point at which they are collected.</td>
+  </tr>
+  <tr>
+    <td><code>--log-lines &lt;line_count&gt;</code></td>
+    <td>Specify the number of lines to collect from the log.  The first 100 lines are always saved.  Use <code>0</code> to collect the entire log or <code>ERROR</code> to collect only error log messages.  Default is <code>100,000</code> log lines.</td>
+  </tr>
+  <tr>
+    <td><code>--output-dir &lt;path&gt;</code></td>
+    <td>Specify the <code>path</code> where the log archive will be written.  The directory must be writable by the **gpudb** user on the *KAgent* host.</td>
+  </tr>
+  <tr>
+    <td><code>--package-verify</code></td>
+    <td>Verify the installed *Kinetica* packages.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="init [options] &lt;name&gt; &lt;addr&gt; &lt;cluster&gt;">
+
+Initialize a new node with the given `name` and IP `addr` on the given `cluster`.  The `name` must
+be unique across all nodes in the cluster.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--cloud-instance-name &lt;name&gt;</code></td>
+    <td>Specify an optional <code>name</code> for the node.</td>
+  </tr>
+  <tr>
+    <td><code>--cloud-instance-type &lt;type&gt;</code></td>
+    <td>Specify the <code>type</code> of the node, based on the cloud provider.</td>
+  </tr>
+  <tr>
+    <td><code>--data-size &lt;size&gt;</code></td>
+    <td>Specify the <code>size</code> of the storage to allocate for the node in GB.</td>
+  </tr>
+  <tr>
+    <td><code>--gcp-gpu-card &lt;card&gt;</code></td>
+    <td>Specify the GPU <code>card</code> to attach to the node (if available and using *GCP* as the provider).</td>
+  </tr>
+  <tr>
+    <td><code>--public-ip-addr &lt;addr&gt;</code></td>
+    <td>Specify the IP <code>addr</code> of the node accessible outside the DMZ, if applicable.</td>
+  </tr>
+  <tr>
+    <td><code>--public-hostname &lt;hostname&gt;</code></td>
+    <td>Specify the <code>hostname</code> of the node accessible outside the DMZ, if applicable.</td>
+  </tr>
+  <tr>
+    <td><code>--roles &lt;list&gt;</code></td>
+    <td>Specify a comma-separated <code>list</code> of roles for the node. +---------------+-----------------------------------------------------+ +===============+=====================================================+ +---------------+-----------------------------------------------------+ +---------------+-----------------------------------------------------+ +---------------+-----------------------------------------------------+ +---------------+-----------------------------------------------------+ +---------------+-----------------------------------------------------+ +---------------+-----------------------------------------------------+</td>
+  </tr>
+  <tr>
+    <td><code>--ssh-port &lt;port&gt;</code></td>
+    <td>Specify the <code>port</code> to use for SSH connections to the node.</td>
+  </tr>
+  <tr>
+    <td><code>--ssl-cert &lt;path&gt;</code></td>
+    <td>Specify the <code>path</code> to the SSL certificate for the node.</td>
+  </tr>
+  <tr>
+    <td><code>--ssl-key &lt;path&gt;</code></td>
+    <td>Specify the <code>path</code> to the SSL key for the node.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="inspect &lt;name&gt;">
+
+Inspect the details of the node with the given `name`.
+
+</Accordion>
+
+<Accordion title="list">
+
+List all managed nodes.
+
+</Accordion>
+
+<Accordion title="remove [options] &lt;name&gt;">
+
+Remove the node with the given `name`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>&lt; -f | --force &gt;</code></td>
+    <td>Always remove the node, even if some aspect of the removal fails.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="update [options] &lt;name&gt;">
+
+Modify select parameters of the node with the given `name`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>--public-hostname &lt;hostname&gt;</code></td>
+    <td>Specify the <code>hostname</code> of the node accessible outside the DMZ, if applicable.</td>
+  </tr>
+  <tr>
+    <td><code>--ssl-cert &lt;path&gt;</code></td>
+    <td>Specify the <code>path</code> to the SSL certificate for the node.</td>
+  </tr>
+  <tr>
+    <td><code>--ssl-key &lt;path&gt;</code></td>
+    <td>Specify the <code>path</code> to the SSL key for the node.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="kagent-cli-log"></a>
@@ -266,9 +1500,33 @@ The form of the command to manage *KAgent* logs is as follows:
 kagent log <command>
 ```
 
-| Log Command | Description |
-| --- | --- |
-| `list [options]` | Show a list of *KAgent* log events. <br/> <br/> `-n <number>` `--number <number>`: Specify the maximum `number` of log events to show. |
+<AccordionGroup>
+
+<Accordion title="list [options]">
+
+Show a list of *KAgent* log events.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>&lt; -n | --number &gt; &lt;number&gt;</code></td>
+    <td>Specify the maximum <code>number</code> of log events to show.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="kagent-cli-check"></a>
@@ -287,10 +1545,21 @@ The form of the command to perform this check is as follows:
 kagent check [options]
 ```
 
-| Option | Description |
-| --- | --- |
-| `--retry-count <number>` | Specify the `number` of connectivity check retries before failing over nodes. |
-| `--retry-delay <seconds>` | Specify the `seconds` to wait between each connectivity check retry. |
+<AccordionGroup>
+
+<Accordion title="--retry-count &lt;number&gt;">
+
+Specify the `number` of connectivity check retries before failing over nodes.
+
+</Accordion>
+
+<Accordion title="--retry-delay &lt;seconds&gt;">
+
+Specify the `seconds` to wait between each connectivity check retry.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="kagent-cli-reset"></a>
@@ -309,10 +1578,22 @@ The form of the command to perform a factory reset is as follows:
 kagent factory-reset [options]
 ```
 
-| Option | Description |
-| --- | --- |
-| `--clear-data <yes\|no>` | Whether to remove (`yes`) or not remove (`no`) directories left by the installation.  Default is to not remove directories. |
-| `--proceed <yes\|no>` | Whether to automatically proceed (`yes`) or ask for confirmation (`no`) before performing a reset. |
+<AccordionGroup>
+
+<Accordion title="--clear-data &lt;yes|no&gt;">
+
+Whether to remove (`yes`) or not remove (`no`) directories left by the installation.  Default is to
+not remove directories.
+
+</Accordion>
+
+<Accordion title="--proceed &lt;yes|no&gt;">
+
+Whether to automatically proceed (`yes`) or ask for confirmation (`no`) before performing a reset.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="kagent-cli-monitor"></a>
@@ -329,11 +1610,27 @@ The form of the command is as follows:
 kagent monitor [options]
 ```
 
-| Option | Description |
-| --- | --- |
-| `--interval <schedule>` | Specify how often the check command will be run, in crontab format.  Default is `*/5 * * * *`. |
-| `--retry-count <number>` | Specify the `number` of check retries before failing over a node. |
-| `--retry-delay <seconds>` | Specify the `seconds` to wait between each check retry. |
+<AccordionGroup>
+
+<Accordion title="--interval &lt;schedule&gt;">
+
+Specify how often the check command will be run, in crontab format.  Default is `*/5 * * * *`.
+
+</Accordion>
+
+<Accordion title="--retry-count &lt;number&gt;">
+
+Specify the `number` of check retries before failing over a node.
+
+</Accordion>
+
+<Accordion title="--retry-delay &lt;seconds&gt;">
+
+Specify the `seconds` to wait between each check retry.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="kagent-cli-refresh"></a>
@@ -365,7 +1662,22 @@ The form of the command is as follows:
 kagent update [options]
 ```
 
-| Option | Description |
-| --- | --- |
-| `--is-bootstrapped <yes\|no>` | Whether to mark this *KAgent* as bootstrapped (`yes`) or not (`no`).  A bootstrapped *KAgent* is one that is deployed into a cloud-provisioned cluster during installation.  This marking will determine which set of IPs this *KAgent* will use in connecting via SSH to the cluster nodes. |
-| `--force-bootstrap-unlock <yes\|no>` | Whether to remove (`yes`) or not remove (`no`) the lock placed on this *KAgent* if it had been used to bootstrap an in-cluster *KAgent*. |
+<AccordionGroup>
+
+<Accordion title="--is-bootstrapped &lt;yes|no&gt;">
+
+Whether to mark this *KAgent* as bootstrapped (`yes`) or not (`no`).  A bootstrapped
+*KAgent* is one that is deployed into a cloud-provisioned cluster during installation.  This
+marking will determine which set of IPs this *KAgent* will use in connecting via SSH to the
+cluster nodes.
+
+</Accordion>
+
+<Accordion title="--force-bootstrap-unlock &lt;yes|no&gt;">
+
+Whether to remove (`yes`) or not remove (`no`) the lock placed on this *KAgent* if it had
+been used to bootstrap an in-cluster *KAgent*.
+
+</Accordion>
+
+</AccordionGroup>

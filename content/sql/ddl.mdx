@@ -132,7 +132,7 @@ cost DECIMAL(10, 2)              -- cost is able to hold an 8.2 decimal
 ## Column Properties
 
 
-| Property | Description |
+| Column Property | Description |
 | --- | --- |
 | `COMPRESS(TYPE)` | Applies [compress](/content/concepts/types#types-data-handling) data handling to a column using the specified compression type, enabling compression of its values; see [Column Compression](/content/concepts/column_compression) for details |
 | `DICT` | Applies [dict](/content/concepts/types#types-data-handling) data handling to a column, enabling dictionary-encoding of its values; see [Dictionary Encoding](/content/concepts/dictionary_encoding) for details |
@@ -161,10 +161,31 @@ automatically created when specified in `CREATE TABLE` or similar calls.
 CREATE SCHEMA [IF NOT EXISTS] <schema name>
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `IF NOT EXISTS` | Optional error suppression clause, which causes no error to be returned if a *schema* with the same name already exists |
-| `<schema name>` | Name of the *schema* to create; must adhere to the supported [naming criteria](/content/sql/naming#sql-naming-criteria) |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="IF NOT EXISTS">
+
+Optional error suppression clause, which causes no error to be returned if a *schema* with the
+same name already exists
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* to create; must adhere to the supported
+[naming criteria](/content/sql/naming#sql-naming-criteria)
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 {/* Source: /examples/sql/schema.kisql (lines 16) */}
 ```sql CREATE SCHEMA Example
@@ -207,13 +228,39 @@ Removes an existing [schema](/content/sql/ddl#sql-create-schema).
 DROP SCHEMA [IF EXISTS] <schema name> [CASCADE]
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `IF EXISTS` | Optional error-suppression clause; if specified, no error will be returned if the given *schema* does not exist |
-| `<schema name>` | Name of the *schema* to remove |
-| `CASCADE` | Drops all objects contained within the schema; if not specified, an error will be returned if the given *schema* contains any *tables*, *views*, etc. |
 
-For example, to drop a *schema*, including all contained objects:
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="IF EXISTS">
+
+Optional error-suppression clause; if specified, no error will be returned if the given
+*schema* does not exist
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* to remove
+
+</Accordion>
+
+<Accordion title="CASCADE">
+
+Drops all objects contained within the schema; if not specified, an error will be returned if the
+given *schema* contains any *tables*, *views*, etc.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To drop a *schema*, including all contained objects:
 
 {/* Source: /examples/sql/schema.kisql (lines 47) */}
 ```sql DROP SCHEMA Example
@@ -237,13 +284,39 @@ with the DDL statement as the value in the `DDL` column, shown below with
 the column separators returned by <Badge color="blue-destructive">kisql</Badge>.
 </Info>
 
-| Parameters | Description |
-| --- | --- |
-| `CREATE` | Optional keyword for clarity |
-| `SCHEMA` | Optional clause to avoid ambiguity; if omitted, and a *table* or *view* exists with the given name, the command will be interpreted as a `SHOW TABLE` statement instead |
-| `<schema name>` | Name of the *schema* whose contained *tables'* & *views'* DDL will be output; use `*` instead to output the DDL of all *schemas*, *tables*, & *views* |
 
-For example, to output the DDL for the example schema created in the
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="CREATE">
+
+Optional keyword for clarity
+
+</Accordion>
+
+<Accordion title="SCHEMA">
+
+Optional clause to avoid ambiguity; if omitted, and a *table* or *view* exists with the given
+name, the command will be interpreted as a `SHOW TABLE` statement instead
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* whose contained *tables'* & *views'* DDL will be output; use `*` instead
+to output the DDL of all *schemas*, *tables*, & *views*
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To output the DDL for the example schema created in the
 [CREATE SCHEMA](/content/sql/ddl#sql-create-schema) section:
 
 {/* Source: /examples/sql/schema.kisql (lines 28) */}
@@ -266,12 +339,32 @@ Lists the contained *tables* and *views* of a given *schema*.
 DESC[RIBE] [SCHEMA] <schema name>
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `SCHEMA` | Optional clause to avoid ambiguity; if omitted, and a *table* or *view* exists with the given name, the command will be interpreted as a `DESCRIBE TABLE` statement instead |
-| `<schema name>` | Name of the *schema* whose contained *tables* & *views* will be listed |
 
-For example, to describe the tables contained in the `demo` schema, into
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="SCHEMA">
+
+Optional clause to avoid ambiguity; if omitted, and a *table* or *view* exists with the given
+name, the command will be interpreted as a `DESCRIBE TABLE` statement instead
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* whose contained *tables* & *views* will be listed
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To describe the tables contained in the `demo` schema, into
 which demo data is usually downloaded:
 
 {/* Source: /examples/sql/schema.kisql (lines 53) */}
@@ -343,27 +436,168 @@ CREATE [OR REPLACE] [REPLICATED] [TEMP] TABLE [IF NOT EXISTS] [<schema name>.]<t
 ```
 
 
-| Parameters | Description |
-| --- | --- |
-| `OR REPLACE` | Any existing *table* or *view* with the same name will be dropped before creating this one; mutually exclusive with `IF NOT EXISTS` |
-| `REPLICATED` | The *table* will be distributed within the database as a [replicated](/content/concepts/tables#replicated) *table* |
-| `TEMP` | The *table* will be a [memory-only table](/content/concepts/tables_memory_only); which, among other things, means it will not be persisted (if the database is restarted, the *table* will be removed), but it will have increased ingest performance |
-| `IF NOT EXISTS` | If a *table* or *view* with the same name exists, do nothing; mutually exclusive with `OR REPLACE` |
-| `<schema name>` | Name of the *schema* that will contain the created *table*; if no *schema* is specified, the *table* will be created in the user's [default schema](/content/concepts/schemas#schema-default) |
-| `<table name>` | Name of the *table* to create; must adhere to the supported [naming criteria](/content/sql/naming#sql-naming-criteria) |
-| `<column name>` | Name of a *column* to create within the *table*; must adhere to the supported [naming criteria](/content/sql/naming#sql-naming-criteria) |
-| `<column definition>` | Definition of the column associated with `<column name>`; see [Data Definition (DDL)](/content/sql/ddl#sql-ddl) for column format |
-| `COMMENT '<column comment>'` | Apply column comment `<column comment>` to the column associated with `<column name>` |
-| `SOFT` | Modifier for `PRIMARY KEY` that creates a [soft primary key](/content/concepts/tables#soft-primary-key) instead of a standard [primary key](/content/concepts/tables#primary-key) |
-| `PRIMARY KEY (<column list>)` | Optional [primary key](/content/concepts/tables#primary-key) specification clause, where `<column list>` is a comma-separated list of columns to use as the *primary key* for the *table* |
-| `SHARD KEY (<column list>)` | Optional [shard key](/content/concepts/tables#shard-key) specification clause, where `<column list>` is a comma-separated list of columns to use as the *shard key* for the *table* |
-| `FOREIGN KEY ...` | Optional comma-separated set of [foreign key](/content/concepts/tables#foreign-key) specification clauses, with the following parameters: <br/> <br/> `<column list>`: Comma-separated list of columns in the *table* to create that will reference a matching set of *primary key* columns in another *table* <br/> <br/> `<foreign table name>`: Name of target *table* referred to in this *foreign key* <br/> <br/> `<foreign column list>`: The *primary key* columns in the target *table* referred to in this *foreign key*, matching the list of columns specified in `<column list>` in the table to create <br/> <br/> `AS <foreign key name>`: Optional alias for the *foreign key* |
-| [&lt;partition clause&gt;](/content/sql/ddl#sql-create-table-partition) | Defines a [partitioning](/content/concepts/tables#partitioning) scheme for the *table* to create |
-| [&lt;tier strategy clause&gt;](/content/sql/ddl#sql-create-table-tier-strategy) | Defines the [tier strategy](/content/rm/concepts#rm-concepts-tier-strategy) for the *table* to create |
-| [&lt;index clause&gt;](/content/sql/ddl#sql-create-table-index) | Applies any number of [column indexes](/content/concepts/indexes#column-index), [chunk skip indexes](/content/concepts/indexes#chunk-skip-index), [geospatial indexes](/content/concepts/indexes#geospatial-index), [CAGRA indexes](/content/concepts/indexes#cagra-index), or [HNSW indexes](/content/concepts/indexes#hnsw-index) to the *table* to create |
-| [&lt;table property clause&gt;](/content/sql/ddl#sql-create-table-prop) | Assigns table properties, from a subset of those available, to the *table* to create |
+### Parameters
 
-For example, to create a table with various column types and properties:
+
+<AccordionGroup>
+
+<Accordion title="OR REPLACE">
+
+Any existing *table* or *view* with the same name will be dropped before creating this one;
+mutually exclusive with `IF NOT EXISTS`
+
+</Accordion>
+
+<Accordion title="REPLICATED">
+
+The *table* will be distributed within the database as a [replicated](/content/concepts/tables#replicated)
+*table*
+
+</Accordion>
+
+<Accordion title="TEMP">
+
+The *table* will be a [memory-only table](/content/concepts/tables_memory_only); which, among
+other things, means it will not be persisted (if the database is restarted, the *table* will be
+removed), but it will have increased ingest performance
+
+</Accordion>
+
+<Accordion title="IF NOT EXISTS">
+
+If a *table* or *view* with the same name exists, do nothing; mutually exclusive with
+`OR REPLACE`
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* that will contain the created *table*; if no *schema* is specified, the
+*table* will be created in the user's [default schema](/content/concepts/schemas#schema-default)
+
+</Accordion>
+
+<Accordion title="&lt;table name&gt;">
+
+Name of the *table* to create; must adhere to the supported
+[naming criteria](/content/sql/naming#sql-naming-criteria)
+
+</Accordion>
+
+<Accordion title="&lt;column name&gt;">
+
+Name of a *column* to create within the *table*; must adhere to the supported
+[naming criteria](/content/sql/naming#sql-naming-criteria)
+
+</Accordion>
+
+<Accordion title="&lt;column definition&gt;">
+
+Definition of the column associated with `<column name>`; see [Data Definition (DDL)](/content/sql/ddl#sql-ddl) for column
+format
+
+</Accordion>
+
+<Accordion title="COMMENT '&lt;column comment&gt;'">
+
+Apply column comment `<column comment>` to the column associated with `<column name>`
+
+</Accordion>
+
+<Accordion title="SOFT">
+
+Modifier for `PRIMARY KEY` that creates a [soft primary key](/content/concepts/tables#soft-primary-key) instead
+of a standard [primary key](/content/concepts/tables#primary-key)
+
+</Accordion>
+
+<Accordion title="PRIMARY KEY (&lt;column list&gt;)">
+
+Optional [primary key](/content/concepts/tables#primary-key) specification clause, where `<column list>` is a
+comma-separated list of columns to use as the *primary key* for the *table*
+
+</Accordion>
+
+<Accordion title="SHARD KEY (&lt;column list&gt;)">
+
+Optional [shard key](/content/concepts/tables#shard-key) specification clause, where `<column list>` is a
+comma-separated list of columns to use as the *shard key* for the *table*
+
+</Accordion>
+
+<Accordion title="FOREIGN KEY ...">
+
+Optional comma-separated set of [foreign key](/content/concepts/tables#foreign-key) specification clauses, with
+the following parameters:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Parameter</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>&lt;column list&gt;</code></td>
+    <td>Comma-separated list of columns in the *table* to create that will reference a matching set of *primary key* columns in another *table*</td>
+  </tr>
+  <tr>
+    <td><code>&lt;foreign table name&gt;</code></td>
+    <td>Name of target *table* referred to in this *foreign key*</td>
+  </tr>
+  <tr>
+    <td><code>&lt;foreign column list&gt;</code></td>
+    <td>The *primary key* columns in the target *table* referred to in this *foreign key*, matching the list of columns specified in <code>&lt;column list&gt;</code> in the table to create</td>
+  </tr>
+  <tr>
+    <td><code>AS &lt;foreign key name&gt;</code></td>
+    <td>Optional alias for the *foreign key*</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="&lt;partition clause&gt;">
+
+Defines a [partitioning](/content/concepts/tables#partitioning) scheme for the *table* to create
+
+</Accordion>
+
+<Accordion title="&lt;tier strategy clause&gt;">
+
+Defines the [tier strategy](/content/rm/concepts#rm-concepts-tier-strategy) for the *table* to create
+
+</Accordion>
+
+<Accordion title="&lt;index clause&gt;">
+
+Applies any number of [column indexes](/content/concepts/indexes#column-index),
+[chunk skip indexes](/content/concepts/indexes#chunk-skip-index),
+[geospatial indexes](/content/concepts/indexes#geospatial-index),
+[CAGRA indexes](/content/concepts/indexes#cagra-index), or
+[HNSW indexes](/content/concepts/indexes#hnsw-index)
+to the *table* to create
+
+</Accordion>
+
+<Accordion title="&lt;table property clause&gt;">
+
+Assigns table properties, from a subset of those available, to the *table* to create
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To create a table with various column types and properties:
 
 {/* Source: /examples/sql/table/create_table.kisql (lines 32-63) */}
 ```sql CREATE TABLE Example
@@ -1009,15 +1243,96 @@ USING TABLE PROPERTIES
 
 Available table properties include:
 
-| Property | Description |
-| --- | --- |
-| `CHUNK COLUMN MEMORY` | Size of the blocks of memory holding the data, when loaded; specified as the maximum number of bytes any one column should hold. <br/> <Info> The size of dictionary-encoded columns is estimated. </Info> |
-| `CHUNK MEMORY` | Size of the blocks of memory holding the data, when loaded; specified as the maximum total number of bytes all columns should hold. <br/> <Info> The size of dictionary-encoded columns is estimated. </Info> |
-| `CHUNK SIZE` | Size of the blocks of memory holding the data, when loaded; specified as the maximum number of records each block of memory should hold. |
-| `COMPRESSION_CODEC` | The default [compression](/content/concepts/column_compression) type to apply to columns of this table not explicitly given one. |
-| `NO_ERROR_IF_EXISTS` | Error suppression option, which causes no error to be returned if a *table* with the same name already exists; default is `FALSE`. <br/> <Info> This is the same option as `IF NOT EXISTS`. </Info> |
-| `PRIMARY_KEY_TYPE` | The type of [primary key index](/content/concepts/indexes#primary-key-index) to use. <br/> <br/> The default is `memory`. <br/> <br/> `memory`: *Primary key index* is loaded into memory, occupying RAM but improving performance. <br/> <br/> `disk`: *Primary key index* is stored on disk only, increasing available RAM at the cost of some performance. |
-| `TTL` | The [time-to-live (TTL)](/content/concepts/ttl) for the *table*; if not set, the *table* will not expire. |
+<AccordionGroup>
+
+<Accordion title="CHUNK COLUMN MEMORY">
+
+Size of the blocks of memory holding the data, when loaded; specified as the
+maximum number of bytes any one column should hold.
+
+
+<Info>
+The size of dictionary-encoded columns is estimated.
+</Info>
+
+</Accordion>
+
+<Accordion title="CHUNK MEMORY">
+
+Size of the blocks of memory holding the data, when loaded; specified as the
+maximum total number of bytes all columns should hold.
+
+
+<Info>
+The size of dictionary-encoded columns is estimated.
+</Info>
+
+</Accordion>
+
+<Accordion title="CHUNK SIZE">
+
+Size of the blocks of memory holding the data, when loaded; specified as the
+maximum number of records each block of memory should hold.
+
+</Accordion>
+
+<Accordion title="COMPRESSION_CODEC">
+
+The default [compression](/content/concepts/column_compression) type to apply
+to columns of this table not explicitly given one.
+
+</Accordion>
+
+<Accordion title="NO_ERROR_IF_EXISTS">
+
+Error suppression option, which causes no error to be returned if a *table*
+with the same name already exists; default is `FALSE`.
+
+
+<Info>
+This is the same option as `IF NOT EXISTS`.
+</Info>
+
+</Accordion>
+
+<Accordion title="PRIMARY_KEY_TYPE">
+
+The type of [primary key index](/content/concepts/indexes#primary-key-index) to use.
+
+The default is `memory`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>memory</code></td>
+    <td>*Primary key index* is loaded into memory, occupying RAM but improving performance.</td>
+  </tr>
+  <tr>
+    <td><code>disk</code></td>
+    <td>*Primary key index* is stored on disk only, increasing available RAM at the cost of some performance.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="TTL">
+
+The [time-to-live (TTL)](/content/concepts/ttl) for the *table*; if not set,
+the *table* will not expire.
+
+</Accordion>
+
+</AccordionGroup>
 
 For example, to create a table with up to *1,000,000* records per chunk and that
 will expire in *15* minutes:
@@ -1100,24 +1415,230 @@ The use of *external tables* with [ring resiliency](/content/ha)
 has additional [considerations](/content/ha/ha_configuration#ring-extdata).
 
 
-| Parameters | Description |
-| --- | --- |
-| `OR REPLACE` | Any existing *table* or *view* with the same name will be dropped before creating this one. |
-| `REPLICATED` | The *external table* will be distributed within the database as a [replicated](/content/concepts/tables#replicated) *table*. |
-| `TEMP` | The *external table* will be a [memory-only table](/content/concepts/tables_memory_only); which, among other things, means it will not be persisted (if the database is restarted, the *external table* will be removed), but it will have increased ingest performance. |
-| `LOGICAL` | External data will **not** be loaded into the database; the data will be retrieved from the source upon servicing each query against the *external table*.  This mode ensures queries on the *external table* will always return the most current source data, though there will be a performance penalty for reparsing & reloading the data from source files upon each query. |
-| `MATERIALIZED` | Loads a copy of the external data into the database, refreshed on demand; this is the default *external table* type. |
-| `<schema name>` | Name of the *schema* that will contain the created *external table*; if no *schema* is specified, the *external table* will be created in the user's [default schema](/content/concepts/schemas#schema-default). |
-| `<table name>` | Name of the *external table* to create; must adhere to the supported [naming criteria](/content/sql/naming#sql-naming-criteria). |
-| [&lt;table definition clause&gt;](/content/sql/ddl#sql-create-ext-table-def) | Optional clause, defining the structure for the *external table* associated with the source data. |
-| `REMOTE QUERY` | Source data specification clause, where `<source data query>` is a SQL query selecting the data which will be loaded. <br/> <Info> This clause is mutually exclusive with the `FILE PATHS` clause, and is only applicable to JDBC *data sources*. </Info> <br/> The query should meet the following criteria: <br/> <br/> * Any column expression used is given a column alias. <br/> * The first column is not a `WKT` or unlimited length `VARCHAR` type. <br/> * The columns and expressions queried should match the intended order, number, & type of the columns in the target table. <br/> <br/> Any query resulting in more than *10,000* records will be distributed and loaded in parallel (unless directed otherwise) using the following rule sequence: <br/> <br/> 1. If `REMOTE_QUERY_NO_SPLIT` is `TRUE`, the query will not be distributed. <br/> 2. If a valid `REMOTE_QUERY_PARTITION_COLUMN` is specified, the query will be distributed by partitioning on the given column's values <br/> 3. If a valid `REMOTE_QUERY_ORDER_BY` is specified, the query will be distributed by ordering the data accordingly and then partitioning into sequential blocks from the first record <br/> 4. If a non-null numeric/date/time column exists, the query will be distributed by partitioning on the first such column's values <br/> 5. The query will be distributed by sorting the data on the first column and then partitioning into sequential blocks from the first record <br/> <br/> Type inferencing is limited by the available JDBC types.  To take advantage of Kinetica-specific types and properties, define the table columns explicitly in the [&lt;table definition clause&gt;](/content/sql/ddl#sql-create-ext-table-def). |
-| `FILE PATHS` | Source file specification clause, where `<file paths>` is a comma-separated list of single-quoted file paths from which data will be loaded; all files specified are presumed to have the same format and data types. <br/> <Info> This clause is mutually exclusive with the `REMOTE QUERY` clause, and is not applicable to JDBC *data sources*. </Info> <br/> The form of a file path is dependent on the source referenced: <br/> <br/> * *Data Source*:  If a *data source* is specified in the [load options](/content/sql/ddl#sql-create-ext-table-load-opt), these file paths must resolve to accessible files at that *data source* location.  A "path prefix" can be specified instead, which will cause all files whose path begins with the given prefix to be included. <br/> <br/> For example, a "path prefix" of `/data/ge` for `<file paths>` would match all of the following: <br/> <br/> * `/data/geo.csv` <br/> * `/data/geo/flights.csv` <br/> * `/data/geo/2021/airline.csv` <br/> <br/> If using an HDFS *data source*, the "path prefix" must be the name of an HDFS directory. <br/> <br/> * [KiFS](/content/tools/kifs):  The path must resolve to an accessible file path within *KiFS*. A "path prefix" can be specified instead, which will cause all files whose path begins with the given prefix to be included. <br/> <br/> For example, a "path prefix" of `kifs://data/ge` would match all of the following files under the *KiFS* `data` directory: <br/> <br/> * `kifs://data/geo.csv` <br/> * `kifs://data/geo/flights.csv` <br/> * `kifs://data/geo/2021/airline.csv` |
-| `FORMAT` | Optional indicator of source file type, for file-based data sources; will be inferred from the file extension if not given. <br/> <br/> Supported formats include: <br/> <br/> `[DELIMITED] TEXT`: Any text-based, delimited field data file (CSV, PSV, TSV, etc.); a comma-delimited list of options can be given to specify the way in which the data file(s) should be parsed, including the delimiter used, whether headers are present, etc. Records spanning multiple lines are not supported. See [Delimited Text Options](/content/sql/ddl#sql-create-ext-table-delim-opt) for the complete list of `<delimited text options>`. <br/> <br/> `AVRO`: *Apache Avro* data file <br/> <br/> `JSON`: Either a *JSON* or *GeoJSON* data file See [JSON/GeoJSON Limitations](/content/load_data/concepts#ingest-json-limitations) for the supported data types. <br/> <br/> `PARQUET`: *Apache Parquet* data file See [Parquet Limitations](/content/load_data/concepts#ingest-parquet-limitations) for the supported data types. <br/> <br/> `SHAPEFILE`: *ArcGIS* shapefile |
-| `WITH OPTIONS` | Optional indicator that a comma-delimited list of connection & global option/value assignments will follow. <br/> <br/> See [Load Options](/content/sql/ddl#sql-create-ext-table-load-opt) for the complete list of options. |
-| [&lt;partition clause&gt;](/content/sql/ddl#sql-create-ext-table-partition) | Optional clause, defining a [partitioning](/content/sql/ddl#sql-create-table-partition) scheme for the *external table* associated with the source data. |
-| [&lt;tier strategy clause&gt;](/content/sql/ddl#sql-create-ext-table-tier-strategy) | Optional clause, defining the [tier strategy](/content/sql/ddl#sql-create-table-tier-strategy) for the *external table* associated with the source data. |
-| [&lt;index clause&gt;](/content/sql/ddl#sql-create-ext-table-index) | Optional clause, applying any number of [column indexes](/content/concepts/indexes#column-index), [chunk skip indexes](/content/sql/ddl#sql-alter-table-chunk-skip-index-add), [geospatial indexes](/content/sql/ddl#sql-alter-table-geospatial-index-add), [CAGRA indexes](/content/sql/ddl#sql-alter-table-cagra-index-add), or [HNSW indexes](/content/sql/ddl#sql-alter-table-hnsw-index-add) to the *external table* associated with the source data. |
-| [&lt;table property clause&gt;](/content/sql/ddl#sql-create-ext-table-prop) | Optional clause, assigning table properties, from a subset of those available, to the *external table* associated with the source data. |
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="OR REPLACE">
+
+Any existing *table* or *view* with the same name will be dropped before creating this one.
+
+</Accordion>
+
+<Accordion title="REPLICATED">
+
+The *external table* will be distributed within the database as a
+[replicated](/content/concepts/tables#replicated) *table*.
+
+</Accordion>
+
+<Accordion title="TEMP">
+
+The *external table* will be a [memory-only table](/content/concepts/tables_memory_only); which,
+among other things, means it will not be persisted (if the database is restarted, the
+*external table* will be removed), but it will have increased ingest performance.
+
+</Accordion>
+
+<Accordion title="LOGICAL">
+
+External data will **not** be loaded into the database; the data will be retrieved from the
+source upon servicing each query against the *external table*.  This mode ensures queries on
+the *external table* will always return the most current source data, though there will be a
+performance penalty for reparsing & reloading the data from source files upon each query.
+
+</Accordion>
+
+<Accordion title="MATERIALIZED">
+
+Loads a copy of the external data into the database, refreshed on demand; this is the default
+*external table* type.
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* that will contain the created *external table*; if no *schema* is specified,
+the *external table* will be created in the user's [default schema](/content/concepts/schemas#schema-default).
+
+</Accordion>
+
+<Accordion title="&lt;table name&gt;">
+
+Name of the *external table* to create; must adhere to the supported
+[naming criteria](/content/sql/naming#sql-naming-criteria).
+
+</Accordion>
+
+<Accordion title="&lt;table definition clause&gt;">
+
+Optional clause, defining the structure for the *external table* associated with the source
+data.
+
+</Accordion>
+
+<Accordion title="REMOTE QUERY">
+
+Source data specification clause, where `<source data query>` is a SQL query selecting the data
+which will be loaded.
+
+
+<Info>
+This clause is mutually exclusive with the `FILE PATHS` clause, and is only
+applicable to JDBC *data sources*.
+</Info>
+
+The query should meet the following criteria:
+
+* Any column expression used is given a column alias.
+* The first column is not a `WKT` or unlimited length `VARCHAR` type.
+* The columns and expressions queried should match the intended order, number, & type of the
+  columns in the target table.
+
+Any query resulting in more than *10,000* records will be distributed and loaded in parallel
+(unless directed otherwise) using the following rule sequence:
+
+1. If `REMOTE_QUERY_NO_SPLIT` is `TRUE`, the query will not be distributed.
+2. If a valid `REMOTE_QUERY_PARTITION_COLUMN` is specified, the query will be distributed by partitioning on the
+   given column's values
+3. If a valid `REMOTE_QUERY_ORDER_BY` is specified, the query will be distributed by ordering the data
+   accordingly and then partitioning into sequential blocks from the first record
+4. If a non-null numeric/date/time column exists, the query will be distributed by partitioning
+   on the first such column's values
+5. The query will be distributed by sorting the data on the first column and then partitioning
+   into sequential blocks from the first record
+
+Type inferencing is limited by the available JDBC types.  To take advantage of Kinetica-specific
+types and properties, define the table columns explicitly in the [&lt;table definition clause&gt;](/content/sql/ddl#sql-create-ext-table-def).
+
+</Accordion>
+
+<Accordion title="FILE PATHS">
+
+Source file specification clause, where `<file paths>` is a comma-separated list of
+single-quoted file paths from which data will be loaded; all files specified are presumed to have
+the same format and data types.
+
+
+<Info>
+This clause is mutually exclusive with the `REMOTE QUERY` clause, and is not
+applicable to JDBC *data sources*.
+</Info>
+
+The form of a file path is dependent on the source referenced:
+
+* *Data Source*:  If a *data source* is specified in the [load options](/content/sql/ddl#sql-create-ext-table-load-opt), these file paths must resolve
+  to accessible files at that *data source* location.  A "path prefix" can be specified instead,
+  which will cause all files whose path begins with the given prefix to be included.
+
+  For example, a "path prefix" of `/data/ge` for `<file paths>` would match all of the
+  following:
+
+  * `/data/geo.csv`
+  * `/data/geo/flights.csv`
+  * `/data/geo/2021/airline.csv`
+
+  If using an HDFS *data source*, the "path prefix" must be the name of an HDFS directory.
+
+* [KiFS](/content/tools/kifs):  The path must resolve to an accessible file path within *KiFS*.
+  A "path prefix" can be specified instead, which will cause all files whose path begins with the
+  given prefix to be included.
+
+  For example, a "path prefix" of `kifs://data/ge` would match all of the following files under
+  the *KiFS* `data` directory:
+
+  * `kifs://data/geo.csv`
+  * `kifs://data/geo/flights.csv`
+  * `kifs://data/geo/2021/airline.csv`
+
+</Accordion>
+
+<Accordion title="FORMAT">
+
+Optional indicator of source file type, for file-based data sources; will be inferred from the
+file extension if not given.
+
+Supported formats include:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Keyword</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>[DELIMITED] TEXT</code></td>
+    <td>Any text-based, delimited field data file (CSV, PSV, TSV, etc.); a comma-delimited list of options can be given to specify the way in which the data file(s) should be parsed, including the delimiter used, whether headers are present, etc.  Records spanning multiple lines are not supported. See [Delimited Text Options](/content/sql/ddl#sql-create-ext-table-delim-opt) for the complete list of <code>&lt;delimited text options&gt;</code>.</td>
+  </tr>
+  <tr>
+    <td><code>AVRO</code></td>
+    <td>*Apache Avro* data file</td>
+  </tr>
+  <tr>
+    <td><code>JSON</code></td>
+    <td>Either a *JSON* or *GeoJSON* data file See [JSON/GeoJSON Limitations](/content/load_data/concepts#ingest-json-limitations) for the supported data types.</td>
+  </tr>
+  <tr>
+    <td><code>PARQUET</code></td>
+    <td>*Apache Parquet* data file See [Parquet Limitations](/content/load_data/concepts#ingest-parquet-limitations) for the supported data types.</td>
+  </tr>
+  <tr>
+    <td><code>SHAPEFILE</code></td>
+    <td>*ArcGIS* shapefile</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="WITH OPTIONS">
+
+Optional indicator that a comma-delimited list of connection & global option/value assignments
+will follow.
+
+See [Load Options](/content/sql/ddl#sql-create-ext-table-load-opt) for the complete list of options.
+
+</Accordion>
+
+<Accordion title="&lt;partition clause&gt;">
+
+Optional clause, defining a [partitioning](/content/sql/ddl#sql-create-table-partition) scheme for the
+*external table* associated with the source data.
+
+</Accordion>
+
+<Accordion title="&lt;tier strategy clause&gt;">
+
+Optional clause, defining the [tier strategy](/content/sql/ddl#sql-create-table-tier-strategy) for the
+*external table* associated with the source data.
+
+</Accordion>
+
+<Accordion title="&lt;index clause&gt;">
+
+Optional clause, applying any number of [column indexes](/content/concepts/indexes#column-index),
+[chunk skip indexes](/content/sql/ddl#sql-alter-table-chunk-skip-index-add),
+[geospatial indexes](/content/sql/ddl#sql-alter-table-geospatial-index-add),
+[CAGRA indexes](/content/sql/ddl#sql-alter-table-cagra-index-add), or
+[HNSW indexes](/content/sql/ddl#sql-alter-table-hnsw-index-add)
+to the *external table* associated with the source data.
+
+</Accordion>
+
+<Accordion title="&lt;table property clause&gt;">
+
+Optional clause, assigning table properties, from a subset of those available, to the
+*external table* associated with the source data.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="sql-create-ext-table-delim-opt"></a>
@@ -1130,15 +1651,145 @@ The following options can be specified when loading data from delimited text
 files.  When reading from multiple files, options specific to the source file
 will be applied to each file being read.
 
-| Option | Description |
-| --- | --- |
-| `COMMENT` `=` `'<string>'` | Treat lines in the source file(s) that begin with `string` as comments and skip. <br/> <br/> The default comment marker is `#`. |
-| `DELIMITER` `=` `'<char>'` | Use `char` as the source file field delimiter. <br/> <br/> The default delimiter is a comma, unless a source file has one of these extensions: <br/> <br/> * `.psv` - will cause `\|` to be the delimiter <br/> * `.tsv` - will cause the tab character to be the delimiter <br/> <br/> See [Delimited Text Option Characters](/content/sql/ddl#sql-create-ext-table-delim-opt-char) for allowed characters. |
-| `ESCAPE` `=` `'<char>'` | Use `char` as the source file data escape character.  The escape character preceding any other character, in the source data, will be converted into that other character, except in the following special cases: <br/> <br/> `<char>a`: ASCII bell <br/> <br/> `<char>b`: ASCII backspace <br/> <br/> `<char>f`: ASCII form feed <br/> <br/> `<char>n`: ASCII line feed <br/> <br/> `<char>r`: ASCII carriage return <br/> <br/> `<char>t`: ASCII horizontal tab <br/> <br/> `<char>v`: ASCII vertical tab <br/> <br/> For instance, if the escape character is `\`, a `\t` encountered in the data will be converted to a tab character when stored in the database. <br/> <br/> The escape character can be used to escape the quoting character, and will be treated as an escape character whether it is within a quoted field value or not. <br/> <br/> There is no default escape character. |
-| `HEADER DELIMITER` `=` `'<char>'` | Use `char` as the source file header field name/property delimiter, when the source file header contains both names and properties.  This is largely specific to the Kinetica export to delimited text feature, which will, within each field's header, contain the field name and any associated properties, delimited by the pipe `\|` character. <br/> <br/> An example *Kinetica* header in a CSV file: <br/> <br/> {/* Source: /examples/data/products.kh.min.csv (lines 1) */} `id\|int\|data,category\|string\|data\|char16,name\|string\|data\|char32` <br/> <br/> The default is the `\|` (pipe) character.  See [Delimited Text Option Characters](/content/sql/load#sql-load-file-server-delim-opt-char) for allowed characters. <br/> <Info> The `DELIMITER` character will still be used to separate field name/property sets from each other in the header row </Info> |
-| `INCLUDES HEADER` `=` `<TRUE\|FALSE>` | Declare that the source file(s) will or will not have a header. <br/> <br/> The default is `TRUE`. |
-| `NULL` `=` `'<string>'` | Treat `string` as the indicator of a null source field value. <br/> <br/> The default is the empty string. |
-| `QUOTE` `=` `'<char>'` | Use `char` as the source file data quoting character, for enclosing field values. Usually used to wrap field values that contain embedded delimiter characters, though any field may be enclosed in quote characters *(for clarity, for instance)*.  The quote character must appear as the first and last character of a field value in order to be interpreted as quoting the value.  Within a quoted value, embedded quote characters may be escaped by preceding them with another quote character or the escape character specified by `ESCAPE`, if given. <br/> <br/> The default is the `"` (double-quote) character.  See [Delimited Text Option Characters](/content/sql/ddl#sql-create-ext-table-delim-opt-char) for allowed characters. |
+<AccordionGroup>
+
+<Accordion title="COMMENT = '&lt;string&gt;'">
+
+Treat lines in the source file(s) that begin with `string` as comments and skip.
+
+The default comment marker is `#`.
+
+</Accordion>
+
+<Accordion title="DELIMITER = '&lt;char&gt;'">
+
+Use `char` as the source file field delimiter.
+
+The default delimiter is a comma, unless a source file has one of these extensions:
+
+* `.psv` - will cause `|` to be the delimiter
+* `.tsv` - will cause the tab character to be the delimiter
+
+See [Delimited Text Option Characters](/content/sql/ddl#sql-create-ext-table-delim-opt-char) for allowed characters.
+
+</Accordion>
+
+<Accordion title="ESCAPE = '&lt;char&gt;'">
+
+Use `char` as the source file data escape character.  The escape character preceding any
+other character, in the source data, will be converted into that other character, except
+in the following special cases:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Source Data String</th>
+    <th>Representation when Loaded into the Database</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>&lt;char&gt;a</code></td>
+    <td>ASCII bell</td>
+  </tr>
+  <tr>
+    <td><code>&lt;char&gt;b</code></td>
+    <td>ASCII backspace</td>
+  </tr>
+  <tr>
+    <td><code>&lt;char&gt;f</code></td>
+    <td>ASCII form feed</td>
+  </tr>
+  <tr>
+    <td><code>&lt;char&gt;n</code></td>
+    <td>ASCII line feed</td>
+  </tr>
+  <tr>
+    <td><code>&lt;char&gt;r</code></td>
+    <td>ASCII carriage return</td>
+  </tr>
+  <tr>
+    <td><code>&lt;char&gt;t</code></td>
+    <td>ASCII horizontal tab</td>
+  </tr>
+  <tr>
+    <td><code>&lt;char&gt;v</code></td>
+    <td>ASCII vertical tab</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+
+For instance, if the escape character is `\`, a `\t` encountered in
+the data will be converted to a tab character when stored in the database.
+
+The escape character can be used to escape the quoting character, and will be treated as
+an escape character whether it is within a quoted field value or not.
+
+There is no default escape character.
+
+</Accordion>
+
+<Accordion title="HEADER DELIMITER = '&lt;char&gt;'">
+
+Use `char` as the source file header field name/property delimiter, when the source file
+header contains both names and properties.  This is largely specific to the Kinetica
+export to delimited text feature, which will, within each field's header, contain the
+field name and any associated properties, delimited by the pipe `|` character.
+
+An example *Kinetica* header in a CSV file:
+
+{/* Source: /examples/data/products.kh.min.csv (lines 1) */}
+```
+id|int|data,category|string|data|char16,name|string|data|char32
+```
+
+The default is the `|` (pipe) character.  See
+[Delimited Text Option Characters](/content/sql/load#sql-load-file-server-delim-opt-char) for allowed characters.
+
+
+<Info>
+The `DELIMITER` character will still be used to separate
+field name/property sets from each other in the header row
+</Info>
+
+</Accordion>
+
+<Accordion title="INCLUDES HEADER = &lt;TRUE|FALSE&gt;">
+
+Declare that the source file(s) will or will not have a header.
+
+The default is `TRUE`.
+
+</Accordion>
+
+<Accordion title="NULL = '&lt;string&gt;'">
+
+Treat `string` as the indicator of a null source field value.
+
+The default is the empty string.
+
+</Accordion>
+
+<Accordion title="QUOTE = '&lt;char&gt;'">
+
+Use `char` as the source file data quoting character, for enclosing field values.
+Usually used to wrap field values that contain embedded delimiter characters, though any
+field may be enclosed in quote characters *(for clarity, for instance)*.  The quote
+character must appear as the first and last character of a field value in order to be
+interpreted as quoting the value.  Within a quoted value, embedded quote characters may be
+escaped by preceding them with another quote character or the escape character specified
+by `ESCAPE`, if given.
+
+The default is the `"` (double-quote) character.  See
+[Delimited Text Option Characters](/content/sql/ddl#sql-create-ext-table-delim-opt-char) for allowed characters.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="sql-create-ext-table-delim-opt-char"></a>
@@ -1175,33 +1826,695 @@ characters.
 The following options can be specified to modify the way data is loaded (or not
 loaded) into the target table.
 
-| Option | Description |
-| --- | --- |
-| `BAD RECORD TABLE` | Name of the table containing records that failed to be loaded into the target table.  This bad record table will include the following columns: <br/> <br/> `line_number`: Number of the line in the input file containing the failed record <br/> <br/> `char_number`: Position of character within a failed record that is assessed as the beginning of the portion of the record that failed to process <br/> <br/> `filename`: Name of file that contained the failed record <br/> <br/> `line_rejected`: Text of the record that failed to process <br/> <br/> `error_msg`: Error message associated with the record processing failure <br/> <Info> This option is not applicable for an `ON ERROR` mode of `ABORT`. In that mode, processing stops at the first error and that error is returned to the user. </Info> |
-| `BATCH SIZE` | Use an ingest batch size of the given number of records. <br/> <br/> The default batch size is *50,000*. |
-| `COLUMN FORMATS` | Use the given type-specific formatting for the given column when parsing source data being loaded into that column.  This should be a map of column names to format specifications, where each format specification is map of column type to data format, all formatted as a JSON string. <br/> <br/> Supported column types include: <br/> <br/> `date`: Apply the given date format to the given column. Common date format codes follow. For the complete list, see [Date/Time Conversion Codes](/content/sql/query#sql-datetime-conversion-codes) . +----------+----------------------------------------------------------+ \| Code \| Description \| +==========+==========================================================+ \| `YYYY` \| 4-digit year \| +----------+----------------------------------------------------------+ \| `MM` \| 2-digit month, where *January* is `01` \| +----------+----------------------------------------------------------+ \| `DD` \| 2-digit day of the month, where the *1st* \| \| \| of each month is `01` \| +----------+----------------------------------------------------------+ <br/> <br/> `time`: Apply the given time format to the given column. Common time format codes follow. For the complete list, see [Date/Time Conversion Codes](/content/sql/query#sql-datetime-conversion-codes) . +----------+----------------------------------------------------------+ \| Code \| Description \| +==========+==========================================================+ \| `HH24` \| 24-based hour, where *12:00 AM* is `00` and *7:00 PM* \| \| \| is `19` \| +----------+----------------------------------------------------------+ \| `MI` \| 2-digit minute of the hour \| +----------+----------------------------------------------------------+ \| `SS` \| 2-digit second of the minute \| +----------+----------------------------------------------------------+ \| `MS` \| milliseconds \| +----------+----------------------------------------------------------+ <br/> <br/> `datetime`: Apply the given date/time format to the given column. <br/> <br/> For example, to load dates of the format `2010.10.30` into date column *d* and times of the 24-hour format `18:36:54.789` into time column *t*: <br/> <br/> `{ "d": {"date": "YYYY.MM.DD"}, "t": {"time": "HH24:MI:SS.MS"} }` <br/> <Info> This option is not available for *data sources* configured for *JDBC*. </Info> |
-| `DATA SOURCE` | Load data from the given [data source](/content/sql/ddl#sql-create-data-source). [Data source connect privilege](/content/sql/security#sql-security-priv-mgmt-ds-grant) is required when loading from a *data source*. |
-| `DEFAULT COLUMN FORMATS` | Use the given formats for source data being loaded into target table columns with the corresponding column types.   This should be a map of target column type to source format for data being loaded into columns of that type, formatted as a JSON string. <br/> <br/> Supported column properties and source data formats are the same as those listed in the description of the `COLUMN FORMATS` option. <br/> <br/> For example, to make the default format for loading source data dates like `2010.10.30` and 24-hour times like `18:36:54.789`: <br/> <br/> `{ "date": "YYYY.MM.DD", "time": "HH24:MI:SS.MS", "datetime": "YYYY.MM.DD HH24:MI:SS.MS" }` <br/> <Info> This option is not available for *data sources* configured for *JDBC*. </Info> |
-| `FIELDS IGNORED BY` | Choose a comma-separated list of fields from the source file(s) to ignore, loading only those fields that are not in the identified list in the order they appear in the file. Fields can be identified by either `POSITION` or `NAME`.  If ignoring by `NAME`, the specified names must match the source file field names exactly. <br/> <br/> * Identifying by Name: <br/> <br/> `FIELDS IGNORED BY NAME(Category, Description)` <br/> <br/> * Identifying by Position: <br/> <br/> `FIELDS IGNORED BY POSITION(3, 4)` <br/> <Info> <br/> * When ignoring source data file fields, the set of fields that are not ignored must align, in type & number in their order in the source file, with the *external table* columns into which the data will be loaded. <br/> * Ignoring fields by `POSITION` is only supported for delimited text files. </Info> |
-| `FIELDS MAPPED BY` | Choose a comma-separated list of fields from the source file(s) to load, in the specified order, identifying fields by either `POSITION` or `NAME`.  If mapping by `NAME`, the specified names must match the source file field names exactly. <br/> <br/> * Identifying by Name: <br/> <br/> `FIELDS MAPPED BY NAME(ID, Name, Stock)` <br/> <br/> * Identifying by Position: <br/> <br/> `FIELDS MAPPED BY POSITION(1, 2, 5)` <br/> <Info> <br/> * When mapping source data file fields, the set of fields that are identified must align, in type & number in the specified order, with the *external table* columns into which data will be loaded. <br/> * Mapping fields by `POSITION` is only supported for delimited text files. </Info> |
-| `FLATTEN_COLUMNS` | Specify the policy for handling nested columns within JSON data. <br/> <br/> The default is `FALSE`. <br/> <br/> `TRUE`: Break up nested columns into multiple columns. <br/> <br/> `FALSE`: Treat nested columns as JSON columns instead of flattening. |
-| `IGNORE_EXISTING_PK` | Specify the error suppression policy for inserting duplicate primary key values into a table with a primary key.  If the specified table does not have a primary key or the `UPDATE_ON_EXISTING_PK` option is used, then this options has no effect. <br/> <br/> The default is `FALSE`. <br/> <br/> `TRUE`: Suppress errors when inserted records and existing records' PKs match. <br/> <br/> `FALSE`: Return errors when inserted records and existing records' PKs match. |
-| `INGESTION MODE` | Whether to do a full ingest of the data or perform a *dry run* or *type inference* instead. <br/> <br/> The default mode is `FULL`. <br/> <br/> `DRY RUN`: No data will be inserted, but the file will be read with the applied `ON ERROR` mode and the number of valid records that would normally be inserted is returned. <br/> <br/> `FULL`: Data is fully ingested according to the active `ON ERROR` mode. <br/> <br/> `TYPE INFERENCE`: Infer the type of the source data and return, without ingesting any data. The inferred type is returned in the response, as the output of a `SHOW TABLE` command. |
-| `JDBC_FETCH_SIZE` | Retrieve this many records at a time from the remote database.  Lowering this number will help tables with large record sizes fit into available memory during ingest. <br/> <br/> The default is *50,000*. <br/> <Info> This option is only available for *data sources* configured for *JDBC*. </Info> |
-| `NUM_SPLITS_PER_RANK` | The number of remote query partitions to assign each *Kinetica* worker process.  The queries assigned to a worker process will be executed by the tasks allotted to the process. <br/> <br/> To decrease memory pressure, increase the number of splits per rank. <br/> <br/> The default is *8* splits per rank. <br/> <Info> This option is only available for *data sources* configured for *JDBC*. </Info> |
-| `NUM_TASKS_PER_RANK` | The number of tasks to use on each *Kinetica* worker process to process remote queries. The tasks assigned to a worker process will execute any remote query partitions assigned to it. <br/> <br/> To decrease memory pressure, decrease the number of tasks per rank. <br/> <br/> The default is *8* tasks per rank. <br/> <Info> This option is only available for *data sources* configured for *JDBC*. </Info> |
-| `JDBC_SESSION_INIT_STATEMENT` | Run the single given statement before the initial load is performed and also before each subsequent reload, if `REFRESH ON START` or `SUBSCRIBE` is `TRUE`. <br/> <br/> For example, to set the time zone to *UTC* before running each load, use: <br/> <br/> `JDBC_SESSION_INIT_STATEMENT = 'SET TIME ZONE ''UTC'''` <br/> <Info> This option is only available for *data sources* configured for *JDBC*. </Info> |
-| `ON ERROR` | When an error is encountered loading a record, handle it using either of the following modes.  The default mode is `ABORT`. <br/> <br/> `SKIP`: If an error is encountered parsing a source record, skip the record. <br/> <br/> `ABORT`: If an error is encountered parsing a source record, stop the data load process. Primary key collisions are considered abortable errors in this mode. |
-| `POLL_INTERVAL` | Interval, in seconds, at which a *data source* is polled for updates.  The number of seconds must be passed as a single-quoted string. <br/> <br/> The default interval is *60* seconds.  This option is only applicable when `SUBSCRIBE` is `TRUE`. |
-| `REFRESH ON START` | Whether to refresh the *external table* data upon restart of the database.  Only relevant for *materialized external tables*. <br/> <br/> The default is `FALSE`.  This option is ignored if `SUBSCRIBE` is `TRUE`. <br/> <br/> `TRUE`: Refresh the *external table's* data when the database is restarted. <br/> <br/> `FALSE`: Do not refresh the *external table's* data when the database is restarted. |
-| `REMOTE_QUERY_INCREASING_COLUMN` | For a JDBC query *change data capture* loading scheme, the remote query column that will be used to determine whether a record is new and should be loaded or not.  This column should have an ever-increasing value and be of an integral or date/timestamp type.  Often, this column will be a sequence-based ID or create/modify timestamp. <br/> <br/> This option is only applicable when `SUBSCRIBE` is `TRUE`. <br/> <Info> This option is only available for *data sources* configured for *JDBC*. </Info> |
-| `REMOTE_QUERY_NO_SPLIT` | Whether to not distribute the retrieval of remote data and issue queries for blocks of data at time in parallel. <br/> <br/> The default is `FALSE`. <br/> <Info> This option is only available for *data sources* configured for *JDBC* </Info> <br/> `TRUE`: Issue the remote data retrieval as a single query. <br/> <br/> `FALSE`: Distribute and parallelize the remote data retrieval in queries for blocks of data at a time. |
-| `REMOTE_QUERY_ORDER_BY` | Ordering expression to use in partitioning remote data for retrieval.  The remote data will be ordered according to this expression and then retrieved in sequential blocks from the first record.  This is potentially less performant than using `REMOTE_QUERY_PARTITION_COLUMN`. <br/> <br/> If `REMOTE_QUERY_NO_SPLIT` is `TRUE`, a valid `REMOTE_QUERY_PARTITION_COLUMN` is specified, or the column given is invalid, this option is ignored. <br/> <Info> This option is only available for *data sources* configured for *JDBC* </Info> |
-| `REMOTE_QUERY_PARTITION_COLUMN` | Column to use to partition remote data for retrieval.  The column must be numeric and should be relatively evenly distributed so that queries using values of this column to partition data will retrieve relatively consistently-sized result sets. <br/> <br/> If `REMOTE_QUERY_NO_SPLIT` is `TRUE` or the column given is invalid, this option is ignored. <br/> <Info> This option is only available for *data sources* configured for *JDBC* </Info> |
-| `SUBSCRIBE` | Whether to subscribe to the [data source](/content/sql/ddl#sql-create-data-source) specified in the `DATA SOURCE` option.  Only relevant for *materialized external tables* using *data sources* configured to allow streaming. <br/> <br/> The default is `FALSE`.  If `TRUE`, the `REFRESH ON START` option is ignored. <br/> <Info> This option is not available for *data sources* configured for *HDFS*. </Info> <br/> `TRUE`: Subscribe to the specified *streaming data source*. <br/> <br/> `FALSE`: Do not subscribe to the specified *data source*. |
-| `TRUNCATE_STRINGS` | Specify the string truncation policy for inserting text into `VARCHAR` columns that are not large enough to hold the entire text value. <br/> <br/> The default is `FALSE`. <br/> <br/> `TRUE`: Truncate any inserted string value at the maximum size for its column. <br/> <br/> `FALSE`: Reject any record with a string value that is too long for its column. |
-| `TYPE_INFERENCE_MODE` | When making a type inference of the data values in order to define column types for the target table, use one of the following modes. <br/> <br/> The default mode is `SPEED`. <br/> <br/> `ACCURACY`: Scan all available data to arrive at column types that are the narrowest possible that can still hold all the data. <br/> <br/> `SPEED`: Pick the widest possible column types from the minimum data scanned in order to quickly arrive at column types that should fit all data values. |
-| `UPDATE_ON_EXISTING_PK` | Specify the record collision policy for inserting into a table with a primary key. If the specified table does not have a primary key, then this options has no effect. <br/> <br/> The default is `FALSE`. <br/> <br/> `TRUE`: Update existing records with records being inserted, when PKs match. <br/> <br/> `FALSE`: Discard records being inserted when existing records' PKs match. |
+<AccordionGroup>
+
+<Accordion title="BAD RECORD TABLE">
+
+Name of the table containing records that failed to be loaded into the target table.  This
+bad record table will include the following columns:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Column Name</th>
+    <th>Source Data Format Codes</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>line_number</code></td>
+    <td>Number of the line in the input file containing the failed record</td>
+  </tr>
+  <tr>
+    <td><code>char_number</code></td>
+    <td>Position of character within a failed record that is assessed as the beginning of the portion of the record that failed to process</td>
+  </tr>
+  <tr>
+    <td><code>filename</code></td>
+    <td>Name of file that contained the failed record</td>
+  </tr>
+  <tr>
+    <td><code>line_rejected</code></td>
+    <td>Text of the record that failed to process</td>
+  </tr>
+  <tr>
+    <td><code>error_msg</code></td>
+    <td>Error message associated with the record processing failure</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+
+<Info>
+This option is not applicable for an `ON ERROR` mode of `ABORT`.  In that
+mode, processing stops at the first error and that error is returned to the user.
+</Info>
+
+</Accordion>
+
+<Accordion title="BATCH SIZE">
+
+Use an ingest batch size of the given number of records.
+
+The default batch size is *50,000*.
+
+</Accordion>
+
+<Accordion title="COLUMN FORMATS">
+
+Use the given type-specific formatting for the given column when parsing source data being
+loaded into that column.  This should be a map of column names to format specifications,
+where each format specification is map of column type to data format, all formatted as a
+JSON string.
+
+Supported column types include:
+
+
+<Tabs>
+  <Tab title="date">
+Apply the given date format to the given column.
+
+Common date format codes follow.  For the complete list, see
+[Date/Time Conversion Codes](/content/sql/query#sql-datetime-conversion-codes).
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Code</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>YYYY</code></td>
+    <td>4-digit year</td>
+  </tr>
+  <tr>
+    <td><code>MM</code></td>
+    <td>2-digit month, where *January* is <code>01</code></td>
+  </tr>
+  <tr>
+    <td><code>DD</code></td>
+    <td>2-digit day of the month, where the *1st* of each month is <code>01</code></td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+  </Tab>
+  <Tab title="time">
+Apply the given time format to the given column.
+
+Common time format codes follow.  For the complete list, see
+[Date/Time Conversion Codes](/content/sql/query#sql-datetime-conversion-codes).
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Code</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>HH24</code></td>
+    <td>24-based hour, where *12:00 AM* is <code>00</code> and *7:00 PM* is <code>19</code></td>
+  </tr>
+  <tr>
+    <td><code>MI</code></td>
+    <td>2-digit minute of the hour</td>
+  </tr>
+  <tr>
+    <td><code>SS</code></td>
+    <td>2-digit second of the minute</td>
+  </tr>
+  <tr>
+    <td><code>MS</code></td>
+    <td>milliseconds</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+  </Tab>
+  <Tab title="datetime">
+Apply the given date/time format to the given column.
+  </Tab>
+</Tabs>
+
+
+For example, to load dates of the format `2010.10.30` into date column *d* and times of
+the 24-hour format `18:36:54.789` into time column *t*:
+
+```
+{
+    "d": {"date": "YYYY.MM.DD"},
+    "t": {"time": "HH24:MI:SS.MS"}
+}
+```
+
+<Info>
+This option is not available for *data sources* configured for *JDBC*.
+</Info>
+
+</Accordion>
+
+<Accordion title="DATA SOURCE">
+
+Load data from the given [data source](/content/sql/ddl#sql-create-data-source).
+[Data source connect privilege](/content/sql/security#sql-security-priv-mgmt-ds-grant) is required when
+loading from a *data source*.
+
+</Accordion>
+
+<Accordion title="DEFAULT COLUMN FORMATS">
+
+Use the given formats for source data being loaded into target table columns with the
+corresponding column types.   This should be a map of target column type to source format
+for data being loaded into columns of that type, formatted as a JSON string.
+
+Supported column properties and source data formats are the same as those
+listed in the description of the `COLUMN FORMATS` option.
+
+For example, to make the default format for loading source data dates like `2010.10.30`
+and 24-hour times like `18:36:54.789`:
+
+```
+{
+    "date": "YYYY.MM.DD",
+    "time": "HH24:MI:SS.MS",
+    "datetime": "YYYY.MM.DD HH24:MI:SS.MS"
+}
+```
+
+<Info>
+This option is not available for *data sources* configured for *JDBC*.
+</Info>
+
+</Accordion>
+
+<Accordion title="FIELDS IGNORED BY">
+
+Choose a comma-separated list of fields from the source file(s) to ignore, loading only
+those fields that are not in the identified list in the order they appear in the file.
+Fields can be identified by either `POSITION` or `NAME`.  If ignoring by `NAME`, the
+specified names must match the source file field names exactly.
+
+* Identifying by Name:
+
+```
+FIELDS IGNORED BY NAME(Category, Description)
+```
+* Identifying by Position:
+
+```
+FIELDS IGNORED BY POSITION(3, 4)
+```
+
+<Info>
+* When ignoring source data file fields, the set of fields that are not ignored must
+  align, in type & number in their order in the source file, with the *external table*
+  columns into which the data will be loaded.
+* Ignoring fields by `POSITION` is only supported for delimited text files.
+</Info>
+
+</Accordion>
+
+<Accordion title="FIELDS MAPPED BY">
+
+Choose a comma-separated list of fields from the source file(s) to load, in the specified
+order, identifying fields by either `POSITION` or `NAME`.  If mapping by `NAME`, the
+specified names must match the source file field names exactly.
+
+* Identifying by Name:
+
+```
+FIELDS MAPPED BY NAME(ID, Name, Stock)
+```
+* Identifying by Position:
+
+```
+FIELDS MAPPED BY POSITION(1, 2, 5)
+```
+
+<Info>
+* When mapping source data file fields, the set of fields that are identified must
+  align, in type & number in the specified order, with the *external table* columns into
+  which data will be loaded.
+* Mapping fields by `POSITION` is only supported for delimited text files.
+</Info>
+
+</Accordion>
+
+<Accordion title="FLATTEN_COLUMNS">
+
+Specify the policy for handling nested columns within JSON data.
+
+The default is `FALSE`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Value</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>TRUE</code></td>
+    <td>Break up nested columns into multiple columns.</td>
+  </tr>
+  <tr>
+    <td><code>FALSE</code></td>
+    <td>Treat nested columns as JSON columns instead of flattening.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="IGNORE_EXISTING_PK">
+
+Specify the error suppression policy for inserting duplicate primary key values into a
+table with a primary key.  If the specified table does not have a primary key or the
+`UPDATE_ON_EXISTING_PK` option is used, then this options has no effect.
+
+The default is `FALSE`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Value</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>TRUE</code></td>
+    <td>Suppress errors when inserted records and existing records' PKs match.</td>
+  </tr>
+  <tr>
+    <td><code>FALSE</code></td>
+    <td>Return errors when inserted records and existing records' PKs match.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="INGESTION MODE">
+
+Whether to do a full ingest of the data or perform a *dry run* or *type inference* instead.
+
+The default mode is `FULL`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Value</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>DRY RUN</code></td>
+    <td>No data will be inserted, but the file will be read with the applied <code>ON ERROR</code> mode and the number of valid records that would normally be inserted is returned.</td>
+  </tr>
+  <tr>
+    <td><code>FULL</code></td>
+    <td>Data is fully ingested according to the active <code>ON ERROR</code> mode.</td>
+  </tr>
+  <tr>
+    <td><code>TYPE INFERENCE</code></td>
+    <td>Infer the type of the source data and return, without ingesting any data. The inferred type is returned in the response, as the output of a <code>SHOW TABLE</code> command.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="JDBC_FETCH_SIZE">
+
+Retrieve this many records at a time from the remote database.  Lowering this number will
+help tables with large record sizes fit into available memory during ingest.
+
+The default is *50,000*.
+
+
+<Info>
+This option is only available for *data sources* configured for *JDBC*.
+</Info>
+
+</Accordion>
+
+<Accordion title="NUM_SPLITS_PER_RANK">
+
+The number of remote query partitions to assign each *Kinetica* worker process.  The
+queries assigned to a worker process will be executed by the tasks allotted to the process.
+
+To decrease memory pressure, increase the number of splits per rank.
+
+The default is *8* splits per rank.
+
+
+<Info>
+This option is only available for *data sources* configured for *JDBC*.
+</Info>
+
+</Accordion>
+
+<Accordion title="NUM_TASKS_PER_RANK">
+
+The number of tasks to use on each *Kinetica* worker process to process remote queries.
+The tasks assigned to a worker process will execute any remote query partitions assigned to
+it.
+
+To decrease memory pressure, decrease the number of tasks per rank.
+
+The default is *8* tasks per rank.
+
+
+<Info>
+This option is only available for *data sources* configured for *JDBC*.
+</Info>
+
+</Accordion>
+
+<Accordion title="JDBC_SESSION_INIT_STATEMENT">
+
+Run the single given statement before the initial load is performed and also before each
+subsequent reload, if `REFRESH ON START` or `SUBSCRIBE` is `TRUE`.
+
+For example, to set the time zone to *UTC* before running each load, use:
+
+```
+JDBC_SESSION_INIT_STATEMENT = 'SET TIME ZONE ''UTC'''
+```
+
+<Info>
+This option is only available for *data sources* configured for *JDBC*.
+</Info>
+
+</Accordion>
+
+<Accordion title="ON ERROR">
+
+When an error is encountered loading a record, handle it using either of the
+following modes.  The default mode is `ABORT`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Value</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>SKIP</code></td>
+    <td>If an error is encountered parsing a source record, skip the record.</td>
+  </tr>
+  <tr>
+    <td><code>ABORT</code></td>
+    <td>If an error is encountered parsing a source record, stop the data load process.  Primary key collisions are considered abortable errors in this mode.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="POLL_INTERVAL">
+
+Interval, in seconds, at which a *data source* is polled for updates.  The number of
+seconds must be passed as a single-quoted string.
+
+The default interval is *60* seconds.  This option is only applicable when `SUBSCRIBE` is
+`TRUE`.
+
+</Accordion>
+
+<Accordion title="REFRESH ON START">
+
+Whether to refresh the *external table* data upon restart of the database.  Only relevant
+for *materialized external tables*.
+
+The default is `FALSE`.  This option is ignored if `SUBSCRIBE` is `TRUE`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Value</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>TRUE</code></td>
+    <td>Refresh the *external table's* data when the database is restarted.</td>
+  </tr>
+  <tr>
+    <td><code>FALSE</code></td>
+    <td>Do not refresh the *external table's* data when the database is restarted.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="REMOTE_QUERY_INCREASING_COLUMN">
+
+For a JDBC query *change data capture* loading scheme, the remote query column that will be
+used to determine whether a record is new and should be loaded or not.  This column should
+have an ever-increasing value and be of an integral or date/timestamp type.  Often, this
+column will be a sequence-based ID or create/modify timestamp.
+
+This option is only applicable when `SUBSCRIBE` is `TRUE`.
+
+
+<Info>
+This option is only available for *data sources* configured for *JDBC*.
+</Info>
+
+</Accordion>
+
+<Accordion title="REMOTE_QUERY_NO_SPLIT">
+
+Whether to not distribute the retrieval of remote data and issue queries for blocks of data
+at time in parallel.
+
+The default is `FALSE`.
+
+
+<Info>
+This option is only available for *data sources* configured for *JDBC*
+</Info>
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Value</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>TRUE</code></td>
+    <td>Issue the remote data retrieval as a single query.</td>
+  </tr>
+  <tr>
+    <td><code>FALSE</code></td>
+    <td>Distribute and parallelize the remote data retrieval in queries for blocks of data at a time.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="REMOTE_QUERY_ORDER_BY">
+
+Ordering expression to use in partitioning remote data for retrieval.  The remote data will
+be ordered according to this expression and then retrieved in sequential blocks from the
+first record.  This is potentially less performant than using `REMOTE_QUERY_PARTITION_COLUMN`.
+
+If `REMOTE_QUERY_NO_SPLIT` is `TRUE`, a valid `REMOTE_QUERY_PARTITION_COLUMN` is specified, or the column given is
+invalid, this option is ignored.
+
+
+<Info>
+This option is only available for *data sources* configured for *JDBC*
+</Info>
+
+</Accordion>
+
+<Accordion title="REMOTE_QUERY_PARTITION_COLUMN">
+
+Column to use to partition remote data for retrieval.  The column must be numeric and
+should be relatively evenly distributed so that queries using values of this column to
+partition data will retrieve relatively consistently-sized result sets.
+
+If `REMOTE_QUERY_NO_SPLIT` is `TRUE` or the column given is invalid, this option is ignored.
+
+
+<Info>
+This option is only available for *data sources* configured for *JDBC*
+</Info>
+
+</Accordion>
+
+<Accordion title="SUBSCRIBE">
+
+Whether to subscribe to the [data source](/content/sql/ddl#sql-create-data-source) specified in the
+`DATA SOURCE` option.  Only relevant for *materialized external tables* using
+*data sources* configured to allow streaming.
+
+The default is `FALSE`.  If `TRUE`, the `REFRESH ON START` option is ignored.
+
+
+<Info>
+This option is not available for *data sources* configured for *HDFS*.
+</Info>
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Value</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>TRUE</code></td>
+    <td>Subscribe to the specified *streaming data source*.</td>
+  </tr>
+  <tr>
+    <td><code>FALSE</code></td>
+    <td>Do not subscribe to the specified *data source*.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="TRUNCATE_STRINGS">
+
+Specify the string truncation policy for inserting text into `VARCHAR` columns that are
+not large enough to hold the entire text value.
+
+The default is `FALSE`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Value</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>TRUE</code></td>
+    <td>Truncate any inserted string value at the maximum size for its column.</td>
+  </tr>
+  <tr>
+    <td><code>FALSE</code></td>
+    <td>Reject any record with a string value that is too long for its column.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="TYPE_INFERENCE_MODE">
+
+When making a type inference of the data values in order to define column types for the
+target table, use one of the following modes.
+
+The default mode is `SPEED`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Value</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>ACCURACY</code></td>
+    <td>Scan all available data to arrive at column types that are the narrowest possible that can still hold all the data.</td>
+  </tr>
+  <tr>
+    <td><code>SPEED</code></td>
+    <td>Pick the widest possible column types from the minimum data scanned in order to quickly arrive at column types that should fit all data values.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="UPDATE_ON_EXISTING_PK">
+
+Specify the record collision policy for inserting into a table with a primary key.
+If the specified table does not have a primary key, then this options has no effect.
+
+The default is `FALSE`.
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Value</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>TRUE</code></td>
+    <td>Update existing records with records being inserted, when PKs match.</td>
+  </tr>
+  <tr>
+    <td><code>FALSE</code></td>
+    <td>Discard records being inserted when existing records' PKs match.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="sql-create-ext-table-def"></a>
@@ -1530,7 +2843,11 @@ While [primary keys](/content/concepts/tables#primary-key) & [foreign keys](/con
 not transferred to the new table, [shard keys](/content/concepts/tables#shard-key) will be, if the
 column(s) composing them are part of the `SELECT` list.
 
-| Parameters/Keys | Description |
+
+### Parameters
+
+
+| Parameter/Key | Description |
 | --- | --- |
 | `OR REPLACE` | Any existing *table* or *view* with the same name will be dropped before creating this one |
 | `REPLICATED` | The *table* will be distributed within the database as a [replicated](/content/concepts/tables#replicated) *table* |
@@ -1549,7 +2866,11 @@ table:
 | [KI_HINT_INDEX(column list)](/content/sql/query#sql-hints) | *hint* | Indexes each of the columns specified in the column list |
 | [KI_SHARD_KEY(column list)](/content/sql/query#sql-distribution-functions) | *pseudo-* *function* | Shards the result table with a [shard key](/content/concepts/tables#shard-key) composed of all columns in the specified column list |
 
-For example, to create a replicated temporary table that is a copy of an
+
+### Examples
+
+
+To create a replicated temporary table that is a copy of an
 existing table, failing if a table with the same name as the target table
 already exists:
 
@@ -2547,13 +3868,63 @@ REPAIR TABLE[S] [<schema name>.]<table name>[,...]
 WITH OPTIONS (REPAIR_POLICY = '<repair type>')
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<schema name>` | Name of the *schema* containing the table to repair |
-| `<view name>` | Name of the *table* to repair |
-| `REPAIR_POLICY` | Specifies the type of *table* repair to perform.  The following are available: <br/> <br/> `delete_chunks`: Deletes any corrupted chunks <br/> <br/> `shrink_columns`: Shrinks corrupted chunks to the shortest column <br/> <br/> `replay_wal`: Manually invokes WAL replay on the *table* |
 
-For example, to manually replay the WAL on two tables:
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the table to repair
+
+</Accordion>
+
+<Accordion title="&lt;view name&gt;">
+
+Name of the *table* to repair
+
+</Accordion>
+
+<Accordion title="REPAIR_POLICY">
+
+Specifies the type of *table* repair to perform.  The following are available:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>delete_chunks</code></td>
+    <td>Deletes any corrupted chunks</td>
+  </tr>
+  <tr>
+    <td><code>shrink_columns</code></td>
+    <td>Shrinks corrupted chunks to the shortest column</td>
+  </tr>
+  <tr>
+    <td><code>replay_wal</code></td>
+    <td>Manually invokes WAL replay on the *table*</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To manually replay the WAL on two tables:
 
 {/* Source: /examples/sql/table/repair_table.kisql (lines 37-38) */}
 ```sql REPAIR TABLE Example
@@ -2597,11 +3968,32 @@ Any *tables* with [foreign keys](/content/concepts/tables#foreign-key) that
 target a given *table* must be dropped before it can be dropped.
 </Info>
 
-| Parameters | Description |
-| --- | --- |
-| `IF EXISTS` | Optional error-suppression clause; if specified, no error will be returned if the given *table* does not exist |
-| `<schema name>` | Name of the *schema* containing the *table* to remove |
-| `<table name>` | Name of the *table* to remove |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="IF EXISTS">
+
+Optional error-suppression clause; if specified, no error will be returned if the given
+*table* does not exist
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *table* to remove
+
+</Accordion>
+
+<Accordion title="&lt;table name&gt;">
+
+Name of the *table* to remove
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="sql-show-table"></a>
@@ -2623,14 +4015,47 @@ with the DDL statement as the value in the `DDL` column, shown below with
 the column separators returned by <Badge color="blue-destructive">kisql</Badge>.
 </Info>
 
-| Parameters | Description |
-| --- | --- |
-| `CREATE` | Optional keyword for clarity |
-| `TABLE` | Optional clause to avoid ambiguity: <br/> <br/> * if given, and a *view* with the given name exists instead, the command will return an error <br/> * if omitted, and a *view* with the given name exists instead, the command will be interpreted as a `SHOW VIEW` statement |
-| `<schema name>` | Name of the *schema* containing the *table* to show |
-| `<table name>` | Name of the *table* whose DDL will be output |
 
-For example, to output the DDL for the example table created in the
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="CREATE">
+
+Optional keyword for clarity
+
+</Accordion>
+
+<Accordion title="TABLE">
+
+Optional clause to avoid ambiguity:
+
+* if given, and a *view* with the given name exists instead, the command will return an error
+* if omitted, and a *view* with the given name exists instead, the command will be interpreted as
+  a `SHOW VIEW` statement
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *table* to show
+
+</Accordion>
+
+<Accordion title="&lt;table name&gt;">
+
+Name of the *table* whose DDL will be output
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To output the DDL for the example table created in the
 [CREATE TABLE](/content/sql/ddl#sql-create-table) section:
 
 {/* Source: /examples/sql/table/create_table.kisql (lines 69) */}
@@ -2685,11 +4110,39 @@ Lists the columns and column types & properties for a given *table*.
 DESC[RIBE] [TABLE] [<schema name>.]<table name>
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `TABLE` | Optional clause to avoid ambiguity: <br/> <br/> * if given, and a *view* with the given name exists instead, the command will return an error <br/> * if omitted, and a *view* with the given name exists instead, the command will be interpreted as a `DESCRIBE VIEW` statement |
-| `<schema name>` | Name of the *schema* containing the *table* to describe |
-| `<table name>` | Name of the *table* whose configuration will be output |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="TABLE">
+
+Optional clause to avoid ambiguity:
+
+* if given, and a *view* with the given name exists instead, the command will return an error
+* if omitted, and a *view* with the given name exists instead, the command will be interpreted as
+  a `DESCRIBE VIEW` statement
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *table* to describe
+
+</Accordion>
+
+<Accordion title="&lt;table name&gt;">
+
+Name of the *table* whose configuration will be output
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 To describe the example table created in the [CREATE TABLE](/content/sql/ddl#sql-create-table) section:
 
@@ -2753,14 +4206,45 @@ A `CREATE OR REPLACE` issues an implicit drop, so *replacing* an
 input *table* will have the same effect on the *view* as dropping it.
 </Warning>
 
-| Parameters | Description |
-| --- | --- |
-| `OR REPLACE` | Any existing *table*/*view* with the same name will be dropped before creating this *view* |
-| `<schema name>` | Name of the *schema* that will contain the created *view*; if no *schema* is specified, the *view* will be created in the user's [default schema](/content/concepts/schemas#schema-default) |
-| `<view name>` | Name of the *view* to create; must adhere to the supported [naming criteria](/content/sql/naming#sql-naming-criteria) |
-| `<select statement>` | The query that will define both the structure and content of the created *view* |
 
-For example, to create a view that is a copy of an existing table, failing if a
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="OR REPLACE">
+
+Any existing *table*/*view* with the same name will be dropped before creating this *view*
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* that will contain the created *view*; if no *schema* is specified, the
+*view* will be created in the user's [default schema](/content/concepts/schemas#schema-default)
+
+</Accordion>
+
+<Accordion title="&lt;view name&gt;">
+
+Name of the *view* to create; must adhere to the supported
+[naming criteria](/content/sql/naming#sql-naming-criteria)
+
+</Accordion>
+
+<Accordion title="&lt;select statement&gt;">
+
+The query that will define both the structure and content of the created *view*
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To create a view that is a copy of an existing table, failing if a
 table or view with the same name as the target view already exists:
 
 {/* Source: /examples/sql/view/create_view.kisql (lines 29-33) */}
@@ -2825,16 +4309,117 @@ be specified for the *materialized view* by using the
 `KI_SHARD_KEY(<column list>)` pseudo-function in the `SELECT` list.
 
 
-| Parameters | Description |
-| --- | --- |
-| `OR REPLACE` | Any existing *table*/*view* with the same name will be dropped before creating this *materialized view* |
-| `TEMP` | The *materialized view* will be a [memory-only table](/content/concepts/tables_memory_only); which, among other things, means it will not be persisted (if the database is restarted, the *materialized view* will be removed), but it will have increased ingest performance |
-| `<schema name>` | Name of the *schema* that will contain the created *materialized view*; if no *schema* is specified, the *materialized view* will be created in the user's [default schema](/content/concepts/schemas#schema-default) |
-| `<view name>` | Name of the *materialized view* to create; must adhere to the supported [naming criteria](/content/sql/naming#sql-naming-criteria) |
-| `REFRESH` | Specifies the data refresh scheme for the *materialized view*.   The following schemes are available: <br/> <br/> `OFF`: *(the default)* Will prevent the *materialized view* from being automatically refreshed, but will still allow [manual refreshes](/content/sql/ddl#sql-refresh-view) of the data to be requested <br/> <br/> `ON CHANGE`: Will cause the *materialized view* to be updated any time a record is added, modified, or deleted from the subtending *tables* in its query <br/> <br/> `ON QUERY`: Will cause the *materialized view* to be updated any time it is queried <br/> <br/> `EVERY`: Allows specification of an interval in seconds, minutes, hours, or days, at which the *materialized view* should be refreshed. By default, the first refresh interval will be one interval's worth of time from the point at which the *materialized view* creation was requested. This can be modified with the following options: * `STARTING AT`: specify a date or timestamp at which refresh cycles should begin * `STOP AFTER`: specify a date, timestamp, or time interval after which refresh cycles should end |
-| `<select statement>` | The query that will define both the structure and content of the created *materialized view* |
-| `WITH OPTIONS` | Optional indicator that a comma-delimited list of connection option/value assignments will follow.  The following options are available: <br/> <br/> `EXECUTE AS`: Executes *materialized view* refreshes as the given user with that user's privileges, when `EVERY ...` is specified as the `REFRESH` method. **Note:** If this user doesn't exist at the time of a refresh, the refresh will be executed as the creating user, and, failing that, the system administration user. |
-| [&lt;table property clause&gt;](/content/sql/ddl#sql-create-materialized-view-prop) | Optional clause, assigning table properties, from a subset of those available, to the *materialized view* |
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="OR REPLACE">
+
+Any existing *table*/*view* with the same name will be dropped before creating this
+*materialized view*
+
+</Accordion>
+
+<Accordion title="TEMP">
+
+The *materialized view* will be a [memory-only table](/content/concepts/tables_memory_only);
+which, among other things, means it will not be persisted (if the database is restarted, the
+*materialized view* will be removed), but it will have increased ingest performance
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* that will contain the created *materialized view*; if no *schema* is
+specified, the *materialized view* will be created in the user's
+[default schema](/content/concepts/schemas#schema-default)
+
+</Accordion>
+
+<Accordion title="&lt;view name&gt;">
+
+Name of the *materialized view* to create; must adhere to the supported
+[naming criteria](/content/sql/naming#sql-naming-criteria)
+
+</Accordion>
+
+<Accordion title="REFRESH">
+
+Specifies the data refresh scheme for the *materialized view*.   The following schemes are
+available:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Constant</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>OFF</code></td>
+    <td>*(the default)* Will prevent the *materialized view* from being automatically refreshed, but will still allow [manual refreshes](/content/sql/ddl#sql-refresh-view) of the data to be requested</td>
+  </tr>
+  <tr>
+    <td><code>ON CHANGE</code></td>
+    <td>Will cause the *materialized view* to be updated any time a record is added, modified, or deleted from the subtending *tables* in its query</td>
+  </tr>
+  <tr>
+    <td><code>ON QUERY</code></td>
+    <td>Will cause the *materialized view* to be updated any time it is queried</td>
+  </tr>
+  <tr>
+    <td><code>EVERY</code></td>
+    <td>Allows specification of an interval in seconds, minutes, hours, or days, at which the *materialized view* should be refreshed.  By default, the first refresh interval will be one interval's worth of time from the point at which the *materialized view* creation was requested.  This can be modified with the following options: * <code>STARTING AT</code>:  specify a date or timestamp at which refresh cycles should begin * <code>STOP AFTER</code>:  specify a date, timestamp, or time interval after which refresh cycles should end</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="&lt;select statement&gt;">
+
+The query that will define both the structure and content of the created *materialized view*
+
+</Accordion>
+
+<Accordion title="WITH OPTIONS">
+
+Optional indicator that a comma-delimited list of connection option/value assignments will
+follow.  The following options are available:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>EXECUTE AS</code></td>
+    <td>Executes *materialized view* refreshes as the given user with that user's privileges, when <code>EVERY ...</code> is specified as the <code>REFRESH</code> method. .. note::  If this user doesn't exist at the time of a refresh, the refresh will be executed as the creating user, and, failing that, the system administration user.</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="&lt;table property clause&gt;">
+
+Optional clause, assigning table properties, from a subset of those available, to the
+*materialized view*
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="sql-create-materialized-view-prop"></a>
@@ -3193,12 +4778,38 @@ Removes an existing [view](/content/sql/ddl#sql-create-view) or
 DROP [MATERIALIZED] VIEW [IF EXISTS] [<schema name>.]<view name>
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `MATERIALIZED` | Optional keyword for clarity; has no impact on functionality |
-| `IF EXISTS` | Optional error-suppression clause; if specified, no error will be returned if the given *view* does not exist |
-| `<schema name>` | Name of the *schema* containing the *view* to remove |
-| `<view name>` | Name of the *view* to remove |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="MATERIALIZED">
+
+Optional keyword for clarity; has no impact on functionality
+
+</Accordion>
+
+<Accordion title="IF EXISTS">
+
+Optional error-suppression clause; if specified, no error will be returned if the given
+*view* does not exist
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *view* to remove
+
+</Accordion>
+
+<Accordion title="&lt;view name&gt;">
+
+Name of the *view* to remove
+
+</Accordion>
+
+</AccordionGroup>
 
 
 ## SHOW VIEW
@@ -3232,15 +4843,57 @@ with the DDL statement as the value in the `DDL` column, shown below with
 the column separators returned by <Badge color="blue-destructive">kisql</Badge>.
 </Info>
 
-| Parameters | Description |
-| --- | --- |
-| `CREATE` | Optional keyword for clarity |
-| `VIEW` | Optional clause to avoid ambiguity: <br/> <br/> * if given, and a *table* with the given name exists instead, the command will return an error <br/> * if omitted, and a *table* with the given name exists instead, the command will be interpreted as a `SHOW TABLE` statement |
-| `<schema name>` | Name of the *schema* containing the *view* to show |
-| `<view name>` | Name of the *view* whose DDL will be output |
-| `WITH OPTIONS` | Optional indicator that a comma-delimited list of connection option/value assignments will follow. <br/> <br/> All valid options from [Show Table](/content/feature_overview/show_table_feature_overview#show-table-feature-overview) can be used here. |
 
-For example, to output the DDL for the example *view* created in the
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="CREATE">
+
+Optional keyword for clarity
+
+</Accordion>
+
+<Accordion title="VIEW">
+
+Optional clause to avoid ambiguity:
+
+* if given, and a *table* with the given name exists instead, the command will return an error
+* if omitted, and a *table* with the given name exists instead, the command will be interpreted
+  as a `SHOW TABLE` statement
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *view* to show
+
+</Accordion>
+
+<Accordion title="&lt;view name&gt;">
+
+Name of the *view* whose DDL will be output
+
+</Accordion>
+
+<Accordion title="WITH OPTIONS">
+
+Optional indicator that a comma-delimited list of connection option/value assignments will
+follow.
+
+All valid options from [Show Table](/content/feature_overview/show_table_feature_overview#show-table-feature-overview)
+can be used here.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To output the DDL for the example *view* created in the
 [CREATE VIEW](/content/sql/ddl#sql-create-view) section:
 
 {/* Source: /examples/sql/view/create_view.kisql (lines 36) */}
@@ -3260,13 +4913,41 @@ Lists the columns and column types & properties for a given
 DESC[RIBE] [VIEW] [<schema name>.]<view name>
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `VIEW` | Optional clause to avoid ambiguity: <br/> <br/> * if given, and a *table* with the given name exists instead, the command will return an error <br/> * if omitted, and a *table* with the given name exists instead, the command will be interpreted as a `DESCRIBE TABLE` statement |
-| `<schema name>` | Name of the *schema* containing the *view* to describe |
-| `<view name>` | Name of the *view* whose configuration will be output |
 
-For example, to describe the example *view* created in the
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="VIEW">
+
+Optional clause to avoid ambiguity:
+
+* if given, and a *table* with the given name exists instead, the command will return an error
+* if omitted, and a *table* with the given name exists instead, the command will be interpreted
+  as a `DESCRIBE TABLE` statement
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *view* to describe
+
+</Accordion>
+
+<Accordion title="&lt;view name&gt;">
+
+Name of the *view* whose configuration will be output
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To describe the example *view* created in the
 [CREATE VIEW](/content/sql/ddl#sql-create-view) section:
 
 {/* Source: /examples/sql/view/create_view.kisql (lines 39) */}
@@ -3323,17 +5004,138 @@ The following services are supported:
 For provider-specific syntax, see [Provider-Specific Syntax](/content/sql/ddl#sql-create-credential-syntax).
 For provider-specific examples, see [Creating Credentials](/content/snippets/create-credentials).
 
-| Parameters | Description |
-| --- | --- |
-| `OR REPLACE` | Any existing *credential* with the same name will be dropped before creating this one |
-| `<schema name>` | Name of the *schema* that will contain the created *credential*; if no *schema* is specified, the *credential* will be created in the user's [default schema](/content/concepts/schemas#schema-default) |
-| `<credential name>` | Name of the *credential* to create; must adhere to the supported [naming criteria](/content/sql/naming#sql-naming-criteria) |
-| `TYPE` | The type of *credential* to create. Supported types include: <br/> <br/> `aws_access_key`: Authenticate to *Amazon Web Services (AWS)* via *Access Key* <br/> <br/> `aws_iam_role`: Authenticate to *Amazon Web Services (AWS)* via *IAM Role* <br/> <br/> `azure_ad`: Authenticate to *Microsoft Azure* via *Active Directory* <br/> <br/> `azure_oauth`: Authenticate to *Microsoft Azure* via *OAuth* <br/> <br/> `azure_sas`: Authenticate to *Microsoft Azure* via *Shared Access Signature (SAS)* using an account-level access token, not a container-level one <br/> <br/> `azure_storage_key`: Authenticate to *Microsoft Azure* via *Storage Key* <br/> <br/> `confluent`: Authenticate to a *Confluent Kafka* cluster or schema registry <br/> <br/> `docker`: Authenticate to a *Docker* repository <br/> <br/> `gcs_service_account_id`: Authenticate to *Google Cloud* via user ID & private key <br/> <br/> `gcs_service_account_keys`: Authenticate to *Google Cloud* via *JSON key* <br/> <br/> `hdfs`: Authenticate to *HDFS* <br/> <br/> `jdbc`: Authenticate via *Java Database Connectivity* <br/> <br/> `kafka`: Authenticate to an *Apache Kafka* cluster or schema registry <br/> <br/> `nvidia_api_key`: Authenticate to the *Nvidia AI* API <br/> <br/> `openai_api_key`: Authenticate to the *OpenAI* API |
-| `IDENTITY` | Username to use for authenticating with the *credential*. |
-| `SECRET` | Password to use for authenticating with the *credential*. |
-| `WITH OPTIONS` | Optional indicator that a comma-delimited list of option/value assignments will follow.  See [Credential Options](/content/sql/ddl#sql-credential-opts) for the full list of options. |
 
-For example, to create a *credential*, `auser_azure_active_dir_creds`, for
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="OR REPLACE">
+
+Any existing *credential* with the same name will be dropped before creating this one
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* that will contain the created *credential*; if no *schema* is specified, the
+*credential* will be created in the user's [default schema](/content/concepts/schemas#schema-default)
+
+</Accordion>
+
+<Accordion title="&lt;credential name&gt;">
+
+Name of the *credential* to create; must adhere to the supported
+[naming criteria](/content/sql/naming#sql-naming-criteria)
+
+</Accordion>
+
+<Accordion title="TYPE">
+
+The type of *credential* to create. Supported types include:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>aws_access_key</code></td>
+    <td>Authenticate to *Amazon Web Services (AWS)* via *Access Key*</td>
+  </tr>
+  <tr>
+    <td><code>aws_iam_role</code></td>
+    <td>Authenticate to *Amazon Web Services (AWS)* via *IAM Role*</td>
+  </tr>
+  <tr>
+    <td><code>azure_ad</code></td>
+    <td>Authenticate to *Microsoft Azure* via *Active Directory*</td>
+  </tr>
+  <tr>
+    <td><code>azure_oauth</code></td>
+    <td>Authenticate to *Microsoft Azure* via *OAuth*</td>
+  </tr>
+  <tr>
+    <td><code>azure_sas</code></td>
+    <td>Authenticate to *Microsoft Azure* via *Shared Access Signature (SAS)* using an account-level access token, not a container-level one</td>
+  </tr>
+  <tr>
+    <td><code>azure_storage_key</code></td>
+    <td>Authenticate to *Microsoft Azure* via *Storage Key*</td>
+  </tr>
+  <tr>
+    <td><code>confluent</code></td>
+    <td>Authenticate to a *Confluent Kafka* cluster or schema registry</td>
+  </tr>
+  <tr>
+    <td><code>docker</code></td>
+    <td>Authenticate to a *Docker* repository</td>
+  </tr>
+  <tr>
+    <td><code>gcs_service_account_id</code></td>
+    <td>Authenticate to *Google Cloud* via user ID &amp; private key</td>
+  </tr>
+  <tr>
+    <td><code>gcs_service_account_keys</code></td>
+    <td>Authenticate to *Google Cloud* via *JSON key*</td>
+  </tr>
+  <tr>
+    <td><code>hdfs</code></td>
+    <td>Authenticate to *HDFS*</td>
+  </tr>
+  <tr>
+    <td><code>jdbc</code></td>
+    <td>Authenticate via *Java Database Connectivity*</td>
+  </tr>
+  <tr>
+    <td><code>kafka</code></td>
+    <td>Authenticate to an *Apache Kafka* cluster or schema registry</td>
+  </tr>
+  <tr>
+    <td><code>nvidia_api_key</code></td>
+    <td>Authenticate to the *Nvidia AI* API</td>
+  </tr>
+  <tr>
+    <td><code>openai_api_key</code></td>
+    <td>Authenticate to the *OpenAI* API</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="IDENTITY">
+
+Username to use for authenticating with the *credential*.
+
+</Accordion>
+
+<Accordion title="SECRET">
+
+Password to use for authenticating with the *credential*.
+
+</Accordion>
+
+<Accordion title="WITH OPTIONS">
+
+Optional indicator that a comma-delimited list of option/value assignments will follow.  See
+[Options](/content/sql/ddl#sql-credential-opts) for the full list of options.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To create a *credential*, `auser_azure_active_dir_creds`, for
 connecting to *Microsoft Azure Active Directory*:
 
 {/* Source: /examples/sql/credential/credential.kisql (lines 21-24) */}
@@ -3364,7 +5166,7 @@ WITH OPTIONS
 <a id="sql-credential-opts"></a>
 
 
-### Credential Options
+### Options
 
 
 The following is a list of possible credential options and their associated
@@ -3800,11 +5602,37 @@ SET PROPERTY
 Only users with `system_admin` or `system_user_admin`, or users with
 `credential_admin` on the *credential*, may alter it.
 
-| Parameters | Description |
-| --- | --- |
-| `<schema name>` | Name of the *schema* containing the *credential* to alter |
-| `<credential name>` | Name of the existing *credential* to alter. |
-| `SET PROPERTY` | Indicator that a comma-delimited list of property name/value assignments will follow. See [Set Properties](/content/sql/ddl#sql-alter-credential-prop) and [Credential Options](/content/sql/ddl#sql-credential-opts) for the complete list of properties. |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *credential* to alter
+
+</Accordion>
+
+<Accordion title="&lt;credential name&gt;">
+
+Name of the existing *credential* to alter.
+
+</Accordion>
+
+<Accordion title="SET PROPERTY">
+
+Indicator that a comma-delimited list of property name/value assignments will follow. See
+[Set Properties](/content/sql/ddl#sql-alter-credential-prop) and [Options](/content/sql/ddl#sql-credential-opts) for the
+complete list of properties.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 To alter a *credential*, `auser_azure_active_dir_creds`, updating the secret:
 
@@ -3835,12 +5663,103 @@ All *credential* properties can be altered via
 [ALTER CREDENTIAL](/content/sql/ddl#sql-alter-credential). The following are the property names and
 descriptions to use when performing an alteration.
 
-| Parameters | Description |
-| --- | --- |
-| `TYPE` | The type of *credential*. Supported types include: <br/> <br/> `aws_access_key`: Authenticate to *Amazon Web Services (AWS)* via *Access Key* <br/> <br/> `aws_iam_role`: Authenticate to *Amazon Web Services (AWS)* via *IAM Role* <br/> <br/> `azure_ad`: Authenticate to *Microsoft Azure* via *Active Directory* <br/> <br/> `azure_sas`: Authenticate to *Microsoft Azure* via *Shared Access Signature (SAS)* <br/> <br/> `azure_storage_key`: Authenticate to *Microsoft Azure* via *Storage Key* <br/> <br/> `confluent`: Authenticate to a *Confluent Kafka* cluster or schema registry <br/> <br/> `docker`: Authenticate to a *Docker* repository <br/> <br/> `gcs_service_account_id`: Authenticate to *Google Cloud* via user ID & private key <br/> <br/> `gcs_service_account_keys`: Authenticate to *Google Cloud* via *JSON key* <br/> <br/> `hdfs`: Authenticate to *HDFS* <br/> <br/> `jdbc`: Authenticate via *Java Database Connectivity* <br/> <br/> `kafka`: Authenticate to a *Kafka* cluster or schema registry <br/> <br/> `nvidia_api_key`: Authenticate to the *Nvidia AI* API <br/> <br/> `openai_api_key`: Authenticate to the *OpenAI* API |
-| `IDENTITY` | Username to use for authenticating with the *credential*. |
-| `SECRET` | Password to use for authenticating with the *credential*. |
-| `'<option>'` | Any option/value pair from the [credential options](/content/sql/ddl#sql-credential-opts) list. |
+<AccordionGroup>
+
+<Accordion title="TYPE">
+
+The type of *credential*. Supported types include:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>aws_access_key</code></td>
+    <td>Authenticate to *Amazon Web Services (AWS)* via *Access Key*</td>
+  </tr>
+  <tr>
+    <td><code>aws_iam_role</code></td>
+    <td>Authenticate to *Amazon Web Services (AWS)* via *IAM Role*</td>
+  </tr>
+  <tr>
+    <td><code>azure_ad</code></td>
+    <td>Authenticate to *Microsoft Azure* via *Active Directory*</td>
+  </tr>
+  <tr>
+    <td><code>azure_sas</code></td>
+    <td>Authenticate to *Microsoft Azure* via *Shared Access Signature (SAS)*</td>
+  </tr>
+  <tr>
+    <td><code>azure_storage_key</code></td>
+    <td>Authenticate to *Microsoft Azure* via *Storage Key*</td>
+  </tr>
+  <tr>
+    <td><code>confluent</code></td>
+    <td>Authenticate to a *Confluent Kafka* cluster or schema registry</td>
+  </tr>
+  <tr>
+    <td><code>docker</code></td>
+    <td>Authenticate to a *Docker* repository</td>
+  </tr>
+  <tr>
+    <td><code>gcs_service_account_id</code></td>
+    <td>Authenticate to *Google Cloud* via user ID &amp; private key</td>
+  </tr>
+  <tr>
+    <td><code>gcs_service_account_keys</code></td>
+    <td>Authenticate to *Google Cloud* via *JSON key*</td>
+  </tr>
+  <tr>
+    <td><code>hdfs</code></td>
+    <td>Authenticate to *HDFS*</td>
+  </tr>
+  <tr>
+    <td><code>jdbc</code></td>
+    <td>Authenticate via *Java Database Connectivity*</td>
+  </tr>
+  <tr>
+    <td><code>kafka</code></td>
+    <td>Authenticate to a *Kafka* cluster or schema registry</td>
+  </tr>
+  <tr>
+    <td><code>nvidia_api_key</code></td>
+    <td>Authenticate to the *Nvidia AI* API</td>
+  </tr>
+  <tr>
+    <td><code>openai_api_key</code></td>
+    <td>Authenticate to the *OpenAI* API</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="IDENTITY">
+
+Username to use for authenticating with the *credential*.
+
+</Accordion>
+
+<Accordion title="SECRET">
+
+Password to use for authenticating with the *credential*.
+
+</Accordion>
+
+<Accordion title="'&lt;option&gt;'">
+
+Any option/value pair from the [credential options](/content/sql/ddl#sql-credential-opts) list.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="sql-drop-credential"></a>
@@ -3866,10 +5785,30 @@ given *credential* must be dropped before it can be dropped.
 Only users with `system_admin` or `system_user_admin`, or users with
 `credential_admin` on the *credential* to drop, may drop a *credential*.
 
-| Parameters | Description |
-| --- | --- |
-| `<schema name>` | Name of the *schema* containing the *credential* to drop |
-| `<credential name>` | Name of the existing *credential* to remove; use `*` instead of *schema*/*credential* name to drop all *credentials* |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *credential* to drop
+
+</Accordion>
+
+<Accordion title="&lt;credential name&gt;">
+
+Name of the existing *credential* to remove; use `*` instead of *schema*/*credential* name to
+drop all *credentials*
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 To drop a *credential*, `auser_azure_active_dir_creds`:
 
@@ -3904,12 +5843,32 @@ The response to `SHOW CREDENTIAL` is a single-column result set
 with the DDL statement as the value in the `DDL` column.
 </Info>
 
-| Parameters | Description |
-| --- | --- |
-| `<schema name>` | Name of the *schema* containing the *credential* to show |
-| `<credential name>` | Name of the existing *credential* for which the DDL will be output; use `*` instead of *schema*/*credential* name to output the DDL of all *credentials* |
 
-For example, to output the DDL for a *credential*, `auser_azure_active_dir_creds`:
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *credential* to show
+
+</Accordion>
+
+<Accordion title="&lt;credential name&gt;">
+
+Name of the existing *credential* for which the DDL will be output; use `*` instead of
+*schema*/*credential* name to output the DDL of all *credentials*
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To output the DDL for a *credential*, `auser_azure_active_dir_creds`:
 
 {/* Source: /examples/sql/credential/credential.kisql (lines 38) */}
 ```sql SHOW CREDENTIAL Example
@@ -3942,22 +5901,44 @@ Only users with `system_admin` or `system_user_admin`, or users with
 describe a *credential*.
 
 
-<Info>
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *credential* to describe
+
+</Accordion>
+
+<Accordion title="&lt;credential name&gt;">
+
+Name of the existing *credential* for which the configuration will be output; use `*` instead
+of *schema*/*credential* name to output the configuration of all *credentials*
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Response
+
+
 The response to `DESCRIBE CREDENTIAL` is a four-column result set:
-* `CREDENTIAL_NAME` - name of the *credential*
-* `CREDENTIAL_TYPE` - type of the *credential*; see
-  [CREATE CREDENTIAL](/content/sql/ddl#sql-create-credential) for values
-* `CREDENTIAL_IDENTITY` - Username associated with the *credential*
-* `CREDENTIAL_OPTIONS` - Options associated with the *credential*; see
-  [Credential Options](/content/sql/ddl#sql-credential-opts) for values
-</Info>
 
-| Parameters | Description |
+| Output Column | Description |
 | --- | --- |
-| `<schema name>` | Name of the *schema* containing the *credential* to describe |
-| `<credential name>` | Name of the existing *credential* for which the configuration will be output; use `*` instead of *schema*/*credential* name to output the configuration of all *credentials* |
+| `CREDENTIAL_NAME` | Name of the *credential* |
+| `CREDENTIAL_TYPE` | Type of the *credential*; see [CREATE CREDENTIAL](/content/sql/ddl#sql-create-credential) for values |
+| `CREDENTIAL_IDENTITY` | Username associated with the *credential* |
+| `CREDENTIAL_OPTIONS` | Options associated with the *credential*; see [Options](/content/sql/ddl#sql-credential-opts) for values |
 
-For example, to show the configuration for a *credential*, `auser_azure_active_dir_creds`:
+
+### Examples
+
+
+To show the configuration for a *credential*, `auser_azure_active_dir_creds`:
 
 {/* Source: /examples/sql/credential/credential.kisql (lines 88) */}
 ```sql DESCRIBE CREDENTIAL Example
@@ -4031,18 +6012,151 @@ For provider-specific syntax, see [Provider-Specific Syntax](/content/sql/ddl#sq
 For provider-specific examples, see [Creating Data Sources](/content/snippets/create-data-sources).
 
 
-| Parameters | Description |
-| --- | --- |
-| `OR REPLACE` | Any existing *data source* with the same name will be dropped before creating this one |
-| `EXTERNAL` | Optional keyword for clarity |
-| `<schema name>` | Name of the *schema* that will contain the created *data source*; if no *schema* is specified, the *data source* will be created in the user's [default schema](/content/concepts/schemas#schema-default) |
-| `<data source name>` | Name of the *data source* to create; must adhere to the supported [naming criteria](/content/sql/naming#sql-naming-criteria) |
-| `<provider>` | Provider of the *data source* <br/> <br/> Supported providers include: <br/> <br/> +---------------+-----------------------------------------------------------------------------+ \| Provider      \| Description                                                                 \| +===============+=============================================================================+ \| `AZURE`     \| Microsoft Azure blob storage                                                \| +---------------+-----------------------------------------------------------------------------+ \| `CONFLUENT` \| Confluent Kafka streaming feed                                              \| \|               \|                                                                             \| \|               \| .. note::  The `LOCATION` can be a comma-delimited list of Kafka URLs, to \| \|               \|            be used for high-availability; only one of which will be         \| \|               \|            streamed from at any given time.                                 \| +---------------+-----------------------------------------------------------------------------+ \| `GCS`       \| Google Cloud Storage                                                        \| +---------------+-----------------------------------------------------------------------------+ \| `HDFS`      \| Apache Hadoop Distributed File System                                       \| +---------------+-----------------------------------------------------------------------------+ \| `JDBC`      \| JDBC connection, where `LOCATION` is the JDBC URL.                        \| \|               \|                                                                             \| \|               \| ``sql title="PostgreSQL Example URL"                                              \| \|               \| LOCATION = 'jdbc:postgresql://example.com:5432/mydb'                               \| \|               \| ``                                                                                \| \|               \|                                                                             \| \|               \| See the [supported list](/content/concepts/jdbc_drivers) for the full list  \| \|               \| of supported drivers, or specify one with `JDBC_DRIVER_JAR_PATH` and      \| \|               \| `JDBC_DRIVER_CLASS_NAME`.                                                 \| <br/> <br/> `KAFKA`: Apache Kafka streaming feed **Note:** The `LOCATION` can be a comma-delimited list of Kafka URLs, to be used for high-availability; only one of which will be streamed from at any given time. <br/> <br/> `S3`: Amazon S3 bucket |
-| `<host>` | Host to use to connect to the *data source*; the following providers have a default *host*, if `host` is left blank: <br/> <br/> *Azure*: `<storage_account_name>.blob.core.windows.net` <br/> <br/> *GCS*: `storage.googleapis.com` <br/> <br/> *S3*: `<region>.amazonaws.com` |
-| `<port>` | Port, for HDFS or Kafka, to use to connect to the *data source* |
-| `USER` | Optional user name, given in `<username>`, to use for authenticating to the *data source* |
-| `PASSWORD` | Optional password, given in `<password>`, to use for authenticating to the *data source* |
-| `WITH OPTIONS` | Optional indicator that a comma-delimited list of connection option/value assignments will follow.  See [Data Source Options](/content/sql/ddl#sql-ds-opts) for the full list of options. |
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="OR REPLACE">
+
+Any existing *data source* with the same name will be dropped before creating this one
+
+</Accordion>
+
+<Accordion title="EXTERNAL">
+
+Optional keyword for clarity
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* that will contain the created *data source*; if no *schema* is specified,
+the *data source* will be created in the user's [default schema](/content/concepts/schemas#schema-default)
+
+</Accordion>
+
+<Accordion title="&lt;data source name&gt;">
+
+Name of the *data source* to create; must adhere to the supported
+[naming criteria](/content/sql/naming#sql-naming-criteria)
+
+</Accordion>
+
+<Accordion title="&lt;provider&gt;">
+
+Provider of the *data source*
+
+Supported providers include:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Provider</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>AZURE</code></td>
+    <td>Microsoft Azure blob storage</td>
+  </tr>
+  <tr>
+    <td><code>CONFLUENT</code></td>
+    <td>Confluent Kafka streaming feed .. note::  The <code>LOCATION</code> can be a comma-delimited list of Kafka URLs, to be used for high-availability; only one of which will be streamed from at any given time.</td>
+  </tr>
+  <tr>
+    <td><code>GCS</code></td>
+    <td>Google Cloud Storage</td>
+  </tr>
+  <tr>
+    <td><code>HDFS</code></td>
+    <td>Apache Hadoop Distributed File System</td>
+  </tr>
+  <tr>
+    <td><code>JDBC</code></td>
+    <td>JDBC connection, where <code>LOCATION</code> is the JDBC URL. <pre><code class="language-sql">LOCATION = 'jdbc:postgresql://example.com:5432/mydb'</code></pre> See the [supported list](/content/concepts/jdbc_drivers) for the full list of supported drivers, or specify one with <code>JDBC_DRIVER_JAR_PATH</code> and <code>JDBC_DRIVER_CLASS_NAME</code>.</td>
+  </tr>
+  <tr>
+    <td><code>KAFKA</code></td>
+    <td>Apache Kafka streaming feed .. note::  The <code>LOCATION</code> can be a comma-delimited list of Kafka URLs, to be used for high-availability; only one of which will be streamed from at any given time.</td>
+  </tr>
+  <tr>
+    <td><code>S3</code></td>
+    <td>Amazon S3 bucket</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="&lt;host&gt;">
+
+Host to use to connect to the *data source*; the following providers have a default *host*, if
+`host` is left blank:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Provider</th>
+    <th>Default Host</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>*Azure*</td>
+    <td><code>&lt;storage_account_name&gt;.blob.core.windows.net</code></td>
+  </tr>
+  <tr>
+    <td>*GCS*</td>
+    <td><code>storage.googleapis.com</code></td>
+  </tr>
+  <tr>
+    <td>*S3*</td>
+    <td><code>&lt;region&gt;.amazonaws.com</code></td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="&lt;port&gt;">
+
+Port, for HDFS or Kafka, to use to connect to the *data source*
+
+</Accordion>
+
+<Accordion title="USER">
+
+Optional user name, given in `<username>`, to use for authenticating to the
+*data source*
+
+</Accordion>
+
+<Accordion title="PASSWORD">
+
+Optional password, given in `<password>`, to use for authenticating to the
+*data source*
+
+</Accordion>
+
+<Accordion title="WITH OPTIONS">
+
+Optional indicator that a comma-delimited list of connection option/value assignments will
+follow.  See [Options](/content/sql/ddl#sql-ds-opts) for the full list of options.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
 
 
 To create a *data source*, `kin_ds`, that connects to an Amazon S3 bucket,
@@ -4065,7 +6179,7 @@ WITH OPTIONS
 <a id="sql-ds-opts"></a>
 
 
-### Data Source Options
+### Options
 
 
 | Option | Provider | Description |
@@ -4531,12 +6645,43 @@ The *data source* will be validated upon alteration, by default, and
 will fail to be altered if an authorized connection cannot be established.
 </Info>
 
-| Parameters | Description |
-| --- | --- |
-| `EXTERNAL` | Optional keyword for clarity |
-| `<schema name>` | Name of the *schema* containing the *data source* to alter |
-| `<data source name>` | Name of the *data source* to alter |
-| `SET PROPERTY` | Indicator that a comma-delimited list of alterations to make will follow. <br/> <br/> See [Set Properties](/content/sql/ddl#sql-alter-data-source-prop) for the complete list of properties. |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="EXTERNAL">
+
+Optional keyword for clarity
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *data source* to alter
+
+</Accordion>
+
+<Accordion title="&lt;data source name&gt;">
+
+Name of the *data source* to alter
+
+</Accordion>
+
+<Accordion title="SET PROPERTY">
+
+Indicator that a comma-delimited list of alterations to make will follow.
+
+See [Set Properties](/content/sql/ddl#sql-alter-data-source-prop) for the complete list of properties.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 To alter a *data source*, `kin_ds`, updating the username & password:
 
@@ -4563,13 +6708,85 @@ alteration.
 #### Provider-Agnostic Properties
 
 
-| Parameters | Description |
-| --- | --- |
-| `LOCATION` | Location of the *data source*; see [Provider-Specific Syntax](/content/sql/ddl#sql-create-data-source-syntax) for details <br/> <br/> The *data source* can be from any of the following *providers*: <br/> <br/> `AZURE`: Microsoft Azure blob storage <br/> <br/> `CONFLUENT`: Confluent Kafka streaming feed <br/> <br/> `GCS`: Google Cloud Storage <br/> <br/> `HDFS`: Apache Hadoop Distributed File System <br/> <br/> `JDBC`: JDBC connection, where `LOCATION` is the JDBC or CData JDBC URL. See the [supported list](/content/concepts/jdbc_drivers) for the full list of supported drivers, or specify one with `JDBC_DRIVER_JAR_PATH` and `JDBC_DRIVER_CLASS_NAME`. <br/> <br/> `KAFKA`: Apache Kafka streaming feed <br/> <br/> `S3`: Amazon S3 bucket |
-| `USER` | User name, given in `<username>`, to use for authenticating to the *data source* |
-| `PASSWORD` | Password, given in `<password>`, to use for authenticating to the *data source* |
-| `CREDENTIAL` | [Credential](/content/sql/ddl#sql-create-credential) object to use to authenticate to the remote system |
-| `VALIDATE` | Whether to test the connection to the data source upon creation; if `TRUE`, the creation of a *data source* that cannot be connected to will fail; if `FALSE`, the *data source* will be created regardless of connectivity.  Default is `TRUE`. |
+<AccordionGroup>
+
+<Accordion title="LOCATION">
+
+Location of the *data source*; see [Provider-Specific Syntax](/content/sql/ddl#sql-create-data-source-syntax) for details
+
+The *data source* can be from any of the following *providers*:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Provider</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>AZURE</code></td>
+    <td>Microsoft Azure blob storage</td>
+  </tr>
+  <tr>
+    <td><code>CONFLUENT</code></td>
+    <td>Confluent Kafka streaming feed</td>
+  </tr>
+  <tr>
+    <td><code>GCS</code></td>
+    <td>Google Cloud Storage</td>
+  </tr>
+  <tr>
+    <td><code>HDFS</code></td>
+    <td>Apache Hadoop Distributed File System</td>
+  </tr>
+  <tr>
+    <td><code>JDBC</code></td>
+    <td>JDBC connection, where <code>LOCATION</code> is the JDBC or CData JDBC URL. See the [supported list](/content/concepts/jdbc_drivers) for the full list of supported drivers, or specify one with <code>JDBC_DRIVER_JAR_PATH</code> and <code>JDBC_DRIVER_CLASS_NAME</code>.</td>
+  </tr>
+  <tr>
+    <td><code>KAFKA</code></td>
+    <td>Apache Kafka streaming feed</td>
+  </tr>
+  <tr>
+    <td><code>S3</code></td>
+    <td>Amazon S3 bucket</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="USER">
+
+User name, given in `<username>`, to use for authenticating to the *data source*
+
+</Accordion>
+
+<Accordion title="PASSWORD">
+
+Password, given in `<password>`, to use for authenticating to the *data source*
+
+</Accordion>
+
+<Accordion title="CREDENTIAL">
+
+[Credential](/content/sql/ddl#sql-create-credential) object to use to authenticate to the remote system
+
+</Accordion>
+
+<Accordion title="VALIDATE">
+
+Whether to test the connection to the data source upon creation; if `TRUE`, the creation of a
+*data source* that cannot be connected to will fail; if `FALSE`, the *data source* will be
+created regardless of connectivity.  Default is `TRUE`.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 #### Provider-Specific Properties
@@ -4625,14 +6842,44 @@ The response to `LIST DATA SOURCE` is a single-column result set
 of table names in `<schema_name>.<table_name>` format.
 </Info>
 
-| Parameters | Description |
-| --- | --- |
-| `DATA SOURCE` | Optional keyword for clarity |
-| `<schema name>` | Name of the *schema* containing the *data source* to list |
-| `<data source name>` | Name of the *data source* whose accessible tables will be listed |
-| `WITH OPTIONS` | Optional indicator that a comma-delimited list of filtering option/value assignments will follow.  See [List Data Source Options](/content/sql/ddl#sql-list-data-source-opts) for the full list of options. |
 
-For example, to list all the tables accessible through a *data source*,
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="DATA SOURCE">
+
+Optional keyword for clarity
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *data source* to list
+
+</Accordion>
+
+<Accordion title="&lt;data source name&gt;">
+
+Name of the *data source* whose accessible tables will be listed
+
+</Accordion>
+
+<Accordion title="WITH OPTIONS">
+
+Optional indicator that a comma-delimited list of filtering option/value assignments will
+follow.  See [Options](/content/sql/ddl#sql-list-data-source-opts) for the full list of options.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To list all the tables accessible through a *data source*,
 `kin_ds_jdbc`:
 
 {/* Source: /examples/sql/data_source/data_source.kisql (lines     187) */}
@@ -4660,7 +6907,7 @@ WITH OPTIONS (TABLE = '%role%')
 <a id="sql-list-data-source-opts"></a>
 
 
-### List Data Source Options
+### Options
 
 
 The `_` and `%` characters can be used in any of these options to match
@@ -4668,11 +6915,27 @@ any single character or any number of characters in object names, respectively.
 
 If multiple options are used, the tables must match all specified criteria.
 
-| Parameters | Description |
-| --- | --- |
-| `CATALOG` | Only show tables within the specified catalog(s) |
-| `SCHEMA` | Only show tables within the specified schema(s) |
-| `TABLE` | Only show tables matching the specified name(s) |
+<AccordionGroup>
+
+<Accordion title="CATALOG">
+
+Only show tables within the specified catalog(s)
+
+</Accordion>
+
+<Accordion title="SCHEMA">
+
+Only show tables within the specified schema(s)
+
+</Accordion>
+
+<Accordion title="TABLE">
+
+Only show tables matching the specified name(s)
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="sql-drop-data-source"></a>
@@ -4694,11 +6957,35 @@ subscriptions initiated by a [LOAD INTO](/content/sql/load#sql-load-into) comman
 on a given *data source* must be dropped before it can be dropped.
 </Info>
 
-| Parameters | Description |
-| --- | --- |
-| `EXTERNAL` | Optional keyword for clarity |
-| `<schema name>` | Name of the *schema* containing the *data source* to remove |
-| `<data source name>` | Name of the *data source* to remove |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="EXTERNAL">
+
+Optional keyword for clarity
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *data source* to remove
+
+</Accordion>
+
+<Accordion title="&lt;data source name&gt;">
+
+Name of the *data source* to remove
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 To drop a *data source*, `kin_ds`:
 
@@ -4730,13 +7017,38 @@ The response to `SHOW DATA SOURCE` is a single-column result set
 with the DDL statement as the value in the `DDL` column.
 </Info>
 
-| Parameters | Description |
-| --- | --- |
-| `EXTERNAL` | Optional keyword for clarity |
-| `<schema name>` | Name of the *schema* containing the *data source* to show |
-| `<data source name>` | Name of the *data source* for which the DDL will be output; use `*` instead of *schema*/*data source* name to output the DDL of all *data sources* |
 
-For example, to output the DDL for a *data source*, `kin_ds`:
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="EXTERNAL">
+
+Optional keyword for clarity
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *data source* to show
+
+</Accordion>
+
+<Accordion title="&lt;data source name&gt;">
+
+Name of the *data source* for which the DDL will be output; use `*` instead of
+*schema*/*data source* name to output the DDL of all *data sources*
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To output the DDL for a *data source*, `kin_ds`:
 
 {/* Source: /examples/sql/data_source/data_source.kisql (lines 54) */}
 ```sql SHOW DATA SOURCE Example
@@ -4765,21 +7077,47 @@ DESC[RIBE] [EXTERNAL] DATA SOURCE < [<schema name>.]<data source name> | * >
 ```
 
 
-<Info>
-The response to `DESCRIBE DATA SOURCE` is a three-column result
-set:
+### Parameters
 
-* `DATA_SOURCE` - name of the data source
-* `STORAGE_PROVIDER_TYPE` - keyword associated with storage provider
-* `ADDITIONAL_INFO` - *data source* configuration; passwords will be
-  redacted
-</Info>
 
-| Parameters | Description |
+<AccordionGroup>
+
+<Accordion title="EXTERNAL">
+
+Optional keyword for clarity
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *data source* to describe
+
+</Accordion>
+
+<Accordion title="&lt;data source name&gt;">
+
+Name of the *data source* whose configuration will be output; use `*` instead of
+*schema*/*data source* name to output the configuration of all *data sources*
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Response
+
+
+The response to `DESCRIBE DATA SOURCE` is a three-column result set:
+
+| Output Column | Description |
 | --- | --- |
-| `EXTERNAL` | Optional keyword for clarity |
-| `<schema name>` | Name of the *schema* containing the *data source* to describe |
-| `<data source name>` | Name of the *data source* whose configuration will be output; use `*` instead of *schema*/*data source* name to output the configuration of all *data sources* |
+| `DATA_SOURCE` | Name of the data source |
+| `STORAGE_PROVIDER_TYPE` | Keyword associated with storage provider |
+| `ADDITIONAL_INFO` | *Data source* configuration; passwords will be redacted |
+
+
+### Examples
+
 
 To show the configuration for a *data source*, `kin_ds`:
 
@@ -4846,16 +7184,154 @@ For consumer-specific syntax, see [Consumer-Specific Syntax](/content/sql/ddl#sq
 For consumer-specific examples, see [Creating Data Sinks](/content/snippets/create-data-sinks).
 
 
-| Parameters | Description |
-| --- | --- |
-| `OR REPLACE` | Any existing *data sink* with the same name will be dropped before creating this one |
-| `EXTERNAL` | Optional keyword for clarity |
-| `<schema name>` | Name of the *schema* that will contain the created *data sink*; if no *schema* is specified, the *data sink* will be created in the user's [default schema](/content/concepts/schemas#schema-default) |
-| `<data sink name>` | Name of the *data sink* to create; must adhere to the supported [naming criteria](/content/sql/naming#sql-naming-criteria) |
-| `<consumer>` | Consumer of the *data sink* <br/> <br/> Supported consumers include: <br/> <br/> +---------------+-----------------------------------------------------------------------------+ \| Consumer      \| Description                                                                 \| +===============+=============================================================================+ \| `AZURE`     \| Microsoft Azure blob storage                                                \| +---------------+-----------------------------------------------------------------------------+ \| `GCS`       \| Google Cloud Storage                                                        \| +---------------+-----------------------------------------------------------------------------+ \| `HDFS`      \| Apache Hadoop Distributed File System                                       \| +---------------+-----------------------------------------------------------------------------+ \| `HTTP`      \| Unsecured webhook                                                           \| +---------------+-----------------------------------------------------------------------------+ \| `HTTPS`     \| Secured webhook                                                             \| +---------------+-----------------------------------------------------------------------------+ \| `JDBC`      \| JDBC connection, where `LOCATION` is the JDBC URL.                        \| \|               \|                                                                             \| \|               \| ``sql title="PostgreSQL Example URL"                                              \| \|               \| LOCATION = 'jdbc:postgresql://example.com:5432/mydb'                               \| \|               \| ``                                                                                \| \|               \|                                                                             \| \|               \| See the [supported list](/content/concepts/jdbc_drivers) for the full list  \| \|               \| of supported drivers, or specify one with `JDBC_DRIVER_JAR_PATH` and      \| \|               \| `JDBC_DRIVER_CLASS_NAME`.                                                 \| <br/> <br/> `KAFKA`: Apache Kafka broker <br/> <br/> `TABLE`: Local Kinetica table residing in the same database as the *data sink*: <br/> <br/> `LOCATION = 'TABLE://example.employee_backup'` <br/> <br/> `S3`: Amazon S3 bucket |
-| `<target>` | Target to connect to via *data sink*; the following consumers have a default *host target*, if `target` is left blank: <br/> <br/> *Azure*: `<storage_account_name>.blob.core.windows.net` <br/> <br/> *GCS*: `storage.googleapis.com` <br/> <br/> *S3*: `<region>.amazonaws.com` <br/> <Info> For local Kinetica tables, `target` is the name of the name of the target table: <br/> <br/> `[<target table schema name>].<target table name>` <br/> <br/> </Info> |
-| `<port>` | Port to connect to via the *data sink*, if applicable |
-| `WITH OPTIONS` | Optional indicator that a comma-delimited list of connection option/value assignments will follow.  See [Data Sink Options](/content/sql/ddl#sql-dsink-opts) for the full list of options. |
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="OR REPLACE">
+
+Any existing *data sink* with the same name will be dropped before creating this one
+
+</Accordion>
+
+<Accordion title="EXTERNAL">
+
+Optional keyword for clarity
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* that will contain the created *data sink*; if no *schema* is specified,
+the *data sink* will be created in the user's [default schema](/content/concepts/schemas#schema-default)
+
+</Accordion>
+
+<Accordion title="&lt;data sink name&gt;">
+
+Name of the *data sink* to create; must adhere to the supported
+[naming criteria](/content/sql/naming#sql-naming-criteria)
+
+</Accordion>
+
+<Accordion title="&lt;consumer&gt;">
+
+Consumer of the *data sink*
+
+Supported consumers include:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Consumer</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>AZURE</code></td>
+    <td>Microsoft Azure blob storage</td>
+  </tr>
+  <tr>
+    <td><code>GCS</code></td>
+    <td>Google Cloud Storage</td>
+  </tr>
+  <tr>
+    <td><code>HDFS</code></td>
+    <td>Apache Hadoop Distributed File System</td>
+  </tr>
+  <tr>
+    <td><code>HTTP</code></td>
+    <td>Unsecured webhook</td>
+  </tr>
+  <tr>
+    <td><code>HTTPS</code></td>
+    <td>Secured webhook</td>
+  </tr>
+  <tr>
+    <td><code>JDBC</code></td>
+    <td>JDBC connection, where <code>LOCATION</code> is the JDBC URL. <pre><code class="language-sql">LOCATION = 'jdbc:postgresql://example.com:5432/mydb'</code></pre> See the [supported list](/content/concepts/jdbc_drivers) for the full list of supported drivers, or specify one with <code>JDBC_DRIVER_JAR_PATH</code> and <code>JDBC_DRIVER_CLASS_NAME</code>.</td>
+  </tr>
+  <tr>
+    <td><code>KAFKA</code></td>
+    <td>Apache Kafka broker</td>
+  </tr>
+  <tr>
+    <td><code>TABLE</code></td>
+    <td>Local Kinetica table residing in the same database as the *data sink*: <pre><code class="language-sql">LOCATION = 'TABLE://example.employee_backup'</code></pre></td>
+  </tr>
+  <tr>
+    <td><code>S3</code></td>
+    <td>Amazon S3 bucket</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="&lt;target&gt;">
+
+Target to connect to via *data sink*; the following consumers have a default *host target*, if
+`target` is left blank:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Consumer</th>
+    <th>Default Host</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>*Azure*</td>
+    <td><code>&lt;storage_account_name&gt;.blob.core.windows.net</code></td>
+  </tr>
+  <tr>
+    <td>*GCS*</td>
+    <td><code>storage.googleapis.com</code></td>
+  </tr>
+  <tr>
+    <td>*S3*</td>
+    <td><code>&lt;region&gt;.amazonaws.com</code></td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+
+<Info>
+For local Kinetica tables, `target` is the name of the name of the target table:
+
+```
+[<target table schema name>].<target table name>
+```
+</Info>
+
+</Accordion>
+
+<Accordion title="&lt;port&gt;">
+
+Port to connect to via the *data sink*, if applicable
+
+</Accordion>
+
+<Accordion title="WITH OPTIONS">
+
+Optional indicator that a comma-delimited list of connection option/value assignments will
+follow.  See [Options](/content/sql/ddl#sql-dsink-opts) for the full list of options.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
 
 
 To create a *data sink*, `kin_dsink`, that connects to an Apache Kafka broker:
@@ -4875,7 +7351,7 @@ WITH OPTIONS
 <a id="sql-dsink-opts"></a>
 
 
-### Data Sink Options
+### Options
 
 
 | Option | Consumer | Description |
@@ -5216,12 +7692,43 @@ Kafka *data sinks* will be validated upon creation, by default, and
 will fail to be created if an authorized connection cannot be established.
 </Info>
 
-| Parameters | Description |
-| --- | --- |
-| `EXTERNAL` | Optional keyword for clarity |
-| `<schema name>` | Name of the *schema* containing the *data sink* to alter |
-| `<data sink name>` | Name of the *data sink* to alter |
-| `SET PROPERTY` | Indicator that a comma-delimited list of alterations to make will follow. <br/> <br/> See [Set Properties](/content/sql/ddl#sql-alter-data-sink-prop) for the complete list of properties. |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="EXTERNAL">
+
+Optional keyword for clarity
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *data sink* to alter
+
+</Accordion>
+
+<Accordion title="&lt;data sink name&gt;">
+
+Name of the *data sink* to alter
+
+</Accordion>
+
+<Accordion title="SET PROPERTY">
+
+Indicator that a comma-delimited list of alterations to make will follow.
+
+See [Set Properties](/content/sql/ddl#sql-alter-data-sink-prop) for the complete list of properties.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 To alter a *data sink*, `kin_dsink`, updating the timeouts:
 
@@ -5298,11 +7805,35 @@ Any [streams](/content/sql/ddl#sql-create-stream) that depend on a given
 *data sink* must be dropped before it can be dropped.
 </Info>
 
-| Parameters | Description |
-| --- | --- |
-| `EXTERNAL` | Optional keyword for clarity |
-| `<schema name>` | Name of the *schema* containing the *data sink* to remove |
-| `<data sink name>` | Name of the *data sink* to remove |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="EXTERNAL">
+
+Optional keyword for clarity
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *data sink* to remove
+
+</Accordion>
+
+<Accordion title="&lt;data sink name&gt;">
+
+Name of the *data sink* to remove
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 To drop a *data sink*, `kin_dsink`:
 
@@ -5331,13 +7862,38 @@ The response to `SHOW DATA SINK` is a single-column result set
 with the DDL statement as the value in the `DDL` column.
 </Info>
 
-| Parameters | Description |
-| --- | --- |
-| `EXTERNAL` | Optional keyword for clarity |
-| `<schema name>` | Name of the *schema* containing the *data sink* to show |
-| `<data sink name>` | Name of the *data sink* for which the DDL will be output; use `*` instead of *schema*/*data sink* name to output the DDL of all *data sinks* |
 
-For example, to output the DDL for a *data sink*, `kin_dsink`:
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="EXTERNAL">
+
+Optional keyword for clarity
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *data sink* to show
+
+</Accordion>
+
+<Accordion title="&lt;data sink name&gt;">
+
+Name of the *data sink* for which the DDL will be output; use `*` instead of
+*schema*/*data sink* name to output the DDL of all *data sinks*
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To output the DDL for a *data sink*, `kin_dsink`:
 
 {/* Source: /examples/sql/data_sink/data_sink.kisql (lines 54) */}
 ```sql SHOW DATA SINK Example
@@ -5366,20 +7922,47 @@ DESC[RIBE] [EXTERNAL] DATA SINK < [<schema name>.]<data sink name> | * >
 ```
 
 
-<Info>
-The response to `DESCRIBE DATA SINK` is a three-column result
-set:
+### Parameters
 
-* `DATA_SINK` - name of the *data sink*
-* `STORAGE_PROVIDER_TYPE` - keyword identifying *data sink* consumer
-* `ADDITIONAL_INFO` - *data sink* configuration
-</Info>
 
-| Parameters | Description |
+<AccordionGroup>
+
+<Accordion title="EXTERNAL">
+
+Optional keyword for clarity
+
+</Accordion>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *data sink* to describe
+
+</Accordion>
+
+<Accordion title="&lt;data sink name&gt;">
+
+Name of the *data sink* whose configuration will be output; use `*` instead of
+*schema*/*data sink* name to output the configuration of all *data sinks*
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Response
+
+
+The response to `DESCRIBE DATA SINK` is a three-column result set:
+
+| Output Column | Description |
 | --- | --- |
-| `EXTERNAL` | Optional keyword for clarity |
-| `<schema name>` | Name of the *schema* containing the *data sink* to describe |
-| `<data sink name>` | Name of the *data sink* whose configuration will be output; use `*` instead of *schema*/*data sink* name to output the configuration of all *data sinks* |
+| `DATA_SINK` | Name of the *data sink* |
+| `STORAGE_PROVIDER_TYPE` | Keyword identifying *data sink* consumer |
+| `ADDITIONAL_INFO` | *Data sink* configuration |
+
+
+### Examples
+
 
 To show the configuration for a *data sink*, `kin_dsink`:
 
@@ -5455,18 +8038,139 @@ created to support the *stream*.
 When the source *table* of a *stream* is altered or dropped, the *stream* will
 also be dropped.
 
-| Parameters | Description |
-| --- | --- |
-| `<stream schema name>` | Name of the *schema* that will contain the created *stream*; if no *schema* is specified, the *stream* will be created in the user's [default schema](/content/concepts/schemas#schema-default) |
-| `<stream name>` | Name of the *stream* to create; must adhere to the supported [naming criteria](/content/sql/naming#sql-naming-criteria) |
-| `TABLE` | Optional keyword for clarity, in creating a *stream* on a *table*. |
-| `<table schema name>` | Name of the *schema* containing the *table* or *materialized view* to monitor. |
-| `<table name>` | Name of the *table* or *materialized view* to monitor for changes. |
-| `QUERY` | Optional keyword for clarity, in creating a *stream* on a join. |
-| `<query>` | Join query to which the *stream* will be applied, using the following form: <br/> <br/> `SELECT * FROM <delta_table> dt LEFT SEMI JOIN <lookup_table> lt ON <join_clause>` <br/> <br/> Here, `<delta_table>` is the data table being monitored and `<lookup_table>` contains the criteria for whether a `<delta_table>` record should be streamed or not, as determined by the given `<join_clause>`. <br/> <Info> The marked *delta table* must be a regular table--it cannot be any of the following: <br/> * [external table](/content/sql/ddl#sql-create-ext-table) <br/> * [filter view](/content/concepts/filtered_views) <br/> * [join view](/content/concepts/joins) <br/> * [logical view](/content/sql/ddl#sql-create-view) <br/> * [materialized view](/content/sql/ddl#sql-create-materialized-view) The join must also meet [sharding](/content/concepts/tables#sharding) requirements for joins--either both tables need to have [shard keys](/content/concepts/tables#shard-key) on their equality-based joined columns, or at least one of the tables needs to be [replicated](/content/concepts/tables#replicated) . See [CREATE TABLE](/content/sql/ddl#sql-create-table) for syntax for creating a *replicated* table or a *sharded table* with a *shard key* column. </Info> <br/> See below for a table-driven geofence example using a query-based *stream*. |
-| `REFRESH` | Specifies the reporting scheme for monitored changes.   The following schemes are available: <br/> <br/> `ON CHANGE`: Will cause notifications to be streamed any time a record is added, modified, or deleted from the monitored table <br/> <br/> `EVERY`: Allows specification of an interval in seconds, minutes, hours, or days, with the optional specification of a starting time at which the first monitor interval will run; if no start time is specified, the default will be an interval's worth of time from the point at which the stream was created |
-| `<filter expression>` | Boolean expression that can be used to monitor for only a specific set of inserts. |
-| `WITH OPTIONS` | Indicator that a comma-delimited list of configuration option/value assignments will follow. See [Stream Options](/content/sql/ddl#sql-stream-opts) for the full list of options. <br/> <Info> One of either `DATASINK_NAME` or `DESTINATION` is required. </Info> |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;stream schema name&gt;">
+
+Name of the *schema* that will contain the created *stream*; if no *schema* is specified, the
+*stream* will be created in the user's [default schema](/content/concepts/schemas#schema-default)
+
+</Accordion>
+
+<Accordion title="&lt;stream name&gt;">
+
+Name of the *stream* to create; must adhere to the supported
+[naming criteria](/content/sql/naming#sql-naming-criteria)
+
+</Accordion>
+
+<Accordion title="TABLE">
+
+Optional keyword for clarity, in creating a *stream* on a *table*.
+
+</Accordion>
+
+<Accordion title="&lt;table schema name&gt;">
+
+Name of the *schema* containing the *table* or *materialized view* to monitor.
+
+</Accordion>
+
+<Accordion title="&lt;table name&gt;">
+
+Name of the *table* or *materialized view* to monitor for changes.
+
+</Accordion>
+
+<Accordion title="QUERY">
+
+Optional keyword for clarity, in creating a *stream* on a join.
+
+</Accordion>
+
+<Accordion title="&lt;query&gt;">
+
+ Join query to which the *stream* will be applied, using the following form:
+
+\{\{&lt; code "sql" "linenos=true" "Query Syntax" &gt;\}\}
+SELECT *
+FROM &lt;delta_table&gt; dt
+LEFT SEMI JOIN &lt;lookup_table&gt; lt
+ON &lt;join_clause&gt;
+\{\{&lt; /code &gt;\}\}
+
+ Here, `<delta_table>` is the data table being monitored and `<lookup_table>` contains the
+ criteria for whether a `<delta_table>` record should be streamed or not, as determined by
+ the given `<join_clause>`.
+
+
+<Info>
+The marked *delta table* must be a regular table--it cannot be any of the
+following:
+
+* [external table](/content/sql/ddl#sql-create-ext-table)
+* [filter view](/content/concepts/filtered_views)
+* [join view](/content/concepts/joins)
+* [logical view](/content/sql/ddl#sql-create-view)
+* [materialized view](/content/sql/ddl#sql-create-materialized-view)
+
+The join must also meet [sharding](/content/concepts/tables#sharding) requirements for joins--either both
+tables need to have [shard keys](/content/concepts/tables#shard-key) on their equality-based joined
+columns, or at least one of the tables needs to be [replicated](/content/concepts/tables#replicated).
+
+See [CREATE TABLE](/content/sql/ddl#sql-create-table) for syntax for creating a *replicated* table or a
+*sharded table* with a *shard key* column.
+</Info>
+
+ See below for a table-driven geofence example using a query-based *stream*.
+
+</Accordion>
+
+<Accordion title="REFRESH">
+
+Specifies the reporting scheme for monitored changes.   The following schemes are available:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Constant</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>ON CHANGE</code></td>
+    <td>Will cause notifications to be streamed any time a record is added, modified, or deleted from the monitored table</td>
+  </tr>
+  <tr>
+    <td><code>EVERY</code></td>
+    <td>Allows specification of an interval in seconds, minutes, hours, or days, with the optional specification of a starting time at which the first monitor interval will run; if no start time is specified, the default will be an interval's worth of time from the point at which the stream was created</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="&lt;filter expression&gt;">
+
+Boolean expression that can be used to monitor for only a specific set of inserts.
+
+</Accordion>
+
+<Accordion title="WITH OPTIONS">
+
+Indicator that a comma-delimited list of configuration option/value assignments will follow.
+See [Options](/content/sql/ddl#sql-stream-opts) for the full list of options.
+
+
+<Info>
+One of either `DATASINK_NAME` or `DESTINATION` is required.
+</Info>
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 To create a *stream*, `kin_stream`, that publishes inserts into the
 `order_stream` table of orders over $10,000 via the `kin_dsink` *data sink*:
@@ -5531,7 +8235,7 @@ WITH OPTIONS (DESTINATION = 'TABLE://example.order_target')
 <a id="sql-stream-opts"></a>
 
 
-### Stream Options
+### Options
 
 
 | Option | Consumer | Description |
@@ -5614,10 +8318,29 @@ Removes an existing [stream](/content/sql/ddl#sql-create-stream).
 DROP STREAM [<schema name>.]<stream name>
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<schema name>` | Name of the *schema* containing the *stream* to remove |
-| `<stream name>` | Name of the *stream* to remove |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *stream* to remove
+
+</Accordion>
+
+<Accordion title="&lt;stream name&gt;">
+
+Name of the *stream* to remove
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
 
 To drop a *stream*, `kin_stream`:
 
@@ -5654,12 +8377,31 @@ The response to `SHOW STREAM` is a single-column result set
 with the DDL statement as the value in the `DDL` column.
 </Info>
 
-| Parameters | Description |
-| --- | --- |
-| `<schema name>` | Name of the *schema* containing the *stream(s)* to show |
-| `<stream name>` | Name of the *stream* to show |
 
-For example, to output the DDL for a *stream*, `kin_stream`:
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *stream(s)* to show
+
+</Accordion>
+
+<Accordion title="&lt;stream name&gt;">
+
+Name of the *stream* to show
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To output the DDL for a *stream*, `kin_stream`:
 
 {/* Source: /examples/sql/stream/stream.kisql (lines 43) */}
 ```sql SHOW STREAM Example
@@ -5689,26 +8431,46 @@ Listing options:
 * `*` - output the configuration of all *streams*
 
 
-<Info>
-The response to `DESCRIBE STREAM` is a six-column result set:
-* `MONITOR_ID` - unique name or topic ID for the *stream*
-* `TABLE_NAME` - name of the table being monitored
-* `EVENT` - table data event that triggers streamed content
-* `INCREASING_COLUMN` - column in table being monitored that contains
-  ever-increasing data values
-* `FILTER_EXPRESSION` - filter used to monitor only data of interest
-* `MAX_CONSECUTIVE_FAILURES` - maximum number of failed notification
-  attempts before suspending the *stream*; `-1` disables auto-suspend
-* `FAILED_NOTIFICATIONS_TABLE_NAME` - name of the table to which failed
-  *stream* notifications are written and replayed when re-enabled
-* `DATASINK_NAME` - name of the *data sink* associated with the consumer
-* `STATUS` - whether the stream is enabled or suspended
-</Info>
+### Parameters
 
-| Parameters | Description |
+
+<AccordionGroup>
+
+<Accordion title="&lt;schema name&gt;">
+
+Name of the *schema* containing the *stream(s)* to describe
+
+</Accordion>
+
+<Accordion title="&lt;stream name&gt;">
+
+Name of the *stream* to describe
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Response
+
+
+The response to `DESCRIBE STREAM` is a nine-column result set:
+
+| Output Column | Description |
 | --- | --- |
-| `<schema name>` | Name of the *schema* containing the *stream(s)* to describe |
-| `<stream name>` | Name of the *stream* to describe |
+| `MONITOR_ID` | Unique name or topic ID for the *stream* |
+| `TABLE_NAME` | Name of the table being monitored |
+| `EVENT` | Table data event that triggers streamed content |
+| `INCREASING_COLUMN` | Column in table being monitored that contains ever-increasing data values |
+| `FILTER_EXPRESSION` | Filter used to monitor only data of interest |
+| `MAX_CONSECUTIVE_FAILURES` | Maximum number of failed notification attempts before suspending the *stream*; `-1` disables auto-suspend |
+| `FAILED_NOTIFICATIONS_TABLE_NAME` | Name of the table to which failed *stream* notifications are written and replayed when re-enabled |
+| `DATASINK_NAME` | Name of the *data sink* associated with the consumer |
+| `STATUS` | Whether the stream is enabled or suspended |
+
+
+### Examples
+
 
 To show the configuration for a *stream*, `kin_stream`:
 
@@ -5732,7 +8494,11 @@ DESC[RIBE] <schema name>
 DESC[RIBE] [<schema name>.]<table/view name>
 ```
 
-For example, to describe the tables contained in the `demo` schema, into
+
+### Examples
+
+
+To describe the tables contained in the `demo` schema, into
 which demo data is usually downloaded:
 
 {/* Source: /examples/sql/schema.kisql (lines 53) */}
@@ -5808,11 +8574,75 @@ statement.
 COMMENT ON <object type> <object name> IS '<comment text>';
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<object type>` | Specifies the type of object to which the *comment* will be applied.  The following types are supported: <br/> <br/> `SCHEMA`: Apply a [schema-level](/content/sql/ddl#sql-create-schema) comment; can be viewed in the `ki_catalog.ki_schemas` [Kinetica catalog table](/content/catalogs/kinetica) <br/> <br/> `TABLE`: Apply a [table-level](/content/sql/ddl#sql-create-table) comment; can be viewed in the `ki_catalog.ki_objects` [Kinetica catalog table](/content/catalogs/kinetica) <br/> <br/> `VIEW`: Apply a [view-level](/content/sql/ddl#sql-create-view) comment; can be viewed in the `ki_catalog.ki_objects` [Kinetica catalog table](/content/catalogs/kinetica) <br/> <br/> `COLUMN`: Apply a [column-level](/content/sql/ddl#sql-create-table) comment; can be viewed in the `ki_catalog.ki_columns` [Kinetica catalog table](/content/catalogs/kinetica) <br/> <br/> `PROCEDURE`: Apply a [procedure-level](/content/sql/procedure) comment; can be viewed in the `ki_catalog.ki_objects` [Kinetica catalog table](/content/catalogs/kinetica) <br/> <br/> `USER`: Apply a [user-level](/content/sql/security#sql-security-user-mgmt) comment; can be viewed in the `ki_catalog.ki_users_and_roles` [Kinetica catalog table](/content/catalogs/kinetica) <br/> <br/> `ROLE`: Apply a [role-level](/content/sql/security#sql-security-role-mgmt) comment; can be viewed in the `ki_catalog.ki_users_and_roles` [Kinetica catalog table](/content/catalogs/kinetica) |
-| `<object name>` | Name of the object to which the *comment* will be applied; must adhere to the supported [naming criteria](/content/sql/naming#sql-naming-criteria) |
-| `<comment text>` | Text of the *comment* to apply. |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="&lt;object type&gt;">
+
+Specifies the type of object to which the *comment* will be applied.  The following types are
+supported:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>SCHEMA</code></td>
+    <td>Apply a [schema-level](/content/sql/ddl#sql-create-schema) comment; can be viewed in the <code>ki_catalog.ki_schemas</code> [Kinetica catalog table](/content/catalogs/kinetica)</td>
+  </tr>
+  <tr>
+    <td><code>TABLE</code></td>
+    <td>Apply a [table-level](/content/sql/ddl#sql-create-table) comment; can be viewed in the <code>ki_catalog.ki_objects</code> [Kinetica catalog table](/content/catalogs/kinetica)</td>
+  </tr>
+  <tr>
+    <td><code>VIEW</code></td>
+    <td>Apply a [view-level](/content/sql/ddl#sql-create-view) comment; can be viewed in the <code>ki_catalog.ki_objects</code> [Kinetica catalog table](/content/catalogs/kinetica)</td>
+  </tr>
+  <tr>
+    <td><code>COLUMN</code></td>
+    <td>Apply a [column-level](/content/sql/ddl#sql-create-table) comment; can be viewed in the <code>ki_catalog.ki_columns</code> [Kinetica catalog table](/content/catalogs/kinetica)</td>
+  </tr>
+  <tr>
+    <td><code>PROCEDURE</code></td>
+    <td>Apply a [procedure-level](/content/sql/procedure) comment; can be viewed in the <code>ki_catalog.ki_objects</code> [Kinetica catalog table](/content/catalogs/kinetica)</td>
+  </tr>
+  <tr>
+    <td><code>USER</code></td>
+    <td>Apply a [user-level](/content/sql/security#sql-security-user-mgmt) comment; can be viewed in the <code>ki_catalog.ki_users_and_roles</code> [Kinetica catalog table](/content/catalogs/kinetica)</td>
+  </tr>
+  <tr>
+    <td><code>ROLE</code></td>
+    <td>Apply a [role-level](/content/sql/security#sql-security-role-mgmt) comment; can be viewed in the <code>ki_catalog.ki_users_and_roles</code> [Kinetica catalog table](/content/catalogs/kinetica)</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="&lt;object name&gt;">
+
+Name of the object to which the *comment* will be applied; must adhere to the supported
+[naming criteria](/content/sql/naming#sql-naming-criteria)
+
+</Accordion>
+
+<Accordion title="&lt;comment text&gt;">
+
+Text of the *comment* to apply.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 ### Examples

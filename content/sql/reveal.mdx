@@ -22,14 +22,68 @@ FROM FILE PATH '<file path>'
 [WITH OPTIONS (DATASOURCE = '<data source name>')]
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<dashboard name>` | Name of the *dashboard*. <br/> <Note> This name **must** match the name of the *dashboard* in the file. </Note> |
-| `<file path>` | *Dashboard* source file path. <br/> <br/> If a *data source* is specified, the path must resolve to an accessible file at that location. <br/> <br/> If no *data source* is specified, the file path can refer to one of two locations: <br/> <br/> * Public URL <br/> <br/> * [KiFS](/content/tools/kifs) path <br/> <br/> `kifs://reveal/db/nyctaxi.db`: File <Badge color="gray">nyctaxi.db</Badge> , under the *KiFS* virtual directory <Badge color="gray">reveal/db</Badge> |
-| `<data source name>` | Name of *data source* through which the *dashboard* will be loaded. |
+
+### Parameters
 
 
-For example, to load a *dashboard* named `nyctaxi.db` into *Reveal*:
+<AccordionGroup>
+
+<Accordion title="&lt;dashboard name&gt;">
+
+Name of the *dashboard*.
+
+
+<Note>
+This name **must** match the name of the *dashboard* in the file.
+</Note>
+
+</Accordion>
+
+<Accordion title="&lt;file path&gt;">
+
+*Dashboard* source file path.
+
+If a *data source* is specified, the path must resolve to an accessible file at that location.
+
+If no *data source* is specified, the file path can refer to one of two locations:
+
+* Public URL
+
+* [KiFS](/content/tools/kifs) path
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>File Path</th>
+    <th>Outcome</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>kifs://reveal/db/nyctaxi.db</code></td>
+    <td>File <Badge color="gray">nyctaxi.db</Badge>, under the *KiFS* virtual directory <Badge color="gray">reveal/db</Badge></td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="&lt;data source name&gt;">
+
+Name of *data source* through which the *dashboard* will be loaded.
+
+</Accordion>
+
+</AccordionGroup>
+
+
+### Examples
+
+
+To load a *dashboard* named `nyctaxi.db` into *Reveal*:
 
 <CodeGroup>
 

@@ -50,15 +50,156 @@ and remote column types.  If any transformations are necessary, the
 `QUERY` clause should be used and the transformation done within it.
 </Info>
 
-| Parameters | Description |
-| --- | --- |
-| `TABLE` | Source data specification clause, where `[<schema name>.]<table name>` is the name of the table (and, optionally, its schema) to export into the remote database. <br/> <Info> This clause is mutually exclusive with the `QUERY` clause. </Info> |
-| `QUERY` | Source data specification clause, where `<data query>` is a SQL `SELECT` statement to run locally to generate a result set to export into the remote database. <br/> <Info> This clause is mutually exclusive with the `TABLE` clause. </Info> |
-| `FILE PATH` | Target file specification clause, where `<file path>` is a single-quoted file path to which data will be written. <br/> <Info> This clause is mutually exclusive with the `REMOTE TABLE` & `REMOTE QUERY` clauses, and is only applicable when exporting to an *Azure*, *GCS*, *HDFS*, or *S3* *data sink*, or to *KiFS*. </Info> <br/> The form of a file path is dependent on the target referenced: <br/> <br/> * *Data Sink*:  If a *data sink* is specified in the [export options](/content/sql/export#sql-export-opt) this file path must resolve to a writable file/directory at that *data sink* location.  A "path prefix" can be specified, which will cause all files written to begin with that prefix, and an appropriate extension will be appended, based on file format. <br/> <br/> For example, a "path prefix" of `/data/emp` for `<file path>` might result in the following files being written when exporting the `employee` table multiple times: <br/> <br/> * `/data/emp/employee_123450000.csv` <br/> * `/data/emp/employee_123460000.csv` <br/> * `/data/emp/employee_123480000.csv` <br/> <br/> If using an HDFS *data sink*, the "path prefix" must be the name of an HDFS directory. <br/> <br/> * [KiFS](/content/tools/kifs):  The path must resolve to a writable file path within *KiFS*.  A "path prefix" can be specified, which will cause all files written to begin with that prefix, and an appropriate extension will be appended, based on file format. <br/> <br/> For example, a "path prefix" of `/data/emp` for `<file path>` might result in the following files being written when exporting the `employee` table multiple times: <br/> <br/> * `kifs://data/emp/employee_123450000.csv` <br/> * `kifs://data/emp/employee_123460000.csv` <br/> * `kifs://data/emp/employee_123480000.csv` <br/> <br/> The `SINGLE_FILE` option can be used to create one file with no suffix appended to the base file name, or to create multiple smaller files to increase the export performance. |
-| `FORMAT` | Optional indicator of target file type; default is `DELIMITED TEXT`. <br/> <br/> Supported formats include: <br/> <br/> `[DELIMITED] TEXT`: A text-based, delimited field data file (CSV, PSV, TSV, etc.); a comma-delimited list of options can be given to specify the way in which the data file(s) should be written, including the delimiter used, whether headers are present, etc. Records spanning multiple lines are not supported. **Note:** Non-numeric fields will be double-quoted, and double quotes in the data will be escaped with two double quotes. See [Delimited Text Options](/content/sql/export#sql-export-delim-opt) for the complete list of `<delimited text options>`. <br/> <br/> `PARQUET`: *Apache Parquet* data file |
-| `REMOTE TABLE` | Target table specification clause, where `[<schema name>.]<table name>` is the name of the table (and, optionally, its schema) in the remote database into which data will be exported. <br/> <br/> Data will be exported using an `INSERT` statement of the form: <br/> <br/> `INSERT INTO [<schema name>.]<table name> VALUES ($1, ..., $N)` <br/> <br/> This default form can be modified to use the `?` parameter form via the `USE_INDEXED_PARAMETERS` option. <br/> <Info> This clause is mutually exclusive with the `FILE PATH` & `REMOTE QUERY` clauses. </Info> |
-| `REMOTE QUERY` | Target insert specification clause, where `<insert statement>` is a SQL `INSERT` statement defining the way in which data will be loaded into the remote database.  The target table named in the `INSERT` statement must already exist in the remote database. <br/> <Info> This clause is mutually exclusive with the `FILE PATH` & `REMOTE TABLE` clauses. </Info> |
-| `WITH OPTIONS` | Optional indicator that a comma-delimited list of connection & global option/value assignments will follow. <br/> <br/> See [Export Options](/content/sql/export#sql-export-opt) for the complete list of options. |
+
+### Parameters
+
+
+<AccordionGroup>
+
+<Accordion title="TABLE">
+
+Source data specification clause, where `[<schema name>.]<table name>` is the name of the table (and, optionally,
+its schema) to export into the remote database.
+
+
+<Info>
+This clause is mutually exclusive with the `QUERY` clause.
+</Info>
+
+</Accordion>
+
+<Accordion title="QUERY">
+
+Source data specification clause, where `<data query>` is a SQL `SELECT` statement to
+run locally to generate a result set to export into the remote database.
+
+
+<Info>
+This clause is mutually exclusive with the `TABLE` clause.
+</Info>
+
+</Accordion>
+
+<Accordion title="FILE PATH">
+
+Target file specification clause, where `<file path>` is a single-quoted file path to
+which data will be written.
+
+
+<Info>
+This clause is mutually exclusive with the `REMOTE TABLE` & `REMOTE QUERY`
+clauses, and is only applicable when exporting to an *Azure*, *GCS*, *HDFS*, or
+*S3* *data sink*, or to *KiFS*.
+</Info>
+
+The form of a file path is dependent on the target referenced:
+
+* *Data Sink*:  If a *data sink* is specified in the
+  [export options](/content/sql/export#sql-export-opt) this file path must resolve to a writable
+  file/directory at that *data sink* location.  A "path prefix" can be specified, which
+  will cause all files written to begin with that prefix, and an appropriate extension will
+  be appended, based on file format.
+
+  For example, a "path prefix" of `/data/emp` for `<file path>` might result in the
+  following files being written when exporting the `employee` table multiple times:
+
+  * `/data/emp/employee_123450000.csv`
+  * `/data/emp/employee_123460000.csv`
+  * `/data/emp/employee_123480000.csv`
+
+  If using an HDFS *data sink*, the "path prefix" must be the name of an HDFS directory.
+
+* [KiFS](/content/tools/kifs):  The path must resolve to a writable file path within
+  *KiFS*.  A "path prefix" can be specified, which will cause all files written to begin
+  with that prefix, and an appropriate extension will be appended, based on file format.
+
+  For example, a "path prefix" of `/data/emp` for `<file path>` might result in the
+  following files being written when exporting the `employee` table multiple times:
+
+  * `kifs://data/emp/employee_123450000.csv`
+  * `kifs://data/emp/employee_123460000.csv`
+  * `kifs://data/emp/employee_123480000.csv`
+
+The `SINGLE_FILE` option can be used to create one file with no suffix appended to the
+base file name, or to create multiple smaller files to increase the export performance.
+
+</Accordion>
+
+<Accordion title="FORMAT">
+
+Optional indicator of target file type; default is `DELIMITED TEXT`.
+
+Supported formats include:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Keyword</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>[DELIMITED] TEXT</code></td>
+    <td>A text-based, delimited field data file (CSV, PSV, TSV, etc.); a comma-delimited list of options can be given to specify the way in which the data file(s) should be written, including the delimiter used, whether headers are present, etc.  Records spanning multiple lines are not supported. .. note:: Non-numeric fields will be double-quoted, and double quotes in the data will be escaped with two double quotes. See [Delimited Text Options](/content/sql/export#sql-export-delim-opt) for the complete list of <code>&lt;delimited text options&gt;</code>.</td>
+  </tr>
+  <tr>
+    <td><code>PARQUET</code></td>
+    <td>*Apache Parquet* data file</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="REMOTE TABLE">
+
+Target table specification clause, where `[<schema name>.]<table name>` is the name of the table (and, optionally,
+its schema) in the remote database into which data will be exported.
+
+Data will be exported using an `INSERT` statement of the form:
+
+```
+INSERT INTO [<schema name>.]<table name> VALUES (\$1, ..., \$N)
+```
+This default form can be modified to use the `?` parameter form via the
+`USE_INDEXED_PARAMETERS` option.
+
+
+<Info>
+This clause is mutually exclusive with the `FILE PATH` & `REMOTE QUERY`
+clauses.
+</Info>
+
+</Accordion>
+
+<Accordion title="REMOTE QUERY">
+
+Target insert specification clause, where `<insert statement>` is a SQL `INSERT`
+statement defining the way in which data will be loaded into the remote database.  The
+target table named in the `INSERT` statement must already exist in the remote database.
+
+
+<Info>
+This clause is mutually exclusive with the `FILE PATH` & `REMOTE TABLE`
+clauses.
+</Info>
+
+</Accordion>
+
+<Accordion title="WITH OPTIONS">
+
+Optional indicator that a comma-delimited list of connection & global option/value
+assignments will follow.
+
+See [Export Options](/content/sql/export#sql-export-opt) for the complete list of options.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="sql-export-delim-opt"></a>
@@ -70,13 +211,79 @@ and remote column types.  If any transformations are necessary, the
 The following options can be specified when exporting data into delimited text
 files.
 
-| Option | Description |
-| --- | --- |
-| `DELIMITER` `=` `'<char>'` | Use `char` as the target file field delimiter. <br/> <br/> The default delimiter is a comma, unless the target file has one of these extensions: <br/> <br/> * `.psv` - will cause `\|` to be the delimiter <br/> * `.tsv` - will cause the tab character to be the delimiter <br/> <Info> Since non-numeric fields are automatically double-quoted when written out, it is not recommended to use a double quote character as the delimiter. </Info> <br/> See [Delimited Text Option Characters](/content/sql/export#sql-export-delim-opt-char) for allowed characters. |
-| `HEADER DELIMITER` `=` `'<char>'` | Use `char` as the target file header field name/property delimiter, when writing the header in Kinetica custom format (when `KINETICA_HEADER` is `TRUE`). <br/> <br/> The default is the `\|` (pipe) character.  See [Delimited Text Option Characters](/content/sql/export#sql-export-delim-opt-char) for allowed characters. <br/> <Info> The `DELIMITER` character will still be used to separate field name/property sets from each other in the header row </Info> |
-| `INCLUDES HEADER` `=` `<TRUE\|FALSE>` | Declare that the target file(s) will or will not have a header. <br/> <br/> The default is `TRUE`. |
-| `KINETICA_HEADER` `=` `<TRUE\|FALSE>` | Declare that the target file(s) will or will not have a custom Kinetica header. <br/> <br/> The default is `FALSE`. <br/> <br/> In the custom Kinetica format, each field's header contains the field name and any associated column properties delimited by a different character than the one used to separate field values. <br/> <br/> An example *Kinetica* header in a CSV file: <br/> <br/> {/* Source: /examples/data/products.kh.min.csv (lines 1) */} `id\|int\|data,category\|string\|data\|char16,name\|string\|data\|char32` <br/> |
-| `NULL` `=` `'<string>'` | Treat `string` as the indicator of a null field value. <br/> <br/> The default is the empty string. |
+<AccordionGroup>
+
+<Accordion title="DELIMITER = '&lt;char&gt;'">
+
+Use `char` as the target file field delimiter.
+
+The default delimiter is a comma, unless the target file has one of these extensions:
+
+* `.psv` - will cause `|` to be the delimiter
+* `.tsv` - will cause the tab character to be the delimiter
+
+
+<Info>
+Since non-numeric fields are automatically double-quoted when written out, it is
+not recommended to use a double quote character as the delimiter.
+</Info>
+
+See [Delimited Text Option Characters](/content/sql/export#sql-export-delim-opt-char) for allowed characters.
+
+</Accordion>
+
+<Accordion title="HEADER DELIMITER = '&lt;char&gt;'">
+
+Use `char` as the target file header field name/property delimiter, when writing the
+header in Kinetica custom format (when `KINETICA_HEADER` is `TRUE`).
+
+The default is the `|` (pipe) character.  See [Delimited Text Option Characters](/content/sql/export#sql-export-delim-opt-char) for
+allowed characters.
+
+
+<Info>
+The `DELIMITER` character will still be used to separate field
+name/property sets from each other in the header row
+</Info>
+
+</Accordion>
+
+<Accordion title="INCLUDES HEADER = &lt;TRUE|FALSE&gt;">
+
+Declare that the target file(s) will or will not have a header.
+
+The default is `TRUE`.
+
+</Accordion>
+
+<Accordion title="KINETICA_HEADER = &lt;TRUE|FALSE&gt;">
+
+Declare that the target file(s) will or will not have a custom Kinetica header.
+
+The default is `FALSE`.
+
+In the custom Kinetica format, each field's header contains the field name and any
+associated column properties delimited by a different character than the one used to
+separate field values.
+
+An example *Kinetica* header in a CSV file:
+
+{/* Source: /examples/data/products.kh.min.csv (lines 1) */}
+```
+id|int|data,category|string|data|char16,name|string|data|char32
+```
+
+</Accordion>
+
+<Accordion title="NULL = '&lt;string&gt;'">
+
+Treat `string` as the indicator of a null field value.
+
+The default is the empty string.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="sql-export-delim-opt-char"></a>

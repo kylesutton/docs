@@ -453,12 +453,35 @@ SELECT <column alias> [, ordinality]
 FROM UNNEST_JSON_ARRAY(SELECT <column name> FROM <table name>) [WITH ORDINALITY] [<column alias>]
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<column alias>` | Column alias to use for the resulting unnested data column; if no alias specified, use `*` to select the column. |
-| `<table name>` | Name of the table containing the array column. |
-| `<column name>` | Name of the array column to unnest. |
-| `WITH ORDINALITY` | Also return the 0-based index in the source arrays for each transposed array value; the index value will be returned as the column alias `ordinality`. |
+<AccordionGroup>
+
+<Accordion title="&lt;column alias&gt;">
+
+Column alias to use for the resulting unnested data column; if no alias specified, use
+`*` to select the column.
+
+</Accordion>
+
+<Accordion title="&lt;table name&gt;">
+
+Name of the table containing the array column.
+
+</Accordion>
+
+<Accordion title="&lt;column name&gt;">
+
+Name of the array column to unnest.
+
+</Accordion>
+
+<Accordion title="WITH ORDINALITY">
+
+Also return the 0-based index in the source arrays for each transposed array value; the
+index value will be returned as the column alias `ordinality`.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 ```sql title="UNNEST_JSON_ARRAY for Multiple Columns Syntax"
@@ -466,15 +489,65 @@ SELECT <column alias list> [, <ordinality alias>]
 FROM <table name> <table alias>, UNNEST_JSON_ARRAY(<column list>) [WITH ORDINALITY] <table/columns aliases>
 ```
 
-| Parameters | Description |
-| --- | --- |
-| `<column alias list>` | Column aliases given to the resulting unnested data columns, specified in `<table/columns aliases>`. |
-| `<ordinality alias>` | Column alias given to the resulting ordinality column in `<table/columns aliases>`, if `WITH ORDINALITY` is specified. |
-| `<table name>` | Name of the table containing the array column(s). |
-| `<table alias>` | Alias to use for the table containing the array column(s). |
-| `<column list>` | Comma-separated list of array columns to unnest. |
-| `<table/columns aliases>` | Alias to use for the virtual table and columns being used to return the unnested data (including any ordinality alias, if specified), using the form: <br/> <br/> `<table alias>(<column alias list> [,<ordinality alias>])` <br/> <br/> For example, to return two columns of unnested array data as `uai` & `uav`, respectively, and the corresponding ordinality index as `index`, all within the virtual table `unn` use: <br/> <br/> `unn(uai, uav, index)` <br/> |
-| `WITH ORDINALITY` | Also return the 0-based index in the source arrays for each transposed array value; the index value will be returned in an alias specified in `<table/columns aliases>`. |
+<AccordionGroup>
+
+<Accordion title="&lt;column alias list&gt;">
+
+Column aliases given to the resulting unnested data columns, specified in
+`<table/columns aliases>`.
+
+</Accordion>
+
+<Accordion title="&lt;ordinality alias&gt;">
+
+Column alias given to the resulting ordinality column in `<table/columns aliases>`,
+if `WITH ORDINALITY` is specified.
+
+</Accordion>
+
+<Accordion title="&lt;table name&gt;">
+
+Name of the table containing the array column(s).
+
+</Accordion>
+
+<Accordion title="&lt;table alias&gt;">
+
+Alias to use for the table containing the array column(s).
+
+</Accordion>
+
+<Accordion title="&lt;column list&gt;">
+
+Comma-separated list of array columns to unnest.
+
+</Accordion>
+
+<Accordion title="&lt;table/columns aliases&gt;">
+
+Alias to use for the virtual table and columns being used to return the unnested data
+(including any ordinality alias, if specified), using the form:
+
+```
+<table alias>(<column alias list> [,<ordinality alias>])
+```
+For example, to return two columns of unnested array data as `uai` & `uav`,
+respectively, and the corresponding ordinality index as `index`, all within the
+virtual table `unn` use:
+
+```
+unn(uai, uav, index)
+```
+</Accordion>
+
+<Accordion title="WITH ORDINALITY">
+
+Also return the 0-based index in the source arrays for each transposed array value; the
+index value will be returned in an alias specified in `<table/columns aliases>`.
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="array-func-unnest-ex"></a>
