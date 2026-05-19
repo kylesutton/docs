@@ -3184,7 +3184,7 @@ Type of string filter to apply:
   </tr>
   <tr>
     <td><code>search</code></td>
-    <td>Full text search with wildcards and boolean operators, for string columns (<code>VARCHAR</code>) that have the <code>TEXT_SEARCH</code> [column property](/content/sql/ddl#sql-column-properties) applied. See [Full Text Search](/content/concepts/full_text_search) for syntax &amp; grammar detail. .. important::  Omit the <code>COLUMN_NAMES</code> parameter when using this <code>MODE</code>. All text-searchable string columns will be searched.  Also, only a table name can be used for <code>TABLE_NAME</code>--a query cannot be used.</td>
+    <td>Full text search with wildcards and boolean operators, for string columns (<code>VARCHAR</code>) that have the <code>TEXT_SEARCH</code> [column property](/content/sql/ddl#sql-column-properties) applied. See [Full Text Search](/content/concepts/full_text_search) for syntax &amp; grammar detail. <Note>Omit the `COLUMN_NAMES` parameter when using this `MODE`. All text-searchable string columns will be searched.  Also, only a table name can be used for `TABLE_NAME`--a query cannot be used.</Note></td>
   </tr>
   <tr>
     <td><code>starts_with</code></td>
@@ -3221,7 +3221,7 @@ KV_PAIRS(case_sensitive = 'false')
   <tbody>
   <tr>
     <td><code>case_sensitive</code></td>
-    <td>If *true*, the filter will be case-sensitive; if false, case-insensitive. .. note::  Not applicable when <code>MODE</code> is <code>search</code>.</td>
+    <td>If *true*, the filter will be case-sensitive; if false, case-insensitive. <Note>Not applicable when `MODE` is `search`.</Note></td>
   </tr>
   </tbody>
 </table>
@@ -3582,7 +3582,7 @@ The optional calculation method to use to detect outliers.  The default method i
   <tbody>
   <tr>
     <td><code>ZSCORE</code></td>
-    <td>Z-score calculation, indicating the number of standard deviations above the mean each value within the set is.  If a <code>PARTITION_COLUMN</code> is given, the z-score will be calculated for each subset of data corresponding to a unique <code>PARTITION_COLUMN</code> value.  The z-score uses the following formula:: (DATA_COLUMN - AVG(DATA_COLUMN)) / STDDEV(DATA_COLUMN) Scores will be decimals centered around <code>0</code>.</td>
+    <td>Z-score calculation, indicating the number of standard deviations above the mean each value within the set is.  If a <code>PARTITION_COLUMN</code> is given, the z-score will be calculated for each subset of data corresponding to a unique <code>PARTITION_COLUMN</code> value.  The z-score uses the following formula: <pre><code>(DATA_COLUMN - AVG(DATA_COLUMN)) / STDDEV(DATA_COLUMN)&#10;Scores will be decimals centered around `0`.</code></pre></td>
   </tr>
   <tr>
     <td><code>PERCENTILE</code></td>

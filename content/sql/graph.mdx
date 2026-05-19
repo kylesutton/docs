@@ -132,15 +132,15 @@ conflicts with the *Cypher* query syntax:
   </tr>
   <tr>
     <td><code>(:&lt;label&gt;)</code></td>
-    <td>**Node Label Matcher** Matches any node with a label of <code>&lt;label&gt;</code>; any number of labels can be combined to form a composite restriction: ====================== ================================= Combination            Node Must Have ====================== ================================= <code>:&lt;label1&gt;:&lt;label2&gt;</code> <code>&lt;label1&gt;</code> **and** <code>&lt;label2&gt;</code> <code>:&lt;label1&gt;|&lt;label2&gt;</code> <code>&lt;label1&gt;</code> **or** <code>&lt;label2&gt;</code> ====================== =================================</td>
+    <td>**Node Label Matcher** Matches any node with a label of <code>&lt;label&gt;</code>; any number of labels can be combined to form a composite restriction: <div><table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">  <thead>  <tr>    <th>Combination</th>    <th>Node Must Have</th>  </tr>  </thead>  <tbody>  <tr>    <td><code>:&lt;label1&gt;:&lt;label2&gt;</code></td>    <td><code>&lt;label1&gt;</code> **and** <code>&lt;label2&gt;</code></td>  </tr>  <tr>    <td><code>:&lt;label1&gt;|&lt;label2&gt;</code></td>    <td><code>&lt;label1&gt;</code> **or** <code>&lt;label2&gt;</code></td>  </tr>  </tbody></table></div></td>
   </tr>
   <tr>
     <td><code>(\{&lt;name&gt;: &lt;value&gt;\})</code></td>
-    <td>**Node Property Matcher** Matches any node with a property <code>&lt;name&gt;</code> whose value is <code>&lt;value&gt;</code>; any number of properties can be combined to form a composite restriction requiring a node to have all the specified property values; e.g.:: \{section: 12, last_name: 'Smith'\} .. note:: Mutually exclusive with the *Node WHERE Clause Matcher*</td>
+    <td>**Node Property Matcher** Matches any node with a property <code>&lt;name&gt;</code> whose value is <code>&lt;value&gt;</code>; any number of properties can be combined to form a composite restriction requiring a node to have all the specified property values; e.g.: <pre><code>\{section: 12, last_name: 'Smith'\}</code></pre> <Note>Mutually exclusive with the *Node WHERE Clause Matcher*</Note></td>
   </tr>
   <tr>
     <td><code>(WHERE &lt;expression&gt;)</code></td>
-    <td>**Node WHERE Clause Matcher** Matches any node that meets the restrictions of the given <code>&lt;expression&gt;</code>; this is a standard SQL <code>WHERE</code> clause that can reference a node's ID, properties, or labels, but cannot include sub-query constructs (<code>ANY</code>/<code>ALL</code>/<code>IN</code>/<code>EXISTS</code>); e.g.:: WHERE node &lt;= 5 AND CONTAINS('MANAGER', label) .. note:: Mutually exclusive with the *Node Property Matcher*</td>
+    <td>**Node WHERE Clause Matcher** Matches any node that meets the restrictions of the given <code>&lt;expression&gt;</code>; this is a standard SQL <code>WHERE</code> clause that can reference a node's ID, properties, or labels, but cannot include sub-query constructs (<code>ANY</code>/<code>ALL</code>/<code>IN</code>/<code>EXISTS</code>); e.g.: <pre><code>WHERE node &lt;= 5 AND CONTAINS('MANAGER', label)</code></pre> <Note>Mutually exclusive with the *Node Property Matcher*</Note></td>
   </tr>
   <tr>
     <td><code>[]</code></td>
@@ -152,19 +152,19 @@ conflicts with the *Cypher* query syntax:
   </tr>
   <tr>
     <td><code>[:&lt;label&gt;]</code></td>
-    <td>**Edge Label Matcher** Matches any edge with a label of <code>&lt;label&gt;</code>; any number of labels can be combined to form a composite restriction: ====================== ================================= Combination            Relationship Must Have ====================== ================================= <code>:&lt;label1&gt;|&lt;label2&gt;</code> <code>&lt;label1&gt;</code> **or** <code>&lt;label2&gt;</code> ====================== ================================= .. note:: Each relationship can have only **1** label.</td>
+    <td>**Edge Label Matcher** Matches any edge with a label of <code>&lt;label&gt;</code>; any number of labels can be combined to form a composite restriction: <div><table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">  <thead>  <tr>    <th>Combination</th>    <th>Relationship Must Have</th>  </tr>  </thead>  <tbody>  <tr>    <td><code>:&lt;label1&gt;|&lt;label2&gt;</code></td>    <td><code>&lt;label1&gt;</code> **or** <code>&lt;label2&gt;</code></td>  </tr>  </tbody></table></div> <Note>Each relationship can have only **1** label.</Note></td>
   </tr>
   <tr>
     <td><code>(\{&lt;name&gt;: &lt;value&gt;\})</code></td>
-    <td>**Edge Property Matcher** Matches any edge with a property <code>&lt;name&gt;</code> whose value is <code>&lt;value&gt;</code>; any number of properties can be combined to form a composite restriction requiring an edge to have all the specified property values; e.g.:: \{manages: true, years: 3\} .. note:: Mutually exclusive with the *Edge WHERE Clause Matcher*</td>
+    <td>**Edge Property Matcher** Matches any edge with a property <code>&lt;name&gt;</code> whose value is <code>&lt;value&gt;</code>; any number of properties can be combined to form a composite restriction requiring an edge to have all the specified property values; e.g.: <pre><code>\{manages: true, years: 3\}</code></pre> <Note>Mutually exclusive with the *Edge WHERE Clause Matcher*</Note></td>
   </tr>
   <tr>
     <td><code>[WHERE &lt;expression&gt;]</code></td>
-    <td>**Edge WHERE Clause Matcher** Matches any edge that meets the restrictions of the given <code>&lt;expression&gt;</code>; this is a standard SQL <code>WHERE</code> clause that can reference an edge's label, node IDs, or properties, but cannot include sub-query constructs (<code>ANY</code>/<code>ALL</code>/<code>IN</code>/<code>EXISTS</code>); e.g.:: WHERE years &lt;= 5 AND label = 'MANAGES' .. note:: Mutually exclusive with the *Edge Property Matcher*</td>
+    <td>**Edge WHERE Clause Matcher** Matches any edge that meets the restrictions of the given <code>&lt;expression&gt;</code>; this is a standard SQL <code>WHERE</code> clause that can reference an edge's label, node IDs, or properties, but cannot include sub-query constructs (<code>ANY</code>/<code>ALL</code>/<code>IN</code>/<code>EXISTS</code>); e.g.: <pre><code>WHERE years &lt;= 5 AND label = 'MANAGES'</code></pre> <Note>Mutually exclusive with the *Edge Property Matcher*</Note></td>
   </tr>
   <tr>
     <td><code>()-[]-&gt;()</code></td>
-    <td>**Path Matcher** Matches any node connected via an edge to another node. Relationships must be specified with a directional arrow indicating the direction of the relationship; however, the direction restriction specified will be ignored if the following hint is given with the query:: KI_HINT_QUERY_GRAPH_ENDPOINT_OPTIONS(multi_paths,true)</td>
+    <td>**Path Matcher** Matches any node connected via an edge to another node. Relationships must be specified with a directional arrow indicating the direction of the relationship; however, the direction restriction specified will be ignored if the following hint is given with the query: <pre><code>KI_HINT_QUERY_GRAPH_ENDPOINT_OPTIONS(multi_paths,true)</code></pre></td>
   </tr>
   <tr>
     <td><code>()-[]-&gt;\{n[,m]\}()</code></td>
@@ -439,7 +439,7 @@ Optional indicator that a comma-delimited list of connection option/value assign
   </tr>
   <tr>
     <td><code>force_undirected</code></td>
-    <td>If <code>true</code>, all inbound &amp; outbound *edges* relative to the *node* will be returned. If set to <code>false</code>, only outbound *edges* relative to the *node* will be returned.  The default is <code>false</code>.  Consult [Directed Graphs](/content/graph_solver/network_graph_solver#directed-graphs) for more details. .. important:: Only applicable when querying on *nodes* on a directed graph</td>
+    <td>If <code>true</code>, all inbound &amp; outbound *edges* relative to the *node* will be returned. If set to <code>false</code>, only outbound *edges* relative to the *node* will be returned.  The default is <code>false</code>.  Consult [Directed Graphs](/content/graph_solver/network_graph_solver#directed-graphs) for more details. <Note>Only applicable when querying on *nodes* on a directed graph</Note></td>
   </tr>
   <tr>
     <td><code>limit</code></td>
@@ -455,7 +455,7 @@ Optional indicator that a comma-delimited list of connection option/value assign
   </tr>
   <tr>
     <td><code>result_table_index</code></td>
-    <td>Indicates which result table to return results from: * <code>1</code> - Return *edge* results *(default)* * <code>2</code> - Return *node* results .. important:: Only applicable when using the table function syntax</td>
+    <td>Indicates which result table to return results from: * <code>1</code> - Return *edge* results *(default)* * <code>2</code> - Return *node* results <Note>Only applicable when using the table function syntax</Note></td>
   </tr>
   <tr>
     <td><code>server_id</code></td>
@@ -874,7 +874,7 @@ Optional indicator that a comma-delimited list of connection option/value assign
   </tr>
   <tr>
     <td><code>permute_supplies</code></td>
-    <td>For the <code>MATCH_SUPPLY_DEMAND</code> solver only.  When <code>true</code> (default), suppliers are permuted for the demand site combinations during the optimization phase. .. note:: This option increases optimization time significantly--use of <code>max_combinations</code> in tandem is recommended to prevent prohibitively long runs.</td>
+    <td>For the <code>MATCH_SUPPLY_DEMAND</code> solver only.  When <code>true</code> (default), suppliers are permuted for the demand site combinations during the optimization phase. <Note>This option increases optimization time significantly--use of `max_combinations` in tandem is recommended to prevent prohibitively long runs.</Note></td>
   </tr>
   <tr>
     <td><code>restricted_type</code></td>

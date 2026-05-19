@@ -4404,7 +4404,7 @@ follow.  The following options are available:
   <tbody>
   <tr>
     <td><code>EXECUTE AS</code></td>
-    <td>Executes *materialized view* refreshes as the given user with that user's privileges, when <code>EVERY ...</code> is specified as the <code>REFRESH</code> method. .. note::  If this user doesn't exist at the time of a refresh, the refresh will be executed as the creating user, and, failing that, the system administration user.</td>
+    <td>Executes *materialized view* refreshes as the given user with that user's privileges, when <code>EVERY ...</code> is specified as the <code>REFRESH</code> method. <Note>If this user doesn't exist at the time of a refresh, the refresh will be executed as the creating user, and, failing that, the system administration user.</Note></td>
   </tr>
   </tbody>
 </table>
@@ -6065,7 +6065,7 @@ Supported providers include:
   </tr>
   <tr>
     <td><code>CONFLUENT</code></td>
-    <td>Confluent Kafka streaming feed .. note::  The <code>LOCATION</code> can be a comma-delimited list of Kafka URLs, to be used for high-availability; only one of which will be streamed from at any given time.</td>
+    <td>Confluent Kafka streaming feed <Note>The `LOCATION` can be a comma-delimited list of Kafka URLs, to be used for high-availability; only one of which will be streamed from at any given time.</Note></td>
   </tr>
   <tr>
     <td><code>GCS</code></td>
@@ -6081,7 +6081,7 @@ Supported providers include:
   </tr>
   <tr>
     <td><code>KAFKA</code></td>
-    <td>Apache Kafka streaming feed .. note::  The <code>LOCATION</code> can be a comma-delimited list of Kafka URLs, to be used for high-availability; only one of which will be streamed from at any given time.</td>
+    <td>Apache Kafka streaming feed <Note>The `LOCATION` can be a comma-delimited list of Kafka URLs, to be used for high-availability; only one of which will be streamed from at any given time.</Note></td>
   </tr>
   <tr>
     <td><code>S3</code></td>

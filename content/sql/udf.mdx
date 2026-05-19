@@ -291,11 +291,11 @@ queries defining the source data for each "table".  The value of this parameter 
   <tbody>
   <tr>
     <td><code>INPUT_TABLE(&lt;query&gt;)</code></td>
-    <td>If only one input table is needed, it can be passed by query or by name to the <code>INPUT_TABLE</code> function; e.g.:: INPUT_TABLE(customer) INPUT_TABLE(SELECT id, name FROM customer)</td>
+    <td>If only one input table is needed, it can be passed by query or by name to the <code>INPUT_TABLE</code> function; e.g.: <pre><code>INPUT_TABLE(customer)&#10;INPUT_TABLE(SELECT id, name FROM customer)</code></pre></td>
   </tr>
   <tr>
     <td><code>INPUT_TABLES(&lt;queries&gt;)</code></td>
-    <td>If more than one input table is needed, each can be passed via query as a list to the <code>INPUT_TABLES</code> function; e.g.:: INPUT_TABLES ( (SELECT id, name FROM customer), (SELECT id, customer_id FROM order) )</td>
+    <td>If more than one input table is needed, each can be passed via query as a list to the <code>INPUT_TABLES</code> function; e.g.: <pre><code>INPUT_TABLES&#10;(&#10;(SELECT id, name FROM customer),&#10;(SELECT id, customer_id FROM order)&#10;)</code></pre></td>
   </tr>
   </tbody>
 </table>

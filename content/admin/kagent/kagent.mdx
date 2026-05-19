@@ -1051,7 +1051,7 @@ defaults.
   </tr>
   <tr>
     <td><code>--connection-type &lt;type&gt;</code></td>
-    <td>When using *LDAP*, the <code>type</code> to use (<code>ldap</code> <code>ldaps</code>).</td>
+    <td>When using *LDAP*, the <code>type</code> to use (<code>ldap</code> | <code>ldaps</code>).</td>
   </tr>
   <tr>
     <td><code>--ldaps-cert &lt;path&gt;</code></td>
@@ -1397,7 +1397,7 @@ be unique across all nodes in the cluster.
   </tr>
   <tr>
     <td><code>--roles &lt;list&gt;</code></td>
-    <td>Specify a comma-separated <code>list</code> of roles for the node. +---------------+-----------------------------------------------------+ +===============+=====================================================+ +---------------+-----------------------------------------------------+ +---------------+-----------------------------------------------------+ +---------------+-----------------------------------------------------+ +---------------+-----------------------------------------------------+ +---------------+-----------------------------------------------------+ +---------------+-----------------------------------------------------+</td>
+    <td>Specify a comma-separated <code>list</code> of roles for the node. <div><table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">  <thead>  <tr>    <th>Role</th>    <th>Description</th>  </tr>  </thead>  <tbody>  <tr>    <td><code>head</code></td>    <td>Head node for the cluster</td>  </tr>  <tr>    <td><code>worker</code></td>    <td>One of the worker nodes in the cluster</td>  </tr>  <tr>    <td><code>graph</code></td>    <td>[Graph](/content/graph_solver/network_graph_solver) node</td>  </tr>  <tr>    <td><code>kml</code></td>    <td>[KML](/content/ml/concepts) node</td>  </tr>  <tr>    <td><code>ha_queue</code></td>    <td>*RabbitMQ* node for [ring resiliency](/content/ha)</td>  </tr>  <tr>    <td><code>kagent</code></td>    <td>Bootstrapped in-cluster *KAgent* for cluster/ring management</td>  </tr>  </tbody></table></div></td>
   </tr>
   <tr>
     <td><code>--ssh-port &lt;port&gt;</code></td>
