@@ -455,7 +455,7 @@ Optional indicator that a comma-delimited list of connection option/value assign
   </tr>
   <tr>
     <td><code>result_table_index</code></td>
-    <td>Indicates which result table to return results from: * <code>1</code> - Return *edge* results *(default)* * <code>2</code> - Return *node* results <Note>Only applicable when using the table function syntax</Note></td>
+    <td>Indicates which result table to return results from: <ul><li><code>1</code> - Return *edge* results *(default)*</li><li><code>2</code> - Return *node* results</li></ul> <Note>Only applicable when using the table function syntax</Note></td>
   </tr>
   <tr>
     <td><code>server_id</code></td>
@@ -878,7 +878,7 @@ Optional indicator that a comma-delimited list of connection option/value assign
   </tr>
   <tr>
     <td><code>restricted_type</code></td>
-    <td>For the <code>MATCH_SUPPLY_DEMAND</code> solver only. If specified, this supplier type will be restricted from routes traversing edges with the <code>MSDO_ODDEVEN_RESTRICTED</code> label.  This models restrictions that exist, for example, in Jakarta, Indonesia. Possible values: * <code>none</code> - Do not apply any restrictions. * <code>odd</code>  - Apply odd/even rule restrictions to odd ID suppliers * <code>even</code> - Apply odd/even rule restrictions to even ID suppliers</td>
+    <td>For the <code>MATCH_SUPPLY_DEMAND</code> solver only. If specified, this supplier type will be restricted from routes traversing edges with the <code>MSDO_ODDEVEN_RESTRICTED</code> label.  This models restrictions that exist, for example, in Jakarta, Indonesia. Possible values: <ul><li><code>none</code> - Do not apply any restrictions.</li><li><code>odd</code>  - Apply odd/even rule restrictions to odd ID suppliers</li><li><code>even</code> - Apply odd/even rule restrictions to even ID suppliers</li></ul></td>
   </tr>
   <tr>
     <td><code>right_turn_penalty</code></td>
@@ -1394,7 +1394,7 @@ list of key/value pairs to the `KV_PAIRS` function
   </tr>
   <tr>
     <td><code>export_graph_schema</code></td>
-    <td>Exports a graph's *schema* in [Graphviz DOT](https://graphviz.org/doc/info/lang.html) format. The *schema* is a conversion of the graph into a label-based ontology, done by grouping the nodes using the Louvain clustering algorithm. This *schema* is made available in two ways: * visually, by clicking **View Schema** in the result of an <code>CREATE GRAPH</code> command in a [SQL Block](/content/admin/workbench/ui/explore#wb-explore-ws-sb) within [Workbench](/content/admin/workbench) * as text, under the <code>info</code> and then <code>dot</code> keys of the response to a native API call to [/execute/sql](/content/api/rest/execute_sql_rest)</td>
+    <td>Exports a graph's *schema* in [Graphviz DOT](https://graphviz.org/doc/info/lang.html) format. The *schema* is a conversion of the graph into a label-based ontology, done by grouping the nodes using the Louvain clustering algorithm. This *schema* is made available in two ways: <ul><li>visually, by clicking \{\{&lt; guilabel "View Schema" &gt;\}\} in the result of an <code>CREATE GRAPH</code> command in a [SQL Block](/content/admin/workbench/ui/explore#wb-explore-ws-sb) within [Workbench](/content/admin/workbench)</li><li>as text, under the <code>info</code> and then <code>dot</code> keys of the response to a native API call to [/execute/sql](/content/api/rest/execute_sql_rest)</li></ul></td>
   </tr>
   <tr>
     <td><code>graph_table</code></td>
@@ -1693,7 +1693,7 @@ list of key/value pairs to the `KV_PAIRS` function
   </tr>
   <tr>
     <td><code>export_graph_schema</code></td>
-    <td>Exports a graph's *schema* in [Graphviz DOT](https://graphviz.org/doc/info/lang.html) format; this is made available in two ways: * visually, by clicking **View Schema** in the result of an <code>ALTER GRAPH</code> command in a [SQL Block](/content/admin/workbench/ui/explore#wb-explore-ws-sb) within [Workbench](/content/admin/workbench) * as text, under the <code>info</code> and then <code>dot</code> keys of the response to a native API call to [/execute/sql](/content/api/rest/execute_sql_rest)</td>
+    <td>Exports a graph's *schema* in [Graphviz DOT](https://graphviz.org/doc/info/lang.html) format; this is made available in two ways: <ul><li>visually, by clicking \{\{&lt; guilabel "View Schema" &gt;\}\} in the result of an <code>ALTER GRAPH</code> command in a [SQL Block](/content/admin/workbench/ui/explore#wb-explore-ws-sb) within [Workbench](/content/admin/workbench)</li><li>as text, under the <code>info</code> and then <code>dot</code> keys of the response to a native API call to [/execute/sql](/content/api/rest/execute_sql_rest)</li></ul></td>
   </tr>
   <tr>
     <td><code>graph_table</code></td>

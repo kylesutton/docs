@@ -703,11 +703,50 @@ The following security functions can be used when employing
 * *time*
 * *datetime*
 
-| Function | Description |
-| --- | --- |
-| `HASH(column)` | Returns a non-negative integer representing an obfuscated version of `column` |
-| `MASK(column, start, length[, char])` | Masks `length` characters of `column`, beginning at the position identified by `start`, with `*` characters (or the character specified in `char`): <br/> <br/> `MASK('Characters', 5, 5)`: `Char*****s` <br/> <br/> `MASK('Characters', 5, 2, '#')`: `Char##ters` |
-| `OBFUSCATE(column)` | Alias for `HASH` |
+<AccordionGroup>
+
+<Accordion title="HASH(column)">
+
+Returns a non-negative integer representing an obfuscated version of `column`
+
+</Accordion>
+
+<Accordion title="MASK(column, start, length[, char])">
+
+Masks `length` characters of `column`, beginning at the position identified
+by `start`, with `*` characters (or the character specified in `char`):
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Function Call</th>
+    <th>Result</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>MASK('Characters', 5, 5)</code></td>
+    <td><code>Char*****s</code></td>
+  </tr>
+  <tr>
+    <td><code>MASK('Characters', 5, 2, '#')</code></td>
+    <td><code>Char##ters</code></td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+<Accordion title="OBFUSCATE(column)">
+
+Alias for `HASH`
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="security-concepts-permissions-credential"></a>

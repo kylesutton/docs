@@ -4,10 +4,62 @@ title: Track Functions
 
 The following functions are available in both SQL and the native API.
 
-| Function | Description |
-| --- | --- |
-| `ST_TRACKDURATION([unit,] t)` | Returns the total time, in the given `unit`, spanned by timestamp values in column `t`.  Grouping by *track* ID will return the duration per *track*. <br/> <br/> The duration can be returned in any of the following date/time units: <br/> <br/> * `YEAR` <br/> * `MONTH` <br/> * `DAY` <br/> * `HOUR` <br/> * `MINUTE` <br/> * `SECOND` <br/> * `MILLISECOND` <br/> <br/> The default `unit` is `MILLISECOND`. |
-| `ST_TRACKLENGTH(lat, lon, t[, solution])` | Returns the total length of the track whose position values are specified by `lat` & `lon` and whose ordering is determined by an ascending sort on the timestamp `t`. Length can be returned with any of the following solution types: <br/> <br/> `0`: 2D Euclidean length in degrees <br/> <br/> `1`: (default) Length on a sphere in meters <br/> <br/> `2`: Length on a spheroid in meters |
+<AccordionGroup>
+
+<Accordion title="ST_TRACKDURATION([unit,] t)">
+
+Returns the total time, in the given `unit`, spanned by timestamp values in column
+`t`.  Grouping by *track* ID will return the duration per *track*.
+
+The duration can be returned in any of the following date/time units:
+
+* `YEAR`
+* `MONTH`
+* `DAY`
+* `HOUR`
+* `MINUTE`
+* `SECOND`
+* `MILLISECOND`
+
+The default `unit` is `MILLISECOND`.
+
+</Accordion>
+
+<Accordion title="ST_TRACKLENGTH(lat, lon, t[, solution])">
+
+Returns the total length of the track whose position values are specified by `lat` &
+`lon` and whose ordering is determined by an ascending sort on the timestamp `t`.
+Length can be returned with any of the following solution types:
+
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>0</code></td>
+    <td>2D Euclidean length in degrees</td>
+  </tr>
+  <tr>
+    <td><code>1</code></td>
+    <td>(default) Length on a sphere in meters</td>
+  </tr>
+  <tr>
+    <td><code>2</code></td>
+    <td>Length on a spheroid in meters</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</Accordion>
+
+</AccordionGroup>
 
 
 ## ST_TRACK_DWITHIN

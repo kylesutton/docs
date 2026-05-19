@@ -50,39 +50,237 @@ A *window* function either be of aggregate or ranking type.
 #### Aggregate
 
 
-| Function | Description |
-| --- | --- |
-| `AVG(expr)` | Calculates the average of the given expression `expr` over the specified window frame |
-| `COUNT(expr)` | Calculates the count of the given expression `expr` over the specified window frame |
-| `MAX(expr)` | Calculates the maximum value of the given expression `expr` over the specified window frame |
-| `MEAN(expr)` | Alias for `AVG()`. Calculates the average of the given expression `expr` over the specified window frame |
-| `MIN(expr)` | Calculates the minimum value of the given expression `expr` over the specified window frame |
-| `PRODUCT(expr)` | Calculates the product of the given expression `expr` over the specified window frame |
-| `RATIO_TO_REPORT(expr)` | Calculates the ratio of the value of `expr` to the sum of `expr` over the specified window frame.  Note that `ORDER BY` is not supported for this function. |
-| `STDDEV(expr)` | Alias for `STDDEV_POP()`. Calculates the population standard deviation of the given expression `expr` over the specified window frame |
-| `STDDEV_POP(expr)` | Calculates the population standard deviation of the given expression `expr` over the specified window frame |
-| `STDDEV_SAMP(expr)` | Calculates the sample standard deviation of the given expression `expr` over the specified window frame |
-| `SUM(expr)` | Calculates the sum of the given expression `expr` over the specified window frame |
-| `VAR(expr)` | Alias for `VAR_POP()`. Calculates the population variance of the given expression `expr` over the specified window frame |
-| `VAR_POP(expr)` | Calculates the population variance of the given expression `expr` over the specified window frame |
-| `VAR_SAMP(expr)` | Calculates the sample variance of the given expression `expr` over the specified window frame |
+<AccordionGroup>
+
+<Accordion title="AVG(expr)">
+
+Calculates the average of the given expression `expr` over the specified window frame
+
+</Accordion>
+
+<Accordion title="COUNT(expr)">
+
+Calculates the count of the given expression `expr` over the specified window frame
+
+</Accordion>
+
+<Accordion title="MAX(expr)">
+
+Calculates the maximum value of the given expression `expr` over the specified window frame
+
+</Accordion>
+
+<Accordion title="MEAN(expr)">
+
+Alias for `AVG()`. Calculates the average of the given expression `expr` over the specified
+window frame
+
+</Accordion>
+
+<Accordion title="MIN(expr)">
+
+Calculates the minimum value of the given expression `expr` over the specified window frame
+
+</Accordion>
+
+<Accordion title="PRODUCT(expr)">
+
+Calculates the product of the given expression `expr` over the specified window frame
+
+</Accordion>
+
+<Accordion title="RATIO_TO_REPORT(expr)">
+
+Calculates the ratio of the value of `expr` to the sum of `expr` over the specified window
+frame.  Note that `ORDER BY` is not supported for this function.
+
+</Accordion>
+
+<Accordion title="STDDEV(expr)">
+
+Alias for `STDDEV_POP()`. Calculates the population standard deviation of the given
+expression `expr` over the specified window frame
+
+</Accordion>
+
+<Accordion title="STDDEV_POP(expr)">
+
+Calculates the population standard deviation of the given expression `expr` over the specified
+window frame
+
+</Accordion>
+
+<Accordion title="STDDEV_SAMP(expr)">
+
+Calculates the sample standard deviation of the given expression `expr` over the specified
+window frame
+
+</Accordion>
+
+<Accordion title="SUM(expr)">
+
+Calculates the sum of the given expression `expr` over the specified window frame
+
+</Accordion>
+
+<Accordion title="VAR(expr)">
+
+Alias for `VAR_POP()`. Calculates the population variance of the given expression `expr` over
+the specified window frame
+
+</Accordion>
+
+<Accordion title="VAR_POP(expr)">
+
+Calculates the population variance of the given expression `expr` over the specified window
+frame
+
+</Accordion>
+
+<Accordion title="VAR_SAMP(expr)">
+
+Calculates the sample variance of the given expression `expr` over the specified window frame
+
+</Accordion>
+
+</AccordionGroup>
 
 
 #### Ranking
 
 
-| Function | Description |
-| --- | --- |
-| `CUME_DIST()` | The relative position of the current row within the cumulative distribution of the selected partition, expressed as a percentage from `0` (exclusive) to `1` (inclusive). The formula for this calculation is as follows: <br/> <br/> `(count of <= records within partition) / (partition row count)` <br/> <br/> This function is shorthand for using the `COUNT()` function in separate partition statements to arrive at the same result: <br/> <br/> `DOUBLE ( COUNT(*) OVER ( PARTITION BY <partition_column> ORDER BY <sort_column> ) ) / ( COUNT(*) OVER ( PARTITION BY <partition_column> ORDER BY <sort_column> ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING ) )` <br/> |
-| `DENSE_RANK()` | Number of the current row within the selected partition except rows with identical values evaluate to different ranks. Starts at 1 |
-| `FIRST_VALUE(<column>)` `[<IGNORE \| RESPECT> NULLS]` | The value found in the first row within a frame of the given expression. Optionally, add `IGNORE NULLS` or `RESPECT NULLS` to the function syntax to ignore or respect `nulls`, respectively. |
-| `LAG(<column>[, <num>])` `[<IGNORE \| RESPECT> NULLS]` | The value of the row before the given expression's value. Provide an additional comma-separated value to specify which row to select, e.g., `LAG(vendor_id, 3)` would list the value in the `vendor_id` column from three rows prior to the current row. Optionally, add `IGNORE NULLS` or `RESPECT NULLS` to the function syntax to ignore or respect `nulls` respectively. |
-| `LAST_VALUE(<column>)` `[<IGNORE \| RESPECT> NULLS]` | The value found in the last row within a frame of the given expression. Optionally, add `IGNORE NULLS` or `RESPECT NULLS` to the function syntax to ignore or respect `nulls` respectively. |
-| `LEAD(<column>[, <num>])` `[<IGNORE \| RESPECT> NULLS]` | The value of the row after the given expression's value. Provide an additional comma-separated value to specify which row to select, e.g., `LEAD(vendor_id, 3)` would list the value in the `vendor_id` column from three rows after the current row. Optionally, add `IGNORE NULLS` or `RESPECT NULLS` to the function syntax to ignore or respect `nulls` respectively. |
-| `NTILE(<num of groups>)` | The group number of the row after partitioning the rows into `num of groups` groups.  For example, `NTILE(4)` will partition data by quartiles and return the associated group number, `1` to `4`. |
-| `PERCENT_RANK()` | The rank of the current row within the selected partition, expressed as a percentage from `0` to `1`, inclusive. The formula for this calculation is as follows: <br/> <br/> `(rank within partition - 1) / (partition row count - 1)` <br/> <br/> This function is shorthand for using the `RANK()` & `COUNT()` functions in separate partition statements to arrive at the same result: <br/> <br/> `DOUBLE ( RANK() OVER ( PARTITION BY <partition_column> ORDER BY <sort_column> ) - 1 ) / ( COUNT(*) OVER ( PARTITION BY <partition_column> ORDER BY <sort_column> ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING ) - 1 )` <br/> |
-| `RANK()` | Number of the current row within the selected partition. However, rows with identical values evaluate to the same rank. Starts at 1 |
-| `ROW_NUMBER()` | Number of the current row within the selected partition. Starts at 1 |
+<AccordionGroup>
+
+<Accordion title="CUME_DIST()">
+
+The relative position of the current row within the cumulative distribution of the selected
+partition, expressed as a percentage from `0` (exclusive) to `1` (inclusive). The formula for
+this calculation is as follows:
+
+```
+(count of <= records within partition) / (partition row count)
+```
+This function is shorthand for using the `COUNT()` function in separate partition statements to
+arrive at the same result:
+
+
+```sql
+DOUBLE
+(
+    COUNT(*) OVER
+    (
+        PARTITION BY <partition_column>
+        ORDER BY <sort_column>
+    )
+) /
+(
+    COUNT(*) OVER
+    (
+        PARTITION BY <partition_column>
+        ORDER BY <sort_column>
+        ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+    )
+)
+```
+
+</Accordion>
+
+<Accordion title="DENSE_RANK()">
+
+Number of the current row within the selected partition except rows with identical values
+evaluate to different ranks. Starts at 1
+
+</Accordion>
+
+<Accordion title="FIRST_VALUE(&lt;column&gt;) [&lt;IGNORE | RESPECT&gt; NULLS]">
+
+The value found in the first row within a frame of the given expression. Optionally, add
+`IGNORE NULLS` or `RESPECT NULLS` to the function syntax to ignore or respect `nulls`,
+respectively.
+
+</Accordion>
+
+<Accordion title="LAG(&lt;column&gt;[, &lt;num&gt;]) [&lt;IGNORE | RESPECT&gt; NULLS]">
+
+The value of the row before the given expression's value. Provide an additional comma-separated
+value to specify which row to select, e.g., `LAG(vendor_id, 3)` would list the value in the
+`vendor_id` column from three rows prior to the current row. Optionally, add `IGNORE NULLS`
+or `RESPECT NULLS` to the function syntax to ignore or respect `nulls` respectively.
+
+</Accordion>
+
+<Accordion title="LAST_VALUE(&lt;column&gt;) [&lt;IGNORE | RESPECT&gt; NULLS]">
+
+The value found in the last row within a frame of the given expression. Optionally, add
+`IGNORE NULLS` or `RESPECT NULLS` to the function syntax to ignore or respect
+`nulls` respectively.
+
+</Accordion>
+
+<Accordion title="LEAD(&lt;column&gt;[, &lt;num&gt;]) [&lt;IGNORE | RESPECT&gt; NULLS]">
+
+The value of the row after the given expression's value. Provide an additional comma-separated
+value to specify which row to select, e.g., `LEAD(vendor_id, 3)` would list the value in the
+`vendor_id` column from three rows after the current row. Optionally, add `IGNORE NULLS`
+or `RESPECT NULLS` to the function syntax to ignore or respect `nulls` respectively.
+
+</Accordion>
+
+<Accordion title="NTILE(&lt;num of groups&gt;)">
+
+The group number of the row after partitioning the rows into `num of groups` groups.  For
+example, `NTILE(4)` will partition data by quartiles and return the associated group number,
+`1` to `4`.
+
+</Accordion>
+
+<Accordion title="PERCENT_RANK()">
+
+The rank of the current row within the selected partition, expressed as a percentage from `0`
+to `1`, inclusive. The formula for this calculation is as follows:
+
+```
+(rank within partition - 1) / (partition row count - 1)
+```
+This function is shorthand for using the `RANK()` & `COUNT()` functions in separate partition
+statements to arrive at the same result:
+
+
+```sql
+DOUBLE
+(
+    RANK() OVER
+    (
+        PARTITION BY <partition_column>
+        ORDER BY <sort_column>
+    ) - 1
+) /
+(
+    COUNT(*) OVER
+    (
+        PARTITION BY <partition_column>
+        ORDER BY <sort_column>
+        ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+    ) - 1
+)
+```
+
+</Accordion>
+
+<Accordion title="RANK()">
+
+Number of the current row within the selected partition. However, rows with identical values
+evaluate to the same rank. Starts at 1
+
+</Accordion>
+
+<Accordion title="ROW_NUMBER()">
+
+Number of the current row within the selected partition. Starts at 1
+
+</Accordion>
+
+</AccordionGroup>
 
 
 ### Window Specification

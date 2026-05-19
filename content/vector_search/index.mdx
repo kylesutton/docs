@@ -309,14 +309,45 @@ retobj = kinetica.alter_table(
 ### Vector Column Functions
 
 
-| Function | Description |
-| --- | --- |
-| `L1_NORM(v)` | Calculates the sum of the absolute values of the given vector's values |
-| `L2_NORM(v)` | Calculates the square root of the sum of squares of the given vector's values |
-| `LINF_NORM(v)` | Returns the maximum of the given vector's values |
-| `LP_NORM(v, p)` | Calculates the Lp-space norm of the given vector in the space `p` |
-| `NTH(v, n)` | Returns the given vector's value at 0-based index `n` |
-| `SIZE(v)` | Returns the given vector's number of values |
+<AccordionGroup>
+
+<Accordion title="L1_NORM(v)">
+
+Calculates the sum of the absolute values of the given vector's values
+
+</Accordion>
+
+<Accordion title="L2_NORM(v)">
+
+Calculates the square root of the sum of squares of the given vector's values
+
+</Accordion>
+
+<Accordion title="LINF_NORM(v)">
+
+Returns the maximum of the given vector's values
+
+</Accordion>
+
+<Accordion title="LP_NORM(v, p)">
+
+Calculates the Lp-space norm of the given vector in the space `p`
+
+</Accordion>
+
+<Accordion title="NTH(v, n)">
+
+Returns the given vector's value at 0-based index `n`
+
+</Accordion>
+
+<Accordion title="SIZE(v)">
+
+Returns the given vector's number of values
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="vector-func-search"></a>
@@ -328,17 +359,63 @@ retobj = kinetica.alter_table(
 A number of K-nearest neighbor functions have been implemented to support vector
 searches.  For examples, see [Vector Function Examples](/content/vector_search#vector-ex-func).
 
-| Function | Description |
-| --- | --- |
-| `COSINE_DISTANCE(v1, v2)` | *1* minus the *cosine similarity* (equality of angle) of the given vectors |
-| `DOT_PRODUCT(v1, v2)` | Calculates the sum of products of the given vectors' values |
-| `EUCLIDEAN_DISTANCE(v1, v2)` | Alias for `L2_DISTANCE` |
-| `L1_DISTANCE(v1, v2)` | Calculates the L1-space (taxicab) distance between the given vectors |
-| `L2_DISTANCE(v1, v2)` | Calculates the L2-space (Euclidean) distance between the given vectors |
-| `L2_SQUAREDDISTANCE(v1, v2)` | Calculates the sum of squares of distances between the given vectors' values |
-| `L2_DISTSQ(v1, v2)` | Alias for `L2_SQUAREDDISTANCE` |
-| `LINF_DISTANCE(v1, v2)` | Calculates the maximum of the distances between pairs of values in the given vectors |
-| `LP_DISTANCE(v1, v2, p)` | Calculates the Lp-space distance between the given vectors in the space `p` |
+<AccordionGroup>
+
+<Accordion title="COSINE_DISTANCE(v1, v2)">
+
+*1* minus the *cosine similarity* (equality of angle) of the given vectors
+
+</Accordion>
+
+<Accordion title="DOT_PRODUCT(v1, v2)">
+
+Calculates the sum of products of the given vectors' values
+
+</Accordion>
+
+<Accordion title="EUCLIDEAN_DISTANCE(v1, v2)">
+
+Alias for `L2_DISTANCE`
+
+</Accordion>
+
+<Accordion title="L1_DISTANCE(v1, v2)">
+
+Calculates the L1-space (taxicab) distance between the given vectors
+
+</Accordion>
+
+<Accordion title="L2_DISTANCE(v1, v2)">
+
+Calculates the L2-space (Euclidean) distance between the given vectors
+
+</Accordion>
+
+<Accordion title="L2_SQUAREDDISTANCE(v1, v2)">
+
+Calculates the sum of squares of distances between the given vectors' values
+
+</Accordion>
+
+<Accordion title="L2_DISTSQ(v1, v2)">
+
+Alias for `L2_SQUAREDDISTANCE`
+
+</Accordion>
+
+<Accordion title="LINF_DISTANCE(v1, v2)">
+
+Calculates the maximum of the distances between pairs of values in the given vectors
+
+</Accordion>
+
+<Accordion title="LP_DISTANCE(v1, v2, p)">
+
+Calculates the Lp-space distance between the given vectors in the space `p`
+
+</Accordion>
+
+</AccordionGroup>
 
 
 <a id="vector-oper"></a>
@@ -887,7 +964,7 @@ comma-delimited list of key/value pairs to the `KV_PAIRS` function
   <tbody>
   <tr>
     <td><code>input_type</code></td>
-    <td>For Nvidia models, the type of input on which embeddings will be generated: * <code>passage</code> - Input is the data set that will be searched. * <code>query</code>   - Input is the query that will be used for the search.</td>
+    <td>For Nvidia models, the type of input on which embeddings will be generated: <ul><li><code>passage</code> - Input is the data set that will be searched.</li><li><code>query</code>   - Input is the query that will be used for the search.</li></ul></td>
   </tr>
   </tbody>
 </table>
