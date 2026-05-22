@@ -575,20 +575,20 @@ TO <user name | role name>
 
 <AccordionGroup>
 
-<Accordion title="PRIVILEGES">
+<Accordion title="PRIVILEGES" defaultOpen>
 
 Optional keyword for SQL-92 compatibility.
 
 </Accordion>
 
-<Accordion title="SCHEMA">
+<Accordion title="SCHEMA" defaultOpen>
 
 Optional keyword to avoid ambiguity between a grant to a schema and a grant to a
 table/view in the user's default schema.
 
 </Accordion>
 
-<Accordion title="&lt;schema reference&gt;">
+<Accordion title="&lt;schema reference&gt;" defaultOpen>
 
 Either the name of the schema to which access is being granted or a wildcard expression
 signifying the schema(s) and table(s)/views(s) to which access is being granted.
@@ -617,7 +617,7 @@ signifying the schema(s) and table(s)/views(s) to which access is being granted.
 
 </Accordion>
 
-<Accordion title="&lt;object type&gt;">
+<Accordion title="&lt;object type&gt;" defaultOpen>
 
 For granting `CREATE` privilege, the object type to give permission to create in the
 given schema.
@@ -672,7 +672,7 @@ Supported object types include:
 
 </Accordion>
 
-<Accordion title="WITH GRANT OPTION">
+<Accordion title="WITH GRANT OPTION" defaultOpen>
 
 Grant this permission with a
 [grant option](/content/security/sec_concepts#security-concepts-permissions-grant-option) to grant it to others.
@@ -758,13 +758,13 @@ TO <user name | role name>
 
 <AccordionGroup>
 
-<Accordion title="PRIVILEGES">
+<Accordion title="PRIVILEGES" defaultOpen>
 
 Optional keyword for SQL-92 compatibility.
 
 </Accordion>
 
-<Accordion title="ON">
+<Accordion title="ON" defaultOpen>
 
 Optional object specifier for granting permission to a specific object or set of objects.
 If not specified, then the grant will be for all tables and views
@@ -772,7 +772,7 @@ in all schemas now and in the future
 
 </Accordion>
 
-<Accordion title="TABLE">
+<Accordion title="TABLE" defaultOpen>
 
 Optional keyword for SQL-92 compatibility, and to avoid ambiguity between a grant to a
 table/view in the user's default schema (when `<schema name>` is omitted) and a grant
@@ -780,7 +780,7 @@ to a schema.
 
 </Accordion>
 
-<Accordion title="&lt;object reference&gt;">
+<Accordion title="&lt;object reference&gt;" defaultOpen>
 
 The name of the table/view and/or schema to which access is being granted.
 the following forms are valid:
@@ -821,7 +821,7 @@ the following forms are valid:
 
 </Accordion>
 
-<Accordion title="&lt;column list&gt;">
+<Accordion title="&lt;column list&gt;" defaultOpen>
 
 Optional comma-separated list of specific table columns and/or
 [column security functions](/content/security/sec_concepts#sec-concepts-perm-table-col-func) applied to columns
@@ -829,7 +829,7 @@ on which to grant access; see [Column-Level Security](/content/security/sec_conc
 
 </Accordion>
 
-<Accordion title="WHERE &lt;expression&gt;">
+<Accordion title="WHERE &lt;expression&gt;" defaultOpen>
 
 Optional filter expression on the table to which access is being granted, determining to
 which rows of the target table the grantee will be given access; see
@@ -837,7 +837,7 @@ which rows of the target table the grantee will be given access; see
 
 </Accordion>
 
-<Accordion title="WITH GRANT OPTION">
+<Accordion title="WITH GRANT OPTION" defaultOpen>
 
 Grant this permission with a
 [grant option](/content/security/sec_concepts#security-concepts-permissions-grant-option) to grant it to others.
@@ -1461,20 +1461,20 @@ FROM <user name | role name>
 
 <AccordionGroup>
 
-<Accordion title="PRIVILEGES">
+<Accordion title="PRIVILEGES" defaultOpen>
 
 Optional keyword for SQL-92 compatibility
 
 </Accordion>
 
-<Accordion title="SCHEMA">
+<Accordion title="SCHEMA" defaultOpen>
 
 Optional keyword to avoid ambiguity between revoking a grant to a schema and a grant to a
 table/view in the user's default schema
 
 </Accordion>
 
-<Accordion title="&lt;schema reference&gt;">
+<Accordion title="&lt;schema reference&gt;" defaultOpen>
 
 Either the name of the schema to which access is being revoked or a wildcard expression
 signifying the schema(s) and table(s)/views(s) to which access is being revoked
@@ -1503,7 +1503,7 @@ signifying the schema(s) and table(s)/views(s) to which access is being revoked
 
 </Accordion>
 
-<Accordion title="&lt;object type&gt;">
+<Accordion title="&lt;object type&gt;" defaultOpen>
 
 For revoking `CREATE` privilege, the object type to remove permission to create in the
 given schema.
@@ -1642,13 +1642,13 @@ FROM <user name | role name>
 
 <AccordionGroup>
 
-<Accordion title="PRIVILEGES">
+<Accordion title="PRIVILEGES" defaultOpen>
 
 Optional keyword for SQL-92 compatibility
 
 </Accordion>
 
-<Accordion title="TABLE">
+<Accordion title="TABLE" defaultOpen>
 
 Optional keyword for SQL-92 compatibility, and to avoid ambiguity between revoking a
 grant to a table/view in the user's default schema (when `<schema name>` is omitted)
@@ -1656,21 +1656,21 @@ and a grant to a schema
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 The name of the schema containing the table/view to which access is being revoked; if
 omitted, the table/view will be looked for in the default schema
 
 </Accordion>
 
-<Accordion title="&lt;table/view name&gt;">
+<Accordion title="&lt;table/view name&gt;" defaultOpen>
 
 The name of the table to which access is being revoked; the wildcard `*` can be used to
 revoke access to all tables/views within the given `<schema name>` schema
 
 </Accordion>
 
-<Accordion title="&lt;column list&gt;">
+<Accordion title="&lt;column list&gt;" defaultOpen>
 
 Optional comma-separated list of specific table columns to which access is being revoked;
 see [Column-Level Security](/content/security/sec_concepts#sec-concepts-perm-table-col) for details
@@ -2213,7 +2213,7 @@ CHECK ROLE OF <role>
 
 <AccordionGroup>
 
-<Accordion title="&lt;permission&gt;">
+<Accordion title="&lt;permission&gt;" defaultOpen>
 
 Permission to verify for the given user
 
@@ -2291,20 +2291,20 @@ Supported permissions include:
 
 </Accordion>
 
-<Accordion title="PERMISSION">
+<Accordion title="PERMISSION" defaultOpen>
 
 Optional keyword for clarity
 
 </Accordion>
 
-<Accordion title="ON">
+<Accordion title="ON" defaultOpen>
 
 Keyword for specifying the optional *ON* clause, which checks for the specified `permission`
 on the following `target` (and optional `target type`) given in this clause
 
 </Accordion>
 
-<Accordion title="&lt;target type&gt;">
+<Accordion title="&lt;target type&gt;" defaultOpen>
 
 Optional keyword for specifying the object type of the target; may be necessary to disambiguate
 same-named objects of differing types
@@ -2371,26 +2371,26 @@ Supported target types include:
 
 </Accordion>
 
-<Accordion title="&lt;target&gt;">
+<Accordion title="&lt;target&gt;" defaultOpen>
 
 Name of the object to which the given user's specified permission will be checked
 
 </Accordion>
 
-<Accordion title="&lt;role&gt;">
+<Accordion title="&lt;role&gt;" defaultOpen>
 
 Name of the role of which the given user's membership will be checked
 
 </Accordion>
 
-<Accordion title="FOR &lt;user&gt;">
+<Accordion title="FOR &lt;user&gt;" defaultOpen>
 
 Optional *FOR* clause, which checks whether the specified permission/role exists for the `user`
 given in this clause; if omitted, the current user will be checked
 
 </Accordion>
 
-<Accordion title="IF EXISTS">
+<Accordion title="IF EXISTS" defaultOpen>
 
 Optional error suppression clause, which causes the check to return `No` if any of the entities
 specified do not exist; without this clause, non-existent entities will return an error

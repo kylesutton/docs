@@ -52,92 +52,92 @@ A *window* function either be of aggregate or ranking type.
 
 <AccordionGroup>
 
-<Accordion title="AVG(expr)">
+<Accordion title="AVG(expr)" defaultOpen>
 
 Calculates the average of the given expression `expr` over the specified window frame
 
 </Accordion>
 
-<Accordion title="COUNT(expr)">
+<Accordion title="COUNT(expr)" defaultOpen>
 
 Calculates the count of the given expression `expr` over the specified window frame
 
 </Accordion>
 
-<Accordion title="MAX(expr)">
+<Accordion title="MAX(expr)" defaultOpen>
 
 Calculates the maximum value of the given expression `expr` over the specified window frame
 
 </Accordion>
 
-<Accordion title="MEAN(expr)">
+<Accordion title="MEAN(expr)" defaultOpen>
 
 Alias for `AVG()`. Calculates the average of the given expression `expr` over the specified
 window frame
 
 </Accordion>
 
-<Accordion title="MIN(expr)">
+<Accordion title="MIN(expr)" defaultOpen>
 
 Calculates the minimum value of the given expression `expr` over the specified window frame
 
 </Accordion>
 
-<Accordion title="PRODUCT(expr)">
+<Accordion title="PRODUCT(expr)" defaultOpen>
 
 Calculates the product of the given expression `expr` over the specified window frame
 
 </Accordion>
 
-<Accordion title="RATIO_TO_REPORT(expr)">
+<Accordion title="RATIO_TO_REPORT(expr)" defaultOpen>
 
 Calculates the ratio of the value of `expr` to the sum of `expr` over the specified window
 frame.  Note that `ORDER BY` is not supported for this function.
 
 </Accordion>
 
-<Accordion title="STDDEV(expr)">
+<Accordion title="STDDEV(expr)" defaultOpen>
 
 Alias for `STDDEV_POP()`. Calculates the population standard deviation of the given
 expression `expr` over the specified window frame
 
 </Accordion>
 
-<Accordion title="STDDEV_POP(expr)">
+<Accordion title="STDDEV_POP(expr)" defaultOpen>
 
 Calculates the population standard deviation of the given expression `expr` over the specified
 window frame
 
 </Accordion>
 
-<Accordion title="STDDEV_SAMP(expr)">
+<Accordion title="STDDEV_SAMP(expr)" defaultOpen>
 
 Calculates the sample standard deviation of the given expression `expr` over the specified
 window frame
 
 </Accordion>
 
-<Accordion title="SUM(expr)">
+<Accordion title="SUM(expr)" defaultOpen>
 
 Calculates the sum of the given expression `expr` over the specified window frame
 
 </Accordion>
 
-<Accordion title="VAR(expr)">
+<Accordion title="VAR(expr)" defaultOpen>
 
 Alias for `VAR_POP()`. Calculates the population variance of the given expression `expr` over
 the specified window frame
 
 </Accordion>
 
-<Accordion title="VAR_POP(expr)">
+<Accordion title="VAR_POP(expr)" defaultOpen>
 
 Calculates the population variance of the given expression `expr` over the specified window
 frame
 
 </Accordion>
 
-<Accordion title="VAR_SAMP(expr)">
+<Accordion title="VAR_SAMP(expr)" defaultOpen>
 
 Calculates the sample variance of the given expression `expr` over the specified window frame
 
@@ -151,7 +151,7 @@ Calculates the sample variance of the given expression `expr` over the specified
 
 <AccordionGroup>
 
-<Accordion title="CUME_DIST()">
+<Accordion title="CUME_DIST()" defaultOpen>
 
 The relative position of the current row within the cumulative distribution of the selected
 partition, expressed as a percentage from `0` (exclusive) to `1` (inclusive). The formula for
@@ -185,14 +185,14 @@ DOUBLE
 
 </Accordion>
 
-<Accordion title="DENSE_RANK()">
+<Accordion title="DENSE_RANK()" defaultOpen>
 
 Number of the current row within the selected partition except rows with identical values
 evaluate to different ranks. Starts at 1
 
 </Accordion>
 
-<Accordion title="FIRST_VALUE(&lt;column&gt;) [&lt;IGNORE | RESPECT&gt; NULLS]">
+<Accordion title="FIRST_VALUE(&lt;column&gt;) [&lt;IGNORE | RESPECT&gt; NULLS]" defaultOpen>
 
 The value found in the first row within a frame of the given expression. Optionally, add
 `IGNORE NULLS` or `RESPECT NULLS` to the function syntax to ignore or respect `nulls`,
@@ -200,7 +200,7 @@ respectively.
 
 </Accordion>
 
-<Accordion title="LAG(&lt;column&gt;[, &lt;num&gt;]) [&lt;IGNORE | RESPECT&gt; NULLS]">
+<Accordion title="LAG(&lt;column&gt;[, &lt;num&gt;]) [&lt;IGNORE | RESPECT&gt; NULLS]" defaultOpen>
 
 The value of the row before the given expression's value. Provide an additional comma-separated
 value to specify which row to select, e.g., `LAG(vendor_id, 3)` would list the value in the
@@ -209,7 +209,7 @@ or `RESPECT NULLS` to the function syntax to ignore or respect `nulls` respectiv
 
 </Accordion>
 
-<Accordion title="LAST_VALUE(&lt;column&gt;) [&lt;IGNORE | RESPECT&gt; NULLS]">
+<Accordion title="LAST_VALUE(&lt;column&gt;) [&lt;IGNORE | RESPECT&gt; NULLS]" defaultOpen>
 
 The value found in the last row within a frame of the given expression. Optionally, add
 `IGNORE NULLS` or `RESPECT NULLS` to the function syntax to ignore or respect
@@ -217,7 +217,7 @@ The value found in the last row within a frame of the given expression. Optional
 
 </Accordion>
 
-<Accordion title="LEAD(&lt;column&gt;[, &lt;num&gt;]) [&lt;IGNORE | RESPECT&gt; NULLS]">
+<Accordion title="LEAD(&lt;column&gt;[, &lt;num&gt;]) [&lt;IGNORE | RESPECT&gt; NULLS]" defaultOpen>
 
 The value of the row after the given expression's value. Provide an additional comma-separated
 value to specify which row to select, e.g., `LEAD(vendor_id, 3)` would list the value in the
@@ -226,7 +226,7 @@ or `RESPECT NULLS` to the function syntax to ignore or respect `nulls` respectiv
 
 </Accordion>
 
-<Accordion title="NTILE(&lt;num of groups&gt;)">
+<Accordion title="NTILE(&lt;num of groups&gt;)" defaultOpen>
 
 The group number of the row after partitioning the rows into `num of groups` groups.  For
 example, `NTILE(4)` will partition data by quartiles and return the associated group number,
@@ -234,7 +234,7 @@ example, `NTILE(4)` will partition data by quartiles and return the associated g
 
 </Accordion>
 
-<Accordion title="PERCENT_RANK()">
+<Accordion title="PERCENT_RANK()" defaultOpen>
 
 The rank of the current row within the selected partition, expressed as a percentage from `0`
 to `1`, inclusive. The formula for this calculation is as follows:
@@ -267,14 +267,14 @@ DOUBLE
 
 </Accordion>
 
-<Accordion title="RANK()">
+<Accordion title="RANK()" defaultOpen>
 
 Number of the current row within the selected partition. However, rows with identical values
 evaluate to the same rank. Starts at 1
 
 </Accordion>
 
-<Accordion title="ROW_NUMBER()">
+<Accordion title="ROW_NUMBER()" defaultOpen>
 
 Number of the current row within the selected partition. Starts at 1
 

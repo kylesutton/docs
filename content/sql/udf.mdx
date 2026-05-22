@@ -66,19 +66,19 @@ FILE PATHS '<file paths>'
 
 <AccordionGroup>
 
-<Accordion title="OR REPLACE">
+<Accordion title="OR REPLACE" defaultOpen>
 
 Any existing UDF with the same name will be dropped before creating this one
 
 </Accordion>
 
-<Accordion title="&lt;function name&gt;">
+<Accordion title="&lt;function name&gt;" defaultOpen>
 
 Name of the UDF, which can be referenced in subsequent commands
 
 </Accordion>
 
-<Accordion title="RETURNS TABLE">
+<Accordion title="RETURNS TABLE" defaultOpen>
 
 Specifies that the UDF returns a table after execution and defines the column names and types
 to which the function's output data is expected to conform
@@ -92,7 +92,7 @@ the function to be called within a SQL query; see
 
 </Accordion>
 
-<Accordion title="MODE">
+<Accordion title="MODE" defaultOpen>
 
 Name of the execution mode for the UDF; the following modes are available:
 
@@ -120,13 +120,13 @@ Name of the execution mode for the UDF; the following modes are available:
 
 </Accordion>
 
-<Accordion title="RUN_COMMAND">
+<Accordion title="RUN_COMMAND" defaultOpen>
 
 The command used to execute the files associated with the UDF; e.g., `python`
 
 </Accordion>
 
-<Accordion title="RUN_COMMAND_ARGS">
+<Accordion title="RUN_COMMAND_ARGS" defaultOpen>
 
 The arguments supplied alongside the given `RUN_COMMAND`; e.g.:
 
@@ -135,7 +135,7 @@ The arguments supplied alongside the given `RUN_COMMAND`; e.g.:
 ```
 </Accordion>
 
-<Accordion title="FILE PATHS">
+<Accordion title="FILE PATHS" defaultOpen>
 
 A comma-separated list of single-quoted file paths from which the function and any additional
 files will be loaded; the file paths should be [KiFS](/content/tools/kifs) locations and exist
@@ -143,7 +143,7 @@ prior to the UDF/UDTF creation.
 
 </Accordion>
 
-<Accordion title="WITH OPTIONS">
+<Accordion title="WITH OPTIONS" defaultOpen>
 
 Optional indicator that a comma-delimited list of option/value assignments will follow
 
@@ -273,7 +273,7 @@ corresponding function values.
 
 <AccordionGroup>
 
-<Accordion title="INPUT_TABLE_NAMES">
+<Accordion title="INPUT_TABLE_NAMES" defaultOpen>
 
 Optional set of "tables" that will be used as input to the UDF/UDTF, specified as a set of
 queries defining the source data for each "table".  The value of this parameter is either the
@@ -303,7 +303,7 @@ queries defining the source data for each "table".  The value of this parameter 
 
 </Accordion>
 
-<Accordion title="OUTPUT_TABLE_NAMES">
+<Accordion title="OUTPUT_TABLE_NAMES" defaultOpen>
 
 Optional set of tables that will be used as output, specified as a set of names passed as a
 comma-delimited list of strings to the `OUTPUT_TABLES` function; e.g.:
@@ -313,7 +313,7 @@ OUTPUT_TABLES('sales_summary', 'customer_profile')
 ```
 </Accordion>
 
-<Accordion title="PARAMS">
+<Accordion title="PARAMS" defaultOpen>
 
 Optional list of parameters to pass to the function, specified as a set of key/value pairs
 passed  as a comma-delimited list of `<key> = '<value>'` assignments to the `KV_PAIRS`
@@ -324,7 +324,7 @@ KV_PAIRS(customer_id = '1', report_type = 'yearly')
 ```
 </Accordion>
 
-<Accordion title="OPTIONS">
+<Accordion title="OPTIONS" defaultOpen>
 
 Optional list of function execution options, specified as a set of key/value pairs passed as a
 comma-delimited list of `<key> = '<value>'` assignments to the `KV_PAIRS` function; e.g.:
@@ -397,7 +397,7 @@ DROP FUNCTION <function name>
 
 <AccordionGroup>
 
-<Accordion title="&lt;function name&gt;">
+<Accordion title="&lt;function name&gt;" defaultOpen>
 
 Name of the UDF to remove
 
@@ -439,7 +439,7 @@ SHOW FUNCTION < <function name> | * >
 
 <AccordionGroup>
 
-<Accordion title="&lt;function name&gt;">
+<Accordion title="&lt;function name&gt;" defaultOpen>
 
 Name of the UDF whose configuration will be output.  Use `*` instead to output the DDL of
 all UDFs.
@@ -490,13 +490,13 @@ SHOW FUNCTION STATUS [VERBOSE] [FOR '<run ID>']
 
 <AccordionGroup>
 
-<Accordion title="VERBOSE">
+<Accordion title="VERBOSE" defaultOpen>
 
 Specifies verbose output mode.  This modifies the response as noted below.
 
 </Accordion>
 
-<Accordion title="FOR '&lt;run ID&gt;'">
+<Accordion title="FOR '&lt;run ID&gt;'" defaultOpen>
 
 Specifies that only the status of UDF/UDTF execution with run ID `<run ID>` should be output.
 
@@ -561,7 +561,7 @@ DESC[RIBE] FUNCTION < <function name> | * >
 
 <AccordionGroup>
 
-<Accordion title="&lt;function name&gt;">
+<Accordion title="&lt;function name&gt;" defaultOpen>
 
 Name of the UDF whose attributes will be output.  Use `*` instead to output the attributes
 of all UDFs.
@@ -625,13 +625,13 @@ default function environment, `kinetica-default-environment`.  See
 
 <AccordionGroup>
 
-<Accordion title="OR REPLACE">
+<Accordion title="OR REPLACE" defaultOpen>
 
 Any existing UDF environment with the same name will be dropped before creating this one
 
 </Accordion>
 
-<Accordion title="&lt;environment name&gt;">
+<Accordion title="&lt;environment name&gt;" defaultOpen>
 
 Name of the UDF environment, which can be referenced in subsequent commands
 
@@ -678,19 +678,19 @@ UNINSTALL PYTHON PACKAGE '<package name> [...]>'
 
 <AccordionGroup>
 
-<Accordion title="&lt;environment name&gt;">
+<Accordion title="&lt;environment name&gt;" defaultOpen>
 
 Name of the UDF environment to manage
 
 </Accordion>
 
-<Accordion title="&lt;package name&gt;">
+<Accordion title="&lt;package name&gt;" defaultOpen>
 
 Name of the Python package to install into or uninstall from the UDF environment
 
 </Accordion>
 
-<Accordion title="&lt;package version&gt;">
+<Accordion title="&lt;package version&gt;" defaultOpen>
 
 Version number of the Python package to install
 
@@ -740,7 +740,7 @@ DROP FUNCTION ENVIRONMENT <environment name>
 
 <AccordionGroup>
 
-<Accordion title="&lt;environment name&gt;">
+<Accordion title="&lt;environment name&gt;" defaultOpen>
 
 Name of the UDF environment to remove
 
@@ -786,7 +786,7 @@ result set with the DDL statement as the value in the `DDL` column.
 
 <AccordionGroup>
 
-<Accordion title="&lt;environment name&gt;">
+<Accordion title="&lt;environment name&gt;" defaultOpen>
 
 Name of the UDF environment whose `CREATE` statement will be output. Use `*` instead to
 output the `CREATE` statements of all UDF environments.
@@ -833,7 +833,7 @@ DESC[RIBE] FUNCTION ENVIRONMENT < <environment name> | * >
 
 <AccordionGroup>
 
-<Accordion title="&lt;environment name&gt;">
+<Accordion title="&lt;environment name&gt;" defaultOpen>
 
 Name of the UDF environment whose Python packages will be output. Use `*` instead to output
 the Python packages of all UDF environments.

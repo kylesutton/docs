@@ -6,7 +6,7 @@ The functions below support various operations using the H3 geospatial indexing 
 
 <AccordionGroup>
 
-<Accordion title="H3_CELLTOBOUNDARY(h3_index)">
+<Accordion title="H3_CELLTOBOUNDARY(h3_index)" defaultOpen>
 
 Returns a POLYGON boundary box of the H3 index identified by the given `h3_index`.
 
@@ -14,13 +14,13 @@ See [Geohash-H3](/content/snippets/geohash-h3) for an example.
 
 </Accordion>
 
-<Accordion title="H3_CELLTOCENTERCHILD(h3_index, res)">
+<Accordion title="H3_CELLTOCENTERCHILD(h3_index, res)" defaultOpen>
 
 Alias for `H3_CELLTOFIRSTCHILD`.
 
 </Accordion>
 
-<Accordion title="H3_CELLTOCHILDN(h3_index, res, i)">
+<Accordion title="H3_CELLTOCHILDN(h3_index, res, i)" defaultOpen>
 
 Returns the H3 index corresponding to the 0-based `i` th child at resolution `res` for the given
 `h3_index`.  The value `i` should be less than the number of children returned from calling
@@ -28,20 +28,20 @@ Returns the H3 index corresponding to the 0-based `i` th child at resolution `re
 
 </Accordion>
 
-<Accordion title="H3_CELLTOCHILDPOS(h3_index, res)">
+<Accordion title="H3_CELLTOCHILDPOS(h3_index, res)" defaultOpen>
 
 Returns the position of the given `h3_index` within an ordered list of the children of the cell's
 parent at resolution `res`. This is the inverse of `H3_CHILDPOSTOCELL` (`H3_CELLTOCHILDN`).
 
 </Accordion>
 
-<Accordion title="H3_CELLTOCHILDRENSIZE(h3_index, res)">
+<Accordion title="H3_CELLTOCHILDRENSIZE(h3_index, res)" defaultOpen>
 
 Returns the number of child cells at resolution `res` for the given `h3_index`.
 
 </Accordion>
 
-<Accordion title="H3_CELLTOFIRSTCHILD(h3_index, res)">
+<Accordion title="H3_CELLTOFIRSTCHILD(h3_index, res)" defaultOpen>
 
 Returns the H3 index corresponding to the first child at resolution `res` for the given `h3_index`.
 
@@ -49,7 +49,7 @@ This is equivalent to `H3_CELLTOCHILDN(h3_index,res,0)`.
 
 </Accordion>
 
-<Accordion title="H3_CELLTOLASTCHILD(h3_index, res)">
+<Accordion title="H3_CELLTOLASTCHILD(h3_index, res)" defaultOpen>
 
 Returns the H3 index corresponding to the last child at resolution `res` for the given `h3_index`.
 
@@ -57,25 +57,25 @@ This is equivalent to `H3_CELLTOCHILDN(h3_index,res,H3_CELLTOCHILDRENSIZE(h3_ind
 
 </Accordion>
 
-<Accordion title="H3_CELLTOPARENT(h3_index, res)">
+<Accordion title="H3_CELLTOPARENT(h3_index, res)" defaultOpen>
 
 Returns the H3 index corresponding to the parent cell of the given `h3_index` at resolution `res`.
 
 </Accordion>
 
-<Accordion title="H3_CELLTOXY(h3_index)">
+<Accordion title="H3_CELLTOXY(h3_index)" defaultOpen>
 
 Returns a WKT POINT corresponding to the centroid of the given `h3_index`.
 
 </Accordion>
 
-<Accordion title="H3_CHILDPOSTOCELL(i, h3_index, res)">
+<Accordion title="H3_CHILDPOSTOCELL(i, h3_index, res)" defaultOpen>
 
 Alias for `H3_CELLTOCHILDN(h3_index, res, i)`.
 
 </Accordion>
 
-<Accordion title="H3_GEOMTOCELL(geom, res)">
+<Accordion title="H3_GEOMTOCELL(geom, res)" defaultOpen>
 
 Returns the H3 index, similar to a geohash, for the cell containing the centroid of the geometry
 `geom` with the given resolution `res`.  The higher the resolution, the more precise the index
@@ -85,19 +85,19 @@ See [Geohash-H3](/content/snippets/geohash-h3) for an example.
 
 </Accordion>
 
-<Accordion title="H3_GETRESOLUTION(h3_index)">
+<Accordion title="H3_GETRESOLUTION(h3_index)" defaultOpen>
 
 Returns the resolution of the H3 index `h3_index`.
 
 </Accordion>
 
-<Accordion title="H3_GRIDDISK(h3_index, k)">
+<Accordion title="H3_GRIDDISK(h3_index, k)" defaultOpen>
 
 Returns an array of H3 indexes within a given distance `k` from the provided H3 index `h3_index`.
 
 </Accordion>
 
-<Accordion title="H3_GRIDDISKN(h3_index, k, i)">
+<Accordion title="H3_GRIDDISKN(h3_index, k, i)" defaultOpen>
 
 Returns the `i` <sup>th</sup> H3 index within a given distance `k` from the provided H3 index
 `h3_index`.  This function would typically be used in conjunction with `H3_NUMGRIDDISK` via iter-join.
@@ -105,14 +105,14 @@ The value of `i` should be between `0` and the result of `H3_NUMGRIDDISK(h3_inde
 
 </Accordion>
 
-<Accordion title="H3_GRIDRING(h3_index, k)">
+<Accordion title="H3_GRIDRING(h3_index, k)" defaultOpen>
 
 Returns an array of H3 indexes comprising a hollow ring at a distance `k` from the provided
 H3 index `h3_index`.
 
 </Accordion>
 
-<Accordion title="H3_H3TOSTRING(h3_index)">
+<Accordion title="H3_H3TOSTRING(h3_index)" defaultOpen>
 
 Returns the string representation of the H3 index `h3_index`.
 
@@ -123,14 +123,14 @@ This function is the inverse of `H3_STRINGTOH3`.
 
 </Accordion>
 
-<Accordion title="H3_ISVALID(h3_index)">
+<Accordion title="H3_ISVALID(h3_index)" defaultOpen>
 
 Returns `1` (true) if the given H3 index `h3_index` is a valid H3 index value; otherwise
 returns `0` (false).
 
 </Accordion>
 
-<Accordion title="H3_LATLNGTOCELL (latitude, longitude, res)">
+<Accordion title="H3_LATLNGTOCELL (latitude, longitude, res)" defaultOpen>
 
 Returns the H3 index, similar to a geohash, for the cell containing the `latitude` and `longitude`
 coordinate, with the given resolution `res`.  The higher the resolution, the more precise the index
@@ -140,14 +140,14 @@ Equivalent to `H3_XYTOCELL(longitude, latitude, res)`.
 
 </Accordion>
 
-<Accordion title="H3_NUMGRIDDISK(h3_index, k)">
+<Accordion title="H3_NUMGRIDDISK(h3_index, k)" defaultOpen>
 
 Returns the number of cells at a distance of `k` from the provided H3 index `h3_index`. This function
 would typically be used in conjunction with `H3_GRIDDISKN` via iter-join.
 
 </Accordion>
 
-<Accordion title="H3_NUMPOLYGONTOCELLS(geom, res)">
+<Accordion title="H3_NUMPOLYGONTOCELLS(geom, res)" defaultOpen>
 
 Returns the number of cells at the given resolution `res` that are within the given geometry `geom`.
 Only polygon geometries are supported. This function would typically be used in conjunction with
@@ -155,14 +155,14 @@ Only polygon geometries are supported. This function would typically be used in 
 
 </Accordion>
 
-<Accordion title="H3_POLYGONTOCELLS(geom, res)">
+<Accordion title="H3_POLYGONTOCELLS(geom, res)" defaultOpen>
 
 Returns an array of H3 indexes at the given resolution `res` that are within the given geometry `geom`.
 Only polygon geometries are supported.
 
 </Accordion>
 
-<Accordion title="H3_POLYGONTOCELLSN(geom, res, i)">
+<Accordion title="H3_POLYGONTOCELLSN(geom, res, i)" defaultOpen>
 
 Returns the `i` <sup>th</sup> H3 index at the given resolution `res` that is within the given geometry
 `geom`.  Only polygon geometries are supported. This function would typically be used in conjunction with
@@ -171,7 +171,7 @@ from `H3_NUMPOLYGONTOCELLS(geom, res)` - `1`.
 
 </Accordion>
 
-<Accordion title="H3_STRINGTOH3(h3_string)">
+<Accordion title="H3_STRINGTOH3(h3_string)" defaultOpen>
 
 Returns the H3 index corresponding to the string representation `h3_string`.
 
@@ -182,7 +182,7 @@ This function is the inverse of `H3_H3TOSTRING`.
 
 </Accordion>
 
-<Accordion title="H3_XYTOCELL(x, y, res)">
+<Accordion title="H3_XYTOCELL(x, y, res)" defaultOpen>
 
 Returns the H3 index, similar to a geohash, for the cell containing the `x` and `y` coordinate,
 with the given resolution `res`.  The higher the resolution, the more precise the index is. The

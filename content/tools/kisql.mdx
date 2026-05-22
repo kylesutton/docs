@@ -147,20 +147,20 @@ kisql --connectionString "jdbc:kinetica:URL=https://<db.host>:8082/gpudb-0[[;<pa
 
 <AccordionGroup>
 
-<Accordion title="&lt; -h | --host &gt; &lt;hostname&gt;">
+<Accordion title="&lt; -h | --host &gt; &lt;hostname&gt;" defaultOpen>
 
 Connect to the specified Kinetica host; can also be specified by the `KI_HOST` environment variable.
 
 </Accordion>
 
-<Accordion title="&lt; -p | --port &gt; &lt;port number&gt;">
+<Accordion title="&lt; -p | --port &gt; &lt;port number&gt;" defaultOpen>
 
 Connect to the specified Kinetica port; can also be specified by the `KI_JDBCPORT` environment variable.
 If not specified, default is `9191`.
 
 </Accordion>
 
-<Accordion title="--url &lt;Kinetica URL&gt;">
+<Accordion title="--url &lt;Kinetica URL&gt;" defaultOpen>
 
 Connect using the specified Kinetica URL; e.g., `http://localhost:9191;RowsPerFetch=20000`.  Overrides `--host` &
 `--port`.  This can also be specified by the `KI_URL` environment variable.
@@ -169,7 +169,7 @@ for specifying HA connections.
 
 </Accordion>
 
-<Accordion title="--connectionString '&lt;JDBC URL&gt;'">
+<Accordion title="--connectionString '&lt;JDBC URL&gt;'" defaultOpen>
 
 Connect using the specified JDBC URL; e.g., `jdbc:kinetica://localhost:9191;RowsPerFetch=20000`. Overrides `--host`,
 `--port`, `--url`, & `primaryUrl`; will not override other parameters specified on the command line.
@@ -184,14 +184,14 @@ specified through it.
 
 </Accordion>
 
-<Accordion title="--primaryUrl &lt;Kinetica URL&gt;">
+<Accordion title="--primaryUrl &lt;Kinetica URL&gt;" defaultOpen>
 
 Try the specified Kinetica URL first when using `--url` to specify multiple
 [failover URLs](/content/connectors/sql_guide#jdbc-connecting-failover) for [HA](/content/ha).
 
 </Accordion>
 
-<Accordion title="--user &lt;user ID&gt;">
+<Accordion title="--user &lt;user ID&gt;" defaultOpen>
 
 Authenticate with the specified user ID. This can also be specified by the `KI_USER` environment variable.
 
@@ -204,20 +204,20 @@ If `--user` is left blank and authentication is disabled,
 
 </Accordion>
 
-<Accordion title="--token &lt;OAuth token&gt;">
+<Accordion title="--token &lt;OAuth token&gt;" defaultOpen>
 
 Authenticate with the specified OAuth token. This can also be specified by the `KI_OAUTH_TOKEN` environment
 variable.
 
 </Accordion>
 
-<Accordion title="--tokenNameClaim &lt;claim&gt;">
+<Accordion title="--tokenNameClaim &lt;claim&gt;" defaultOpen>
 
 OAuth token claim key where the user name is located.  If not specified, the default is `sub`.
 
 </Accordion>
 
-<Accordion title="--trustStore &lt;filepath&gt;">
+<Accordion title="--trustStore &lt;filepath&gt;" defaultOpen>
 
 Use the specified *Java* TrustStore file path for SSL connections. Can also be specified using the
 `KI_TRUSTSTORE` environment variable. See the [HTTPD + SSL setup instructions](/content/security/sec_configuration#httpd-ssl-config)
@@ -225,21 +225,21 @@ sections for more information on setting up a TrustStore and setting up ODBC for
 
 </Accordion>
 
-<Accordion title="--bypassSslCertCheck [&lt;value&gt;]">
+<Accordion title="--bypassSslCertCheck [&lt;value&gt;]" defaultOpen>
 
 If using SSL, don't validate the server certificate.  If not specified, or if specified with no `value`, the
 default is not to validate the certificate.
 
 </Accordion>
 
-<Accordion title="&lt; --s | --schema &gt; &lt;schema name&gt;">
+<Accordion title="&lt; --s | --schema &gt; &lt;schema name&gt;" defaultOpen>
 
 Use `schema name` as the default schema for all object references; effectively, issuing a
 [SET CURRENT SCHEMA](/content/sql/ddl#sql-current-schema) command at the beginning of the session.
 
 </Accordion>
 
-<Accordion title="--disableAutoDiscovery">
+<Accordion title="--disableAutoDiscovery" defaultOpen>
 
 Disable
 [high availability](/content/ha) failover and
@@ -248,13 +248,13 @@ Disable
 
 </Accordion>
 
-<Accordion title="--disableFailover">
+<Accordion title="--disableFailover" defaultOpen>
 
 [high availability](/content/ha) failover.
 
 </Accordion>
 
-<Accordion title="--disableSnappy">
+<Accordion title="--disableSnappy" defaultOpen>
 
 Do not use Snappy compression when transmitting data to the server.
 
@@ -268,20 +268,20 @@ Do not use Snappy compression when transmitting data to the server.
 
 <AccordionGroup>
 
-<Accordion title="&lt; -f | --file &gt; &lt;file path&gt;">
+<Accordion title="&lt; -f | --file &gt; &lt;file path&gt;" defaultOpen>
 
 Run any SQL statements found in the given file and exit.  Statements must be separated by a semicolon, unless
 `--lineMode` is specified, in which case each line of the file will be treated as a separate SQL statement.
 
 </Accordion>
 
-<Accordion title="&lt; --line | --lineMode &gt;">
+<Accordion title="&lt; --line | --lineMode &gt;" defaultOpen>
 
 Execute each line of input as a separate SQL statement, even if not terminated with a semicolon.
 
 </Accordion>
 
-<Accordion title="--sql '&lt;SQL statements&gt;'">
+<Accordion title="--sql '&lt;SQL statements&gt;'" defaultOpen>
 
 Run the given set of semicolon-separated SQL statements (in quotes) and exit.
 
@@ -295,14 +295,14 @@ Run the given set of semicolon-separated SQL statements (in quotes) and exit.
 
 <AccordionGroup>
 
-<Accordion title="--debug [&lt;value&gt;]">
+<Accordion title="--debug [&lt;value&gt;]" defaultOpen>
 
 Output debugging information.  If not specified, default is not to output debugging information; if
 specified, default `value` is `true`.
 
 </Accordion>
 
-<Accordion title="--delim '&lt;delimiter&gt;'">
+<Accordion title="--delim '&lt;delimiter&gt;'" defaultOpen>
 
 Use the given delimiter (in quotes) for delimited output formatting. The `--format` parameter must be
 present and set to `delim` / `delimited`. Any alphanumeric character or symbol is a valid delimiter.  If
@@ -310,14 +310,14 @@ not specified, default is a comma.
 
 </Accordion>
 
-<Accordion title="--echoSql [&lt;value&gt;]">
+<Accordion title="--echoSql [&lt;value&gt;]" defaultOpen>
 
 Echo SQL statements executed.  If not specified, default is to not output SQL statements; if specified, default
 `value` is `true`.
 
 </Accordion>
 
-<Accordion title="--format &lt;format&gt;">
+<Accordion title="--format &lt;format&gt;" defaultOpen>
 
 Output SQL statement result sets with the specified format.  Default is `table`.  Valid `format` options
 include:
@@ -350,20 +350,20 @@ include:
 
 </Accordion>
 
-<Accordion title="&lt; -i | --isql &gt;">
+<Accordion title="&lt; -i | --isql &gt;" defaultOpen>
 
 Simulate <Badge color="blue-destructive">isql</Badge> output.
 
 </Accordion>
 
-<Accordion title="--limit &lt;record count&gt;">
+<Accordion title="--limit &lt;record count&gt;" defaultOpen>
 
 Limit the number of records returned in each result set to the given number.  Use `-1` for no limit.
 If not specified, default is `-1`.
 
 </Accordion>
 
-<Accordion title="--logLevel &lt;level&gt;">
+<Accordion title="--logLevel &lt;level&gt;" defaultOpen>
 
 Set the JDBC logging level.  Default logging level is `0` *(off)*.  Valid `level` options include:
 
@@ -411,27 +411,27 @@ Set the JDBC logging level.  Default logging level is `0` *(off)*.  Valid `level
 
 </Accordion>
 
-<Accordion title="--showTime [&lt;value&gt;]">
+<Accordion title="--showTime [&lt;value&gt;]" defaultOpen>
 
 Display SQL execution time.  If not specified, default is to show execution time; if specified, default
 `value` is `true`.
 
 </Accordion>
 
-<Accordion title="--stopOnFirstError">
+<Accordion title="--stopOnFirstError" defaultOpen>
 
 When using a SQL script as input (`--file` option), stop on the first error encountered.
 
 </Accordion>
 
-<Accordion title="&lt; -tz | --timeZone &gt; &lt;time zone ID&gt;">
+<Accordion title="&lt; -tz | --timeZone &gt; &lt;time zone ID&gt;" defaultOpen>
 
 Output *time* and *timestamp* data in the time zone with specified ID (e.g., `PST`).  Use `system` for
 local system time.  If not specified, default is `UTC`.
 
 </Accordion>
 
-<Accordion title="--verbose [&lt;value&gt;]">
+<Accordion title="--verbose [&lt;value&gt;]" defaultOpen>
 
 Display JDBC class, URL (including SSL and TrustStore information), host, port, user, password, and version
 information as well as the given SQL statement.  If not specified, default is to not use *verbose* mode; if
@@ -447,19 +447,19 @@ specified, default `value` is `true`.
 
 <AccordionGroup>
 
-<Accordion title="--listAllTimeZones">
+<Accordion title="--listAllTimeZones" defaultOpen>
 
 List all supported time zones and exit.
 
 </Accordion>
 
-<Accordion title="--version">
+<Accordion title="--version" defaultOpen>
 
 Display the version of <Badge color="blue-destructive">kisql</Badge> and exit.
 
 </Accordion>
 
-<Accordion title="&lt; -? | --help &gt;">
+<Accordion title="&lt; -? | --help &gt;" defaultOpen>
 
 Display help information
 
@@ -485,7 +485,7 @@ interactive mode:
 
 <AccordionGroup>
 
-<Accordion title="&lt; \c | \counts &gt; [&lt;schema&gt; [&lt;table&gt;]]">
+<Accordion title="&lt; \c | \counts &gt; [&lt;schema&gt; [&lt;table&gt;]]" defaultOpen>
 
 Display the number of records in each table.
 
@@ -497,7 +497,7 @@ accessible.
 
 </Accordion>
 
-<Accordion title="&lt; \e | \edit &gt; [entry number]">
+<Accordion title="&lt; \e | \edit &gt; [entry number]" defaultOpen>
 
 If no argument given, invoke the vi editor on the last query executed. If a
 number is provided (with `1` being the least recent entry), invoke `vi`
@@ -506,7 +506,7 @@ statement will be executed.
 
 </Accordion>
 
-<Accordion title="&lt; \f | \format &gt; &lt;type&gt;">
+<Accordion title="&lt; \f | \format &gt; &lt;type&gt;" defaultOpen>
 
 Set the output format type; options are detailed in the `--format` parameter
 description [above](/content/tools/kisql#kisql-tools-params).
@@ -519,14 +519,14 @@ during an interactive mode session.
 
 </Accordion>
 
-<Accordion title="&lt; \h | \history &gt;">
+<Accordion title="&lt; \h | \history &gt;" defaultOpen>
 
 Display the numbered SQL statement history (with the least recent entry being
 first).
 
 </Accordion>
 
-<Accordion title="&lt; \i | \indices &gt; [&lt;schema&gt; [&lt;table&gt;]]">
+<Accordion title="&lt; \i | \indices &gt; [&lt;schema&gt; [&lt;table&gt;]]" defaultOpen>
 
 Display the [indices](/content/concepts/indexes) to which the user has access.
 
@@ -537,7 +537,7 @@ that schema.
 
 </Accordion>
 
-<Accordion title="&lt; \k | \primaryKeys &gt; [&lt;schema&gt; [&lt;table&gt;]]">
+<Accordion title="&lt; \k | \primaryKeys &gt; [&lt;schema&gt; [&lt;table&gt;]]" defaultOpen>
 
 Display the [primary key](/content/concepts/tables#primary-key) columns to which the user has
 access.
@@ -550,13 +550,13 @@ that table.
 
 </Accordion>
 
-<Accordion title="&lt; \m | \metadata &gt;">
+<Accordion title="&lt; \m | \metadata &gt;" defaultOpen>
 
 Display connection metadata, including versions, supported features, & data types.
 
 </Accordion>
 
-<Accordion title="&lt; \p | \procedures &gt; [&lt;schema&gt; [&lt;procedure&gt;]]">
+<Accordion title="&lt; \p | \procedures &gt; [&lt;schema&gt; [&lt;procedure&gt;]]" defaultOpen>
 
 Display the [SQL procedures](/content/sql/procedure) to which the user has access.
 
@@ -567,7 +567,7 @@ accessible.
 
 </Accordion>
 
-<Accordion title="&lt; \r | \run &gt; [ID]">
+<Accordion title="&lt; \r | \run &gt; [ID]" defaultOpen>
 
 Re-run the last command executed.
 
@@ -576,13 +576,13 @@ enumerated in the history output via `\history`)
 
 </Accordion>
 
-<Accordion title="&lt; \s | \schemas &gt;">
+<Accordion title="&lt; \s | \schemas &gt;" defaultOpen>
 
 Display the [schemas](/content/sql/ddl#sql-create-schema) to which the user has access.
 
 </Accordion>
 
-<Accordion title="&lt; \t | \tables &gt; [&lt;schema [&lt;table&gt;]]">
+<Accordion title="&lt; \t | \tables &gt; [&lt;schema [&lt;table&gt;]]" defaultOpen>
 
 Display the [tables](/content/sql/ddl#sql-create-table) &
 [views](/content/sql/ddl#sql-create-view) to which the user has access.
@@ -593,7 +593,7 @@ If `schema` & `table` are given, only show that table, if accessible.
 
 </Accordion>
 
-<Accordion title="&lt; \u | \columns &gt; [&lt;schema&gt; [&lt;table&gt; [&lt;column&gt;]]]">
+<Accordion title="&lt; \u | \columns &gt; [&lt;schema&gt; [&lt;table&gt; [&lt;column&gt;]]]" defaultOpen>
 
 Display the columns of [tables](/content/sql/ddl#sql-create-table) &
 [views](/content/sql/ddl#sql-create-view) to which the user has access.
@@ -609,7 +609,7 @@ accessible.
 
 </Accordion>
 
-<Accordion title="&lt; \v | \version &gt;">
+<Accordion title="&lt; \v | \version &gt;" defaultOpen>
 
 Display the version number of the following components:
 
@@ -619,7 +619,7 @@ Display the version number of the following components:
 
 </Accordion>
 
-<Accordion title="&lt; \q | \quit | \exit &gt;">
+<Accordion title="&lt; \q | \quit | \exit &gt;" defaultOpen>
 
 Exit interactive mode.
 

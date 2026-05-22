@@ -55,27 +55,27 @@ CREDENTIAL = <credential name>
 
 <AccordionGroup>
 
-<Accordion title="OR REPLACE">
+<Accordion title="OR REPLACE" defaultOpen>
 
 Any existing *container registry* reference with the same name will be dropped before creating
 this one
 
 </Accordion>
 
-<Accordion title="&lt;registry name&gt;">
+<Accordion title="&lt;registry name&gt;" defaultOpen>
 
 Name of the reference to the *container registry*, which can be referenced in subsequent
 commands
 
 </Accordion>
 
-<Accordion title="URI">
+<Accordion title="URI" defaultOpen>
 
 The URI to the *container registry* itself
 
 </Accordion>
 
-<Accordion title="CREDENTIAL">
+<Accordion title="CREDENTIAL" defaultOpen>
 
 Name of the [credential](/content/sql/ddl#sql-create-credential) to use to authenticate to the
 *container registry*
@@ -114,7 +114,7 @@ DROP CONTAINER REGISTRY <registry name>
 
 <AccordionGroup>
 
-<Accordion title="&lt;registry name&gt;">
+<Accordion title="&lt;registry name&gt;" defaultOpen>
 
 Name of the reference to the *container registry* to remove; has no effect on the
 *container registry* itself
@@ -157,7 +157,7 @@ set with the DDL statement as the value in the `DDL` column.
 
 <AccordionGroup>
 
-<Accordion title="&lt;registry name&gt;">
+<Accordion title="&lt;registry name&gt;" defaultOpen>
 
 Name of the existing reference to the *container registry* for which the DDL will be output.
 Use `*` instead to output the DDL of all references to *container registries*.
@@ -201,25 +201,25 @@ RUN_FUNCTION = '<model run function>'
 
 <AccordionGroup>
 
-<Accordion title="&lt;model name&gt;">
+<Accordion title="&lt;model name&gt;" defaultOpen>
 
 Name of the *ML model* to import via the given *container registry* reference
 
 </Accordion>
 
-<Accordion title="REGISTRY">
+<Accordion title="REGISTRY" defaultOpen>
 
 Name of the reference to the *container registry* from which to import the *ML model*
 
 </Accordion>
 
-<Accordion title="CONTAINER">
+<Accordion title="CONTAINER" defaultOpen>
 
 The full path to the *ML model* container within the *container registry*
 
 </Accordion>
 
-<Accordion title="RUN_FUNCTION">
+<Accordion title="RUN_FUNCTION" defaultOpen>
 
 Name of the function within the *ML model* to execute when running inferences against it
 
@@ -281,13 +281,13 @@ EXECUTE FUNCTION EVALUATE_MODEL(
 
 <AccordionGroup>
 
-<Accordion title="MODEL">
+<Accordion title="MODEL" defaultOpen>
 
 Name of the *ML model* on which to run an inference
 
 </Accordion>
 
-<Accordion title="DEPLOYMENT_MODE">
+<Accordion title="DEPLOYMENT_MODE" defaultOpen>
 
 Scheme used in making inferences on the *ML model*:
 
@@ -304,13 +304,13 @@ Scheme used in making inferences on the *ML model*:
 
 </Accordion>
 
-<Accordion title="REPLICATIONS">
+<Accordion title="REPLICATIONS" defaultOpen>
 
 The number of replicas to launch on *Kubernetes*
 
 </Accordion>
 
-<Accordion title="SOURCE_TABLE">
+<Accordion title="SOURCE_TABLE" defaultOpen>
 
 Table or query to use as input to the *ML model*, specified with either of these two forms:
 
@@ -326,7 +326,7 @@ Table or query to use as input to the *ML model*, specified with either of these
   ```
 </Accordion>
 
-<Accordion title="DESTINATION_TABLE">
+<Accordion title="DESTINATION_TABLE" defaultOpen>
 
 Only applicable when using `EXECUTE FUNCTION` syntax. Name of the table in which to store the
 results of the inference, in `[schema_name.]table_name` format, using standard
@@ -395,19 +395,19 @@ SET CONTAINER = '<path to container>'
 
 <AccordionGroup>
 
-<Accordion title="&lt;model name&gt;">
+<Accordion title="&lt;model name&gt;" defaultOpen>
 
 Name of the *ML model* to modify
 
 </Accordion>
 
-<Accordion title="REGISTRY">
+<Accordion title="REGISTRY" defaultOpen>
 
 Name of the reference to the *container registry* from which to import the *ML model*
 
 </Accordion>
 
-<Accordion title="CONTAINER">
+<Accordion title="CONTAINER" defaultOpen>
 
 The full path to the *ML model* container within the *container registry*
 
@@ -490,7 +490,7 @@ SHOW MODEL < <model name> | * >
 
 <AccordionGroup>
 
-<Accordion title="&lt;model name&gt;">
+<Accordion title="&lt;model name&gt;" defaultOpen>
 
 Name of the existing reference to the *model* for which the DDL will be output.
 Use `*` instead to output the DDL of all references to *models*.
@@ -530,7 +530,7 @@ DESCRIBE MODEL < <model name> | * >
 
 <AccordionGroup>
 
-<Accordion title="&lt;model name&gt;">
+<Accordion title="&lt;model name&gt;" defaultOpen>
 
 Name of the existing *model* for which the configuration will be output.  Use `*` instead
 to output the configuration of all *models*.

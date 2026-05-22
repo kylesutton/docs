@@ -61,19 +61,19 @@ server in the cluster.  The method takes the following parameters:
 
 <AccordionGroup>
 
-<Accordion title="proc_name">
+<Accordion title="proc_name" defaultOpen>
 
 A system-wide unique name for the UDF
 
 </Accordion>
 
-<Accordion title="execution_mode">
+<Accordion title="execution_mode" defaultOpen>
 
 An execution mode; either *distributed* or *nondistributed*
 
 </Accordion>
 
-<Accordion title="files">
+<Accordion title="files" defaultOpen>
 
 A set of files composing the UDF package, including the names of the files and the binary data for
 those files.  The files specified will be created on the target Kinetica servers in the UDF
@@ -103,7 +103,7 @@ files should be uploaded to *KiFS* and referenced there instead.
 
 </Accordion>
 
-<Accordion title="command">
+<Accordion title="command" defaultOpen>
 
 The name of the command to run, which can be a file within the deployed UDF fileset, or any command
 able to be executed within the host environment, e.g., `python`.  If a host environment command is
@@ -111,7 +111,7 @@ specified, the host environment must be properly configured to support that comm
 
 </Accordion>
 
-<Accordion title="args">
+<Accordion title="args" defaultOpen>
 
 A list of command-line arguments to pass to the specified command; e.g.,
 `./<file name>.py`
@@ -124,7 +124,7 @@ corresponding *KiFS* directory names; i.e., `<kifs dir>/<file name>.<ext>`
 
 </Accordion>
 
-<Accordion title="options">
+<Accordion title="options" defaultOpen>
 
 Optional parameters for UDF creation, including the
 [function environment](/content/udf/python/writing#udf-python-func-env) to use for the Python UDF.
@@ -248,44 +248,44 @@ environment.  The method takes the following parameters:
 
 <AccordionGroup>
 
-<Accordion title="proc_name">
+<Accordion title="proc_name" defaultOpen>
 
 The system-wide unique name for the UDF
 
 </Accordion>
 
-<Accordion title="params">
+<Accordion title="params" defaultOpen>
 
 Set of string-to-string key/value paired parameters to pass to the UDF
 
 </Accordion>
 
-<Accordion title="bin_params">
+<Accordion title="bin_params" defaultOpen>
 
 Set of string-to-binary key/value paired parameters to pass to the UDF
 
 </Accordion>
 
-<Accordion title="input_table_names">
+<Accordion title="input_table_names" defaultOpen>
 
 Input data table names, to be processed by the UDF
 
 </Accordion>
 
-<Accordion title="input_column_names">
+<Accordion title="input_column_names" defaultOpen>
 
 Mapping of input data table names to their respective column names, to be processed as input
 data by the UDF
 
 </Accordion>
 
-<Accordion title="output_table_names">
+<Accordion title="output_table_names" defaultOpen>
 
 Output data table names, where processed data is to be appended
 
 </Accordion>
 
-<Accordion title="options">
+<Accordion title="options" defaultOpen>
 
 Optional parameters for UDF execution; see [execute_proc()](../../../api/python/?source/gpudb.html#gpudb.GPUdb.execute_proc) for details
 

@@ -76,20 +76,20 @@ SELECT * FROM GRAPH_TABLE
 
 <AccordionGroup>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *graph*; if no *schema* is specified, the *graph* will be
 looked for in the user's [default schema](/content/concepts/schemas#schema-default)
 
 </Accordion>
 
-<Accordion title="&lt;graph name&gt;">
+<Accordion title="&lt;graph name&gt;" defaultOpen>
 
 Name of the *graph* to query
 
 </Accordion>
 
-<Accordion title="&lt;match expr&gt;">
+<Accordion title="&lt;match expr&gt;" defaultOpen>
 
 Any supported *Cypher* `MATCH` expression.
 
@@ -176,28 +176,28 @@ conflicts with the *Cypher* query syntax:
 
 </Accordion>
 
-<Accordion title="&lt;filter list&gt;">
+<Accordion title="&lt;filter list&gt;" defaultOpen>
 
 Filter expressions to apply to the entire graph query.  The expressions can include columns on
 which the graph is based, not just names & labels available in the graph itself.
 
 </Accordion>
 
-<Accordion title="&lt;return list&gt;">
+<Accordion title="&lt;return list&gt;" defaultOpen>
 
 Expressions referencing graph names, graph labels, or supporting graph table columns to use as
 the result set for the graph query.  Each expression must include a unique alias.
 
 </Accordion>
 
-<Accordion title="&lt;ordering list&gt;">
+<Accordion title="&lt;ordering list&gt;" defaultOpen>
 
 Ordering expression(s) to apply to the result set.  Columns referenced do not have to be present
 in the `RETURN` clause.
 
 </Accordion>
 
-<Accordion title="&lt;num rows&gt;">
+<Accordion title="&lt;num rows&gt;" defaultOpen>
 
 Maximum number of records to return in the result set.
 
@@ -352,13 +352,13 @@ EXECUTE FUNCTION QUERY_GRAPH
 
 <AccordionGroup>
 
-<Accordion title="GRAPH">
+<Accordion title="GRAPH" defaultOpen>
 
 Name of the *graph* to query
 
 </Accordion>
 
-<Accordion title="QUERIES">
+<Accordion title="QUERIES" defaultOpen>
 
 *Nodes* or *edges* to be queried specified using the SQL `INPUT_TABLE` or `INPUT_TABLES` function; review
 [Query Identifiers](/content/graph_solver/network_graph_solver#query-identifiers) and [Query Identifier Combinations](/content/graph_solver/network_graph_solver#query-combinations) for more information.
@@ -371,7 +371,7 @@ specific columns or other SQL features).
 
 </Accordion>
 
-<Accordion title="ADJACENCY_TABLE">
+<Accordion title="ADJACENCY_TABLE" defaultOpen>
 
 Name of the table to store the resulting adjacent *edges* in `[schema_name.]table_name` format, using standard
 [name resolution rules](/content/sql/naming#sql-name-resolution) and meeting
@@ -385,7 +385,7 @@ Only applicable when using the `EXECUTE FUNCTION` syntax
 
 </Accordion>
 
-<Accordion title="RINGS">
+<Accordion title="RINGS" defaultOpen>
 
 Sets the number of rings around (hops from) the queried *node(s)* to return matching *edges* & *nodes*
 
@@ -396,7 +396,7 @@ Only applicable when querying on *nodes*; e.g., giving `NODE_NAME` or `NODE_LABE
 
 </Accordion>
 
-<Accordion title="RESTRICTIONS">
+<Accordion title="RESTRICTIONS" defaultOpen>
 
 Additional *restrictions* to apply to the *nodes*/*edges* of an existing graph specified using the SQL
 `INPUT_TABLE` or `INPUT_TABLES` function; review [Components and Identifiers](/content/graph_solver/network_graph_solver#identifiers) and [Identifier Combinations](/content/graph_solver/network_graph_solver#id-combos) for more
@@ -415,7 +415,7 @@ Only applicable when querying on *nodes*; e.g., giving `NODE_NAME` or `NODE_LABE
 
 </Accordion>
 
-<Accordion title="OPTIONS">
+<Accordion title="OPTIONS" defaultOpen>
 
 Optional indicator that a comma-delimited list of connection option/value assignments will follow.
 
@@ -696,13 +696,13 @@ EXECUTE FUNCTION MATCH_GRAPH
 
 <AccordionGroup>
 
-<Accordion title="GRAPH">
+<Accordion title="GRAPH" defaultOpen>
 
 Name of the *graph* to match
 
 </Accordion>
 
-<Accordion title="SAMPLE_POINTS">
+<Accordion title="SAMPLE_POINTS" defaultOpen>
 
 Sample points used to match an underlying geospatial graph specified using the SQL `INPUT_TABLE` or
 `INPUT_TABLES` function. Sample points are specified as [identifiers](/content/graph_solver/network_graph_solver#match-identifiers),
@@ -716,7 +716,7 @@ use specific columns or other SQL features).
 
 </Accordion>
 
-<Accordion title="SOLVE_METHOD">
+<Accordion title="SOLVE_METHOD" defaultOpen>
 
 The type of solve method to use for the operation; review [Match Identifier Combinations](/content/graph_solver/network_graph_solver#match-combinations) for more
 information.
@@ -725,7 +725,7 @@ information.
 
 </Accordion>
 
-<Accordion title="SOLUTION_TABLE">
+<Accordion title="SOLUTION_TABLE" defaultOpen>
 
 Only applicable when using `EXECUTE FUNCTION` syntax. Name of the table to store the solution
 in `[schema_name.]table_name` format, using standard
@@ -734,7 +734,7 @@ in `[schema_name.]table_name` format, using standard
 
 </Accordion>
 
-<Accordion title="OPTIONS">
+<Accordion title="OPTIONS" defaultOpen>
 
 Optional indicator that a comma-delimited list of connection option/value assignments will follow.
 
@@ -1036,13 +1036,13 @@ EXECUTE FUNCTION SOLVE_GRAPH
 
 <AccordionGroup>
 
-<Accordion title="GRAPH">
+<Accordion title="GRAPH" defaultOpen>
 
 Name of the *graph* to solve
 
 </Accordion>
 
-<Accordion title="SOLVER_TYPE">
+<Accordion title="SOLVER_TYPE" defaultOpen>
 
 The type of solver to use for the operation.
 
@@ -1050,7 +1050,7 @@ The type of solver to use for the operation.
 
 </Accordion>
 
-<Accordion title="SOURCE_NODES">
+<Accordion title="SOURCE_NODES" defaultOpen>
 
 The *node(s)* used as the origin point(s) for the solution specified using the SQL `INPUT_TABLE` or
 `INPUT_TABLES` function.
@@ -1063,7 +1063,7 @@ specific columns or other SQL features).
 
 </Accordion>
 
-<Accordion title="SOLUTION_TABLE">
+<Accordion title="SOLUTION_TABLE" defaultOpen>
 
 Only applicable when using `EXECUTE FUNCTION` syntax. Name of the table to store the solution
 in `[schema_name.]table_name` format, using standard [name resolution rules](/content/sql/naming#sql-name-resolution)
@@ -1071,7 +1071,7 @@ and meeting [table naming criteria](/content/sql/naming#sql-naming-criteria)
 
 </Accordion>
 
-<Accordion title="DESTINATION_NODES">
+<Accordion title="DESTINATION_NODES" defaultOpen>
 
 The *node(s)* used as the destination point(s) for the solution specified using the SQL `INPUT_TABLE` or
 `INPUT_TABLES` function.
@@ -1084,7 +1084,7 @@ specific columns or other SQL features).
 
 </Accordion>
 
-<Accordion title="WEIGHTS_ON_EDGES">
+<Accordion title="WEIGHTS_ON_EDGES" defaultOpen>
 
 Additional *weights* to apply to the *edges* of an existing graph specified using the SQL `INPUT_TABLE` or
 `INPUT_TABLES` function; review [Components and Identifiers](/content/graph_solver/network_graph_solver#identifiers) and [Identifier Combinations](/content/graph_solver/network_graph_solver#id-combos) for more information.
@@ -1097,7 +1097,7 @@ specific columns or other SQL features).
 
 </Accordion>
 
-<Accordion title="RESTRICTIONS">
+<Accordion title="RESTRICTIONS" defaultOpen>
 
 Additional *restrictions* to apply to the *nodes*/*edges* of an existing graph specified using the SQL
 `INPUT_TABLE` or `INPUT_TABLES` function; review [Components and Identifiers](/content/graph_solver/network_graph_solver#identifiers) and [Identifier Combinations](/content/graph_solver/network_graph_solver#id-combos) for more
@@ -1111,7 +1111,7 @@ specific columns or other SQL features).
 
 </Accordion>
 
-<Accordion title="OPTIONS">
+<Accordion title="OPTIONS" defaultOpen>
 
 Optional indicator that a comma-delimited list of connection option/value assignments will follow.
 
@@ -1280,32 +1280,32 @@ CREATE [OR REPLACE] [DIRECTED] GRAPH [<schema name>.]<graph name>
 
 <AccordionGroup>
 
-<Accordion title="OR REPLACE">
+<Accordion title="OR REPLACE" defaultOpen>
 
 Any existing *graph* with the same name will be dropped before creating this one
 
 </Accordion>
 
-<Accordion title="DIRECTED">
+<Accordion title="DIRECTED" defaultOpen>
 
 Optional keyword used to create the *graph* as [directed](/content/graph_solver/network_graph_solver#directed-graphs)
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* that will contain the created *graph*; if no *schema* is specified, the *graph* will be
 created in the calling user's [default schema](/content/concepts/schemas#schema-default)
 
 </Accordion>
 
-<Accordion title="&lt;graph name&gt;">
+<Accordion title="&lt;graph name&gt;" defaultOpen>
 
 Name of the *graph*, which can be referenced in subsequent commands
 
 </Accordion>
 
-<Accordion title="EDGES">
+<Accordion title="EDGES" defaultOpen>
 
 *Graph* component, provided as table column names, expressions, or constants using the SQL `INPUT_TABLE` or
 `INPUT_TABLES` function, to use for identifying the *edges* of the graph; review [Components and Identifiers](/content/graph_solver/network_graph_solver#identifiers) and
@@ -1319,7 +1319,7 @@ specific columns or other SQL features).
 
 </Accordion>
 
-<Accordion title="NODES">
+<Accordion title="NODES" defaultOpen>
 
 Optional *graph* component, provided as column names, expressions, or constants using the SQL `INPUT_TABLE` or
 `INPUT_TABLES` function, to use for identifying the *nodes* of the graph; review [Components and Identifiers](/content/graph_solver/network_graph_solver#identifiers) and
@@ -1333,7 +1333,7 @@ specific columns or other SQL features).
 
 </Accordion>
 
-<Accordion title="WEIGHTS">
+<Accordion title="WEIGHTS" defaultOpen>
 
 Optional *graph* component, provided as column names, expressions, or constants using the SQL `INPUT_TABLE` or
 `INPUT_TABLES` function, to use for identifying the *weights* of the graph; review [Components and Identifiers](/content/graph_solver/network_graph_solver#identifiers) and
@@ -1347,7 +1347,7 @@ specific columns or other SQL features).
 
 </Accordion>
 
-<Accordion title="RESTRICTIONS">
+<Accordion title="RESTRICTIONS" defaultOpen>
 
 Optional *graph* component, provided as column names, expressions, or constants using the SQL `INPUT_TABLE` or
 `INPUT_TABLES` function, to use for identifying the *restrictions* of the graph; review
@@ -1361,7 +1361,7 @@ specific columns or other SQL features).
 
 </Accordion>
 
-<Accordion title="OPTIONS">
+<Accordion title="OPTIONS" defaultOpen>
 
 Optional indicator that a list of connection option/value assignments will follow, passed as a comma-delimited
 list of key/value pairs to the `KV_PAIRS` function
@@ -1592,19 +1592,19 @@ ALTER GRAPH [<schema name>.]<graph name> MODIFY
 
 <AccordionGroup>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *graph* to alter
 
 </Accordion>
 
-<Accordion title="&lt;graph name&gt;">
+<Accordion title="&lt;graph name&gt;" defaultOpen>
 
 Name of the *graph* to alter
 
 </Accordion>
 
-<Accordion title="EDGES">
+<Accordion title="EDGES" defaultOpen>
 
 *Graph* component, provided as column names, expressions, or constants using the SQL `INPUT_TABLE` or
 `INPUT_TABLES` function, to use for identifying the *edges* of the graph; review [Components and Identifiers](/content/graph_solver/network_graph_solver#identifiers) and
@@ -1618,7 +1618,7 @@ specific columns or other SQL features).
 
 </Accordion>
 
-<Accordion title="NODES">
+<Accordion title="NODES" defaultOpen>
 
 *Graph* component, provided as column names, expressions, or constants using the SQL `INPUT_TABLE` or
 `INPUT_TABLES` function, to use for identifying the *nodes* of the graph; review [Components and Identifiers](/content/graph_solver/network_graph_solver#identifiers) and
@@ -1632,7 +1632,7 @@ specific columns or other SQL features).
 
 </Accordion>
 
-<Accordion title="WEIGHTS">
+<Accordion title="WEIGHTS" defaultOpen>
 
 *Graph* component, provided as column names, expressions, or constants using the SQL `INPUT_TABLE` or
 `INPUT_TABLES` function, to use for identifying the *weights* of the graph; review [Components and Identifiers](/content/graph_solver/network_graph_solver#identifiers) and
@@ -1646,7 +1646,7 @@ specific columns or other SQL features).
 
 </Accordion>
 
-<Accordion title="RESTRICTIONS">
+<Accordion title="RESTRICTIONS" defaultOpen>
 
 *Graph* component, provided as column names, expressions, or constants using the SQL `INPUT_TABLE` or
 `INPUT_TABLES` function, to use for identifying the *restrictions* of the graph; review
@@ -1660,7 +1660,7 @@ specific columns or other SQL features).
 
 </Accordion>
 
-<Accordion title="OPTIONS">
+<Accordion title="OPTIONS" defaultOpen>
 
 Indicator that a list of connection option/value assignments will follow, passed as a comma-delimited
 list of key/value pairs to the `KV_PAIRS` function
@@ -1771,13 +1771,13 @@ DROP GRAPH [<schema name>.]<graph name>
 
 <AccordionGroup>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *graph* to remove
 
 </Accordion>
 
-<Accordion title="&lt;graph name&gt;">
+<Accordion title="&lt;graph name&gt;" defaultOpen>
 
 Name of the existing *graph* to drop.
 
@@ -1831,13 +1831,13 @@ SHOW GRAPH *
 
 <AccordionGroup>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *graph(s)* to show
 
 </Accordion>
 
-<Accordion title="&lt;graph name&gt;">
+<Accordion title="&lt;graph name&gt;" defaultOpen>
 
 Name of the existing *graph* for which the creation request will be output
 
@@ -1902,13 +1902,13 @@ DESC[RIBE] GRAPH *
 
 <AccordionGroup>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *graph(s)* to describe
 
 </Accordion>
 
-<Accordion title="&lt;graph name&gt;">
+<Accordion title="&lt;graph name&gt;" defaultOpen>
 
 Name of the existing *graph* for which the configuration will be output
 

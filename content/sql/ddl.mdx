@@ -167,14 +167,14 @@ CREATE SCHEMA [IF NOT EXISTS] <schema name>
 
 <AccordionGroup>
 
-<Accordion title="IF NOT EXISTS">
+<Accordion title="IF NOT EXISTS" defaultOpen>
 
 Optional error suppression clause, which causes no error to be returned if a *schema* with the
 same name already exists
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* to create; must adhere to the supported
 [naming criteria](/content/sql/naming#sql-naming-criteria)
@@ -234,20 +234,20 @@ DROP SCHEMA [IF EXISTS] <schema name> [CASCADE]
 
 <AccordionGroup>
 
-<Accordion title="IF EXISTS">
+<Accordion title="IF EXISTS" defaultOpen>
 
 Optional error-suppression clause; if specified, no error will be returned if the given
 *schema* does not exist
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* to remove
 
 </Accordion>
 
-<Accordion title="CASCADE">
+<Accordion title="CASCADE" defaultOpen>
 
 Drops all objects contained within the schema; if not specified, an error will be returned if the
 given *schema* contains any *tables*, *views*, etc.
@@ -290,20 +290,20 @@ the column separators returned by <Badge color="blue-destructive">kisql</Badge>.
 
 <AccordionGroup>
 
-<Accordion title="CREATE">
+<Accordion title="CREATE" defaultOpen>
 
 Optional keyword for clarity
 
 </Accordion>
 
-<Accordion title="SCHEMA">
+<Accordion title="SCHEMA" defaultOpen>
 
 Optional clause to avoid ambiguity; if omitted, and a *table* or *view* exists with the given
 name, the command will be interpreted as a `SHOW TABLE` statement instead
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* whose contained *tables'* & *views'* DDL will be output; use `*` instead
 to output the DDL of all *schemas*, *tables*, & *views*
@@ -345,14 +345,14 @@ DESC[RIBE] [SCHEMA] <schema name>
 
 <AccordionGroup>
 
-<Accordion title="SCHEMA">
+<Accordion title="SCHEMA" defaultOpen>
 
 Optional clause to avoid ambiguity; if omitted, and a *table* or *view* exists with the given
 name, the command will be interpreted as a `DESCRIBE TABLE` statement instead
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* whose contained *tables* & *views* will be listed
 
@@ -441,21 +441,21 @@ CREATE [OR REPLACE] [REPLICATED] [TEMP] TABLE [IF NOT EXISTS] [<schema name>.]<t
 
 <AccordionGroup>
 
-<Accordion title="OR REPLACE">
+<Accordion title="OR REPLACE" defaultOpen>
 
 Any existing *table* or *view* with the same name will be dropped before creating this one;
 mutually exclusive with `IF NOT EXISTS`
 
 </Accordion>
 
-<Accordion title="REPLICATED">
+<Accordion title="REPLICATED" defaultOpen>
 
 The *table* will be distributed within the database as a [replicated](/content/concepts/tables#replicated)
 *table*
 
 </Accordion>
 
-<Accordion title="TEMP">
+<Accordion title="TEMP" defaultOpen>
 
 The *table* will be a [memory-only table](/content/concepts/tables_memory_only); which, among
 other things, means it will not be persisted (if the database is restarted, the *table* will be
@@ -463,69 +463,69 @@ removed), but it will have increased ingest performance
 
 </Accordion>
 
-<Accordion title="IF NOT EXISTS">
+<Accordion title="IF NOT EXISTS" defaultOpen>
 
 If a *table* or *view* with the same name exists, do nothing; mutually exclusive with
 `OR REPLACE`
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* that will contain the created *table*; if no *schema* is specified, the
 *table* will be created in the user's [default schema](/content/concepts/schemas#schema-default)
 
 </Accordion>
 
-<Accordion title="&lt;table name&gt;">
+<Accordion title="&lt;table name&gt;" defaultOpen>
 
 Name of the *table* to create; must adhere to the supported
 [naming criteria](/content/sql/naming#sql-naming-criteria)
 
 </Accordion>
 
-<Accordion title="&lt;column name&gt;">
+<Accordion title="&lt;column name&gt;" defaultOpen>
 
 Name of a *column* to create within the *table*; must adhere to the supported
 [naming criteria](/content/sql/naming#sql-naming-criteria)
 
 </Accordion>
 
-<Accordion title="&lt;column definition&gt;">
+<Accordion title="&lt;column definition&gt;" defaultOpen>
 
 Definition of the column associated with `<column name>`; see [Data Definition (DDL)](/content/sql/ddl#sql-ddl) for column
 format
 
 </Accordion>
 
-<Accordion title="COMMENT '&lt;column comment&gt;'">
+<Accordion title="COMMENT '&lt;column comment&gt;'" defaultOpen>
 
 Apply column comment `<column comment>` to the column associated with `<column name>`
 
 </Accordion>
 
-<Accordion title="SOFT">
+<Accordion title="SOFT" defaultOpen>
 
 Modifier for `PRIMARY KEY` that creates a [soft primary key](/content/concepts/tables#soft-primary-key) instead
 of a standard [primary key](/content/concepts/tables#primary-key)
 
 </Accordion>
 
-<Accordion title="PRIMARY KEY (&lt;column list&gt;)">
+<Accordion title="PRIMARY KEY (&lt;column list&gt;)" defaultOpen>
 
 Optional [primary key](/content/concepts/tables#primary-key) specification clause, where `<column list>` is a
 comma-separated list of columns to use as the *primary key* for the *table*
 
 </Accordion>
 
-<Accordion title="SHARD KEY (&lt;column list&gt;)">
+<Accordion title="SHARD KEY (&lt;column list&gt;)" defaultOpen>
 
 Optional [shard key](/content/concepts/tables#shard-key) specification clause, where `<column list>` is a
 comma-separated list of columns to use as the *shard key* for the *table*
 
 </Accordion>
 
-<Accordion title="FOREIGN KEY ...">
+<Accordion title="FOREIGN KEY ..." defaultOpen>
 
 Optional comma-separated set of [foreign key](/content/concepts/tables#foreign-key) specification clauses, with
 the following parameters:
@@ -562,19 +562,19 @@ the following parameters:
 
 </Accordion>
 
-<Accordion title="&lt;partition clause&gt;">
+<Accordion title="&lt;partition clause&gt;" defaultOpen>
 
 Defines a [partitioning](/content/concepts/tables#partitioning) scheme for the *table* to create
 
 </Accordion>
 
-<Accordion title="&lt;tier strategy clause&gt;">
+<Accordion title="&lt;tier strategy clause&gt;" defaultOpen>
 
 Defines the [tier strategy](/content/rm/concepts#rm-concepts-tier-strategy) for the *table* to create
 
 </Accordion>
 
-<Accordion title="&lt;index clause&gt;">
+<Accordion title="&lt;index clause&gt;" defaultOpen>
 
 Applies any number of [column indexes](/content/concepts/indexes#column-index),
 [chunk skip indexes](/content/concepts/indexes#chunk-skip-index),
@@ -585,7 +585,7 @@ to the *table* to create
 
 </Accordion>
 
-<Accordion title="&lt;table property clause&gt;">
+<Accordion title="&lt;table property clause&gt;" defaultOpen>
 
 Assigns table properties, from a subset of those available, to the *table* to create
 
@@ -1245,7 +1245,7 @@ Available table properties include:
 
 <AccordionGroup>
 
-<Accordion title="CHUNK COLUMN MEMORY">
+<Accordion title="CHUNK COLUMN MEMORY" defaultOpen>
 
 Size of the blocks of memory holding the data, when loaded; specified as the
 maximum number of bytes any one column should hold.
@@ -1257,7 +1257,7 @@ The size of dictionary-encoded columns is estimated.
 
 </Accordion>
 
-<Accordion title="CHUNK MEMORY">
+<Accordion title="CHUNK MEMORY" defaultOpen>
 
 Size of the blocks of memory holding the data, when loaded; specified as the
 maximum total number of bytes all columns should hold.
@@ -1269,21 +1269,21 @@ The size of dictionary-encoded columns is estimated.
 
 </Accordion>
 
-<Accordion title="CHUNK SIZE">
+<Accordion title="CHUNK SIZE" defaultOpen>
 
 Size of the blocks of memory holding the data, when loaded; specified as the
 maximum number of records each block of memory should hold.
 
 </Accordion>
 
-<Accordion title="COMPRESSION_CODEC">
+<Accordion title="COMPRESSION_CODEC" defaultOpen>
 
 The default [compression](/content/concepts/column_compression) type to apply
 to columns of this table not explicitly given one.
 
 </Accordion>
 
-<Accordion title="NO_ERROR_IF_EXISTS">
+<Accordion title="NO_ERROR_IF_EXISTS" defaultOpen>
 
 Error suppression option, which causes no error to be returned if a *table*
 with the same name already exists; default is `FALSE`.
@@ -1295,7 +1295,7 @@ This is the same option as `IF NOT EXISTS`.
 
 </Accordion>
 
-<Accordion title="PRIMARY_KEY_TYPE">
+<Accordion title="PRIMARY_KEY_TYPE" defaultOpen>
 
 The type of [primary key index](/content/concepts/indexes#primary-key-index) to use.
 
@@ -1325,7 +1325,7 @@ The default is `memory`.
 
 </Accordion>
 
-<Accordion title="TTL">
+<Accordion title="TTL" defaultOpen>
 
 The [time-to-live (TTL)](/content/concepts/ttl) for the *table*; if not set,
 the *table* will not expire.
@@ -1420,20 +1420,20 @@ has additional [considerations](/content/ha/ha_configuration#ring-extdata).
 
 <AccordionGroup>
 
-<Accordion title="OR REPLACE">
+<Accordion title="OR REPLACE" defaultOpen>
 
 Any existing *table* or *view* with the same name will be dropped before creating this one.
 
 </Accordion>
 
-<Accordion title="REPLICATED">
+<Accordion title="REPLICATED" defaultOpen>
 
 The *external table* will be distributed within the database as a
 [replicated](/content/concepts/tables#replicated) *table*.
 
 </Accordion>
 
-<Accordion title="TEMP">
+<Accordion title="TEMP" defaultOpen>
 
 The *external table* will be a [memory-only table](/content/concepts/tables_memory_only); which,
 among other things, means it will not be persisted (if the database is restarted, the
@@ -1441,7 +1441,7 @@ among other things, means it will not be persisted (if the database is restarted
 
 </Accordion>
 
-<Accordion title="LOGICAL">
+<Accordion title="LOGICAL" defaultOpen>
 
 External data will **not** be loaded into the database; the data will be retrieved from the
 source upon servicing each query against the *external table*.  This mode ensures queries on
@@ -1450,35 +1450,35 @@ performance penalty for reparsing & reloading the data from source files upon ea
 
 </Accordion>
 
-<Accordion title="MATERIALIZED">
+<Accordion title="MATERIALIZED" defaultOpen>
 
 Loads a copy of the external data into the database, refreshed on demand; this is the default
 *external table* type.
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* that will contain the created *external table*; if no *schema* is specified,
 the *external table* will be created in the user's [default schema](/content/concepts/schemas#schema-default).
 
 </Accordion>
 
-<Accordion title="&lt;table name&gt;">
+<Accordion title="&lt;table name&gt;" defaultOpen>
 
 Name of the *external table* to create; must adhere to the supported
 [naming criteria](/content/sql/naming#sql-naming-criteria).
 
 </Accordion>
 
-<Accordion title="&lt;table definition clause&gt;">
+<Accordion title="&lt;table definition clause&gt;" defaultOpen>
 
 Optional clause, defining the structure for the *external table* associated with the source
 data.
 
 </Accordion>
 
-<Accordion title="REMOTE QUERY">
+<Accordion title="REMOTE QUERY" defaultOpen>
 
 Source data specification clause, where `<source data query>` is a SQL query selecting the data
 which will be loaded.
@@ -1514,7 +1514,7 @@ types and properties, define the table columns explicitly in the [&lt;table defi
 
 </Accordion>
 
-<Accordion title="FILE PATHS">
+<Accordion title="FILE PATHS" defaultOpen>
 
 Source file specification clause, where `<file paths>` is a comma-separated list of
 single-quoted file paths from which data will be loaded; all files specified are presumed to have
@@ -1554,7 +1554,7 @@ The form of a file path is dependent on the source referenced:
 
 </Accordion>
 
-<Accordion title="FORMAT">
+<Accordion title="FORMAT" defaultOpen>
 
 Optional indicator of source file type, for file-based data sources; will be inferred from the
 file extension if not given.
@@ -1597,7 +1597,7 @@ Supported formats include:
 
 </Accordion>
 
-<Accordion title="WITH OPTIONS">
+<Accordion title="WITH OPTIONS" defaultOpen>
 
 Optional indicator that a comma-delimited list of connection & global option/value assignments
 will follow.
@@ -1606,21 +1606,21 @@ See [Load Options](/content/sql/ddl#sql-create-ext-table-load-opt) for the compl
 
 </Accordion>
 
-<Accordion title="&lt;partition clause&gt;">
+<Accordion title="&lt;partition clause&gt;" defaultOpen>
 
 Optional clause, defining a [partitioning](/content/sql/ddl#sql-create-table-partition) scheme for the
 *external table* associated with the source data.
 
 </Accordion>
 
-<Accordion title="&lt;tier strategy clause&gt;">
+<Accordion title="&lt;tier strategy clause&gt;" defaultOpen>
 
 Optional clause, defining the [tier strategy](/content/sql/ddl#sql-create-table-tier-strategy) for the
 *external table* associated with the source data.
 
 </Accordion>
 
-<Accordion title="&lt;index clause&gt;">
+<Accordion title="&lt;index clause&gt;" defaultOpen>
 
 Optional clause, applying any number of [column indexes](/content/concepts/indexes#column-index),
 [chunk skip indexes](/content/sql/ddl#sql-alter-table-chunk-skip-index-add),
@@ -1631,7 +1631,7 @@ to the *external table* associated with the source data.
 
 </Accordion>
 
-<Accordion title="&lt;table property clause&gt;">
+<Accordion title="&lt;table property clause&gt;" defaultOpen>
 
 Optional clause, assigning table properties, from a subset of those available, to the
 *external table* associated with the source data.
@@ -1653,7 +1653,7 @@ will be applied to each file being read.
 
 <AccordionGroup>
 
-<Accordion title="COMMENT = '&lt;string&gt;'">
+<Accordion title="COMMENT = '&lt;string&gt;'" defaultOpen>
 
 Treat lines in the source file(s) that begin with `string` as comments and skip.
 
@@ -1661,7 +1661,7 @@ The default comment marker is `#`.
 
 </Accordion>
 
-<Accordion title="DELIMITER = '&lt;char&gt;'">
+<Accordion title="DELIMITER = '&lt;char&gt;'" defaultOpen>
 
 Use `char` as the source file field delimiter.
 
@@ -1674,7 +1674,7 @@ See [Delimited Text Option Characters](/content/sql/ddl#sql-create-ext-table-del
 
 </Accordion>
 
-<Accordion title="ESCAPE = '&lt;char&gt;'">
+<Accordion title="ESCAPE = '&lt;char&gt;'" defaultOpen>
 
 Use `char` as the source file data escape character.  The escape character preceding any
 other character, in the source data, will be converted into that other character, except
@@ -1733,7 +1733,7 @@ There is no default escape character.
 
 </Accordion>
 
-<Accordion title="HEADER DELIMITER = '&lt;char&gt;'">
+<Accordion title="HEADER DELIMITER = '&lt;char&gt;'" defaultOpen>
 
 Use `char` as the source file header field name/property delimiter, when the source file
 header contains both names and properties.  This is largely specific to the Kinetica
@@ -1758,7 +1758,7 @@ field name/property sets from each other in the header row
 
 </Accordion>
 
-<Accordion title="INCLUDES HEADER = &lt;TRUE|FALSE&gt;">
+<Accordion title="INCLUDES HEADER = &lt;TRUE|FALSE&gt;" defaultOpen>
 
 Declare that the source file(s) will or will not have a header.
 
@@ -1766,7 +1766,7 @@ The default is `TRUE`.
 
 </Accordion>
 
-<Accordion title="NULL = '&lt;string&gt;'">
+<Accordion title="NULL = '&lt;string&gt;'" defaultOpen>
 
 Treat `string` as the indicator of a null source field value.
 
@@ -1774,7 +1774,7 @@ The default is the empty string.
 
 </Accordion>
 
-<Accordion title="QUOTE = '&lt;char&gt;'">
+<Accordion title="QUOTE = '&lt;char&gt;'" defaultOpen>
 
 Use `char` as the source file data quoting character, for enclosing field values.
 Usually used to wrap field values that contain embedded delimiter characters, though any
@@ -1828,7 +1828,7 @@ loaded) into the target table.
 
 <AccordionGroup>
 
-<Accordion title="BAD RECORD TABLE">
+<Accordion title="BAD RECORD TABLE" defaultOpen>
 
 Name of the table containing records that failed to be loaded into the target table.  This
 bad record table will include the following columns:
@@ -1875,7 +1875,7 @@ mode, processing stops at the first error and that error is returned to the user
 
 </Accordion>
 
-<Accordion title="BATCH SIZE">
+<Accordion title="BATCH SIZE" defaultOpen>
 
 Use an ingest batch size of the given number of records.
 
@@ -1883,7 +1883,7 @@ The default batch size is *50,000*.
 
 </Accordion>
 
-<Accordion title="COLUMN FORMATS">
+<Accordion title="COLUMN FORMATS" defaultOpen>
 
 Use the given type-specific formatting for the given column when parsing source data being
 loaded into that column.  This should be a map of column names to format specifications,
@@ -1986,7 +1986,7 @@ This option is not available for *data sources* configured for *JDBC*.
 
 </Accordion>
 
-<Accordion title="DATA SOURCE">
+<Accordion title="DATA SOURCE" defaultOpen>
 
 Load data from the given [data source](/content/sql/ddl#sql-create-data-source).
 [Data source connect privilege](/content/sql/security#sql-security-priv-mgmt-ds-grant) is required when
@@ -1994,7 +1994,7 @@ loading from a *data source*.
 
 </Accordion>
 
-<Accordion title="DEFAULT COLUMN FORMATS">
+<Accordion title="DEFAULT COLUMN FORMATS" defaultOpen>
 
 Use the given formats for source data being loaded into target table columns with the
 corresponding column types.   This should be a map of target column type to source format
@@ -2020,7 +2020,7 @@ This option is not available for *data sources* configured for *JDBC*.
 
 </Accordion>
 
-<Accordion title="FIELDS IGNORED BY">
+<Accordion title="FIELDS IGNORED BY" defaultOpen>
 
 Choose a comma-separated list of fields from the source file(s) to ignore, loading only
 those fields that are not in the identified list in the order they appear in the file.
@@ -2029,14 +2029,14 @@ specified names must match the source file field names exactly.
 
 * Identifying by Name:
 
-```
-FIELDS IGNORED BY NAME(Category, Description)
-```
+  ```
+  FIELDS IGNORED BY NAME(Category, Description)
+  ```
 * Identifying by Position:
 
-```
-FIELDS IGNORED BY POSITION(3, 4)
-```
+  ```
+  FIELDS IGNORED BY POSITION(3, 4)
+  ```
 
 <Info>
 * When ignoring source data file fields, the set of fields that are not ignored must
@@ -2047,7 +2047,7 @@ FIELDS IGNORED BY POSITION(3, 4)
 
 </Accordion>
 
-<Accordion title="FIELDS MAPPED BY">
+<Accordion title="FIELDS MAPPED BY" defaultOpen>
 
 Choose a comma-separated list of fields from the source file(s) to load, in the specified
 order, identifying fields by either `POSITION` or `NAME`.  If mapping by `NAME`, the
@@ -2055,14 +2055,14 @@ specified names must match the source file field names exactly.
 
 * Identifying by Name:
 
-```
-FIELDS MAPPED BY NAME(ID, Name, Stock)
-```
+  ```
+  FIELDS MAPPED BY NAME(ID, Name, Stock)
+  ```
 * Identifying by Position:
 
-```
-FIELDS MAPPED BY POSITION(1, 2, 5)
-```
+  ```
+  FIELDS MAPPED BY POSITION(1, 2, 5)
+  ```
 
 <Info>
 * When mapping source data file fields, the set of fields that are identified must
@@ -2073,7 +2073,7 @@ FIELDS MAPPED BY POSITION(1, 2, 5)
 
 </Accordion>
 
-<Accordion title="FLATTEN_COLUMNS">
+<Accordion title="FLATTEN_COLUMNS" defaultOpen>
 
 Specify the policy for handling nested columns within JSON data.
 
@@ -2103,7 +2103,7 @@ The default is `FALSE`.
 
 </Accordion>
 
-<Accordion title="IGNORE_EXISTING_PK">
+<Accordion title="IGNORE_EXISTING_PK" defaultOpen>
 
 Specify the error suppression policy for inserting duplicate primary key values into a
 table with a primary key.  If the specified table does not have a primary key or the
@@ -2135,7 +2135,7 @@ The default is `FALSE`.
 
 </Accordion>
 
-<Accordion title="INGESTION MODE">
+<Accordion title="INGESTION MODE" defaultOpen>
 
 Whether to do a full ingest of the data or perform a *dry run* or *type inference* instead.
 
@@ -2169,7 +2169,7 @@ The default mode is `FULL`.
 
 </Accordion>
 
-<Accordion title="JDBC_FETCH_SIZE">
+<Accordion title="JDBC_FETCH_SIZE" defaultOpen>
 
 Retrieve this many records at a time from the remote database.  Lowering this number will
 help tables with large record sizes fit into available memory during ingest.
@@ -2183,7 +2183,7 @@ This option is only available for *data sources* configured for *JDBC*.
 
 </Accordion>
 
-<Accordion title="NUM_SPLITS_PER_RANK">
+<Accordion title="NUM_SPLITS_PER_RANK" defaultOpen>
 
 The number of remote query partitions to assign each *Kinetica* worker process.  The
 queries assigned to a worker process will be executed by the tasks allotted to the process.
@@ -2199,7 +2199,7 @@ This option is only available for *data sources* configured for *JDBC*.
 
 </Accordion>
 
-<Accordion title="NUM_TASKS_PER_RANK">
+<Accordion title="NUM_TASKS_PER_RANK" defaultOpen>
 
 The number of tasks to use on each *Kinetica* worker process to process remote queries.
 The tasks assigned to a worker process will execute any remote query partitions assigned to
@@ -2216,7 +2216,7 @@ This option is only available for *data sources* configured for *JDBC*.
 
 </Accordion>
 
-<Accordion title="JDBC_SESSION_INIT_STATEMENT">
+<Accordion title="JDBC_SESSION_INIT_STATEMENT" defaultOpen>
 
 Run the single given statement before the initial load is performed and also before each
 subsequent reload, if `REFRESH ON START` or `SUBSCRIBE` is `TRUE`.
@@ -2233,7 +2233,7 @@ This option is only available for *data sources* configured for *JDBC*.
 
 </Accordion>
 
-<Accordion title="ON ERROR">
+<Accordion title="ON ERROR" defaultOpen>
 
 When an error is encountered loading a record, handle it using either of the
 following modes.  The default mode is `ABORT`.
@@ -2262,7 +2262,7 @@ following modes.  The default mode is `ABORT`.
 
 </Accordion>
 
-<Accordion title="POLL_INTERVAL">
+<Accordion title="POLL_INTERVAL" defaultOpen>
 
 Interval, in seconds, at which a *data source* is polled for updates.  The number of
 seconds must be passed as a single-quoted string.
@@ -2272,7 +2272,7 @@ The default interval is *60* seconds.  This option is only applicable when `SUBS
 
 </Accordion>
 
-<Accordion title="REFRESH ON START">
+<Accordion title="REFRESH ON START" defaultOpen>
 
 Whether to refresh the *external table* data upon restart of the database.  Only relevant
 for *materialized external tables*.
@@ -2303,7 +2303,7 @@ The default is `FALSE`.  This option is ignored if `SUBSCRIBE` is `TRUE`.
 
 </Accordion>
 
-<Accordion title="REMOTE_QUERY_INCREASING_COLUMN">
+<Accordion title="REMOTE_QUERY_INCREASING_COLUMN" defaultOpen>
 
 For a JDBC query *change data capture* loading scheme, the remote query column that will be
 used to determine whether a record is new and should be loaded or not.  This column should
@@ -2319,7 +2319,7 @@ This option is only available for *data sources* configured for *JDBC*.
 
 </Accordion>
 
-<Accordion title="REMOTE_QUERY_NO_SPLIT">
+<Accordion title="REMOTE_QUERY_NO_SPLIT" defaultOpen>
 
 Whether to not distribute the retrieval of remote data and issue queries for blocks of data
 at time in parallel.
@@ -2354,7 +2354,7 @@ This option is only available for *data sources* configured for *JDBC*
 
 </Accordion>
 
-<Accordion title="REMOTE_QUERY_ORDER_BY">
+<Accordion title="REMOTE_QUERY_ORDER_BY" defaultOpen>
 
 Ordering expression to use in partitioning remote data for retrieval.  The remote data will
 be ordered according to this expression and then retrieved in sequential blocks from the
@@ -2370,7 +2370,7 @@ This option is only available for *data sources* configured for *JDBC*
 
 </Accordion>
 
-<Accordion title="REMOTE_QUERY_PARTITION_COLUMN">
+<Accordion title="REMOTE_QUERY_PARTITION_COLUMN" defaultOpen>
 
 Column to use to partition remote data for retrieval.  The column must be numeric and
 should be relatively evenly distributed so that queries using values of this column to
@@ -2385,7 +2385,7 @@ This option is only available for *data sources* configured for *JDBC*
 
 </Accordion>
 
-<Accordion title="SUBSCRIBE">
+<Accordion title="SUBSCRIBE" defaultOpen>
 
 Whether to subscribe to the [data source](/content/sql/ddl#sql-create-data-source) specified in the
 `DATA SOURCE` option.  Only relevant for *materialized external tables* using
@@ -2421,7 +2421,7 @@ This option is not available for *data sources* configured for *HDFS*.
 
 </Accordion>
 
-<Accordion title="TRUNCATE_STRINGS">
+<Accordion title="TRUNCATE_STRINGS" defaultOpen>
 
 Specify the string truncation policy for inserting text into `VARCHAR` columns that are
 not large enough to hold the entire text value.
@@ -2452,7 +2452,7 @@ The default is `FALSE`.
 
 </Accordion>
 
-<Accordion title="TYPE_INFERENCE_MODE">
+<Accordion title="TYPE_INFERENCE_MODE" defaultOpen>
 
 When making a type inference of the data values in order to define column types for the
 target table, use one of the following modes.
@@ -2483,7 +2483,7 @@ The default mode is `SPEED`.
 
 </Accordion>
 
-<Accordion title="UPDATE_ON_EXISTING_PK">
+<Accordion title="UPDATE_ON_EXISTING_PK" defaultOpen>
 
 Specify the record collision policy for inserting into a table with a primary key.
 If the specified table does not have a primary key, then this options has no effect.
@@ -3874,19 +3874,19 @@ WITH OPTIONS (REPAIR_POLICY = '<repair type>')
 
 <AccordionGroup>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the table to repair
 
 </Accordion>
 
-<Accordion title="&lt;view name&gt;">
+<Accordion title="&lt;view name&gt;" defaultOpen>
 
 Name of the *table* to repair
 
 </Accordion>
 
-<Accordion title="REPAIR_POLICY">
+<Accordion title="REPAIR_POLICY" defaultOpen>
 
 Specifies the type of *table* repair to perform.  The following are available:
 
@@ -3974,20 +3974,20 @@ target a given *table* must be dropped before it can be dropped.
 
 <AccordionGroup>
 
-<Accordion title="IF EXISTS">
+<Accordion title="IF EXISTS" defaultOpen>
 
 Optional error-suppression clause; if specified, no error will be returned if the given
 *table* does not exist
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *table* to remove
 
 </Accordion>
 
-<Accordion title="&lt;table name&gt;">
+<Accordion title="&lt;table name&gt;" defaultOpen>
 
 Name of the *table* to remove
 
@@ -4021,13 +4021,13 @@ the column separators returned by <Badge color="blue-destructive">kisql</Badge>.
 
 <AccordionGroup>
 
-<Accordion title="CREATE">
+<Accordion title="CREATE" defaultOpen>
 
 Optional keyword for clarity
 
 </Accordion>
 
-<Accordion title="TABLE">
+<Accordion title="TABLE" defaultOpen>
 
 Optional clause to avoid ambiguity:
 
@@ -4037,13 +4037,13 @@ Optional clause to avoid ambiguity:
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *table* to show
 
 </Accordion>
 
-<Accordion title="&lt;table name&gt;">
+<Accordion title="&lt;table name&gt;" defaultOpen>
 
 Name of the *table* whose DDL will be output
 
@@ -4116,7 +4116,7 @@ DESC[RIBE] [TABLE] [<schema name>.]<table name>
 
 <AccordionGroup>
 
-<Accordion title="TABLE">
+<Accordion title="TABLE" defaultOpen>
 
 Optional clause to avoid ambiguity:
 
@@ -4126,13 +4126,13 @@ Optional clause to avoid ambiguity:
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *table* to describe
 
 </Accordion>
 
-<Accordion title="&lt;table name&gt;">
+<Accordion title="&lt;table name&gt;" defaultOpen>
 
 Name of the *table* whose configuration will be output
 
@@ -4212,27 +4212,27 @@ input *table* will have the same effect on the *view* as dropping it.
 
 <AccordionGroup>
 
-<Accordion title="OR REPLACE">
+<Accordion title="OR REPLACE" defaultOpen>
 
 Any existing *table*/*view* with the same name will be dropped before creating this *view*
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* that will contain the created *view*; if no *schema* is specified, the
 *view* will be created in the user's [default schema](/content/concepts/schemas#schema-default)
 
 </Accordion>
 
-<Accordion title="&lt;view name&gt;">
+<Accordion title="&lt;view name&gt;" defaultOpen>
 
 Name of the *view* to create; must adhere to the supported
 [naming criteria](/content/sql/naming#sql-naming-criteria)
 
 </Accordion>
 
-<Accordion title="&lt;select statement&gt;">
+<Accordion title="&lt;select statement&gt;" defaultOpen>
 
 The query that will define both the structure and content of the created *view*
 
@@ -4314,14 +4314,14 @@ be specified for the *materialized view* by using the
 
 <AccordionGroup>
 
-<Accordion title="OR REPLACE">
+<Accordion title="OR REPLACE" defaultOpen>
 
 Any existing *table*/*view* with the same name will be dropped before creating this
 *materialized view*
 
 </Accordion>
 
-<Accordion title="TEMP">
+<Accordion title="TEMP" defaultOpen>
 
 The *materialized view* will be a [memory-only table](/content/concepts/tables_memory_only);
 which, among other things, means it will not be persisted (if the database is restarted, the
@@ -4329,7 +4329,7 @@ which, among other things, means it will not be persisted (if the database is re
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* that will contain the created *materialized view*; if no *schema* is
 specified, the *materialized view* will be created in the user's
@@ -4337,14 +4337,14 @@ specified, the *materialized view* will be created in the user's
 
 </Accordion>
 
-<Accordion title="&lt;view name&gt;">
+<Accordion title="&lt;view name&gt;" defaultOpen>
 
 Name of the *materialized view* to create; must adhere to the supported
 [naming criteria](/content/sql/naming#sql-naming-criteria)
 
 </Accordion>
 
-<Accordion title="REFRESH">
+<Accordion title="REFRESH" defaultOpen>
 
 Specifies the data refresh scheme for the *materialized view*.   The following schemes are
 available:
@@ -4381,13 +4381,13 @@ available:
 
 </Accordion>
 
-<Accordion title="&lt;select statement&gt;">
+<Accordion title="&lt;select statement&gt;" defaultOpen>
 
 The query that will define both the structure and content of the created *materialized view*
 
 </Accordion>
 
-<Accordion title="WITH OPTIONS">
+<Accordion title="WITH OPTIONS" defaultOpen>
 
 Optional indicator that a comma-delimited list of connection option/value assignments will
 follow.  The following options are available:
@@ -4412,7 +4412,7 @@ follow.  The following options are available:
 
 </Accordion>
 
-<Accordion title="&lt;table property clause&gt;">
+<Accordion title="&lt;table property clause&gt;" defaultOpen>
 
 Optional clause, assigning table properties, from a subset of those available, to the
 *materialized view*
@@ -4784,26 +4784,26 @@ DROP [MATERIALIZED] VIEW [IF EXISTS] [<schema name>.]<view name>
 
 <AccordionGroup>
 
-<Accordion title="MATERIALIZED">
+<Accordion title="MATERIALIZED" defaultOpen>
 
 Optional keyword for clarity; has no impact on functionality
 
 </Accordion>
 
-<Accordion title="IF EXISTS">
+<Accordion title="IF EXISTS" defaultOpen>
 
 Optional error-suppression clause; if specified, no error will be returned if the given
 *view* does not exist
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *view* to remove
 
 </Accordion>
 
-<Accordion title="&lt;view name&gt;">
+<Accordion title="&lt;view name&gt;" defaultOpen>
 
 Name of the *view* to remove
 
@@ -4849,13 +4849,13 @@ the column separators returned by <Badge color="blue-destructive">kisql</Badge>.
 
 <AccordionGroup>
 
-<Accordion title="CREATE">
+<Accordion title="CREATE" defaultOpen>
 
 Optional keyword for clarity
 
 </Accordion>
 
-<Accordion title="VIEW">
+<Accordion title="VIEW" defaultOpen>
 
 Optional clause to avoid ambiguity:
 
@@ -4865,19 +4865,19 @@ Optional clause to avoid ambiguity:
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *view* to show
 
 </Accordion>
 
-<Accordion title="&lt;view name&gt;">
+<Accordion title="&lt;view name&gt;" defaultOpen>
 
 Name of the *view* whose DDL will be output
 
 </Accordion>
 
-<Accordion title="WITH OPTIONS">
+<Accordion title="WITH OPTIONS" defaultOpen>
 
 Optional indicator that a comma-delimited list of connection option/value assignments will
 follow.
@@ -4919,7 +4919,7 @@ DESC[RIBE] [VIEW] [<schema name>.]<view name>
 
 <AccordionGroup>
 
-<Accordion title="VIEW">
+<Accordion title="VIEW" defaultOpen>
 
 Optional clause to avoid ambiguity:
 
@@ -4929,13 +4929,13 @@ Optional clause to avoid ambiguity:
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *view* to describe
 
 </Accordion>
 
-<Accordion title="&lt;view name&gt;">
+<Accordion title="&lt;view name&gt;" defaultOpen>
 
 Name of the *view* whose configuration will be output
 
@@ -5010,27 +5010,27 @@ For provider-specific examples, see [Creating Credentials](/content/snippets/cre
 
 <AccordionGroup>
 
-<Accordion title="OR REPLACE">
+<Accordion title="OR REPLACE" defaultOpen>
 
 Any existing *credential* with the same name will be dropped before creating this one
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* that will contain the created *credential*; if no *schema* is specified, the
 *credential* will be created in the user's [default schema](/content/concepts/schemas#schema-default)
 
 </Accordion>
 
-<Accordion title="&lt;credential name&gt;">
+<Accordion title="&lt;credential name&gt;" defaultOpen>
 
 Name of the *credential* to create; must adhere to the supported
 [naming criteria](/content/sql/naming#sql-naming-criteria)
 
 </Accordion>
 
-<Accordion title="TYPE">
+<Accordion title="TYPE" defaultOpen>
 
 The type of *credential* to create. Supported types include:
 
@@ -5110,19 +5110,19 @@ The type of *credential* to create. Supported types include:
 
 </Accordion>
 
-<Accordion title="IDENTITY">
+<Accordion title="IDENTITY" defaultOpen>
 
 Username to use for authenticating with the *credential*.
 
 </Accordion>
 
-<Accordion title="SECRET">
+<Accordion title="SECRET" defaultOpen>
 
 Password to use for authenticating with the *credential*.
 
 </Accordion>
 
-<Accordion title="WITH OPTIONS">
+<Accordion title="WITH OPTIONS" defaultOpen>
 
 Optional indicator that a comma-delimited list of option/value assignments will follow.  See
 [Options](/content/sql/ddl#sql-credential-opts) for the full list of options.
@@ -5608,19 +5608,19 @@ Only users with `system_admin` or `system_user_admin`, or users with
 
 <AccordionGroup>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *credential* to alter
 
 </Accordion>
 
-<Accordion title="&lt;credential name&gt;">
+<Accordion title="&lt;credential name&gt;" defaultOpen>
 
 Name of the existing *credential* to alter.
 
 </Accordion>
 
-<Accordion title="SET PROPERTY">
+<Accordion title="SET PROPERTY" defaultOpen>
 
 Indicator that a comma-delimited list of property name/value assignments will follow. See
 [Set Properties](/content/sql/ddl#sql-alter-credential-prop) and [Options](/content/sql/ddl#sql-credential-opts) for the
@@ -5665,7 +5665,7 @@ descriptions to use when performing an alteration.
 
 <AccordionGroup>
 
-<Accordion title="TYPE">
+<Accordion title="TYPE" defaultOpen>
 
 The type of *credential*. Supported types include:
 
@@ -5741,19 +5741,19 @@ The type of *credential*. Supported types include:
 
 </Accordion>
 
-<Accordion title="IDENTITY">
+<Accordion title="IDENTITY" defaultOpen>
 
 Username to use for authenticating with the *credential*.
 
 </Accordion>
 
-<Accordion title="SECRET">
+<Accordion title="SECRET" defaultOpen>
 
 Password to use for authenticating with the *credential*.
 
 </Accordion>
 
-<Accordion title="'&lt;option&gt;'">
+<Accordion title="'&lt;option&gt;'" defaultOpen>
 
 Any option/value pair from the [credential options](/content/sql/ddl#sql-credential-opts) list.
 
@@ -5791,13 +5791,13 @@ Only users with `system_admin` or `system_user_admin`, or users with
 
 <AccordionGroup>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *credential* to drop
 
 </Accordion>
 
-<Accordion title="&lt;credential name&gt;">
+<Accordion title="&lt;credential name&gt;" defaultOpen>
 
 Name of the existing *credential* to remove; use `*` instead of *schema*/*credential* name to
 drop all *credentials*
@@ -5849,13 +5849,13 @@ with the DDL statement as the value in the `DDL` column.
 
 <AccordionGroup>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *credential* to show
 
 </Accordion>
 
-<Accordion title="&lt;credential name&gt;">
+<Accordion title="&lt;credential name&gt;" defaultOpen>
 
 Name of the existing *credential* for which the DDL will be output; use `*` instead of
 *schema*/*credential* name to output the DDL of all *credentials*
@@ -5906,13 +5906,13 @@ describe a *credential*.
 
 <AccordionGroup>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *credential* to describe
 
 </Accordion>
 
-<Accordion title="&lt;credential name&gt;">
+<Accordion title="&lt;credential name&gt;" defaultOpen>
 
 Name of the existing *credential* for which the configuration will be output; use `*` instead
 of *schema*/*credential* name to output the configuration of all *credentials*
@@ -6017,33 +6017,33 @@ For provider-specific examples, see [Creating Data Sources](/content/snippets/cr
 
 <AccordionGroup>
 
-<Accordion title="OR REPLACE">
+<Accordion title="OR REPLACE" defaultOpen>
 
 Any existing *data source* with the same name will be dropped before creating this one
 
 </Accordion>
 
-<Accordion title="EXTERNAL">
+<Accordion title="EXTERNAL" defaultOpen>
 
 Optional keyword for clarity
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* that will contain the created *data source*; if no *schema* is specified,
 the *data source* will be created in the user's [default schema](/content/concepts/schemas#schema-default)
 
 </Accordion>
 
-<Accordion title="&lt;data source name&gt;">
+<Accordion title="&lt;data source name&gt;" defaultOpen>
 
 Name of the *data source* to create; must adhere to the supported
 [naming criteria](/content/sql/naming#sql-naming-criteria)
 
 </Accordion>
 
-<Accordion title="&lt;provider&gt;">
+<Accordion title="&lt;provider&gt;" defaultOpen>
 
 Provider of the *data source*
 
@@ -6093,7 +6093,7 @@ Supported providers include:
 
 </Accordion>
 
-<Accordion title="&lt;host&gt;">
+<Accordion title="&lt;host&gt;" defaultOpen>
 
 Host to use to connect to the *data source*; the following providers have a default *host*, if
 `host` is left blank:
@@ -6126,27 +6126,27 @@ Host to use to connect to the *data source*; the following providers have a defa
 
 </Accordion>
 
-<Accordion title="&lt;port&gt;">
+<Accordion title="&lt;port&gt;" defaultOpen>
 
 Port, for HDFS or Kafka, to use to connect to the *data source*
 
 </Accordion>
 
-<Accordion title="USER">
+<Accordion title="USER" defaultOpen>
 
 Optional user name, given in `<username>`, to use for authenticating to the
 *data source*
 
 </Accordion>
 
-<Accordion title="PASSWORD">
+<Accordion title="PASSWORD" defaultOpen>
 
 Optional password, given in `<password>`, to use for authenticating to the
 *data source*
 
 </Accordion>
 
-<Accordion title="WITH OPTIONS">
+<Accordion title="WITH OPTIONS" defaultOpen>
 
 Optional indicator that a comma-delimited list of connection option/value assignments will
 follow.  See [Options](/content/sql/ddl#sql-ds-opts) for the full list of options.
@@ -6651,25 +6651,25 @@ will fail to be altered if an authorized connection cannot be established.
 
 <AccordionGroup>
 
-<Accordion title="EXTERNAL">
+<Accordion title="EXTERNAL" defaultOpen>
 
 Optional keyword for clarity
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *data source* to alter
 
 </Accordion>
 
-<Accordion title="&lt;data source name&gt;">
+<Accordion title="&lt;data source name&gt;" defaultOpen>
 
 Name of the *data source* to alter
 
 </Accordion>
 
-<Accordion title="SET PROPERTY">
+<Accordion title="SET PROPERTY" defaultOpen>
 
 Indicator that a comma-delimited list of alterations to make will follow.
 
@@ -6710,7 +6710,7 @@ alteration.
 
 <AccordionGroup>
 
-<Accordion title="LOCATION">
+<Accordion title="LOCATION" defaultOpen>
 
 Location of the *data source*; see [Provider-Specific Syntax](/content/sql/ddl#sql-create-data-source-syntax) for details
 
@@ -6760,25 +6760,25 @@ The *data source* can be from any of the following *providers*:
 
 </Accordion>
 
-<Accordion title="USER">
+<Accordion title="USER" defaultOpen>
 
 User name, given in `<username>`, to use for authenticating to the *data source*
 
 </Accordion>
 
-<Accordion title="PASSWORD">
+<Accordion title="PASSWORD" defaultOpen>
 
 Password, given in `<password>`, to use for authenticating to the *data source*
 
 </Accordion>
 
-<Accordion title="CREDENTIAL">
+<Accordion title="CREDENTIAL" defaultOpen>
 
 [Credential](/content/sql/ddl#sql-create-credential) object to use to authenticate to the remote system
 
 </Accordion>
 
-<Accordion title="VALIDATE">
+<Accordion title="VALIDATE" defaultOpen>
 
 Whether to test the connection to the data source upon creation; if `TRUE`, the creation of a
 *data source* that cannot be connected to will fail; if `FALSE`, the *data source* will be
@@ -6848,25 +6848,25 @@ of table names in `<schema_name>.<table_name>` format.
 
 <AccordionGroup>
 
-<Accordion title="DATA SOURCE">
+<Accordion title="DATA SOURCE" defaultOpen>
 
 Optional keyword for clarity
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *data source* to list
 
 </Accordion>
 
-<Accordion title="&lt;data source name&gt;">
+<Accordion title="&lt;data source name&gt;" defaultOpen>
 
 Name of the *data source* whose accessible tables will be listed
 
 </Accordion>
 
-<Accordion title="WITH OPTIONS">
+<Accordion title="WITH OPTIONS" defaultOpen>
 
 Optional indicator that a comma-delimited list of filtering option/value assignments will
 follow.  See [Options](/content/sql/ddl#sql-list-data-source-opts) for the full list of options.
@@ -6917,19 +6917,19 @@ If multiple options are used, the tables must match all specified criteria.
 
 <AccordionGroup>
 
-<Accordion title="CATALOG">
+<Accordion title="CATALOG" defaultOpen>
 
 Only show tables within the specified catalog(s)
 
 </Accordion>
 
-<Accordion title="SCHEMA">
+<Accordion title="SCHEMA" defaultOpen>
 
 Only show tables within the specified schema(s)
 
 </Accordion>
 
-<Accordion title="TABLE">
+<Accordion title="TABLE" defaultOpen>
 
 Only show tables matching the specified name(s)
 
@@ -6963,19 +6963,19 @@ on a given *data source* must be dropped before it can be dropped.
 
 <AccordionGroup>
 
-<Accordion title="EXTERNAL">
+<Accordion title="EXTERNAL" defaultOpen>
 
 Optional keyword for clarity
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *data source* to remove
 
 </Accordion>
 
-<Accordion title="&lt;data source name&gt;">
+<Accordion title="&lt;data source name&gt;" defaultOpen>
 
 Name of the *data source* to remove
 
@@ -7023,19 +7023,19 @@ with the DDL statement as the value in the `DDL` column.
 
 <AccordionGroup>
 
-<Accordion title="EXTERNAL">
+<Accordion title="EXTERNAL" defaultOpen>
 
 Optional keyword for clarity
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *data source* to show
 
 </Accordion>
 
-<Accordion title="&lt;data source name&gt;">
+<Accordion title="&lt;data source name&gt;" defaultOpen>
 
 Name of the *data source* for which the DDL will be output; use `*` instead of
 *schema*/*data source* name to output the DDL of all *data sources*
@@ -7082,19 +7082,19 @@ DESC[RIBE] [EXTERNAL] DATA SOURCE < [<schema name>.]<data source name> | * >
 
 <AccordionGroup>
 
-<Accordion title="EXTERNAL">
+<Accordion title="EXTERNAL" defaultOpen>
 
 Optional keyword for clarity
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *data source* to describe
 
 </Accordion>
 
-<Accordion title="&lt;data source name&gt;">
+<Accordion title="&lt;data source name&gt;" defaultOpen>
 
 Name of the *data source* whose configuration will be output; use `*` instead of
 *schema*/*data source* name to output the configuration of all *data sources*
@@ -7189,33 +7189,33 @@ For consumer-specific examples, see [Creating Data Sinks](/content/snippets/crea
 
 <AccordionGroup>
 
-<Accordion title="OR REPLACE">
+<Accordion title="OR REPLACE" defaultOpen>
 
 Any existing *data sink* with the same name will be dropped before creating this one
 
 </Accordion>
 
-<Accordion title="EXTERNAL">
+<Accordion title="EXTERNAL" defaultOpen>
 
 Optional keyword for clarity
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* that will contain the created *data sink*; if no *schema* is specified,
 the *data sink* will be created in the user's [default schema](/content/concepts/schemas#schema-default)
 
 </Accordion>
 
-<Accordion title="&lt;data sink name&gt;">
+<Accordion title="&lt;data sink name&gt;" defaultOpen>
 
 Name of the *data sink* to create; must adhere to the supported
 [naming criteria](/content/sql/naming#sql-naming-criteria)
 
 </Accordion>
 
-<Accordion title="&lt;consumer&gt;">
+<Accordion title="&lt;consumer&gt;" defaultOpen>
 
 Consumer of the *data sink*
 
@@ -7273,7 +7273,7 @@ Supported consumers include:
 
 </Accordion>
 
-<Accordion title="&lt;target&gt;">
+<Accordion title="&lt;target&gt;" defaultOpen>
 
 Target to connect to via *data sink*; the following consumers have a default *host target*, if
 `target` is left blank:
@@ -7315,13 +7315,13 @@ For local Kinetica tables, `target` is the name of the name of the target table:
 
 </Accordion>
 
-<Accordion title="&lt;port&gt;">
+<Accordion title="&lt;port&gt;" defaultOpen>
 
 Port to connect to via the *data sink*, if applicable
 
 </Accordion>
 
-<Accordion title="WITH OPTIONS">
+<Accordion title="WITH OPTIONS" defaultOpen>
 
 Optional indicator that a comma-delimited list of connection option/value assignments will
 follow.  See [Options](/content/sql/ddl#sql-dsink-opts) for the full list of options.
@@ -7698,25 +7698,25 @@ will fail to be created if an authorized connection cannot be established.
 
 <AccordionGroup>
 
-<Accordion title="EXTERNAL">
+<Accordion title="EXTERNAL" defaultOpen>
 
 Optional keyword for clarity
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *data sink* to alter
 
 </Accordion>
 
-<Accordion title="&lt;data sink name&gt;">
+<Accordion title="&lt;data sink name&gt;" defaultOpen>
 
 Name of the *data sink* to alter
 
 </Accordion>
 
-<Accordion title="SET PROPERTY">
+<Accordion title="SET PROPERTY" defaultOpen>
 
 Indicator that a comma-delimited list of alterations to make will follow.
 
@@ -7811,19 +7811,19 @@ Any [streams](/content/sql/ddl#sql-create-stream) that depend on a given
 
 <AccordionGroup>
 
-<Accordion title="EXTERNAL">
+<Accordion title="EXTERNAL" defaultOpen>
 
 Optional keyword for clarity
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *data sink* to remove
 
 </Accordion>
 
-<Accordion title="&lt;data sink name&gt;">
+<Accordion title="&lt;data sink name&gt;" defaultOpen>
 
 Name of the *data sink* to remove
 
@@ -7868,19 +7868,19 @@ with the DDL statement as the value in the `DDL` column.
 
 <AccordionGroup>
 
-<Accordion title="EXTERNAL">
+<Accordion title="EXTERNAL" defaultOpen>
 
 Optional keyword for clarity
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *data sink* to show
 
 </Accordion>
 
-<Accordion title="&lt;data sink name&gt;">
+<Accordion title="&lt;data sink name&gt;" defaultOpen>
 
 Name of the *data sink* for which the DDL will be output; use `*` instead of
 *schema*/*data sink* name to output the DDL of all *data sinks*
@@ -7927,19 +7927,19 @@ DESC[RIBE] [EXTERNAL] DATA SINK < [<schema name>.]<data sink name> | * >
 
 <AccordionGroup>
 
-<Accordion title="EXTERNAL">
+<Accordion title="EXTERNAL" defaultOpen>
 
 Optional keyword for clarity
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *data sink* to describe
 
 </Accordion>
 
-<Accordion title="&lt;data sink name&gt;">
+<Accordion title="&lt;data sink name&gt;" defaultOpen>
 
 Name of the *data sink* whose configuration will be output; use `*` instead of
 *schema*/*data sink* name to output the configuration of all *data sinks*
@@ -8044,45 +8044,45 @@ also be dropped.
 
 <AccordionGroup>
 
-<Accordion title="&lt;stream schema name&gt;">
+<Accordion title="&lt;stream schema name&gt;" defaultOpen>
 
 Name of the *schema* that will contain the created *stream*; if no *schema* is specified, the
 *stream* will be created in the user's [default schema](/content/concepts/schemas#schema-default)
 
 </Accordion>
 
-<Accordion title="&lt;stream name&gt;">
+<Accordion title="&lt;stream name&gt;" defaultOpen>
 
 Name of the *stream* to create; must adhere to the supported
 [naming criteria](/content/sql/naming#sql-naming-criteria)
 
 </Accordion>
 
-<Accordion title="TABLE">
+<Accordion title="TABLE" defaultOpen>
 
 Optional keyword for clarity, in creating a *stream* on a *table*.
 
 </Accordion>
 
-<Accordion title="&lt;table schema name&gt;">
+<Accordion title="&lt;table schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *table* or *materialized view* to monitor.
 
 </Accordion>
 
-<Accordion title="&lt;table name&gt;">
+<Accordion title="&lt;table name&gt;" defaultOpen>
 
 Name of the *table* or *materialized view* to monitor for changes.
 
 </Accordion>
 
-<Accordion title="QUERY">
+<Accordion title="QUERY" defaultOpen>
 
 Optional keyword for clarity, in creating a *stream* on a join.
 
 </Accordion>
 
-<Accordion title="&lt;query&gt;">
+<Accordion title="&lt;query&gt;" defaultOpen>
 
  Join query to which the *stream* will be applied, using the following form:
 
@@ -8098,29 +8098,29 @@ ON &lt;join_clause&gt;
  the given `<join_clause>`.
 
 
-<Info>
-The marked *delta table* must be a regular table--it cannot be any of the
-following:
+ <Info>
+ The marked *delta table* must be a regular table--it cannot be any of the
+ following:
 
-* [external table](/content/sql/ddl#sql-create-ext-table)
-* [filter view](/content/concepts/filtered_views)
-* [join view](/content/concepts/joins)
-* [logical view](/content/sql/ddl#sql-create-view)
-* [materialized view](/content/sql/ddl#sql-create-materialized-view)
+ * [external table](/content/sql/ddl#sql-create-ext-table)
+ * [filter view](/content/concepts/filtered_views)
+ * [join view](/content/concepts/joins)
+ * [logical view](/content/sql/ddl#sql-create-view)
+ * [materialized view](/content/sql/ddl#sql-create-materialized-view)
 
-The join must also meet [sharding](/content/concepts/tables#sharding) requirements for joins--either both
-tables need to have [shard keys](/content/concepts/tables#shard-key) on their equality-based joined
-columns, or at least one of the tables needs to be [replicated](/content/concepts/tables#replicated).
+ The join must also meet [sharding](/content/concepts/tables#sharding) requirements for joins--either both
+ tables need to have [shard keys](/content/concepts/tables#shard-key) on their equality-based joined
+ columns, or at least one of the tables needs to be [replicated](/content/concepts/tables#replicated).
 
-See [CREATE TABLE](/content/sql/ddl#sql-create-table) for syntax for creating a *replicated* table or a
-*sharded table* with a *shard key* column.
-</Info>
+ See [CREATE TABLE](/content/sql/ddl#sql-create-table) for syntax for creating a *replicated* table or a
+ *sharded table* with a *shard key* column.
+ </Info>
 
  See below for a table-driven geofence example using a query-based *stream*.
 
 </Accordion>
 
-<Accordion title="REFRESH">
+<Accordion title="REFRESH" defaultOpen>
 
 Specifies the reporting scheme for monitored changes.   The following schemes are available:
 
@@ -8148,13 +8148,13 @@ Specifies the reporting scheme for monitored changes.   The following schemes ar
 
 </Accordion>
 
-<Accordion title="&lt;filter expression&gt;">
+<Accordion title="&lt;filter expression&gt;" defaultOpen>
 
 Boolean expression that can be used to monitor for only a specific set of inserts.
 
 </Accordion>
 
-<Accordion title="WITH OPTIONS">
+<Accordion title="WITH OPTIONS" defaultOpen>
 
 Indicator that a comma-delimited list of configuration option/value assignments will follow.
 See [Options](/content/sql/ddl#sql-stream-opts) for the full list of options.
@@ -8324,13 +8324,13 @@ DROP STREAM [<schema name>.]<stream name>
 
 <AccordionGroup>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *stream* to remove
 
 </Accordion>
 
-<Accordion title="&lt;stream name&gt;">
+<Accordion title="&lt;stream name&gt;" defaultOpen>
 
 Name of the *stream* to remove
 
@@ -8383,13 +8383,13 @@ with the DDL statement as the value in the `DDL` column.
 
 <AccordionGroup>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *stream(s)* to show
 
 </Accordion>
 
-<Accordion title="&lt;stream name&gt;">
+<Accordion title="&lt;stream name&gt;" defaultOpen>
 
 Name of the *stream* to show
 
@@ -8436,13 +8436,13 @@ Listing options:
 
 <AccordionGroup>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *stream(s)* to describe
 
 </Accordion>
 
-<Accordion title="&lt;stream name&gt;">
+<Accordion title="&lt;stream name&gt;" defaultOpen>
 
 Name of the *stream* to describe
 
@@ -8580,7 +8580,7 @@ COMMENT ON <object type> <object name> IS '<comment text>';
 
 <AccordionGroup>
 
-<Accordion title="&lt;object type&gt;">
+<Accordion title="&lt;object type&gt;" defaultOpen>
 
 Specifies the type of object to which the *comment* will be applied.  The following types are
 supported:
@@ -8629,14 +8629,14 @@ supported:
 
 </Accordion>
 
-<Accordion title="&lt;object name&gt;">
+<Accordion title="&lt;object name&gt;" defaultOpen>
 
 Name of the object to which the *comment* will be applied; must adhere to the supported
 [naming criteria](/content/sql/naming#sql-naming-criteria)
 
 </Accordion>
 
-<Accordion title="&lt;comment text&gt;">
+<Accordion title="&lt;comment text&gt;" defaultOpen>
 
 Text of the *comment* to apply.
 

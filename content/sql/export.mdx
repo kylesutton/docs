@@ -56,7 +56,7 @@ and remote column types.  If any transformations are necessary, the
 
 <AccordionGroup>
 
-<Accordion title="TABLE">
+<Accordion title="TABLE" defaultOpen>
 
 Source data specification clause, where `[<schema name>.]<table name>` is the name of the table (and, optionally,
 its schema) to export into the remote database.
@@ -68,7 +68,7 @@ This clause is mutually exclusive with the `QUERY` clause.
 
 </Accordion>
 
-<Accordion title="QUERY">
+<Accordion title="QUERY" defaultOpen>
 
 Source data specification clause, where `<data query>` is a SQL `SELECT` statement to
 run locally to generate a result set to export into the remote database.
@@ -80,7 +80,7 @@ This clause is mutually exclusive with the `TABLE` clause.
 
 </Accordion>
 
-<Accordion title="FILE PATH">
+<Accordion title="FILE PATH" defaultOpen>
 
 Target file specification clause, where `<file path>` is a single-quoted file path to
 which data will be written.
@@ -125,7 +125,7 @@ base file name, or to create multiple smaller files to increase the export perfo
 
 </Accordion>
 
-<Accordion title="FORMAT">
+<Accordion title="FORMAT" defaultOpen>
 
 Optional indicator of target file type; default is `DELIMITED TEXT`.
 
@@ -155,7 +155,7 @@ Supported formats include:
 
 </Accordion>
 
-<Accordion title="REMOTE TABLE">
+<Accordion title="REMOTE TABLE" defaultOpen>
 
 Target table specification clause, where `[<schema name>.]<table name>` is the name of the table (and, optionally,
 its schema) in the remote database into which data will be exported.
@@ -176,7 +176,7 @@ clauses.
 
 </Accordion>
 
-<Accordion title="REMOTE QUERY">
+<Accordion title="REMOTE QUERY" defaultOpen>
 
 Target insert specification clause, where `<insert statement>` is a SQL `INSERT`
 statement defining the way in which data will be loaded into the remote database.  The
@@ -190,7 +190,7 @@ clauses.
 
 </Accordion>
 
-<Accordion title="WITH OPTIONS">
+<Accordion title="WITH OPTIONS" defaultOpen>
 
 Optional indicator that a comma-delimited list of connection & global option/value
 assignments will follow.
@@ -213,7 +213,7 @@ files.
 
 <AccordionGroup>
 
-<Accordion title="DELIMITER = '&lt;char&gt;'">
+<Accordion title="DELIMITER = '&lt;char&gt;'" defaultOpen>
 
 Use `char` as the target file field delimiter.
 
@@ -232,7 +232,7 @@ See [Delimited Text Option Characters](/content/sql/export#sql-export-delim-opt-
 
 </Accordion>
 
-<Accordion title="HEADER DELIMITER = '&lt;char&gt;'">
+<Accordion title="HEADER DELIMITER = '&lt;char&gt;'" defaultOpen>
 
 Use `char` as the target file header field name/property delimiter, when writing the
 header in Kinetica custom format (when `KINETICA_HEADER` is `TRUE`).
@@ -248,7 +248,7 @@ name/property sets from each other in the header row
 
 </Accordion>
 
-<Accordion title="INCLUDES HEADER = &lt;TRUE|FALSE&gt;">
+<Accordion title="INCLUDES HEADER = &lt;TRUE|FALSE&gt;" defaultOpen>
 
 Declare that the target file(s) will or will not have a header.
 
@@ -256,7 +256,7 @@ The default is `TRUE`.
 
 </Accordion>
 
-<Accordion title="KINETICA_HEADER = &lt;TRUE|FALSE&gt;">
+<Accordion title="KINETICA_HEADER = &lt;TRUE|FALSE&gt;" defaultOpen>
 
 Declare that the target file(s) will or will not have a custom Kinetica header.
 
@@ -275,7 +275,7 @@ id|int|data,category|string|data|char16,name|string|data|char32
 
 </Accordion>
 
-<Accordion title="NULL = '&lt;string&gt;'">
+<Accordion title="NULL = '&lt;string&gt;'" defaultOpen>
 
 Treat `string` as the indicator of a null field value.
 

@@ -116,13 +116,13 @@ dropped, the *SQL procedure* will also be dropped.
 
 <AccordionGroup>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the schema in which this *SQL procedure* will be created.
 
 </Accordion>
 
-<Accordion title="&lt;procedure name&gt;">
+<Accordion title="&lt;procedure name&gt;" defaultOpen>
 
 Name to give to the created *SQL procedure*; must adhere to the supported
 [naming criteria](/content/sql/naming#sql-naming-criteria) for tables, and cannot be named the
@@ -130,7 +130,7 @@ same as any existing table or view.
 
 </Accordion>
 
-<Accordion title="&lt;sql statements&gt;">
+<Accordion title="&lt;sql statements&gt;" defaultOpen>
 
 Semicolon-separated list of
 [supported SQL statements](/content/sql/procedure#sql-procedures-statements).  If the final statement
@@ -140,19 +140,19 @@ to the user; all other statements that generate output will be ignored.
 
 </Accordion>
 
-<Accordion title="OR REPLACE">
+<Accordion title="OR REPLACE" defaultOpen>
 
 Drop any existing *SQL procedure* with the same name before creating this one.
 
 </Accordion>
 
-<Accordion title="LANGUAGE">
+<Accordion title="LANGUAGE" defaultOpen>
 
 Optional language specification.  Only `SQL` is supported at this time.
 
 </Accordion>
 
-<Accordion title="EXECUTE FOR EVERY">
+<Accordion title="EXECUTE FOR EVERY" defaultOpen>
 
 Allows specification of an interval in seconds, minutes, hours, or days, at which the
 *SQL procedure* should be executed.  Fractional values for `<number>` are accepted.
@@ -167,7 +167,7 @@ that; this can be modified with the following options:
 
 </Accordion>
 
-<Accordion title="WITH OPTIONS">
+<Accordion title="WITH OPTIONS" defaultOpen>
 
 Optional indicator that a comma-delimited list of option/value assignments will follow.
 The following options are available:
@@ -293,7 +293,7 @@ SET EXECUTE [FOR] EVERY <number> <SECOND[S] | MINUTE[S] | HOUR[S] | DAY[S]>
 
 <AccordionGroup>
 
-<Accordion title="EXECUTE FOR EVERY">
+<Accordion title="EXECUTE FOR EVERY" defaultOpen>
 
 Specify an interval in seconds, minutes, hours, or days at which the *SQL procedure* should be
 executed.
@@ -303,13 +303,13 @@ which the *SQL procedure* alteration was requested.
 
 </Accordion>
 
-<Accordion title="STARTING AT">
+<Accordion title="STARTING AT" defaultOpen>
 
 Specify a date or timestamp at which refresh cycles should begin.
 
 </Accordion>
 
-<Accordion title="STOP AFTER">
+<Accordion title="STOP AFTER" defaultOpen>
 
 Specify a date, timestamp, or time interval after which refresh cycles should end.
 
@@ -390,20 +390,20 @@ DROP PROCEDURE [IF EXISTS] [<schema name>.]<procedure name>
 
 <AccordionGroup>
 
-<Accordion title="IF EXISTS">
+<Accordion title="IF EXISTS" defaultOpen>
 
 Optional error-suppression clause; if specified, no error will be returned if the given
 *procedure* does not exist.
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *procedure* to remove.
 
 </Accordion>
 
-<Accordion title="&lt;procedure name&gt;">
+<Accordion title="&lt;procedure name&gt;" defaultOpen>
 
 Name of the *procedure* to remove.
 
@@ -442,13 +442,13 @@ SHOW PROCEDURE < [<schema name>.]<procedure name> | * >
 
 <AccordionGroup>
 
-<Accordion title="&lt;schema name&gt;">
+<Accordion title="&lt;schema name&gt;" defaultOpen>
 
 Name of the *schema* containing the *procedure* to show.
 
 </Accordion>
 
-<Accordion title="&lt;procedure name&gt;">
+<Accordion title="&lt;procedure name&gt;" defaultOpen>
 
 Name of the *procedure* whose content will be output; use `*` instead of
 *schema*/*procedure* name to output the DDL of all *procedures*.
