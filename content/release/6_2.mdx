@@ -50,27 +50,27 @@ slug: 6.2
   [GPUdbTable object](../../api/python/?source/gpudbtable.html)
 * [Joins](/content/concepts/joins) can now be created using derived columns, e.g.,
 
-```
-h_db.create_join_table(
-  join_table_name="my_join",
-  table_names=[table.alias("a"),table.alias("b")],
-  column_names=["a.x as ax","b.y as by","a.x+b.y as c"],
-  expressions=["a.x = b.x"]
-)
-```
+  ```
+  h_db.create_join_table(
+    join_table_name="my_join",
+    table_names=[table.alias("a"),table.alias("b")],
+    column_names=["a.x as ax","b.y as by","a.x+b.y as c"],
+    expressions=["a.x = b.x"]
+  )
+  ```
 * The [/aggregate/statistics](/content/api/rest/aggregate_statistics_rest) endpoint can now tune the
   behavior of the `percentile()` function using a second, comma-separated
   resolution value. The higher the resolution, the more accurate the estimation
   is but the longer the calculation takes, e.g., a 50th percentile resolution
   of 200:
 
-```
-h_db.aggregate_statistics(
-    table_name="my_table"
-    column_name="col1",
-    stats="count,min,percentile(50,200)"
-)
-```
+  ```
+  h_db.aggregate_statistics(
+      table_name="my_table"
+      column_name="col1",
+      stats="count,min,percentile(50,200)"
+  )
+  ```
 
 ## Geospatial
 

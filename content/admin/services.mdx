@@ -151,21 +151,21 @@ Run the following as the <Badge color="gray">root</Badge> user.
 1. Start the statistics/metrics manager on the *KAgent* node (usually head
    node):
 
-```
-systemctl start kinetica_stats
-```
+   ```
+   systemctl start kinetica_stats
+   ```
 2. If this is a cluster in a High-Availability ring, start *RabbitMQ* on every
    node running it:
 
-```
-systemctl start gpudb-mq
-```
+   ```
+   systemctl start gpudb-mq
+   ```
 3. Start all system management processes (*Host Manager*, *GAdmin*) on every
    node:
 
-```
-systemctl start gpudb_host_manager
-```
+   ```
+   systemctl start gpudb_host_manager
+   ```
 
 
 <a id="stop-sys"></a>
@@ -182,26 +182,26 @@ Run the following as the <Badge color="gray">root</Badge> user.
 1. Stop all system management processes (*Host Manager*, *GAdmin*) on every
    node:
 
-```
-systemctl stop gpudb_host_manager
-```
+   ```
+   systemctl stop gpudb_host_manager
+   ```
 
-<Info>
-This will, in turn,
-[stop database services](/content/admin/services#stop-db), as well
-</Info>
+   <Info>
+   This will, in turn,
+   [stop database services](/content/admin/services#stop-db), as well
+   </Info>
 
 2. If this is a cluster in a High-Availability ring, stop *RabbitMQ* on every node
    running it:
 
-```
-systemctl stop gpudb-mq
-```
+   ```
+   systemctl stop gpudb-mq
+   ```
 3. Stop the statistics/metrics manager on the *KAgent* node (usually head node):
 
-```
-systemctl stop kinetica_stats
-```
+   ```
+   systemctl stop kinetica_stats
+   ```
 
 
 <a id="manage-all"></a>

@@ -51,14 +51,14 @@ The Kinetica Python UDF API is accessible via *GitHub*.
 1. In the desired directory, run the following to download the Kinetica Python
    UDF API repository:
 
-```
-git clone -b release/v7.2 --single-branch https://github.com/kineticadb/kinetica-udf-api-python.git
-```
+   ```
+   git clone -b release/v7.2 --single-branch https://github.com/kineticadb/kinetica-udf-api-python.git
+   ```
 2. Add the Python UDF API directory to the `PYTHONPATH`:
 
-```
-export PYTHONPATH=\$PYTHONPATH:\$(cd kinetica-udf-api-python;pwd)
-```
+   ```
+   export PYTHONPATH=\$PYTHONPATH:\$(cd kinetica-udf-api-python;pwd)
+   ```
 
 
 <a id="udf-python-func-env"></a>
@@ -468,12 +468,12 @@ non-distributed mode. These messages are subject to the following scenarios:
   message is cleared.
 
 
-<Info>
-The UDF may not show as "complete" yet since any data written by the
-UDF (in distributed mode) still has to be inserted into the
-database, but the status set by the UDF code isn't relevant to this
-process
-</Info>
+  <Info>
+  The UDF may not show as "complete" yet since any data written by the
+  UDF (in distributed mode) still has to be inserted into the
+  database, but the status set by the UDF code isn't relevant to this
+  process
+  </Info>
 
 * If the UDF is killed while executing user-provided UDF code,
   [show_proc_status()](../../../api/python/?source/gpudb.html#gpudb.GPUdb.show_proc_status) will return the last message that was set.

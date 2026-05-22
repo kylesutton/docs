@@ -450,7 +450,7 @@ initialize the system using the following steps:
    is to be entered:
 
 
-![../../install/img/product_activation.png](/content/install/img/product_activation.png)
+   ![../../install/img/product_activation.png](/content/install/img/product_activation.png)
 
    1. Enter the license key under **Enter License Key**
    2. When complete, click **Activate**, then confirm the activation
@@ -466,9 +466,9 @@ initialize the system using the following steps:
    4. When complete, click **Save**
 
 
-<Note>
-For additional configuration options, see the [Configuration Reference](/content/config#cr-label).
-</Note>
+   <Note>
+   For additional configuration options, see the [Configuration Reference](/content/config#cr-label).
+   </Note>
 
 4. Start the system.  This will start all *Kinetica* processes on the
    *head node*, and if in a clustered environment, the corresponding processes
@@ -507,86 +507,86 @@ lead to unexpected results.
    there are two servers with three *ranks* on the first and two *ranks* on the
    second:
 
-```
-host0.address = 172.123.45.67
-host0.public_address = 172.123.45.67
-host0.host_manager_public_url = http://172.123.45.67:9300
-host0.ram_limit = 6769400000
-host0.gpus =
-host0.accepts_failover = true
+   ```
+   host0.address = 172.123.45.67
+   host0.public_address = 172.123.45.67
+   host0.host_manager_public_url = http://172.123.45.67:9300
+   host0.ram_limit = 6769400000
+   host0.gpus =
+   host0.accepts_failover = true
 
-host1.address = 172.123.45.68
-host1.public_address = 172.123.45.68
-host1.host_manager_public_url = http://172.123.45.68:9300
-host1.ram_limit = 6769400000
-host1.gpus =
-host1.accepts_failover = true
+   host1.address = 172.123.45.68
+   host1.public_address = 172.123.45.68
+   host1.host_manager_public_url = http://172.123.45.68:9300
+   host1.ram_limit = 6769400000
+   host1.gpus =
+   host1.accepts_failover = true
 
-rank0.host = host0
-rank1.host = host0
-rank2.host = host0
-rank3.host = host1
-rank4.host = host1
-```
+   rank0.host = host0
+   rank1.host = host0
+   rank2.host = host0
+   rank3.host = host1
+   rank4.host = host1
+   ```
 3. For *CUDA* builds, the GPUs need to be assigned to *ranks*.  To display the
    installed GPUs and their status run:
 
-```
-nvidia-smi
-```
+   ```
+   nvidia-smi
+   ```
    If the program is not installed or doesn't run, see [Nvidia Drivers](/content/install/package#install-nvidia-drivers).
 
    Once the number of GPUs on each server has been established, enter them into the
    configuration file by associated *rank*.  In this example, there are two
    servers with a GPU assigned to each of two *ranks* per host (none for *rank0*):
 
-```
-rank0.gpu = 0 # This GPU can be shared with a worker rank, typically rank 1.
+   ```
+   rank0.gpu = 0 # This GPU can be shared with a worker rank, typically rank 1.
 
-rank1.taskcalc_gpu = 0
-rank2.taskcalc_gpu = 1
-rank3.taskcalc_gpu = 0 # On new host, restart at 0
-rank4.taskcalc_gpu = 1
-```
+   rank1.taskcalc_gpu = 0
+   rank2.taskcalc_gpu = 1
+   rank3.taskcalc_gpu = 0 # On new host, restart at 0
+   rank4.taskcalc_gpu = 1
+   ```
 4. For non-*CUDA* builds, the Numa CPUs need to be assigned to *ranks*.  To display
    the Numa nodes, run:
 
-```
-numactl -H
-```
+   ```
+   numactl -H
+   ```
    Once the number of Numa nodes on each server has been established, enter them
    into the configuration file by associated *rank*.  In this example, there are
    two servers with a Numa node assigned to each of two *ranks* per host (none for
    *rank0*):
 
-```
-rank0.numa_node =        # Preferring a node for the head node HTTP server is often not necessary.
+   ```
+   rank0.numa_node =        # Preferring a node for the head node HTTP server is often not necessary.
 
-rank1.base_numa_node = 0
-rank2.base_numa_node = 1
-rank3.base_numa_node = 0 # On new host, restart at 0
-rank4.base_numa_node = 1
+   rank1.base_numa_node = 0
+   rank2.base_numa_node = 1
+   rank3.base_numa_node = 0 # On new host, restart at 0
+   rank4.base_numa_node = 1
 
-rank1.data_numa_node = 0
-rank2.data_numa_node = 1
-rank3.data_numa_node = 0 # On new host, restart at 0
-rank4.data_numa_node = 1
-```
+   rank1.data_numa_node = 0
+   rank2.data_numa_node = 1
+   rank3.data_numa_node = 0 # On new host, restart at 0
+   rank4.data_numa_node = 1
+   ```
 5. Set the license key:
 
-```
-license_key = ...
-```
+   ```
+   license_key = ...
+   ```
 6. Optionally, enable the text search capability:
 
-```
-enable_text_search = true
-```
+   ```
+   enable_text_search = true
+   ```
 
-<Warning>
-Text search is required if [KML](/content/ml/concepts)
-usage is desired.
-</Warning>
+   <Warning>
+   Text search is required if [KML](/content/ml/concepts)
+   usage is desired.
+   </Warning>
 
 7. Determine the directory in which database files will be stored.  It should
    meet the following criteria:
@@ -598,22 +598,22 @@ usage is desired.
 
 8. Enter the database file directory path into the configuration:
 
-```
-persist_directory = /opt/gpudb/persist
-```
+   ```
+   persist_directory = /opt/gpudb/persist
+   ```
 
-<Note>
-For additional configuration options, see the [Configuration Reference](/content/config#cr-label).
-</Note>
+   <Note>
+   For additional configuration options, see the [Configuration Reference](/content/config#cr-label).
+   </Note>
 
 9. Save the file.
 10. Start the `gpudb` service. This will start all *Kinetica* processes on the
    *head node*, and if in a clustered environment, processes on the
    *worker nodes*:
 
-```
-service gpudb start
-```
+   ```
+   service gpudb start
+   ```
 11. Log into the admin application and
    [change the administration account's default password](/content/admin/changing_password).
 
@@ -723,9 +723,9 @@ If [Reveal](/content/bi/reveal) is enabled:
 
 1. Navigate to:
 
-```
-http://<head-node-ip-address>:8088/
-```
+   ```
+   http://<head-node-ip-address>:8088/
+   ```
 2. Log into *Reveal* and [change the administration account's default password](/content/security/reveal#change-password-reveal).
 3. Click **NYC Taxi** under **Dashboards**. The default NYC Taxi
    dashboard should load.

@@ -113,14 +113,14 @@ Review [KAgent](/content/admin/kagent/kagent) for more information on
 
 1. Ensure the *KAgent* service is started:
 
-```
-service kagent_ui status
-```
+   ```
+   service kagent_ui status
+   ```
 2. Browse to the *KAgent* UI using IP or host name:
 
-```
-http://<kagent-host>:8081/kagent
-```
+   ```
+   http://<kagent-host>:8081/kagent
+   ```
 3. Optionally, if using custom rings, i.e. not the `default` ring, click
    **Rings** then click **Clusters** next to the desired
    ring. See [High Availability Architecture](/content/ha/ha_architecture) for more information about rings and
@@ -144,9 +144,9 @@ http://<kagent-host>:8081/kagent
      core database functionality installed on them.
 
 
-<Note>
-First-time setups should always have *Core* selected.
-</Note>
+     <Note>
+     First-time setups should always have *Core* selected.
+     </Note>
 
    * Select **Graph** if a node in the cluster should have the
      graph server installed on it. See
@@ -170,14 +170,14 @@ First-time setups should always have *Core* selected.
    component or driver desired for the installation.
 
 
-<Note>
-If performing an offline installation, all necessary
-dependencies will need to be installed prior to cluster setup.
+   <Note>
+   If performing an offline installation, all necessary
+   dependencies will need to be installed prior to cluster setup.
 
 
-![../../install/img/kagent_upload_package.png](/content/install/img/kagent_upload_package.png)
+   ![../../install/img/kagent_upload_package.png](/content/install/img/kagent_upload_package.png)
 
-</Note>
+   </Note>
 
 4. For the **Version**, select either **CUDA**
    (GPU) or **Intel** (CPU-only) to determine the package variant
@@ -204,12 +204,12 @@ dependencies will need to be installed prior to cluster setup.
    **Next**.
 
 
-<Note>
-If clearing the **Open Firewall Ports** checkbox, the firewall
-then must be configured manually to allow the *required* ports listed in
-the [default ports](/content/install/shared/ports) table. Consult
-[Adjust Firewall](/content/install/shared/adjust_firewall) for tips on configuring the firewall.
-</Note>
+   <Note>
+   If clearing the **Open Firewall Ports** checkbox, the firewall
+   then must be configured manually to allow the *required* ports listed in
+   the [default ports](/content/install/shared/ports) table. Consult
+   [Adjust Firewall](/content/install/shared/adjust_firewall) for tips on configuring the firewall.
+   </Note>
 
 <a id="kagent-security-ui"></a>
 
@@ -229,10 +229,10 @@ is being installed.
    the password strength requirements.
 
 
-<Note>
-This is the password used to access *Reveal*, *Workbench*, *KAgent*, and
-*GAdmin* as the default administrative user.
-</Note>
+   <Note>
+   This is the password used to access *Reveal*, *Workbench*, *KAgent*, and
+   *GAdmin* as the default administrative user.
+   </Note>
 
 2. Select an **SSL Mode**:
 
@@ -271,11 +271,11 @@ This is the password used to access *Reveal*, *Workbench*, *KAgent*, and
      roles in the database to *OAuth* users
 
 
-<Warning>
-No SSL or authentication is **not** recommended! For more information on
-security configurations and settings as well as how to manually configure
-*Kinetica* for a secure setup, see [Security Configuration](/content/security/sec_configuration).
-</Warning>
+   <Warning>
+   No SSL or authentication is **not** recommended! For more information on
+   security configurations and settings as well as how to manually configure
+   *Kinetica* for a secure setup, see [Security Configuration](/content/security/sec_configuration).
+   </Warning>
 
 4. Click **Next**.
 
@@ -313,11 +313,11 @@ security configurations and settings as well as how to manually configure
    during the installation process.
 
 
-<Info>
-All services and privileges (**Head**, **Graph**,
-**KML**, etc.) can exist on a single node if
-desired, assuming there are enough resources to handle it.
-</Info>
+   <Info>
+   All services and privileges (**Head**, **Graph**,
+   **KML**, etc.) can exist on a single node if
+   desired, assuming there are enough resources to handle it.
+   </Info>
 
 6. If the *Graph* package was selected for install in
    [Cluster](#cluster), select the desired node(s) to host the
@@ -330,10 +330,10 @@ desired, assuming there are enough resources to handle it.
    running on the node, set the number under *KML GPUs*.
 
 
-<Note>
-Some *UDFs* and features of *KML* may require GPUs to work or
-have increased performance.
-</Note>
+   <Note>
+   Some *UDFs* and features of *KML* may require GPUs to work or
+   have increased performance.
+   </Note>
 
 8. If the *KAgent* package was selected for install in [Cluster](/content/install/kagent_install#kagent-ui-cluster),
    select the desired node to host the service. The *KAgent* node does not need
@@ -347,12 +347,12 @@ have increased performance.
    does not have to host any other services other than *RabbitMQ* if desired.
 
 
-<Note>
-In total, an odd number of nodes should be selected for
-*RabbitMQ* installation. *Kinetica* recommends installing
-*RabbitMQ* machines that will not have the **Core**
-package enabled.
-</Note>
+   <Note>
+   In total, an odd number of nodes should be selected for
+   *RabbitMQ* installation. *Kinetica* recommends installing
+   *RabbitMQ* machines that will not have the **Core**
+   package enabled.
+   </Note>
 
 10. Click **Next**.
 11. Confirm which IP address KAgent should use to connect to the cluster:
@@ -389,27 +389,27 @@ and Nvidia information.
    uses to connect to the cluster.
 
 
-<Tip>
-Click **CLI Commands** to view and/or copy the KAgent
-command line interface commands that will be run in the background
-(order is from top to bottom).
+   <Tip>
+   Click **CLI Commands** to view and/or copy the KAgent
+   command line interface commands that will be run in the background
+   (order is from top to bottom).
 
 
-![../img/cli_commands.png](/content/install/img/cli_commands.png)
+   ![../img/cli_commands.png](/content/install/img/cli_commands.png)
 
-</Tip>
+   </Tip>
 
 2. Click **Install**. *KAgent* will open a window displaying the
    progress of the installation.
 
 
-![../img/kagent_install_progress.png](/content/install/img/kagent_install_progress.png)
+   ![../img/kagent_install_progress.png](/content/install/img/kagent_install_progress.png)
 
 
-<Tip>
-Click **Details** next to a step to see stdout and stderr
-for that step. Click ![copy](/content/install/img/kagent_details_copy_logs.png) to copy the displayed text.
-</Tip>
+   <Tip>
+   Click **Details** next to a step to see stdout and stderr
+   for that step. Click ![copy](/content/install/img/kagent_details_copy_logs.png) to copy the displayed text.
+   </Tip>
 
 
 The installation may take a while as *KAgent* initializes each node in the
@@ -510,9 +510,9 @@ If [Reveal](/content/bi/reveal) is enabled:
 
 1. Navigate to:
 
-```
-http://<head-node-ip-address>:8088/
-```
+   ```
+   http://<head-node-ip-address>:8088/
+   ```
 2. Log into *Reveal* and [change the administration account's default password](/content/security/reveal#change-password-reveal).
 3. Click **NYC Taxi** under **Dashboards**. The default NYC Taxi
    dashboard should load.
@@ -647,14 +647,14 @@ Some common configuration options to consider updating:
 * Changing the persist directory
 
 
-<Note>
-The directory should meet the following criteria:
+  <Note>
+  The directory should meet the following criteria:
 
-* Available disk space that is at least 4x memory
-* Writable by the `gpudb` user
-* Consist of raided SSDs
-* Not be part of a network share or NFS mount
-</Note>
+  * Available disk space that is at least 4x memory
+  * Writable by the `gpudb` user
+  * Consist of raided SSDs
+  * Not be part of a network share or NFS mount
+  </Note>
 
 * Enabling [UDFs](/content/udf) (*procs*)
 * Adjusting [storage tiers and resource groups](/content/rm)

@@ -205,15 +205,15 @@ In order to run *Reveal* from within an inline frame:
 1. Uncomment the session cookie settings in the *Reveal*
    `/opt/gpudb/connectors/reveal/etc/config.py` configuration file:
 
-```
-# Enable for embedding inside iframe
-# by setting SECURE to True and SAMESITE to 'None'
-SESSION_COOKIE_HTTPONLY = True
-SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_SAMESITE = 'None'
-```
+   ```
+   # Enable for embedding inside iframe
+   # by setting SECURE to True and SAMESITE to 'None'
+   SESSION_COOKIE_HTTPONLY = True
+   SESSION_COOKIE_SECURE = True
+   SESSION_COOKIE_SAMESITE = 'None'
+   ```
 2. Restart *Reveal*:
 
-```
-/opt/gpudb/core/bin/gpudb reveal-restart
-```
+   ```
+   /opt/gpudb/core/bin/gpudb reveal-restart
+   ```

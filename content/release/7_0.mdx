@@ -1209,12 +1209,12 @@ slug: 7.0
 * Added support for character delimiters and specifying columns in a file or
   destination table when using insert from CSV functionality, e.g.,
 
-```
-INSERT INTO employee (first_name, last_name, date_of_birth)
-SELECT fname, lname, dob
-FROM FILE."/home/gpudb/data/emp_2017.csv"
-DELIMITER=',';
-```
+  ```
+  INSERT INTO employee (first_name, last_name, date_of_birth)
+  SELECT fname, lname, dob
+  FROM FILE."/home/gpudb/data/emp_2017.csv"
+  DELIMITER=',';
+  ```
 * Added support for converting various charN types to other types, e.g.,
   `char64` to `date`
 

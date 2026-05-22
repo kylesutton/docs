@@ -299,12 +299,12 @@ in non-distributed mode. These messages are subject to the following scenarios:
   message is cleared
 
 
-<Info>
-The *UDF* may not show as "complete" yet since any data written by
-the *UDF* (in distributed mode) still has to be inserted into the
-database, but the status set by the *UDF* code isn't relevant to
-this process
-</Info>
+  <Info>
+  The *UDF* may not show as "complete" yet since any data written by
+  the *UDF* (in distributed mode) still has to be inserted into the
+  database, but the status set by the *UDF* code isn't relevant to
+  this process
+  </Info>
 
 * If the *UDF* is killed while executing user-provided *UDF* code,
   `/show/proc/status` will return the last message that was set

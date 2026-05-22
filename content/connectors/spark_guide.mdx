@@ -57,11 +57,11 @@ This example makes use of the NYC taxi trip table, which can be loaded using
    require authentication.
 
 
-<Info>
-If connecting over SSL, see
-[JDBC Secure Connections](/content/connectors/sql_guide#jdbc-connecting-secure) for the
-modified URL to use.
-</Info>
+   <Info>
+   If connecting over SSL, see
+   [JDBC Secure Connections](/content/connectors/sql_guide#jdbc-connecting-secure) for the
+   modified URL to use.
+   </Info>
 
    ```scala
    var url = s"jdbc:kinetica:URL=http://<db.host>:9191;CombinePrepareAndExecute=1[[;<parameter>=<value>]*]"
@@ -105,13 +105,13 @@ modified URL to use.
 
 5. Verify output:
 
-```
-root
- |-- vendor_id: string (nullable = true)
- |-- min_geo_miles: decimal(18,4) (nullable = true)
- |-- avg_geo_miles: decimal(18,4) (nullable = true)
- |-- max_geo_miles: decimal(18,4) (nullable = true)
-```
+   ```
+   root
+    |-- vendor_id: string (nullable = true)
+    |-- min_geo_miles: decimal(18,4) (nullable = true)
+    |-- avg_geo_miles: decimal(18,4) (nullable = true)
+    |-- max_geo_miles: decimal(18,4) (nullable = true)
+   ```
 6. Output query result set:
 
    ```scala
@@ -120,17 +120,17 @@ root
 
 7. Verify output:
 
-```
-+---------+-------------+-------------+-------------+
-|vendor_id|min_geo_miles|avg_geo_miles|max_geo_miles|
-+---------+-------------+-------------+-------------+
-|      CMT|       0.0100|       2.0952|      80.8669|
-|      DDS|       0.0148|       2.7350|      64.2944|
-|      NYC|       0.0101|       2.1548|      36.9236|
-|      VTS|       0.0100|       2.0584|      94.5213|
-|     YCAB|       0.0100|       2.1049|      36.0565|
-+---------+-------------+-------------+-------------+
-```
+   ```
+   +---------+-------------+-------------+-------------+
+   |vendor_id|min_geo_miles|avg_geo_miles|max_geo_miles|
+   +---------+-------------+-------------+-------------+
+   |      CMT|       0.0100|       2.0952|      80.8669|
+   |      DDS|       0.0148|       2.7350|      64.2944|
+   |      NYC|       0.0101|       2.1548|      36.9236|
+   |      VTS|       0.0100|       2.0584|      94.5213|
+   |     YCAB|       0.0100|       2.1049|      36.0565|
+   +---------+-------------+-------------+-------------+
+   ```
 
 
 ### Spark Ingest

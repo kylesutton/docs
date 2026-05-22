@@ -142,9 +142,9 @@ From the **Edit Table** page:
   <Badge color="gray">/opt/gpudb/core/etc/gpudb.conf</Badge>), and an optional predicate
 
 
-<Tip>
-Omit **Columns** to apply the strategy to the entire table
-</Tip>
+  <Tip>
+  Omit **Columns** to apply the strategy to the entire table
+  </Tip>
 
 
 ##### Example
@@ -458,10 +458,10 @@ restricting or granting access to particular data. To apply security to a user:
 2. Select a user from the list.
 
 
-<Info>
-Row- and column-level security cannot be configured for users with
-the `system_admin` permission.
-</Info>
+   <Info>
+   Row- and column-level security cannot be configured for users with
+   the `system_admin` permission.
+   </Info>
 
 3. Apply **Row Security** and **Column Security** as necessary.
 
@@ -470,7 +470,7 @@ the `system_admin` permission.
      1. Click the **Row Security** tab.
 
 
-![../../images/data_table_security_row_blank.png](/content/admin/images/data_table_security_row_blank.png)
+        ![../../images/data_table_security_row_blank.png](/content/admin/images/data_table_security_row_blank.png)
 
      2. Provide a valid SQL `WHERE`-like expression in the **Filter**
         text field to specify entire rows the user has access to that meet the
@@ -481,7 +481,7 @@ the `system_admin` permission.
      1. Click the **Column Security** tab.
 
 
-![../../images/data_table_security_column_blank.png](/content/admin/images/data_table_security_column_blank.png)
+        ![../../images/data_table_security_column_blank.png](/content/admin/images/data_table_security_column_blank.png)
 
      2. Select a column from the drop-down menu.
      3. Click **Add Column**.
@@ -498,10 +498,10 @@ the `system_admin` permission.
           exchanged for a unique non-negative number
 
 
-<Note>
-Review [Column-Level Security](/content/security/sec_concepts#sec-concepts-perm-table-col) for more
-information on masking and obfuscation.
-</Note>
+        <Note>
+        Review [Column-Level Security](/content/security/sec_concepts#sec-concepts-perm-table-col) for more
+        information on masking and obfuscation.
+        </Note>
 
      5. Optionally, apply a valid SQL `WHERE`-like expression in the
         **Filter** text field.
@@ -510,11 +510,11 @@ information on masking and obfuscation.
 4. Click **Save** and confirm the update for the selected user.
 
 
-<Tip>
-Click **Reset** to reset the modified security settings to
-the previously saved settings. Click **Clear** to remove
-any saved settings.
-</Tip>
+   <Tip>
+   Click **Reset** to reset the modified security settings to
+   the previously saved settings. Click **Clear** to remove
+   any saved settings.
+   </Tip>
 
 
 #### Roles
@@ -528,10 +528,10 @@ restricting or granting access to particular data. To apply security to a role:
 2. Select a role from the list.
 
 
-<Info>
-Row- and column-level security cannot be configured for roles with
-the `system_admin` permission.
-</Info>
+   <Info>
+   Row- and column-level security cannot be configured for roles with
+   the `system_admin` permission.
+   </Info>
 
 3. Apply **Row Security** and **Column Security** as necessary.
 
@@ -540,7 +540,7 @@ the `system_admin` permission.
      1. Click the **Row Security** tab.
 
 
-![../../images/data_table_security_row_blank.png](/content/admin/images/data_table_security_row_blank.png)
+        ![../../images/data_table_security_row_blank.png](/content/admin/images/data_table_security_row_blank.png)
 
      2. Provide a valid SQL `WHERE`-like expression in the **Filter**
         text field to specify entire rows the user has access to that meet the
@@ -551,7 +551,7 @@ the `system_admin` permission.
      1. Click the **Column Security** tab.
 
 
-![../../images/data_table_security_column_blank.png](/content/admin/images/data_table_security_column_blank.png)
+        ![../../images/data_table_security_column_blank.png](/content/admin/images/data_table_security_column_blank.png)
 
      2. Select a column from the drop-down menu.
      3. Click **Add Column**.
@@ -568,10 +568,10 @@ the `system_admin` permission.
           exchanged for a unique non-negative number
 
 
-<Note>
-Review [Column-Level Security](/content/security/sec_concepts#sec-concepts-perm-table-col) for more
-information on masking and obfuscation.
-</Note>
+        <Note>
+        Review [Column-Level Security](/content/security/sec_concepts#sec-concepts-perm-table-col) for more
+        information on masking and obfuscation.
+        </Note>
 
      5. Optionally, apply a valid SQL `WHERE`-like expression in the
         **Filter** text field.
@@ -580,11 +580,11 @@ information on masking and obfuscation.
 4. Click **Save** and confirm the update for the selected role.
 
 
-<Tip>
-Click **Reset** to reset the modified security settings to
-the previously saved settings. Click **Clear** to remove
-any saved settings.
-</Tip>
+   <Tip>
+   Click **Reset** to reset the modified security settings to
+   the previously saved settings. Click **Clear** to remove
+   any saved settings.
+   </Tip>
 
 <a id="col-mask"></a>
 
@@ -630,19 +630,19 @@ scenario:
    filter for the engineering department:
 
 
-![../../images/data_table_security_rowsec_example.png](/content/admin/images/data_table_security_rowsec_example.png)
+   ![../../images/data_table_security_rowsec_example.png](/content/admin/images/data_table_security_rowsec_example.png)
 
 3. Click **Column Security** and input the obfuscated `salary` column
    & the masked `ssn` column:
 
 
-![../../images/data_table_security_colsec_example.png](/content/admin/images/data_table_security_colsec_example.png)
+   ![../../images/data_table_security_colsec_example.png](/content/admin/images/data_table_security_colsec_example.png)
 
 4. Click the ![gear](/content/admin/images/data_col_mask_config.png) icon next to **Mask** to configure the masking
    values:
 
 
-![../../images/data_table_security_colmask_example.png](/content/admin/images/data_table_security_colmask_example.png)
+   ![../../images/data_table_security_colmask_example.png](/content/admin/images/data_table_security_colmask_example.png)
 
 5. Click **Save.**
 
@@ -772,15 +772,15 @@ available, it's also recommended you consult the
    in [Components and Identifiers](/content/graph_solver/network_graph_solver#identifiers)) to use with the query identifier. Repeat as necessary.
 
 
-<Tip>
-If you select `QUERY_NODE_WKTPOINT`, you can click ![wkt_select](/content/admin/images/wkt_select.png) to
-open the graph in the WMS viewer and manually select point(s) on the
-map.
+   <Tip>
+   If you select `QUERY_NODE_WKTPOINT`, you can click ![wkt_select](/content/admin/images/wkt_select.png) to
+   open the graph in the WMS viewer and manually select point(s) on the
+   map.
 
 
-![../../images/wkt_select_wms_src.png](/content/admin/images/wkt_select_wms_src.png)
+   ![../../images/wkt_select_wms_src.png](/content/admin/images/wkt_select_wms_src.png)
 
-</Tip>
+   </Tip>
 
 3. Optionally, select a desired *restriction* [configuration](/content/graph_solver/network_graph_solver#id-combos)
    from the **Restrictions** drop-down menu and click **Add +**.
@@ -842,14 +842,14 @@ graph servers are available, it's also recommended you consult the
    adding multiple source nodes, they should all be of the same type.
 
 
-<Tip>
-If you select `NODE_WKTPOINT`, you can click ![wkt_select](/content/admin/images/wkt_select.png) to open
-the graph in the WMS viewer and manually select point(s) on the map.
+   <Tip>
+   If you select `NODE_WKTPOINT`, you can click ![wkt_select](/content/admin/images/wkt_select.png) to open
+   the graph in the WMS viewer and manually select point(s) on the map.
 
 
-![../../images/wkt_select_wms_src.png](/content/admin/images/wkt_select_wms_src.png)
+   ![../../images/wkt_select_wms_src.png](/content/admin/images/wkt_select_wms_src.png)
 
-</Tip>
+   </Tip>
 
 6. Select a node type from the **Destination Nodes** drop-down menu and
    click **Add +**. For each field that appears after adding the node
@@ -858,14 +858,14 @@ the graph in the WMS viewer and manually select point(s) on the map.
    adding multiple source nodes, they should all be of the same type.
 
 
-<Tip>
-If you select `NODE_WKTPOINT`, you can click ![wkt_select](/content/admin/images/wkt_select.png) to open
-the graph in the WMS viewer and manually select point(s) on the map.
+   <Tip>
+   If you select `NODE_WKTPOINT`, you can click ![wkt_select](/content/admin/images/wkt_select.png) to open
+   the graph in the WMS viewer and manually select point(s) on the map.
 
 
-![../../images/wkt_select_wms_dest.png](/content/admin/images/wkt_select_wms_dest.png)
+   ![../../images/wkt_select_wms_dest.png](/content/admin/images/wkt_select_wms_dest.png)
 
-</Tip>
+   </Tip>
 
 7. Provide a solution table name into which the results will be output.
 8. Adjust the options as desired.
@@ -873,7 +873,7 @@ the graph in the WMS viewer and manually select point(s) on the map.
    Click a solution route to see the start (![start](/content/admin/images/start_solution_route.png)) and end (![finish](/content/admin/images/finish_solution_route.png)) points:
 
 
-![../../images/solve_graph_wms_solution.png](/content/admin/images/solve_graph_wms_solution.png)
+   ![../../images/solve_graph_wms_solution.png](/content/admin/images/solve_graph_wms_solution.png)
 
 
 ![../../images/data_graphs_solve.png](/content/admin/images/data_graphs_solve.png)

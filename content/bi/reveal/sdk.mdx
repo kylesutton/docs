@@ -719,9 +719,9 @@ git config --global url."https://".insteadOf git://
 2. Use the <Badge color="blue-destructive">reveal-sdk</Badge> script from the SDK to run the
    <Badge color="blue-destructive">slice-create</Badge> command:
 
-```
-reveal-sdk slice-create <target_development_directory>
-```
+   ```
+   reveal-sdk slice-create <target_development_directory>
+   ```
    This will perform the following actions:
 
    * Prompt the user for basic *slice type*-specific information to create the
@@ -730,19 +730,19 @@ reveal-sdk slice-create <target_development_directory>
      * What is the slice name?
 
 
-<Info>
-Name must begin with alphabetic/underscore character and be
-followed by zero or more alphanumeric/underscore characters
-</Info>
+       <Info>
+       Name must begin with alphabetic/underscore character and be
+       followed by zero or more alphanumeric/underscore characters
+       </Info>
 
      * Who is the author?
      * What is the display name?
 
 
-<Info>
-This is the name/label that will be displayed in the
-*slice type* dropdown in the GUI
-</Info>
+       <Info>
+       This is the name/label that will be displayed in the
+       *slice type* dropdown in the GUI
+       </Info>
 
      * What is the *slice* description?
 
@@ -756,9 +756,9 @@ This is the name/label that will be displayed in the
 3. Use the <Badge color="blue-destructive">reveal-sdk</Badge> script from the SDK to run the
    <Badge color="blue-destructive">slice-watch</Badge> command in a separate shell session:
 
-```
-reveal-sdk slice-watch <target_development_directory>/<slice_name>
-```
+   ```
+   reveal-sdk slice-watch <target_development_directory>/<slice_name>
+   ```
    This will perform the following actions:
 
    * Run a full rebuild of all the *slice types* including the newly created
@@ -768,11 +768,11 @@ reveal-sdk slice-watch <target_development_directory>/<slice_name>
      development directory and rebuild/restart when necessary
 
 
-<Info>
-This is a continuous process so it should be run in a separate
-shell. The command takes some time to run, as it installs *node* modules
-and bundles all the *JavaScript* code.
-</Info>
+   <Info>
+   This is a continuous process so it should be run in a separate
+   shell. The command takes some time to run, as it installs *node* modules
+   and bundles all the *JavaScript* code.
+   </Info>
 
 4. Develop the custom *slice type* by modifying its files in the target
    development directory. The *slice type* watch process will continually update
@@ -780,18 +780,18 @@ and bundles all the *JavaScript* code.
    process.
 
 
-<Info>
-During iterative development, it may be necessary to do a hard
-reload (clear asset cache) in your browser to make sure it downloads the
-latest updated assets from the server.
-</Info>
+   <Info>
+   During iterative development, it may be necessary to do a hard
+   reload (clear asset cache) in your browser to make sure it downloads the
+   latest updated assets from the server.
+   </Info>
 
 
-<Note>
-When installing and using custom *npm* packages in custom
-*slice types*, the import path must reference the *slice type* project’s
-<Badge color="gray">node_modules</Badge> directory directly:
-</Note>
+   <Note>
+   When installing and using custom *npm* packages in custom
+   *slice types*, the import path must reference the *slice type* project’s
+   <Badge color="gray">node_modules</Badge> directory directly:
+   </Note>
 
    ```bash
    import \$ from './node_modules/jquery';
@@ -812,11 +812,11 @@ When installing and using custom *npm* packages in custom
    ```
 
 
-<Info>
-By default, this will create a <Badge color="gray">&lt;slice_name&gt;.tar.gz</Badge> file
-with the packaged *slice type* in the current directory.  Optionally, a
-name for the tarball can be specified in the command.
-</Info>
+   <Info>
+   By default, this will create a <Badge color="gray">&lt;slice_name&gt;.tar.gz</Badge> file
+   with the packaged *slice type* in the current directory.  Optionally, a
+   name for the tarball can be specified in the command.
+   </Info>
 
 1. Transfer the newly-created *slice type* package to the production server or
    hosted repository.
@@ -836,11 +836,11 @@ name for the tarball can be specified in the command.
    <Badge color="blue-destructive">reveal-slice-extract</Badge>.
 
 
-<Warning>
-Currently *Kinetica* upgrades will overwrite your *slices*. Make
-sure you save and archive all your custom *slice type* export tar files as
-you MUST reapply them after each upgrade.
-</Warning>
+   <Warning>
+   Currently *Kinetica* upgrades will overwrite your *slices*. Make
+   sure you save and archive all your custom *slice type* export tar files as
+   you MUST reapply them after each upgrade.
+   </Warning>
 
    To deploy the *slice type* package, run:
 
@@ -849,11 +849,11 @@ you MUST reapply them after each upgrade.
    ```
 
 
-<Note>
-This process may take several minutes, due to *node* modules
-being installed and *webpack* needing to bundle all the *JavaScript*
-files.
-</Note>
+   <Note>
+   This process may take several minutes, due to *node* modules
+   being installed and *webpack* needing to bundle all the *JavaScript*
+   files.
+   </Note>
 
 
 ## White Labeling
@@ -880,7 +880,7 @@ It is possible to white label *Reveal* by customizing the logo and stylesheets.
    3. Click **Theme**
 
 
-![../images/reveal_theme_editor_menu.png](/content/bi/reveal/images/reveal_theme_editor_menu.png)
+   ![../images/reveal_theme_editor_menu.png](/content/bi/reveal/images/reveal_theme_editor_menu.png)
 
 3. Install logo image.
 
@@ -888,12 +888,12 @@ It is possible to white label *Reveal* by customizing the logo and stylesheets.
    drop area to select a file manually.
 
 
-![../images/reveal_theme_editor_brand_logo.png](/content/bi/reveal/images/reveal_theme_editor_brand_logo.png)
+   ![../images/reveal_theme_editor_brand_logo.png](/content/bi/reveal/images/reveal_theme_editor_brand_logo.png)
 
    The new logo will appear and be active as soon as it is uploaded.
 
 
-![../images/reveal_theme_editor_brand_logo_update.png](/content/bi/reveal/images/reveal_theme_editor_brand_logo_update.png)
+   ![../images/reveal_theme_editor_brand_logo_update.png](/content/bi/reveal/images/reveal_theme_editor_brand_logo_update.png)
 
 
 ### Brand Style
@@ -906,21 +906,21 @@ It is possible to white label *Reveal* by customizing the logo and stylesheets.
    3. Click **Theme**
 
 
-![../images/reveal_theme_editor_menu.png](/content/bi/reveal/images/reveal_theme_editor_menu.png)
+   ![../images/reveal_theme_editor_menu.png](/content/bi/reveal/images/reveal_theme_editor_menu.png)
 
 2. Modify brand colors:
 
    1. Under the **Brand Style** section, select the desired colors
 
 
-![../images/reveal_theme_editor_brand_style.png](/content/bi/reveal/images/reveal_theme_editor_brand_style.png)
+      ![../images/reveal_theme_editor_brand_style.png](/content/bi/reveal/images/reveal_theme_editor_brand_style.png)
 
    2. Click the **Update Style** button.
 
       The changes will be active immediately.
 
 
-![../images/reveal_theme_editor_brand_style_update.png](/content/bi/reveal/images/reveal_theme_editor_brand_style_update.png)
+      ![../images/reveal_theme_editor_brand_style_update.png](/content/bi/reveal/images/reveal_theme_editor_brand_style_update.png)
 
 
 ### Login Screen Title/Subtitle

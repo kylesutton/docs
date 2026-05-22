@@ -78,39 +78,39 @@ EOF
 
   Backup your *grub* config:
 
-```
-sudo cp /boot/grub/grub.conf /boot/grub/grub.conf.bak
-```
+  ```
+  sudo cp /boot/grub/grub.conf /boot/grub/grub.conf.bak
+  ```
   Edit your *grub* config and add `rdblacklist=nouveau` to the end of any lines
   starting with `kernel`.  For example:
 
-```
-kernel /vmlinuz-... quiet rdblacklist=nouveau
-```
+  ```
+  kernel /vmlinuz-... quiet rdblacklist=nouveau
+  ```
 * On RHEL 7
 
   Backup your *grub* config templates:
 
-```
-sudo cp /etc/sysconfig/grub /etc/sysconfig/grub.bak
-```
+  ```
+  sudo cp /etc/sysconfig/grub /etc/sysconfig/grub.bak
+  ```
   Then, update your *grub* config template at <Badge color="gray">/etc/sysconfig/grub</Badge>.  Add
   `rd.driver.blacklist=grub.nouveau` to the `GRUB_CMDLINE_LINUX` variable.
   For example, change:
 
-```
-GRUB_CMDLINE_LINUX="crashkernel=auto ... quiet"
-```
+  ```
+  GRUB_CMDLINE_LINUX="crashkernel=auto ... quiet"
+  ```
   to:
 
-```
-GRUB_CMDLINE_LINUX="crashkernel=auto ... quiet rd.driver.blacklist=grub.nouveau"
-```
+  ```
+  GRUB_CMDLINE_LINUX="crashkernel=auto ... quiet rd.driver.blacklist=grub.nouveau"
+  ```
   Then, rebuild your *grub* config:
 
-```
-sudo grub2-mkconfig -o /boot/grub2/grub.cfg
-```
+  ```
+  sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+  ```
 
 ### Regenerate the Initramfs Image
 
@@ -146,19 +146,19 @@ ps aux | grep -v 'grep' | grep 'lightdm|gdm|kdm'
   Disable the graphical login and reboot as follows (adjust for the login
   manager that is running):
 
-```
-echo  "manual" | sudo tee -a /etc/init/lightdm.override
-sudo reboot now
-```
+  ```
+  echo  "manual" | sudo tee -a /etc/init/lightdm.override
+  sudo reboot now
+  ```
 * On RHEL 7
 
   Disable the graphical login as follows (adjust for the login manager that is
   running):
 
-```
-sudo systemctl disable lightdm
-sudo reboot now
-```
+  ```
+  sudo systemctl disable lightdm
+  sudo reboot now
+  ```
 After the system reboots, it should no longer start up with a graphical login.
 The graphical login will be re-enabled after completing the *Nvidia* driver
 installation.
@@ -198,20 +198,20 @@ drivers.
 
 1. Install the EPEL repo:
 
-```
-yum install epel-release
-```
+   ```
+   yum install epel-release
+   ```
 2. Upgrade the kernel and restart the machine:
 
-```
-yum upgrade kernel
-sudo reboot now
-```
+   ```
+   yum upgrade kernel
+   sudo reboot now
+   ```
 3. Install the dependencies:
 
-```
-sudo yum -y install kernel-devel kernel-headers gcc dkms acpid
-```
+   ```
+   sudo yum -y install kernel-devel kernel-headers gcc dkms acpid
+   ```
 
 ## Install Drivers Only
 
@@ -392,14 +392,14 @@ service running on your server from the above command.
 
 * On RHEL 6:
 
-```
-sudo rm -f /etc/init/lightdm.override
-```
+  ```
+  sudo rm -f /etc/init/lightdm.override
+  ```
 * On RHEL 7:
 
-```
-sudo systemctl enable lightdm
-```
+  ```
+  sudo systemctl enable lightdm
+  ```
 
 ### Reboot
 

@@ -43,14 +43,14 @@ To access the [KAgent UI](/content/admin/kagent/kagent):
 
 1. Ensure the *KAgent* service is started:
 
-```
-service kagent_ui status
-```
+   ```
+   service kagent_ui status
+   ```
 2. Browse to the *KAgent* application using IP or host name:
 
-```
-http://<kagent-host>:8081/kagent
-```
+   ```
+   http://<kagent-host>:8081/kagent
+   ```
 3. If *KAgent* is associated with one or more *Kinetica* clusters, log in using
    the credentials for that cluster.  If *KAgent* has not been associated with
    any clusters yet, the application will load without prompting.
@@ -99,18 +99,18 @@ key. Contact Support (support@kinetica.com) for any questions.
    already installed on the current cluster you want to add to KAgent.
 
 
-<Tip>
-Use the following command to determine the Kinetica package that
-is already on the machine:
+   <Tip>
+   Use the following command to determine the Kinetica package that
+   is already on the machine:
 
-```
-# RHEL
-rpm -qa | grep 'gpudb'
+   ```
+   # RHEL
+   rpm -qa | grep 'gpudb'
 
-# Ubuntu
-apt list --installed | grep 'gpudb'
-```
-</Tip>
+   # Ubuntu
+   apt list --installed | grep 'gpudb'
+   ```
+   </Tip>
 
 5. Enter the license key.
 6. Optionally, provide an external files directory for use with
@@ -132,12 +132,12 @@ apt list --installed | grep 'gpudb'
    **Next**.
 
 
-<Note>
-If clearing the **Open Firewall Ports** checkbox, the firewall
-then must be configured manually to allow the *required* ports listed in
-the [default ports](/content/install/shared/ports) table. Consult
-[Adjust Firewall](/content/install/shared/adjust_firewall) for tips on configuring the firewall.
-</Note>
+   <Note>
+   If clearing the **Open Firewall Ports** checkbox, the firewall
+   then must be configured manually to allow the *required* ports listed in
+   the [default ports](/content/install/shared/ports) table. Consult
+   [Adjust Firewall](/content/install/shared/adjust_firewall) for tips on configuring the firewall.
+   </Note>
 
 
 ### Security
@@ -151,10 +151,10 @@ the [default ports](/content/install/shared/ports) table. Consult
    default administrative user.
 
 
-<Note>
-The password provided here must match the existing cluster's admin
-password.
-</Note>
+   <Note>
+   The password provided here must match the existing cluster's admin
+   password.
+   </Note>
 
 2. Select an **SSL Mode** that best aligns with the existing cluster's
    SSL configuration:
@@ -221,10 +221,10 @@ password.
    running on the node, set the number under *KML GPUs*.
 
 
-<Note>
-Some *UDFs* and features of *KML* may require GPUs to work or
-have increased performance.
-</Note>
+   <Note>
+   Some *UDFs* and features of *KML* may require GPUs to work or
+   have increased performance.
+   </Note>
 
 8. If the *RabbitMQ* package was selected for install in
    [Cluster](#cluster) because a [High Availability](/content/ha)

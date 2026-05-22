@@ -38,39 +38,38 @@ appenders and/or loggers, change the logging level, and more using the
 4. Open `/opt/gpudb/core/etc/gpudb_logger.conf` with a text editor.
 5. Update the `rootLogger` setting with the desired level and appender(s):
 
-```
-log4cplus.rootLogger=<log-level>, <appender1>[, <appender2>, ..., <appenderN>]
-```
+   ```
+   log4cplus.rootLogger=<log-level>, <appender1>[, <appender2>, ..., <appenderN>]
+   ```
 6. Uncomment the desired appender setting section(s):
 
-```
-# ---------------------------------------------------------------------------
-# Rolling dated log file appender.
-# ...
+   ```
+   # ---------------------------------------------------------------------------
+   # Rolling dated log file appender.
+   # ...
 
-log4cplus.appender.ToRollingDatedFile=log4cplus::RollingDatedFileAppender
-...
-```
+   log4cplus.appender.ToRollingDatedFile=log4cplus::RollingDatedFileAppender
+   ...
+   ```
 7. Adjust the appender settings as necessary, e.g., log size, threshold, file
    name, etc.
 8. Adjust additional logger levels and/or appender(s) as necessary:
 
-```
-# ===========================================================================
-# Loggers
-# ...
+   ```
+   # ===========================================================================
+   # Loggers
+   # ...
 
-# Log memory info, logs at DEBUG.
-log4cplus.logger.MEMORY=<log-level>, <appender1>[, <appender2>, ..., <appenderN>]
-
-...
-```
+   # Log memory info, logs at DEBUG.
+   log4cplus.logger.MEMORY=<log-level>, <appender1>[, <appender2>, ..., <appenderN>]
+   ...
+   ```
 9. Save and exit the file.
 10. Restart the [host manager](/content/admin/host_manager) and the database:
 
-```
-service restart gpudb_host_manager && service restart gpudb
-```
+    ```
+    service restart gpudb_host_manager && service restart gpudb
+    ```
 <a id="log-levels"></a>
 
 
@@ -322,9 +321,9 @@ The audit log comes with a few preconfigured
 3. Open `/opt/gpudb/core/etc/gpudb_logger.conf` with a text editor.
 4. Adjust the default `logger.Audit` setting as necessary:
 
-```
-log4cplus.logger.Audit=INFO, AuditAppender
-```
+   ```
+   log4cplus.logger.Audit=INFO, AuditAppender
+   ```
 5. Optionally, update the `additivity` setting if audit information is desired
    in both the `rootLogger` and the audit log. In most cases, this will not
    need to be updated.
@@ -336,9 +335,9 @@ log4cplus.logger.Audit=INFO, AuditAppender
 8. Save and exit the file.
 9. Restart the [host manager](/content/admin/host_manager) and the database:
 
-```
-service restart gpudb_host_manager && service restart gpudb
-```
+   ```
+   service restart gpudb_host_manager && service restart gpudb
+   ```
 <a id="audit-appenders"></a>
 
 

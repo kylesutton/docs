@@ -46,16 +46,16 @@ where Python is externally managed.
 1. Install a Python virtual environment:
 
 
-```bash
-python3 -m venv .venv
-```
+   ```bash
+   python3 -m venv .venv
+   ```
 
 2. Activate the Python virtual environment:
 
 
-```bash
-source .venv/bin/activate
-```
+   ```bash
+   source .venv/bin/activate
+   ```
 
 
 #### PyPI
@@ -64,16 +64,16 @@ source .venv/bin/activate
 1. Install the API:
 
 
-```bash
-pip3 install gpudb
-```
+   ```bash
+   pip3 install gpudb
+   ```
 
 2. Test the installation:
 
 
-```python
-python3 -c "import gpudb;print('Import Successful')"
-```
+   ```python
+   python3 -c "import gpudb;print('Import Successful')"
+   ```
 
    If *Import Successful* is displayed, the API has been installed as is ready
    for use.
@@ -87,30 +87,30 @@ python3 -c "import gpudb;print('Import Successful')"
    e.g., `v7.2`:
 
 
-```bash
-git clone -b release/<kinetica-version> --single-branch https://github.com/kineticadb/kinetica-api-python.git
-```
+   ```bash
+   git clone -b release/<kinetica-version> --single-branch https://github.com/kineticadb/kinetica-api-python.git
+   ```
 
 2. Change directory into the newly downloaded repository:
 
 
-```bash
-cd kinetica-api-python
-```
+   ```bash
+   cd kinetica-api-python
+   ```
 
 3. In the root directory of the unzipped repository, install the Kinetica API:
 
 
-```bash
-sudo pip3 install .
-```
+   ```bash
+   sudo pip3 install .
+   ```
 
 4. Test the installation (*Python3* is necessary for running the API example):
 
 
-```bash
-python3 examples/example.py
-```
+   ```bash
+   python3 examples/example.py
+   ```
 
 
 ### Data File
@@ -160,12 +160,12 @@ Several constants are defined at the beginning of the script:
   graph creation and match operations will be created
 
 
-<Note>
-The schema is created during the table setup portion of the
-script because the schema must exist prior to creating the
-tables that will later support the graph creation and match
-operations.
-</Note>
+  <Note>
+  The schema is created during the table setup portion of the
+  script because the schema must exist prior to creating the
+  tables that will later support the graph creation and match
+  operations.
+  </Note>
 
 * `TABLE_DC` -- the name of the table into which the D.C. roads dataset is
   loaded

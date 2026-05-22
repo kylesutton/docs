@@ -70,52 +70,52 @@ when developing a UDF in C++.
    finished, it prints an export command that sets the environment variable
    needed for the UDF API:
 
-```
-python udfsim.py execute <execute parameters>
-```
+   ```
+   python udfsim.py execute <execute parameters>
+   ```
 2. Run the printed `export` command via command line:
 
-```
-export KINETICA_PCF=/opt/gpudb/api/kinetica-api-python/gpudb/kinetica-udf-sim-icf-Wvbdqi
-```
+   ```
+   export KINETICA_PCF=/opt/gpudb/api/kinetica-api-python/gpudb/kinetica-udf-sim-icf-Wvbdqi
+   ```
 3. Execute the UDF. For example, executing a Python UDF script:
 
-```
-python udf_cublas_proc.py
-```
+   ```
+   python udf_cublas_proc.py
+   ```
 
-<Tip>
-You can execute the UDF using whatever method (Jupyter notebook,
-debugger, etc.) as long as the environment variable output from step 2 has
-been set. The UDF can be executed multiple times without rerunning step 1
-and step 2 as long as it hasn't output any data. For iterative testing
-purposes, it may be desirable to comment out any data output code and
-instead use print statements.
-</Tip>
+   <Tip>
+   You can execute the UDF using whatever method (Jupyter notebook,
+   debugger, etc.) as long as the environment variable output from step 2 has
+   been set. The UDF can be executed multiple times without rerunning step 1
+   and step 2 as long as it hasn't output any data. For iterative testing
+   purposes, it may be desirable to comment out any data output code and
+   instead use print statements.
+   </Tip>
 
 4. Optionally, run the simulator with the `output` argument and any
    parameters to output data from the UDF into the database:
 
-```
-python udfsim.py output <output parameters>
-```
+   ```
+   python udfsim.py output <output parameters>
+   ```
 
-<Info>
-This mode requires the environment variable output from step 2 to
-be set
-</Info>
+   <Info>
+   This mode requires the environment variable output from step 2 to
+   be set
+   </Info>
 
 5. Optionally, run the simulator with the `clean` argument to clean up all the
    files written in step 2. The files can also be manually deleted if desired:
 
-```
-python udfsim.py clean
-```
+   ```
+   python udfsim.py clean
+   ```
 
-<Info>
-This mode requires the environment variable output from step 2 to
-be set
-</Info>
+   <Info>
+   This mode requires the environment variable output from step 2 to
+   be set
+   </Info>
 
 
 ## Examples

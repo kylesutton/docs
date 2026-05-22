@@ -44,26 +44,26 @@ To encrypt the **AuthLDAPBindPassword** in the
 
 1. Generate a new encryption key, if one does not already exist:
 
-```
-\$ /opt/gpudb/core/bin/gpudb_generate_key.sh
-```
+   ```
+   \$ /opt/gpudb/core/bin/gpudb_generate_key.sh
+   ```
 2. Obfuscate the LDAP bind password to be used:
 
-```
-\$ /opt/gpudb/core/bin/gpudb_encrypt.sh "secret password"
-U2FsdGVkX18hfxI6MtztCHZIrrVpkhqmzuB/hGZ3b0umiYNFOtpSIS2JlAhWamTk
-```
+   ```
+   \$ /opt/gpudb/core/bin/gpudb_encrypt.sh "secret password"
+   U2FsdGVkX18hfxI6MtztCHZIrrVpkhqmzuB/hGZ3b0umiYNFOtpSIS2JlAhWamTk
+   ```
 3. The obfuscated password can be verified by decrypting it:
 
-```
-\$ /opt/gpudb/core/bin/gpudb_decrypt.sh U2FsdGVkX18hfxI6MtztCHZIrrVpkhqmzuB/hGZ3b0umiYNFOtpSIS2JlAhWamTk
-secret password
-```
+   ```
+   \$ /opt/gpudb/core/bin/gpudb_decrypt.sh U2FsdGVkX18hfxI6MtztCHZIrrVpkhqmzuB/hGZ3b0umiYNFOtpSIS2JlAhWamTk
+   secret password
+   ```
 4. Modify the <Badge color="gray">/opt/gpudb/httpd/conf/data.conf</Badge> file's
    **AuthLDAPBindPassword** with the obfuscated password and decryption
    command:
 
-```
-## Password of user for search during bind
-AuthLDAPBindPassword "exec:/opt/gpudb/core/bin/gpudb_decrypt.sh U2FsdGVkX18hfxI6MtztCHZIrrVpkhqmzuB/hGZ3b0umiYNFOtpSIS2JlAhWamTk"
-```
+   ```
+   ## Password of user for search during bind
+   AuthLDAPBindPassword "exec:/opt/gpudb/core/bin/gpudb_decrypt.sh U2FsdGVkX18hfxI6MtztCHZIrrVpkhqmzuB/hGZ3b0umiYNFOtpSIS2JlAhWamTk"
+   ```

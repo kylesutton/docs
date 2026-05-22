@@ -186,9 +186,9 @@ through PGQ/GQL, and native Kafka integration for high availability.
 * Single sign-on (SSO) for Reveal, Workbench, and GAdmin with OAuth/OIDC
 
 
-<Info>
-Requires KAgent 7.2.2.0+ for configuration
-</Info>
+  <Info>
+  Requires KAgent 7.2.2.0+ for configuration
+  </Info>
 
 
 ## Version 7.2.1
@@ -211,9 +211,9 @@ Requires KAgent 7.2.2.0+ for configuration
   materialized views in any explain plan.  This supports getting an explain plan
   for a materialized view by executing:
 
-```
-EXPLAIN /* KI_HINT_RECURSIVE_EXPLAIN */ SELECT * FROM my_mview
-```
+  ```
+  EXPLAIN /* KI_HINT_RECURSIVE_EXPLAIN */ SELECT * FROM my_mview
+  ```
 * Added new
   [system-wide, directory, and UDF](/content/sql/security#sql-security-priv-mgmt-sys)
   `CREATE` permission, as well as `CREATE` permission for
@@ -230,23 +230,23 @@ EXPLAIN /* KI_HINT_RECURSIVE_EXPLAIN */ SELECT * FROM my_mview
 
   Examples:
 
-```
-SELECT /*+ KI_HINT_MATERIALIZE */ *
-FROM iter t1 , iter t2
-WHERE t1.i < 100 AND t2.i < 100
+  ```
+  SELECT /*+ KI_HINT_MATERIALIZE */ *
+  FROM iter t1 , iter t2
+  WHERE t1.i < 100 AND t2.i < 100
 
-SELECT /*+ KI_HINT_GROUP_BY_PK / i, COUNT()
-FROM iter
-GROUP BY 1
+  SELECT /*+ KI_HINT_GROUP_BY_PK / i, COUNT()
+  FROM iter
+  GROUP BY 1
 
-SELECT /*+ KI_HINT_NO_VIRTUAL_UNION */ *
-FROM
-(
-    SELECT i FROM iter WHERE i < 100
-    UNION ALL
-    SELECT i FROM iter WHERE i > 1000 AND i < 2000
-)
-```
+  SELECT /*+ KI_HINT_NO_VIRTUAL_UNION */ *
+  FROM
+  (
+      SELECT i FROM iter WHERE i < 100
+      UNION ALL
+      SELECT i FROM iter WHERE i > 1000 AND i < 2000
+  )
+  ```
 * Added support for `KI_HINT_JOB_USER_DATA(user_text)` hint for user to
   provide the query tag that will appear in the *Jobs* list
 

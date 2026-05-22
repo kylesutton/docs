@@ -66,46 +66,46 @@ UDF simulator (details found in [Development](#development)).
 1. In the desired directory, run the following to download the Kinetica Python
    UDF tutorial repository:
 
-```
-git clone -b release/v7.2 --single-branch https://github.com/kineticadb/kinetica-tutorial-python-udf-api.git
-```
+   ```
+   git clone -b release/v7.2 --single-branch https://github.com/kineticadb/kinetica-tutorial-python-udf-api.git
+   ```
 2. In the same directory, run the following to download the Kinetica Python UDF
    API repository:
 
-```
-git clone -b release/v7.2 --single-branch https://github.com/kineticadb/kinetica-udf-api-python.git
-```
+   ```
+   git clone -b release/v7.2 --single-branch https://github.com/kineticadb/kinetica-udf-api-python.git
+   ```
 3. In the same directory, run the following to download the Kinetica Python API
    repository:
 
-```
-git clone -b release/v7.2 --single-branch https://github.com/kineticadb/kinetica-api-python.git
-```
+   ```
+   git clone -b release/v7.2 --single-branch https://github.com/kineticadb/kinetica-api-python.git
+   ```
 4. Install the `pandas` Python library:
 
-```
-pip3 install pandas
-```
+   ```
+   pip3 install pandas
+   ```
 5. Change directory into the newly downloaded native Python API repository:
 
-```
-cd kinetica-api-python
-```
+   ```
+   cd kinetica-api-python
+   ```
 6. In the root directory of the repository, install the Kinetica API:
 
-```
-sudo python3 setup.py install
-```
+   ```
+   sudo python3 setup.py install
+   ```
 7. Change directory into the UDF tutorial root:
 
-```
-cd ..
-```
+   ```
+   cd ..
+   ```
 8. Add the Python UDF API directory to the `PYTHONPATH`:
 
-```
-export PYTHONPATH=\$PYTHONPATH:\$(cd kinetica-udf-api-python;pwd)
-```
+   ```
+   export PYTHONPATH=\$PYTHONPATH:\$(cd kinetica-udf-api-python;pwd)
+   ```
 
 ## Development
 
@@ -123,23 +123,23 @@ database.
 
 2. Change directory into the newly downloaded Python UDF tutorial repository:
 
-```
-cd kinetica-tutorial-python-udf-api/table-copy
-```
+   ```
+   cd kinetica-tutorial-python-udf-api/table-copy
+   ```
 3. Run the UDF manager script with the `init` option, specifying the database
    URL and a username & password:
 
-```
-python3 udf_tc_py_manager.py init <url> <username> <password>
-```
+   ```
+   python3 udf_tc_py_manager.py init <url> <username> <password>
+   ```
 4. In the native Python API directory, run the UDF Simulator in `execute`
    mode with the following options to simulate running the UDF:
 
-```
-python3 ../../kinetica-api-python/examples/udfsim.py execute -d \
-   -i [<schema>.]<input-table> -o [<schema>.]<output-table> \
-   -K <url> -U <username> -P <password>
-```
+   ```
+   python3 ../../kinetica-api-python/examples/udfsim.py execute -d \
+      -i [<schema>.]<input-table> -o [<schema>.]<output-table> \
+      -K <url> -U <username> -P <password>
+   ```
    Where:
 
    * `-i` - schema-qualified UDF input table
@@ -150,66 +150,66 @@ python3 ../../kinetica-api-python/examples/udfsim.py execute -d \
 
    For instance:
 
-```
-python3 ../../kinetica-api-python/examples/udfsim.py execute -d \
-   -i udf_tc_py_in_table -o udf_tc_py_out_table \
-   -K http://<db.host>:9191 -U admin -P admin123
-```
+   ```
+   python3 ../../kinetica-api-python/examples/udfsim.py execute -d \
+      -i udf_tc_py_in_table -o udf_tc_py_out_table \
+      -K http://<db.host>:9191 -U admin -P admin123
+   ```
 5. Copy & execute the `export` command output by the previous command; this
    will prepare the execution environment for simulating the UDF:
 
-```
-export KINETICA_PCF=/tmp/udf-sim-control-files/kinetica-udf-sim-icf-xMGW32
-```
+   ```
+   export KINETICA_PCF=/tmp/udf-sim-control-files/kinetica-udf-sim-icf-xMGW32
+   ```
 
-<Note>
-The `export` command shown above is an *example* of what the
-`udfsim.py` script will output--it should **not** be copied to the
-terminal in which this example is being run.  Make sure to copy & execute
-the **actual** command output by `udfsim.py` in the previous step.
-</Note>
+   <Note>
+   The `export` command shown above is an *example* of what the
+   `udfsim.py` script will output--it should **not** be copied to the
+   terminal in which this example is being run.  Make sure to copy & execute
+   the **actual** command output by `udfsim.py` in the previous step.
+   </Note>
 
 6. Run the UDF:
 
-```
-python3 udf_tc_py_proc.py
-```
+   ```
+   python3 udf_tc_py_proc.py
+   ```
 7. Run the UDF Simulator in `output` mode to output the results to
    Kinetica (use the dry run flag `-d` to avoid writing to Kinetica).
    The `results` map will be returned (even if there's nothing in it) as well
    as the number of records that were (or will be in the case of a dry run)
    added to the given output table:
 
-```
-python3 ../../kinetica-api-python/examples/udfsim.py output \
-   -K <url> -U <username> -P <password>
-```
+   ```
+   python3 ../../kinetica-api-python/examples/udfsim.py output \
+      -K <url> -U <username> -P <password>
+   ```
    For instance:
 
-```
-python3 ../../kinetica-api-python/examples/udfsim.py output \
-   -K http://<db.host>:9191 \
-   -U admin -P admin123
-```
+   ```
+   python3 ../../kinetica-api-python/examples/udfsim.py output \
+      -K http://<db.host>:9191 \
+      -U admin -P admin123
+   ```
    This should output the following:
 
-```
-No results
-Output:
+   ```
+   No results
+   Output:
 
-udf_tc_py_out_table: 10000 records
-```
+   udf_tc_py_out_table: 10000 records
+   ```
 8. Clean the control files output by the UDF Simulator:
 
-```
-python3 ../../kinetica-api-python/examples/udfsim.py clean
-```
+   ```
+   python3 ../../kinetica-api-python/examples/udfsim.py clean
+   ```
 
-<Note>
-The `clean` command is only necessary if data was output to Kinetica;
-otherwise, the UDF Simulator can be re-run as many times as desired
-without having to clean the output files and enter another export command.
-</Note>
+   <Note>
+   The `clean` command is only necessary if data was output to Kinetica;
+   otherwise, the UDF Simulator can be re-run as many times as desired
+   without having to clean the output files and enter another export command.
+   </Note>
 
 
 ## Deployment
@@ -224,14 +224,14 @@ and
 1. Run the UDF manager script with the `init` option to reset the example
    tables:
 
-```
-python3 udf_tc_py_manager.py init <url> <username> <password>
-```
+   ```
+   python3 udf_tc_py_manager.py init <url> <username> <password>
+   ```
 2. Run the UDF manager script with the `exec` option to run the example:
 
-```
-python3 udf_tc_py_manager.py exec <url> <username> <password>
-```
+   ```
+   python3 udf_tc_py_manager.py exec <url> <username> <password>
+   ```
 3. Verify the results, using a SQL client (KiSQL), Kinetica Workbench, or other:
 
    * The `udf_tc_py_in_table` table is created in the user's default schema
@@ -253,10 +253,10 @@ python3 udf_tc_py_manager.py exec <url> <username> <password>
 
      The database logs should also show the portion of the data being copied:
 
-```
-Copying <5071> records on rank/TOM <1/0> from <ki_home.udf_tc_py_in_table> to <ki_home.udf_tc_py_out_table>
-Copying <4929> records on rank/TOM <2/0> from <ki_home.udf_tc_py_in_table> to <ki_home.udf_tc_py_out_table>
-```
+     ```
+     Copying <5071> records on rank/TOM <1/0> from <ki_home.udf_tc_py_in_table> to <ki_home.udf_tc_py_out_table>
+     Copying <4929> records on rank/TOM <2/0> from <ki_home.udf_tc_py_in_table> to <ki_home.udf_tc_py_out_table>
+     ```
 
 ## UDF Detail
 

@@ -60,15 +60,15 @@ to be made, where *nullability* of each column is specified in two places:
 
 1. As a union between the type of the nullable column and the keyword `null`:
 
-```
-{"name":"null_col","type":["int","null"]}
-```
+   ```
+   {"name":"null_col","type":["int","null"]}
+   ```
 2. In the `properties` list, with each nullable column being assigned the
    `nullable` property:
 
-```
-"null_col":["nullable"]
-```
+   ```
+   "null_col":["nullable"]
+   ```
 In the following example, a *type schema* named `ex_null_rest` is created with
 a nullable column, `null_col`.  To create this *type schema*, call the
 [/create/type](/content/api/rest/create_type_rest#create-type-rest) endpoint with the following payload:

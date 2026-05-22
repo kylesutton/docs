@@ -9,14 +9,14 @@ title: 'HTTPD "NoAuth" Configuration'
    [SSL Docs](https://httpd.apache.org/docs/2.4/ssl/ssl_howto.html) for more
    information
 
-```
-SSLEngine On
-...
-SSLCertificateFile </path/to/cert>
-SSLCertificateKeyFile </path/to/key>
-SSLProxyEngine On
-RequestHeader set X-Forwarded-Proto "https"
-```
+   ```
+   SSLEngine On
+   ...
+   SSLCertificateFile </path/to/cert>
+   SSLCertificateKeyFile </path/to/key>
+   SSLProxyEngine On
+   RequestHeader set X-Forwarded-Proto "https"
+   ```
 
 <Note>
 The following settings are optional but provide greater security.

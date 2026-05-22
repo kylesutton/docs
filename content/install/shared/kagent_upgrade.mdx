@@ -8,20 +8,20 @@ outside the cluster.  After copying the *KAgent* package to the server hosting
 
 1. Stop the current *KAgent* process:
 
-```
-service kagent stop
-```
+   ```
+   service kagent stop
+   ```
 2. Upgrade the *KAgent* application based on host operating system:
 
    * On RHEL:
 
-```
-sudo yum upgrade ./kagent-<version>.<architecture>.rpm
-```
+     ```
+     sudo yum upgrade ./kagent-<version>.<architecture>.rpm
+     ```
    * On Debian/Ubuntu:
 
-```
-sudo apt upgrade ./kagent-<version>.<architecture>.deb
-```
+     ```
+     sudo apt upgrade ./kagent-<version>.<architecture>.deb
+     ```
 This upgrades the package in the directory <Badge color="gray">/opt/gpudb/kagent</Badge> and
 starts the `kagent_ui` service.

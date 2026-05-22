@@ -51,9 +51,9 @@ install.packages(c("DBI", "RJSONIO", "httr", "bit64", "hms", "methods", "purrr",
    [release page](https://github.com/kineticadb/RKinetica/releases).
 2. Install the *RKinetica* package in *RStudio* or *R* console:
 
-```
-install.packages("/path/to/RKinetica_<version>.tar.gz", repos = NULL, type = "source")
-```
+   ```
+   install.packages("/path/to/RKinetica_<version>.tar.gz", repos = NULL, type = "source")
+   ```
 
 ### Manually Built Package Installation
 
@@ -63,28 +63,28 @@ package locally, but the *RKinetica* package can be built as follows:
 
 1. Clone the latest *RKinetica* repository version:
 
-```
-git clone https://github.com/kineticadb/RKinetica.git -b release/v7.1 --single-branch
-```
+   ```
+   git clone https://github.com/kineticadb/RKinetica.git -b release/v7.1 --single-branch
+   ```
 2. In the same directory, use the *R* CLI to build the package:
 
-```
-R CMD build RKinetica
-```
+   ```
+   R CMD build RKinetica
+   ```
    This sequence produces a `tar.gz` file, which, once installed, is made
    available to *R*. The `tar.gz` file is created in the same directory the
    `build` command was issued.
 3. Verify the `tar.gz` file was created before installing the *RKinetica*
    package:
 
-```
-ls RKinetica*
-```
+   ```
+   ls RKinetica*
+   ```
 4. Install the *RKinetica* package via the *R* CLI:
 
-```
-R CMD install RKinetica_<version>.tar.gz
-```
+   ```
+   R CMD install RKinetica_<version>.tar.gz
+   ```
 
 ## Usage
 
@@ -279,69 +279,69 @@ Some of the most common commands:
 
 * Print connection info:
 
-```
-dbGetInfo(con)
-```
+  ```
+  dbGetInfo(con)
+  ```
 * Get the current user's [default schema](/content/concepts/schemas#schema-default):
 
-```
-con@default_schema
-```
+  ```
+  con@default_schema
+  ```
 * List top-level schemas the user has access to, the tables contained within
   those schemas, and basic information about the schemas and tables:
 
-```
-dbListObjects(con)
-```
+  ```
+  dbListObjects(con)
+  ```
 * Get a list of tables within the `ki_home` schema:
 
-```
-dbListTables(con, "ki_home")
-```
+  ```
+  dbListTables(con, "ki_home")
+  ```
 * Write a table to the user's *default schema* with 3 columns:
 
-```
-dbWriteTable(con, "tableA", data.frame(a = 1L, b = 2L, c = 3.0), row.names = NULL)
-```
+  ```
+  dbWriteTable(con, "tableA", data.frame(a = 1L, b = 2L, c = 3.0), row.names = NULL)
+  ```
 * Check if the table exists in the user's *default schema*:
 
-```
-dbExistsTable(con, "tableA")
-```
+  ```
+  dbExistsTable(con, "tableA")
+  ```
 * Check if the table exists in the `example` schema using the *KineticaId*
   object:
 
-```
-id <- KineticaId("example.tableA")
-dbExistsTable(con, id)
-```
+  ```
+  id <- KineticaId("example.tableA")
+  dbExistsTable(con, id)
+  ```
 * List `tableA` (located in the user's *default schema*) fields:
 
-```
-dbListFields(con, "tableA")
-```
+  ```
+  dbListFields(con, "tableA")
+  ```
 * Add records to `tableA` (located in the user's *default schema*):
 
-```
-dbAppendTable(con, "tableA", data.frame(a = 2L:3L, b = 3L:4L, c = 4.0:5.0), row.names = NULL)
-```
+  ```
+  dbAppendTable(con, "tableA", data.frame(a = 2L:3L, b = 3L:4L, c = 4.0:5.0), row.names = NULL)
+  ```
 * Read `tableA` (located in the user's *default schema*) into variable:
 
-```
-rows <- dbReadTable(con, "tableA")
-print(rows)
-```
+  ```
+  rows <- dbReadTable(con, "tableA")
+  print(rows)
+  ```
 * Drop a table in the user's *default schema* if it
   exists:
 
-```
-dbRemoveTable(con, "tableA")
-```
+  ```
+  dbRemoveTable(con, "tableA")
+  ```
 * Disconnect:
 
-```
-dbDisconnect(con)
-```
+  ```
+  dbDisconnect(con)
+  ```
 Large tables, views, or query results can have pagination parameters passed into
 the `dbSendQuery` or `dbSendStatement` methods. Assuming that the
 connection was established with a row limit of 1,000,000, i.e.
