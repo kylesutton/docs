@@ -259,5 +259,11 @@
   },
   "search": {
     "prompt": "Search Kinetica docs..."
-  }
+  },
+  "redirects": [
+    {
+      "source": "/content/tuning",
+      "destination": "/content/tuning/index"
+    }
+  ]
 }
