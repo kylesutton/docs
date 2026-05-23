@@ -218,19 +218,19 @@ URLs (via the `ha_ring` parameter) as well as other connection information:
 con <- dbConnect(RKinetica::Kinetica(), url = "http://172.123.45.61:9191")
 dbGetInfo(con)
 
-\$url
+$url
 [1] "http://172.123.45.61:9191"
 
-\$host
+$host
 [1] "172.123.45.61"
 
-\$port
+$port
 [1] 9191
 
-\$ha_enabled
+$ha_enabled
 [1] TRUE
 
-\$ha_ring
+$ha_ring
 [1] "http://172.123.45.63:9191" "http://172.123.45.61:9191" "http://172.123.45.62:9191"
 ```
 URLs in `ha_ring` list are randomly selected to balance load on secondary URL

@@ -163,7 +163,7 @@ its schema) in the remote database into which data will be exported.
 Data will be exported using an `INSERT` statement of the form:
 
 ```
-INSERT INTO [<schema name>.]<table name> VALUES (\$1, ..., \$N)
+INSERT INTO [<schema name>.]<table name> VALUES ($1, ..., $N)
 ```
 This default form can be modified to use the `?` parameter form via the
 `USE_INDEXED_PARAMETERS` option.

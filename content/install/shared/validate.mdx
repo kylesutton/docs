@@ -18,7 +18,7 @@ the server is responding and port is available with respect to any running
 firewalls:
 
 ```
-\$ curl localhost:9191
+$ curl localhost:9191
 Kinetica is running!
 ```
 
@@ -31,7 +31,7 @@ pulls statistics from the *Kinetica* instance.  Running this on the *head node*,
 passing in the appropriate `<username>` & `<password>`, you should see:
 
 ```
-\$ /opt/gpudb/bin/gpudb_python /opt/gpudb/kitools/gadmin_sim.py -u <username> -p <password> --table --summary
+$ /opt/gpudb/bin/gpudb_python /opt/gpudb/kitools/gadmin_sim.py -u <username> -p <password> --table --summary
 +-----------------+--------------------------------+----------------------+----------------------+-------+
 |     Schema      |           Table/View           |       Records        |       Type ID        |  TTL  |
 +=================+================================+======================+======================+=======+

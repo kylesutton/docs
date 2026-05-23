@@ -48,7 +48,7 @@ This example makes use of the NYC taxi trip table, which can be loaded using
 1. Launch *Spark Shell*:
 
    ```bash
-   \$ spark-shell --jars kinetica-jdbc-*-fullshaded.jar
+   $ spark-shell --jars kinetica-jdbc-*-fullshaded.jar
    ```
 
 2. Configure JDBC for source database and specify query for map key `dbtable`;
@@ -221,7 +221,7 @@ val KineticaDialect = new JdbcDialect {
     override def getTruncateQuery(
         table: String,
         cascade: Option[Boolean] = isCascadingTruncateTable
-    ): String = { s"TRUNCATE TABLE \$table" }
+    ): String = { s"TRUNCATE TABLE $table" }
 }
 JdbcDialects.registerDialect(KineticaDialect)
 ```

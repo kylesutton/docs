@@ -29,7 +29,7 @@ The `SSLCipherSuite` setting can also be upgraded, e.g.,
 ```
 SSLProtocol -all +TLSv1.2
 SSLCipherSuite HIGH:MEDIUM
-Header edit Set-Cookie ^(.*)\$ \$1;HttpOnly;Secure
+Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
 Header set Access-Control-Allow-Methods "POST, GET, OPTIONS, DELETE, PUT"
 Header set Access-Control-Max-Age "1000"
 Header set Access-Control-Allow-Headers "x-requested-with, Content-Type, origin, authorization, accept, client-security-token"

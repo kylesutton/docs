@@ -32,13 +32,13 @@ All commands should be run as the `gpudb` user.
 The *Scikit-CUDA* package is also required and must first be installed.
 
 ```console title="Set CUDA Path"
-\$ export CUDA_ROOT=/usr/local/cuda
-\$ export PATH=\$PATH:\$CUDA_ROOT/bin
-\$ export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:\$CUDA_ROOT/lib64
+$ export CUDA_ROOT=/usr/local/cuda
+$ export PATH=$PATH:$CUDA_ROOT/bin
+$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_ROOT/lib64
 ```
 
 ```bash title="Install Scikit-CUDA Package"
-\$ /opt/gpudb/bin/gpudb_pip install scikit-cuda
+$ /opt/gpudb/bin/gpudb_pip install scikit-cuda
 ```
 
 After copying the three example scripts to a `gpudb`-accessible
@@ -46,8 +46,8 @@ directory on the *Kinetica* head node, the example can be run as follows,
 specifying the database URL, username, & password to the Python scripts:
 
 ```bash title="Run Example"
-\$ /opt/gpudb/bin/gpudb_python udf_cublas_py_init.py --url <kinetica-url> --username <kinetica-user> --password <kinetica-pass>
-\$ /opt/gpudb/bin/gpudb_python udf_cublas_py_exec.py --url <kinetica-url> --username <kinetica-user> --password <kinetica-pass>
+$ /opt/gpudb/bin/gpudb_python udf_cublas_py_init.py --url <kinetica-url> --username <kinetica-user> --password <kinetica-pass>
+$ /opt/gpudb/bin/gpudb_python udf_cublas_py_exec.py --url <kinetica-url> --username <kinetica-user> --password <kinetica-pass>
 ```
 
 The results of the *UDF* run can be seen in the

@@ -13,7 +13,7 @@ commands:
 {/* Source: /install/shared/scripts/kagent_install_rhel8.sh (lines 2 4-6) */}
 ```bash RHEL 8
 KAGENT_REPO=https://repo.kinetica.com/yum/7.2/CentOS/8/x86_64
-KAGENT_PKG=\$(wget -q -O - \${KAGENT_REPO} | sed 's/<[^>]*>//g' | grep -o "kagent.*ga.*rpm " | sort -V | tail -1)
+KAGENT_PKG=$(wget -q -O - \${KAGENT_REPO} | sed 's/<[^>]*>//g' | grep -o "kagent.*ga.*rpm " | sort -V | tail -1)
 wget \${KAGENT_REPO}/\${KAGENT_PKG}
 sudo yum install ./\${KAGENT_PKG}
 ```
@@ -21,7 +21,7 @@ sudo yum install ./\${KAGENT_PKG}
 {/* Source: /install/shared/scripts/kagent_install_ubuntu20.sh (lines 2 4-6) */}
 ```bash Ubuntu 20
 KAGENT_REPO=https://repo.kinetica.com/debian/7.2/Ubuntu/focal/binary-amd64
-KAGENT_PKG=\$(wget -q -O - \${KAGENT_REPO} | sed 's/<[^>]*>//g' | grep -o "kagent.*ga.*deb " | sort -V | tail -1)
+KAGENT_PKG=$(wget -q -O - \${KAGENT_REPO} | sed 's/<[^>]*>//g' | grep -o "kagent.*ga.*deb " | sort -V | tail -1)
 wget \${KAGENT_REPO}/\${KAGENT_PKG}
 sudo apt install ./\${KAGENT_PKG}
 ```
@@ -29,7 +29,7 @@ sudo apt install ./\${KAGENT_PKG}
 {/* Source: /install/shared/scripts/kagent_install_ubuntu22.sh (lines 2 4-6) */}
 ```bash Ubuntu 22
 KAGENT_REPO=https://repo.kinetica.com/debian/7.2/Ubuntu/jammy/binary-amd64
-KAGENT_PKG=\$(wget -q -O - \${KAGENT_REPO} | sed 's/<[^>]*>//g' | grep -o "kagent.*ga.*deb " | sort -V | tail -1)
+KAGENT_PKG=$(wget -q -O - \${KAGENT_REPO} | sed 's/<[^>]*>//g' | grep -o "kagent.*ga.*deb " | sort -V | tail -1)
 wget \${KAGENT_REPO}/\${KAGENT_PKG}
 sudo apt install ./\${KAGENT_PKG}
 ```
@@ -37,7 +37,7 @@ sudo apt install ./\${KAGENT_PKG}
 {/* Source: /install/shared/scripts/kagent_install_suse.sh (lines 2 4-6) */}
 ```bash SUSE 15
 KAGENT_REPO=https://repo.kinetica.com/yum/7.2/SUSE/15.3/x86_64
-KAGENT_PKG=\$(wget -q -O - \${KAGENT_REPO} | sed 's/<[^>]*>//g' | grep -o "kagent.*ga.*rpm " | sort -V | tail -1)
+KAGENT_PKG=$(wget -q -O - \${KAGENT_REPO} | sed 's/<[^>]*>//g' | grep -o "kagent.*ga.*rpm " | sort -V | tail -1)
 wget \${KAGENT_REPO}/\${KAGENT_PKG}
 sudo zypper install ./\${KAGENT_PKG}
 ```

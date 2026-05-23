@@ -18,8 +18,8 @@ The connector jar can be built with *Maven*.
 1. Download the connector source:
 
    ```
-   \$ git clone https://github.com/kineticadb/kinetica-connector-nifi.git
-   \$ cd kinetica-connector-nifi
+   $ git clone https://github.com/kineticadb/kinetica-connector-nifi.git
+   $ cd kinetica-connector-nifi
    ```
 2. If using a version of *NiFi* other than *1.3.0*, update the `pom.xml` file
    with the correct version of *NiFi* in this block:
@@ -34,7 +34,7 @@ The connector jar can be built with *Maven*.
 3. Build the connector jar:
 
    ```
-   \$ mvn clean package
+   $ mvn clean package
    ```
 
 ## Installing the Kinetica NiFi Connector into NiFi
@@ -44,7 +44,7 @@ Deploy the connector jar built in the previous step to the *NiFi* libraries
 directory:
 
 ```
-\$ cp nifi-GPUdbNiFi-nar/target/nifi-GPUdbNiFi-nar-1.3.0.nar <NiFiHome>/lib
+$ cp nifi-GPUdbNiFi-nar/target/nifi-GPUdbNiFi-nar-1.3.0.nar <NiFiHome>/lib
 ```
 
 ## Getting Streaming Data from Kinetica to JSON or CSV Files

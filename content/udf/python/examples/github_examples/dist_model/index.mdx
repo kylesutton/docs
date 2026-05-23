@@ -124,7 +124,7 @@ automatically configured using the `conda_env_py3.yml` file found in the
 7. Add the *Python UDF* API repo's root directory to the PYTHONPATH:
 
    ```
-   export PYTHONPATH=\$(pwd):\$PYTHONPATH
+   export PYTHONPATH=$(pwd):$PYTHONPATH
    ```
 8. Edit the `util/test_environment.py` script for the correct database url,
    user, and password for your *Kinetica* instance:

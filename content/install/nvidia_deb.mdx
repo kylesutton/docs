@@ -91,7 +91,7 @@ The following prerequisites should be installed before installing the *Nvidia*
 drivers:
 
 ```
-sudo apt-get -y install linux-headers-\$(uname -r) make gcc-4.8
+sudo apt-get -y install linux-headers-$(uname -r) make gcc-4.8
 sudo apt-get -y install acpid dkms
 ```
 
@@ -156,7 +156,7 @@ Download the recommended driver executable.  Change the file permissions to
 allow execution:
 
 ```
-chmod +x ./NVIDIA-Linux-\$(uname -m)-*.run
+chmod +x ./NVIDIA-Linux-$(uname -m)-*.run
 ```
 Run the install.  If you are prompted about cryptographic signatures on the
 kernel module, answer *Sign the Kernel Module* and then
@@ -167,10 +167,10 @@ has been signed, but signed kernel modules are not required.
 
 
 ```
-grep CONFIG_MODULE_SIG=y /boot/config-\$(uname -r) && \
-grep "CONFIG_MODULE_SIG_FORCE is not set" /boot/config-\$(uname -r) && \
-sudo ./NVIDIA-Linux-\$(uname -m)-*.run -e || \
-sudo ./NVIDIA-Linux-\$(uname -m)-*.run
+grep CONFIG_MODULE_SIG=y /boot/config-$(uname -r) && \
+grep "CONFIG_MODULE_SIG_FORCE is not set" /boot/config-$(uname -r) && \
+sudo ./NVIDIA-Linux-$(uname -m)-*.run -e || \
+sudo ./NVIDIA-Linux-$(uname -m)-*.run
 ```
 If there are any issues with the installation, the installer should notify you
 where the log is kept; the default location is usually:
@@ -204,7 +204,7 @@ system kernel version don't match up, the *Nvidia* driver install will not
 proceed after accepting the license. To fix this issue:
 
 ```
-sudo apt-get update && sudo apt-get install linux-headers-\$(uname -r)
+sudo apt-get update && sudo apt-get install linux-headers-$(uname -r)
 sudo reboot now
 ```
 

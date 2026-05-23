@@ -119,8 +119,8 @@ Backup the old *initramfs* image, generate a new *initramfs* image, disable any
 graphical logins and reboot the server:
 
 ```
-sudo mv /boot/initramfs-\$(uname -r).img /boot/initramfs-\$(uname -r)-nouveau.img
-sudo dracut /boot/initramfs-\$(uname -r).img \$(uname -r)
+sudo mv /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r)-nouveau.img
+sudo dracut /boot/initramfs-$(uname -r).img $(uname -r)
 ```
 
 ### Exiting X
@@ -255,7 +255,7 @@ Download the recommended driver executable.  Change the file permissions to
 allow execution:
 
 ```
-chmod +x ./NVIDIA-Linux-\$(uname -m)-*.run
+chmod +x ./NVIDIA-Linux-$(uname -m)-*.run
 ```
 Run the install.  If you are prompted about cryptographic signatures on the
 kernel module, answer *Sign the Kernel Module* and then
@@ -266,10 +266,10 @@ has been signed, but signed kernel modules are not required.
 
 
 ```
-grep CONFIG_MODULE_SIG=y /boot/config-\$(uname -r) && \
-grep "CONFIG_MODULE_SIG_FORCE is not set" /boot/config-\$(uname -r) && \
-sudo ./NVIDIA-Linux-\$(uname -m)-*.run -e || \
-sudo ./NVIDIA-Linux-\$(uname -m)-*.run
+grep CONFIG_MODULE_SIG=y /boot/config-$(uname -r) && \
+grep "CONFIG_MODULE_SIG_FORCE is not set" /boot/config-$(uname -r) && \
+sudo ./NVIDIA-Linux-$(uname -m)-*.run -e || \
+sudo ./NVIDIA-Linux-$(uname -m)-*.run
 ```
 If there are any issues with the installation, the installer should notify you
 where the log is kept; the default location is usually:
