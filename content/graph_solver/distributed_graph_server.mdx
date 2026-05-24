@@ -50,57 +50,53 @@ provided and the related graph does not exist on a provided
 server, an error will be returned.
 </Note>
 
-| Endpoint | Server ID Provided | Success Condition | Behavior |
-| --- | --- | --- | --- |
-|                                        +-------------------------------+---------------------------------------------+-------------------------------------------+
-|                                        | `all`                       | Enough RAM on all graph servers.            | Replicates the graph on all graph servers.|
-|                                        +-------------------------------+---------------------------------------------+-------------------------------------------+
-|                                        | `<id>[, <id2>, <id3>...]`   | Enough RAM on the specified graph           | Creates the graph on the specified graph  |
-|                                        |                               | server(s).                                  | server(s).                                |
-|  |  |  |  |
-| --- | --- | --- | --- |
-| [/delete/graph](/content/api/rest/delete_graph_rest) | N/A | N/A | Deletes the graph on all graph servers. |
-|                                        +-------------------------------+---------------------------------------------+-------------------------------------------+
-|                                        | `<id>[, <id2>, <id3>...]`   | Graph exists on the specified graph         | Matches the graph using the specified     |
-|                                        |                               | server(s).                                  | graph server(s).                          |
-|  |  |  |  |
-| --- | --- | --- | --- |
-| [/modify/graph](/content/api/rest/modify_graph_rest) | N/A | N/A | Modifies the graph on all graph servers. |
-|                                        +-------------------------------+---------------------------------------------+-------------------------------------------+
-|                                        | `<id>[, <id2>, <id3>...]`   | Graph exists on the specified graph         | Queries the graph using the specified     |
-|                                        |                               | server(s).                                  | graph server(s).                          |
+### [/create/graph](/content/api/rest/create_graph_rest)
 
-| [/show/graph](/content/api/rest/show_graph_rest)   | *&lt;none&gt;* (default)            | N/A                                         | Shows all graphs on all servers.          |
-|                                        +-------------------------------+---------------------------------------------+-------------------------------------------+
-|                                        | `<id>[, <id2>, <id3>...]`   | Graph exists on the specified graph         | Shows all graphs on the specified         |
-|                                        |                               | server(s).                                  | server(s).                                |
+| Server ID Provided | Success Condition | Behavior |
+| --- | --- | --- |
+| *&lt;none&gt;* (default) | Enough RAM on at least one graph server. | Creates the graph on the graph server with the most available memory. |
+| `all` | Enough RAM on all graph servers. | Replicates the graph on all graph servers. |
+| `<id>[, <id2>, <id3>...]` | Enough RAM on the specified graph server(s). | Creates the graph on the specified graph server(s). |
 
-| [/solve/graph](/content/api/rest/solve_graph_rest)  | *&lt;none&gt;* (default)            | Graph exists on at least one server.        | If the [solver](/content/graph_solver/network_graph_solver#solvers) is      |
-|                                        |                               |                                             | `SHORTEST_PATH`:                        |
-|                                        |                               |                                             |                                           |
-|                                        |                               |                                             | * Solves the graph using all available    |
-|                                        |                               |                                             |   servers                                 |
-|                                        |                               |                                             |                                           |
-|                                        |                               |                                             | If the *solver* is **anything other**     |
-|                                        |                               |                                             | **than** `SHORTEST_PATH`:               |
-|                                        |                               |                                             |                                           |
-|                                        |                               |                                             | * Solves the graph using the graph server |
-|                                        |                               |                                             |   with the most available CPU power       |
-|                                        |                               |                                             |                                           |
-|                                        +-------------------------------+---------------------------------------------+-------------------------------------------+
-|                                        | `<id>[, <id2>, <id3>...]`   | Graph exists on the specified graph         | If the [solver](/content/graph_solver/network_graph_solver#solvers) is      |
-|                                        |                               | servers.                                    | `SHORTEST_PATH`:                        |
-|                                        |                               |                                             |                                           |
-|                                        |                               |                                             | * Solves the graph by distributing the    |
-|                                        |                               |                                             |   work amongst all provided servers       |
-|                                        |                               |                                             |                                           |
-|                                        |                               |                                             | If the *solver* is **anything other**     |
-|                                        |                               |                                             | **than** `SHORTEST_PATH`:               |
-|                                        |                               |                                             |                                           |
-|                                        |                               |                                             | * Solves the graph using the graph        |
-|                                        |                               |                                             |   server(s) with the most available CPU   |
-|                                        |                               |                                             |   power                                   |
-|                                        |                               |                                             |                                           |
+### [/delete/graph](/content/api/rest/delete_graph_rest)
+
+| Server ID Provided | Success Condition | Behavior |
+| --- | --- | --- |
+| N/A | N/A | Deletes the graph on all graph servers. |
+
+### [/match/graph](/content/api/rest/match_graph_rest)
+
+| Server ID Provided | Success Condition | Behavior |
+| --- | --- | --- |
+| *&lt;none&gt;* (default) | Graph exists on at least one server. | Matches the graph using the graph server with the most available CPU power. |
+| `<id>[, <id2>, <id3>...]` | Graph exists on the specified graph server(s). | Matches the graph using the specified graph server(s). |
+
+### [/modify/graph](/content/api/rest/modify_graph_rest)
+
+| Server ID Provided | Success Condition | Behavior |
+| --- | --- | --- |
+| N/A | N/A | Modifies the graph on all graph servers. |
+
+### [/query/graph](/content/api/rest/query_graph_rest)
+
+| Server ID Provided | Success Condition | Behavior |
+| --- | --- | --- |
+| *&lt;none&gt;* (default) | Graph exists on at least one server. | Queries the graph using the graph server with the most available CPU power. |
+| `<id>[, <id2>, <id3>...]` | Graph exists on the specified graph server(s). | Queries the graph using the specified graph server(s). |
+
+### [/show/graph](/content/api/rest/show_graph_rest)
+
+| Server ID Provided | Success Condition | Behavior |
+| --- | --- | --- |
+| *&lt;none&gt;* (default) | N/A | Shows all graphs on all servers. |
+| `<id>[, <id2>, <id3>...]` | Graph exists on the specified graph server(s). | Shows all graphs on the specified server(s). |
+
+### [/solve/graph](/content/api/rest/solve_graph_rest)
+
+| Server ID Provided | Success Condition | Behavior |
+| --- | --- | --- |
+| *&lt;none&gt;* (default) | Graph exists on at least one server. | If the [solver](/content/graph_solver/network_graph_solver#solvers) is `SHORTEST_PATH`, all available graph servers will be used in the solve. <br/> <br/> If the *solver* is **anything other** **than** `SHORTEST_PATH`, the graph server with the most available CPU power will be used in the solve. |
+| `<id>[, <id2>, <id3>...]` | Graph exists on the specified graph servers. | If the [solver](/content/graph_solver/network_graph_solver#solvers) is `SHORTEST_PATH`, the work will be distributed among all provided servers. <br/> <br/> If the *solver* is **anything other** **than** `SHORTEST_PATH`, the graph server(s) with the most available CPU power will be used in the solve. |
 
 
 <a id="graph-distributed-examples"></a>
