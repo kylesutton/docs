@@ -161,8 +161,8 @@ A call to the [/create/graph](/content/api/rest/create_graph_rest#create-graph-r
 {/* Source: /examples/bash/graph/rest_tutorial/graphs_rest.sh (lines 78-80) */}
 ```bash REST Create Graph Call
 curl -sS --header "Content-Type: application/json" \
-  --user \${USERNAME}:\${PASSWORD} \
-  --data @create_graph.json \${HOST_URL}/create/graph
+  --user ${USERNAME}:${PASSWORD} \
+  --data @create_graph.json ${HOST_URL}/create/graph
 ```
 
 See the **REST** tab of [Connecting via API](/content/api/concepts#api-conn) for how to

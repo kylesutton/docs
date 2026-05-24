@@ -407,6 +407,10 @@ without SSL.
 
 *Kinetica* currently supports the following external authentication sources:
 
+* [LDAP](#ldap)
+* [Microsoft Active Directory](#microsoft-active-directory)
+* [Kerberos](#kerberos)
+
 
 <Note>
 See [Obfuscating Plain-Text Passwords](/content/security/sec_hardening#sec-hard-obf-ex)
@@ -982,6 +986,10 @@ without SSL.
 
 *Kinetica* currently supports the following external authentication sources:
 
+* [LDAP](#ldap-1)
+* [Microsoft Active Directory](#microsoft-active-directory-1)
+* [Kerberos](#kerberos-1)
+
 
 <Note>
 See [Obfuscating Plain-Text Passwords](/content/security/sec_hardening#sec-hard-obf-ex)
@@ -1004,6 +1012,8 @@ For testing purposes, *Kinetica* is packaged with an *OpenLDAP* server daemon
 Only run <Badge color="gray">/opt/gpudb/httpd/openldap/openldap-init.sh</Badge> the
 **first** time the included *OpenLDAP* instance is started.
 </Info>
+
+<a id="ldap-1"></a>
 
 
 #### LDAP
@@ -1124,6 +1134,8 @@ Only run <Badge color="gray">/opt/gpudb/httpd/openldap/openldap-init.sh</Badge> 
    ```
    service gpudb start
    ```
+<a id="microsoft-active-directory-1"></a>
+
 
 #### Microsoft Active Directory
 
@@ -1243,6 +1255,8 @@ Only run <Badge color="gray">/opt/gpudb/httpd/openldap/openldap-init.sh</Badge> 
    ```
    service gpudb start
    ```
+<a id="kerberos-1"></a>
+
 
 #### Kerberos
 

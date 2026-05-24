@@ -97,8 +97,8 @@ payload is in a file named <Badge color="gray">create_null_type.json</Badge>:
 {/* Source: /examples/bash/create_null_type.sh (lines 25 27-28) */}
 ```bash
 curl -sS -X POST --header "Content-Type: application/json" \
---user \${USERNAME}:\${PASSWORD} \
--d @\${THIS_SCRIPT_DIR}/create_null_type.json \${URL}/create/type
+--user ${USERNAME}:${PASSWORD} \
+-d @${THIS_SCRIPT_DIR}/create_null_type.json ${URL}/create/type
 ```
 
 

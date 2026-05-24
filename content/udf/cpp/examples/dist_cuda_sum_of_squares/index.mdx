@@ -200,8 +200,8 @@ CUDADIR := /usr/local/cuda
 
 {/* Source: makefile (lines 10-11) */}
 ```make
-\${TARGET}: makefile \${TARGET}.cu \${UDF_LIB}/Proc.cpp \${UDF_LIB}/Proc.hpp
-	nvcc -o \${TARGET} \${TARGET}.cu \${UDF_LIB}/Proc.cpp -I\${UDF_LIB} -m64
+${TARGET}: makefile ${TARGET}.cu ${UDF_LIB}/Proc.cpp ${UDF_LIB}/Proc.hpp
+	nvcc -o ${TARGET} ${TARGET}.cu ${UDF_LIB}/Proc.cpp -I${UDF_LIB} -m64
 ```
 
 

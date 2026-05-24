@@ -721,7 +721,60 @@ use specific columns or other SQL features).
 The type of solve method to use for the operation; review [Match Identifier Combinations](/content/graph_solver/network_graph_solver#match-combinations) for more
 information.
 
-{/* include: /graph_solver/shared/match_graph_solvers.rst */}
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Solver</th>
+    <th>Description</th>
+    <th>CPU Parallel</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>MARKOV_CHAIN</code></td>
+    <td>Matches sample points to the graph using the Hidden Markov Model (HMM)-based method, which conducts a range-tree closest-edge search to find the best combinations of possible road segments for each sample point to create the best route. The route is secured one point at a time, so the prediction is corrected after each point. This solution type is the most accurate, but also the most computationally intensive.</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td><code>MATCH_BATCH_SOLVES</code></td>
+    <td>Matches each provided sample source and destination pair using the shortest path between the points.</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td><code>MATCH_CHARGING_STATIONS</code></td>
+    <td>Matches a given sample source and destination pair to the optimal recharging stations along the route (for EVs).</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td><code>MATCH_CLUSTERS</code></td>
+    <td>Matches the graph nodes with a cluster index using the Louvain clustering algorithm. <Note>Parallel running of this solver is experimental and can be invoked with the `parallel_clustering` option.</Note></td>
+    <td>X*</td>
+  </tr>
+  <tr>
+    <td><code>MATCH_LOOPS</code></td>
+    <td>Matches closed loops (Eulerian paths) originating and ending at each graph node between min and max hops (levels).</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td><code>MATCH_OD_PAIRS</code></td>
+    <td>Matches sample points to find the most probable path between origin and destination (OD) pairs with given cost constraints.</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td><code>MATCH_SIMILARITY</code></td>
+    <td>Computes the Jaccard similarity between vertex pairs and N-level intersections within M hops.</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td><code>MATCH_SUPPLY_DEMAND</code></td>
+    <td>Matches sample generic supply depots to generic demand points using abstract transportation (referred to as trucks). Each route is determined by a truck's ability (size) to service demand at each demand point.</td>
+    <td>X</td>
+  </tr>
+  </tbody>
+</table>
+</div>
 
 </Accordion>
 
@@ -1046,7 +1099,70 @@ Name of the *graph* to solve
 
 The type of solver to use for the operation.
 
-{/* include: /graph_solver/shared/solve_graph_solvers.rst */}
+
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Solver</th>
+    <th>Description</th>
+    <th>CPU Parallel</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><code>ALLPATHS</code></td>
+    <td>Determines all reasonable paths between a source and destination pair.</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td><code>BACKHAUL_ROUTING</code></td>
+    <td>Determines the optimal routes between remote asset *nodes* and fixed asset nodes.</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td><code>CENTRALITY</code></td>
+    <td>Calculates the degree of a *node* to depict how many pairs of individuals that would have to go through the *node* to reach one another in the minimum number of hops. Also known as betweenness.</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td><code>CLOSENESS</code></td>
+    <td>Calculates the centrality closeness score per *node* as the sum of the inverse shortest path costs to all *nodes* in the graph.</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td><code>INVERSE_SHORTEST_PATH</code></td>
+    <td>Determines the shortest path downstream using multiple technician routing.</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td><code>MULTIPLE_ROUTING</code></td>
+    <td>Calculates the shortest possible route between the *nodes* and returns to the origin *node* -- also known as the traveling salesman.</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td><code>PAGE_RANK</code></td>
+    <td>Calculates how connected the *nodes* are and determines which *nodes* are the most important.  Weights are not required.</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td><code>PROBABILITY_RANK</code></td>
+    <td>Calculates the probability of a *node* being connected to another *node* using hidden Markov chains.</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td><code>SHORTEST_PATH</code></td>
+    <td>Determines the shortest path upstream between given source(s) and destination(s).</td>
+    <td>X</td>
+  </tr>
+  <tr>
+    <td><code>STATS_ALL</code></td>
+    <td>Calculates graph statistics such as graph diameter, longest pairs, vertex valences, topology numbers, average and max cluster sizes, etc.</td>
+    <td>X</td>
+  </tr>
+  </tbody>
+</table>
+</div>
 
 </Accordion>
 

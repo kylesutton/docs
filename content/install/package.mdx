@@ -312,41 +312,41 @@ these commands:
 {/* Source: /install/shared/scripts/kinetica_install_rhel8.sh (lines 2 4-6) */}
 ```bash RHEL 8
 KIN_REPO=https://repo.kinetica.com/yum/7.2/CentOS/8/x86_64
-KIN_PKG=$(wget -q -O - \${KIN_REPO} | sed 's/<[^>]*>//g' | grep -o "gpudb-cuda.*ga.*rpm " | sort -V | tail -1)
-wget \${KIN_REPO}/\${KIN_PKG}
-sudo yum install ./\${KIN_PKG}
+KIN_PKG=$(wget -q -O - ${KIN_REPO} | sed 's/<[^>]*>//g' | grep -o "gpudb-cuda.*ga.*rpm " | sort -V | tail -1)
+wget ${KIN_REPO}/${KIN_PKG}
+sudo yum install ./${KIN_PKG}
 ```
 
 {/* Source: /install/shared/scripts/kinetica_install_rhel9.sh (lines 2 4-6) */}
 ```bash RHEL 9
 KIN_REPO=https://repo.kinetica.com/yum/7.2/CentOS/9/x86_64
-KIN_PKG=$(wget -q -O - \${KIN_REPO} | sed 's/<[^>]*>//g' | grep -o "gpudb-cuda.*ga.*rpm " | sort -V | tail -1)
-wget \${KIN_REPO}/\${KIN_PKG}
-sudo yum install ./\${KIN_PKG}
+KIN_PKG=$(wget -q -O - ${KIN_REPO} | sed 's/<[^>]*>//g' | grep -o "gpudb-cuda.*ga.*rpm " | sort -V | tail -1)
+wget ${KIN_REPO}/${KIN_PKG}
+sudo yum install ./${KIN_PKG}
 ```
 
 {/* Source: /install/shared/scripts/kinetica_install_ubuntu20.sh (lines 2 4-6) */}
 ```bash Ubuntu 20
 KIN_REPO=https://repo.kinetica.com/debian/7.2/Ubuntu/focal/binary-amd64
-KIN_PKG=$(wget -q -O - \${KIN_REPO} | sed 's/<[^>]*>//g' | grep -o "gpudb-cuda.*ga.*deb " | sort -V | tail -1)
-wget \${KIN_REPO}/\${KIN_PKG}
-sudo apt install ./\${KIN_PKG}
+KIN_PKG=$(wget -q -O - ${KIN_REPO} | sed 's/<[^>]*>//g' | grep -o "gpudb-cuda.*ga.*deb " | sort -V | tail -1)
+wget ${KIN_REPO}/${KIN_PKG}
+sudo apt install ./${KIN_PKG}
 ```
 
 {/* Source: /install/shared/scripts/kinetica_install_ubuntu22.sh (lines 2 4-6) */}
 ```bash Ubuntu 22
 KIN_REPO=https://repo.kinetica.com/debian/7.2/Ubuntu/jammy/binary-amd64
-KIN_PKG=$(wget -q -O - \${KIN_REPO} | sed 's/<[^>]*>//g' | grep -o "gpudb-cuda.*ga.*deb " | sort -V | tail -1)
-wget \${KIN_REPO}/\${KIN_PKG}
-sudo apt install ./\${KIN_PKG}
+KIN_PKG=$(wget -q -O - ${KIN_REPO} | sed 's/<[^>]*>//g' | grep -o "gpudb-cuda.*ga.*deb " | sort -V | tail -1)
+wget ${KIN_REPO}/${KIN_PKG}
+sudo apt install ./${KIN_PKG}
 ```
 
 {/* Source: /install/shared/scripts/kinetica_install_suse.sh (lines 2 4-6) */}
 ```bash SUSE 15
 KIN_REPO=https://repo.kinetica.com/yum/7.2/SUSE/15.3/x86_64
-KIN_PKG=$(wget -q -O - \${KIN_REPO} | sed 's/<[^>]*>//g' | grep -o "gpudb-cuda.*ga.*rpm " | sort -V | tail -1)
-wget \${KIN_REPO}/\${KIN_PKG}
-sudo zypper install ./\${KIN_PKG}
+KIN_PKG=$(wget -q -O - ${KIN_REPO} | sed 's/<[^>]*>//g' | grep -o "gpudb-cuda.*ga.*rpm " | sort -V | tail -1)
+wget ${KIN_REPO}/${KIN_PKG}
+sudo zypper install ./${KIN_PKG}
 ```
 
 </CodeGroup>
@@ -361,40 +361,40 @@ and then run the modified commands to download & install that version:
 ```bash RHEL 8
 KIN_REPO=https://repo.kinetica.com/yum/7.2/CentOS/8/x86_64
 KIN_PKG=gpudb-cuda-license-7.2.0.7.20240510143203.ga-0.el8.x86_64.rpm
-wget \${KIN_REPO}/\${KIN_PKG}
-sudo yum install ./\${KIN_PKG}
+wget ${KIN_REPO}/${KIN_PKG}
+sudo yum install ./${KIN_PKG}
 ```
 
 {/* Source: /install/shared/scripts/kinetica_install_rhel9.sh (lines 2-3 5-6) */}
 ```bash RHEL 9
 KIN_REPO=https://repo.kinetica.com/yum/7.2/CentOS/9/x86_64
 KIN_PKG=gpudb-cuda-license-7.2.0.7.20240510143203.ga-0.el9.x86_64.rpm
-wget \${KIN_REPO}/\${KIN_PKG}
-sudo yum install ./\${KIN_PKG}
+wget ${KIN_REPO}/${KIN_PKG}
+sudo yum install ./${KIN_PKG}
 ```
 
 {/* Source: /install/shared/scripts/kinetica_install_ubuntu20.sh (lines 2-3 5-6) */}
 ```bash Ubuntu 20
 KIN_REPO=https://repo.kinetica.com/debian/7.2/Ubuntu/focal/binary-amd64
 KIN_PKG=gpudb-cuda-license-7.2.0.7.20240510143203.ga-0.ubuntu20.04.amd64.deb
-wget \${KIN_REPO}/\${KIN_PKG}
-sudo apt install ./\${KIN_PKG}
+wget ${KIN_REPO}/${KIN_PKG}
+sudo apt install ./${KIN_PKG}
 ```
 
 {/* Source: /install/shared/scripts/kinetica_install_ubuntu22.sh (lines 2-3 5-6) */}
 ```bash Ubuntu 22
 KIN_REPO=https://repo.kinetica.com/debian/7.2/Ubuntu/jammy/binary-amd64
 KIN_PKG=gpudb-cuda-license-7.2.0.7.20240510143203.ga-0.ubuntu22.04.amd64.deb
-wget \${KIN_REPO}/\${KIN_PKG}
-sudo apt install ./\${KIN_PKG}
+wget ${KIN_REPO}/${KIN_PKG}
+sudo apt install ./${KIN_PKG}
 ```
 
 {/* Source: /install/shared/scripts/kinetica_install_suse.sh (lines 2-3 5-6) */}
 ```bash SUSE 15
 KIN_REPO=https://repo.kinetica.com/yum/7.2/SUSE/15.3/x86_64
 KIN_PKG=gpudb-cuda-license-7.2.0.7.20240510143203.ga-0.sles15.3.x86_64.rpm
-wget \${KIN_REPO}/\${KIN_PKG}
-sudo zypper install ./\${KIN_PKG}
+wget ${KIN_REPO}/${KIN_PKG}
+sudo zypper install ./${KIN_PKG}
 ```
 
 </CodeGroup>
