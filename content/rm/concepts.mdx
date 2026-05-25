@@ -574,24 +574,58 @@ in the *VRAM Tier* and to prevent *eviction* entirely from the *RAM Tier*.
 
 Specifically, the following *tier strategies* would be applied:
 
-| Last Seen | Column | Tier Strategy |
-| --- | --- | --- |
-|                +-------------------+------------------------+
-|                | name              | VRAM 2, RAM 10         |
-|                +-------------------+------------------------+
-|                | *&lt;other columns&gt;* | VRAM 1, RAM 9          |
-
-| &gt; 1 minute ago | id                | VRAM 1, RAM 9          |
-| but            +-------------------+------------------------+
-| &lt; 3 days ago   | name              | VRAM 1, RAM 9          |
-|                +-------------------+------------------------+
-|                | *&lt;other columns&gt;* | VRAM 1, RAM 9          |
-
-| &gt; 3 days ago   | id                | VRAM 1, RAM 8, DISK2 7 |
-|                +-------------------+------------------------+
-|                | name              | VRAM 1, RAM 8, DISK2 7 |
-|                +-------------------+------------------------+
-|                | *&lt;other columns&gt;* | VRAM 1, RAM 8, DISK2 7 |
+<div>
+<table class="table w-full [&_td]:min-w-[150px] [&_th]:text-left [&_td[data-numeric]]:tabular-nums">
+  <thead>
+  <tr>
+    <th>Last Seen</th>
+    <th>Column</th>
+    <th>Tier Strategy</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td rowspan="3">&lt; 1 minute ago</td>
+    <td>id</td>
+    <td>VRAM 2, RAM 10</td>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td>VRAM 2, RAM 10</td>
+  </tr>
+  <tr>
+    <td>*&lt;other columns&gt;*</td>
+    <td>VRAM 1, RAM 9</td>
+  </tr>
+  <tr>
+    <td rowspan="3">&gt; 1 minute ago but &lt; 3 days ago</td>
+    <td>id</td>
+    <td>VRAM 1, RAM 9</td>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td>VRAM 1, RAM 9</td>
+  </tr>
+  <tr>
+    <td>*&lt;other columns&gt;*</td>
+    <td>VRAM 1, RAM 9</td>
+  </tr>
+  <tr>
+    <td rowspan="3">&gt; 3 days ago</td>
+    <td>id</td>
+    <td>VRAM 1, RAM 8, DISK2 7</td>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td>VRAM 1, RAM 8, DISK2 7</td>
+  </tr>
+  <tr>
+    <td>*&lt;other columns&gt;*</td>
+    <td>VRAM 1, RAM 8, DISK2 7</td>
+  </tr>
+  </tbody>
+</table>
+</div>
 
 
 <a id="rm-concepts-resource-groups"></a>
