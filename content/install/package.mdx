@@ -165,7 +165,7 @@ There are some common scenarios which can act as guidelines on which ports
 should be available.
 
 
-##### Connection to the Internet
+<p><strong>Connection to the Internet</strong></p>
 
 
 If *Kinetica* is running on a server where it will be accessible to the Internet
@@ -176,7 +176,7 @@ and unless security is configured to prevent it, any users connecting to them
 will have full control of the database.
 
 
-##### Dependence on Kinetica via the API
+<p><strong>Dependence on Kinetica via the API</strong></p>
 
 
 For applications in which requests are being made to *Kinetica* via client APIs
@@ -191,14 +191,14 @@ Additionally, if the API client is using *table monitors* or *triggers*, ports
 `9001`, `9002`, and/or `9003` should also be opened, as needed.
 
 
-##### Reveal
+<p><strong>Reveal</strong></p>
 
 
 In cases where the GUI interface to *Reveal* is required, the `8088`
 port should be made available.
 
 
-##### Administration
+<p><strong>Administration</strong></p>
 
 
 System administrators may wish to have access to the administrative web
@@ -212,7 +212,7 @@ controlled.
 #### Firewall Settings
 
 
-##### RHEL
+<p><strong>RHEL</strong></p>
 
 
 *RHEL* uses the <Badge color="gray">firewall-cmd</Badge> command or
@@ -224,7 +224,7 @@ firewall-cmd --zone=public --add-port=8082/tcp --permanent
 firewall-cmd --reload
 ```
 
-##### SUSE
+<p><strong>SUSE</strong></p>
 
 
 *SUSE* uses the <Badge color="gray">firewall-cmd</Badge> command or
@@ -236,7 +236,7 @@ firewall-cmd --zone=public --add-port=8082/tcp --permanent
 firewall-cmd --reload
 ```
 
-##### Ubuntu
+<p><strong>Ubuntu</strong></p>
 
 
 *Ubuntu* comes with a <Badge color="gray">ufw</Badge> *(Uncomplicated FireWall)* command, which
