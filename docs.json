@@ -262,8 +262,284 @@
   },
   "redirects": [
     {
+      "source": "/content/admin",
+      "destination": "/content/admin/index"
+    },
+    {
+      "source": "/content/admin/gadmin",
+      "destination": "/content/admin/gadmin/index"
+    },
+    {
+      "source": "/content/admin/workbench",
+      "destination": "/content/admin/workbench/index"
+    },
+    {
+      "source": "/content/admin/workbench/ui",
+      "destination": "/content/admin/workbench/ui/index"
+    },
+    {
+      "source": "/content/admin/workbench/ui/explore",
+      "destination": "/content/admin/workbench/ui/explore/index"
+    },
+    {
+      "source": "/content/admin/workbench/ui/explorer",
+      "destination": "/content/admin/workbench/ui/explorer/index"
+    },
+    {
+      "source": "/content/admin/workbench/ui/import",
+      "destination": "/content/admin/workbench/ui/import/index"
+    },
+    {
+      "source": "/content/api",
+      "destination": "/content/api/index"
+    },
+    {
+      "source": "/content/api/aaw",
+      "destination": "/content/api/aaw/index"
+    },
+    {
+      "source": "/content/api/rest",
+      "destination": "/content/api/rest/index"
+    },
+    {
+      "source": "/content/bi",
+      "destination": "/content/bi/index"
+    },
+    {
+      "source": "/content/bi/reveal",
+      "destination": "/content/bi/reveal/index"
+    },
+    {
+      "source": "/content/bi/tableau",
+      "destination": "/content/bi/tableau/index"
+    },
+    {
+      "source": "/content/catalogs",
+      "destination": "/content/catalogs/index"
+    },
+    {
+      "source": "/content/cloud",
+      "destination": "/content/cloud/index"
+    },
+    {
+      "source": "/content/concepts",
+      "destination": "/content/concepts/index"
+    },
+    {
+      "source": "/content/config",
+      "destination": "/content/config/index"
+    },
+    {
+      "source": "/content/connectors",
+      "destination": "/content/connectors/index"
+    },
+    {
+      "source": "/content/feature_overview",
+      "destination": "/content/feature_overview/index"
+    },
+    {
+      "source": "/content/graph_solver",
+      "destination": "/content/graph_solver/index"
+    },
+    {
+      "source": "/content/graph_solver/shared",
+      "destination": "/content/graph_solver/shared/index"
+    },
+    {
+      "source": "/content/guides",
+      "destination": "/content/guides/index"
+    },
+    {
+      "source": "/content/guides/fitting_data",
+      "destination": "/content/guides/fitting_data/index"
+    },
+    {
+      "source": "/content/guides/graph_interface_guide",
+      "destination": "/content/guides/graph_interface_guide/index"
+    },
+    {
+      "source": "/content/guides/graph_rest_guide",
+      "destination": "/content/guides/graph_rest_guide/index"
+    },
+    {
+      "source": "/content/guides/graph_video_guide",
+      "destination": "/content/guides/graph_video_guide/index"
+    },
+    {
+      "source": "/content/guides/img/graph_concepts",
+      "destination": "/content/guides/img/graph_concepts/index"
+    },
+    {
+      "source": "/content/guides/img/tutorial_solve_mr",
+      "destination": "/content/guides/img/tutorial_solve_mr/index"
+    },
+    {
+      "source": "/content/guides/img/tutorial_solve_sp",
+      "destination": "/content/guides/img/tutorial_solve_sp/index"
+    },
+    {
+      "source": "/content/guides/isochrones",
+      "destination": "/content/guides/isochrones/index"
+    },
+    {
+      "source": "/content/guides/jupyterlab",
+      "destination": "/content/guides/jupyterlab/index"
+    },
+    {
+      "source": "/content/guides/match_graph_dc_multi_supply_demand",
+      "destination": "/content/guides/match_graph_dc_multi_supply_demand/index"
+    },
+    {
+      "source": "/content/guides/match_graph_seattle_markov",
+      "destination": "/content/guides/match_graph_seattle_markov/index"
+    },
+    {
+      "source": "/content/guides/query_graph_social",
+      "destination": "/content/guides/query_graph_social/index"
+    },
+    {
+      "source": "/content/guides/quickstart-guide",
+      "destination": "/content/guides/quickstart-guide/index"
+    },
+    {
+      "source": "/content/guides/shared",
+      "destination": "/content/guides/shared/index"
+    },
+    {
+      "source": "/content/guides/solve_graph_dc_shortest_path_turn",
+      "destination": "/content/guides/solve_graph_dc_shortest_path_turn/index"
+    },
+    {
+      "source": "/content/guides/solve_graph_seattle_backhaul",
+      "destination": "/content/guides/solve_graph_seattle_backhaul/index"
+    },
+    {
+      "source": "/content/guides/solve_graph_seattle_multi_route",
+      "destination": "/content/guides/solve_graph_seattle_multi_route/index"
+    },
+    {
+      "source": "/content/guides/solve_graph_seattle_shortest_path",
+      "destination": "/content/guides/solve_graph_seattle_shortest_path/index"
+    },
+    {
+      "source": "/content/guides/time_series",
+      "destination": "/content/guides/time_series/index"
+    },
+    {
+      "source": "/content/guides/udf-sql-sentence-transformers",
+      "destination": "/content/guides/udf-sql-sentence-transformers/index"
+    },
+    {
+      "source": "/content/guides/wkt_data_geo_functions",
+      "destination": "/content/guides/wkt_data_geo_functions/index"
+    },
+    {
+      "source": "/content/ha",
+      "destination": "/content/ha/index"
+    },
+    {
+      "source": "/content/install",
+      "destination": "/content/install/index"
+    },
+    {
+      "source": "/content/load_data",
+      "destination": "/content/load_data/index"
+    },
+    {
+      "source": "/content/load_data/by_source",
+      "destination": "/content/load_data/by_source/index"
+    },
+    {
+      "source": "/content/location_intelligence",
+      "destination": "/content/location_intelligence/index"
+    },
+    {
+      "source": "/content/ml",
+      "destination": "/content/ml/index"
+    },
+    {
+      "source": "/content/overview",
+      "destination": "/content/overview/index"
+    },
+    {
+      "source": "/content/release",
+      "destination": "/content/release/index"
+    },
+    {
+      "source": "/content/rm",
+      "destination": "/content/rm/index"
+    },
+    {
+      "source": "/content/security",
+      "destination": "/content/security/index"
+    },
+    {
+      "source": "/content/snippets",
+      "destination": "/content/snippets/index"
+    },
+    {
+      "source": "/content/snippets/geohash",
+      "destination": "/content/snippets/geohash/index"
+    },
+    {
+      "source": "/content/snippets/geohash-h3",
+      "destination": "/content/snippets/geohash-h3/index"
+    },
+    {
+      "source": "/content/sql",
+      "destination": "/content/sql/index"
+    },
+    {
+      "source": "/content/sql-gpt",
+      "destination": "/content/sql-gpt/index"
+    },
+    {
+      "source": "/content/time_series",
+      "destination": "/content/time_series/index"
+    },
+    {
+      "source": "/content/tools",
+      "destination": "/content/tools/index"
+    },
+    {
       "source": "/content/tuning",
       "destination": "/content/tuning/index"
+    },
+    {
+      "source": "/content/udf",
+      "destination": "/content/udf/index"
+    },
+    {
+      "source": "/content/udf/cpp/examples",
+      "destination": "/content/udf/cpp/examples/index"
+    },
+    {
+      "source": "/content/udf/cpp/examples/dist_cuda_sum_of_squares",
+      "destination": "/content/udf/cpp/examples/dist_cuda_sum_of_squares/index"
+    },
+    {
+      "source": "/content/udf/python/examples",
+      "destination": "/content/udf/python/examples/index"
+    },
+    {
+      "source": "/content/udf/python/examples/dist_cuda_cublas",
+      "destination": "/content/udf/python/examples/dist_cuda_cublas/index"
+    },
+    {
+      "source": "/content/udf/python/examples/dist_noncuda_sum_of_squares",
+      "destination": "/content/udf/python/examples/dist_noncuda_sum_of_squares/index"
+    },
+    {
+      "source": "/content/udf/python/examples/github_examples/dist_model",
+      "destination": "/content/udf/python/examples/github_examples/dist_model/index"
+    },
+    {
+      "source": "/content/udf/python/examples/github_examples/pandas",
+      "destination": "/content/udf/python/examples/github_examples/pandas/index"
+    },
+    {
+      "source": "/content/vector_search",
+      "destination": "/content/vector_search/index"
     }
   ]
 }
