@@ -88,26 +88,26 @@ has additional [considerations](/content/ha/ha_configuration#ring-extdata).
 
 <AccordionGroup>
 
-<Accordion title="DATA" defaultOpen>
+<Accordion title="DATA" id="data" defaultOpen>
 
 Optional keyword for compatibility
 
 </Accordion>
 
-<Accordion title="&lt;schema name&gt;" defaultOpen>
+<Accordion title="&lt;schema name&gt;" id="<schema-name>" defaultOpen>
 
 Name of the [schema](/content/sql/ddl#sql-create-schema) containing the table into which data will be
 loaded
 
 </Accordion>
 
-<Accordion title="&lt;table name&gt;" defaultOpen>
+<Accordion title="&lt;table name&gt;" id="<table-name>" defaultOpen>
 
 Name of the [table](/content/sql/ddl#sql-create-table) into which data will be loaded
 
 </Accordion>
 
-<Accordion title="FROM REMOTE QUERY" defaultOpen>
+<Accordion title="FROM REMOTE QUERY" id="from-remote-query" defaultOpen>
 
 Source data specification clause, where `<source data query>` is a SQL query selecting the data
 which will be loaded.
@@ -144,7 +144,7 @@ types and properties, create the target table manually before loading data.
 
 </Accordion>
 
-<Accordion title="FROM FILE PATHS" defaultOpen>
+<Accordion title="FROM FILE PATHS" id="from-file-paths" defaultOpen>
 
 Source file specification clause, where `<file paths>` is a comma-separated list of
 single-quoted file paths from which data will be loaded; all files specified are presumed to have
@@ -184,7 +184,7 @@ The form of a file path is dependent on the source referenced:
 
 </Accordion>
 
-<Accordion title="FORMAT" defaultOpen>
+<Accordion title="FORMAT" id="format" defaultOpen>
 
 Optional indicator of source file type, for file-based data sources; will be inferred from the
 file extension if not given.
@@ -227,7 +227,7 @@ Supported formats include:
 
 </Accordion>
 
-<Accordion title="WITH OPTIONS" defaultOpen>
+<Accordion title="WITH OPTIONS" id="with-options" defaultOpen>
 
 Optional indicator that a comma-delimited list of connection & global option/value assignments
 will follow.
@@ -236,7 +236,7 @@ See [Load Options](/content/sql/load#sql-load-file-server-load-opt) for the comp
 
 </Accordion>
 
-<Accordion title="&lt;table property clause&gt;" defaultOpen>
+<Accordion title="&lt;table property clause&gt;" id="<table-property-clause>" defaultOpen>
 
 Optional comma-separated list of table properties, from a subset of those available, to the table
 to load into, if it is created by this call.
@@ -258,7 +258,7 @@ will be applied to each file being read.
 
 <AccordionGroup>
 
-<Accordion title="COMMENT = '&lt;string&gt;'" defaultOpen>
+<Accordion title="COMMENT = '&lt;string&gt;'" id="comment-<string>" defaultOpen>
 
 Treat lines in the source file(s) that begin with `string` as comments and skip.
 
@@ -266,7 +266,7 @@ The default comment marker is `#`.
 
 </Accordion>
 
-<Accordion title="DELIMITER = '&lt;char&gt;'" defaultOpen>
+<Accordion title="DELIMITER = '&lt;char&gt;'" id="delimiter-<char>" defaultOpen>
 
 Use `char` as the source file field delimiter.
 
@@ -279,7 +279,7 @@ See [Delimited Text Option Characters](/content/sql/load#sql-load-file-server-de
 
 </Accordion>
 
-<Accordion title="ESCAPE = '&lt;char&gt;'" defaultOpen>
+<Accordion title="ESCAPE = '&lt;char&gt;'" id="escape-<char>" defaultOpen>
 
 Use `char` as the source file data escape character.  The escape character preceding any
 other character, in the source data, will be converted into that other character, except
@@ -338,7 +338,7 @@ There is no default escape character.
 
 </Accordion>
 
-<Accordion title="HEADER DELIMITER = '&lt;char&gt;'" defaultOpen>
+<Accordion title="HEADER DELIMITER = '&lt;char&gt;'" id="header-delimiter-<char>" defaultOpen>
 
 Use `char` as the source file header field name/property delimiter, when the source file
 header contains both names and properties.  This is largely specific to the Kinetica
@@ -363,7 +363,7 @@ field name/property sets from each other in the header row
 
 </Accordion>
 
-<Accordion title="INCLUDES HEADER = &lt;TRUE|FALSE&gt;" defaultOpen>
+<Accordion title="INCLUDES HEADER = &lt;TRUE|FALSE&gt;" id="includes-header-<true|false>" defaultOpen>
 
 Declare that the source file(s) will or will not have a header.
 
@@ -371,7 +371,7 @@ The default is `TRUE`.
 
 </Accordion>
 
-<Accordion title="NULL = '&lt;string&gt;'" defaultOpen>
+<Accordion title="NULL = '&lt;string&gt;'" id="null-<string>" defaultOpen>
 
 Treat `string` as the indicator of a null source field value.
 
@@ -379,7 +379,7 @@ The default is `\N`.
 
 </Accordion>
 
-<Accordion title="QUOTE = '&lt;char&gt;'" defaultOpen>
+<Accordion title="QUOTE = '&lt;char&gt;'" id="quote-<char>" defaultOpen>
 
 Use `char` as the source file data quoting character, for enclosing field values.
 Usually used to wrap field values that contain embedded delimiter characters, though any
@@ -433,7 +433,7 @@ loaded) into the target table.
 
 <AccordionGroup>
 
-<Accordion title="BAD RECORD TABLE" defaultOpen>
+<Accordion title="BAD RECORD TABLE" id="bad-record-table" defaultOpen>
 
 Name of the table containing records that failed to be loaded into the target table.  This
 bad record table will include the following columns:
@@ -480,7 +480,7 @@ mode, processing stops at the first error and that error is returned to the user
 
 </Accordion>
 
-<Accordion title="BATCH SIZE" defaultOpen>
+<Accordion title="BATCH SIZE" id="batch-size" defaultOpen>
 
 Use an ingest batch size of the given number of records.
 
@@ -488,7 +488,7 @@ The default batch size is *50,000*.
 
 </Accordion>
 
-<Accordion title="COLUMN FORMATS" defaultOpen>
+<Accordion title="COLUMN FORMATS" id="column-formats" defaultOpen>
 
 Use the given type-specific formatting for the given column when parsing source data being
 loaded into that column.  This should be a map of column names to format specifications,
@@ -591,7 +591,7 @@ This option is not available for *data sources* configured for *JDBC*.
 
 </Accordion>
 
-<Accordion title="DATA SOURCE" defaultOpen>
+<Accordion title="DATA SOURCE" id="data-source" defaultOpen>
 
 Load data from the given [data source](/content/sql/ddl#sql-create-data-source).
 [Data source connect privilege](/content/sql/security#sql-security-priv-mgmt-ds-grant) is required when
@@ -599,7 +599,7 @@ loading from a *data source*.
 
 </Accordion>
 
-<Accordion title="DEFAULT COLUMN FORMATS" defaultOpen>
+<Accordion title="DEFAULT COLUMN FORMATS" id="default-column-formats" defaultOpen>
 
 Use the given formats for source data being loaded into target table columns with the
 corresponding column types.   This should be a map of target column type to source format
@@ -625,7 +625,7 @@ This option is not available for *data sources* configured for *JDBC*.
 
 </Accordion>
 
-<Accordion title="FIELDS IGNORED BY" defaultOpen>
+<Accordion title="FIELDS IGNORED BY" id="fields-ignored-by" defaultOpen>
 
 Choose a comma-separated list of fields from the source file(s) to ignore, loading only
 those fields that are not in the identified list in the order they appear in the file.
@@ -652,7 +652,7 @@ specified names must match the source file field names exactly.
 
 </Accordion>
 
-<Accordion title="FIELDS MAPPED BY" defaultOpen>
+<Accordion title="FIELDS MAPPED BY" id="fields-mapped-by" defaultOpen>
 
 Choose a comma-separated list of fields from the source file(s) to load, in the specified
 order, identifying fields by either `POSITION` or `NAME`.  If mapping by `NAME`, the
@@ -678,7 +678,7 @@ specified names must match the source file field names exactly.
 
 </Accordion>
 
-<Accordion title="FLATTEN_COLUMNS" defaultOpen>
+<Accordion title="FLATTEN_COLUMNS" id="flatten_columns" defaultOpen>
 
 Specify the policy for handling nested columns within JSON data.
 
@@ -708,7 +708,7 @@ The default is `FALSE`.
 
 </Accordion>
 
-<Accordion title="IGNORE_EXISTING_PK" defaultOpen>
+<Accordion title="IGNORE_EXISTING_PK" id="ignore_existing_pk" defaultOpen>
 
 Specify the error suppression policy for inserting duplicate primary key values into a
 table with a primary key.  If the specified table does not have a primary key or the
@@ -740,7 +740,7 @@ The default is `FALSE`.
 
 </Accordion>
 
-<Accordion title="INGESTION MODE" defaultOpen>
+<Accordion title="INGESTION MODE" id="ingestion-mode" defaultOpen>
 
 Whether to do a full ingest of the data or perform a *dry run* or *type inference* instead.
 
@@ -774,7 +774,7 @@ The default mode is `FULL`.
 
 </Accordion>
 
-<Accordion title="JDBC_FETCH_SIZE" defaultOpen>
+<Accordion title="JDBC_FETCH_SIZE" id="jdbc_fetch_size" defaultOpen>
 
 Retrieve this many records at a time from the remote database.  Lowering this number will
 help tables with large record sizes fit into available memory during ingest.
@@ -788,7 +788,7 @@ This option is only available for *data sources* configured for *JDBC*.
 
 </Accordion>
 
-<Accordion title="JDBC_SESSION_INIT_STATEMENT" defaultOpen>
+<Accordion title="JDBC_SESSION_INIT_STATEMENT" id="jdbc_session_init_statement" defaultOpen>
 
 Run the single given statement before the initial load is performed.  Also run it before
 each subsequent reload, if `SUBSCRIBE` is `TRUE`.
@@ -805,7 +805,7 @@ This option is only available for *data sources* configured for *JDBC*.
 
 </Accordion>
 
-<Accordion title="KAFKA_CONSUMERS_PER_RANK" defaultOpen>
+<Accordion title="KAFKA_CONSUMERS_PER_RANK" id="kafka_consumers_per_rank" defaultOpen>
 
 Number of *Kafka* consumer threads per rank; valid range is `1` through `6`.
 
@@ -813,14 +813,14 @@ The default is `1`.
 
 </Accordion>
 
-<Accordion title="KAFKA_GROUP_ID" defaultOpen>
+<Accordion title="KAFKA_GROUP_ID" id="kafka_group_id" defaultOpen>
 
 Consumer group ID to use for *data sources* configured for *Kafka*.  If not specified, one
 will be randomly generated.
 
 </Accordion>
 
-<Accordion title="KAFKA_OPTIMISTIC_INGEST" defaultOpen>
+<Accordion title="KAFKA_OPTIMISTIC_INGEST" id="kafka_optimistic_ingest" defaultOpen>
 
 Enable optimistic ingestion where *Kafka* topic offsets and table data are committed
 independently to achieve parallelism.
@@ -829,7 +829,7 @@ The default is `FALSE`.
 
 </Accordion>
 
-<Accordion title="KAFKA_OFFSET_RESET_POLICY" defaultOpen>
+<Accordion title="KAFKA_OFFSET_RESET_POLICY" id="kafka_offset_reset_policy" defaultOpen>
 
 Whether to start a *Kafka* subscription at the earliest or latest offset, for
 *data sources* configured for *Kafka*.  The default is `earliest`.
@@ -858,14 +858,14 @@ Whether to start a *Kafka* subscription at the earliest or latest offset, for
 
 </Accordion>
 
-<Accordion title="KAFKA_SUBSCRIPTION_CANCEL_AFTER" defaultOpen>
+<Accordion title="KAFKA_SUBSCRIPTION_CANCEL_AFTER" id="kafka_subscription_cancel_after" defaultOpen>
 
 Optional number of minutes after which a *Kafka* subscription will be cancelled, for
 *data sources* configured for *Kafka*.
 
 </Accordion>
 
-<Accordion title="KAFKA_TYPE_INFERENCE_FETCH_TIMEOUT" defaultOpen>
+<Accordion title="KAFKA_TYPE_INFERENCE_FETCH_TIMEOUT" id="kafka_type_inference_fetch_timeout" defaultOpen>
 
 Maximum time to collect *Kafka* messages before type inferencing on the set of them.
 
@@ -873,7 +873,7 @@ The default is generally `30` seconds.
 
 </Accordion>
 
-<Accordion title="MAX_RECORDS_TO_LOAD" defaultOpen>
+<Accordion title="MAX_RECORDS_TO_LOAD" id="max_records_to_load" defaultOpen>
 
 Limit the number of records to load in this request.  If the number is larger than
 `BATCH SIZE`, the number of records loaded will be limited to the next whole number of
@@ -881,7 +881,7 @@ Limit the number of records to load in this request.  If the number is larger th
 
 </Accordion>
 
-<Accordion title="NUM_SPLITS_PER_RANK" defaultOpen>
+<Accordion title="NUM_SPLITS_PER_RANK" id="num_splits_per_rank" defaultOpen>
 
 The number of remote query partitions to assign each *Kinetica* worker process.  The
 queries assigned to a worker process will be executed by the tasks allotted to the process.
@@ -897,7 +897,7 @@ This option is only available for *data sources* configured for *JDBC*.
 
 </Accordion>
 
-<Accordion title="NUM_TASKS_PER_RANK" defaultOpen>
+<Accordion title="NUM_TASKS_PER_RANK" id="num_tasks_per_rank" defaultOpen>
 
 The number of tasks to use on each *Kinetica* worker process to process remote queries.
 The tasks assigned to a worker process will execute any remote query partitions assigned to
@@ -914,7 +914,7 @@ This option is only available for *data sources* configured for *JDBC*.
 
 </Accordion>
 
-<Accordion title="ON ERROR" defaultOpen>
+<Accordion title="ON ERROR" id="on-error" defaultOpen>
 
 When an error is encountered loading a record, handle it using either of the
 following modes.  The default mode is `ABORT`.
@@ -943,7 +943,7 @@ following modes.  The default mode is `ABORT`.
 
 </Accordion>
 
-<Accordion title="POLL_INTERVAL" defaultOpen>
+<Accordion title="POLL_INTERVAL" id="poll_interval" defaultOpen>
 
 Interval, in seconds, at which a *data source* is polled for updates.  The number of
 seconds must be passed as a single-quoted string.
@@ -958,7 +958,7 @@ This option is not available for *data sources* configured for *Kafka*.
 
 </Accordion>
 
-<Accordion title="PRIMARY KEY" defaultOpen>
+<Accordion title="PRIMARY KEY" id="primary-key" defaultOpen>
 
 Optional [primary key](/content/concepts/tables#primary-key) specification clause, where the value is a
 parenthesized comma-separated list of columns to use as the *primary key* for the *table*:
@@ -968,7 +968,7 @@ PRIMARY KEY = ('id', 'dept_id')
 ```
 </Accordion>
 
-<Accordion title="REMOTE_QUERY_INCREASING_COLUMN" defaultOpen>
+<Accordion title="REMOTE_QUERY_INCREASING_COLUMN" id="remote_query_increasing_column" defaultOpen>
 
 For a JDBC query *change data capture* loading scheme, the remote query column that will be
 used to determine whether a record is new and should be loaded or not.  This column should
@@ -984,7 +984,7 @@ This option is only available for *data sources* configured for *JDBC*.
 
 </Accordion>
 
-<Accordion title="REMOTE_QUERY_NO_SPLIT" defaultOpen>
+<Accordion title="REMOTE_QUERY_NO_SPLIT" id="remote_query_no_split" defaultOpen>
 
 Whether to not distribute the retrieval of remote data and issue queries for blocks of data
 at time in parallel.
@@ -1019,7 +1019,7 @@ This option is only available for *data sources* configured for *JDBC*
 
 </Accordion>
 
-<Accordion title="REMOTE_QUERY_ORDER_BY" defaultOpen>
+<Accordion title="REMOTE_QUERY_ORDER_BY" id="remote_query_order_by" defaultOpen>
 
 Ordering expression to use in partitioning remote data for retrieval.  The remote data will
 be ordered according to this expression and then retrieved in sequential blocks from the
@@ -1035,7 +1035,7 @@ This option is only available for *data sources* configured for *JDBC*
 
 </Accordion>
 
-<Accordion title="REMOTE_QUERY_PARTITION_COLUMN" defaultOpen>
+<Accordion title="REMOTE_QUERY_PARTITION_COLUMN" id="remote_query_partition_column" defaultOpen>
 
 Column to use to partition remote data for retrieval.  The column must be numeric and
 should be relatively evenly distributed so that queries using values of this column to
@@ -1050,7 +1050,7 @@ This option is only available for *data sources* configured for *JDBC*
 
 </Accordion>
 
-<Accordion title="SCHEMA_REGISTRY_SCHEMA_NAME" defaultOpen>
+<Accordion title="SCHEMA_REGISTRY_SCHEMA_NAME" id="schema_registry_schema_name" defaultOpen>
 
 Name of the Avro schema in the schema registry to use when reading Avro records.
 
@@ -1061,7 +1061,7 @@ This option is not available for *data sources* configured for *Kafka*.
 
 </Accordion>
 
-<Accordion title="SHARD KEY" defaultOpen>
+<Accordion title="SHARD KEY" id="shard-key" defaultOpen>
 
 Optional [shard key](/content/concepts/tables#shard-key) specification clause, where the value is a
 parenthesized comma-separated list of columns to use as the *shard key* for the *table*:
@@ -1071,13 +1071,13 @@ SHARD KEY = ('id')
 ```
 </Accordion>
 
-<Accordion title="SKIP_LINES" defaultOpen>
+<Accordion title="SKIP_LINES" id="skip_lines" defaultOpen>
 
 Skip this number of lines when loading from a source file.
 
 </Accordion>
 
-<Accordion title="SUBSCRIBE" defaultOpen>
+<Accordion title="SUBSCRIBE" id="subscribe" defaultOpen>
 
 Whether to subscribe to the [data source](/content/sql/ddl#sql-create-data-source) specified in the
 `DATA SOURCE` option.
@@ -1112,7 +1112,7 @@ This option is not available for *data sources* configured for *HDFS*.
 
 </Accordion>
 
-<Accordion title="TRUNCATE_STRINGS" defaultOpen>
+<Accordion title="TRUNCATE_STRINGS" id="truncate_strings" defaultOpen>
 
 Specify the string truncation policy for inserting text into `VARCHAR` columns that are
 not large enough to hold the entire text value.
@@ -1143,7 +1143,7 @@ The default is `FALSE`.
 
 </Accordion>
 
-<Accordion title="TRUNCATE_TABLE" defaultOpen>
+<Accordion title="TRUNCATE_TABLE" id="truncate_table" defaultOpen>
 
 Specify whether to truncate the target table before beginning the load or subscription.
 
@@ -1151,7 +1151,7 @@ The default is `FALSE` (don't truncate the target table).
 
 </Accordion>
 
-<Accordion title="TYPE_INFERENCE_MODE" defaultOpen>
+<Accordion title="TYPE_INFERENCE_MODE" id="type_inference_mode" defaultOpen>
 
 When making a type inference of the data values in order to define column types for the
 target table, use one of the following modes.
@@ -1182,7 +1182,7 @@ The default mode is `SPEED`.
 
 </Accordion>
 
-<Accordion title="UPDATE_ON_EXISTING_PK" defaultOpen>
+<Accordion title="UPDATE_ON_EXISTING_PK" id="update_on_existing_pk" defaultOpen>
 
 Specify the record collision policy for inserting into a table with a primary key.
 If the specified table does not have a primary key, then this options has no effect.
@@ -1244,7 +1244,7 @@ USING TABLE PROPERTIES
 
 <AccordionGroup>
 
-<Accordion title="CHUNK COLUMN MEMORY" defaultOpen>
+<Accordion title="CHUNK COLUMN MEMORY" id="chunk-column-memory" defaultOpen>
 
 Size of the blocks of memory holding the data, when loaded; specified as the
 maximum number of bytes any one column should hold.
@@ -1256,7 +1256,7 @@ The size of dictionary-encoded columns is estimated.
 
 </Accordion>
 
-<Accordion title="CHUNK MEMORY" defaultOpen>
+<Accordion title="CHUNK MEMORY" id="chunk-memory" defaultOpen>
 
 Size of the blocks of memory holding the data, when loaded; specified as the
 maximum total number of bytes all columns should hold.
@@ -1268,21 +1268,21 @@ The size of dictionary-encoded columns is estimated.
 
 </Accordion>
 
-<Accordion title="CHUNK SIZE" defaultOpen>
+<Accordion title="CHUNK SIZE" id="chunk-size" defaultOpen>
 
 Size of the blocks of memory holding the data, when loaded; specified as the
 maximum number of records each block of memory should hold
 
 </Accordion>
 
-<Accordion title="COMPRESSION_CODEC" defaultOpen>
+<Accordion title="COMPRESSION_CODEC" id="compression_codec" defaultOpen>
 
 The default [compression](/content/concepts/column_compression) type to apply
 to columns of this table not explicitly given one.
 
 </Accordion>
 
-<Accordion title="TTL" defaultOpen>
+<Accordion title="TTL" id="ttl" defaultOpen>
 
 The [time-to-live (TTL)](/content/concepts/ttl) for the *table*; if not set,
 the *table* will not expire
@@ -1733,20 +1733,20 @@ FROM FILE."<file name | file name expression>"
 
 <AccordionGroup>
 
-<Accordion title="&lt;schema name&gt;" defaultOpen>
+<Accordion title="&lt;schema name&gt;" id="<schema-name>-2" defaultOpen>
 
 Name of the [schema](/content/sql/ddl#sql-create-schema) containing the *table* into which data will
 be inserted
 
 </Accordion>
 
-<Accordion title="&lt;table name&gt;" defaultOpen>
+<Accordion title="&lt;table name&gt;" id="<table-name>-2" defaultOpen>
 
 Name of the [table](/content/sql/ddl#sql-create-table) into which data will be inserted
 
 </Accordion>
 
-<Accordion title="&lt;column list&gt;" defaultOpen>
+<Accordion title="&lt;column list&gt;" id="<column-list>" defaultOpen>
 
 Optional list of target table columns into which data will be inserted; if not specified,
 all target table columns will be assumed.  Whether specified or implied, this list needs
@@ -1754,7 +1754,7 @@ to match the fields specified in `<field list>` in number, order, & type.
 
 </Accordion>
 
-<Accordion title="&lt;field list&gt;" defaultOpen>
+<Accordion title="&lt;field list&gt;" id="<field-list>" defaultOpen>
 
 List of the source data file field names from which data will be extracted; use `*` to
 extract all columns *(this wildcard must be used when a source file has no header which*
@@ -1763,14 +1763,14 @@ extract all columns *(this wildcard must be used when a source file has no heade
 
 </Accordion>
 
-<Accordion title="&lt;file name | file name expression&gt;" defaultOpen>
+<Accordion title="&lt;file name | file name expression&gt;" id="<file-name-|-file-name-expression>" defaultOpen>
 
 Name of the source data file or set of source data files from which records will be
 extracted; wildcards (`*`) can be used to specify a group of files
 
 </Accordion>
 
-<Accordion title="&lt;option list&gt;" defaultOpen>
+<Accordion title="&lt;option list&gt;" id="<option-list>" defaultOpen>
 
 Optional list of whitespace-separated
 [processing options](/content/sql/load#sql-load-file-client-options)
@@ -1792,7 +1792,7 @@ options specific to the source file will be applied to each file being read.
 
 <AccordionGroup>
 
-<Accordion title="BATCH_SIZE=&lt;n&gt;" defaultOpen>
+<Accordion title="BATCH_SIZE=&lt;n&gt;" id="batch_size<n>" defaultOpen>
 
 Use an ingest batch size of `n` records.
 
@@ -1800,7 +1800,7 @@ The default batch size is *10,000*.
 
 </Accordion>
 
-<Accordion title="COMMENT='&lt;string&gt;'" defaultOpen>
+<Accordion title="COMMENT='&lt;string&gt;'" id="comment<string>" defaultOpen>
 
 Treat lines in the source file that begin with `string` as comments and skip.
 
@@ -1808,7 +1808,7 @@ The default comment marker is `#`.
 
 </Accordion>
 
-<Accordion title="DELIMITER='&lt;char&gt;'" defaultOpen>
+<Accordion title="DELIMITER='&lt;char&gt;'" id="delimiter<char>" defaultOpen>
 
 Use `char` as the source file field delimiter.
 
@@ -1821,7 +1821,7 @@ See [Option Characters](/content/sql/load#sql-load-file-client-option-chars) for
 
 </Accordion>
 
-<Accordion title="ESCAPE='&lt;char&gt;'" defaultOpen>
+<Accordion title="ESCAPE='&lt;char&gt;'" id="escape<char>" defaultOpen>
 
 Use `char` as the source file data escape character.  The escape character
 preceding any other character, in the source data, will be converted into that
@@ -1881,14 +1881,14 @@ There is no default escape character.  See
 
 </Accordion>
 
-<Accordion title="HEADER=&lt;Y|N&gt;" defaultOpen>
+<Accordion title="HEADER=&lt;Y|N&gt;" id="header<y|n>" defaultOpen>
 
 Declare that the source file has or does not have a header.  If
 not given, that determination will be intuited.
 
 </Accordion>
 
-<Accordion title="INITIAL_CLEAR" defaultOpen>
+<Accordion title="INITIAL_CLEAR" id="initial_clear" defaultOpen>
 
 Truncate the target table before loading data.
 
@@ -1896,7 +1896,7 @@ The default is to not truncate the target table.
 
 </Accordion>
 
-<Accordion title="LIMIT=&lt;n&gt;" defaultOpen>
+<Accordion title="LIMIT=&lt;n&gt;" id="limit<n>" defaultOpen>
 
 Limit the total number of records inserted into the target table
 to `n`.  If reading from multiple source files, this count is
@@ -1910,7 +1910,7 @@ The default is no limit.
 
 </Accordion>
 
-<Accordion title="NULL='&lt;string&gt;'" defaultOpen>
+<Accordion title="NULL='&lt;string&gt;'" id="null<string>" defaultOpen>
 
 Treat `string` as the indicator of a null source field value.
 
@@ -1918,7 +1918,7 @@ The default is `\N`.
 
 </Accordion>
 
-<Accordion title="ON_ERROR=&lt;mode&gt;" defaultOpen>
+<Accordion title="ON_ERROR=&lt;mode&gt;" id="on_error<mode>" defaultOpen>
 
 When an error is encountered loading a record, handle it using the given `<mode>`; one of
 the following:
@@ -1954,7 +1954,7 @@ The default mode is `SKIP`.
 
 </Accordion>
 
-<Accordion title="QUOTE='&lt;char&gt;'" defaultOpen>
+<Accordion title="QUOTE='&lt;char&gt;'" id="quote<char>" defaultOpen>
 
 Use `char` as the source file data quoting character, for enclosing field values. Usually
 used to wrap field values that contain embedded delimiter characters, though any field may
@@ -1969,7 +1969,7 @@ The default is the `"` (double-quote) character.  See
 
 </Accordion>
 
-<Accordion title="SKIP=&lt;n&gt;" defaultOpen>
+<Accordion title="SKIP=&lt;n&gt;" id="skip<n>" defaultOpen>
 
 Skip the first `n` source file data lines read, not including header and comment lines.
 If reading from multiple source files, this count is assessed across all files being read.

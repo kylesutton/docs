@@ -4,26 +4,26 @@ title: Security Functions
 
 <AccordionGroup>
 
-<Accordion title="CURRENT_SCHEMA()" defaultOpen>
+<Accordion title="CURRENT_SCHEMA()" id="current_schema" defaultOpen>
 
 Returns the default schema of the current user
 
 </Accordion>
 
-<Accordion title="CURRENT_USER()" defaultOpen>
+<Accordion title="CURRENT_USER()" id="current_user" defaultOpen>
 
 Alias for `USER`
 
 </Accordion>
 
-<Accordion title="HASH(column[, seed])" defaultOpen>
+<Accordion title="HASH(column[, seed])" id="hash-column-seed" defaultOpen>
 
 Returns a non-negative integer representing an obfuscated version
 of `column`, using the given `seed`; default `seed` is `0`
 
 </Accordion>
 
-<Accordion title="IS_MEMBER(role[, user/role])" defaultOpen>
+<Accordion title="IS_MEMBER(role[, user/role])" id="is_member-role-user/role" defaultOpen>
 
 Returns whether the current user (or the given `user/role`,
 if specified) has been assigned the given `role`, either
@@ -57,13 +57,13 @@ directly or indirectly:
 
 </Accordion>
 
-<Accordion title="IS_ROLEMEMBER(role[, user/role])" defaultOpen>
+<Accordion title="IS_ROLEMEMBER(role[, user/role])" id="is_rolemember-role-user/role" defaultOpen>
 
 Alias for `IS_MEMBER`
 
 </Accordion>
 
-<Accordion title="MASK(expr, start, length[, char])" defaultOpen>
+<Accordion title="MASK(expr, start, length[, char])" id="mask-expr-start-length-char" defaultOpen>
 
 Masks `length` bytes of `expr`, beginning at the byte position
 identified by `start`, with `*` characters (or the single-byte
@@ -98,32 +98,32 @@ have unexpected results.
 
 </Accordion>
 
-<Accordion title="NEW_UUID()" defaultOpen>
+<Accordion title="NEW_UUID()" id="new_uuid" defaultOpen>
 
 Returns a randomly-generated UUID
 
 </Accordion>
 
-<Accordion title="OBFUSCATE(column[, seed])" defaultOpen>
+<Accordion title="OBFUSCATE(column[, seed])" id="obfuscate-column-seed" defaultOpen>
 
 Alias for `HASH`
 
 </Accordion>
 
-<Accordion title="SHA256(expr)" defaultOpen>
+<Accordion title="SHA256(expr)" id="sha256-expr" defaultOpen>
 
 Returns the hex digits of the SHA-256 hash of the given value
 `expr` as a `char64` string.
 
 </Accordion>
 
-<Accordion title="SYSTEM_USER()" defaultOpen>
+<Accordion title="SYSTEM_USER()" id="system_user" defaultOpen>
 
 Alias for `USER`
 
 </Accordion>
 
-<Accordion title="USER()" defaultOpen>
+<Accordion title="USER()" id="user" defaultOpen>
 
 Returns the username of the current user
 

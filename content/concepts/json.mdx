@@ -262,7 +262,7 @@ the *array* or *string* value may need to be cast to JSON first.
 
 <AccordionGroup>
 
-<Accordion title="JSON(expr)" defaultOpen>
+<Accordion title="JSON(expr)" id="json-expr" defaultOpen>
 
 Casts the given `expr` to JSON data type
 
@@ -296,7 +296,7 @@ Examples:
 
 </Accordion>
 
-<Accordion title="JSON_ARRAY (value[,...] &lt;null_hand&gt;)" defaultOpen>
+<Accordion title="JSON_ARRAY (value[,...] &lt;null_hand&gt;)" id="json_array-value-<null_hand>" defaultOpen>
 
 Creates a JSON array out of the given list of values.
 
@@ -343,7 +343,7 @@ Examples:
 
 </Accordion>
 
-<Accordion title="JSON_ARRAY_APPEND(arr, value)" defaultOpen>
+<Accordion title="JSON_ARRAY_APPEND(arr, value)" id="json_array_append-arr-value" defaultOpen>
 
 Appends the given `value` to the given array `arr` of type string, array, or JSON
 
@@ -373,7 +373,7 @@ Examples:
 
 </Accordion>
 
-<Accordion title="JSON_ARRAY_CONTAINS (json, path, val)" defaultOpen>
+<Accordion title="JSON_ARRAY_CONTAINS (json, path, val)" id="json_array_contains-json-path-val" defaultOpen>
 
 Returns whether the given JSON `json` contains the primitive value `val` at the JSON
 query path, `path`
@@ -412,13 +412,13 @@ Examples:
 
 </Accordion>
 
-<Accordion title="JSON_CARDINALITY(json)" defaultOpen>
+<Accordion title="JSON_CARDINALITY(json)" id="json_cardinality-json" defaultOpen>
 
 Alias for `JSON_LENGTH`
 
 </Accordion>
 
-<Accordion title="JSON_EXISTS(json, path)" defaultOpen>
+<Accordion title="JSON_EXISTS(json, path)" id="json_exists-json-path" defaultOpen>
 
 Returns whether the given JSON `json` contains the JSON query path, `path`
 
@@ -456,7 +456,7 @@ Examples:
 
 </Accordion>
 
-<Accordion title="JSON_KEYS(json, path)" defaultOpen>
+<Accordion title="JSON_KEYS(json, path)" id="json_keys-json-path" defaultOpen>
 
 Returns the set of keys of the JSON object at the given `path` in `json`; null, if the
 path doesn't exist or contains a non-object (non-map) value
@@ -503,7 +503,7 @@ Examples:
 
 </Accordion>
 
-<Accordion title="JSON_LENGTH(json[, path])" defaultOpen>
+<Accordion title="JSON_LENGTH(json[, path])" id="json_length-json-path" defaultOpen>
 
 Returns the number of items in the top-level object of the given `json`, or at the
 level of the optional JSON `path`
@@ -554,7 +554,7 @@ Examples:
 
 </Accordion>
 
-<Accordion title="JSON_MAKE_ARRAY(value)" defaultOpen>
+<Accordion title="JSON_MAKE_ARRAY(value)" id="json_make_array-value" defaultOpen>
 
 Creates a JSON array out of the given `value`
 
@@ -588,7 +588,7 @@ Examples:
 
 </Accordion>
 
-<Accordion title="JSON_OBJECT (value[,...] &lt;null_hand&gt;)" defaultOpen>
+<Accordion title="JSON_OBJECT (value[,...] &lt;null_hand&gt;)" id="json_object-value-<null_hand>" defaultOpen>
 
 Creates a JSON map out of the given `value` set
 
@@ -643,7 +643,7 @@ Examples:
 
 </Accordion>
 
-<Accordion title="JSON_PRETTY(json)" defaultOpen>
+<Accordion title="JSON_PRETTY(json)" id="json_pretty-json" defaultOpen>
 
 Returns a formatted version of the given `json` object
 
@@ -683,7 +683,7 @@ Examples:
 
 </Accordion>
 
-<Accordion title="JSON_QUERY (json, path [&lt;return&gt;])" defaultOpen>
+<Accordion title="JSON_QUERY (json, path [&lt;return&gt;])" id="json_query-json-path-<return>" defaultOpen>
 
 Returns the JSON object at the given `path` in `json`; null, if the path doesn't exist
 or contains a primitive (non-object) value
@@ -785,7 +785,7 @@ Examples:
 
 </Accordion>
 
-<Accordion title="JSON_REPLACE(json, path, repl)" defaultOpen>
+<Accordion title="JSON_REPLACE(json, path, repl)" id="json_replace-json-path-repl" defaultOpen>
 
 Returns the given `json` with the value at the JSON path `path` replaced with the
 replacement value `repl`
@@ -828,7 +828,7 @@ Examples:
 
 </Accordion>
 
-<Accordion title="JSON_TYPE(expr)" defaultOpen>
+<Accordion title="JSON_TYPE(expr)" id="json_type-expr" defaultOpen>
 
 Returns the JSON type of the given `expr`
 
@@ -868,7 +868,7 @@ Returns the JSON type of the given `expr`
 
 </Accordion>
 
-<Accordion title="JSON_VALUE (json, path [return])" defaultOpen>
+<Accordion title="JSON_VALUE (json, path [return])" id="json_value-json-path-return" defaultOpen>
 
 Returns the JSON value at the given `path` in `json`; null, if the path doesn't exist
 or contains an object (non-primitive) value
@@ -986,7 +986,7 @@ These functions are only available in SQL or in the native API via
 
 <AccordionGroup>
 
-<Accordion title="JSON_ARRAYAGG(expr)" defaultOpen>
+<Accordion title="JSON_ARRAYAGG(expr)" id="json_arrayagg-expr" defaultOpen>
 
 Combines column values within a group into a single JSON array of those values
 
@@ -994,7 +994,7 @@ See [examples](/content/concepts/json#json-func-agg-ex-agg).
 
 </Accordion>
 
-<Accordion title="JSON_ARRAYAGG_DISTINCT(expr)" defaultOpen>
+<Accordion title="JSON_ARRAYAGG_DISTINCT(expr)" id="json_arrayagg_distinct-expr" defaultOpen>
 
 Combines column values within a group into a single JSON array of those values,
 removing any duplicates
@@ -1114,26 +1114,26 @@ FROM UNNEST_JSON_ARRAY(SELECT <column name> FROM <table name>) [WITH ORDINALITY]
 
 <AccordionGroup>
 
-<Accordion title="&lt;column alias&gt;" defaultOpen>
+<Accordion title="&lt;column alias&gt;" id="<column-alias>" defaultOpen>
 
 Column alias to use for the resulting unnested data column; if no alias specified, use
 `*` to select the column
 
 </Accordion>
 
-<Accordion title="&lt;table name&gt;" defaultOpen>
+<Accordion title="&lt;table name&gt;" id="<table-name>" defaultOpen>
 
 Name of the table containing the JSON array column
 
 </Accordion>
 
-<Accordion title="&lt;column name&gt;" defaultOpen>
+<Accordion title="&lt;column name&gt;" id="<column-name>" defaultOpen>
 
 Name of the JSON array column to unnest
 
 </Accordion>
 
-<Accordion title="WITH ORDINALITY" defaultOpen>
+<Accordion title="WITH ORDINALITY" id="with-ordinality" defaultOpen>
 
 Also return the 0-based index in the source JSON arrays for each transposed array
 value; the index value will be returned as the column alias `ordinality`
@@ -1150,39 +1150,39 @@ FROM <table name> <table alias>, UNNEST_JSON_ARRAY(<column list>) [WITH ORDINALI
 
 <AccordionGroup>
 
-<Accordion title="&lt;column alias list&gt;" defaultOpen>
+<Accordion title="&lt;column alias list&gt;" id="<column-alias-list>" defaultOpen>
 
 Column aliases given to the resulting unnested data columns, specified in
 `<table/columns aliases>`
 
 </Accordion>
 
-<Accordion title="&lt;ordinality alias&gt;" defaultOpen>
+<Accordion title="&lt;ordinality alias&gt;" id="<ordinality-alias>" defaultOpen>
 
 Column alias given to the resulting ordinality column in `<table/columns aliases>`,
 if `WITH ORDINALITY` is specified
 
 </Accordion>
 
-<Accordion title="&lt;table name&gt;" defaultOpen>
+<Accordion title="&lt;table name&gt;" id="<table-name>-2" defaultOpen>
 
 Name of the table containing the JSON array column(s)
 
 </Accordion>
 
-<Accordion title="&lt;table alias&gt;" defaultOpen>
+<Accordion title="&lt;table alias&gt;" id="<table-alias>" defaultOpen>
 
 Alias to use for the table containing the JSON array column(s)
 
 </Accordion>
 
-<Accordion title="&lt;column list&gt;" defaultOpen>
+<Accordion title="&lt;column list&gt;" id="<column-list>" defaultOpen>
 
 Comma-separated list of JSON array columns to unnest
 
 </Accordion>
 
-<Accordion title="&lt;table/columns aliases&gt;" defaultOpen>
+<Accordion title="&lt;table/columns aliases&gt;" id="<table/columns-aliases>" defaultOpen>
 
 Alias to use for the virtual table and columns being used to return the unnested data
 (including any ordinality alias, if specified), using the form:
@@ -1199,7 +1199,7 @@ unn(uai, uav, index)
 ```
 </Accordion>
 
-<Accordion title="WITH ORDINALITY" defaultOpen>
+<Accordion title="WITH ORDINALITY" id="with-ordinality-2" defaultOpen>
 
 Also return the 0-based index in the source JSON arrays for each transposed array
 value; the index value will be returned in an alias specified in
@@ -1408,7 +1408,7 @@ FROM UNNEST_JSON_OBJECT(SELECT <column name> FROM <table name>) [WITH ORDINALITY
 
 <AccordionGroup>
 
-<Accordion title="&lt;column alias list&gt;" defaultOpen>
+<Accordion title="&lt;column alias list&gt;" id="<column-alias-list>-2" defaultOpen>
 
 Column aliases given to the resulting unnested key & value data columns specified in
 `<table/columns aliases>`; if no aliases are specified, use `*` to select the
@@ -1416,19 +1416,19 @@ columns
 
 </Accordion>
 
-<Accordion title="&lt;table name&gt;" defaultOpen>
+<Accordion title="&lt;table name&gt;" id="<table-name>-3" defaultOpen>
 
 Name of the table containing the JSON object (map) column
 
 </Accordion>
 
-<Accordion title="&lt;column name&gt;" defaultOpen>
+<Accordion title="&lt;column name&gt;" id="<column-name>-2" defaultOpen>
 
 Name of the JSON object (map) column to unnest
 
 </Accordion>
 
-<Accordion title="&lt;table/columns aliases&gt;" defaultOpen>
+<Accordion title="&lt;table/columns aliases&gt;" id="<table/columns-aliases>-2" defaultOpen>
 
 Alias to use for the virtual table and key/value columns being used to return the
 unnested data (including any ordinality alias, if specified), using the form:
@@ -1448,7 +1448,7 @@ If no aliases are given, the two key/value columns will be returned as `KEY_0` &
 
 </Accordion>
 
-<Accordion title="WITH ORDINALITY" defaultOpen>
+<Accordion title="WITH ORDINALITY" id="with-ordinality-3" defaultOpen>
 
 Also return the 0-based index in the source maps for each transposed map value; the
 index value will be returned as the column alias `ordinality` unless overridden in
@@ -1466,39 +1466,39 @@ FROM <table name> <table alias>, UNNEST_JSON_OBJECT(<column list>) [WITH ORDINAL
 
 <AccordionGroup>
 
-<Accordion title="&lt;column alias list&gt;" defaultOpen>
+<Accordion title="&lt;column alias list&gt;" id="<column-alias-list>-3" defaultOpen>
 
 Column aliases given to the resulting unnested key & value data columns specified in
 `<table/columns aliases>`
 
 </Accordion>
 
-<Accordion title="&lt;ordinality alias&gt;" defaultOpen>
+<Accordion title="&lt;ordinality alias&gt;" id="<ordinality-alias>-2" defaultOpen>
 
 Column alias given to the resulting ordinality column in `<table/columns aliases>`,
 if `WITH ORDINALITY` is specified
 
 </Accordion>
 
-<Accordion title="&lt;table name&gt;" defaultOpen>
+<Accordion title="&lt;table name&gt;" id="<table-name>-4" defaultOpen>
 
 Name of the table containing the JSON object (map) column(s)
 
 </Accordion>
 
-<Accordion title="&lt;table alias&gt;" defaultOpen>
+<Accordion title="&lt;table alias&gt;" id="<table-alias>-2" defaultOpen>
 
 Alias to use for the table containing the JSON object (map) column(s)
 
 </Accordion>
 
-<Accordion title="&lt;column list&gt;" defaultOpen>
+<Accordion title="&lt;column list&gt;" id="<column-list>-2" defaultOpen>
 
 Comma-separated list of JSON object (map) columns to unnest
 
 </Accordion>
 
-<Accordion title="&lt;table/columns aliases&gt;" defaultOpen>
+<Accordion title="&lt;table/columns aliases&gt;" id="<table/columns-aliases>-3" defaultOpen>
 
 Alias to use for the virtual table and columns being used to return the unnested data
 (including any ordinality alias, if specified), using the form:
@@ -1516,7 +1516,7 @@ unn(j1_k, j1_v, j2_k, j2_v, index)
 ```
 </Accordion>
 
-<Accordion title="WITH ORDINALITY" defaultOpen>
+<Accordion title="WITH ORDINALITY" id="with-ordinality-4" defaultOpen>
 
 Also return the 0-based index in the source maps for each transposed map value; the
 index value will be returned in an alias specified in `<table/columns aliases>`

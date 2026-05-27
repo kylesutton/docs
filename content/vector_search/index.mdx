@@ -311,37 +311,37 @@ retobj = kinetica.alter_table(
 
 <AccordionGroup>
 
-<Accordion title="L1_NORM(v)" defaultOpen>
+<Accordion title="L1_NORM(v)" id="l1_norm-v" defaultOpen>
 
 Calculates the sum of the absolute values of the given vector's values
 
 </Accordion>
 
-<Accordion title="L2_NORM(v)" defaultOpen>
+<Accordion title="L2_NORM(v)" id="l2_norm-v" defaultOpen>
 
 Calculates the square root of the sum of squares of the given vector's values
 
 </Accordion>
 
-<Accordion title="LINF_NORM(v)" defaultOpen>
+<Accordion title="LINF_NORM(v)" id="linf_norm-v" defaultOpen>
 
 Returns the maximum of the given vector's values
 
 </Accordion>
 
-<Accordion title="LP_NORM(v, p)" defaultOpen>
+<Accordion title="LP_NORM(v, p)" id="lp_norm-v-p" defaultOpen>
 
 Calculates the Lp-space norm of the given vector in the space `p`
 
 </Accordion>
 
-<Accordion title="NTH(v, n)" defaultOpen>
+<Accordion title="NTH(v, n)" id="nth-v-n" defaultOpen>
 
 Returns the given vector's value at 0-based index `n`
 
 </Accordion>
 
-<Accordion title="SIZE(v)" defaultOpen>
+<Accordion title="SIZE(v)" id="size-v" defaultOpen>
 
 Returns the given vector's number of values
 
@@ -361,55 +361,55 @@ searches.  For examples, see [Vector Function Examples](/content/vector_search#v
 
 <AccordionGroup>
 
-<Accordion title="COSINE_DISTANCE(v1, v2)" defaultOpen>
+<Accordion title="COSINE_DISTANCE(v1, v2)" id="cosine_distance-v1-v2" defaultOpen>
 
 *1* minus the *cosine similarity* (equality of angle) of the given vectors
 
 </Accordion>
 
-<Accordion title="DOT_PRODUCT(v1, v2)" defaultOpen>
+<Accordion title="DOT_PRODUCT(v1, v2)" id="dot_product-v1-v2" defaultOpen>
 
 Calculates the sum of products of the given vectors' values
 
 </Accordion>
 
-<Accordion title="EUCLIDEAN_DISTANCE(v1, v2)" defaultOpen>
+<Accordion title="EUCLIDEAN_DISTANCE(v1, v2)" id="euclidean_distance-v1-v2" defaultOpen>
 
 Alias for `L2_DISTANCE`
 
 </Accordion>
 
-<Accordion title="L1_DISTANCE(v1, v2)" defaultOpen>
+<Accordion title="L1_DISTANCE(v1, v2)" id="l1_distance-v1-v2" defaultOpen>
 
 Calculates the L1-space (taxicab) distance between the given vectors
 
 </Accordion>
 
-<Accordion title="L2_DISTANCE(v1, v2)" defaultOpen>
+<Accordion title="L2_DISTANCE(v1, v2)" id="l2_distance-v1-v2" defaultOpen>
 
 Calculates the L2-space (Euclidean) distance between the given vectors
 
 </Accordion>
 
-<Accordion title="L2_SQUAREDDISTANCE(v1, v2)" defaultOpen>
+<Accordion title="L2_SQUAREDDISTANCE(v1, v2)" id="l2_squareddistance-v1-v2" defaultOpen>
 
 Calculates the sum of squares of distances between the given vectors' values
 
 </Accordion>
 
-<Accordion title="L2_DISTSQ(v1, v2)" defaultOpen>
+<Accordion title="L2_DISTSQ(v1, v2)" id="l2_distsq-v1-v2" defaultOpen>
 
 Alias for `L2_SQUAREDDISTANCE`
 
 </Accordion>
 
-<Accordion title="LINF_DISTANCE(v1, v2)" defaultOpen>
+<Accordion title="LINF_DISTANCE(v1, v2)" id="linf_distance-v1-v2" defaultOpen>
 
 Calculates the maximum of the distances between pairs of values in the given vectors
 
 </Accordion>
 
-<Accordion title="LP_DISTANCE(v1, v2, p)" defaultOpen>
+<Accordion title="LP_DISTANCE(v1, v2, p)" id="lp_distance-v1-v2-p" defaultOpen>
 
 Calculates the Lp-space distance between the given vectors in the space `p`
 
@@ -683,44 +683,44 @@ WITH OPTIONS
 
 <AccordionGroup>
 
-<Accordion title="OR REPLACE" defaultOpen>
+<Accordion title="OR REPLACE" id="or-replace" defaultOpen>
 
 Any existing *model* with the same name will be dropped before creating this one
 
 </Accordion>
 
-<Accordion title="REMOTE" defaultOpen>
+<Accordion title="REMOTE" id="remote" defaultOpen>
 
 Optional keyword for compatibility
 
 </Accordion>
 
-<Accordion title="&lt;model name&gt;" defaultOpen>
+<Accordion title="&lt;model name&gt;" id="<model-name>" defaultOpen>
 
 Name of the *model* to create; must adhere to the supported
 [naming criteria](/content/sql/naming#sql-naming-criteria)
 
 </Accordion>
 
-<Accordion title="WITH OPTIONS" defaultOpen>
+<Accordion title="WITH OPTIONS" id="with-options" defaultOpen>
 
 Indicator that a comma-delimited list of *model* option/value assignments will follow.
 
 </Accordion>
 
-<Accordion title="CREDENTIAL" defaultOpen>
+<Accordion title="CREDENTIAL" id="credential" defaultOpen>
 
 [Credential](/content/sql/ddl#sql-create-credential) object to use to authenticate to *model* service.
 
 </Accordion>
 
-<Accordion title="REMOTE_MODEL_NAME" defaultOpen>
+<Accordion title="REMOTE_MODEL_NAME" id="remote_model_name" defaultOpen>
 
 Name of the *model* hosted by the embedding service; e.g., `NV-Embed-QA`.
 
 </Accordion>
 
-<Accordion title="REMOTE_MODEL_LOCATION" defaultOpen>
+<Accordion title="REMOTE_MODEL_LOCATION" id="remote_model_location" defaultOpen>
 
 URL of the *model* host service.
 
@@ -833,26 +833,26 @@ SET
 
 <AccordionGroup>
 
-<Accordion title="&lt;model name&gt;" defaultOpen>
+<Accordion title="&lt;model name&gt;" id="<model-name>-2" defaultOpen>
 
 Name of the *model* to modify; must adhere to the supported
 [naming criteria](/content/sql/naming#sql-naming-criteria)
 
 </Accordion>
 
-<Accordion title="CREDENTIAL" defaultOpen>
+<Accordion title="CREDENTIAL" id="credential-2" defaultOpen>
 
 [Credential](/content/sql/ddl#sql-create-credential) object to use to authenticate to *model* service.
 
 </Accordion>
 
-<Accordion title="REMOTE_MODEL_NAME" defaultOpen>
+<Accordion title="REMOTE_MODEL_NAME" id="remote_model_name-2" defaultOpen>
 
 Name of the *model* hosted by the embedding service; e.g., `NV-Embed-QA`.
 
 </Accordion>
 
-<Accordion title="REMOTE_MODEL_LOCATION" defaultOpen>
+<Accordion title="REMOTE_MODEL_LOCATION" id="remote_model_location-2" defaultOpen>
 
 URL of the *model* host service.
 
@@ -898,7 +898,7 @@ FROM TABLE [/* KI_HINT_SAVE_UDF_STATS */]
 
 <AccordionGroup>
 
-<Accordion title="KI_HINT_SAVE_UDF_STATS" defaultOpen>
+<Accordion title="KI_HINT_SAVE_UDF_STATS" id="ki_hint_save_udf_stats" defaultOpen>
 
 SQL hint to log the embedding generation results of the UDF responsible for the processing
 (`rag_udf_embed`), so the logs can be viewed from the *Jobs* tab in
@@ -906,7 +906,7 @@ SQL hint to log the embedding generation results of the UDF responsible for the 
 
 </Accordion>
 
-<Accordion title="MODEL_NAME" defaultOpen>
+<Accordion title="MODEL_NAME" id="model_name" defaultOpen>
 
 Name of the *model* to use in generating embeddings, adhering to the supported
 [naming criteria](/content/sql/naming#sql-naming-criteria); if not specified, the default model, `sqlgpt`,
@@ -921,33 +921,33 @@ ALTER SYSTEM SET PROPERTIES ('ai_api_embeddings_model' = 'nvidia_remote_model')
 
 </Accordion>
 
-<Accordion title="EMBEDDING_TABLE" defaultOpen>
+<Accordion title="EMBEDDING_TABLE" id="embedding_table" defaultOpen>
 
 The query or name of the table to use for input data to the embedding generation process.
 
 </Accordion>
 
-<Accordion title="EMBEDDING_INPUT_COLUMNS" defaultOpen>
+<Accordion title="EMBEDDING_INPUT_COLUMNS" id="embedding_input_columns" defaultOpen>
 
 Names of the columns in the given `EMBEDDING_TABLE` for which embeddings will be generated.
 
 </Accordion>
 
-<Accordion title="EMBEDDING_OUTPUT_COLUMNS" defaultOpen>
+<Accordion title="EMBEDDING_OUTPUT_COLUMNS" id="embedding_output_columns" defaultOpen>
 
 Names of the columns to return the generated embeddings as; if none specified, each input column
 will have `_embedding` appended to it to construct the name of the corresponding output column.
 
 </Accordion>
 
-<Accordion title="DIMENSIONS" defaultOpen>
+<Accordion title="DIMENSIONS" id="dimensions" defaultOpen>
 
 Size of the vector returned by the embedding generation process; required for the default
 `sqlgpt` model.
 
 </Accordion>
 
-<Accordion title="PARAMS" defaultOpen>
+<Accordion title="PARAMS" id="params" defaultOpen>
 
 Optional indicator that a list of embedding option/value assignments will follow, passed as a
 comma-delimited list of key/value pairs to the `KV_PAIRS` function

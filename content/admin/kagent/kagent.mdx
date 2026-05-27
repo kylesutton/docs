@@ -139,38 +139,38 @@ kagent [-h] [--debug] [--quiet] [-f <path>] [--kagent-dir <path>]
 
 <AccordionGroup>
 
-<Accordion title="&lt; -h | --help &gt;" defaultOpen>
+<Accordion title="&lt; -h | --help &gt;" id="<-h-|-help->" defaultOpen>
 
 Show the help menu.  When used following one of the subcommands, the subcommand-specific help menu will
 be shown.
 
 </Accordion>
 
-<Accordion title="--debug" defaultOpen>
+<Accordion title="--debug" id="debug" defaultOpen>
 
 Log debug messages.
 
 </Accordion>
 
-<Accordion title="--quiet" defaultOpen>
+<Accordion title="--quiet" id="quiet" defaultOpen>
 
 Suppress all output messages.
 
 </Accordion>
 
-<Accordion title="&lt; -f | --dbfile &gt; &lt;path&gt;" defaultOpen>
+<Accordion title="&lt; -f | --dbfile &gt; &lt;path&gt;" id="<-f-|-dbfile->-<path>" defaultOpen>
 
 Path to KAgent cluster configuration database.
 
 </Accordion>
 
-<Accordion title="--kagent-dir &lt;path&gt;" defaultOpen>
+<Accordion title="--kagent-dir &lt;path&gt;" id="kagent-dir-<path>" defaultOpen>
 
 Path to where KAgent and its playbooks reside.
 
 </Accordion>
 
-<Accordion title="&lt; -o | --output &gt; &lt;format&gt;" defaultOpen>
+<Accordion title="&lt; -o | --output &gt; &lt;format&gt;" id="<-o-|-output->-<format>" defaultOpen>
 
 The output message format to use:
 
@@ -179,13 +179,13 @@ The output message format to use:
 
 </Accordion>
 
-<Accordion title="--user &lt;username&gt;" defaultOpen>
+<Accordion title="--user &lt;username&gt;" id="user-<username>" defaultOpen>
 
 Specify what user is performing the actions, for logging purposes.
 
 </Accordion>
 
-<Accordion title="&lt; -v | --verbose &gt;" defaultOpen>
+<Accordion title="&lt; -v | --verbose &gt;" id="<-v-|-verbose->" defaultOpen>
 
 Run ansible-playbook with `-vvv` to debug issues.
 
@@ -224,7 +224,7 @@ kagent ring <command>
 
 <AccordionGroup>
 
-<Accordion title="add [options] &lt;name&gt;" defaultOpen>
+<Accordion title="add [options] &lt;name&gt;" id="add-options-<name>" defaultOpen>
 
 Add a new ring with the given `name`.
 
@@ -248,7 +248,7 @@ Add a new ring with the given `name`.
 
 </Accordion>
 
-<Accordion title="backup [options] &lt;name&gt;" defaultOpen>
+<Accordion title="backup [options] &lt;name&gt;" id="backup-options-<name>" defaultOpen>
 
 Backup an existing ring with the given `name`.
 
@@ -272,7 +272,7 @@ Backup an existing ring with the given `name`.
 
 </Accordion>
 
-<Accordion title="control &lt;name&gt; &lt;operation&gt; &lt;component&gt;" defaultOpen>
+<Accordion title="control &lt;name&gt; &lt;operation&gt; &lt;component&gt;" id="control-<name>-<operation>-<component>" defaultOpen>
 
 Control the services of the ring with the given `name`.
 
@@ -299,19 +299,19 @@ To one of the following components:
 
 </Accordion>
 
-<Accordion title="force-lock &lt;name&gt;" defaultOpen>
+<Accordion title="force-lock &lt;name&gt;" id="force-lock-<name>" defaultOpen>
 
 Force the ring with the given `name` to lock.
 
 </Accordion>
 
-<Accordion title="force-unlock &lt;name&gt;" defaultOpen>
+<Accordion title="force-unlock &lt;name&gt;" id="force-unlock-<name>" defaultOpen>
 
 Force the ring with the given `name` to unlock.
 
 </Accordion>
 
-<Accordion title="gather-logs [options] &lt;name&gt;" defaultOpen>
+<Accordion title="gather-logs [options] &lt;name&gt;" id="gather-logs-options-<name>" defaultOpen>
 
 Download the logs from the ring with the given `name` to a destination on the *KAgent* host.
 
@@ -351,25 +351,25 @@ Download the logs from the ring with the given `name` to a destination on the *K
 
 </Accordion>
 
-<Accordion title="inspect &lt;name&gt;" defaultOpen>
+<Accordion title="inspect &lt;name&gt;" id="inspect-<name>" defaultOpen>
 
 Inspect the details of the ring with the given `name`.
 
 </Accordion>
 
-<Accordion title="install &lt;name&gt;" defaultOpen>
+<Accordion title="install &lt;name&gt;" id="install-<name>" defaultOpen>
 
 Install the HA platform on the ring with the given `name`.
 
 </Accordion>
 
-<Accordion title="list" defaultOpen>
+<Accordion title="list" id="list" defaultOpen>
 
 List all managed rings.
 
 </Accordion>
 
-<Accordion title="rabbit-recovery [options] &lt;name&gt;" defaultOpen>
+<Accordion title="rabbit-recovery [options] &lt;name&gt;" id="rabbit-recovery-options-<name>" defaultOpen>
 
 Attempt a RabbitMQ recovery; the process will clear all queues.
 
@@ -393,13 +393,13 @@ Attempt a RabbitMQ recovery; the process will clear all queues.
 
 </Accordion>
 
-<Accordion title="remove &lt;name&gt;" defaultOpen>
+<Accordion title="remove &lt;name&gt;" id="remove-<name>" defaultOpen>
 
 Remove the ring with the given `name`.
 
 </Accordion>
 
-<Accordion title="update [options] &lt;name&gt;" defaultOpen>
+<Accordion title="update [options] &lt;name&gt;" id="update-options-<name>" defaultOpen>
 
 Update the details of the ring with the given `name`.
 
@@ -427,7 +427,7 @@ Update the details of the ring with the given `name`.
 
 </Accordion>
 
-<Accordion title="upgrade [options] &lt;name&gt;" defaultOpen>
+<Accordion title="upgrade [options] &lt;name&gt;" id="upgrade-options-<name>" defaultOpen>
 
 Upgrade Kinetica to the latest version on the ring with the given `name`.  This will perform a sequential
 in-place upgrade of each cluster within the ring.
@@ -481,7 +481,7 @@ kagent cluster <command>
 
 <AccordionGroup>
 
-<Accordion title="backup [options] &lt;name&gt;" defaultOpen>
+<Accordion title="backup [options] &lt;name&gt;" id="backup-options-<name>-2" defaultOpen>
 
 Backup the data on the cluster with the given `name`.
 
@@ -517,7 +517,7 @@ Backup the data on the cluster with the given `name`.
 
 </Accordion>
 
-<Accordion title="backup-configuration-files [options] &lt;name&gt;" defaultOpen>
+<Accordion title="backup-configuration-files [options] &lt;name&gt;" id="backup-configuration-files-options-<name>" defaultOpen>
 
 Backup all configuration files on the cluster with the given `name`.
 
@@ -541,13 +541,13 @@ Backup all configuration files on the cluster with the given `name`.
 
 </Accordion>
 
-<Accordion title="backup-schedule &lt;name&gt;" defaultOpen>
+<Accordion title="backup-schedule &lt;name&gt;" id="backup-schedule-<name>" defaultOpen>
 
 List scheduled backups on the cluster with the given `name`.
 
 </Accordion>
 
-<Accordion title="bootstrap-kagent [options] &lt;name&gt;" defaultOpen>
+<Accordion title="bootstrap-kagent [options] &lt;name&gt;" id="bootstrap-kagent-options-<name>" defaultOpen>
 
 Bootstrap the *KAgent* role to a different host in the cluster; further cluster management must happen
 through the *KAgent* on this different host.
@@ -572,13 +572,13 @@ through the *KAgent* on this different host.
 
 </Accordion>
 
-<Accordion title="check-for-upgrades &lt;name&gt;" defaultOpen>
+<Accordion title="check-for-upgrades &lt;name&gt;" id="check-for-upgrades-<name>" defaultOpen>
 
 Check if upgrades are available on-line for the cluster with the given `name`.
 
 </Accordion>
 
-<Accordion title="clone [options]" defaultOpen>
+<Accordion title="clone [options]" id="clone-options" defaultOpen>
 
 Clone one cluster into another.
 
@@ -622,7 +622,7 @@ Clone one cluster into another.
 
 </Accordion>
 
-<Accordion title="control &lt;name&gt; &lt;operation&gt; &lt;component&gt;" defaultOpen>
+<Accordion title="control &lt;name&gt; &lt;operation&gt; &lt;component&gt;" id="control-<name>-<operation>-<component>-2" defaultOpen>
 
 Control the services of the cluster with the given `name`.
 
@@ -649,7 +649,7 @@ To one of the following components:
 
 </Accordion>
 
-<Accordion title="gather-logs [options] &lt;name&gt;" defaultOpen>
+<Accordion title="gather-logs [options] &lt;name&gt;" id="gather-logs-options-<name>-2" defaultOpen>
 
 Download the logs from the cluster with the given `name` to a destination on the *KAgent* host.
 
@@ -689,13 +689,13 @@ Download the logs from the cluster with the given `name` to a destination on the
 
 </Accordion>
 
-<Accordion title="get-conf-properties &lt;name&gt;" defaultOpen>
+<Accordion title="get-conf-properties &lt;name&gt;" id="get-conf-properties-<name>" defaultOpen>
 
 Show database configuration properties of the cluster with the given `name`.
 
 </Accordion>
 
-<Accordion title="get-logger [options] &lt;name&gt;" defaultOpen>
+<Accordion title="get-logger [options] &lt;name&gt;" id="get-logger-options-<name>" defaultOpen>
 
 Show logger and logging level for the cluster with the given `name`.  To list the available loggers, run:
 
@@ -727,7 +727,7 @@ kagent cluster get-logger --ranks 0 <name>
 
 </Accordion>
 
-<Accordion title="init [options] &lt;name&gt;" defaultOpen>
+<Accordion title="init [options] &lt;name&gt;" id="init-options-<name>" defaultOpen>
 
 Initialize a new cluster with the given `name`.
 
@@ -833,13 +833,13 @@ Initialize a new cluster with the given `name`.
 
 </Accordion>
 
-<Accordion title="inspect &lt;name&gt;" defaultOpen>
+<Accordion title="inspect &lt;name&gt;" id="inspect-<name>-2" defaultOpen>
 
 Inspect the details of the cluster with the given `name`.
 
 </Accordion>
 
-<Accordion title="install [options] &lt;name&gt;" defaultOpen>
+<Accordion title="install [options] &lt;name&gt;" id="install-options-<name>" defaultOpen>
 
 Install *Kinetica* on a new cluster.  **Note:**  specifying any offline installer will switch the install to
 offline mode.
@@ -908,13 +908,13 @@ offline mode.
 
 </Accordion>
 
-<Accordion title="list" defaultOpen>
+<Accordion title="list" id="list-2" defaultOpen>
 
 List all managed clusters.
 
 </Accordion>
 
-<Accordion title="list-backup-contents [options] &lt;name&gt;" defaultOpen>
+<Accordion title="list-backup-contents [options] &lt;name&gt;" id="list-backup-contents-options-<name>" defaultOpen>
 
 List the contents of a backup on the cluster with the given `name`.
 
@@ -942,7 +942,7 @@ List the contents of a backup on the cluster with the given `name`.
 
 </Accordion>
 
-<Accordion title="list-backups [options] &lt;name&gt;" defaultOpen>
+<Accordion title="list-backups [options] &lt;name&gt;" id="list-backups-options-<name>" defaultOpen>
 
 List the available backups on the cluster with the given `name`.
 
@@ -966,25 +966,25 @@ List the available backups on the cluster with the given `name`.
 
 </Accordion>
 
-<Accordion title="list-cluster-contents &lt;name&gt;" defaultOpen>
+<Accordion title="list-cluster-contents &lt;name&gt;" id="list-cluster-contents-<name>" defaultOpen>
 
 List all of the tables on the cluster with the given `name`.
 
 </Accordion>
 
-<Accordion title="preflight &lt;name&gt;" defaultOpen>
+<Accordion title="preflight &lt;name&gt;" id="preflight-<name>" defaultOpen>
 
 Detect/regenerate environment settings for running *KAgent* commands on the cluster with the given `name`.
 
 </Accordion>
 
-<Accordion title="remove &lt;name&gt;" defaultOpen>
+<Accordion title="remove &lt;name&gt;" id="remove-<name>-2" defaultOpen>
 
 Remove the cluster with the given `name`.
 
 </Accordion>
 
-<Accordion title="restore [options] &lt;name&gt;" defaultOpen>
+<Accordion title="restore [options] &lt;name&gt;" id="restore-options-<name>" defaultOpen>
 
 Restore the contents of a backup to the cluster with the given `name`.
 
@@ -1020,7 +1020,7 @@ Restore the contents of a backup to the cluster with the given `name`.
 
 </Accordion>
 
-<Accordion title="secure [options] &lt;name&gt;" defaultOpen>
+<Accordion title="secure [options] &lt;name&gt;" id="secure-options-<name>" defaultOpen>
 
 Secure the cluster with the given `name` by enabling HTTPS and/or authentication via *LDAP*, *Active*
 *Directory*, *Kerberos*, or *OAuth2*.  **Note:** All parameters relevant to the desired authentication
@@ -1143,7 +1143,7 @@ defaults.
 
 </Accordion>
 
-<Accordion title="set-conf-properties [options] &lt;name&gt;" defaultOpen>
+<Accordion title="set-conf-properties [options] &lt;name&gt;" id="set-conf-properties-options-<name>" defaultOpen>
 
 Set database configuration properties for the cluster with the given `name`.
 
@@ -1167,7 +1167,7 @@ Set database configuration properties for the cluster with the given `name`.
 
 </Accordion>
 
-<Accordion title="set-logger [options] &lt;name&gt;" defaultOpen>
+<Accordion title="set-logger [options] &lt;name&gt;" id="set-logger-options-<name>" defaultOpen>
 
 Set logger and logging level for the cluster with the given `name`.
 
@@ -1199,13 +1199,13 @@ Set logger and logging level for the cluster with the given `name`.
 
 </Accordion>
 
-<Accordion title="uninstall &lt;name&gt;" defaultOpen>
+<Accordion title="uninstall &lt;name&gt;" id="uninstall-<name>" defaultOpen>
 
 Remove the cluster with the given `name`, including all components except this instance of *KAgent*.
 
 </Accordion>
 
-<Accordion title="update [options] &lt;name&gt;" defaultOpen>
+<Accordion title="update [options] &lt;name&gt;" id="update-options-<name>-2" defaultOpen>
 
 Modify select parameters of the cluster with the given `name`.
 
@@ -1237,7 +1237,7 @@ Modify select parameters of the cluster with the given `name`.
 
 </Accordion>
 
-<Accordion title="verify [options] &lt;name&gt;" defaultOpen>
+<Accordion title="verify [options] &lt;name&gt;" id="verify-options-<name>" defaultOpen>
 
 Verify connectivity and basic configuration of the cluster with the given `name`.
 
@@ -1265,7 +1265,7 @@ Verify connectivity and basic configuration of the cluster with the given `name`
 
 </Accordion>
 
-<Accordion title="write-inventory [options] &lt;name&gt;" defaultOpen>
+<Accordion title="write-inventory [options] &lt;name&gt;" id="write-inventory-options-<name>" defaultOpen>
 
 Write out an inventory file for the cluster with the given `name`.
 
@@ -1310,13 +1310,13 @@ kagent node <command>
 
 <AccordionGroup>
 
-<Accordion title="discover-hostname [options] &lt;name&gt;" defaultOpen>
+<Accordion title="discover-hostname [options] &lt;name&gt;" id="discover-hostname-options-<name>" defaultOpen>
 
 Attempt to auto-discover (and update) the hostname of the node with the given `name`.
 
 </Accordion>
 
-<Accordion title="gather-logs [options] &lt;name&gt;" defaultOpen>
+<Accordion title="gather-logs [options] &lt;name&gt;" id="gather-logs-options-<name>-3" defaultOpen>
 
 Download the logs from the node with the given `name` to a destination on the *KAgent* host.
 
@@ -1356,7 +1356,7 @@ Download the logs from the node with the given `name` to a destination on the *K
 
 </Accordion>
 
-<Accordion title="init [options] &lt;name&gt; &lt;addr&gt; &lt;cluster&gt;" defaultOpen>
+<Accordion title="init [options] &lt;name&gt; &lt;addr&gt; &lt;cluster&gt;" id="init-options-<name>-<addr>-<cluster>" defaultOpen>
 
 Initialize a new node with the given `name` and IP `addr` on the given `cluster`.  The `name` must
 be unique across all nodes in the cluster.
@@ -1417,19 +1417,19 @@ be unique across all nodes in the cluster.
 
 </Accordion>
 
-<Accordion title="inspect &lt;name&gt;" defaultOpen>
+<Accordion title="inspect &lt;name&gt;" id="inspect-<name>-3" defaultOpen>
 
 Inspect the details of the node with the given `name`.
 
 </Accordion>
 
-<Accordion title="list" defaultOpen>
+<Accordion title="list" id="list-3" defaultOpen>
 
 List all managed nodes.
 
 </Accordion>
 
-<Accordion title="remove [options] &lt;name&gt;" defaultOpen>
+<Accordion title="remove [options] &lt;name&gt;" id="remove-options-<name>" defaultOpen>
 
 Remove the node with the given `name`.
 
@@ -1453,7 +1453,7 @@ Remove the node with the given `name`.
 
 </Accordion>
 
-<Accordion title="update [options] &lt;name&gt;" defaultOpen>
+<Accordion title="update [options] &lt;name&gt;" id="update-options-<name>-3" defaultOpen>
 
 Modify select parameters of the node with the given `name`.
 
@@ -1502,7 +1502,7 @@ kagent log <command>
 
 <AccordionGroup>
 
-<Accordion title="list [options]" defaultOpen>
+<Accordion title="list [options]" id="list-options" defaultOpen>
 
 Show a list of *KAgent* log events.
 
@@ -1547,13 +1547,13 @@ kagent check [options]
 
 <AccordionGroup>
 
-<Accordion title="--retry-count &lt;number&gt;" defaultOpen>
+<Accordion title="--retry-count &lt;number&gt;" id="retry-count-<number>" defaultOpen>
 
 Specify the `number` of connectivity check retries before failing over nodes.
 
 </Accordion>
 
-<Accordion title="--retry-delay &lt;seconds&gt;" defaultOpen>
+<Accordion title="--retry-delay &lt;seconds&gt;" id="retry-delay-<seconds>" defaultOpen>
 
 Specify the `seconds` to wait between each connectivity check retry.
 
@@ -1580,14 +1580,14 @@ kagent factory-reset [options]
 
 <AccordionGroup>
 
-<Accordion title="--clear-data &lt;yes|no&gt;" defaultOpen>
+<Accordion title="--clear-data &lt;yes|no&gt;" id="clear-data-<yes|no>" defaultOpen>
 
 Whether to remove (`yes`) or not remove (`no`) directories left by the installation.  Default is to
 not remove directories.
 
 </Accordion>
 
-<Accordion title="--proceed &lt;yes|no&gt;" defaultOpen>
+<Accordion title="--proceed &lt;yes|no&gt;" id="proceed-<yes|no>" defaultOpen>
 
 Whether to automatically proceed (`yes`) or ask for confirmation (`no`) before performing a reset.
 
@@ -1612,19 +1612,19 @@ kagent monitor [options]
 
 <AccordionGroup>
 
-<Accordion title="--interval &lt;schedule&gt;" defaultOpen>
+<Accordion title="--interval &lt;schedule&gt;" id="interval-<schedule>" defaultOpen>
 
 Specify how often the check command will be run, in crontab format.  Default is `*/5 * * * *`.
 
 </Accordion>
 
-<Accordion title="--retry-count &lt;number&gt;" defaultOpen>
+<Accordion title="--retry-count &lt;number&gt;" id="retry-count-<number>-2" defaultOpen>
 
 Specify the `number` of check retries before failing over a node.
 
 </Accordion>
 
-<Accordion title="--retry-delay &lt;seconds&gt;" defaultOpen>
+<Accordion title="--retry-delay &lt;seconds&gt;" id="retry-delay-<seconds>-2" defaultOpen>
 
 Specify the `seconds` to wait between each check retry.
 
@@ -1664,7 +1664,7 @@ kagent update [options]
 
 <AccordionGroup>
 
-<Accordion title="--is-bootstrapped &lt;yes|no&gt;" defaultOpen>
+<Accordion title="--is-bootstrapped &lt;yes|no&gt;" id="is-bootstrapped-<yes|no>" defaultOpen>
 
 Whether to mark this *KAgent* as bootstrapped (`yes`) or not (`no`).  A bootstrapped
 *KAgent* is one that is deployed into a cloud-provisioned cluster during installation.  This
@@ -1673,7 +1673,7 @@ cluster nodes.
 
 </Accordion>
 
-<Accordion title="--force-bootstrap-unlock &lt;yes|no&gt;" defaultOpen>
+<Accordion title="--force-bootstrap-unlock &lt;yes|no&gt;" id="force-bootstrap-unlock-<yes|no>" defaultOpen>
 
 Whether to remove (`yes`) or not remove (`no`) the lock placed on this *KAgent* if it had
 been used to bootstrap an in-cluster *KAgent*.

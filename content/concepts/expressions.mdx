@@ -54,7 +54,7 @@ and `0` for *false*.
 
 <AccordionGroup>
 
-<Accordion title="CASE(expr, {&lt;matches&gt;}, {&lt;values&gt;}, value_if_no_match)" defaultOpen>
+<Accordion title="CASE(expr, {&lt;matches&gt;}, {&lt;values&gt;}, value_if_no_match)" id="case-expr-<matches>-<values>-value_if_no_match" defaultOpen>
 
 Evaluates `expr`: returns the first value from the `values` list whose corresponding match
 from the `matches` list is equal to `expr`; returns `value_if_no_match` if `expr` is not
@@ -134,7 +134,7 @@ Examples:
 
 </Accordion>
 
-<Accordion title="IF(expr, value_if_true, value_if_false)" defaultOpen>
+<Accordion title="IF(expr, value_if_true, value_if_false)" id="if-expr-value_if_true-value_if_false" defaultOpen>
 
 Evaluates `expr`: if *true*, returns `value_if_true`; otherwise, if *false* or *null*,
 returns `value_if_false`; see [Short-Circuiting](/content/concepts/expressions#short-circuiting) for error-checking details
@@ -181,74 +181,74 @@ For the `CAST()` and `CONVERT()` functions, valid destination types are:
 
 <AccordionGroup>
 
-<Accordion title="CAST (original value, destination type)" defaultOpen>
+<Accordion title="CAST (original value, destination type)" id="cast-original-value-destination-type" defaultOpen>
 
 Returns the equivalent of `original value` converted to the  `destination type`;
 useful for converting strings to numbers and numbers to strings
 
 </Accordion>
 
-<Accordion title="CHAR(expr)" defaultOpen>
+<Accordion title="CHAR(expr)" id="char-expr" defaultOpen>
 
 Returns the character associated with the ASCII code in `expr`
 
 </Accordion>
 
-<Accordion title="CHAR1(expr)" defaultOpen>
+<Accordion title="CHAR1(expr)" id="char1-expr" defaultOpen>
 
 Converts the given `expr` to *char1* type
 
 </Accordion>
 
-<Accordion title="CHAR2(expr)" defaultOpen>
+<Accordion title="CHAR2(expr)" id="char2-expr" defaultOpen>
 
 Converts the given `expr` to *char2* type
 
 </Accordion>
 
-<Accordion title="CHAR4(expr)" defaultOpen>
+<Accordion title="CHAR4(expr)" id="char4-expr" defaultOpen>
 
 Converts the given `expr` to *char4* type
 
 </Accordion>
 
-<Accordion title="CHAR8(expr)" defaultOpen>
+<Accordion title="CHAR8(expr)" id="char8-expr" defaultOpen>
 
 Converts the given `expr` to *char8* type
 
 </Accordion>
 
-<Accordion title="CHAR16(expr)" defaultOpen>
+<Accordion title="CHAR16(expr)" id="char16-expr" defaultOpen>
 
 Converts the given `expr` to *char16* type
 
 </Accordion>
 
-<Accordion title="CHAR32(expr)" defaultOpen>
+<Accordion title="CHAR32(expr)" id="char32-expr" defaultOpen>
 
 Converts the given `expr` to *char32* type
 
 </Accordion>
 
-<Accordion title="CHAR64(expr)" defaultOpen>
+<Accordion title="CHAR64(expr)" id="char64-expr" defaultOpen>
 
 Converts the given `expr` to *char64* type
 
 </Accordion>
 
-<Accordion title="CHAR128(expr)" defaultOpen>
+<Accordion title="CHAR128(expr)" id="char128-expr" defaultOpen>
 
 Converts the given `expr` to *char128* type
 
 </Accordion>
 
-<Accordion title="CHAR256(expr)" defaultOpen>
+<Accordion title="CHAR256(expr)" id="char256-expr" defaultOpen>
 
 Converts the given `expr` to *char256* type
 
 </Accordion>
 
-<Accordion title="CONVERT (original value, destination type, style)" defaultOpen>
+<Accordion title="CONVERT (original value, destination type, style)" id="convert-original-value-destination-type-style" defaultOpen>
 
 Returns the equivalent of `original value` converted to the `destination type`. The
 `style` parameter is currently only applicable when the `destination type` is
@@ -309,67 +309,67 @@ Examples:
 
 </Accordion>
 
-<Accordion title="DATE(expr)" defaultOpen>
+<Accordion title="DATE(expr)" id="date-expr" defaultOpen>
 
 Converts `expr` to date (`YYYY-MM-DD`) format
 
 </Accordion>
 
-<Accordion title="DATETIME(expr)" defaultOpen>
+<Accordion title="DATETIME(expr)" id="datetime-expr" defaultOpen>
 
 Converts `expr` to datetime (`YYYY-MM-DD HH24:MI:SS.mmm`) format
 
 </Accordion>
 
-<Accordion title="DECIMAL(expr)" defaultOpen>
+<Accordion title="DECIMAL(expr)" id="decimal-expr" defaultOpen>
 
 Converts the given `expr` to *decimal* type
 
 </Accordion>
 
-<Accordion title="DOUBLE(expr)" defaultOpen>
+<Accordion title="DOUBLE(expr)" id="double-expr" defaultOpen>
 
 Converts the given `expr` to *double* type
 
 </Accordion>
 
-<Accordion title="FLOAT(expr)" defaultOpen>
+<Accordion title="FLOAT(expr)" id="float-expr" defaultOpen>
 
 Converts the given `expr` to *float* type
 
 </Accordion>
 
-<Accordion title="INT(expr)" defaultOpen>
+<Accordion title="INT(expr)" id="int-expr" defaultOpen>
 
 Converts the given `expr` to *int* type
 
 </Accordion>
 
-<Accordion title="LONG(expr)" defaultOpen>
+<Accordion title="LONG(expr)" id="long-expr" defaultOpen>
 
 Converts the given `expr` to *long* type
 
 </Accordion>
 
-<Accordion title="STRING(expr)" defaultOpen>
+<Accordion title="STRING(expr)" id="string-expr" defaultOpen>
 
 Converts `expr` to a string format appropriate for the `expr` type
 
 </Accordion>
 
-<Accordion title="TIME(expr)" defaultOpen>
+<Accordion title="TIME(expr)" id="time-expr" defaultOpen>
 
 Converts `expr` to time (`HH:MI:SS.mmm`) format
 
 </Accordion>
 
-<Accordion title="TIMESTAMP(expr)" defaultOpen>
+<Accordion title="TIMESTAMP(expr)" id="timestamp-expr" defaultOpen>
 
 Converts `expr` to the number of milliseconds since the epoch
 
 </Accordion>
 
-<Accordion title="TO_CHAR(expr, format)" defaultOpen>
+<Accordion title="TO_CHAR(expr, format)" id="to_char-expr-format" defaultOpen>
 
 Converts the given date/time `expr` to a string matching the given `format`.
 The returned string will be truncated at 32 characters.
@@ -395,7 +395,7 @@ Example:
 
 </Accordion>
 
-<Accordion title="TO_DATE(string, format)" defaultOpen>
+<Accordion title="TO_DATE(string, format)" id="to_date-string-format" defaultOpen>
 
 Converts the given string to a *date* type with the given format code.
 See [Date/Time Conversion Codes](/content/concepts/expressions#datetime-conversion-codes) for the list of format codes.
@@ -407,7 +407,7 @@ TO_DATE('2017-06-15', 'YYYY-MM-DD')
 ```
 </Accordion>
 
-<Accordion title="TO_DATETIME(string, format)" defaultOpen>
+<Accordion title="TO_DATETIME(string, format)" id="to_datetime-string-format" defaultOpen>
 
 Converts the given string to a *datetime* type with the given format code.
 See [Date/Time Conversion Codes](/content/concepts/expressions#datetime-conversion-codes) for the list of format codes.
@@ -419,7 +419,7 @@ TO_DATETIME('2017-06-15 10:37:30', 'YYYY-MM-DD HH:MI:SS')
 ```
 </Accordion>
 
-<Accordion title="TO_TIME(string, format)" defaultOpen>
+<Accordion title="TO_TIME(string, format)" id="to_time-string-format" defaultOpen>
 
 Converts the given string to a *time* type with the given format code.
 See [Date/Time Conversion Codes](/content/concepts/expressions#datetime-conversion-codes) for the list of format codes.
@@ -431,7 +431,7 @@ TO_TIME('10:37:30', 'HH:MI:SS')
 ```
 </Accordion>
 
-<Accordion title="TO_TIMESTAMP(string, format)" defaultOpen>
+<Accordion title="TO_TIMESTAMP(string, format)" id="to_timestamp-string-format" defaultOpen>
 
 Converts the given string to a *timestamp* type with the given format code.
 See [Date/Time Conversion Codes](/content/concepts/expressions#datetime-conversion-codes) for the list of format codes.
@@ -443,13 +443,13 @@ TO_TIMESTAMP('2017-06-15 10:37:30', 'YYYY-MM-DD HH:MI:SS')
 ```
 </Accordion>
 
-<Accordion title="ULONG(expr)" defaultOpen>
+<Accordion title="ULONG(expr)" id="ulong-expr" defaultOpen>
 
 Converts the given `expr` to *ulong* type
 
 </Accordion>
 
-<Accordion title="VECTOR(expr, len)" defaultOpen>
+<Accordion title="VECTOR(expr, len)" id="vector-expr-len" defaultOpen>
 
 Converts the given stringified array of `len` number of *float* values in `expr` to
 `VECTOR` type.
@@ -582,7 +582,7 @@ This section comprises the following functions:
 
 <AccordionGroup>
 
-<Accordion title="CLOCK_TIMESTAMP()" defaultOpen>
+<Accordion title="CLOCK_TIMESTAMP()" id="clock_timestamp" defaultOpen>
 
 Returns the date & time as `YYYY-MM-DD HH24:MI:SS.mmm`
 
@@ -595,13 +595,13 @@ clusters.  Use `CURRENT_DATETIME` to avoid this issue.
 
 </Accordion>
 
-<Accordion title="CURRENT_DATE()" defaultOpen>
+<Accordion title="CURRENT_DATE()" id="current_date" defaultOpen>
 
 Returns the date as `YYYY-MM-DD`
 
 </Accordion>
 
-<Accordion title="CURRENT_DATETIME()" defaultOpen>
+<Accordion title="CURRENT_DATETIME()" id="current_datetime" defaultOpen>
 
 Returns the date & time as `YYYY-MM-DD HH24:MI:SS.mmm`
 
@@ -614,19 +614,19 @@ See `CLOCK_TIMESTAMP` to always get the actual time each time it is called.
 
 </Accordion>
 
-<Accordion title="CURRENT_TIME()" defaultOpen>
+<Accordion title="CURRENT_TIME()" id="current_time" defaultOpen>
 
 Returns the time as `HH24:MI:SS.mmm`
 
 </Accordion>
 
-<Accordion title="CURRENT_TIMESTAMP()" defaultOpen>
+<Accordion title="CURRENT_TIMESTAMP()" id="current_timestamp" defaultOpen>
 
 Returns the date & time as the number of milliseconds since the epoch
 
 </Accordion>
 
-<Accordion title="DATEADD (unit, amount, expr)" defaultOpen>
+<Accordion title="DATEADD (unit, amount, expr)" id="dateadd-unit-amount-expr" defaultOpen>
 
 Adds the positive or negative integral `amount` of `unit` date/time intervals to the
 `date` or `datetime` value in `expr`
@@ -744,7 +744,7 @@ Examples:
 
 </Accordion>
 
-<Accordion title="DATE_BUCKET (width, ds[, offset[, base]])" defaultOpen>
+<Accordion title="DATE_BUCKET (width, ds[, offset[, base]])" id="date_bucket-width-ds-offset-base" defaultOpen>
 
 Calculates the date range in which a given date `ds` falls, based on a set of
 fixed-width "buckets" with the given `width`, start-aligned `base` date, and
@@ -775,7 +775,7 @@ The call will be processed as follows:
 
 </Accordion>
 
-<Accordion title="DATEDIFF ([unit,] begin, end)" defaultOpen>
+<Accordion title="DATEDIFF ([unit,] begin, end)" id="datediff-unit-begin-end" defaultOpen>
 
 Calculates the difference between two date/time expressions, returning the result as an
 integral difference in the units specified; more precisely, how many whole date/time
@@ -835,7 +835,7 @@ Examples:
 
 </Accordion>
 
-<Accordion title="DATEPART(part, expr)" defaultOpen>
+<Accordion title="DATEPART(part, expr)" id="datepart-part-expr" defaultOpen>
 
 Returns the requested `part` of the date/time `expr`.  The `part` may be any of
 those specified in `DATE_TRUNC(part, expr)`, plus the following:
@@ -901,7 +901,7 @@ Examples:
 
 </Accordion>
 
-<Accordion title="DATE_TRUNC(part, expr)" defaultOpen>
+<Accordion title="DATE_TRUNC(part, expr)" id="date_trunc-part-expr" defaultOpen>
 
 Returns the date/time `expr` after truncating it beyond the given date/time `part`.
 The following date/time constants are supported for `part`:
@@ -1011,26 +1011,26 @@ Examples:
 
 </Accordion>
 
-<Accordion title="DAY(expr)" defaultOpen>
+<Accordion title="DAY(expr)" id="day-expr" defaultOpen>
 
 Alias for `DAYOFMONTH(expr)`
 
 </Accordion>
 
-<Accordion title="DAYNAME(expr)" defaultOpen>
+<Accordion title="DAYNAME(expr)" id="dayname-expr" defaultOpen>
 
 Extracts the day of the week from `expr` and converts it to the corresponding day name
 [`Sunday` - `Saturday` ]
 
 </Accordion>
 
-<Accordion title="DAYOFMONTH(expr)" defaultOpen>
+<Accordion title="DAYOFMONTH(expr)" id="dayofmonth-expr" defaultOpen>
 
 Extracts the day of the month from `expr` [`1` - `31`]
 
 </Accordion>
 
-<Accordion title="DAYOFWEEK(expr)" defaultOpen>
+<Accordion title="DAYOFWEEK(expr)" id="dayofweek-expr" defaultOpen>
 
 Extracts the day of the week from `expr` [`1` - `7`]
 
@@ -1078,25 +1078,25 @@ Extracts the day of the week from `expr` [`1` - `7`]
 
 </Accordion>
 
-<Accordion title="DAY_OF_WEEK(expr)" defaultOpen>
+<Accordion title="DAY_OF_WEEK(expr)" id="day_of_week-expr" defaultOpen>
 
 Alias for `DAYOFWEEK(expr)`
 
 </Accordion>
 
-<Accordion title="DAYOFYEAR(expr)" defaultOpen>
+<Accordion title="DAYOFYEAR(expr)" id="dayofyear-expr" defaultOpen>
 
 Extracts the day of the year from `expr` [`1` - `366`]
 
 </Accordion>
 
-<Accordion title="DAY_OF_YEAR(expr)" defaultOpen>
+<Accordion title="DAY_OF_YEAR(expr)" id="day_of_year-expr" defaultOpen>
 
 Alias for `DAYOFYEAR(expr)`
 
 </Accordion>
 
-<Accordion title="EPOCH_MSECS_TO_DATETIME(expr)" defaultOpen>
+<Accordion title="EPOCH_MSECS_TO_DATETIME(expr)" id="epoch_msecs_to_datetime-expr" defaultOpen>
 
 Converts `expr` milliseconds since the epoch to a date/time
 
@@ -1120,7 +1120,7 @@ Example:
 
 </Accordion>
 
-<Accordion title="EPOCH_SECS_TO_DATETIME(expr)" defaultOpen>
+<Accordion title="EPOCH_SECS_TO_DATETIME(expr)" id="epoch_secs_to_datetime-expr" defaultOpen>
 
 Converts `expr` seconds since the epoch to a date/time
 
@@ -1144,44 +1144,44 @@ Example:
 
 </Accordion>
 
-<Accordion title="HOUR(expr)" defaultOpen>
+<Accordion title="HOUR(expr)" id="hour-expr" defaultOpen>
 
 Extracts the hour of the day from `expr` [`0` - `23`]
 
 </Accordion>
 
-<Accordion title="LAST_DAY(expr)" defaultOpen>
+<Accordion title="LAST_DAY(expr)" id="last_day-expr" defaultOpen>
 
 Returns the date of the last day of the month in the given `expr`
 
 </Accordion>
 
-<Accordion title="MINUTE(expr)" defaultOpen>
+<Accordion title="MINUTE(expr)" id="minute-expr" defaultOpen>
 
 Extracts the minute of the day from `expr` [`0` - `59`]
 
 </Accordion>
 
-<Accordion title="MONTH(expr)" defaultOpen>
+<Accordion title="MONTH(expr)" id="month-expr" defaultOpen>
 
 Extracts the month of the year from `expr` [`1` - `12`]
 
 </Accordion>
 
-<Accordion title="MONTHNAME(expr)" defaultOpen>
+<Accordion title="MONTHNAME(expr)" id="monthname-expr" defaultOpen>
 
 Extracts the month of the year from `expr` and converts it to the corresponding month
 name [ `January` - `December`]
 
 </Accordion>
 
-<Accordion title="MSEC(expr)" defaultOpen>
+<Accordion title="MSEC(expr)" id="msec-expr" defaultOpen>
 
 Extracts the millisecond of the second from `expr` [`0` - `999`]
 
 </Accordion>
 
-<Accordion title="MSECS_SINCE_EPOCH(expr)" defaultOpen>
+<Accordion title="MSECS_SINCE_EPOCH(expr)" id="msecs_since_epoch-expr" defaultOpen>
 
 Converts `expr` date/time to the number of milliseconds since the epoch
 
@@ -1205,7 +1205,7 @@ Example:
 
 </Accordion>
 
-<Accordion title="NEXT_DAY(date, expr)" defaultOpen>
+<Accordion title="NEXT_DAY(date, expr)" id="next_day-date-expr" defaultOpen>
 
 Returns the date of the next day of the week, provided as a day name in `expr`, that
 occurs after the given `date`
@@ -1240,13 +1240,13 @@ Some examples, given that *2000-10-10* is a *Tuesday*:
 
 </Accordion>
 
-<Accordion title="NOW()" defaultOpen>
+<Accordion title="NOW()" id="now" defaultOpen>
 
 Alias for `CURRENT_DATETIME()`
 
 </Accordion>
 
-<Accordion title="QUARTER(expr)" defaultOpen>
+<Accordion title="QUARTER(expr)" id="quarter-expr" defaultOpen>
 
 Extracts the quarter of the year from `expr` [`1` - `4`]
 
@@ -1282,19 +1282,19 @@ Extracts the quarter of the year from `expr` [`1` - `4`]
 
 </Accordion>
 
-<Accordion title="SEC(expr)" defaultOpen>
+<Accordion title="SEC(expr)" id="sec-expr" defaultOpen>
 
 Alias for `SECOND(expr)`
 
 </Accordion>
 
-<Accordion title="SECOND(expr)" defaultOpen>
+<Accordion title="SECOND(expr)" id="second-expr" defaultOpen>
 
 Extracts the seconds of the minute from `expr` [ `0` - `59` ]
 
 </Accordion>
 
-<Accordion title="SECS_SINCE_EPOCH(expr)" defaultOpen>
+<Accordion title="SECS_SINCE_EPOCH(expr)" id="secs_since_epoch-expr" defaultOpen>
 
 Converts `expr` date/time to the number of seconds since the epoch
 
@@ -1318,7 +1318,7 @@ Example:
 
 </Accordion>
 
-<Accordion title="SLEEP(expr)" defaultOpen>
+<Accordion title="SLEEP(expr)" id="sleep-expr" defaultOpen>
 
 Pause execution for at least `expr` seconds, though system load may delay the return
 from this call for longer than the specified amount.  Use a decimal for `expr` to pause
@@ -1331,7 +1331,7 @@ db.get_records_by_column('', 'SLEEP(0.001)')
 ```
 </Accordion>
 
-<Accordion title="TIMEBOUNDARYDIFF (unit, begin, end)" defaultOpen>
+<Accordion title="TIMEBOUNDARYDIFF (unit, begin, end)" id="timeboundarydiff-unit-begin-end" defaultOpen>
 
 Calculates the difference between two date/time expressions, returning the result as an
 integral difference in the units specified; more precisely, how many whole date/time
@@ -1392,7 +1392,7 @@ them to the appropriate date/time type (e.g., `DATETIME('YYYY-MM-DD HH24:MI:SS')
 
 </Accordion>
 
-<Accordion title="TIME_BUCKET (width, ts[, offset[, base]])" defaultOpen>
+<Accordion title="TIME_BUCKET (width, ts[, offset[, base]])" id="time_bucket-width-ts-offset-base" defaultOpen>
 
 Calculates the date/time range in which a given timestamp `ts` falls, based on a set of
 fixed-width "buckets" with the given `width`, start-aligned `base` date/time, and
@@ -1424,7 +1424,7 @@ The call will be processed as follows:
 
 </Accordion>
 
-<Accordion title="TIMESTAMPADD (unit, amount, expr)" defaultOpen>
+<Accordion title="TIMESTAMPADD (unit, amount, expr)" id="timestampadd-unit-amount-expr" defaultOpen>
 
 Adds the positive or negative integral `amount` of `unit` date/time intervals to the
 `date`, `datetime`, or `time` value in `expr`
@@ -1546,7 +1546,7 @@ Examples:
 
 </Accordion>
 
-<Accordion title="TIMESTAMPDIFF (unit, begin, end)" defaultOpen>
+<Accordion title="TIMESTAMPDIFF (unit, begin, end)" id="timestampdiff-unit-begin-end" defaultOpen>
 
 Calculates the difference between two date/time expressions, returning the result as an
 integral difference in the units specified; more precisely, how many whole date/time
@@ -1598,26 +1598,26 @@ Examples:
 
 </Accordion>
 
-<Accordion title="TIMESTAMP_TRUNC(part, expr)" defaultOpen>
+<Accordion title="TIMESTAMP_TRUNC(part, expr)" id="timestamp_trunc-part-expr" defaultOpen>
 
 Alias for `DATE_TRUNC(part, expr)`
 
 </Accordion>
 
-<Accordion title="UNIX_TIMESTAMP(expr)" defaultOpen>
+<Accordion title="UNIX_TIMESTAMP(expr)" id="unix_timestamp-expr" defaultOpen>
 
 Alias for `SECS_SINCE_EPOCH(expr)`
 
 </Accordion>
 
-<Accordion title="WEEK(expr)" defaultOpen>
+<Accordion title="WEEK(expr)" id="week-expr" defaultOpen>
 
 Extracts the week of the year from `expr` [`1` - `54`]; each full week starts on
 *Sunday* (A `1` is returned for the week containing *Jan 1st*)
 
 </Accordion>
 
-<Accordion title="YEAR(expr)" defaultOpen>
+<Accordion title="YEAR(expr)" id="year-expr" defaultOpen>
 
 Extracts the year from `expr`; 4-digit year, A.D.
 
@@ -1634,7 +1634,7 @@ Extracts the year from `expr`; 4-digit year, A.D.
 
 <AccordionGroup>
 
-<Accordion title="DATE_TO_EPOCH_MSECS (year, month, day, hour, min, sec, msec)" defaultOpen>
+<Accordion title="DATE_TO_EPOCH_MSECS (year, month, day, hour, min, sec, msec)" id="date_to_epoch_msecs-year-month-day-hour-min-sec-msec" defaultOpen>
 
 Converts the full date to the number of milliseconds since the epoch
 
@@ -1663,7 +1663,7 @@ Example:
 
 </Accordion>
 
-<Accordion title="DATE_TO_EPOCH_SECS (year, month, day, hour, min, sec)" defaultOpen>
+<Accordion title="DATE_TO_EPOCH_SECS (year, month, day, hour, min, sec)" id="date_to_epoch_secs-year-month-day-hour-min-sec" defaultOpen>
 
 Converts the full date to the number of seconds since the epoch
 
@@ -1692,7 +1692,7 @@ Example:
 
 </Accordion>
 
-<Accordion title="TIMESTAMP_FROM_DATE_TIME (date, time)" defaultOpen>
+<Accordion title="TIMESTAMP_FROM_DATE_TIME (date, time)" id="timestamp_from_date_time-date-time" defaultOpen>
 
 Converts the given date and time to a composite timestamp in milliseconds
 since the epoch
@@ -1717,7 +1717,7 @@ Example:
 
 </Accordion>
 
-<Accordion title="WEEK_TO_EPOCH_MSECS (year, week_number)" defaultOpen>
+<Accordion title="WEEK_TO_EPOCH_MSECS (year, week_number)" id="week_to_epoch_msecs-year-week_number" defaultOpen>
 
 Converts the year and week number to the number of milliseconds since the
 epoch; negative values are accepted
@@ -1746,7 +1746,7 @@ Example:
 
 </Accordion>
 
-<Accordion title="WEEK_TO_EPOCH_SECS (year, week_number)" defaultOpen>
+<Accordion title="WEEK_TO_EPOCH_SECS (year, week_number)" id="week_to_epoch_secs-year-week_number" defaultOpen>
 
 Converts the year and week number to the number of seconds since the epoch.
 Negative values are accepted.  Each new week begins Sunday at midnight.
@@ -1820,7 +1820,7 @@ functions have a geometry-to-geometry version listed in the next section.
 
 <AccordionGroup>
 
-<Accordion title="STXY_CONTAINS(geom, x, y)" defaultOpen>
+<Accordion title="STXY_CONTAINS(geom, x, y)" id="stxy_contains-geom-x-y" defaultOpen>
 
 Returns `1` (true) if `geom` contains the `x` and `y` coordinate, e.g. lies in the interior
 of `geom`. The coordinate cannot be on the boundary and also be contained because `geom` does not
@@ -1828,33 +1828,33 @@ contain its boundary
 
 </Accordion>
 
-<Accordion title="STXY_CONTAINSPROPERLY(geom, x, y)" defaultOpen>
+<Accordion title="STXY_CONTAINSPROPERLY(geom, x, y)" id="stxy_containsproperly-geom-x-y" defaultOpen>
 
 Returns `1` (true) if the `x` and `y` coordinate intersects the interior of `geom` but not
 the boundary (or exterior) because `geom` does not contain its boundary but does contain itself
 
 </Accordion>
 
-<Accordion title="STXY_COVEREDBY(x, y, geom)" defaultOpen>
+<Accordion title="STXY_COVEREDBY(x, y, geom)" id="stxy_coveredby-x-y-geom" defaultOpen>
 
 Returns `1` (true) if the `x` and `y` coordinate is covered by `geom`
 
 </Accordion>
 
-<Accordion title="STXY_COVERS(geom, x, y)" defaultOpen>
+<Accordion title="STXY_COVERS(geom, x, y)" id="stxy_covers-geom-x-y" defaultOpen>
 
 Returns `1` (true) if `geom` covers the `x` and `y` coordinate
 
 </Accordion>
 
-<Accordion title="STXY_DISJOINT(x, y, geom)" defaultOpen>
+<Accordion title="STXY_DISJOINT(x, y, geom)" id="stxy_disjoint-x-y-geom" defaultOpen>
 
 Returns `1` (true) if the given `x` and `y` coordinate and the geometry `geom` do not
 spatially intersect.
 
 </Accordion>
 
-<Accordion title="STXY_DISTANCE (x, y, geom[, solution])" defaultOpen>
+<Accordion title="STXY_DISTANCE (x, y, geom[, solution])" id="stxy_distance-x-y-geom-solution" defaultOpen>
 
 Calculates the minimum distance between the given `x` and `y` coordinate and `geom` using the
 specified solution type. Solution types available:
@@ -1872,7 +1872,7 @@ the distance will always be `0`.
 
 </Accordion>
 
-<Accordion title="STXY_DWITHIN (x, y, geom, distance[, solution])" defaultOpen>
+<Accordion title="STXY_DWITHIN (x, y, geom, distance[, solution])" id="stxy_dwithin-x-y-geom-distance-solution" defaultOpen>
 
 Returns `1` (true) if the `x` and `y` coordinate is within the specified `distance` from
 `geom` using the specified solution type. Solution types available:
@@ -1883,7 +1883,7 @@ Returns `1` (true) if the `x` and `y` coordinate is within the specified `distan
 
 </Accordion>
 
-<Accordion title="STXY_ENVDWITHIN (x, y, geom, distance[, solution])" defaultOpen>
+<Accordion title="STXY_ENVDWITHIN (x, y, geom, distance[, solution])" id="stxy_envdwithin-x-y-geom-distance-solution" defaultOpen>
 
 Returns `1` (true) if the `x` and `y` coordinate is within the specified `distance` from the
 bounding box of `geom` using the specified solution type. Solution types available:
@@ -1893,14 +1893,14 @@ bounding box of `geom` using the specified solution type. Solution types availab
 
 </Accordion>
 
-<Accordion title="STXY_ENVINTERSECTS(x, y, geom)" defaultOpen>
+<Accordion title="STXY_ENVINTERSECTS(x, y, geom)" id="stxy_envintersects-x-y-geom" defaultOpen>
 
 Returns `1` (true) if the bounding box of the given geometry `geom` intersects the `x` and
 `y` coordinate.
 
 </Accordion>
 
-<Accordion title="STXY_GEOHASH(x, y[, precision])" defaultOpen>
+<Accordion title="STXY_GEOHASH(x, y[, precision])" id="stxy_geohash-x-y-precision" defaultOpen>
 
 Returns a hash string representation of the given `x` and `y` coordinates with specified
 `precision` (the length of the resulting geohash string). The longer the `precision`, the more
@@ -1910,26 +1910,26 @@ See [Geohash](/content/snippets/geohash) for an example.
 
 </Accordion>
 
-<Accordion title="STXY_H3(x, y, resolution)" defaultOpen>
+<Accordion title="STXY_H3(x, y, resolution)" id="stxy_h3-x-y-resolution" defaultOpen>
 
 Alias for `H3_XYTOCELL`; see [H3 Functions](/content/location_intelligence/geo_functions#geo-functions-h3).
 
 </Accordion>
 
-<Accordion title="STXY_INTERSECTION(x, y, geom)" defaultOpen>
+<Accordion title="STXY_INTERSECTION(x, y, geom)" id="stxy_intersection-x-y-geom" defaultOpen>
 
 Returns the shared portion between the `x` and `y` coordinate and the given geometry `geom`,
 i.e. the point itself.
 
 </Accordion>
 
-<Accordion title="STXY_INTERSECTS(x, y, geom)" defaultOpen>
+<Accordion title="STXY_INTERSECTS(x, y, geom)" id="stxy_intersects-x-y-geom" defaultOpen>
 
 Returns `1` (true) if the `x` and `y` coordinate and `geom` intersect in 2-D.
 
 </Accordion>
 
-<Accordion title="STXY_TOUCHES(x, y, geom)" defaultOpen>
+<Accordion title="STXY_TOUCHES(x, y, geom)" id="stxy_touches-x-y-geom" defaultOpen>
 
 Returns `1` (true) if the `x` and `y` coordinate and geometry `geom` have at least one point
 in common but their interiors do not intersect. If `geom` is a GEOMETRYCOLLECTION, a `0` is
@@ -1937,7 +1937,7 @@ returned regardless if the point and geometry touch
 
 </Accordion>
 
-<Accordion title="STXY_WITHIN(x, y, geom)" defaultOpen>
+<Accordion title="STXY_WITHIN(x, y, geom)" id="stxy_within-x-y-geom" defaultOpen>
 
 Returns `1` (true) if the `x` and `y` coordinate is completely inside the `geom` geometry
 i.e., not on the boundary
@@ -1955,52 +1955,52 @@ i.e., not on the boundary
 
 <AccordionGroup>
 
-<Accordion title="DIST(x1, y1, x2, y2)" defaultOpen>
+<Accordion title="DIST(x1, y1, x2, y2)" id="dist-x1-y1-x2-y2" defaultOpen>
 
 Computes the Euclidean distance (in degrees), i.e. `SQRT( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) )`.
 
 </Accordion>
 
-<Accordion title="GEODIST(lon1, lat1, lon2, lat2)" defaultOpen>
+<Accordion title="GEODIST(lon1, lat1, lon2, lat2)" id="geodist-lon1-lat1-lon2-lat2" defaultOpen>
 
 Computes the geographic great-circle distance (in meters) between two lat/lon points.
 
 </Accordion>
 
-<Accordion title="GEOHASH_DECODE_LATITUDE(geohash)" defaultOpen>
+<Accordion title="GEOHASH_DECODE_LATITUDE(geohash)" id="geohash_decode_latitude-geohash" defaultOpen>
 
 Decodes a given `geohash` and returns the latitude value for the given hash string. Supports a
 maximum geohash character length of *16*.
 
 </Accordion>
 
-<Accordion title="GEOHASH_DECODE_LONGITUDE(geohash)" defaultOpen>
+<Accordion title="GEOHASH_DECODE_LONGITUDE(geohash)" id="geohash_decode_longitude-geohash" defaultOpen>
 
 Decodes a given `geohash` and returns the longitude value for the given hash string. Supports a
 maximum geohash character length of *16*.
 
 </Accordion>
 
-<Accordion title="GEOHASH_ENCODE(lat, lon, precision)" defaultOpen>
+<Accordion title="GEOHASH_ENCODE(lat, lon, precision)" id="geohash_encode-lat-lon-precision" defaultOpen>
 
 Encodes a given coordinate pair and returns a hash string with a given `precision`. The maximum `precision` is *15*.
 
 </Accordion>
 
-<Accordion title="GEOMETRY(wkt)" defaultOpen>
+<Accordion title="GEOMETRY(wkt)" id="geometry-wkt" defaultOpen>
 
 Alias for `ST_GEOMFROMTEXT(wkt)`
 
 </Accordion>
 
-<Accordion title="ST_ADDPOINT (linestring, point[, position])" defaultOpen>
+<Accordion title="ST_ADDPOINT (linestring, point[, position])" id="st_addpoint-linestring-point-position" defaultOpen>
 
 Adds a given `point` geometry to the given `linestring` geometry at the specified
 `position`, which is a 0-based index.  If no `position` is specified, the point will be added to the end.
 
 </Accordion>
 
-<Accordion title="ST_ALMOSTEQUALS (geom1, geom2[, decimal])" defaultOpen>
+<Accordion title="ST_ALMOSTEQUALS (geom1, geom2[, decimal])" id="st_almostequals-geom1-geom2-decimal" defaultOpen>
 
 Returns `1` (true) if given geometries, `geom1` and `geom2`, are almost spatially equal within
 the given amount of `decimal` scale. Note that geometries will still be considered equal if the
@@ -2013,7 +2013,7 @@ If no `decimal` scale is specified, a default scale of *6* will be applied.
 
 </Accordion>
 
-<Accordion title="ST_AREA(geom[, solution])" defaultOpen>
+<Accordion title="ST_AREA(geom[, solution])" id="st_area-geom-solution" defaultOpen>
 
 Returns the area of the given geometry `geom` if it is a POLYGON or MULTIPOLYGON using the
 specified solution type. Returns `0` if the input geometry type is (MULTI)POINT or
@@ -2025,27 +2025,27 @@ specified solution type. Returns `0` if the input geometry type is (MULTI)POINT 
 
 </Accordion>
 
-<Accordion title="ST_AZIMUTH(geom1, geom2)" defaultOpen>
+<Accordion title="ST_AZIMUTH(geom1, geom2)" id="st_azimuth-geom1-geom2" defaultOpen>
 
 Returns the azimuth in radians defined by the segment between two POINTs, `geom1` and `geom2`.
 Returns a `null` if the input geometry type is MULTIPOINT, (MULTI)LINESTRING, or (MULTI)POLYGON.
 
 </Accordion>
 
-<Accordion title="ST_BOUNDARY(geom)" defaultOpen>
+<Accordion title="ST_BOUNDARY(geom)" id="st_boundary-geom" defaultOpen>
 
 Returns the closure of the combinatorial boundary of a given geometry `geom`. Returns an empty
 geometry if `geom` is an empty geometry. Returns a `null` if `geom` is a GEOMETRYCOLLECTION
 
 </Accordion>
 
-<Accordion title="ST_BOUNDINGDIAGONAL(geom)" defaultOpen>
+<Accordion title="ST_BOUNDINGDIAGONAL(geom)" id="st_boundingdiagonal-geom" defaultOpen>
 
 Returns the diagonal of the given geometry's (`geom`) bounding box.
 
 </Accordion>
 
-<Accordion title="ST_BUFFER (geom, radius[, style[, solution]])" defaultOpen>
+<Accordion title="ST_BUFFER (geom, radius[, style[, solution]])" id="st_buffer-geom-radius-style-solution" defaultOpen>
 
 Returns a geometry that represents all points whose distance from the given geometry `geom` is
 less than or equal to the given distance `radius`. The `radius` units can be specified by the
@@ -2080,7 +2080,7 @@ around `geom` using the following styles:
 
 </Accordion>
 
-<Accordion title="ST_BUFFERBYCOMPONENT (geom, radius[, style[, solution]])" defaultOpen>
+<Accordion title="ST_BUFFERBYCOMPONENT (geom, radius[, style[, solution]])" id="st_bufferbycomponent-geom-radius-style-solution" defaultOpen>
 
 Returns a buffered geometry similar to the output of `ST_BUFFER` using the same parameters. The only
 difference is the buffered geometry is calculated by independently buffering each individual component
@@ -2089,7 +2089,7 @@ can produce very similar (but not identical) results to `ST_BUFFER` but will oft
 
 </Accordion>
 
-<Accordion title="ST_CENTROID(geom)" defaultOpen>
+<Accordion title="ST_CENTROID(geom)" id="st_centroid-geom" defaultOpen>
 
 Calculates the center of the given geometry `geom` as a POINT. For (MULTI)POINTs, the center is
 calculated as the average of the input coordinates. For (MULTI)LINESTRINGs, the center is calculated
@@ -2099,13 +2099,13 @@ GEOMETRYCOLLECTION is returned
 
 </Accordion>
 
-<Accordion title="ST_CLIP(geom1, geom2)" defaultOpen>
+<Accordion title="ST_CLIP(geom1, geom2)" id="st_clip-geom1-geom2" defaultOpen>
 
 Returns the geometry shared between given geometries `geom1` and `geom2`
 
 </Accordion>
 
-<Accordion title="ST_CLOSESTPOINT (geom1, geom2[, solution])" defaultOpen>
+<Accordion title="ST_CLOSESTPOINT (geom1, geom2[, solution])" id="st_closestpoint-geom1-geom2-solution" defaultOpen>
 
 Calculates the 2-D `POINT` in `geom1` that is closest to `geom2` using the specified solution
 type. If `geom1` or `geom2` is empty, a `null` is returned. Solution types available:
@@ -2117,7 +2117,7 @@ type. If `geom1` or `geom2` is empty, a `null` is returned. Solution types avail
 
 </Accordion>
 
-<Accordion title="ST_COLLECT(geom1, geom2)" defaultOpen>
+<Accordion title="ST_COLLECT(geom1, geom2)" id="st_collect-geom1-geom2" defaultOpen>
 
 Returns a MULTI* or GEOMETRYCOLLECTION comprising `geom1` and `geom2`. If `geom1` and `geom2`
 are the same, singular geometry type, a MULTI* is returned, e.g., if `geom1` and `geom2` are both
@@ -2126,7 +2126,7 @@ nor singular geometries, a GEOMETRYCOLLECTION is returned.
 
 </Accordion>
 
-<Accordion title="ST_COLLECTIONEXTRACT (collection, type)" defaultOpen>
+<Accordion title="ST_COLLECTIONEXTRACT (collection, type)" id="st_collectionextract-collection-type" defaultOpen>
 
 Returns only the specified `type` from the given geometry `collection`. Type is a number that
 maps to the following:
@@ -2137,7 +2137,7 @@ maps to the following:
 
 </Accordion>
 
-<Accordion title="ST_COLLECTIONHOMOGENIZE(collection)" defaultOpen>
+<Accordion title="ST_COLLECTIONHOMOGENIZE(collection)" id="st_collectionhomogenize-collection" defaultOpen>
 
 Returns the simplest form of the given `collection`, e.g., a collection with a single POINT will
 be returned as `POINT(x y)`, and a collection with multiple individual points will be returned as a
@@ -2145,7 +2145,7 @@ MULTIPOINT.
 
 </Accordion>
 
-<Accordion title="ST_CONCAVEHULL (geom, target_percent[, allow_holes])" defaultOpen>
+<Accordion title="ST_CONCAVEHULL (geom, target_percent[, allow_holes])" id="st_concavehull-geom-target_percent-allow_holes" defaultOpen>
 
 Returns a potentially concave geometry that encloses all geometries found in the given `geom` set.
 Use `target_percent` (values between 0 and 1) to determine the percent of area of a convex hull the
@@ -2155,7 +2155,7 @@ value is `0` (false). Note that `allow_holes` is independent of the area of `tar
 
 </Accordion>
 
-<Accordion title="ST_CONTAINS(geom1, geom2)" defaultOpen>
+<Accordion title="ST_CONTAINS(geom1, geom2)" id="st_contains-geom1-geom2" defaultOpen>
 
 Returns `1` (true) if no points of `geom2` lie in the exterior of `geom1` and at least one
 point of `geom2` lies in the interior of `geom1`. Note that `geom1` does not contain its
@@ -2163,39 +2163,39 @@ boundary but does contain itself.
 
 </Accordion>
 
-<Accordion title="ST_CONTAINSPROPERLY(geom1, geom2)" defaultOpen>
+<Accordion title="ST_CONTAINSPROPERLY(geom1, geom2)" id="st_containsproperly-geom1-geom2" defaultOpen>
 
 Returns `1` (true) if `geom2` intersects the interior of `geom1` but not the boundary
 (or exterior). Note that `geom1` does not contain its boundary but does contain itself.
 
 </Accordion>
 
-<Accordion title="ST_CONVEXHULL(geom)" defaultOpen>
+<Accordion title="ST_CONVEXHULL(geom)" id="st_convexhull-geom" defaultOpen>
 
 Returns the minimum convex geometry that encloses all geometries in the given `geom` set.
 
 </Accordion>
 
-<Accordion title="ST_COORDDIM(geom)" defaultOpen>
+<Accordion title="ST_COORDDIM(geom)" id="st_coorddim-geom" defaultOpen>
 
 Returns the coordinate dimension of the given `geom`, e.g., a geometry with `x`, `y`, and `z`
 coordinates would return `3`.
 
 </Accordion>
 
-<Accordion title="ST_COVEREDBY(geom1, geom2)" defaultOpen>
+<Accordion title="ST_COVEREDBY(geom1, geom2)" id="st_coveredby-geom1-geom2" defaultOpen>
 
 Returns `1` (true) if no point in `geom1` is outside `geom2`.
 
 </Accordion>
 
-<Accordion title="ST_COVERS(geom1, geom2)" defaultOpen>
+<Accordion title="ST_COVERS(geom1, geom2)" id="st_covers-geom1-geom2" defaultOpen>
 
 Returns `1` (true) if no point in `geom2` is outside `geom1`.
 
 </Accordion>
 
-<Accordion title="ST_CROSSES(geom1, geom2)" defaultOpen>
+<Accordion title="ST_CROSSES(geom1, geom2)" id="st_crosses-geom1-geom2" defaultOpen>
 
 Returns `1` (true) if the given geometries, `geom1` and `geom2`, spatially cross, meaning some
 but not all interior points in common. If `geom1` and/or `geom2` are a GEOMETRYCOLLECTION, a
@@ -2203,13 +2203,13 @@ but not all interior points in common. If `geom1` and/or `geom2` are a GEOMETRYC
 
 </Accordion>
 
-<Accordion title="ST_DIFFERENCE(geom1, geom2)" defaultOpen>
+<Accordion title="ST_DIFFERENCE(geom1, geom2)" id="st_difference-geom1-geom2" defaultOpen>
 
 Returns a geometry that represents the part of `geom1` that does not intersect with `geom2`.
 
 </Accordion>
 
-<Accordion title="ST_DIMENSION(geom)" defaultOpen>
+<Accordion title="ST_DIMENSION(geom)" id="st_dimension-geom" defaultOpen>
 
 Returns the dimension of the given geometry `geom`, which is less than or equal to the coordinate
 dimension. If `geom` is a single geometry, a `0` is for `POINT`, a `1` is for `LINESTRING`,
@@ -2218,13 +2218,13 @@ the collection. If `geom` is empty, `0` is returned.
 
 </Accordion>
 
-<Accordion title="ST_DISJOINT(geom1, geom2)" defaultOpen>
+<Accordion title="ST_DISJOINT(geom1, geom2)" id="st_disjoint-geom1-geom2" defaultOpen>
 
 Returns `1` (true) if the given geometries, `geom1` and `geom2`, do not spatially intersect.
 
 </Accordion>
 
-<Accordion title="ST_DISTANCE(geom1, geom2[, solution])" defaultOpen>
+<Accordion title="ST_DISTANCE(geom1, geom2[, solution])" id="st_distance-geom1-geom2-solution" defaultOpen>
 
 Calculates the minimum distance between the given geometries, `geom1` and `geom2`, using the
 specified solution type. Solution types available:
@@ -2242,7 +2242,7 @@ always be `0`.
 
 </Accordion>
 
-<Accordion title="ST_DISTANCEPOINTS (x1, y1, x2, y2[, solution])" defaultOpen>
+<Accordion title="ST_DISTANCEPOINTS (x1, y1, x2, y2[, solution])" id="st_distancepoints-x1-y1-x2-y2-solution" defaultOpen>
 
 Calculates the minimum distance between the given points, `x1, y1` and `x2, y2`, using the
 specified solution type. Solution types available:
@@ -2254,7 +2254,7 @@ specified solution type. Solution types available:
 
 </Accordion>
 
-<Accordion title="ST_DFULLYWITHIN (geom1, geom2, distance[, solution])" defaultOpen>
+<Accordion title="ST_DFULLYWITHIN (geom1, geom2, distance[, solution])" id="st_dfullywithin-geom1-geom2-distance-solution" defaultOpen>
 
 Returns `1` (true) if the maximum distance between geometries `geom1` and `geom2` is less than
 or equal to the specified `distance` of each other using the specified solution type. If `geom1`
@@ -2267,7 +2267,7 @@ or `geom2` is `null`, `0` (false) is returned. Solution types available:
 
 </Accordion>
 
-<Accordion title="ST_DWITHIN (geom1, geom2, distance[, solution])" defaultOpen>
+<Accordion title="ST_DWITHIN (geom1, geom2, distance[, solution])" id="st_dwithin-geom1-geom2-distance-solution" defaultOpen>
 
 Returns `1` (true) if the minimum distance between geometries `geom1` and `geom2` is within the
 specified `distance` of each other using the specified solution type. Solution types available:
@@ -2279,7 +2279,7 @@ specified `distance` of each other using the specified solution type. Solution t
 
 </Accordion>
 
-<Accordion title="ST_ELLIPSE(x, y, height, width)" defaultOpen>
+<Accordion title="ST_ELLIPSE(x, y, height, width)" id="st_ellipse-x-y-height-width" defaultOpen>
 
 Returns an ellipse using the following values:
 
@@ -2290,14 +2290,14 @@ Returns an ellipse using the following values:
 
 </Accordion>
 
-<Accordion title="ST_ENDPOINT(geom)" defaultOpen>
+<Accordion title="ST_ENDPOINT(geom)" id="st_endpoint-geom" defaultOpen>
 
 Returns the last point of the given `geom` as a POINT if it's a LINESTRING.  If `geom` is not
 a LINESTRING, `null` is returned.
 
 </Accordion>
 
-<Accordion title="ST_ENVDWITHIN (geom1, geom2, distance[, solution])" defaultOpen>
+<Accordion title="ST_ENVDWITHIN (geom1, geom2, distance[, solution])" id="st_envdwithin-geom1-geom2-distance-solution" defaultOpen>
 
 Returns `1` (true) if `geom1` is within the specified `distance` of the bounding box of
 `geom2` using the specified solution type. Solution types available:
@@ -2307,26 +2307,26 @@ Returns `1` (true) if `geom1` is within the specified `distance` of the bounding
 
 </Accordion>
 
-<Accordion title="ST_ENVELOPE(geom)" defaultOpen>
+<Accordion title="ST_ENVELOPE(geom)" id="st_envelope-geom" defaultOpen>
 
 Returns the bounding box of a given geometry `geom`.
 
 </Accordion>
 
-<Accordion title="ST_ENVINTERSECTS(geom1, geom2)" defaultOpen>
+<Accordion title="ST_ENVINTERSECTS(geom1, geom2)" id="st_envintersects-geom1-geom2" defaultOpen>
 
 Returns `1` (true) if the bounding box of the given geometries, `geom1` and `geom2`, intersect.
 
 </Accordion>
 
-<Accordion title="ST_EQUALS(geom1, geom2)" defaultOpen>
+<Accordion title="ST_EQUALS(geom1, geom2)" id="st_equals-geom1-geom2" defaultOpen>
 
 Returns `1` (true) if the given geometries, `geom1` and `geom2`, are spatially equal. Note that
 order does not matter.
 
 </Accordion>
 
-<Accordion title="ST_EQUALSEXACT (geom1, geom2[, tolerance])" defaultOpen>
+<Accordion title="ST_EQUALSEXACT (geom1, geom2[, tolerance])" id="st_equalsexact-geom1-geom2-tolerance" defaultOpen>
 
 Returns `1` (true) if the given geometries, `geom1` and `geom2`, are almost spatially equal
 within some given `tolerance`. If the values within the given geometries are within the
@@ -2337,13 +2337,13 @@ which makes this function effectively equivalent to `ST_EQUALS(geom1, geom2)` in
 
 </Accordion>
 
-<Accordion title="ST_ERASE(geom1, geom2)" defaultOpen>
+<Accordion title="ST_ERASE(geom1, geom2)" id="st_erase-geom1-geom2" defaultOpen>
 
 Returns the result of erasing a portion of `geom1` equal to the size of `geom2`.
 
 </Accordion>
 
-<Accordion title="ST_EXPAND(geom, units)" defaultOpen>
+<Accordion title="ST_EXPAND(geom, units)" id="st_expand-geom-units" defaultOpen>
 
 Returns the bounding box expanded in all directions by the given `units` of the given `geom`. The
 expansion can also be defined for separate directions by providing separate parameters for each
@@ -2351,27 +2351,27 @@ direction, e.g., `ST_EXPAND(geom, unitsx, unitsy, unitsz, unitsm)`.
 
 </Accordion>
 
-<Accordion title="ST_EXPANDBYRATE(geom, rate)" defaultOpen>
+<Accordion title="ST_EXPANDBYRATE(geom, rate)" id="st_expandbyrate-geom-rate" defaultOpen>
 
 Returns the bounding box expanded by a given `rate` (a ratio of width and height) for the given
 geometry `geom`. The `rate` must be between 0 and 1.
 
 </Accordion>
 
-<Accordion title="ST_EXTERIORRING(geom)" defaultOpen>
+<Accordion title="ST_EXTERIORRING(geom)" id="st_exteriorring-geom" defaultOpen>
 
 Returns a LINESTRING representing the exterior ring of the given POLYGON `geom`
 
 </Accordion>
 
-<Accordion title="ST_FORCE2D(geom)" defaultOpen>
+<Accordion title="ST_FORCE2D(geom)" id="st_force2d-geom" defaultOpen>
 
 Returns the 2-dimensional version (e.g., X and Y coordinates) of `geom`, the provided geometry or
 set of geometries (e.g., via GEOMETRYCOLLECTION or WKT column name).
 
 </Accordion>
 
-<Accordion title="ST_FORCE3D(geom[, z])" defaultOpen>
+<Accordion title="ST_FORCE3D(geom[, z])" id="st_force3d-geom-z" defaultOpen>
 
 Returns the 3-dimensional version (e.g., X, Y, and Z coordinates) of `geom`, a provided geometry or
 set of geometries (e.g., via GEOMETRYCOLLECTION or WKT column name), using `z` as the geometry's
@@ -2390,14 +2390,14 @@ either column, the row containing null values will be skipped in the results.
 
 </Accordion>
 
-<Accordion title="ST_GENERATEPOINTS(geom, num)" defaultOpen>
+<Accordion title="ST_GENERATEPOINTS(geom, num)" id="st_generatepoints-geom-num" defaultOpen>
 
 Creates a MULTIPOINT containing a number `num` of randomly generated points within the boundary of
 `geom`.
 
 </Accordion>
 
-<Accordion title="ST_GEOHASH(geom[, precision])" defaultOpen>
+<Accordion title="ST_GEOHASH(geom[, precision])" id="st_geohash-geom-precision" defaultOpen>
 
 Returns a hash string representation of the given geometry `geom` with specified `precision`
 (the length of the resulting geohash string). The longer the `precision`, the more precise the hash is. By
@@ -2414,26 +2414,26 @@ centroid of the given geometry
 
 </Accordion>
 
-<Accordion title="ST_GEOMETRYFROMTEXT(wkt)" defaultOpen>
+<Accordion title="ST_GEOMETRYFROMTEXT(wkt)" id="st_geometryfromtext-wkt" defaultOpen>
 
 Alias for `ST_GEOMFROMTEXT(wkt)`
 
 </Accordion>
 
-<Accordion title="ST_GEOMETRYN(geom, index)" defaultOpen>
+<Accordion title="ST_GEOMETRYN(geom, index)" id="st_geometryn-geom-index" defaultOpen>
 
 Returns the `index` geometry back from the given `geom` geometry. The `index` starts from 1 and goes to
 the number of geometries in `geom`.
 
 </Accordion>
 
-<Accordion title="ST_GEOMETRYTYPE(geom)" defaultOpen>
+<Accordion title="ST_GEOMETRYTYPE(geom)" id="st_geometrytype-geom" defaultOpen>
 
 Returns the type of geometry from the given `geom`.
 
 </Accordion>
 
-<Accordion title="ST_GEOMETRYTYPEID(geom)" defaultOpen>
+<Accordion title="ST_GEOMETRYTYPEID(geom)" id="st_geometrytypeid-geom" defaultOpen>
 
 Returns the type ID of from `geom`. Type and ID mappings:
 
@@ -2447,7 +2447,7 @@ Returns the type ID of from `geom`. Type and ID mappings:
 
 </Accordion>
 
-<Accordion title="ST_GEOMFROMGEOHASH (geohash[, precision])" defaultOpen>
+<Accordion title="ST_GEOMFROMGEOHASH (geohash[, precision])" id="st_geomfromgeohash-geohash-precision" defaultOpen>
 
 Returns a POLYGON boundary box using the given `geohash` with a precision set by the integer
 `precision`. If `precision` is specified, the function will use as many characters in the hash
@@ -2458,26 +2458,26 @@ See [Geohash](/content/snippets/geohash) for an example.
 
 </Accordion>
 
-<Accordion title="ST_GEOMFROMH3(h3_index)" defaultOpen>
+<Accordion title="ST_GEOMFROMH3(h3_index)" id="st_geomfromh3-h3_index" defaultOpen>
 
 Alias for `H3_CELLTOBOUNDARY`; see [H3 Functions](/content/location_intelligence/geo_functions#geo-functions-h3).
 
 </Accordion>
 
-<Accordion title="ST_GEOMFROMTEXT(wkt)" defaultOpen>
+<Accordion title="ST_GEOMFROMTEXT(wkt)" id="st_geomfromtext-wkt" defaultOpen>
 
 Returns a geometry from the given Well-Known text representation `wkt`. Note that this function is
 only compatible with constants.
 
 </Accordion>
 
-<Accordion title="ST_H3(wkt, resolution)" defaultOpen>
+<Accordion title="ST_H3(wkt, resolution)" id="st_h3-wkt-resolution" defaultOpen>
 
 Alias for `H3_GEOMTOCELL`; see [H3 Functions](/content/location_intelligence/geo_functions#geo-functions-h3).
 
 </Accordion>
 
-<Accordion title="ST_HEXGRID (xmin, ymin, xmax, ymax, cell_side[, limit])" defaultOpen>
+<Accordion title="ST_HEXGRID (xmin, ymin, xmax, ymax, cell_side[, limit])" id="st_hexgrid-xmin-ymin-xmax-ymax-cell_side-limit" defaultOpen>
 
 Creates a MULTIPOLYGON containing a grid of hexagons between given minimum and maximum points of a
 bounding box. The minimum point cannot be greater than or equal to the maximum point. The size (in
@@ -2494,59 +2494,59 @@ than the system limit, a `null` is returned.
 
 </Accordion>
 
-<Accordion title="ST_INTERIORRINGN(geom, n)" defaultOpen>
+<Accordion title="ST_INTERIORRINGN(geom, n)" id="st_interiorringn-geom-n" defaultOpen>
 
 Returns the `n`-th interior LINESTRING ring of the POLYGON `geom`. If `geom` is not a POLYGON
 or the given `n` is out of range, a `null` is returned. The index begins at 1
 
 </Accordion>
 
-<Accordion title="ST_INTERSECTION(geom1, geom2)" defaultOpen>
+<Accordion title="ST_INTERSECTION(geom1, geom2)" id="st_intersection-geom1-geom2" defaultOpen>
 
 Returns the shared portion between given geometries `geom1` and `geom2`
 
 </Accordion>
 
-<Accordion title="ST_INTERSECTS(geom1, geom2)" defaultOpen>
+<Accordion title="ST_INTERSECTS(geom1, geom2)" id="st_intersects-geom1-geom2" defaultOpen>
 
 Returns `1` (true) if the given geometries, `geom1` and `geom2`, intersect in 2-D
 
 </Accordion>
 
-<Accordion title="ST_ISCLOSED(geom)" defaultOpen>
+<Accordion title="ST_ISCLOSED(geom)" id="st_isclosed-geom" defaultOpen>
 
 Returns `1` (true) if the given geometry's (`geom`) start and end points coincide
 
 </Accordion>
 
-<Accordion title="ST_ISCOLLECTION(geom)" defaultOpen>
+<Accordion title="ST_ISCOLLECTION(geom)" id="st_iscollection-geom" defaultOpen>
 
 Returns `1` (true) if `geom` is a collection, e.g., GEOMETRYCOLLECTION, MULTIPOINT,
 MULTILINESTRING, etc.
 
 </Accordion>
 
-<Accordion title="ST_ISEMPTY(geom)" defaultOpen>
+<Accordion title="ST_ISEMPTY(geom)" id="st_isempty-geom" defaultOpen>
 
 Returns `1` (true) if `geom` is empty
 
 </Accordion>
 
-<Accordion title="ST_ISRING(geom)" defaultOpen>
+<Accordion title="ST_ISRING(geom)" id="st_isring-geom" defaultOpen>
 
 Returns `1` (true) if LINESTRING `geom` is both closed (per `ST_ISCLOSED`) and "simple"
 (per `ST_ISSIMPLE`). Returns `0` if `geom` is not a LINESTRING
 
 </Accordion>
 
-<Accordion title="ST_ISSIMPLE(geom)" defaultOpen>
+<Accordion title="ST_ISSIMPLE(geom)" id="st_issimple-geom" defaultOpen>
 
 Returns `1` (true) if `geom` has no anomalous geometric points, e.g., self-intersection or
 self-tangency
 
 </Accordion>
 
-<Accordion title="ST_ISVALID(geom)" defaultOpen>
+<Accordion title="ST_ISVALID(geom)" id="st_isvalid-geom" defaultOpen>
 
 Returns `1` (true) if `geom` (typically a [MULTI]POLYGON) is well formed. A POLYGON is valid if
 its rings do not cross, and its boundary intersects only at POINTs (not along a line). The POLYGON must
@@ -2556,7 +2556,7 @@ at POINTs (not along a line).  `ST_MAKEVALID(geom)` can be used to help correct 
 
 </Accordion>
 
-<Accordion title="ST_ISVALIDREASON(geom)" defaultOpen>
+<Accordion title="ST_ISVALIDREASON(geom)" id="st_isvalidreason-geom" defaultOpen>
 
 Returns `Valid Geometry` if `geom` is well formed, according to `ST_ISVALID(geom)`; otherwise,
 returns the reason `geom` is determined to be malformed.  `ST_MAKEVALID(geom)` can be used to
@@ -2582,7 +2582,7 @@ Example:
 
 </Accordion>
 
-<Accordion title="ST_LENGTH(geom[, solution])" defaultOpen>
+<Accordion title="ST_LENGTH(geom[, solution])" id="st_length-geom-solution" defaultOpen>
 
 Returns the length of the geometry if it is a LINESTRING or MULTILINESTRING. Returns `0` if
 another type of geometry, e.g., POINT, MULTIPOINT, etc. GEOMETRYCOLLECTIONs are
@@ -2596,28 +2596,28 @@ types is returned (unsupported types are ignored). Solution types available:
 
 </Accordion>
 
-<Accordion title="ST_LINEFROMMULTIPOINT(geom)" defaultOpen>
+<Accordion title="ST_LINEFROMMULTIPOINT(geom)" id="st_linefrommultipoint-geom" defaultOpen>
 
 Creates a LINESTRING from `geom` if it is a MULTIPOINT. Returns `null` if `geom` is not a
 MULTIPOINT
 
 </Accordion>
 
-<Accordion title="ST_LINEINTERPOLATEPOINT(geom, frac)" defaultOpen>
+<Accordion title="ST_LINEINTERPOLATEPOINT(geom, frac)" id="st_lineinterpolatepoint-geom-frac" defaultOpen>
 
 Returns a POINT on the LINESTRING `geom` that is the `frac` fraction of the distance along the line. If `geom` is either
 empty or **not** a LINESTRING, `null` is returned
 
 </Accordion>
 
-<Accordion title="ST_LINELOCATEPOINT(linestring, point)" defaultOpen>
+<Accordion title="ST_LINELOCATEPOINT(linestring, point)" id="st_linelocatepoint-linestring-point" defaultOpen>
 
 Returns the location of the closest point in the given `linestring` to the given `point` as a
 value between `0` and `1`. The return value is a fraction of the total `linestring` length.
 
 </Accordion>
 
-<Accordion title="ST_LINEMERGE(geom)" defaultOpen>
+<Accordion title="ST_LINEMERGE(geom)" id="st_linemerge-geom" defaultOpen>
 
 Returns a LINESTRING or MULTILINESTRING from a given `geom`. If `geom` is a MULTILINESTRING
 comprising LINESTRINGs with shared endpoints, a contiguous LINESTRING is returned. If `geom` is a
@@ -2627,7 +2627,7 @@ GEOMETRYCOLLECTION is returned.
 
 </Accordion>
 
-<Accordion title="ST_LINESUBSTRING (geom, start_frac, end_frac)" defaultOpen>
+<Accordion title="ST_LINESUBSTRING (geom, start_frac, end_frac)" id="st_linesubstring-geom-start_frac-end_frac" defaultOpen>
 
 Returns the fraction of a given `geom` LINESTRING from the point that is the `start_frac` fraction of the distance along
 the line to the point that is the `end_frac` fraction of the distance along the line.
@@ -2643,7 +2643,7 @@ Returns `null` in the following cases:
 
 </Accordion>
 
-<Accordion title="ST_LONGESTLINE (geom1, geom2[, solution])" defaultOpen>
+<Accordion title="ST_LONGESTLINE (geom1, geom2[, solution])" id="st_longestline-geom1-geom2-solution" defaultOpen>
 
 Returns the LINESTRING that represents the longest line of points between the two geometries. If
 multiple longest lines are found, only the first line found is returned. If `geom1` or `geom2` is
@@ -2656,13 +2656,13 @@ empty, `null` is returned. Solution types available:
 
 </Accordion>
 
-<Accordion title="ST_MAKEENVELOPE (xmin, ymin, xmax, ymax)" defaultOpen>
+<Accordion title="ST_MAKEENVELOPE (xmin, ymin, xmax, ymax)" id="st_makeenvelope-xmin-ymin-xmax-ymax" defaultOpen>
 
 Creates a rectangular POLYGON from the given min and max parameters
 
 </Accordion>
 
-<Accordion title="ST_MAKELINE(geom[, geom2])" defaultOpen>
+<Accordion title="ST_MAKELINE(geom[, geom2])" id="st_makeline-geom-geom2" defaultOpen>
 
 Creates a LINESTRING from `geom` if it is a MULTIPOINT. If `geom` is a POINT, there must be at
 least one other POINT to construct a LINESTRING. If `geom` is a LINESTRING, it must have at least
@@ -2675,7 +2675,7 @@ This function can be rather costly in terms of performance
 
 </Accordion>
 
-<Accordion title="ST_MAKEPOINT(x, y)" defaultOpen>
+<Accordion title="ST_MAKEPOINT(x, y)" id="st_makepoint-x-y" defaultOpen>
 
 Creates a POINT at the given coordinate
 
@@ -2686,7 +2686,7 @@ This function can be rather costly in terms of performance
 
 </Accordion>
 
-<Accordion title="ST_MAKEPOLYGON(geom)" defaultOpen>
+<Accordion title="ST_MAKEPOLYGON(geom)" id="st_makepolygon-geom" defaultOpen>
 
 Creates a POLYGON from `geom`. Inputs must be closed LINESTRINGs
 
@@ -2697,19 +2697,19 @@ This function can be rather costly in terms of performance
 
 </Accordion>
 
-<Accordion title="ST_MAKETRIANGLE2D (x1, y1, x2, y2, x3, y3)" defaultOpen>
+<Accordion title="ST_MAKETRIANGLE2D (x1, y1, x2, y2, x3, y3)" id="st_maketriangle2d-x1-y1-x2-y2-x3-y3" defaultOpen>
 
 Creates a closed 2-D POLYGON with three vertices
 
 </Accordion>
 
-<Accordion title="ST_MAKETRIANGLE3D (x1, y1, z1, x2, y2, z2, x3, y3, z3)" defaultOpen>
+<Accordion title="ST_MAKETRIANGLE3D (x1, y1, z1, x2, y2, z2, x3, y3, z3)" id="st_maketriangle3d-x1-y1-z1-x2-y2-z2-x3-y3-z3" defaultOpen>
 
 Creates a closed 3-D POLYGON with three vertices
 
 </Accordion>
 
-<Accordion title="ST_MAKEVALID(geom[, options])" defaultOpen>
+<Accordion title="ST_MAKEVALID(geom[, options])" id="st_makevalid-geom-options" defaultOpen>
 
 Attempts to convert `geom` into a valid geometry when it is malformed, as determined by
 `ST_ISVALID(geom)`.  Returns `geom` if it is a valid geometry already.  The method used to convert
@@ -2785,7 +2785,7 @@ Example using the *structure* method with dropping collapsible parts of the conv
 
 </Accordion>
 
-<Accordion title="ST_MAXDISTANCE (geom1, geom2[, solution])" defaultOpen>
+<Accordion title="ST_MAXDISTANCE (geom1, geom2[, solution])" id="st_maxdistance-geom1-geom2-solution" defaultOpen>
 
 Returns the maximum distance between the given `geom1` and `geom2` geometries using the specified
 solution type. If `geom1` or `geom2` is empty, `null` is returned. Solution types available:
@@ -2797,55 +2797,55 @@ solution type. If `geom1` or `geom2` is empty, `null` is returned. Solution type
 
 </Accordion>
 
-<Accordion title="ST_MAXX(geom)" defaultOpen>
+<Accordion title="ST_MAXX(geom)" id="st_maxx-geom" defaultOpen>
 
 Returns the maximum x coordinate of a bounding box for the given `geom` geometry. This function
 works for 2-D and 3-D geometries.
 
 </Accordion>
 
-<Accordion title="ST_MAXY(geom)" defaultOpen>
+<Accordion title="ST_MAXY(geom)" id="st_maxy-geom" defaultOpen>
 
 Returns the maximum y coordinate of a bounding box for the given `geom` geometry. This function
 works for 2-D and 3-D geometries.
 
 </Accordion>
 
-<Accordion title="ST_MAXZ(geom)" defaultOpen>
+<Accordion title="ST_MAXZ(geom)" id="st_maxz-geom" defaultOpen>
 
 Returns the maximum z coordinate of a bounding box for the given `geom` geometry. This function
 works for 2-D and 3-D geometries.
 
 </Accordion>
 
-<Accordion title="ST_MINX(geom)" defaultOpen>
+<Accordion title="ST_MINX(geom)" id="st_minx-geom" defaultOpen>
 
 Returns the minimum x coordinate of a bounding box for the given `geom` geometry. This function
 works for 2-D and 3-D geometries.
 
 </Accordion>
 
-<Accordion title="ST_MINY(geom)" defaultOpen>
+<Accordion title="ST_MINY(geom)" id="st_miny-geom" defaultOpen>
 
 Returns the minimum y coordinate of a bounding box for the given `geom` geometry. This function
 works for 2-D and 3-D geometries.
 
 </Accordion>
 
-<Accordion title="ST_MINZ(geom)" defaultOpen>
+<Accordion title="ST_MINZ(geom)" id="st_minz-geom" defaultOpen>
 
 Returns the minimum z coordinate of a bounding box for the given `geom` geometry. This function
 works for 2-D and 3-D geometries.
 
 </Accordion>
 
-<Accordion title="ST_MULTI(geom)" defaultOpen>
+<Accordion title="ST_MULTI(geom)" id="st_multi-geom" defaultOpen>
 
 Returns `geom` as a MULTI- geometry, e.g., a POINT would return a MULTIPOINT.
 
 </Accordion>
 
-<Accordion title="ST_MULTIPLERINGBUFFERS (geom, distance[, outside])" defaultOpen>
+<Accordion title="ST_MULTIPLERINGBUFFERS (geom, distance[, outside])" id="st_multipleringbuffers-geom-distance-outside" defaultOpen>
 
 Creates multiple buffers at specified `distance` around the given `geom` geometry. Multiple
 distances are specified as comma-separated values in an array, e.g., `[10,20,30]`. Valid values for
@@ -2857,14 +2857,14 @@ distances are specified as comma-separated values in an array, e.g., `[10,20,30]
 
 </Accordion>
 
-<Accordion title="ST_NDIMS(geom)" defaultOpen>
+<Accordion title="ST_NDIMS(geom)" id="st_ndims-geom" defaultOpen>
 
 Returns the number of dimensions in `geom`.  For X,Y data, this will return 2; if a Z component is
 present, it will return 3.
 
 </Accordion>
 
-<Accordion title="ST_NEAR(geom1, geom2)" defaultOpen>
+<Accordion title="ST_NEAR(geom1, geom2)" id="st_near-geom1-geom2" defaultOpen>
 
 Returns the portion of `geom2` that is closest to `geom1`. If `geom2` is a singular geometry
 object (e.g., POINT, LINESTRING, POLYGON), `geom2` will be returned. If `geom2` a multi-geometry,
@@ -2873,55 +2873,55 @@ returned.
 
 </Accordion>
 
-<Accordion title="ST_NORMALIZE(geom)" defaultOpen>
+<Accordion title="ST_NORMALIZE(geom)" id="st_normalize-geom" defaultOpen>
 
 Returns `geom` in its normalized (canonical) form, which may rearrange the points in lexicographical
 order.
 
 </Accordion>
 
-<Accordion title="ST_NPOINTS(geom)" defaultOpen>
+<Accordion title="ST_NPOINTS(geom)" id="st_npoints-geom" defaultOpen>
 
 Returns the number of points (vertices) in `geom`.
 
 </Accordion>
 
-<Accordion title="ST_NRINGS(geom)" defaultOpen>
+<Accordion title="ST_NRINGS(geom)" id="st_nrings-geom" defaultOpen>
 
 Returns the total number of rings (including interior rings) in `geom`.  For non-polygonal geometries,
 it will return 0. For MULTIPOLYGONs, it will return the total number of rings across all components.
 
 </Accordion>
 
-<Accordion title="ST_NUMGEOMETRIES(geom)" defaultOpen>
+<Accordion title="ST_NUMGEOMETRIES(geom)" id="st_numgeometries-geom" defaultOpen>
 
 If `geom` is a collection or MULTI- geometry, returns the number of geometries. If `geom` is a
 single geometry, returns 1.
 
 </Accordion>
 
-<Accordion title="ST_NUMINTERIORRINGS(geom)" defaultOpen>
+<Accordion title="ST_NUMINTERIORRINGS(geom)" id="st_numinteriorrings-geom" defaultOpen>
 
 Returns the number of interior rings if `geom` is a POLYGON. Returns `null` if `geom` is
 anything else.
 
 </Accordion>
 
-<Accordion title="ST_NUMPOINTS(geom)" defaultOpen>
+<Accordion title="ST_NUMPOINTS(geom)" id="st_numpoints-geom" defaultOpen>
 
 Returns the number of points in the `geom` LINESTRING. Returns `null` if `geom` is not a
 LINESTRING.
 
 </Accordion>
 
-<Accordion title="ST_OVERLAPS(geom1, geom2)" defaultOpen>
+<Accordion title="ST_OVERLAPS(geom1, geom2)" id="st_overlaps-geom1-geom2" defaultOpen>
 
 Returns `1` (true) if given geometries `geom1` and `geom2` share space. If `geom1` and/or
 `geom2` are a GEOMETRYCOLLECTION, a `0` is returned regardless of if the two geometries overlap
 
 </Accordion>
 
-<Accordion title="ST_PARTITION(geom[, threshold])" defaultOpen>
+<Accordion title="ST_PARTITION(geom[, threshold])" id="st_partition-geom-threshold" defaultOpen>
 
 Returns a MULTIPOLYGON representing the given `geom` partitioned into a number of POLYGONs with a
 maximum number of vertices equal to the given `threshold`. Minimum value for `threshold` is
@@ -2930,7 +2930,7 @@ returned. If the number of vertices in `geom` is less than the `threshold`, `geo
 
 </Accordion>
 
-<Accordion title="ST_PERIMETER(geom[, solution])" defaultOpen>
+<Accordion title="ST_PERIMETER(geom[, solution])" id="st_perimeter-geom-solution" defaultOpen>
 
 Returns the perimeter of the geometry if it is a POLYGON or MULTIPOLYGON. Returns `0` if another
 type of geometry, e.g., POINT, MULTIPOINT, LINESTRING, or MULTILINESTRING. GEOMETRYCOLLECTIONs are
@@ -2944,13 +2944,13 @@ is returned (unsupported types are ignored). Solution types available:
 
 </Accordion>
 
-<Accordion title="ST_POINT(x, y)" defaultOpen>
+<Accordion title="ST_POINT(x, y)" id="st_point-x-y" defaultOpen>
 
 Returns a POINT with the given `x` and `y` coordinates.
 
 </Accordion>
 
-<Accordion title="ST_POINTFROMGEOHASH (geohash[, precision])" defaultOpen>
+<Accordion title="ST_POINTFROMGEOHASH (geohash[, precision])" id="st_pointfromgeohash-geohash-precision" defaultOpen>
 
 Returns a POINT using the given `geohash` with a precision set by the integer `precision`. If
 `precision` is specified, the function will use as many characters in the hash equal to
@@ -2964,7 +2964,7 @@ The POINT returned represents the center of the bounding box of the geohash
 
 </Accordion>
 
-<Accordion title="ST_POINTGRID (xmin, ymin, xmax, ymax, cell_side[, limit])" defaultOpen>
+<Accordion title="ST_POINTGRID (xmin, ymin, xmax, ymax, cell_side[, limit])" id="st_pointgrid-xmin-ymin-xmax-ymax-cell_side-limit" defaultOpen>
 
 Creates a MULTIPOLYGON containing a square-shaped grid of points between given minimum and maximum
 points of a bounding box. The minimum point cannot be greater than or equal to the maximum point. The
@@ -2981,34 +2981,34 @@ than the system limit, a `null` is returned.
 
 </Accordion>
 
-<Accordion title="ST_POINTN(geom, n)" defaultOpen>
+<Accordion title="ST_POINTN(geom, n)" id="st_pointn-geom-n" defaultOpen>
 
 Returns the `n`-th point in LINESTRING `geom`. Negative values are valid, but note that they are
 counted backwards from the end of `geom`. A `null` is returned if `geom` is not a LINESTRING.
 
 </Accordion>
 
-<Accordion title="ST_POINTS(geom)" defaultOpen>
+<Accordion title="ST_POINTS(geom)" id="st_points-geom" defaultOpen>
 
 Returns a MULTIPOINT containing all of the coordinates of `geom`.
 
 </Accordion>
 
-<Accordion title="ST_PROJECT(geom, distance, azimuth)" defaultOpen>
+<Accordion title="ST_PROJECT(geom, distance, azimuth)" id="st_project-geom-distance-azimuth" defaultOpen>
 
 Returns a POINT projected from a start point `geom` along a geodesic calculated using `distance`
 and `azimuth`. If `geom` is **not** a POINT, `null` is returned.
 
 </Accordion>
 
-<Accordion title="ST_REMOVEPOINT(geom, offset)" defaultOpen>
+<Accordion title="ST_REMOVEPOINT(geom, offset)" id="st_removepoint-geom-offset" defaultOpen>
 
 Remove a point from LINESTRING `geom` using `offset` to skip over POINTs in the LINESTRING. The
 `offset` is 0-based.
 
 </Accordion>
 
-<Accordion title="ST_REMOVEREPEATEDPOINTS (geom, tolerance)" defaultOpen>
+<Accordion title="ST_REMOVEREPEATEDPOINTS (geom, tolerance)" id="st_removerepeatedpoints-geom-tolerance" defaultOpen>
 
 Removes points from `geom` if the point's vertices are greater than or equal to the `tolerance`
 of the previous point in the geometry's list. If `geom` is not a MULTIPOINT, MULTILINESTRING, or a
@@ -3016,27 +3016,27 @@ MULTIPOLYGON, no points will be removed.
 
 </Accordion>
 
-<Accordion title="ST_REVERSE(geom)" defaultOpen>
+<Accordion title="ST_REVERSE(geom)" id="st_reverse-geom" defaultOpen>
 
 Return the geometry with its coordinate order reversed.
 
 </Accordion>
 
-<Accordion title="ST_ROTATE(geom, radians[, wkt])" defaultOpen>
+<Accordion title="ST_ROTATE(geom, radians[, wkt])" id="st_rotate-geom-radians-wkt" defaultOpen>
 
 Rotates `geom` counter-clockwise by `radians` radians.  Optionally, the rotation origin can be provided as a WKT POINT
 WKT POINT (`wkt`).  If not provided, `geom` will be rotated around *(0, 0)*.
 
 </Accordion>
 
-<Accordion title="ST_ROTATE(geom, radians[, x, y])" defaultOpen>
+<Accordion title="ST_ROTATE(geom, radians[, x, y])" id="st_rotate-geom-radians-x-y" defaultOpen>
 
 Rotates `geom` counter-clockwise by `radians` radians.  Optionally, the rotation origin can be provided as a coordinate
 pair (`x` & `y`).  If not provided, `geom` will be rotated around *(0, 0)*.
 
 </Accordion>
 
-<Accordion title="ST_SCALE(geom, wkt)" defaultOpen>
+<Accordion title="ST_SCALE(geom, wkt)" id="st_scale-geom-wkt" defaultOpen>
 
 Scales `geom` by multiplying its respective vertices by the corresponding *x*, *y* values in the given WKT POINT.
 
@@ -3058,7 +3058,7 @@ Scales `geom` by multiplying its respective vertices by the corresponding *x*, *
 
 </Accordion>
 
-<Accordion title="ST_SCALE(geom, x, y)" defaultOpen>
+<Accordion title="ST_SCALE(geom, x, y)" id="st_scale-geom-x-y" defaultOpen>
 
 Scales `geom` by multiplying its respective vertices by the given `x` & `y` values.
 
@@ -3080,7 +3080,7 @@ Scales `geom` by multiplying its respective vertices by the given `x` & `y` valu
 
 </Accordion>
 
-<Accordion title="ST_SEGMENTIZE (geom, max_segment_size[, solution])" defaultOpen>
+<Accordion title="ST_SEGMENTIZE (geom, max_segment_size[, solution])" id="st_segmentize-geom-max_segment_size-solution" defaultOpen>
 
 Returns the given `geom`, but segmentized *n* number of times depending on how the
 `max_segment_size` distance (in units based on the `solution` type) divides up the original
@@ -3094,20 +3094,20 @@ parts will be segmentized, not the collection as a whole. Solution types availab
 
 </Accordion>
 
-<Accordion title="ST_SETPOINT(geom1, position, geom2)" defaultOpen>
+<Accordion title="ST_SETPOINT(geom1, position, geom2)" id="st_setpoint-geom1-position-geom2" defaultOpen>
 
 Replace a point of LINESTRING `geom1` with POINT `geom2` at `position` (base 0). Negative
 values are valid, but note that they are counted backwards from the end of `geom`.
 
 </Accordion>
 
-<Accordion title="ST_SHAREDPATH(geom1, geom2)" defaultOpen>
+<Accordion title="ST_SHAREDPATH(geom1, geom2)" id="st_sharedpath-geom1-geom2" defaultOpen>
 
 Returns a collection containing paths shared by `geom1` and `geom2`.
 
 </Accordion>
 
-<Accordion title="ST_SHORTESTLINE(geom1, geom2)" defaultOpen>
+<Accordion title="ST_SHORTESTLINE(geom1, geom2)" id="st_shortestline-geom1-geom2" defaultOpen>
 
 Returns the 2-D LINESTRING that represents the shortest line of points between the two geometries. If
 multiple shortest lines are found, only the first line found is returned. If `geom1` or `geom2`
@@ -3115,7 +3115,7 @@ is empty, `null` is returned
 
 </Accordion>
 
-<Accordion title="ST_SIMPLIFY(geom, tolerance)" defaultOpen>
+<Accordion title="ST_SIMPLIFY(geom, tolerance)" id="st_simplify-geom-tolerance" defaultOpen>
 
 Returns a simplified version of the given `geom` using an algorithm to reduce the number of points
 comprising a given geometry while attempting to best retain the original shape. The given
@@ -3133,7 +3133,7 @@ a `tolerance` of `0.00001` would correspond to about one meter.
 
 </Accordion>
 
-<Accordion title="ST_SIMPLIFYPRESERVETOPOLOGY (geom, tolerance)" defaultOpen>
+<Accordion title="ST_SIMPLIFYPRESERVETOPOLOGY (geom, tolerance)" id="st_simplifypreservetopology-geom-tolerance" defaultOpen>
 
 Returns a simplified version of the given `geom` using an algorithm to reduce the number of points
 comprising a given geometry while attempting to best retain the original shape. The given
@@ -3151,21 +3151,21 @@ a `tolerance` of `0.00001` would correspond to about one meter.
 
 </Accordion>
 
-<Accordion title="ST_SNAP(geom1, geom2, tolerance)" defaultOpen>
+<Accordion title="ST_SNAP(geom1, geom2, tolerance)" id="st_snap-geom1-geom2-tolerance" defaultOpen>
 
 Snaps `geom1` to `geom2` within the given `tolerance`. If the `tolerance` causes `geom1`
 to not snap, the geometries will be returned unchanged.
 
 </Accordion>
 
-<Accordion title="ST_SPLIT(geom1, geom2)" defaultOpen>
+<Accordion title="ST_SPLIT(geom1, geom2)" id="st_split-geom1-geom2" defaultOpen>
 
 Returns a collection of geometries resulting from the split between `geom1` and `geom2`
 geometries.
 
 </Accordion>
 
-<Accordion title="ST_SQUAREGRID (xmin, ymin, xmax, ymax, cell_side[, limit])" defaultOpen>
+<Accordion title="ST_SQUAREGRID (xmin, ymin, xmax, ymax, cell_side[, limit])" id="st_squaregrid-xmin-ymin-xmax-ymax-cell_side-limit" defaultOpen>
 
 Creates a MULTIPOLYGON containing a grid of squares between given minimum and maximum points of a
 bounding box. The minimum point cannot be greater than or equal to the maximum point. The size (in
@@ -3182,21 +3182,21 @@ than the system limit, a `null` is returned.
 
 </Accordion>
 
-<Accordion title="ST_STARTPOINT(geom)" defaultOpen>
+<Accordion title="ST_STARTPOINT(geom)" id="st_startpoint-geom" defaultOpen>
 
 Returns the first point of LINESTRING `geom` as a POINT. Returns `null` if `geom` is not a
 LINESTRING.
 
 </Accordion>
 
-<Accordion title="ST_SYMDIFFERENCE(geom1, geom2)" defaultOpen>
+<Accordion title="ST_SYMDIFFERENCE(geom1, geom2)" id="st_symdifference-geom1-geom2" defaultOpen>
 
 Returns a geometry that represents the portions of `geom1` and `geom2` geometries that do not
 intersect.
 
 </Accordion>
 
-<Accordion title="ST_TOUCHES(geom1, geom2)" defaultOpen>
+<Accordion title="ST_TOUCHES(geom1, geom2)" id="st_touches-geom1-geom2" defaultOpen>
 
 Returns `1` (true) if the given geometries, `geom1` and `geom2`, have at least one point in
 common but their interiors do not intersect. If `geom1` and/or `geom2` are a GEOMETRYCOLLECTION,
@@ -3204,7 +3204,7 @@ a `0` is returned regardless of if the two geometries touch
 
 </Accordion>
 
-<Accordion title="ST_TRANSLATE (geom, deltax, deltay[, deltaz])" defaultOpen>
+<Accordion title="ST_TRANSLATE (geom, deltax, deltay[, deltaz])" id="st_translate-geom-deltax-deltay-deltaz" defaultOpen>
 
 Translate `geom` by given offsets `deltax` and `deltay`. A z-coordinate offset can be applied
 using `deltaz`.
@@ -3212,7 +3212,7 @@ intersect.
 
 </Accordion>
 
-<Accordion title="ST_TRIANGLEGRID (xmin, ymin, xmax, ymax, cell_side[, limit])" defaultOpen>
+<Accordion title="ST_TRIANGLEGRID (xmin, ymin, xmax, ymax, cell_side[, limit])" id="st_trianglegrid-xmin-ymin-xmax-ymax-cell_side-limit" defaultOpen>
 
 Creates a MULTIPOLYGON containing a grid of triangles between given minimum and maximum points of a
 bounding box. The minimum point cannot be greater than or equal to the maximum point. The size (in
@@ -3229,26 +3229,26 @@ than the system limit, a `null` is returned.
 
 </Accordion>
 
-<Accordion title="ST_UNION(geom1, geom2)" defaultOpen>
+<Accordion title="ST_UNION(geom1, geom2)" id="st_union-geom1-geom2" defaultOpen>
 
 Returns a geometry that represents the point set union of the two given geometries, `geom1` and
 `geom2`.
 
 </Accordion>
 
-<Accordion title="ST_UNIONCOLLECTION(geom)" defaultOpen>
+<Accordion title="ST_UNIONCOLLECTION(geom)" id="st_unioncollection-geom" defaultOpen>
 
 Returns a geometry that represents the point set union of a single given geometry `geom`.
 
 </Accordion>
 
-<Accordion title="ST_UPDATE(geom1, geom2)" defaultOpen>
+<Accordion title="ST_UPDATE(geom1, geom2)" id="st_update-geom1-geom2" defaultOpen>
 
 Returns a geometry that is `geom1` geometry updated by `geom2` geometry
 
 </Accordion>
 
-<Accordion title="ST_VORONOIPOLYGONS(geom[, tolerance])" defaultOpen>
+<Accordion title="ST_VORONOIPOLYGONS(geom[, tolerance])" id="st_voronoipolygons-geom-tolerance" defaultOpen>
 
 Returns a GEOMETRYCOLLECTION containing Voronoi polygons (regions consisting of points closer to
 a vertex in `geom` than any other vertices in `geom`) calculated from the vertices in `geom`
@@ -3265,7 +3265,7 @@ with a *3* x *4* bounding box will result in Voronoi polygons filling a space th
 
 </Accordion>
 
-<Accordion title="ST_WITHIN(geom1, geom2)" defaultOpen>
+<Accordion title="ST_WITHIN(geom1, geom2)" id="st_within-geom1-geom2" defaultOpen>
 
 Returns `1` (true) if the `geom1` geometry is inside the `geom2` geometry. Note that as long as
 at least one point is inside of `geom2`, `geom1` is considered within `geom2` even if the rest
@@ -3273,63 +3273,63 @@ of the `geom1` lies along the boundary of `geom2`
 
 </Accordion>
 
-<Accordion title="ST_WKBTOWKT(geom)" defaultOpen>
+<Accordion title="ST_WKBTOWKT(geom)" id="st_wkbtowkt-geom" defaultOpen>
 
 Returns the text form (WKT) of a geometry from the given byte form (WKB)
 
 </Accordion>
 
-<Accordion title="ST_WKTTOWKB(geom)" defaultOpen>
+<Accordion title="ST_WKTTOWKB(geom)" id="st_wkttowkb-geom" defaultOpen>
 
 Returns the byte form (WKB) of a geometry from the given text form (WKT)
 
 </Accordion>
 
-<Accordion title="ST_X(geom)" defaultOpen>
+<Accordion title="ST_X(geom)" id="st_x-geom" defaultOpen>
 
 Returns the X coordinate of the POINT `geom`; if the coordinate is not available, `null` is
 returned. `geom` must be a POINT.
 
 </Accordion>
 
-<Accordion title="ST_XMAX(geom)" defaultOpen>
+<Accordion title="ST_XMAX(geom)" id="st_xmax-geom" defaultOpen>
 
 Alias for `ST_MAXX()`
 
 </Accordion>
 
-<Accordion title="ST_XMIN(geom)" defaultOpen>
+<Accordion title="ST_XMIN(geom)" id="st_xmin-geom" defaultOpen>
 
 Alias for `ST_MINX()`
 
 </Accordion>
 
-<Accordion title="ST_Y(geom)" defaultOpen>
+<Accordion title="ST_Y(geom)" id="st_y-geom" defaultOpen>
 
 Returns the Y coordinate of the POINT `geom`; if the coordinate is not available, `null` is
 returned. `geom` must be a POINT.
 
 </Accordion>
 
-<Accordion title="ST_YMAX(geom)" defaultOpen>
+<Accordion title="ST_YMAX(geom)" id="st_ymax-geom" defaultOpen>
 
 Alias for `ST_MAXY()`
 
 </Accordion>
 
-<Accordion title="ST_YMIN(geom)" defaultOpen>
+<Accordion title="ST_YMIN(geom)" id="st_ymin-geom" defaultOpen>
 
 Alias for `ST_MINY()`
 
 </Accordion>
 
-<Accordion title="ST_ZMAX(geom)" defaultOpen>
+<Accordion title="ST_ZMAX(geom)" id="st_zmax-geom" defaultOpen>
 
 Alias for `ST_MAXZ()`
 
 </Accordion>
 
-<Accordion title="ST_ZMIN(geom)" defaultOpen>
+<Accordion title="ST_ZMIN(geom)" id="st_zmin-geom" defaultOpen>
 
 Alias for `ST_MINZ()`
 
@@ -3346,19 +3346,19 @@ Alias for `ST_MINZ()`
 
 <AccordionGroup>
 
-<Accordion title="ST_AGGREGATE_COLLECT(geom)" defaultOpen>
+<Accordion title="ST_AGGREGATE_COLLECT(geom)" id="st_aggregate_collect-geom" defaultOpen>
 
 Alias for `ST_COLLECT_AGGREGATE()`
 
 </Accordion>
 
-<Accordion title="ST_AGGREGATE_INTERSECTION(geom)" defaultOpen>
+<Accordion title="ST_AGGREGATE_INTERSECTION(geom)" id="st_aggregate_intersection-geom" defaultOpen>
 
 Alias for `ST_INTERSECTION_AGGREGATE()`
 
 </Accordion>
 
-<Accordion title="ST_COLLECT_AGGREGATE(geom)" defaultOpen>
+<Accordion title="ST_COLLECT_AGGREGATE(geom)" id="st_collect_aggregate-geom" defaultOpen>
 
 Returns a GEOMETRYCOLLECTION comprising all geometries found in the `geom` set.
 Any MULTI* geometries will be divided into separate singular geometries, e.g.,
@@ -3371,7 +3371,7 @@ part of a GEOMETRYCOLLECTION. Any duplicate WKTs will be retained.
 
 </Accordion>
 
-<Accordion title="ST_DISSOLVE(geom)" defaultOpen>
+<Accordion title="ST_DISSOLVE(geom)" id="st_dissolve-geom" defaultOpen>
 
 Dissolves all geometries within a given set into a single geometry. Note that the
 resulting single geometry can still be a group of noncontiguous geometries but
@@ -3380,7 +3380,7 @@ used in conjunction with adjacent geometries.
 
 </Accordion>
 
-<Accordion title="ST_DISSOLVEOVERLAPPING(geom)" defaultOpen>
+<Accordion title="ST_DISSOLVEOVERLAPPING(geom)" id="st_dissolveoverlapping-geom" defaultOpen>
 
 Dissolves all geometries within a given set into a single geometry. Note that the
 resulting single geometry can still be a group of noncontiguous geometries but
@@ -3389,7 +3389,7 @@ used in conjunction with overlapping geometries.
 
 </Accordion>
 
-<Accordion title="ST_INTERSECTION_AGGREGATE(geom)" defaultOpen>
+<Accordion title="ST_INTERSECTION_AGGREGATE(geom)" id="st_intersection_aggregate-geom" defaultOpen>
 
 Returns a POLYGON or MULTIPOLYGON comprising the shared portion between all
 geometries found in the `geom` set.  Returns an empty GEOMETRYCOLLECTION if
@@ -3398,7 +3398,7 @@ there is no shared portion between all geometries. Functionally equivalent to
 
 </Accordion>
 
-<Accordion title="ST_LINESTRINGFROMORDEREDPOINTS(x, y, t)" defaultOpen>
+<Accordion title="ST_LINESTRINGFROMORDEREDPOINTS(x, y, t)" id="st_linestringfromorderedpoints-x-y-t" defaultOpen>
 
 Returns a LINESTRING that represents a "track" of the given points (`x`, `y`)
 ordered by the given sort column `t` (e.g., a timestamp or sequence number). If
@@ -3409,7 +3409,7 @@ source table, a `null` is returned.
 
 </Accordion>
 
-<Accordion title="ST_LINESTRINGFROMORDEREDPOINTS3D(x, y, z, t)" defaultOpen>
+<Accordion title="ST_LINESTRINGFROMORDEREDPOINTS3D(x, y, z, t)" id="st_linestringfromorderedpoints3d-x-y-z-t" defaultOpen>
 
 Returns a LINESTRING that represents a "track" of the given 3D points
 (`x`, `y`, `z`) ordered by the given sort column `t` (e.g., a timestamp
@@ -3420,7 +3420,7 @@ non-null "points" in the source table, a `null` is returned.
 
 </Accordion>
 
-<Accordion title="ST_POLYGONIZE(geom)" defaultOpen>
+<Accordion title="ST_POLYGONIZE(geom)" id="st_polygonize-geom" defaultOpen>
 
 Returns a GEOMETRYCOLLECTION containing POLYGONs comprising the provided
 (MULTI)LINESTRING(s). (MULTI)POINT and (MULTI)POLYGON geometries are ignored when
@@ -3443,7 +3443,7 @@ The following functions are available in both SQL and the native API.
 
 <AccordionGroup>
 
-<Accordion title="ST_TRACKDURATION([unit,] t)" defaultOpen>
+<Accordion title="ST_TRACKDURATION([unit,] t)" id="st_trackduration-unit-t" defaultOpen>
 
 Returns the total time, in the given `unit`, spanned by timestamp values in column
 `t`.  Grouping by *track* ID will return the duration per *track*.
@@ -3462,7 +3462,7 @@ The default `unit` is `MILLISECOND`.
 
 </Accordion>
 
-<Accordion title="ST_TRACKLENGTH(lat, lon, t[, solution])" defaultOpen>
+<Accordion title="ST_TRACKLENGTH(lat, lon, t[, solution])" id="st_tracklength-lat-lon-t-solution" defaultOpen>
 
 Returns the total length of the track whose position values are specified by `lat` &
 `lon` and whose ordering is determined by an ascending sort on the timestamp `t`.
@@ -3543,7 +3543,7 @@ FROM TABLE
 
 <AccordionGroup>
 
-<Accordion title="TRACK_TABLE" defaultOpen>
+<Accordion title="TRACK_TABLE" id="track_table" defaultOpen>
 
 Name of the table to search for tracks matching the track(s) specified in the `SEARCH_*` data set.
 
@@ -3564,32 +3564,32 @@ INPUT_TABLE
 ```
 </Accordion>
 
-<Accordion title="TRACK_ID_COLUMN" defaultOpen>
+<Accordion title="TRACK_ID_COLUMN" id="track_id_column" defaultOpen>
 
 Table to search track column, containing the unique identifier for the track to which each track point
 belongs.
 
 </Accordion>
 
-<Accordion title="TRACK_X_COLUMN" defaultOpen>
+<Accordion title="TRACK_X_COLUMN" id="track_x_column" defaultOpen>
 
 Table to search track column, containing the longitude value of each track point.
 
 </Accordion>
 
-<Accordion title="TRACK_Y_COLUMN" defaultOpen>
+<Accordion title="TRACK_Y_COLUMN" id="track_y_column" defaultOpen>
 
 Table to search track column, containing the latitude value of each track point.
 
 </Accordion>
 
-<Accordion title="TRACK_ORDER_COLUMN" defaultOpen>
+<Accordion title="TRACK_ORDER_COLUMN" id="track_order_column" defaultOpen>
 
 Table to search track column, by which the searched track points will be sorted in ascending order.
 
 </Accordion>
 
-<Accordion title="SEARCH_TABLE" defaultOpen>
+<Accordion title="SEARCH_TABLE" id="search_table" defaultOpen>
 
 Name of the search criteria track table, containing the track(s) to be used as the filter criteria
 when searching for matching tracks in the `TRACK_*` data set.
@@ -3611,32 +3611,32 @@ INPUT_TABLE
 ```
 </Accordion>
 
-<Accordion title="SEARCH_ID_COLUMN" defaultOpen>
+<Accordion title="SEARCH_ID_COLUMN" id="search_id_column" defaultOpen>
 
 Search criteria track column, containing the unique identifier for the track to which each track point
 belongs.
 
 </Accordion>
 
-<Accordion title="SEARCH_X_COLUMN" defaultOpen>
+<Accordion title="SEARCH_X_COLUMN" id="search_x_column" defaultOpen>
 
 Search criteria track column, containing the longitude value of each track point.
 
 </Accordion>
 
-<Accordion title="SEARCH_Y_COLUMN" defaultOpen>
+<Accordion title="SEARCH_Y_COLUMN" id="search_y_column" defaultOpen>
 
 Search criteria track column, containing the latitude value of each track point.
 
 </Accordion>
 
-<Accordion title="SEARCH_ORDER_COLUMN" defaultOpen>
+<Accordion title="SEARCH_ORDER_COLUMN" id="search_order_column" defaultOpen>
 
 Search criteria track column, by which the filter track points will be sorted in ascending order.
 
 </Accordion>
 
-<Accordion title="SEARCH_XY_DISTANCE" defaultOpen>
+<Accordion title="SEARCH_XY_DISTANCE" id="search_xy_distance" defaultOpen>
 
 The radius around the given tracks to search for matching tracks.
 
@@ -3676,7 +3676,7 @@ This parameter is not applicable when using a `SPATIAL_SOLUTION_TYPE` of `0`.
 
 </Accordion>
 
-<Accordion title="SPATIAL_SOLUTION_TYPE" defaultOpen>
+<Accordion title="SPATIAL_SOLUTION_TYPE" id="spatial_solution_type" defaultOpen>
 
 Spatial match solution type; any of the following:
 
@@ -3708,7 +3708,7 @@ Spatial match solution type; any of the following:
 
 </Accordion>
 
-<Accordion title="SEARCH_TIME_DISTANCE" defaultOpen>
+<Accordion title="SEARCH_TIME_DISTANCE" id="search_time_distance" defaultOpen>
 
 The maximum allowable time difference between a search criteria track's point and a matched track's
 points.  The time can use any of the following suffices for units:
@@ -3841,7 +3841,7 @@ FROM TABLE
 
 <AccordionGroup>
 
-<Accordion title="TRACK_TABLE" defaultOpen>
+<Accordion title="TRACK_TABLE" id="track_table-2" defaultOpen>
 
 Name of the table to search for tracks intersecting the geofence(s) specified in the `SEARCH_*` data
 set.
@@ -3863,32 +3863,32 @@ INPUT_TABLE
 ```
 </Accordion>
 
-<Accordion title="TRACK_ID_COLUMN" defaultOpen>
+<Accordion title="TRACK_ID_COLUMN" id="track_id_column-2" defaultOpen>
 
 Table to search track column, containing the unique identifier for the track to which each track point
 belongs.
 
 </Accordion>
 
-<Accordion title="TRACK_X_COLUMN" defaultOpen>
+<Accordion title="TRACK_X_COLUMN" id="track_x_column-2" defaultOpen>
 
 Table to search track column, containing the longitude value of each track point.
 
 </Accordion>
 
-<Accordion title="TRACK_Y_COLUMN" defaultOpen>
+<Accordion title="TRACK_Y_COLUMN" id="track_y_column-2" defaultOpen>
 
 Table to search track column, containing the latitude value of each track point.
 
 </Accordion>
 
-<Accordion title="TRACK_ORDER_COLUMN" defaultOpen>
+<Accordion title="TRACK_ORDER_COLUMN" id="track_order_column-2" defaultOpen>
 
 Table to search track column, by which the searched track points will be sorted in ascending order.
 
 </Accordion>
 
-<Accordion title="GEOFENCE_TABLE" defaultOpen>
+<Accordion title="GEOFENCE_TABLE" id="geofence_table" defaultOpen>
 
 Name of the geofence table, containing the WKT(s) to be used as the filter criteria when searching for
 intersecting tracks in the `TRACK_*` data set.
@@ -3912,13 +3912,13 @@ INPUT_TABLE
 ```
 </Accordion>
 
-<Accordion title="GEOFENCE_ID_COLUMN" defaultOpen>
+<Accordion title="GEOFENCE_ID_COLUMN" id="geofence_id_column" defaultOpen>
 
 Geofence column, containing the unique identifier for the geofence.
 
 </Accordion>
 
-<Accordion title="GEOFENCE_WKT_COLUMN" defaultOpen>
+<Accordion title="GEOFENCE_WKT_COLUMN" id="geofence_wkt_column" defaultOpen>
 
 Geofence column, containing the WKT bounds of the geofence.
 
@@ -3959,7 +3959,7 @@ The functions below support various operations using the H3 geospatial indexing 
 
 <AccordionGroup>
 
-<Accordion title="H3_CELLTOBOUNDARY(h3_index)" defaultOpen>
+<Accordion title="H3_CELLTOBOUNDARY(h3_index)" id="h3_celltoboundary-h3_index" defaultOpen>
 
 Returns a POLYGON boundary box of the H3 index identified by the given `h3_index`.
 
@@ -3967,13 +3967,13 @@ See [Geohash-H3](/content/snippets/geohash-h3) for an example.
 
 </Accordion>
 
-<Accordion title="H3_CELLTOCENTERCHILD(h3_index, res)" defaultOpen>
+<Accordion title="H3_CELLTOCENTERCHILD(h3_index, res)" id="h3_celltocenterchild-h3_index-res" defaultOpen>
 
 Alias for `H3_CELLTOFIRSTCHILD`.
 
 </Accordion>
 
-<Accordion title="H3_CELLTOCHILDN(h3_index, res, i)" defaultOpen>
+<Accordion title="H3_CELLTOCHILDN(h3_index, res, i)" id="h3_celltochildn-h3_index-res-i" defaultOpen>
 
 Returns the H3 index corresponding to the 0-based `i` th child at resolution `res` for the given
 `h3_index`.  The value `i` should be less than the number of children returned from calling
@@ -3981,20 +3981,20 @@ Returns the H3 index corresponding to the 0-based `i` th child at resolution `re
 
 </Accordion>
 
-<Accordion title="H3_CELLTOCHILDPOS(h3_index, res)" defaultOpen>
+<Accordion title="H3_CELLTOCHILDPOS(h3_index, res)" id="h3_celltochildpos-h3_index-res" defaultOpen>
 
 Returns the position of the given `h3_index` within an ordered list of the children of the cell's
 parent at resolution `res`. This is the inverse of `H3_CHILDPOSTOCELL` (`H3_CELLTOCHILDN`).
 
 </Accordion>
 
-<Accordion title="H3_CELLTOCHILDRENSIZE(h3_index, res)" defaultOpen>
+<Accordion title="H3_CELLTOCHILDRENSIZE(h3_index, res)" id="h3_celltochildrensize-h3_index-res" defaultOpen>
 
 Returns the number of child cells at resolution `res` for the given `h3_index`.
 
 </Accordion>
 
-<Accordion title="H3_CELLTOFIRSTCHILD(h3_index, res)" defaultOpen>
+<Accordion title="H3_CELLTOFIRSTCHILD(h3_index, res)" id="h3_celltofirstchild-h3_index-res" defaultOpen>
 
 Returns the H3 index corresponding to the first child at resolution `res` for the given `h3_index`.
 
@@ -4002,7 +4002,7 @@ This is equivalent to `H3_CELLTOCHILDN(h3_index,res,0)`.
 
 </Accordion>
 
-<Accordion title="H3_CELLTOLASTCHILD(h3_index, res)" defaultOpen>
+<Accordion title="H3_CELLTOLASTCHILD(h3_index, res)" id="h3_celltolastchild-h3_index-res" defaultOpen>
 
 Returns the H3 index corresponding to the last child at resolution `res` for the given `h3_index`.
 
@@ -4010,25 +4010,25 @@ This is equivalent to `H3_CELLTOCHILDN(h3_index,res,H3_CELLTOCHILDRENSIZE(h3_ind
 
 </Accordion>
 
-<Accordion title="H3_CELLTOPARENT(h3_index, res)" defaultOpen>
+<Accordion title="H3_CELLTOPARENT(h3_index, res)" id="h3_celltoparent-h3_index-res" defaultOpen>
 
 Returns the H3 index corresponding to the parent cell of the given `h3_index` at resolution `res`.
 
 </Accordion>
 
-<Accordion title="H3_CELLTOXY(h3_index)" defaultOpen>
+<Accordion title="H3_CELLTOXY(h3_index)" id="h3_celltoxy-h3_index" defaultOpen>
 
 Returns a WKT POINT corresponding to the centroid of the given `h3_index`.
 
 </Accordion>
 
-<Accordion title="H3_CHILDPOSTOCELL(i, h3_index, res)" defaultOpen>
+<Accordion title="H3_CHILDPOSTOCELL(i, h3_index, res)" id="h3_childpostocell-i-h3_index-res" defaultOpen>
 
 Alias for `H3_CELLTOCHILDN(h3_index, res, i)`.
 
 </Accordion>
 
-<Accordion title="H3_GEOMTOCELL(geom, res)" defaultOpen>
+<Accordion title="H3_GEOMTOCELL(geom, res)" id="h3_geomtocell-geom-res" defaultOpen>
 
 Returns the H3 index, similar to a geohash, for the cell containing the centroid of the geometry
 `geom` with the given resolution `res`.  The higher the resolution, the more precise the index
@@ -4038,19 +4038,19 @@ See [Geohash-H3](/content/snippets/geohash-h3) for an example.
 
 </Accordion>
 
-<Accordion title="H3_GETRESOLUTION(h3_index)" defaultOpen>
+<Accordion title="H3_GETRESOLUTION(h3_index)" id="h3_getresolution-h3_index" defaultOpen>
 
 Returns the resolution of the H3 index `h3_index`.
 
 </Accordion>
 
-<Accordion title="H3_GRIDDISK(h3_index, k)" defaultOpen>
+<Accordion title="H3_GRIDDISK(h3_index, k)" id="h3_griddisk-h3_index-k" defaultOpen>
 
 Returns an array of H3 indexes within a given distance `k` from the provided H3 index `h3_index`.
 
 </Accordion>
 
-<Accordion title="H3_GRIDDISKN(h3_index, k, i)" defaultOpen>
+<Accordion title="H3_GRIDDISKN(h3_index, k, i)" id="h3_griddiskn-h3_index-k-i" defaultOpen>
 
 Returns the `i` <sup>th</sup> H3 index within a given distance `k` from the provided H3 index
 `h3_index`.  This function would typically be used in conjunction with `H3_NUMGRIDDISK` via iter-join.
@@ -4058,14 +4058,14 @@ The value of `i` should be between `0` and the result of `H3_NUMGRIDDISK(h3_inde
 
 </Accordion>
 
-<Accordion title="H3_GRIDRING(h3_index, k)" defaultOpen>
+<Accordion title="H3_GRIDRING(h3_index, k)" id="h3_gridring-h3_index-k" defaultOpen>
 
 Returns an array of H3 indexes comprising a hollow ring at a distance `k` from the provided
 H3 index `h3_index`.
 
 </Accordion>
 
-<Accordion title="H3_H3TOSTRING(h3_index)" defaultOpen>
+<Accordion title="H3_H3TOSTRING(h3_index)" id="h3_h3tostring-h3_index" defaultOpen>
 
 Returns the string representation of the H3 index `h3_index`.
 
@@ -4076,14 +4076,14 @@ This function is the inverse of `H3_STRINGTOH3`.
 
 </Accordion>
 
-<Accordion title="H3_ISVALID(h3_index)" defaultOpen>
+<Accordion title="H3_ISVALID(h3_index)" id="h3_isvalid-h3_index" defaultOpen>
 
 Returns `1` (true) if the given H3 index `h3_index` is a valid H3 index value; otherwise
 returns `0` (false).
 
 </Accordion>
 
-<Accordion title="H3_LATLNGTOCELL (latitude, longitude, res)" defaultOpen>
+<Accordion title="H3_LATLNGTOCELL (latitude, longitude, res)" id="h3_latlngtocell-latitude-longitude-res" defaultOpen>
 
 Returns the H3 index, similar to a geohash, for the cell containing the `latitude` and `longitude`
 coordinate, with the given resolution `res`.  The higher the resolution, the more precise the index
@@ -4093,14 +4093,14 @@ Equivalent to `H3_XYTOCELL(longitude, latitude, res)`.
 
 </Accordion>
 
-<Accordion title="H3_NUMGRIDDISK(h3_index, k)" defaultOpen>
+<Accordion title="H3_NUMGRIDDISK(h3_index, k)" id="h3_numgriddisk-h3_index-k" defaultOpen>
 
 Returns the number of cells at a distance of `k` from the provided H3 index `h3_index`. This function
 would typically be used in conjunction with `H3_GRIDDISKN` via iter-join.
 
 </Accordion>
 
-<Accordion title="H3_NUMPOLYGONTOCELLS(geom, res)" defaultOpen>
+<Accordion title="H3_NUMPOLYGONTOCELLS(geom, res)" id="h3_numpolygontocells-geom-res" defaultOpen>
 
 Returns the number of cells at the given resolution `res` that are within the given geometry `geom`.
 Only polygon geometries are supported. This function would typically be used in conjunction with
@@ -4108,14 +4108,14 @@ Only polygon geometries are supported. This function would typically be used in 
 
 </Accordion>
 
-<Accordion title="H3_POLYGONTOCELLS(geom, res)" defaultOpen>
+<Accordion title="H3_POLYGONTOCELLS(geom, res)" id="h3_polygontocells-geom-res" defaultOpen>
 
 Returns an array of H3 indexes at the given resolution `res` that are within the given geometry `geom`.
 Only polygon geometries are supported.
 
 </Accordion>
 
-<Accordion title="H3_POLYGONTOCELLSN(geom, res, i)" defaultOpen>
+<Accordion title="H3_POLYGONTOCELLSN(geom, res, i)" id="h3_polygontocellsn-geom-res-i" defaultOpen>
 
 Returns the `i` <sup>th</sup> H3 index at the given resolution `res` that is within the given geometry
 `geom`.  Only polygon geometries are supported. This function would typically be used in conjunction with
@@ -4124,7 +4124,7 @@ from `H3_NUMPOLYGONTOCELLS(geom, res)` - `1`.
 
 </Accordion>
 
-<Accordion title="H3_STRINGTOH3(h3_string)" defaultOpen>
+<Accordion title="H3_STRINGTOH3(h3_string)" id="h3_stringtoh3-h3_string" defaultOpen>
 
 Returns the H3 index corresponding to the string representation `h3_string`.
 
@@ -4135,7 +4135,7 @@ This function is the inverse of `H3_H3TOSTRING`.
 
 </Accordion>
 
-<Accordion title="H3_XYTOCELL(x, y, res)" defaultOpen>
+<Accordion title="H3_XYTOCELL(x, y, res)" id="h3_xytocell-x-y-res" defaultOpen>
 
 Returns the H3 index, similar to a geohash, for the cell containing the `x` and `y` coordinate,
 with the given resolution `res`.  The higher the resolution, the more precise the index is. The
@@ -4155,248 +4155,248 @@ See [Geohash-H3](/content/snippets/geohash-h3) for an example.
 
 <AccordionGroup>
 
-<Accordion title="ABS(expr)" defaultOpen>
+<Accordion title="ABS(expr)" id="abs-expr" defaultOpen>
 
 Calculates the absolute value of `expr`
 
 </Accordion>
 
-<Accordion title="ACOS(expr)" defaultOpen>
+<Accordion title="ACOS(expr)" id="acos-expr" defaultOpen>
 
 Returns the inverse cosine (arccosine) of `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="ACOSF(expr)" defaultOpen>
+<Accordion title="ACOSF(expr)" id="acosf-expr" defaultOpen>
 
 Returns the inverse cosine (arccosine) of `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="ACOSH(expr)" defaultOpen>
+<Accordion title="ACOSH(expr)" id="acosh-expr" defaultOpen>
 
 Returns the inverse hyperbolic cosine of `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="ACOSHF(expr)" defaultOpen>
+<Accordion title="ACOSHF(expr)" id="acoshf-expr" defaultOpen>
 
 Returns the inverse hyperbolic cosine of `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="ASIN(expr)" defaultOpen>
+<Accordion title="ASIN(expr)" id="asin-expr" defaultOpen>
 
 Returns the inverse sine (arcsine) of `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="ASINF(expr)" defaultOpen>
+<Accordion title="ASINF(expr)" id="asinf-expr" defaultOpen>
 
 Returns the inverse sine (arcsine) of `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="ASINH(expr)" defaultOpen>
+<Accordion title="ASINH(expr)" id="asinh-expr" defaultOpen>
 
 Returns the inverse hyperbolic sine of `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="ASINHF(expr)" defaultOpen>
+<Accordion title="ASINHF(expr)" id="asinhf-expr" defaultOpen>
 
 Returns the inverse hyperbolic sine of `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="ATAN(expr)" defaultOpen>
+<Accordion title="ATAN(expr)" id="atan-expr" defaultOpen>
 
 Returns the inverse tangent (arctangent) of `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="ATANF(expr)" defaultOpen>
+<Accordion title="ATANF(expr)" id="atanf-expr" defaultOpen>
 
 Returns the inverse tangent (arctangent) of `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="ATANH(expr)" defaultOpen>
+<Accordion title="ATANH(expr)" id="atanh-expr" defaultOpen>
 
 Returns the inverse hyperbolic tangent of `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="ATANHF(expr)" defaultOpen>
+<Accordion title="ATANHF(expr)" id="atanhf-expr" defaultOpen>
 
 Returns the inverse hyperbolic tangent of `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="ATAN2(x, y)" defaultOpen>
+<Accordion title="ATAN2(x, y)" id="atan2-x-y" defaultOpen>
 
 Returns the inverse tangent (arctangent) using two arguments as a *double*
 
 </Accordion>
 
-<Accordion title="ATAN2F(x, y)" defaultOpen>
+<Accordion title="ATAN2F(x, y)" id="atan2f-x-y" defaultOpen>
 
 Returns the inverse tangent (arctangent) using two arguments as a *float*
 
 </Accordion>
 
-<Accordion title="ATN2(x, y)" defaultOpen>
+<Accordion title="ATN2(x, y)" id="atn2-x-y" defaultOpen>
 
 Alias for `ATAN2`
 
 </Accordion>
 
-<Accordion title="ATN2F(x, y)" defaultOpen>
+<Accordion title="ATN2F(x, y)" id="atn2f-x-y" defaultOpen>
 
 Alias for `ATAN2F`
 
 </Accordion>
 
-<Accordion title="CBRT(expr)" defaultOpen>
+<Accordion title="CBRT(expr)" id="cbrt-expr" defaultOpen>
 
 Returns the cube root of `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="CBRTF(expr)" defaultOpen>
+<Accordion title="CBRTF(expr)" id="cbrtf-expr" defaultOpen>
 
 Returns the cube root of `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="CEIL(expr)" defaultOpen>
+<Accordion title="CEIL(expr)" id="ceil-expr" defaultOpen>
 
 Alias for `CEILING`
 
 </Accordion>
 
-<Accordion title="CEILING(expr)" defaultOpen>
+<Accordion title="CEILING(expr)" id="ceiling-expr" defaultOpen>
 
 Rounds `expr` up to the next highest integer
 
 </Accordion>
 
-<Accordion title="COS(expr)" defaultOpen>
+<Accordion title="COS(expr)" id="cos-expr" defaultOpen>
 
 Returns the cosine of `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="COSF(expr)" defaultOpen>
+<Accordion title="COSF(expr)" id="cosf-expr" defaultOpen>
 
 Returns the cosine of `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="COSH(expr)" defaultOpen>
+<Accordion title="COSH(expr)" id="cosh-expr" defaultOpen>
 
 Returns the hyperbolic cosine of `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="COSHF(expr)" defaultOpen>
+<Accordion title="COSHF(expr)" id="coshf-expr" defaultOpen>
 
 Returns the hyperbolic cosine of `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="COT(expr)" defaultOpen>
+<Accordion title="COT(expr)" id="cot-expr" defaultOpen>
 
 Returns the cotangent of `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="COTF(expr)" defaultOpen>
+<Accordion title="COTF(expr)" id="cotf-expr" defaultOpen>
 
 Returns the cotangent of `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="DEGREES(expr)" defaultOpen>
+<Accordion title="DEGREES(expr)" id="degrees-expr" defaultOpen>
 
 Returns the conversion of `expr` (in radians) to degrees as a *double*
 
 </Accordion>
 
-<Accordion title="DEGREESF(expr)" defaultOpen>
+<Accordion title="DEGREESF(expr)" id="degreesf-expr" defaultOpen>
 
 Returns the conversion of `expr` (in radians) to degrees as a *float*
 
 </Accordion>
 
-<Accordion title="DIVZ(a, b, c)" defaultOpen>
+<Accordion title="DIVZ(a, b, c)" id="divz-a-b-c" defaultOpen>
 
 Returns the quotient `a / b` unless `b == 0`, in which case it returns `c`
 
 </Accordion>
 
-<Accordion title="EXP(expr)" defaultOpen>
+<Accordion title="EXP(expr)" id="exp-expr" defaultOpen>
 
 Returns *e* to the power of `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="EXPF(expr)" defaultOpen>
+<Accordion title="EXPF(expr)" id="expf-expr" defaultOpen>
 
 Returns *e* to the power of `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="FLOOR(expr)" defaultOpen>
+<Accordion title="FLOOR(expr)" id="floor-expr" defaultOpen>
 
 Rounds `expr` down to the next lowest integer
 
 </Accordion>
 
-<Accordion title="GREATER(expr_a, expr_b)" defaultOpen>
+<Accordion title="GREATER(expr_a, expr_b)" id="greater-expr_a-expr_b" defaultOpen>
 
 Returns whichever of `expr_a` and `expr_b` has the larger value, based on typed
 comparison
 
 </Accordion>
 
-<Accordion title="HYPOT(x, y)" defaultOpen>
+<Accordion title="HYPOT(x, y)" id="hypot-x-y" defaultOpen>
 
 Returns the hypotenuse of `x` and `y` as a *double*
 
 </Accordion>
 
-<Accordion title="HYPOTF(x, y)" defaultOpen>
+<Accordion title="HYPOTF(x, y)" id="hypotf-x-y" defaultOpen>
 
 Returns the hypotenuse of `x` and `y` as a *float*
 
 </Accordion>
 
-<Accordion title="IFERROR(expr, val)" defaultOpen>
+<Accordion title="IFERROR(expr, val)" id="iferror-expr-val" defaultOpen>
 
 Alias for `IF_ERROR(expr, val)`
 
 </Accordion>
 
-<Accordion title="IFINF(expr, val)" defaultOpen>
+<Accordion title="IFINF(expr, val)" id="ifinf-expr-val" defaultOpen>
 
 Alias for `IF_INF(expr, val)`
 
 </Accordion>
 
-<Accordion title="IFINFINITY(expr, val)" defaultOpen>
+<Accordion title="IFINFINITY(expr, val)" id="ifinfinity-expr-val" defaultOpen>
 
 Alias for `IF_INF(expr, val)`
 
 </Accordion>
 
-<Accordion title="IFNAN(expr, val)" defaultOpen>
+<Accordion title="IFNAN(expr, val)" id="ifnan-expr-val" defaultOpen>
 
 Alias for `IF_NAN(expr, val)`
 
 </Accordion>
 
-<Accordion title="IF_ERROR(expr, val)" defaultOpen>
+<Accordion title="IF_ERROR(expr, val)" id="if_error-expr-val" defaultOpen>
 
 Evaluates the given *double* or *float* `expr`, and if it resolves to infinity or
 `NaN`, return `val`
@@ -4433,7 +4433,7 @@ Example:
 
 </Accordion>
 
-<Accordion title="IF_INF(expr, val)" defaultOpen>
+<Accordion title="IF_INF(expr, val)" id="if_inf-expr-val" defaultOpen>
 
 Evaluates the given *double* or *float* `expr`, and if it resolves to infinity,
 return `val`
@@ -4464,13 +4464,13 @@ Example:
 
 </Accordion>
 
-<Accordion title="IF_INFINITY(expr, val)" defaultOpen>
+<Accordion title="IF_INFINITY(expr, val)" id="if_infinity-expr-val" defaultOpen>
 
 Alias for `IF_INF(expr, val)`
 
 </Accordion>
 
-<Accordion title="IF_NAN(expr, val)" defaultOpen>
+<Accordion title="IF_NAN(expr, val)" id="if_nan-expr-val" defaultOpen>
 
 Evaluates the given *double* or *float* `expr`, and if it resolves to `NaN`,
 return `val`
@@ -4501,198 +4501,198 @@ Example:
 
 </Accordion>
 
-<Accordion title="ISINFINITY(expr)" defaultOpen>
+<Accordion title="ISINFINITY(expr)" id="isinfinity-expr" defaultOpen>
 
 Returns `1` (true) if `expr` is infinity by IEEE standard; otherwise, returns
 `0` (false)
 
 </Accordion>
 
-<Accordion title="IS_INFINITY(expr)" defaultOpen>
+<Accordion title="IS_INFINITY(expr)" id="is_infinity-expr" defaultOpen>
 
 Alias for `ISINFINITY`
 
 </Accordion>
 
-<Accordion title="ISNAN(expr)" defaultOpen>
+<Accordion title="ISNAN(expr)" id="isnan-expr" defaultOpen>
 
 Returns `1` (true) if `expr` is not a number by IEEE standard; otherwise, returns
 `0` (false)
 
 </Accordion>
 
-<Accordion title="IS_NAN(expr)" defaultOpen>
+<Accordion title="IS_NAN(expr)" id="is_nan-expr" defaultOpen>
 
 Alias for `ISNAN`
 
 </Accordion>
 
-<Accordion title="ISNUMERIC(expr)" defaultOpen>
+<Accordion title="ISNUMERIC(expr)" id="isnumeric-expr" defaultOpen>
 
 Returns `1` (true) if `expr` is a number by IEEE standard; otherwise, returns
 `0` (false)
 
 </Accordion>
 
-<Accordion title="IS_NUMERIC(expr)" defaultOpen>
+<Accordion title="IS_NUMERIC(expr)" id="is_numeric-expr" defaultOpen>
 
 Alias for `ISNUMERIC`
 
 </Accordion>
 
-<Accordion title="LDEXP(x, exp)" defaultOpen>
+<Accordion title="LDEXP(x, exp)" id="ldexp-x-exp" defaultOpen>
 
 Returns the value of `x` * 2<sup>exp</sup> as a *double*
 
 </Accordion>
 
-<Accordion title="LDEXPF(x, exp)" defaultOpen>
+<Accordion title="LDEXPF(x, exp)" id="ldexpf-x-exp" defaultOpen>
 
 Returns the value of `x` * 2<sup>exp</sup> as a *float*
 
 </Accordion>
 
-<Accordion title="LESSER(expr_a, expr_b)" defaultOpen>
+<Accordion title="LESSER(expr_a, expr_b)" id="lesser-expr_a-expr_b" defaultOpen>
 
 Returns whichever of `expr_a` and `expr_b` has the smaller value, based on typed
 comparison
 
 </Accordion>
 
-<Accordion title="LN(expr)" defaultOpen>
+<Accordion title="LN(expr)" id="ln-expr" defaultOpen>
 
 Returns the natural logarithm of `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="LNF(expr)" defaultOpen>
+<Accordion title="LNF(expr)" id="lnf-expr" defaultOpen>
 
 Returns the natural logarithm of `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="LOG(expr)" defaultOpen>
+<Accordion title="LOG(expr)" id="log-expr" defaultOpen>
 
 Alias for `LN`
 
 </Accordion>
 
-<Accordion title="LOG10(expr)" defaultOpen>
+<Accordion title="LOG10(expr)" id="log10-expr" defaultOpen>
 
 Returns the *base-10* logarithm of `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="LOG10F(expr)" defaultOpen>
+<Accordion title="LOG10F(expr)" id="log10f-expr" defaultOpen>
 
 Returns the *base-10* logarithm of `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="LOG1P(expr)" defaultOpen>
+<Accordion title="LOG1P(expr)" id="log1p-expr" defaultOpen>
 
 Returns the natural logarithm of one plus `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="LOG1PF(expr)" defaultOpen>
+<Accordion title="LOG1PF(expr)" id="log1pf-expr" defaultOpen>
 
 Returns the natural logarithm of one plus `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="LOG2(expr)" defaultOpen>
+<Accordion title="LOG2(expr)" id="log2-expr" defaultOpen>
 
 Returns the binary (*base-2*) logarithm of `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="LOG2F(expr)" defaultOpen>
+<Accordion title="LOG2F(expr)" id="log2f-expr" defaultOpen>
 
 Returns the binary (*base-2*) logarithm of `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="LOGF(expr)" defaultOpen>
+<Accordion title="LOGF(expr)" id="logf-expr" defaultOpen>
 
 Alias for `LNF`
 
 </Accordion>
 
-<Accordion title="MAX_CONSECUTIVE_BITS(expr)" defaultOpen>
+<Accordion title="MAX_CONSECUTIVE_BITS(expr)" id="max_consecutive_bits-expr" defaultOpen>
 
 Calculates the length of the longest series of consecutive `1` bits in the integer
 `expr`
 
 </Accordion>
 
-<Accordion title="MOD(dividend, divisor)" defaultOpen>
+<Accordion title="MOD(dividend, divisor)" id="mod-dividend-divisor" defaultOpen>
 
 Calculates the remainder after integer division of `dividend` by `divisor`
 
 </Accordion>
 
-<Accordion title="PI()" defaultOpen>
+<Accordion title="PI()" id="pi" defaultOpen>
 
 Returns the value of *pi*
 
 </Accordion>
 
-<Accordion title="POW(base, exponent)" defaultOpen>
+<Accordion title="POW(base, exponent)" id="pow-base-exponent" defaultOpen>
 
 Alias for `POWER`
 
 </Accordion>
 
-<Accordion title="POWF(base, exponent)" defaultOpen>
+<Accordion title="POWF(base, exponent)" id="powf-base-exponent" defaultOpen>
 
 Alias for `POWERF`
 
 </Accordion>
 
-<Accordion title="POWER(base, exponent)" defaultOpen>
+<Accordion title="POWER(base, exponent)" id="power-base-exponent" defaultOpen>
 
 Returns `base` raised to the power of `exponent` as a *double*
 
 </Accordion>
 
-<Accordion title="POWERF(base, exponent)" defaultOpen>
+<Accordion title="POWERF(base, exponent)" id="powerf-base-exponent" defaultOpen>
 
 Returns `base` raised to the power of `exponent` as a *float*
 
 </Accordion>
 
-<Accordion title="RADIANS(expr)" defaultOpen>
+<Accordion title="RADIANS(expr)" id="radians-expr" defaultOpen>
 
 Returns the conversion of `expr` (in degrees) to radians as a *double*
 
 </Accordion>
 
-<Accordion title="RADIANSF(expr)" defaultOpen>
+<Accordion title="RADIANSF(expr)" id="radiansf-expr" defaultOpen>
 
 Returns the conversion of `expr` (in degrees) to radians as a *float*
 
 </Accordion>
 
-<Accordion title="RAND([seed])" defaultOpen>
+<Accordion title="RAND([seed])" id="rand-seed" defaultOpen>
 
 Returns a random floating-point value, with an optional `seed`
 
 </Accordion>
 
-<Accordion title="REGR_VALX(y, x)" defaultOpen>
+<Accordion title="REGR_VALX(y, x)" id="regr_valx-y-x" defaultOpen>
 
 Returns NULL if `y` is NULL; otherwise, returns `x`
 
 </Accordion>
 
-<Accordion title="REGR_VALY(y, x)" defaultOpen>
+<Accordion title="REGR_VALY(y, x)" id="regr_valy-y-x" defaultOpen>
 
 Returns NULL if `x` is NULL; otherwise, returns `y`
 
 </Accordion>
 
-<Accordion title="ROUND(expr[, scale])" defaultOpen>
+<Accordion title="ROUND(expr[, scale])" id="round-expr-scale" defaultOpen>
 
 Rounds `expr` to the nearest decimal number with `scale`
 decimal places when `scale` is a positive number; rounds to
@@ -4736,7 +4736,7 @@ Examples:
 
 </Accordion>
 
-<Accordion title="SIGN(expr)" defaultOpen>
+<Accordion title="SIGN(expr)" id="sign-expr" defaultOpen>
 
 Determines whether a number is positive, negative, or zero;
 returns one of the following three values:
@@ -4769,67 +4769,67 @@ returns one of the following three values:
 
 </Accordion>
 
-<Accordion title="SIN(expr)" defaultOpen>
+<Accordion title="SIN(expr)" id="sin-expr" defaultOpen>
 
 Returns the sine of `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="SINF(expr)" defaultOpen>
+<Accordion title="SINF(expr)" id="sinf-expr" defaultOpen>
 
 Returns the sine of `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="SINH(expr)" defaultOpen>
+<Accordion title="SINH(expr)" id="sinh-expr" defaultOpen>
 
 Returns the hyperbolic sine of `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="SINHF(expr)" defaultOpen>
+<Accordion title="SINHF(expr)" id="sinhf-expr" defaultOpen>
 
 Returns the hyperbolic sine of `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="SQRT(expr)" defaultOpen>
+<Accordion title="SQRT(expr)" id="sqrt-expr" defaultOpen>
 
 Returns the square root of `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="SQRTF(expr)" defaultOpen>
+<Accordion title="SQRTF(expr)" id="sqrtf-expr" defaultOpen>
 
 Returns the square root of `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="TAN(expr)" defaultOpen>
+<Accordion title="TAN(expr)" id="tan-expr" defaultOpen>
 
 Returns the tangent of `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="TANF(expr)" defaultOpen>
+<Accordion title="TANF(expr)" id="tanf-expr" defaultOpen>
 
 Returns the tangent of `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="TANH(expr)" defaultOpen>
+<Accordion title="TANH(expr)" id="tanh-expr" defaultOpen>
 
 Returns the hyperbolic tangent of `expr` as a *double*
 
 </Accordion>
 
-<Accordion title="TANHF(expr)" defaultOpen>
+<Accordion title="TANHF(expr)" id="tanhf-expr" defaultOpen>
 
 Returns the hyperbolic tangent of `expr` as a *float*
 
 </Accordion>
 
-<Accordion title="TRUNCATE(expr[, scale])" defaultOpen>
+<Accordion title="TRUNCATE(expr[, scale])" id="truncate-expr-scale" defaultOpen>
 
 Rounds `expr` down to the nearest decimal number with
 `scale` decimal places when `scale` is a positive number;
@@ -4874,7 +4874,7 @@ Examples:
 
 </Accordion>
 
-<Accordion title="WIDTH_BUCKET(expr, min, max, count)" defaultOpen>
+<Accordion title="WIDTH_BUCKET(expr, min, max, count)" id="width_bucket-expr-min-max-count" defaultOpen>
 
 Defines a set of `count` equal intervals (buckets) within the range of `min` &
 `max`, and puts the value of `expr` into one of those buckets, where the value is
@@ -4941,20 +4941,20 @@ the *types* used aren't of the same *type*.
 
 <AccordionGroup>
 
-<Accordion title="IS_NULL(expr)" defaultOpen>
+<Accordion title="IS_NULL(expr)" id="is_null-expr" defaultOpen>
 
 Returns `1` (true) if `expr` is *null*; otherwise, returns `0`
 (false)
 
 </Accordion>
 
-<Accordion title="ISNULL(expr)" defaultOpen>
+<Accordion title="ISNULL(expr)" id="isnull-expr" defaultOpen>
 
 Alias for `IS_NULL(expr)`
 
 </Accordion>
 
-<Accordion title="NULLIF(expr_a, expr_b)" defaultOpen>
+<Accordion title="NULLIF(expr_a, expr_b)" id="nullif-expr_a-expr_b" defaultOpen>
 
 Returns *null* if `expr_a` equals `expr_b`; otherwise, returns the
 value of `expr_a`. Both expressions should be of the same convertible
@@ -4962,7 +4962,7 @@ data type
 
 </Accordion>
 
-<Accordion title="NVL(expr_a, expr_b)" defaultOpen>
+<Accordion title="NVL(expr_a, expr_b)" id="nvl-expr_a-expr_b" defaultOpen>
 
 Returns `expr_a` if it is not *null*; otherwise, returns `expr_b`.
 Both expressions should be of the same convertible data type; see
@@ -4970,7 +4970,7 @@ Both expressions should be of the same convertible data type; see
 
 </Accordion>
 
-<Accordion title="NVL2(expr, value_if_not_null, value_if_null)" defaultOpen>
+<Accordion title="NVL2(expr, value_if_not_null, value_if_null)" id="nvl2-expr-value_if_not_null-value_if_null" defaultOpen>
 
 Evaluates `expr`: if `expr` does not return a *null*,
 `value_if_not_null` is returned. If `expr` does return a *null*,
@@ -4980,13 +4980,13 @@ implicitly convertible; see [Short-Circuiting](/content/concepts/expressions#sho
 
 </Accordion>
 
-<Accordion title="REMOVE_NULLABLE(expr)" defaultOpen>
+<Accordion title="REMOVE_NULLABLE(expr)" id="remove_nullable-expr" defaultOpen>
 
 Alias for `ZEROIFNULL`
 
 </Accordion>
 
-<Accordion title="ZEROIFNULL(expr)" defaultOpen>
+<Accordion title="ZEROIFNULL(expr)" id="zeroifnull-expr" defaultOpen>
 
 Replaces *null* values with appropriate values based on the column type (e.g., `0` if
 numeric column, an empty string if string column, etc.). Also removes the `nullable`
@@ -5009,54 +5009,54 @@ determine the distribution of records across the cluster.
 
 <AccordionGroup>
 
-<Accordion title="KI_CHUNK()" defaultOpen>
+<Accordion title="KI_CHUNK()" id="ki_chunk" defaultOpen>
 
 Returns the index of the chunk within the rank/TOM containing this record.
 This value may change as data is added or deleted from a table.
 
 </Accordion>
 
-<Accordion title="KI_CHUNK_ID()" defaultOpen>
+<Accordion title="KI_CHUNK_ID()" id="ki_chunk_id" defaultOpen>
 
 Returns the ID of the chunk within the rank/TOM containing this record.
 This value should remain the same even after system restarts.
 
 </Accordion>
 
-<Accordion title="KI_CHUNK_MAX(col)" defaultOpen>
+<Accordion title="KI_CHUNK_MAX(col)" id="ki_chunk_max-col" defaultOpen>
 
 Returns the maximum value for the specified column in its chunk.
 If the data has changed, this value may be higher than any actual values.
 
 </Accordion>
 
-<Accordion title="KI_CHUNK_MIN(col)" defaultOpen>
+<Accordion title="KI_CHUNK_MIN(col)" id="ki_chunk_min-col" defaultOpen>
 
 Returns the minimum value for the specified column in its chunk.
 If the data has changed, this value may be lower than any actual values.
 
 </Accordion>
 
-<Accordion title="KI_CHUNK_OFFSET()" defaultOpen>
+<Accordion title="KI_CHUNK_OFFSET()" id="ki_chunk_offset" defaultOpen>
 
 Returns the index of the record within the chunk.
 
 </Accordion>
 
-<Accordion title="KI_PARTITION()" defaultOpen>
+<Accordion title="KI_PARTITION()" id="ki_partition" defaultOpen>
 
 Returns the index of the partition within the rank/TOM containing this record, for
 [partitioned](/content/concepts/tables#partitioning) tables.
 
 </Accordion>
 
-<Accordion title="KI_RANK()" defaultOpen>
+<Accordion title="KI_RANK()" id="ki_rank" defaultOpen>
 
 Returns the index of the rank containing this record.
 
 </Accordion>
 
-<Accordion title="KI_TOM()" defaultOpen>
+<Accordion title="KI_TOM()" id="ki_tom" defaultOpen>
 
 Returns the index of the TOM within the rank containing this record.
 
@@ -5076,13 +5076,13 @@ unexpected ways when given multi-byte input.
 
 <AccordionGroup>
 
-<Accordion title="ASCII(expr)" defaultOpen>
+<Accordion title="ASCII(expr)" id="ascii-expr" defaultOpen>
 
 Returns the ASCII code for the first byte in `expr`
 
 </Accordion>
 
-<Accordion title="BIN(expr, minimum_digits)" defaultOpen>
+<Accordion title="BIN(expr, minimum_digits)" id="bin-expr-minimum_digits" defaultOpen>
 
 Convert the value represented by `expr` into a binary string
 representation.  Use optional `minimum_digits` to add leading 0s
@@ -5114,14 +5114,14 @@ Examples:
 
 </Accordion>
 
-<Accordion title="CHAR(expr)" defaultOpen>
+<Accordion title="CHAR(expr)" id="char-expr-2" defaultOpen>
 
 The character represented by the standard ASCII code `expr` in the
 range [ `0` - `127` ]
 
 </Accordion>
 
-<Accordion title="CONCAT(expr_a, expr_b)" defaultOpen>
+<Accordion title="CONCAT(expr_a, expr_b)" id="concat-expr_a-expr_b" defaultOpen>
 
 Performs a string concatenation of `expr_a` & `expr_b`; use nested
 `CONCAT` calls to concatenate more than two strings
@@ -5137,7 +5137,7 @@ result in a *char128* column.  Concatenations longer than
 
 </Accordion>
 
-<Accordion title="CONCAT_TRUNCATE(expr_a, expr_b)" defaultOpen>
+<Accordion title="CONCAT_TRUNCATE(expr_a, expr_b)" id="concat_truncate-expr_a-expr_b" defaultOpen>
 
 Returns the concatenation of `expr_a` and `expr_b`, truncated at
 the maximum size of the larger of `expr_a` and `expr_b`.
@@ -5180,14 +5180,14 @@ Examples:
 
 </Accordion>
 
-<Accordion title="CONTAINS(match, expr)" defaultOpen>
+<Accordion title="CONTAINS(match, expr)" id="contains-match-expr" defaultOpen>
 
 Returns `1` if `expr` contains `match` by
 string-literal comparison; otherwise, returns `0`
 
 </Accordion>
 
-<Accordion title="CONV(expr, from_base, to_base)" defaultOpen>
+<Accordion title="CONV(expr, from_base, to_base)" id="conv-expr-from_base-to_base" defaultOpen>
 
 Convert the value represented by the `expr` string from one
 numeric base to another.  Base parameters may be [`2` - `36`].
@@ -5227,13 +5227,13 @@ Examples:
 
 </Accordion>
 
-<Accordion title="DEC2HEX(expr, minimum_digits)" defaultOpen>
+<Accordion title="DEC2HEX(expr, minimum_digits)" id="dec2hex-expr-minimum_digits" defaultOpen>
 
 Alias for `HEX`
 
 </Accordion>
 
-<Accordion title="DIFFERENCE(expr_a, expr_b)" defaultOpen>
+<Accordion title="DIFFERENCE(expr_a, expr_b)" id="difference-expr_a-expr_b" defaultOpen>
 
 Returns a value between `0` and `4` that represents the difference
 between the sounds of `expr_a` and `expr_b` based on the
@@ -5242,27 +5242,27 @@ possible sound match
 
 </Accordion>
 
-<Accordion title="EDIT_DISTANCE(expr_a, expr_b)" defaultOpen>
+<Accordion title="EDIT_DISTANCE(expr_a, expr_b)" id="edit_distance-expr_a-expr_b" defaultOpen>
 
 Returns the Levenshtein edit distance between `expr_a` and
 `expr_b`; the lower the value, the more similar the two strings are
 
 </Accordion>
 
-<Accordion title="ENDS_WITH(match, expr)" defaultOpen>
+<Accordion title="ENDS_WITH(match, expr)" id="ends_with-match-expr" defaultOpen>
 
 Returns `1` if `expr` ends with `match` by
 string-literal comparison; otherwise, returns `0`
 
 </Accordion>
 
-<Accordion title="FROM_HEX(expr)" defaultOpen>
+<Accordion title="FROM_HEX(expr)" id="from_hex-expr" defaultOpen>
 
 Alias for `UNHEX`
 
 </Accordion>
 
-<Accordion title="HEX(expr, minimum_digits)" defaultOpen>
+<Accordion title="HEX(expr, minimum_digits)" id="hex-expr-minimum_digits" defaultOpen>
 
 Convert the value represented by `expr` into a hexadecimal string
 representation.  Use optional `minimum_digits` to add leading 0s
@@ -5294,13 +5294,13 @@ Examples:
 
 </Accordion>
 
-<Accordion title="HEX2DEC(expr)" defaultOpen>
+<Accordion title="HEX2DEC(expr)" id="hex2dec-expr" defaultOpen>
 
 Alias for `UNHEX`
 
 </Accordion>
 
-<Accordion title="ILIKE(expr, match[, esc_char])" defaultOpen>
+<Accordion title="ILIKE(expr, match[, esc_char])" id="ilike-expr-match-esc_char" defaultOpen>
 
 Returns whether `expr` matches the given `match`.  The
 match is a string literal one with the following exceptions:
@@ -5345,13 +5345,13 @@ Examples of successful matches:
 
 </Accordion>
 
-<Accordion title="INITCAP(expr)" defaultOpen>
+<Accordion title="INITCAP(expr)" id="initcap-expr" defaultOpen>
 
 Returns `expr` with the first letter of each word in uppercase
 
 </Accordion>
 
-<Accordion title="IPV4_PART(expr, part_num)" defaultOpen>
+<Accordion title="IPV4_PART(expr, part_num)" id="ipv4_part-expr-part_num" defaultOpen>
 
 Returns the octet of the IP address given in `expr` at the position
 specified by `part_num`.   Valid `part_num` values are constants
@@ -5383,43 +5383,43 @@ Examples:
 
 </Accordion>
 
-<Accordion title="IS_IPV4(expr)" defaultOpen>
+<Accordion title="IS_IPV4(expr)" id="is_ipv4-expr" defaultOpen>
 
 Returns `1` if `expr` is an IPV4 address; returns `0` otherwise
 
 </Accordion>
 
-<Accordion title="ISIPV4(expr)" defaultOpen>
+<Accordion title="ISIPV4(expr)" id="isipv4-expr" defaultOpen>
 
 Alias for `IS_IPV4`
 
 </Accordion>
 
-<Accordion title="LCASE(expr)" defaultOpen>
+<Accordion title="LCASE(expr)" id="lcase-expr" defaultOpen>
 
 Converts `expr` to lowercase
 
 </Accordion>
 
-<Accordion title="LEFT(expr, num_bytes)" defaultOpen>
+<Accordion title="LEFT(expr, num_bytes)" id="left-expr-num_bytes" defaultOpen>
 
 Returns the leftmost `num_bytes` bytes from `expr`
 
 </Accordion>
 
-<Accordion title="LEN(expr)" defaultOpen>
+<Accordion title="LEN(expr)" id="len-expr" defaultOpen>
 
 Alias for `LENGTH`
 
 </Accordion>
 
-<Accordion title="LENGTH(expr)" defaultOpen>
+<Accordion title="LENGTH(expr)" id="length-expr" defaultOpen>
 
 Returns the number of characters in `expr`
 
 </Accordion>
 
-<Accordion title="LIKE(expr, match[, esc_char])" defaultOpen>
+<Accordion title="LIKE(expr, match[, esc_char])" id="like-expr-match-esc_char" defaultOpen>
 
 Returns whether `expr` matches the given `match`.  The
 match is a string literal one with the following exceptions:
@@ -5464,7 +5464,7 @@ Examples of successful matches:
 
 </Accordion>
 
-<Accordion title="LOCATE(match, expr[, start_pos])" defaultOpen>
+<Accordion title="LOCATE(match, expr[, start_pos])" id="locate-match-expr-start_pos" defaultOpen>
 
 Returns the starting position of the first match of `match` in
 `expr`, starting from position 1 or `start_pos` (if
@@ -5473,13 +5473,13 @@ outside the range of letters in `expr`, a `0` is returned.
 
 </Accordion>
 
-<Accordion title="LOWER(expr)" defaultOpen>
+<Accordion title="LOWER(expr)" id="lower-expr" defaultOpen>
 
 Alias for `LCASE`
 
 </Accordion>
 
-<Accordion title="LPAD(expr, length, pad)" defaultOpen>
+<Accordion title="LPAD(expr, length, pad)" id="lpad-expr-length-pad" defaultOpen>
 
 Left pads the given `expr` string with the `pad` string
 to the given `length` of bytes. If `expr` is longer than
@@ -5517,13 +5517,13 @@ Examples:
 
 </Accordion>
 
-<Accordion title="LTRIM(expr)" defaultOpen>
+<Accordion title="LTRIM(expr)" id="ltrim-expr" defaultOpen>
 
 Removes whitespace from the left side of `expr`
 
 </Accordion>
 
-<Accordion title="OCT(expr, minimum_digits)" defaultOpen>
+<Accordion title="OCT(expr, minimum_digits)" id="oct-expr-minimum_digits" defaultOpen>
 
 Convert the value represented by `expr` into an octal (base 8) string
 representation.  Use optional `minimum_digits` to add leading 0s
@@ -5555,13 +5555,13 @@ Examples:
 
 </Accordion>
 
-<Accordion title="POSITION(match, expr[, start_pos])" defaultOpen>
+<Accordion title="POSITION(match, expr[, start_pos])" id="position-match-expr-start_pos" defaultOpen>
 
 Alias for `LOCATE`
 
 </Accordion>
 
-<Accordion title="REGEXP_COUNT (expr, regex[, position [, mode]])" defaultOpen>
+<Accordion title="REGEXP_COUNT (expr, regex[, position [, mode]])" id="regexp_count-expr-regex-position-mode" defaultOpen>
 
 Returns a count of the number of times the `regex` pattern is
 matched in `expr`.  Matches do not overlap, so the start of a future
@@ -5611,7 +5611,7 @@ Examples of `REGEXP_COUNT`:
 
 </Accordion>
 
-<Accordion title="REGEXP_INSTR (expr, regex [, position [, occurrence [, begin_end [, mode [,group]]]]])" defaultOpen>
+<Accordion title="REGEXP_INSTR (expr, regex [, position [, occurrence [, begin_end [, mode [,group]]]]])" id="regexp_instr-expr-regex-position-occurrence-begin_end-mode-group" defaultOpen>
 
 Returns the starting position (1-based) in `expr` where a `regex`
 match is found.  If no match is found, `0` is returned.
@@ -5689,7 +5689,7 @@ Examples of `REGEXP_INSTR`:
 
 </Accordion>
 
-<Accordion title="REGEXP_LIKE(expr, regex[, mode])" defaultOpen>
+<Accordion title="REGEXP_LIKE(expr, regex[, mode])" id="regexp_like-expr-regex-mode" defaultOpen>
 
 Returns whether `expr` matches the given `regex`.  Generally,
 POSIX-compliant regular expressions are supported.
@@ -5797,13 +5797,13 @@ Examples of successful matches:
 
 </Accordion>
 
-<Accordion title="REGEXP_MATCH(expr, regex[, options])" defaultOpen>
+<Accordion title="REGEXP_MATCH(expr, regex[, options])" id="regexp_match-expr-regex-options" defaultOpen>
 
 Alias for `REGEXP_LIKE`
 
 </Accordion>
 
-<Accordion title="REGEXP_REPLACE (expr, regex [, replace [, position [, occurrence [, mode]]]])" defaultOpen>
+<Accordion title="REGEXP_REPLACE (expr, regex [, replace [, position [, occurrence [, mode]]]])" id="regexp_replace-expr-regex-replace-position-occurrence-mode" defaultOpen>
 
 Returns the `expr` string after replacing `regex` matches with the
 `replace` string parameter.
@@ -5871,7 +5871,7 @@ Examples of `REGEXP_REPLACE`:
 
 </Accordion>
 
-<Accordion title="REGEXP_SUBSTR (expr, regex [, position [, occurrence [, mode [,group]]]])" defaultOpen>
+<Accordion title="REGEXP_SUBSTR (expr, regex [, position [, occurrence [, mode [,group]]]])" id="regexp_substr-expr-regex-position-occurrence-mode-group" defaultOpen>
 
 Returns the portion of the `expr` string that matched `regex`.
 An empty string is returned if no match is found.
@@ -5936,20 +5936,20 @@ Examples of `REGEXP_SUBSTR`:
 
 </Accordion>
 
-<Accordion title="REPLACE(expr, match, repl)" defaultOpen>
+<Accordion title="REPLACE(expr, match, repl)" id="replace-expr-match-repl" defaultOpen>
 
 Replaces every occurrence of `match` in `expr` with `repl`
 
 </Accordion>
 
-<Accordion title="REPLACE_CHAR(expr, match, repl)" defaultOpen>
+<Accordion title="REPLACE_CHAR(expr, match, repl)" id="replace_char-expr-match-repl" defaultOpen>
 
 Replaces every occurrence of the single-byte character `match` in
 `expr` with the single-byte character `repl`
 
 </Accordion>
 
-<Accordion title="REPLACE_TRUNCATE(expr, match, repl)" defaultOpen>
+<Accordion title="REPLACE_TRUNCATE(expr, match, repl)" id="replace_truncate-expr-match-repl" defaultOpen>
 
 Replaces every occurrence of `match` in `expr` with `repl`, and
 then truncates the resulting string at 256 bytes if it is longer than
@@ -5969,7 +5969,7 @@ have unexpected results.
 
 </Accordion>
 
-<Accordion title="REVERSE(expr)" defaultOpen>
+<Accordion title="REVERSE(expr)" id="reverse-expr" defaultOpen>
 
 Returns `expr` with the order of bytes reversed.
 
@@ -6005,13 +6005,13 @@ Examples:
 
 </Accordion>
 
-<Accordion title="RIGHT(expr, num_bytes)" defaultOpen>
+<Accordion title="RIGHT(expr, num_bytes)" id="right-expr-num_bytes" defaultOpen>
 
 Returns the rightmost `num_bytes` bytes from `expr`
 
 </Accordion>
 
-<Accordion title="RPAD(expr, length, pad)" defaultOpen>
+<Accordion title="RPAD(expr, length, pad)" id="rpad-expr-length-pad" defaultOpen>
 
 Right pads the given `expr` string with the `pad` string
 to the given `length` of bytes. If `expr` is longer than
@@ -6049,13 +6049,13 @@ Examples:
 
 </Accordion>
 
-<Accordion title="RTRIM(expr)" defaultOpen>
+<Accordion title="RTRIM(expr)" id="rtrim-expr" defaultOpen>
 
 Removes whitespace from the right side of `expr`
 
 </Accordion>
 
-<Accordion title="SOUNDEX(expr)" defaultOpen>
+<Accordion title="SOUNDEX(expr)" id="soundex-expr" defaultOpen>
 
 Returns a soundex value from `expr`. Only the first word in the
 string will be considered in the calculation.
@@ -6067,14 +6067,14 @@ This is the algorithm used by most programming languages
 
 </Accordion>
 
-<Accordion title="SPACE(n)" defaultOpen>
+<Accordion title="SPACE(n)" id="space-n" defaultOpen>
 
 Returns a string consisting of `n` space characters. The value of
 `n` can only be within the range of 0-256.
 
 </Accordion>
 
-<Accordion title="SPLIT(expr, delim, group_num)" defaultOpen>
+<Accordion title="SPLIT(expr, delim, group_num)" id="split-expr-delim-group_num" defaultOpen>
 
 Splits `expr` into groups delimited by the `delim` single-byte
 character and returns the `group_num` split group.  If `group_num`
@@ -6115,14 +6115,14 @@ Examples:
 
 </Accordion>
 
-<Accordion title="STARTS_WITH(match, expr)" defaultOpen>
+<Accordion title="STARTS_WITH(match, expr)" id="starts_with-match-expr" defaultOpen>
 
 Returns `1` if `expr` starts with `match` by
 string-literal comparison; otherwise, returns `0`
 
 </Accordion>
 
-<Accordion title="STRCMP(expr_a, expr_b)" defaultOpen>
+<Accordion title="STRCMP(expr_a, expr_b)" id="strcmp-expr_a-expr_b" defaultOpen>
 
 Compares `expr_a` to `expr_b` in a lexicographical sort
 
@@ -6154,13 +6154,13 @@ Compares `expr_a` to `expr_b` in a lexicographical sort
 
 </Accordion>
 
-<Accordion title="SUBSTR(expr, start_pos[, num_chars])" defaultOpen>
+<Accordion title="SUBSTR(expr, start_pos[, num_chars])" id="substr-expr-start_pos-num_chars" defaultOpen>
 
 Alias for `SUBSTRING`
 
 </Accordion>
 
-<Accordion title="SUBSTRING(expr, start_pos[, num_bytes])" defaultOpen>
+<Accordion title="SUBSTRING(expr, start_pos[, num_bytes])" id="substring-expr-start_pos-num_bytes" defaultOpen>
 
 Returns `num_bytes` bytes from the `expr`, starting at the 1-based
 `start_pos` byte.  If `num_bytes` is not specified, all bytes
@@ -6198,25 +6198,25 @@ Examples:
 
 </Accordion>
 
-<Accordion title="TO_HEX(expr, minimum_digits)" defaultOpen>
+<Accordion title="TO_HEX(expr, minimum_digits)" id="to_hex-expr-minimum_digits" defaultOpen>
 
 Alias for `HEX`
 
 </Accordion>
 
-<Accordion title="TRIM(expr)" defaultOpen>
+<Accordion title="TRIM(expr)" id="trim-expr" defaultOpen>
 
 Removes whitespace from both sides of `expr`
 
 </Accordion>
 
-<Accordion title="UCASE(expr)" defaultOpen>
+<Accordion title="UCASE(expr)" id="ucase-expr" defaultOpen>
 
 Converts `expr` to uppercase
 
 </Accordion>
 
-<Accordion title="UNHEX(expr)" defaultOpen>
+<Accordion title="UNHEX(expr)" id="unhex-expr" defaultOpen>
 
 Convert the hexadecimal string `expr` into a (decimal) number.
 
@@ -6250,7 +6250,7 @@ Examples:
 
 </Accordion>
 
-<Accordion title="UPPER(expr)" defaultOpen>
+<Accordion title="UPPER(expr)" id="upper-expr" defaultOpen>
 
 Alias for `UCASE`
 
@@ -6267,26 +6267,26 @@ Alias for `UCASE`
 
 <AccordionGroup>
 
-<Accordion title="CURRENT_SCHEMA()" defaultOpen>
+<Accordion title="CURRENT_SCHEMA()" id="current_schema" defaultOpen>
 
 Returns the default schema of the current user
 
 </Accordion>
 
-<Accordion title="CURRENT_USER()" defaultOpen>
+<Accordion title="CURRENT_USER()" id="current_user" defaultOpen>
 
 Alias for `USER`
 
 </Accordion>
 
-<Accordion title="HASH(column[, seed])" defaultOpen>
+<Accordion title="HASH(column[, seed])" id="hash-column-seed" defaultOpen>
 
 Returns a non-negative integer representing an obfuscated version
 of `column`, using the given `seed`; default `seed` is `0`
 
 </Accordion>
 
-<Accordion title="IS_MEMBER(role[, user/role])" defaultOpen>
+<Accordion title="IS_MEMBER(role[, user/role])" id="is_member-role-user/role" defaultOpen>
 
 Returns whether the current user (or the given `user/role`,
 if specified) has been assigned the given `role`, either
@@ -6320,13 +6320,13 @@ directly or indirectly:
 
 </Accordion>
 
-<Accordion title="IS_ROLEMEMBER(role[, user/role])" defaultOpen>
+<Accordion title="IS_ROLEMEMBER(role[, user/role])" id="is_rolemember-role-user/role" defaultOpen>
 
 Alias for `IS_MEMBER`
 
 </Accordion>
 
-<Accordion title="MASK(expr, start, length[, char])" defaultOpen>
+<Accordion title="MASK(expr, start, length[, char])" id="mask-expr-start-length-char" defaultOpen>
 
 Masks `length` bytes of `expr`, beginning at the byte position
 identified by `start`, with `*` characters (or the single-byte
@@ -6361,32 +6361,32 @@ have unexpected results.
 
 </Accordion>
 
-<Accordion title="NEW_UUID()" defaultOpen>
+<Accordion title="NEW_UUID()" id="new_uuid" defaultOpen>
 
 Returns a randomly-generated UUID
 
 </Accordion>
 
-<Accordion title="OBFUSCATE(column[, seed])" defaultOpen>
+<Accordion title="OBFUSCATE(column[, seed])" id="obfuscate-column-seed" defaultOpen>
 
 Alias for `HASH`
 
 </Accordion>
 
-<Accordion title="SHA256(expr)" defaultOpen>
+<Accordion title="SHA256(expr)" id="sha256-expr" defaultOpen>
 
 Returns the hex digits of the SHA-256 hash of the given value
 `expr` as a `char64` string.
 
 </Accordion>
 
-<Accordion title="SYSTEM_USER()" defaultOpen>
+<Accordion title="SYSTEM_USER()" id="system_user" defaultOpen>
 
 Alias for `USER`
 
 </Accordion>
 
-<Accordion title="USER()" defaultOpen>
+<Accordion title="USER()" id="user" defaultOpen>
 
 Returns the username of the current user
 
@@ -6448,114 +6448,114 @@ aggregation functions.
 
 <AccordionGroup>
 
-<Accordion title="APPROX_COUNT_DISTINCT(expr)" defaultOpen>
+<Accordion title="APPROX_COUNT_DISTINCT(expr)" id="approx_count_distinct-expr" defaultOpen>
 
 The approximate number of distinct values of `expr`; this is faster to calculate than `COUNT_DISTINCT` but is only an approximation
 
 </Accordion>
 
-<Accordion title="APPROX_MEDIAN(expr)" defaultOpen>
+<Accordion title="APPROX_MEDIAN(expr)" id="approx_median-expr" defaultOpen>
 
 The approximate median of `expr`; the result should be within about *2%* of the true median value. This is equivalent to issuing
 `APPROX_PERCENTILE(expr, 50)`.
 
 </Accordion>
 
-<Accordion title="APPROX_PERCENTILE(expr, p)" defaultOpen>
+<Accordion title="APPROX_PERCENTILE(expr, p)" id="approx_percentile-expr-p" defaultOpen>
 
 The approximate *pth* percentile of `expr`; `p` should be a value between *0.0* and *100.0*. `APPROX_PERCENTILE(expr, 50)` will return
 the approximate median of `expr`.
 
 </Accordion>
 
-<Accordion title="ARG_MAX(agg_expr, ret_expr)" defaultOpen>
+<Accordion title="ARG_MAX(agg_expr, ret_expr)" id="arg_max-agg_expr-ret_expr" defaultOpen>
 
 The value of `ret_expr` where `agg_expr` is the maximum value (e.g. `ARG_MAX(cost, product_id)` returns the product ID of the
 highest cost product). `ARG_MAX(a, b)` is equivalent to `LAST(b, a)`.
 
 </Accordion>
 
-<Accordion title="ARG_MIN(agg_expr, ret_expr)" defaultOpen>
+<Accordion title="ARG_MIN(agg_expr, ret_expr)" id="arg_min-agg_expr-ret_expr" defaultOpen>
 
 The value of `ret_expr` where `agg_expr` is the minimum value (e.g. `ARG_MIN(cost, product_id)` returns the product ID of the
 lowest cost product). `ARG_MIN(a, b)` is equivalent to `FIRST(b, a)`.
 
 </Accordion>
 
-<Accordion title="AVG(expr)" defaultOpen>
+<Accordion title="AVG(expr)" id="avg-expr" defaultOpen>
 
 The average of values of `expr`
 
 </Accordion>
 
-<Accordion title="CORR(expr1, expr2)" defaultOpen>
+<Accordion title="CORR(expr1, expr2)" id="corr-expr1-expr2" defaultOpen>
 
 Calculates the correlation coefficient of `expr1` and `expr2`
 
 </Accordion>
 
-<Accordion title="CORRELATION(expr1, expr2)" defaultOpen>
+<Accordion title="CORRELATION(expr1, expr2)" id="correlation-expr1-expr2" defaultOpen>
 
 Alias for `CORR`
 
 </Accordion>
 
-<Accordion title="CORRCOEF(expr1, expr2)" defaultOpen>
+<Accordion title="CORRCOEF(expr1, expr2)" id="corrcoef-expr1-expr2" defaultOpen>
 
 Alias for `CORR`
 
 </Accordion>
 
-<Accordion title="COUNT(expr)" defaultOpen>
+<Accordion title="COUNT(expr)" id="count-expr" defaultOpen>
 
 Count of non-null values of `expr`; use `*` to count all values within an aggregation group or over an entire table
 
 </Accordion>
 
-<Accordion title="COUNT_DISTINCT(expr)" defaultOpen>
+<Accordion title="COUNT_DISTINCT(expr)" id="count_distinct-expr" defaultOpen>
 
 Count of the distinct values of `expr`
 
 </Accordion>
 
-<Accordion title="COV(expr1, expr2)" defaultOpen>
+<Accordion title="COV(expr1, expr2)" id="cov-expr1-expr2" defaultOpen>
 
 Alias for `COVAR_POP`
 
 </Accordion>
 
-<Accordion title="COVAR(expr1, expr2)" defaultOpen>
+<Accordion title="COVAR(expr1, expr2)" id="covar-expr1-expr2" defaultOpen>
 
 Alias for `COVAR_POP`
 
 </Accordion>
 
-<Accordion title="COVARIANCE(expr1, expr2)" defaultOpen>
+<Accordion title="COVARIANCE(expr1, expr2)" id="covariance-expr1-expr2" defaultOpen>
 
 Alias for `COVAR_POP`
 
 </Accordion>
 
-<Accordion title="COVAR_POP(expr1, expr2)" defaultOpen>
+<Accordion title="COVAR_POP(expr1, expr2)" id="covar_pop-expr1-expr2" defaultOpen>
 
 Calculates the population covariance of `expr1` and `expr2`
 
 </Accordion>
 
-<Accordion title="COVAR_SAMP(expr1, expr2)" defaultOpen>
+<Accordion title="COVAR_SAMP(expr1, expr2)" id="covar_samp-expr1-expr2" defaultOpen>
 
 Calculates the sample covariance of `expr1` and `expr2`
 
 </Accordion>
 
-<Accordion title="FIRST(ret_expr, agg_expr)" defaultOpen>
+<Accordion title="FIRST(ret_expr, agg_expr)" id="first-ret_expr-agg_expr" defaultOpen>
 
 The value of `ret_expr` where `agg_expr` is the minimum value (e.g. `FIRST(product_id, cost)` returns the product ID of the
 lowest cost product). `FIRST(a, b)` is equivalent to `ARG_MIN(b, a)`.
 
 </Accordion>
 
-<Accordion title="GROUPING(expr)" defaultOpen>
+<Accordion title="GROUPING(expr)" id="grouping-expr" defaultOpen>
 
 Used primarily with [Rollup](/content/concepts/rollup), [Cube](/content/concepts/cube), and [Grouping Sets](/content/concepts/grouping_sets), to distinguish the source of
 *null* values in an aggregated result set, returns whether `expr` is part of the aggregation set used to calculate the values in a
@@ -6569,223 +6569,223 @@ together (as well as all other grouped `A` values) and `1` for the row resulting
 
 </Accordion>
 
-<Accordion title="KURT(expr)" defaultOpen>
+<Accordion title="KURT(expr)" id="kurt-expr" defaultOpen>
 
 Alias for `KURTOSIS_POP`
 
 </Accordion>
 
-<Accordion title="KURTOSIS(expr)" defaultOpen>
+<Accordion title="KURTOSIS(expr)" id="kurtosis-expr" defaultOpen>
 
 Alias for `KURTOSIS_POP`
 
 </Accordion>
 
-<Accordion title="KURTOSIS_POP(expr)" defaultOpen>
+<Accordion title="KURTOSIS_POP(expr)" id="kurtosis_pop-expr" defaultOpen>
 
 Calculate the population kurtosis of `expr`
 
 </Accordion>
 
-<Accordion title="KURTOSIS_SAMP(expr)" defaultOpen>
+<Accordion title="KURTOSIS_SAMP(expr)" id="kurtosis_samp-expr" defaultOpen>
 
 Calculate the sample kurtosis of `expr`
 
 </Accordion>
 
-<Accordion title="KURT_POP(expr)" defaultOpen>
+<Accordion title="KURT_POP(expr)" id="kurt_pop-expr" defaultOpen>
 
 Alias for `KURTOSIS_POP`
 
 </Accordion>
 
-<Accordion title="KURT_SAMP(expr)" defaultOpen>
+<Accordion title="KURT_SAMP(expr)" id="kurt_samp-expr" defaultOpen>
 
 Alias for `KURTOSIS_SAMP`
 
 </Accordion>
 
-<Accordion title="LAST(ret_expr, agg_expr)" defaultOpen>
+<Accordion title="LAST(ret_expr, agg_expr)" id="last-ret_expr-agg_expr" defaultOpen>
 
 The value of `ret_expr` where `agg_expr` is the maximum value (e.g. `LAST(product_id, cost)` returns the product ID of the
 highest cost product). `LAST(a, b)` is equivalent to `ARG_MAX(b, a)`.
 
 </Accordion>
 
-<Accordion title="MAX(expr)" defaultOpen>
+<Accordion title="MAX(expr)" id="max-expr" defaultOpen>
 
 The maximum of values of `expr`
 
 </Accordion>
 
-<Accordion title="MEAN(expr)" defaultOpen>
+<Accordion title="MEAN(expr)" id="mean-expr" defaultOpen>
 
 Alias for `AVG`
 
 </Accordion>
 
-<Accordion title="MIN(expr)" defaultOpen>
+<Accordion title="MIN(expr)" id="min-expr" defaultOpen>
 
 The minimum of values of `expr`
 
 </Accordion>
 
-<Accordion title="PRODUCT(expr)" defaultOpen>
+<Accordion title="PRODUCT(expr)" id="product-expr" defaultOpen>
 
 The product of values of `expr`
 
 </Accordion>
 
-<Accordion title="REGR_AVGX(y, x)" defaultOpen>
+<Accordion title="REGR_AVGX(y, x)" id="regr_avgx-y-x" defaultOpen>
 
 Average of the independent variable (`SUM(x)/N`) of the line determined by computing a least-squares-fit linear regression over the given (X, Y)
 pairs
 
 </Accordion>
 
-<Accordion title="REGR_AVGY(y, x)" defaultOpen>
+<Accordion title="REGR_AVGY(y, x)" id="regr_avgy-y-x" defaultOpen>
 
 Average of the dependent variable (`SUM(y)/N`) of the line determined by computing a least-squares-fit linear regression over the given (X, Y)
 pairs
 
 </Accordion>
 
-<Accordion title="REGR_COUNT(y, x)" defaultOpen>
+<Accordion title="REGR_COUNT(y, x)" id="regr_count-y-x" defaultOpen>
 
 Number of input rows used in computing a linear regression, where both expressions are non-null
 
 </Accordion>
 
-<Accordion title="REGR_INTERCEPT(y, x)" defaultOpen>
+<Accordion title="REGR_INTERCEPT(y, x)" id="regr_intercept-y-x" defaultOpen>
 
 Y-intercept of the line determined by computing a least-squares-fit linear regression over the given (X, Y) pairs
 
 </Accordion>
 
-<Accordion title="REGR_R2(y, x)" defaultOpen>
+<Accordion title="REGR_R2(y, x)" id="regr_r2-y-x" defaultOpen>
 
 Square of the correlation coefficient, marking how well the least-squares-fit linear regression fit the data set
 
 </Accordion>
 
-<Accordion title="REGR_SLOPE(y, x)" defaultOpen>
+<Accordion title="REGR_SLOPE(y, x)" id="regr_slope-y-x" defaultOpen>
 
 Slope of the line determined by computing a least-squares-fit linear regression over the given (X, Y) pairs
 
 </Accordion>
 
-<Accordion title="REGR_SXX(y, x)" defaultOpen>
+<Accordion title="REGR_SXX(y, x)" id="regr_sxx-y-x" defaultOpen>
 
 "Sum of squares" of the independent variable (`SUM(x^2) - SUM(x)^2/N`) of the line determined by computing a least-squares-fit linear regression
 over the given (X, Y) pairs
 
 </Accordion>
 
-<Accordion title="REGR_SXY(y, x)" defaultOpen>
+<Accordion title="REGR_SXY(y, x)" id="regr_sxy-y-x" defaultOpen>
 
 "Sum of Products" of independent variable times dependent variable (`SUM(x * y) - SUM(x) * SUM(y)/N`) of the line determined by computing a
 least-squares-fit linear regression over the given (X, Y) pairs
 
 </Accordion>
 
-<Accordion title="REGR_SYY(y, x)" defaultOpen>
+<Accordion title="REGR_SYY(y, x)" id="regr_syy-y-x" defaultOpen>
 
 "Sum of squares" of the dependent variable (`SUM(y^2) - SUM(y)^2/N`) of the line determined by computing a least-squares-fit linear regression
 over the given (X, Y) pairs
 
 </Accordion>
 
-<Accordion title="SKEW(expr)" defaultOpen>
+<Accordion title="SKEW(expr)" id="skew-expr" defaultOpen>
 
 Alias for `SKEWNESS_POP`
 
 </Accordion>
 
-<Accordion title="SKEWNESS(expr)" defaultOpen>
+<Accordion title="SKEWNESS(expr)" id="skewness-expr" defaultOpen>
 
 Alias for `SKEWNESS_POP`
 
 </Accordion>
 
-<Accordion title="SKEWNESS_POP(expr)" defaultOpen>
+<Accordion title="SKEWNESS_POP(expr)" id="skewness_pop-expr" defaultOpen>
 
 Calculate the population skew of `expr`
 
 </Accordion>
 
-<Accordion title="SKEWNESS_SAMP(expr)" defaultOpen>
+<Accordion title="SKEWNESS_SAMP(expr)" id="skewness_samp-expr" defaultOpen>
 
 Calculate the sample skew of `expr`
 
 </Accordion>
 
-<Accordion title="SKEW_POP(expr)" defaultOpen>
+<Accordion title="SKEW_POP(expr)" id="skew_pop-expr" defaultOpen>
 
 Alias for `SKEWNESS_POP`
 
 </Accordion>
 
-<Accordion title="SKEW_SAMP(expr)" defaultOpen>
+<Accordion title="SKEW_SAMP(expr)" id="skew_samp-expr" defaultOpen>
 
 Alias for `SKEWNESS_SAMP`
 
 </Accordion>
 
-<Accordion title="STDDEV(expr)" defaultOpen>
+<Accordion title="STDDEV(expr)" id="stddev-expr" defaultOpen>
 
 The population standard deviation over values of `expr` (i.e. the denominator is *N*)
 
 </Accordion>
 
-<Accordion title="STDDEV_POP(expr)" defaultOpen>
+<Accordion title="STDDEV_POP(expr)" id="stddev_pop-expr" defaultOpen>
 
 The population standard deviation over values of `expr` (i.e. the denominator is *N*)
 
 </Accordion>
 
-<Accordion title="STDDEV_SAMP(expr)" defaultOpen>
+<Accordion title="STDDEV_SAMP(expr)" id="stddev_samp-expr" defaultOpen>
 
 The sample standard deviation over values of `expr` (i.e. the denominator is *N-1*)
 
 </Accordion>
 
-<Accordion title="SUM(expr)" defaultOpen>
+<Accordion title="SUM(expr)" id="sum-expr" defaultOpen>
 
 The sum of values of `expr`
 
 </Accordion>
 
-<Accordion title="VAR(expr)" defaultOpen>
+<Accordion title="VAR(expr)" id="var-expr" defaultOpen>
 
 The population variance over values of `expr` (i.e. the denominator is *N*)
 
 </Accordion>
 
-<Accordion title="VAR_POP(expr)" defaultOpen>
+<Accordion title="VAR_POP(expr)" id="var_pop-expr" defaultOpen>
 
 The population variance over values of `expr` (i.e. the denominator is *N*)
 
 </Accordion>
 
-<Accordion title="VAR_SAMP(expr)" defaultOpen>
+<Accordion title="VAR_SAMP(expr)" id="var_samp-expr" defaultOpen>
 
 The sample variance over values of `expr` (i.e. the denominator is *N-1*)
 
 </Accordion>
 
-<Accordion title="VARIANCE(expr)" defaultOpen>
+<Accordion title="VARIANCE(expr)" id="variance-expr" defaultOpen>
 
 Alias for `VAR`
 
 </Accordion>
 
-<Accordion title="VARIANCE_POP(expr)" defaultOpen>
+<Accordion title="VARIANCE_POP(expr)" id="variance_pop-expr" defaultOpen>
 
 Alias for `VAR_POP`
 
 </Accordion>
 
-<Accordion title="VARIANCE_SAMP(expr)" defaultOpen>
+<Accordion title="VARIANCE_SAMP(expr)" id="variance_samp-expr" defaultOpen>
 
 Alias for `VAR_SAMP`
 

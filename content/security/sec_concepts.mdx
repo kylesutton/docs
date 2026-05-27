@@ -705,13 +705,13 @@ The following security functions can be used when employing
 
 <AccordionGroup>
 
-<Accordion title="HASH(column)" defaultOpen>
+<Accordion title="HASH(column)" id="hash-column" defaultOpen>
 
 Returns a non-negative integer representing an obfuscated version of `column`
 
 </Accordion>
 
-<Accordion title="MASK(column, start, length[, char])" defaultOpen>
+<Accordion title="MASK(column, start, length[, char])" id="mask-column-start-length-char" defaultOpen>
 
 Masks `length` characters of `column`, beginning at the position identified
 by `start`, with `*` characters (or the character specified in `char`):
@@ -740,7 +740,7 @@ by `start`, with `*` characters (or the character specified in `char`):
 
 </Accordion>
 
-<Accordion title="OBFUSCATE(column)" defaultOpen>
+<Accordion title="OBFUSCATE(column)" id="obfuscate-column" defaultOpen>
 
 Alias for `HASH`
 

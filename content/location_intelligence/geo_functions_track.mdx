@@ -6,7 +6,7 @@ The following functions are available in both SQL and the native API.
 
 <AccordionGroup>
 
-<Accordion title="ST_TRACKDURATION([unit,] t)" defaultOpen>
+<Accordion title="ST_TRACKDURATION([unit,] t)" id="st_trackduration-unit-t" defaultOpen>
 
 Returns the total time, in the given `unit`, spanned by timestamp values in column
 `t`.  Grouping by *track* ID will return the duration per *track*.
@@ -25,7 +25,7 @@ The default `unit` is `MILLISECOND`.
 
 </Accordion>
 
-<Accordion title="ST_TRACKLENGTH(lat, lon, t[, solution])" defaultOpen>
+<Accordion title="ST_TRACKLENGTH(lat, lon, t[, solution])" id="st_tracklength-lat-lon-t-solution" defaultOpen>
 
 Returns the total length of the track whose position values are specified by `lat` &
 `lon` and whose ordering is determined by an ascending sort on the timestamp `t`.
@@ -106,7 +106,7 @@ FROM TABLE
 
 <AccordionGroup>
 
-<Accordion title="TRACK_TABLE" defaultOpen>
+<Accordion title="TRACK_TABLE" id="track_table" defaultOpen>
 
 Name of the table to search for tracks matching the track(s) specified in the `SEARCH_*` data set.
 
@@ -127,32 +127,32 @@ INPUT_TABLE
 ```
 </Accordion>
 
-<Accordion title="TRACK_ID_COLUMN" defaultOpen>
+<Accordion title="TRACK_ID_COLUMN" id="track_id_column" defaultOpen>
 
 Table to search track column, containing the unique identifier for the track to which each track point
 belongs.
 
 </Accordion>
 
-<Accordion title="TRACK_X_COLUMN" defaultOpen>
+<Accordion title="TRACK_X_COLUMN" id="track_x_column" defaultOpen>
 
 Table to search track column, containing the longitude value of each track point.
 
 </Accordion>
 
-<Accordion title="TRACK_Y_COLUMN" defaultOpen>
+<Accordion title="TRACK_Y_COLUMN" id="track_y_column" defaultOpen>
 
 Table to search track column, containing the latitude value of each track point.
 
 </Accordion>
 
-<Accordion title="TRACK_ORDER_COLUMN" defaultOpen>
+<Accordion title="TRACK_ORDER_COLUMN" id="track_order_column" defaultOpen>
 
 Table to search track column, by which the searched track points will be sorted in ascending order.
 
 </Accordion>
 
-<Accordion title="SEARCH_TABLE" defaultOpen>
+<Accordion title="SEARCH_TABLE" id="search_table" defaultOpen>
 
 Name of the search criteria track table, containing the track(s) to be used as the filter criteria
 when searching for matching tracks in the `TRACK_*` data set.
@@ -174,32 +174,32 @@ INPUT_TABLE
 ```
 </Accordion>
 
-<Accordion title="SEARCH_ID_COLUMN" defaultOpen>
+<Accordion title="SEARCH_ID_COLUMN" id="search_id_column" defaultOpen>
 
 Search criteria track column, containing the unique identifier for the track to which each track point
 belongs.
 
 </Accordion>
 
-<Accordion title="SEARCH_X_COLUMN" defaultOpen>
+<Accordion title="SEARCH_X_COLUMN" id="search_x_column" defaultOpen>
 
 Search criteria track column, containing the longitude value of each track point.
 
 </Accordion>
 
-<Accordion title="SEARCH_Y_COLUMN" defaultOpen>
+<Accordion title="SEARCH_Y_COLUMN" id="search_y_column" defaultOpen>
 
 Search criteria track column, containing the latitude value of each track point.
 
 </Accordion>
 
-<Accordion title="SEARCH_ORDER_COLUMN" defaultOpen>
+<Accordion title="SEARCH_ORDER_COLUMN" id="search_order_column" defaultOpen>
 
 Search criteria track column, by which the filter track points will be sorted in ascending order.
 
 </Accordion>
 
-<Accordion title="SEARCH_XY_DISTANCE" defaultOpen>
+<Accordion title="SEARCH_XY_DISTANCE" id="search_xy_distance" defaultOpen>
 
 The radius around the given tracks to search for matching tracks.
 
@@ -239,7 +239,7 @@ This parameter is not applicable when using a `SPATIAL_SOLUTION_TYPE` of `0`.
 
 </Accordion>
 
-<Accordion title="SPATIAL_SOLUTION_TYPE" defaultOpen>
+<Accordion title="SPATIAL_SOLUTION_TYPE" id="spatial_solution_type" defaultOpen>
 
 Spatial match solution type; any of the following:
 
@@ -271,7 +271,7 @@ Spatial match solution type; any of the following:
 
 </Accordion>
 
-<Accordion title="SEARCH_TIME_DISTANCE" defaultOpen>
+<Accordion title="SEARCH_TIME_DISTANCE" id="search_time_distance" defaultOpen>
 
 The maximum allowable time difference between a search criteria track's point and a matched track's
 points.  The time can use any of the following suffices for units:
@@ -404,7 +404,7 @@ FROM TABLE
 
 <AccordionGroup>
 
-<Accordion title="TRACK_TABLE" defaultOpen>
+<Accordion title="TRACK_TABLE" id="track_table-2" defaultOpen>
 
 Name of the table to search for tracks intersecting the geofence(s) specified in the `SEARCH_*` data
 set.
@@ -426,32 +426,32 @@ INPUT_TABLE
 ```
 </Accordion>
 
-<Accordion title="TRACK_ID_COLUMN" defaultOpen>
+<Accordion title="TRACK_ID_COLUMN" id="track_id_column-2" defaultOpen>
 
 Table to search track column, containing the unique identifier for the track to which each track point
 belongs.
 
 </Accordion>
 
-<Accordion title="TRACK_X_COLUMN" defaultOpen>
+<Accordion title="TRACK_X_COLUMN" id="track_x_column-2" defaultOpen>
 
 Table to search track column, containing the longitude value of each track point.
 
 </Accordion>
 
-<Accordion title="TRACK_Y_COLUMN" defaultOpen>
+<Accordion title="TRACK_Y_COLUMN" id="track_y_column-2" defaultOpen>
 
 Table to search track column, containing the latitude value of each track point.
 
 </Accordion>
 
-<Accordion title="TRACK_ORDER_COLUMN" defaultOpen>
+<Accordion title="TRACK_ORDER_COLUMN" id="track_order_column-2" defaultOpen>
 
 Table to search track column, by which the searched track points will be sorted in ascending order.
 
 </Accordion>
 
-<Accordion title="GEOFENCE_TABLE" defaultOpen>
+<Accordion title="GEOFENCE_TABLE" id="geofence_table" defaultOpen>
 
 Name of the geofence table, containing the WKT(s) to be used as the filter criteria when searching for
 intersecting tracks in the `TRACK_*` data set.
@@ -475,13 +475,13 @@ INPUT_TABLE
 ```
 </Accordion>
 
-<Accordion title="GEOFENCE_ID_COLUMN" defaultOpen>
+<Accordion title="GEOFENCE_ID_COLUMN" id="geofence_id_column" defaultOpen>
 
 Geofence column, containing the unique identifier for the geofence.
 
 </Accordion>
 
-<Accordion title="GEOFENCE_WKT_COLUMN" defaultOpen>
+<Accordion title="GEOFENCE_WKT_COLUMN" id="geofence_wkt_column" defaultOpen>
 
 Geofence column, containing the WKT bounds of the geofence.
 
