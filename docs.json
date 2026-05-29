@@ -39,25 +39,25 @@
               {
                 "group": "Kinetica Overview",
                 "pages": [
-                  "content/overview/_What is Kinetica",
-                  "content/concepts/_Concepts",
-                  "content/tuning/multihead/multihead_ingest/_Distributed Ingest",
-                  "content/tuning/multihead/multihead_egress/_Distributed Key Lookup",
-                  "content/feature_overview/_Functions",
-                  "content/udf_overview/_User-Defined Functions Overview",
-                  "content/cloud/_Cloud-Ready"
+                  "_redirect/overview/_What is Kinetica",
+                  "_redirect/concepts/_Concepts",
+                  "_redirect/tuning/multihead/multihead_ingest/_Distributed Ingest",
+                  "_redirect/tuning/multihead/multihead_egress/_Distributed Key Lookup",
+                  "_redirect/feature_overview/_Functions",
+                  "_redirect/udf_overview/_User-Defined Functions Overview",
+                  "_redirect/cloud/_Cloud-Ready"
                 ]
               },
               {
                 "group": "Install & Configure",
                 "pages": [
                   "content/install/index",
-                  "content/guides/quickstart-guide/_Quick Start",
+                  "_redirect/guides/quickstart-guide/_Quick Start",
                   "content/install/installation",
                   "content/install/migration_guide",
-                  "content/rm/_Resource Management",
-                  "content/ha/_High Availability",
-                  "content/config/_Configuration Reference"
+                  "_redirect/rm/_Resource Management",
+                  "_redirect/ha/_High Availability",
+                  "_redirect/config/_Configuration Reference"
                 ]
               },
               {
@@ -79,8 +79,8 @@
                 "pages": [
                   "content/load_data/index",
                   "content/load_data/concepts",
-                  "content/api/rest/insert_records_json_rest/_Data Loading via REST",
-                  "content/sql/load/_Data Loading in SQL",
+                  "_redirect/api/rest/insert_records_json_rest/_Data Loading via REST",
+                  "_redirect/sql/load/_Data Loading in SQL",
                   {
                     "group": "By Source",
                     "pages": [
@@ -126,8 +126,8 @@
                 "pages": [
                   "content/sql-gpt/index",
                   "content/sql-gpt/concepts",
-                  "content/sql/sqlgpt/_SQL Syntax",
-                  "content/admin/workbench/ui/explore/_Workbench"
+                  "_redirect/sql/sqlgpt/_SQL Syntax",
+                  "_redirect/admin/workbench/ui/explore/_Workbench"
                 ]
               },
               {
@@ -141,11 +141,11 @@
                 "pages": [
                   "content/location_intelligence/index",
                   "content/location_intelligence/geo_objects",
-                  "content/concepts/indexes/_Geospatial Indexes",
+                  "_redirect/concepts/indexes/_Geospatial Indexes",
                   "content/location_intelligence/geo_functions",
-                  "content/tuning/cs/geo/_Geospatial Performance Optimization",
-                  "content/feature_overview/wms_feature_overview/_Web Map Service",
-                  "content/feature_overview/vts_feature_overview/_Vector Tile Service"
+                  "_redirect/tuning/cs/geo/_Geospatial Performance Optimization",
+                  "_redirect/feature_overview/wms_feature_overview/_Web Map Service",
+                  "_redirect/feature_overview/vts_feature_overview/_Vector Tile Service"
                 ]
               },
               {
@@ -155,9 +155,9 @@
                   "content/time_series/types",
                   "content/time_series/date_bucket",
                   "content/time_series/time_bucket",
-                  "content/sql/query/_Window Functions",
-                  "content/sql/query/_Trend Analysis",
-                  "content/sql/query/_ASOF Join"
+                  "_redirect/sql/query/_Window Functions",
+                  "_redirect/sql/query/_Trend Analysis",
+                  "_redirect/sql/query/_ASOF Join"
                 ]
               },
               {
@@ -166,10 +166,10 @@
                   "content/graph_solver/index",
                   "content/graph_solver/network_graph_solver",
                   "content/graph_solver/distributed_graph_server",
-                  "content/sql/graph/_Graph Query",
-                  "content/sql/graph/_Management in SQL",
-                  "content/sql/graph/_Matching in SQL",
-                  "content/sql/graph/_Solving in SQL"
+                  "_redirect/sql/graph/_Graph Query",
+                  "_redirect/sql/graph/_Management in SQL",
+                  "_redirect/sql/graph/_Matching in SQL",
+                  "_redirect/sql/graph/_Solving in SQL"
                 ]
               },
               {
@@ -177,7 +177,7 @@
                 "pages": [
                   "content/ml/index",
                   "content/ml/concepts",
-                  "content/sql/ml/_SQL ML"
+                  "_redirect/sql/ml/_SQL ML"
                 ]
               },
               {
@@ -185,7 +185,7 @@
                 "pages": [
                   "content/security/index",
                   "content/security/sec_concepts",
-                  "content/sql/security/_SQL Security",
+                  "_redirect/sql/security/_SQL Security",
                   "content/security/reveal"
                 ]
               },
@@ -195,20 +195,20 @@
                   "content/bi/index",
                   "content/bi/reveal/index",
                   "content/bi/tableau/index",
-                  "content/admin/workbench/workbooks/_Workbooks",
-                  "content/feature_overview/wms_feature_overview/_Web Map Service",
-                  "content/feature_overview/vts_feature_overview/_Vector Tile Service"
+                  "_redirect/admin/workbench/workbooks/_Workbooks",
+                  "_redirect/feature_overview/wms_feature_overview/_Web Map Service",
+                  "_redirect/feature_overview/vts_feature_overview/_Vector Tile Service"
                 ]
               },
               {
                 "group": "Integration",
                 "pages": [
                   "content/integrate",
-                  "content/tuning/_Performance Optimization",
-                  "content/connectors/_Connectors",
-                  "content/udf/_User-Defined Function Implementation",
-                  "content/tools/_Kinetica Tools",
-                  "content/downloads/_Downloads"
+                  "_redirect/tuning/_Performance Optimization",
+                  "_redirect/connectors/_Connectors",
+                  "_redirect/udf/_User-Defined Function Implementation",
+                  "_redirect/tools/_Kinetica Tools",
+                  "_redirect/downloads/_Downloads"
                 ]
               },
               {
@@ -217,7 +217,7 @@
                   "content/catalogs/kinetica",
                   "content/catalogs/ansi",
                   "content/catalogs/postgresql",
-                  "content/snippets/virtual-catalog-queries/_Useful Catalog Queries"
+                  "_redirect/snippets/virtual-catalog-queries/_Useful Catalog Queries"
                 ]
               },
               {
@@ -596,143 +596,143 @@
       "destination": "/content/vector_search/index"
     },
     {
-      "source": "/content/overview/_What is Kinetica",
+      "source": "/_redirect/overview/_What is Kinetica",
       "destination": "/content/overview/#what-is-kinetica"
     },
     {
-      "source": "/content/concepts/_Concepts",
+      "source": "/_redirect/concepts/_Concepts",
       "destination": "/content/concepts"
     },
     {
-      "source": "/content/tuning/multihead/multihead_ingest/_Distributed Ingest",
+      "source": "/_redirect/tuning/multihead/multihead_ingest/_Distributed Ingest",
       "destination": "/content/tuning/multihead/multihead_ingest"
     },
     {
-      "source": "/content/tuning/multihead/multihead_egress/_Distributed Key Lookup",
+      "source": "/_redirect/tuning/multihead/multihead_egress/_Distributed Key Lookup",
       "destination": "/content/tuning/multihead/multihead_egress"
     },
     {
-      "source": "/content/feature_overview/_Functions",
+      "source": "/_redirect/feature_overview/_Functions",
       "destination": "/content/feature_overview"
     },
     {
-      "source": "/content/udf_overview/_User-Defined Functions Overview",
+      "source": "/_redirect/udf_overview/_User-Defined Functions Overview",
       "destination": "/content/udf_overview"
     },
     {
-      "source": "/content/cloud/_Cloud-Ready",
+      "source": "/_redirect/cloud/_Cloud-Ready",
       "destination": "/content/cloud"
     },
     {
-      "source": "/content/guides/quickstart-guide/_Quick Start",
+      "source": "/_redirect/guides/quickstart-guide/_Quick Start",
       "destination": "/content/guides/quickstart-guide"
     },
     {
-      "source": "/content/rm/_Resource Management",
+      "source": "/_redirect/rm/_Resource Management",
       "destination": "/content/rm"
     },
     {
-      "source": "/content/ha/_High Availability",
+      "source": "/_redirect/ha/_High Availability",
       "destination": "/content/ha"
     },
     {
-      "source": "/content/config/_Configuration Reference",
+      "source": "/_redirect/config/_Configuration Reference",
       "destination": "/content/config"
     },
     {
-      "source": "/content/api/rest/insert_records_json_rest/_Data Loading via REST",
+      "source": "/_redirect/api/rest/insert_records_json_rest/_Data Loading via REST",
       "destination": "/content/api/rest/insert_records_json_rest"
     },
     {
-      "source": "/content/sql/load/_Data Loading in SQL",
+      "source": "/_redirect/sql/load/_Data Loading in SQL",
       "destination": "/content/sql/load"
     },
     {
-      "source": "/content/sql/sqlgpt/_SQL Syntax",
+      "source": "/_redirect/sql/sqlgpt/_SQL Syntax",
       "destination": "/content/sql/sqlgpt"
     },
     {
-      "source": "/content/admin/workbench/ui/explore/_Workbench",
+      "source": "/_redirect/admin/workbench/ui/explore/_Workbench",
       "destination": "/content/admin/workbench/ui/explore/#wb-explore-ws-sqlgpt"
     },
     {
-      "source": "/content/concepts/indexes/_Geospatial Indexes",
+      "source": "/_redirect/concepts/indexes/_Geospatial Indexes",
       "destination": "/content/concepts/indexes/#geospatial-index"
     },
     {
-      "source": "/content/tuning/cs/geo/_Geospatial Performance Optimization",
+      "source": "/_redirect/tuning/cs/geo/_Geospatial Performance Optimization",
       "destination": "/content/tuning/cs/geo"
     },
     {
-      "source": "/content/feature_overview/wms_feature_overview/_Web Map Service",
+      "source": "/_redirect/feature_overview/wms_feature_overview/_Web Map Service",
       "destination": "/content/feature_overview/wms_feature_overview"
     },
     {
-      "source": "/content/feature_overview/vts_feature_overview/_Vector Tile Service",
+      "source": "/_redirect/feature_overview/vts_feature_overview/_Vector Tile Service",
       "destination": "/content/feature_overview/vts_feature_overview"
     },
     {
-      "source": "/content/sql/query/_Window Functions",
+      "source": "/_redirect/sql/query/_Window Functions",
       "destination": "/content/sql/query/#window"
     },
     {
-      "source": "/content/sql/query/_Trend Analysis",
+      "source": "/_redirect/sql/query/_Trend Analysis",
       "destination": "/content/sql/query/#ml-functions"
     },
     {
-      "source": "/content/sql/query/_ASOF Join",
+      "source": "/_redirect/sql/query/_ASOF Join",
       "destination": "/content/sql/query/#asof"
     },
     {
-      "source": "/content/sql/graph/_Graph Query",
+      "source": "/_redirect/sql/graph/_Graph Query",
       "destination": "/content/sql/graph/#sql-pgq"
     },
     {
-      "source": "/content/sql/graph/_Management in SQL",
+      "source": "/_redirect/sql/graph/_Management in SQL",
       "destination": "/content/sql/graph/#sql-graph-create"
     },
     {
-      "source": "/content/sql/graph/_Matching in SQL",
+      "source": "/_redirect/sql/graph/_Matching in SQL",
       "destination": "/content/sql/graph/#sql-graph-match"
     },
     {
-      "source": "/content/sql/graph/_Solving in SQL",
+      "source": "/_redirect/sql/graph/_Solving in SQL",
       "destination": "/content/sql/graph/#sql-graph-solve"
     },
     {
-      "source": "/content/sql/ml/_SQL ML",
+      "source": "/_redirect/sql/ml/_SQL ML",
       "destination": "/content/sql/ml"
     },
     {
-      "source": "/content/sql/security/_SQL Security",
+      "source": "/_redirect/sql/security/_SQL Security",
       "destination": "/content/sql/security"
     },
     {
-      "source": "/content/admin/workbench/workbooks/_Workbooks",
+      "source": "/_redirect/admin/workbench/workbooks/_Workbooks",
       "destination": "/content/admin/workbench/workbooks/"
     },
     {
-      "source": "/content/tuning/_Performance Optimization",
+      "source": "/_redirect/tuning/_Performance Optimization",
       "destination": "/content/tuning"
     },
     {
-      "source": "/content/connectors/_Connectors",
+      "source": "/_redirect/connectors/_Connectors",
       "destination": "/content/connectors"
     },
     {
-      "source": "/content/udf/_User-Defined Function Implementation",
+      "source": "/_redirect/udf/_User-Defined Function Implementation",
       "destination": "/content/udf"
     },
     {
-      "source": "/content/tools/_Kinetica Tools",
+      "source": "/_redirect/tools/_Kinetica Tools",
       "destination": "/content/tools"
     },
     {
-      "source": "/content/downloads/_Downloads",
+      "source": "/_redirect/downloads/_Downloads",
       "destination": "/content/downloads"
     },
     {
-      "source": "/content/snippets/virtual-catalog-queries/_Useful Catalog Queries",
+      "source": "/_redirect/snippets/virtual-catalog-queries/_Useful Catalog Queries",
       "destination": "/content/snippets/virtual-catalog-queries"
     }
   ]
