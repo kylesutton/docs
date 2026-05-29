@@ -256,7 +256,30 @@
           {
             "group": "Guides",
             "pages": [
-              "content/guides/index"
+              "content/guides/index",
+              "content/guides/tags/c++",
+              "content/guides/tags/developer",
+              "content/guides/tags/gadmin",
+              "content/guides/tags/geospatial",
+              "content/guides/tags/graph",
+              "content/guides/tags/graph-match",
+              "content/guides/tags/graph-query",
+              "content/guides/tags/graph-solve",
+              "content/guides/tags/ingest",
+              "content/guides/tags/ingestion",
+              "content/guides/tags/java",
+              "content/guides/tags/javascript",
+              "content/guides/tags/nodejs",
+              "content/guides/tags/python",
+              "content/guides/tags/quick-start",
+              "content/guides/tags/rest",
+              "content/guides/tags/sql",
+              "content/guides/tags/sql-gpt",
+              "content/guides/tags/time-series",
+              "content/guides/tags/udf",
+              "content/guides/tags/ui",
+              "content/guides/tags/video-guides",
+              "content/guides/tags/visualization"
             ]
           }
         ]
