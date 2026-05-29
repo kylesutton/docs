@@ -283,6 +283,27 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Snippets",
+        "icon": "code",
+        "groups": [
+          {
+            "group": "Snippets",
+            "pages": [
+              "content/snippets/index",
+              "content/snippets/tags/data-sink",
+              "content/snippets/tags/data-source",
+              "content/snippets/tags/egress",
+              "content/snippets/tags/geohash",
+              "content/snippets/tags/ingest",
+              "content/snippets/tags/json",
+              "content/snippets/tags/sql",
+              "content/snippets/tags/streaming",
+              "content/snippets/tags/table"
+            ]
+          }
+        ]
       }
     ]
   },
