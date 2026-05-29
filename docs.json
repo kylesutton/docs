@@ -254,10 +254,9 @@
         "icon": "book-open",
         "groups": [
           {
-            "group": "Resources",
+            "group": "Guides",
             "pages": [
-              "content/guides/index",
-              "content/snippets/index"
+              "content/guides/index"
             ]
           }
         ]
