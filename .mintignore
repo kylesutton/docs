@@ -5,6 +5,3 @@
 # Draft content
 drafts/
 *.draft.mdx
-
-# JavaDoc static HTML (not Mintlify content; has its own JS dependencies)
-api/java/
