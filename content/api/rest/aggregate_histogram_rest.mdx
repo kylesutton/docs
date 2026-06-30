@@ -11,16 +11,15 @@ title: /aggregate/histogram
 ```
 URL: http://<db.host>:<db.port>/aggregate/histogram
 ```
-Performs a histogram calculation given a table, a column, and an
-interval function. The input parameter *interval* is used to produce bins of that size
+Performs a histogram calculation given a table, a column, and an interval
+function. The input parameter *interval* is used to produce bins of that size
 and the result, computed over the records falling within each bin, is returned.
 For each bin, the start value is inclusive, but the end value is
 exclusive--except for the very last bin for which the end value is also
 inclusive.  The value returned for each bin is the number of records in it,
-except when a column name is provided as a
-*value_column*.  In this latter case the sum of the
-values corresponding to the *value_column* is used as the
-result instead.  The total number of bins requested cannot exceed 10,000.
+except when a column name is provided as a *value_column*.  In this latter case
+the sum of the values corresponding to the *value_column* is used as the result
+instead.  The total number of bins requested cannot exceed 10,000.
 
 NOTE:  The Kinetica instance being accessed must be running a CUDA (GPU-based)
 build to service a request that specifies a *value_column*.
@@ -36,13 +35,13 @@ build to service a request that specifies a *value_column*.
 | start | double | Lower end value of the histogram interval, inclusive. |
 | end | double | Upper end value of the histogram interval, inclusive. |
 | interval | double | The size of each bin within the start and end parameters. |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> value_column: The name of the column to use when calculating the bin values (values are summed).  The column must be a numerical type (int, double, long, float). <br/> <br/> start: The start parameter for char types. <br/> <br/> end: The end parameter for char types. <br/> <br/> interval: The interval parameter for char types. |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). <br/> <br/> value_column: The name of the column to use when calculating the bin values (values are summed). The column must be a numerical type (int, double, long, float). <br/> <br/> start: The start parameter for char types. <br/> <br/> end: The end parameter for char types. <br/> <br/> interval: The interval parameter for char types. |
 
 
 ## Output Parameter Description
 
 
-The GPUdb server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
+The Kinetica server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
 
 | Name | Type | Description |
 | --- | --- | --- |

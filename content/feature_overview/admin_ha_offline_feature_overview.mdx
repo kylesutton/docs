@@ -1,5 +1,5 @@
 ---
-title: "Administration: HA offline"
+title: "Administration: HA Offline"
 ---
 
 {/* RST directive: role h2_style */}
@@ -8,9 +8,9 @@ title: "Administration: HA offline"
 <a id="admin-ha-offline-feature-overview"></a>
 
 
-Pauses consumption of messages from other HA clusters to support
-data repair/recovery scenarios. In-flight queries may fail to replicate to
-other clusters in the ring when going offline.
+Pauses consumption of messages from other HA clusters to support data
+repair/recovery scenarios. In-flight queries may fail to replicate to other
+clusters in the ring when going offline.
 
 
 ## Input Parameter Description
@@ -18,8 +18,8 @@ other clusters in the ring when going offline.
 
 | Name | Type | Description |
 | --- | --- | --- |
-| offline | boolean | Set to true if desired state is offline.  The supported values are: <br/> <br/> * true <br/> * false |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). |
+| offline | boolean | Set to true if desired state is offline. <br/> <br/> The supported values are: <br/> <br/> * true <br/> * false |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). |
 
 
 ## Output Parameter Description

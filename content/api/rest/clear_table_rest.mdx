@@ -11,10 +11,10 @@ title: /clear/table
 ```
 URL: http://<db.host>:<db.port>/clear/table
 ```
-Clears (drops) one or all tables in the database cluster. The
-operation is synchronous meaning that the table will be cleared before the
-function returns. The response payload returns the status of the operation along
-with the name of the table that was cleared.
+Clears (drops) one or all tables in the database cluster. The operation is
+synchronous meaning that the table will be cleared before the function returns.
+The response payload returns the status of the operation along with the name of
+the table that was cleared.
 
 
 ## Input Parameter Description
@@ -22,15 +22,15 @@ with the name of the table that was cleared.
 
 | Name | Type | Description |
 | --- | --- | --- |
-| table_name | string | Name of the table to be cleared, in [schema_name.]table_name format, using standard [name resolution rules](../../../concepts/tables/#table-name-resolution). Must be an existing table. Empty string clears all available tables, though this behavior is be prevented by default via gpudb.conf parameter 'disable_clear_all'.  The default value is ''. |
-| authorization | string | No longer used. User can pass an empty string.  The default value is ''. |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> no_error_if_not_exists: If *true* and if the table specified in input parameter *table_name* does not exist no error is returned. If *false* and if the table specified in input parameter *table_name* does not exist then an error is returned. The default value is `false`. The supported values are: * true * false |
+| table_name | string | Name of the table to be cleared, in [schema_name.]table_name format, using standard [name resolution rules](../../../concepts/tables/#table-name-resolution). Must be an existing table. Empty string clears all available tables, though this behavior is be prevented by default via gpudb.conf parameter 'disable_clear_all'. <br/> <br/> The default value is ''. |
+| authorization | string | No longer used. User can pass an empty string. <br/> <br/> The default value is ''. |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). <br/> <br/> no_error_if_not_exists: If *true* and if the table specified in input parameter *table_name* does not exist no error is returned. If *false* and if the table specified in input parameter *table_name* does not exist then an error is returned. The default value is `false`. The supported values are: * true * false |
 
 
 ## Output Parameter Description
 
 
-The GPUdb server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
+The Kinetica server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
 
 | Name | Type | Description |
 | --- | --- | --- |

@@ -11,8 +11,8 @@ title: /aggregate/minmax/geometry
 ```
 URL: http://<db.host>:<db.port>/aggregate/minmax/geometry
 ```
-Calculates and returns the minimum and maximum x- and y-coordinates
-of a particular geospatial geometry column in a table.
+Calculates and returns the minimum and maximum x- and y-coordinates of a
+particular geospatial geometry column in a table.
 
 
 ## Input Parameter Description
@@ -22,13 +22,13 @@ of a particular geospatial geometry column in a table.
 | --- | --- | --- |
 | table_name | string | Name of the table on which the operation will be performed. Must be an existing table, in [schema_name.]table_name format, using standard [name resolution rules](../../../concepts/tables/#table-name-resolution). |
 | column_name | string | Name of a geospatial geometry column on which the min-max will be calculated. |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). |
 
 
 ## Output Parameter Description
 
 
-The GPUdb server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
+The Kinetica server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
 
 | Name | Type | Description |
 | --- | --- | --- |

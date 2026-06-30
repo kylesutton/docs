@@ -11,7 +11,8 @@ title: /admin/offline
 ```
 URL: http://<db.host>:<db.port>/admin/offline
 ```
-Take the system offline. When the system is offline, no user operations can be performed with the exception of a system shutdown.
+Take the system offline. When the system is offline, no user operations can be
+performed with the exception of a system shutdown.
 
 
 ## Input Parameter Description
@@ -19,14 +20,14 @@ Take the system offline. When the system is offline, no user operations can be p
 
 | Name | Type | Description |
 | --- | --- | --- |
-| offline | boolean | Set to true if desired state is offline.  The supported values are: <br/> <br/> * true <br/> * false |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> flush_to_disk: Flush to disk when going offline The supported values are: * true * false |
+| offline | boolean | Set to true if desired state is offline. <br/> <br/> The supported values are: <br/> <br/> * true <br/> * false |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). <br/> <br/> flush_to_disk: Flush to disk when going offline. The supported values are: * true * false |
 
 
 ## Output Parameter Description
 
 
-The GPUdb server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
+The Kinetica server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
 
 | Name | Type | Description |
 | --- | --- | --- |

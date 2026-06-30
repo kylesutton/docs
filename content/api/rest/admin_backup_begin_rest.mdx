@@ -11,7 +11,11 @@ title: /admin/backup/begin
 ```
 URL: http://<db.host>:<db.port>/admin/backup/begin
 ```
-Prepares the system for a backup by closing all open file handles after allowing current active jobs to complete. When the database is in backup mode, queries that result in a disk write operation will be blocked until backup mode has been completed by using [/admin/backup/end](/content/api/rest/admin_backup_end_rest#admin-backup-end-rest).
+Prepares the system for a backup by closing all open file handles after
+allowing current active jobs to complete. When the database is in backup mode,
+queries that result in a disk write operation will be blocked until backup mode
+has been completed by using
+[/admin/backup/end](/content/api/rest/admin_backup_end_rest#admin-backup-end-rest).
 
 
 ## Input Parameter Description
@@ -19,13 +23,13 @@ Prepares the system for a backup by closing all open file handles after allowing
 
 | Name | Type | Description |
 | --- | --- | --- |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). |
 
 
 ## Output Parameter Description
 
 
-The GPUdb server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
+The Kinetica server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
 
 | Name | Type | Description |
 | --- | --- | --- |

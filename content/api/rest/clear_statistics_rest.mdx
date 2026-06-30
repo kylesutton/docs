@@ -11,7 +11,8 @@ title: /clear/statistics
 ```
 URL: http://<db.host>:<db.port>/clear/statistics
 ```
-Clears statistics (cardinality, mean value, etc.) for a column in a specified table.
+Clears statistics (cardinality, mean value, etc.) for a column in a specified
+table.
 
 
 ## Input Parameter Description
@@ -19,15 +20,15 @@ Clears statistics (cardinality, mean value, etc.) for a column in a specified ta
 
 | Name | Type | Description |
 | --- | --- | --- |
-| table_name | string | Name of a table, in [schema_name.]table_name format, using standard [name resolution rules](../../../concepts/tables/#table-name-resolution). Must be an existing table.  The default value is ''. |
-| column_name | string | Name of the column in input parameter *table_name* for which to clear statistics. The column must be from an existing table. An empty string clears statistics for all columns in the table.  The default value is ''. |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). |
+| table_name | string | Name of a table, in [schema_name.]table_name format, using standard [name resolution rules](../../../concepts/tables/#table-name-resolution). Must be an existing table. <br/> <br/> The default value is ''. |
+| column_name | string | Name of the column in input parameter *table_name* for which to clear statistics. The column must be from an existing table. An empty string clears statistics for all columns in the table. <br/> <br/> The default value is ''. |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). |
 
 
 ## Output Parameter Description
 
 
-The GPUdb server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
+The Kinetica server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
 
 | Name | Type | Description |
 | --- | --- | --- |

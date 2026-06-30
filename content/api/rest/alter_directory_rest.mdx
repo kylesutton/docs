@@ -21,13 +21,13 @@ Alters an existing directory in [KiFS](../../../tools/kifs/).
 | --- | --- | --- |
 | directory_name | string | Name of the directory in KiFS to be altered. |
 | directory_updates_map | map of string to strings | Map containing the properties of the directory to be altered. Error if empty. <br/> <br/> data_limit: The maximum capacity, in bytes, to apply to the directory. Set to -1 to indicate no upper limit. |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). |
 
 
 ## Output Parameter Description
 
 
-The GPUdb server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
+The Kinetica server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
 
 | Name | Type | Description |
 | --- | --- | --- |

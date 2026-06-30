@@ -11,7 +11,9 @@ title: /create/schema
 ```
 URL: http://<db.host>:<db.port>/create/schema
 ```
-Creates a SQL-style [schema](../../../concepts/schemas/). Schemas are containers for tables and views.  Multiple tables and views can be defined with the same name in different schemas.
+Creates a SQL-style [schema](../../../concepts/schemas/). Schemas are
+containers for tables and views.  Multiple tables and views can be defined with
+the same name in different schemas.
 
 
 ## Input Parameter Description
@@ -20,13 +22,13 @@ Creates a SQL-style [schema](../../../concepts/schemas/). Schemas are containers
 | Name | Type | Description |
 | --- | --- | --- |
 | schema_name | string | Name of the schema to be created.  Has the same naming restrictions as [tables](../../../concepts/tables/). |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> no_error_if_exists: If *true*, prevents an error from occurring if the schema already exists. The default value is `false`. The supported values are: * true * false |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). <br/> <br/> no_error_if_exists: If *true*, prevents an error from occurring if the schema already exists. The default value is `false`. The supported values are: * true * false |
 
 
 ## Output Parameter Description
 
 
-The GPUdb server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
+The Kinetica server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
 
 | Name | Type | Description |
 | --- | --- | --- |

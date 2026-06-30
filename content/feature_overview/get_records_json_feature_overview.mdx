@@ -86,9 +86,9 @@ TABLE_NAME=product
 
 # Quote the URL when passing multiple options, or any & will stop the URL
 #   parsing and run the URL parsed up to that point as a background job
-curl -sS \${KINETICA_URL}/get/records/json?table_name=\${TABLE_NAME} \
+curl -sS ${KINETICA_URL}/get/records/json?table_name=${TABLE_NAME} \
 --header "Content-Type: application/json" \
---user "\${USERNAME}:\${PASSWORD}"
+--user "${USERNAME}:${PASSWORD}"
 ```
 
 {/* Source: /examples/python/get_records_json.py (lines 19 23-24 33 36  38-39) */}
@@ -119,10 +119,10 @@ TABLE_NAME=product
 
 # Using data-urlencode can make params easier to read than appending to URL
 #   Use the G option to pass the data-urlencode options as GET query parameters
-curl -sSG \${KINETICA_URL}/get/records/json \
+curl -sSG ${KINETICA_URL}/get/records/json \
 --header "Content-Type: application/json" \
---user "\${USERNAME}:\${PASSWORD}" \
---data-urlencode "table_name=\${TABLE_NAME}" \
+--user "${USERNAME}:${PASSWORD}" \
+--data-urlencode "table_name=${TABLE_NAME}" \
 --data-urlencode "column_names=name,category,description,stock" \
 --data-urlencode "expression=stock > 100000" \
 --data-urlencode "order_by=name"
@@ -163,10 +163,10 @@ TABLE_NAME=product
 
 # Using data-urlencode can make params easier to read than appending to URL
 #   Use the G option to pass the data-urlencode options as GET query parameters
-curl -sSG \${KINETICA_URL}/get/records/json \
+curl -sSG ${KINETICA_URL}/get/records/json \
 --header "Content-Type: application/json" \
---user "\${USERNAME}:\${PASSWORD}" \
---data-urlencode "table_name=\${TABLE_NAME}" \
+--user "${USERNAME}:${PASSWORD}" \
+--data-urlencode "table_name=${TABLE_NAME}" \
 --data-urlencode "column_names=category,COUNT(1) AS total_products" \
 --data-urlencode "expression=stock >= 1000" \
 --data-urlencode "having=COUNT(1) > 1"

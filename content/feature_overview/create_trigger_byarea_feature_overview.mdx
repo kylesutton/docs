@@ -8,15 +8,18 @@ title: Create Trigger by Area
 <a id="create-trigger-byarea-feature-overview"></a>
 
 
-Sets up an area trigger mechanism for two column_names for one or
-more tables. (This function is essentially the two-dimensional version of
-[Create Trigger by Range](/content/feature_overview/create_trigger_byrange_feature_overview#create-trigger-byrange-feature-overview).) Once the trigger has been activated, any
-record added to the listed tables(s) via [Insert Records](/content/feature_overview/insert_records_feature_overview#insert-records-feature-overview) with the
+Sets up an area trigger mechanism for two column_names for one or more tables.
+(This function is essentially the two-dimensional version of
+[Create Trigger by Range](/content/feature_overview/create_trigger_byrange_feature_overview#create-trigger-byrange-feature-overview).)
+Once the trigger has been activated, any record added to the listed tables(s)
+via [Insert Records](/content/feature_overview/insert_records_feature_overview#insert-records-feature-overview) with the
 chosen columns' values falling within the specified region will trip the
 trigger. All such records will be queued at the trigger port (by default '9001'
-but able to be retrieved via [Show System Status](/content/feature_overview/show_system_status_feature_overview#show-system-status-feature-overview)) for any listening
-client to collect. Active triggers can be cancelled by using the
-[Clear Trigger](/content/feature_overview/clear_trigger_feature_overview#clear-trigger-feature-overview) endpoint or by clearing all relevant tables.
+but able to be retrieved via
+[Show System Status](/content/feature_overview/show_system_status_feature_overview#show-system-status-feature-overview)) for
+any listening client to collect. Active triggers can be cancelled by using the
+[Clear Trigger](/content/feature_overview/clear_trigger_feature_overview#clear-trigger-feature-overview) endpoint or by
+clearing all relevant tables.
 
 The output returns the trigger handle as well as indicating success or failure
 of the trigger activation.
@@ -33,7 +36,7 @@ of the trigger activation.
 | x_vector | array of doubles | The respective coordinate values for the region on which the trigger is activated. This usually translates to the x-coordinates of a geospatial region. |
 | y_column_name | string | Name of a second numeric column on which the trigger is activated. Usually 'y' for geospatial data points. |
 | y_vector | array of doubles | The respective coordinate values for the region on which the trigger is activated. This usually translates to the y-coordinates of a geospatial region. Must be the same length as xvals. |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). |
 
 
 ## Output Parameter Description

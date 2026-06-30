@@ -11,7 +11,9 @@ title: /admin/show/shards
 ```
 URL: http://<db.host>:<db.port>/admin/show/shards
 ```
-Show the mapping of shards to the corresponding rank and tom.  The response message contains list of 16384 (total number of shards in the system) Rank and TOM numbers corresponding to each shard.
+Show the mapping of shards to the corresponding rank and tom.  The response
+message contains list of 16384 (total number of shards in the system) Rank and
+TOM numbers corresponding to each shard.
 
 
 ## Input Parameter Description
@@ -19,13 +21,13 @@ Show the mapping of shards to the corresponding rank and tom.  The response mess
 
 | Name | Type | Description |
 | --- | --- | --- |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). |
 
 
 ## Output Parameter Description
 
 
-The GPUdb server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
+The Kinetica server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
 
 | Name | Type | Description |
 | --- | --- | --- |

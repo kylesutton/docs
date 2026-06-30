@@ -114,9 +114,9 @@ TABLE_NAME=product
 JSON_FILE_NAME=products.json
 
 curl -sS -X POST --header "Content-Type: application/json" \
---user "\${USERNAME}:\${PASSWORD}" \
--d @\${JSON_FILE_NAME} \
-\${KINETICA_URL}/insert/records/json?table_name=\${TABLE_NAME}
+--user "${USERNAME}:${PASSWORD}" \
+-d @${JSON_FILE_NAME} \
+${KINETICA_URL}/insert/records/json?table_name=${TABLE_NAME}
 ```
 
 {/* Source: /examples/python/insert_records_json.py (lines 19 23-24 34 25 37-43) */}
@@ -153,9 +153,9 @@ JSON_FILE_NAME=products.json
 # Quote the URL when passing multiple options, or the & will stop the URL
 #   parsing and run the URL parsed up to that point as a background job
 curl -sS -X POST --header "Content-Type: application/json" \
---user "\${USERNAME}:\${PASSWORD}" \
--d @\${JSON_FILE_NAME} \
-"\${KINETICA_URL}/insert/records/json?table_name=\${OPTS_TABLE_NAME}&batch_size=10000&columns_to_load=name,category,description&truncate_table=true"
+--user "${USERNAME}:${PASSWORD}" \
+-d @${JSON_FILE_NAME} \
+"${KINETICA_URL}/insert/records/json?table_name=${OPTS_TABLE_NAME}&batch_size=10000&columns_to_load=name,category,description&truncate_table=true"
 ```
 
 {/* Source: /examples/python/insert_records_json.py (lines 19 23-24 58 25 61-72) */}
@@ -194,7 +194,7 @@ PASSWORD=apassword
 TABLE_NAME=product
 
 curl -sS -X POST --header "Content-Type: application/json" \
---user "\${USERNAME}:\${PASSWORD}" \
+--user "${USERNAME}:${PASSWORD}" \
 -d '{
 	"id": "15",
 	"category": "Technology",
@@ -202,7 +202,7 @@ curl -sS -X POST --header "Content-Type: application/json" \
 	"description": "Lightweight storage for low-res screenplays and licensed software",
 	"stock": "5000"
 }' \
-\${KINETICA_URL}/insert/records/json?table_name=\${TABLE_NAME}
+${KINETICA_URL}/insert/records/json?table_name=${TABLE_NAME}
 ```
 
 {/* Source: /examples/python/insert_records_json.py (lines 19 23-24 87 89-103) */}

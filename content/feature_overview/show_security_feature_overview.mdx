@@ -8,7 +8,9 @@ title: Show Security
 <a id="show-security-feature-overview"></a>
 
 
-Shows security information relating to users and/or roles. If the caller is not a system administrator, only information relating to the caller and their roles is returned.
+Shows security information relating to users and/or roles. If the caller is not
+a system administrator, only information relating to the caller and their roles
+is returned.
 
 
 ## Input Parameter Description
@@ -17,7 +19,7 @@ Shows security information relating to users and/or roles. If the caller is not 
 | Name | Type | Description |
 | --- | --- | --- |
 | names | array of strings | A list of names of users and/or roles about which security information is requested. If none are provided, information about all users and roles will be returned. |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> show_current_user: If *true*, returns only security information for the current user. The default value is `false`. The supported values are: * true * false |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). <br/> <br/> show_current_user: If *true*, returns only security information for the current user. The default value is `false`. The supported values are: * true * false |
 
 
 ## Output Parameter Description

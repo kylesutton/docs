@@ -11,7 +11,8 @@ title: /revoke/permission/directory
 ```
 URL: http://<db.host>:<db.port>/revoke/permission/directory
 ```
-Revokes a [KiFS](../../../tools/kifs/) directory-level permission from a user or role.
+Revokes a [KiFS](../../../tools/kifs/) directory-level permission from a
+user or role.
 
 
 ## Input Parameter Description
@@ -21,14 +22,14 @@ Revokes a [KiFS](../../../tools/kifs/) directory-level permission from a user or
 | --- | --- | --- |
 | name | string | Name of the user or role from which the permission will be revoked. Must be an existing user or role. |
 | permission | string | Permission to revoke from the user or role. <br/> <br/> directory_read: For files in the directory, access to list files, download files, or use files in server side functions. <br/> <br/> directory_write: Access to upload files to, or delete files from, the directory. A user or role with write access automatically has read access. |
-| directory_name | string | Name of the KiFS directory to which the permission revokes access |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). |
+| directory_name | string | Name of the KiFS directory to which the permission revokes access. |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). |
 
 
 ## Output Parameter Description
 
 
-The GPUdb server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
+The Kinetica server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
 
 | Name | Type | Description |
 | --- | --- | --- |

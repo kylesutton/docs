@@ -11,7 +11,10 @@ title: /show/tables/bytype
 ```
 URL: http://<db.host>:<db.port>/show/tables/bytype
 ```
-Gets names of the tables whose type matches the given criteria. Each table has a particular type. This type comprises the schema and properties of the table and sometimes a type label. This function allows a look up of the existing tables based on full or partial type information. The operation is synchronous.
+Gets names of the tables whose type matches the given criteria. Each table has
+a particular type. This type comprises the schema and properties of the table
+and sometimes a type label. This function allows a look up of the existing
+tables based on full or partial type information. The operation is synchronous.
 
 
 ## Input Parameter Description
@@ -21,13 +24,13 @@ Gets names of the tables whose type matches the given criteria. Each table has a
 | --- | --- | --- |
 | type_id | string | Type id returned by a call to [/create/type](/content/api/rest/create_type_rest#create-type-rest). |
 | label | string | Optional user supplied label which can be used instead of the type_id to retrieve all tables with the given label. |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). |
 
 
 ## Output Parameter Description
 
 
-The GPUdb server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
+The Kinetica server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
 
 | Name | Type | Description |
 | --- | --- | --- |

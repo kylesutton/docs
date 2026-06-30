@@ -20,13 +20,13 @@ Deletes a resource group.
 | Name | Type | Description |
 | --- | --- | --- |
 | name | string | Name of the resource group to be deleted. |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> cascade_delete: If *true*, delete any existing entities owned by this group. Otherwise this request will return an error of any such entities exist. The default value is `false`. The supported values are: * true * false |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). <br/> <br/> cascade_delete: If *true*, delete any existing entities owned by this group. Otherwise this request will return an error of any such entities exist. The default value is `false`. The supported values are: * true * false |
 
 
 ## Output Parameter Description
 
 
-The GPUdb server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
+The Kinetica server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
 
 | Name | Type | Description |
 | --- | --- | --- |

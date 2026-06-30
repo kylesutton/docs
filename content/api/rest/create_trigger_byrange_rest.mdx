@@ -11,14 +11,16 @@ title: /create/trigger/byrange
 ```
 URL: http://<db.host>:<db.port>/create/trigger/byrange
 ```
-Sets up a simple range trigger for a column_name for one or more
-tables. Once the trigger has been activated, any record added to the listed
-tables(s) via [/insert/records](/content/api/rest/insert_records_rest#insert-records-rest) with the chosen column_name's value
-falling within the specified range will trip the trigger. All such records will
-be queued at the trigger port (by default '9001' but able to be retrieved via
-[/show/system/status](/content/api/rest/show_system_status_rest#show-system-status-rest)) for any listening client to collect. Active
-triggers can be cancelled by using the [/clear/trigger](/content/api/rest/clear_trigger_rest#clear-trigger-rest) endpoint or by
-clearing all relevant tables.
+Sets up a simple range trigger for a column_name for one or more tables. Once
+the trigger has been activated, any record added to the listed tables(s) via
+[/insert/records](/content/api/rest/insert_records_rest#insert-records-rest) with the chosen
+column_name's value falling within the specified range will trip the trigger.
+All such records will be queued at the trigger port (by default '9001' but able
+to be retrieved via
+[/show/system/status](/content/api/rest/show_system_status_rest#show-system-status-rest)) for any listening
+client to collect. Active triggers can be cancelled by using the
+[/clear/trigger](/content/api/rest/clear_trigger_rest#clear-trigger-rest) endpoint or by clearing all
+relevant tables.
 
 The output returns the trigger handle as well as indicating success or failure
 of the trigger activation.
@@ -34,13 +36,13 @@ of the trigger activation.
 | column_name | string | Name of a numeric column_name on which the trigger is activated. |
 | min | double | The lower bound (inclusive) for the trigger range. |
 | max | double | The upper bound (inclusive) for the trigger range. |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). |
 
 
 ## Output Parameter Description
 
 
-The GPUdb server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
+The Kinetica server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
 
 | Name | Type | Description |
 | --- | --- | --- |

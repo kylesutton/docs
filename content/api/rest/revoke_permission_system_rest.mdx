@@ -21,13 +21,13 @@ Revokes a system-level permission from a user or role.
 | --- | --- | --- |
 | name | string | Name of the user or role from which the permission will be revoked. Must be an existing user or role. |
 | permission | string | Permission to revoke from the user or role. <br/> <br/> system_admin: Full access to all data and system functions. <br/> <br/> system_user_admin: Access to administer users and roles that do not have system_admin permission. <br/> <br/> system_write: Read and write access to all tables. <br/> <br/> system_read: Read-only access to all tables. <br/> <br/> system_send_alert: Send system alerts. |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). |
 
 
 ## Output Parameter Description
 
 
-The GPUdb server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
+The Kinetica server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
 
 | Name | Type | Description |
 | --- | --- | --- |

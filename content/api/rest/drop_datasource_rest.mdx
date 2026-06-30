@@ -11,8 +11,9 @@ title: /drop/datasource
 ```
 URL: http://<db.host>:<db.port>/drop/datasource
 ```
-Drops an existing [data source](../../../concepts/data_sources/).  Any external
-tables that depend on the data source must be dropped before it can be dropped.
+Drops an existing [data source](../../../concepts/data_sources/).  Any
+external tables that depend on the data source must be dropped before it can be
+dropped.
 
 
 ## Input Parameter Description
@@ -21,13 +22,13 @@ tables that depend on the data source must be dropped before it can be dropped.
 | Name | Type | Description |
 | --- | --- | --- |
 | name | string | Name of the data source to be dropped. Must be an existing data source. |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). |
 
 
 ## Output Parameter Description
 
 
-The GPUdb server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
+The Kinetica server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
 
 | Name | Type | Description |
 | --- | --- | --- |

@@ -84,9 +84,8 @@ The following parameters are required in all *WMS* calls:
 | `SRS` | Spatial Reference System (i.e. *EPSG* code) | * *Plate Carree* projection codes: `PLATE_CARREE`, `EPSG:4326` <br/> * *Web Mercator* projection codes: `WEB_MERCATOR`, `900913`, `EPSG:900913`, `102100`, `EPSG:102100`, `3857`, `EPSG:3857` |
 | `LAYERS` | The requested image layer(s) | One or more comma-separated table names, each in `[schema_name.]table_name` format, using standard [name resolution rules](/content/concepts/tables#table-name-resolution) |
 | `BBOX` | Geographic bounding box as a comma-separated list of: min_longitude, min_latitude, max_longitude, max_latitude | Four comma-separated numerics |
-| `WIDTH` | Image width, in pixels; best performance if a power of 2 | `64` - `8192` |
-| `HEIGHT` | Image height, in pixels; best performance if a power of 2 | `64` - `8192` |
-
+| `WIDTH` | Image width, in pixels | `1` - `<conf.max_heatmap_size>` <br/> <br/> For details on the system-configured `max_heatmap_size`, see: [Visualization](/content/config#config-main-visualization). |
+| `HEIGHT` | Image height, in pixels | `1` - `<conf.max_heatmap_size>` <br/> <br/> For details on the system-configured `max_heatmap_size`, see: [Visualization](/content/config#config-main-visualization). |
 
 <a id="wms-optional-params"></a>
 
@@ -217,7 +216,7 @@ following characteristics:
 
 {/* Source: /examples/bash/wms_examples.sh (lines 82-90) */}
 ```
-\${KINETICA_URL}/wms?REQUEST=GetMap
+${KINETICA_URL}/wms?REQUEST=GetMap
 &STYLES=raster
 &LAYERS=example_geospatial.nyc_neighborhood
 &GEO_ATTR=geom
@@ -245,7 +244,7 @@ characteristics:
 
 {/* Source: /examples/bash/wms_examples.sh (lines 98-109) */}
 ```
-\${KINETICA_URL}/wms?REQUEST=GetMap
+${KINETICA_URL}/wms?REQUEST=GetMap
 &STYLES=raster
 &LAYERS=demo.flights
 &SRS=EPSG:4326
@@ -281,7 +280,7 @@ from a table `nyctaxi` and symbols generated from a taxi icon SVG file:
 
 {/* Source: /examples/bash/wms_examples.sh (lines 133-144) */}
 ```
-\${KINETICA_URL}/wms?REQUEST=GetMap
+${KINETICA_URL}/wms?REQUEST=GetMap
 &STYLES=raster
 &LAYERS=demo.nyctaxi
 &X_ATTR=dropoff_longitude
@@ -307,26 +306,26 @@ in the `SVG_PATH` variable.
 
    {/* Source: /examples/bash/wms_examples.sh (lines 117-120) */}
 ```
-curl -sS -X POST \${KINETICA_URL}/insert/symbol \
+curl -sS -X POST ${KINETICA_URL}/insert/symbol \
 --header "Content-Type: application/json" \
---user \${USERNAME}:\${PASSWORD} \
---data '{"symbol_id":"taxi_green", "symbol_format":"svg_path", "symbol_data":"'\${SVG_PATH}'", "options":{"color":"00FF00"}}'
+--user ${USERNAME}:${PASSWORD} \
+--data '{"symbol_id":"taxi_green", "symbol_format":"svg_path", "symbol_data":"'${SVG_PATH}'", "options":{"color":"00FF00"}}'
 ```
 
    {/* Source: /examples/bash/wms_examples.sh (lines 122-125) */}
 ```
-curl -sS -X POST \${KINETICA_URL}/insert/symbol \
+curl -sS -X POST ${KINETICA_URL}/insert/symbol \
 --header "Content-Type: application/json" \
---user \${USERNAME}:\${PASSWORD} \
---data '{"symbol_id":"taxi_blue", "symbol_format":"svg_path", "symbol_data":"'\${SVG_PATH}'", "options":{"color":"FF0000"}}'
+--user ${USERNAME}:${PASSWORD} \
+--data '{"symbol_id":"taxi_blue", "symbol_format":"svg_path", "symbol_data":"'${SVG_PATH}'", "options":{"color":"FF0000"}}'
 ```
 
    {/* Source: /examples/bash/wms_examples.sh (lines 127-130) */}
 ```
-curl -sS -X POST \${KINETICA_URL}/insert/symbol \
+curl -sS -X POST ${KINETICA_URL}/insert/symbol \
 --header "Content-Type: application/json" \
---user \${USERNAME}:\${PASSWORD} \
---data '{"symbol_id":"taxi_default", "symbol_format":"svg_path", "symbol_data":"'\${SVG_PATH}'", "options":{"color":"0000FF"}}'
+--user ${USERNAME}:${PASSWORD} \
+--data '{"symbol_id":"taxi_default", "symbol_format":"svg_path", "symbol_data":"'${SVG_PATH}'", "options":{"color":"0000FF"}}'
 ```
 </Note>
 
@@ -412,7 +411,7 @@ For example, to generate a category-based class-break raster image from a table
 
 {/* Source: /examples/bash/wms_examples.sh (lines 154-168) */}
 ```
-\${KINETICA_URL}/wms?REQUEST=GetMap
+${KINETICA_URL}/wms?REQUEST=GetMap
 &STYLES=cb_raster
 &LAYERS=demo.nyctaxi
 &X_ATTR=pickup_longitude
@@ -516,7 +515,7 @@ following characteristics:
 
 {/* Source: /examples/bash/wms_examples.sh (lines 177-187) */}
 ```
-\${KINETICA_URL}/wms?REQUEST=GetMap
+${KINETICA_URL}/wms?REQUEST=GetMap
 &STYLES=heatmap
 &LAYERS=demo.nyctaxi
 &X_ATTR=pickup_longitude
@@ -615,9 +614,9 @@ aggregate the taxi trip data, counting the number dropoffs at the same location:
 
 {/* Source: /examples/bash/wms_examples.sh (lines 200-212) */}
 ```
-curl -sS -X POST \${KINETICA_URL}/aggregate/groupby \
+curl -sS -X POST ${KINETICA_URL}/aggregate/groupby \
 --header "Content-Type: application/json" \
---user \${USERNAME}:\${PASSWORD} \
+--user ${USERNAME}:${PASSWORD} \
 --data @- <<PARAMS
 {
 	"table_name": "demo.nyctaxi",
@@ -663,7 +662,7 @@ following additional characteristics:
 
 {/* Source: /examples/bash/wms_examples.sh (lines 215-233) */}
 ```
-\${KINETICA_URL}/wms?REQUEST=GetMap
+${KINETICA_URL}/wms?REQUEST=GetMap
 &STYLES=contour
 &LAYERS=contour_source
 &X_ATTR=dropoff_longitude
@@ -773,7 +772,7 @@ following characteristics:
 
 {/* Source: /examples/bash/wms_examples.sh (lines 242-257) */}
 ```
-\${KINETICA_URL}/wms?REQUEST=GetMap
+${KINETICA_URL}/wms?REQUEST=GetMap
 &STYLES=labels
 &LABEL_LAYER=demo.nyctaxi
 &LABEL_X_ATTR=dropoff_longitude

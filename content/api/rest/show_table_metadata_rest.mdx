@@ -19,14 +19,14 @@ Retrieves the user provided metadata for the specified tables.
 
 | Name | Type | Description |
 | --- | --- | --- |
-| table_names | array of strings | Names of tables whose metadata will be fetched, in [schema_name.]table_name format, using standard [name resolution rules](../../../concepts/tables/#table-name-resolution).  All provided tables must exist, or an error is returned. |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). |
+| table_names | array of strings | Names of tables whose metadata will be fetched, in [schema_name.]table_name format, using standard [name resolution rules](../../../concepts/tables/#table-name-resolution). All provided tables must exist, or an error is returned. |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). |
 
 
 ## Output Parameter Description
 
 
-The GPUdb server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
+The Kinetica server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
 
 | Name | Type | Description |
 | --- | --- | --- |

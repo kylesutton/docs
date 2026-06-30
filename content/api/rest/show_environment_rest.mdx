@@ -11,8 +11,9 @@ title: /show/environment
 ```
 URL: http://<db.host>:<db.port>/show/environment
 ```
-Shows information about a specified [user-defined function](../../../concepts/udf/) (UDF) environment or all environments.
-Returns detailed information about existing environments.
+Shows information about a specified
+[user-defined function](../../../concepts/udf/) (UDF) environment or all
+environments. Returns detailed information about existing environments.
 
 
 ## Input Parameter Description
@@ -20,14 +21,14 @@ Returns detailed information about existing environments.
 
 | Name | Type | Description |
 | --- | --- | --- |
-| environment_name | string | Name of the environment on which to retrieve information. The name must refer to a currently existing environment. If '*' or an empty value is specified, information about all environments will be returned.  The default value is ''. |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> no_error_if_not_exists: If *true* and if the environment specified in input parameter *environment_name* does not exist, no error is returned. If *false* and if the environment specified in input parameter *environment_name* does not exist, then an error is returned. The default value is `false`. The supported values are: * true * false <br/> <br/> show_names_only: If *true* only return the names of the installed environments and omit package listing. The default value is `false`.  The supported values are: * true * false |
+| environment_name | string | Name of the environment on which to retrieve information. The name must refer to a currently existing environment. If '*' or an empty value is specified, information about all environments will be returned. <br/> <br/> The default value is ''. |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). <br/> <br/> no_error_if_not_exists: If *true* and if the environment specified in input parameter *environment_name* does not exist, no error is returned. If *false* and if the environment specified in input parameter *environment_name* does not exist, then an error is returned. The default value is `false`. The supported values are: * true * false <br/> <br/> show_names_only: If *true* only return the names of the installed environments and omit package listing. The default value is `false`. The supported values are: * true * false |
 
 
 ## Output Parameter Description
 
 
-The GPUdb server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
+The Kinetica server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
 
 | Name | Type | Description |
 | --- | --- | --- |

@@ -11,8 +11,8 @@ title: /show/wal
 ```
 URL: http://<db.host>:<db.port>/show/wal
 ```
-Requests table write-ahead log (WAL) properties.
-Returns information about the requested table WAL entries.
+Requests table write-ahead log (WAL) properties. Returns information about the
+requested table WAL entries.
 
 
 ## Input Parameter Description
@@ -21,13 +21,13 @@ Returns information about the requested table WAL entries.
 | Name | Type | Description |
 | --- | --- | --- |
 | table_names | array of strings | List of tables to query. An asterisk returns all tables. |
-| options | map of string to strings | Optional parameters.  The default value is an empty map ( \{\} ). <br/> <br/> show_settings: If *true* include a map of the WAL settings for the requested tables. The default value is `true`. The supported values are: * true * false |
+| options | map of string to strings | Optional parameters. <br/> <br/> The default value is an empty map ( \{\} ). <br/> <br/> show_settings: If *true* include a map of the WAL settings for the requested tables. The default value is `true`. The supported values are: * true * false |
 
 
 ## Output Parameter Description
 
 
-The GPUdb server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
+The Kinetica server embeds the endpoint response inside a standard response structure which contains status information and the actual response to the query.  Here is a description of the various fields of the wrapper:
 
 | Name | Type | Description |
 | --- | --- | --- |
